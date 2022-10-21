@@ -50,6 +50,10 @@ export interface AbfahrtenResult {
    * amount of departures/arrivals that are affected by a strike [Streik]
    */
   strike?: number;
+  /**
+   * Eva Numbers queried for this resultset
+   */
+  stopPlaces: string[];
 }
 
 export interface Abfahrt {
@@ -59,7 +63,6 @@ export interface Abfahrt {
    */
   initialStopPlace: string;
   arrival?: StopInfo;
-  auslastung: boolean;
   currentStopPlace: MinimalStopPlace;
   departure?: StopInfo;
   destination: string;
@@ -142,7 +145,6 @@ export interface Stop {
 }
 
 export interface TrainInfo extends CommonProductInfo {
-  longDistance?: boolean;
   type: string;
   number: string;
 }

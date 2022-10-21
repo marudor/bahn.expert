@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import { isStrikeMessage } from 'server/iris/messageLookup';
-import Timetable from './Timetable';
+import { Timetable } from './Timetable';
 import type { Abfahrt, AbfahrtenResult } from 'types/iris';
 
 interface AbfahrtenOptions {
@@ -14,6 +15,7 @@ const baseResult: AbfahrtenResult = {
   departures: [],
   lookbehind: [],
   wings: {},
+  stopPlaces: [],
 };
 
 export function reduceResults(
@@ -27,6 +29,7 @@ export function reduceResults(
       ...agg.wings,
       ...r.wings,
     },
+    stopPlaces: [...agg.stopPlaces, ...r.stopPlaces],
   };
 }
 
@@ -101,6 +104,7 @@ export async function getAbfahrten(
   withRelated = true,
   options: AbfahrtenOptions,
 ): Promise<AbfahrtenResult> {
+  console.time(`abfahrten${evaId}`);
   const lookahead = options.lookahead;
   const lookbehind = options.lookbehind;
 
@@ -122,6 +126,8 @@ export async function getAbfahrten(
   const result = (await Promise.all([timetable.start(), relatedAbfahrten]))
     // eslint-disable-next-line unicorn/no-array-reduce
     .reduce(reduceResults, baseResult);
+
+  console.time('post');
 
   /**
    * We search if trains with the same mediumId exist. Should only happen if the same train departs or arrives at the same station (like Stuttgart Hbf and Stuttgart Hbf (tief))
@@ -151,6 +157,9 @@ export async function getAbfahrten(
   ).length;
 
   result.strike = departureStrikes + loobehindStrikes;
+
+  console.timeEnd('post');
+  console.timeEnd(`abfahrten${evaId}`);
 
   return result;
 }

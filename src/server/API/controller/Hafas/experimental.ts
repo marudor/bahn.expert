@@ -112,6 +112,7 @@ export class HafasExperimentalController extends Controller {
         .filter(Boolean)
         .slice(0, 75),
       wings: {},
+      stopPlaces: [evaId],
     };
   }
 

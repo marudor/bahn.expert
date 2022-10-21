@@ -13,7 +13,6 @@
         "time": "2020-05-02T17:49:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -179,7 +178,6 @@
         "time": "2020-05-02T17:49:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -263,7 +261,6 @@
         "time": "2020-05-02T17:51:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -423,7 +420,6 @@
         "time": "2020-05-02T17:54:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -640,7 +636,6 @@
         "time": "2020-05-02T17:54:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -760,7 +755,6 @@
         "time": "2020-05-02T17:55:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -1004,7 +998,6 @@
         "time": "2020-05-02T17:59:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -1081,7 +1074,6 @@
         "time": "2020-05-02T18:05:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -1358,7 +1350,6 @@
         "time": "2020-05-02T18:06:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -1575,7 +1566,6 @@
         "time": "2020-05-02T18:09:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -1741,7 +1731,6 @@
         "time": "2020-05-02T18:09:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -1825,7 +1814,6 @@
         "time": "2020-05-02T18:11:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -1985,7 +1973,6 @@
         "time": "2020-05-02T18:14:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -2202,7 +2189,6 @@
         "time": "2020-05-02T18:14:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -2322,7 +2308,6 @@
         "time": "2020-05-02T18:16:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -2548,7 +2533,6 @@
         "time": "2020-05-02T18:16:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -2822,7 +2806,6 @@
         "time": "2020-05-02T18:19:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -2899,7 +2882,6 @@
         "time": "2020-05-02T18:20:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -3171,7 +3153,6 @@
         "time": "2020-05-02T18:25:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -3373,7 +3354,6 @@
         "time": "2020-05-02T18:26:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -3590,7 +3570,6 @@
         "time": "2020-05-02T18:29:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -3756,7 +3735,6 @@
         "time": "2020-05-02T18:29:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -3840,7 +3818,6 @@
         "time": "2020-05-02T18:31:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -4000,7 +3977,6 @@
         "time": "2020-05-02T18:34:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -4217,7 +4193,6 @@
         "time": "2020-05-02T18:35:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -4494,7 +4469,6 @@
         "time": "2020-05-02T18:39:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -4571,7 +4545,6 @@
         "time": "2020-05-02T18:45:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -4815,7 +4788,6 @@
         "time": "2020-05-02T18:46:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -5032,7 +5004,6 @@
         "time": "2020-05-02T18:48:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -5321,7 +5292,6 @@
         "time": "2020-05-02T18:49:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -5487,7 +5457,6 @@
         "time": "2020-05-02T18:49:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -5571,7 +5540,6 @@
         "time": "2020-05-02T18:51:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -5731,7 +5699,6 @@
         "time": "2020-05-02T18:54:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -5946,7 +5913,6 @@
         "scheduledTime": "2020-05-02T18:54:00.000Z",
         "time": "2020-05-02T18:54:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -6066,7 +6032,6 @@
         "time": "2020-05-02T18:55:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -6266,7 +6231,6 @@
         "scheduledTime": "2020-05-02T18:59:00.000Z",
         "time": "2020-05-02T18:59:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -6343,7 +6307,6 @@
         "time": "2020-05-02T19:05:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -6578,7 +6541,6 @@
         "time": "2020-05-02T19:06:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -6793,7 +6755,6 @@
         "scheduledTime": "2020-05-02T19:09:00.000Z",
         "time": "2020-05-02T19:09:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -6957,7 +6918,6 @@
         "scheduledTime": "2020-05-02T19:09:00.000Z",
         "time": "2020-05-02T19:09:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -7039,7 +6999,6 @@
         "scheduledTime": "2020-05-02T19:10:00.000Z",
         "time": "2020-05-02T19:10:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -7295,7 +7254,6 @@
         "time": "2020-05-02T19:11:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -7455,7 +7413,6 @@
         "time": "2020-05-02T19:14:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -7670,7 +7627,6 @@
         "scheduledTime": "2020-05-02T19:14:00.000Z",
         "time": "2020-05-02T19:14:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -7790,7 +7746,6 @@
         "time": "2020-05-02T19:15:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -8032,7 +7987,6 @@
         "scheduledTime": "2020-05-02T19:16:00.000Z",
         "time": "2020-05-02T19:16:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -8304,7 +8258,6 @@
         "scheduledTime": "2020-05-02T19:19:00.000Z",
         "time": "2020-05-02T19:19:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -8379,7 +8332,6 @@
         "scheduledTime": "2020-05-02T19:26:00.000Z",
         "time": "2020-05-02T19:26:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -8594,7 +8546,6 @@
         "scheduledTime": "2020-05-02T19:29:00.000Z",
         "time": "2020-05-02T19:29:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -8758,7 +8709,6 @@
         "scheduledTime": "2020-05-02T19:29:00.000Z",
         "time": "2020-05-02T19:29:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -8840,7 +8790,6 @@
         "scheduledTime": "2020-05-02T19:31:00.000Z",
         "time": "2020-05-02T19:31:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -8998,7 +8947,6 @@
         "scheduledTime": "2020-05-02T19:35:00.000Z",
         "time": "2020-05-02T19:35:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -9231,7 +9179,6 @@
         "scheduledTime": "2020-05-02T19:39:00.000Z",
         "time": "2020-05-02T19:39:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -9446,7 +9393,6 @@
         "scheduledTime": "2020-05-02T19:39:00.000Z",
         "time": "2020-05-02T19:39:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -9523,7 +9469,6 @@
         "time": "2020-05-02T19:42:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -9793,7 +9738,6 @@
         "scheduledTime": "2020-05-02T19:45:00.000Z",
         "time": "2020-05-02T19:45:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -10059,7 +10003,6 @@
         "scheduledTime": "2020-05-02T19:49:00.000Z",
         "time": "2020-05-02T19:49:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -10141,7 +10084,6 @@
         "scheduledTime": "2020-05-02T19:51:00.000Z",
         "time": "2020-05-02T19:51:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -10356,7 +10298,6 @@
         "scheduledTime": "2020-05-02T19:55:00.000Z",
         "time": "2020-05-02T19:55:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -10598,7 +10539,6 @@
         "scheduledTime": "2020-05-02T19:57:00.000Z",
         "time": "2020-05-02T19:57:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -10716,7 +10656,6 @@
         "scheduledTime": "2020-05-02T19:59:00.000Z",
         "time": "2020-05-02T19:59:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -10880,7 +10819,6 @@
         "scheduledTime": "2020-05-02T19:59:00.000Z",
         "time": "2020-05-02T19:59:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -10955,7 +10893,6 @@
         "scheduledTime": "2020-05-02T20:01:00.000Z",
         "time": "2020-05-02T20:01:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -11113,7 +11050,6 @@
         "scheduledTime": "2020-05-02T20:05:00.000Z",
         "time": "2020-05-02T20:05:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -11346,7 +11282,6 @@
         "scheduledTime": "2020-05-02T20:09:00.000Z",
         "time": "2020-05-02T20:09:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -11561,7 +11496,6 @@
         "scheduledTime": "2020-05-02T20:09:00.000Z",
         "time": "2020-05-02T20:09:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -11643,7 +11577,6 @@
         "scheduledTime": "2020-05-02T20:10:00.000Z",
         "time": "2020-05-02T20:10:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -11897,7 +11830,6 @@
         "scheduledTime": "2020-05-02T20:15:00.000Z",
         "time": "2020-05-02T20:15:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -12121,7 +12053,6 @@
         "scheduledTime": "2020-05-02T20:16:00.000Z",
         "time": "2020-05-02T20:16:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -12393,7 +12324,6 @@
         "scheduledTime": "2020-05-02T20:17:00.000Z",
         "time": "2020-05-02T20:17:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -12511,7 +12441,6 @@
         "scheduledTime": "2020-05-02T20:19:00.000Z",
         "time": "2020-05-02T20:19:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721696",
         "name": "Poststraße",
@@ -12586,7 +12515,6 @@
         "scheduledTime": "2020-05-02T20:21:00.000Z",
         "time": "2020-05-02T20:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",
@@ -12801,7 +12729,6 @@
         "scheduledTime": "2020-05-02T20:29:00.000Z",
         "time": "2020-05-02T20:29:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723870",
         "name": "Poststraße",
@@ -12965,7 +12892,6 @@
         "scheduledTime": "2020-05-02T20:29:00.000Z",
         "time": "2020-05-02T20:29:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "721695",
         "name": "Poststraße",
@@ -13047,7 +12973,6 @@
         "scheduledTime": "2020-05-02T20:31:00.000Z",
         "time": "2020-05-02T20:31:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "723869",
         "name": "Poststraße, Karlsruhe",

@@ -24,7 +24,6 @@
       "mediumId": "7856594595140246903-1908071400",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "35744",
         "trainCategory": "S",
@@ -80,7 +79,6 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -107,7 +105,6 @@
       "mediumId": "9178059813734817975-1908071339",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 70",
         "number": "4568",
         "trainCategory": "RE",
@@ -178,7 +175,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "17",
       "scheduledPlatform": "17",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -206,7 +203,6 @@
       "mediumId": "6696762159665593571-1908071304",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 68",
         "number": "15318",
         "trainCategory": "RB",
@@ -297,7 +293,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -324,7 +320,6 @@
       "mediumId": "2724419709331148824-1908071317",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 67",
         "number": "15418",
         "trainCategory": "RB",
@@ -403,7 +398,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -430,7 +425,6 @@
       "mediumId": "7937556967056290041-1908071304",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 2",
         "number": "4261",
         "trainCategory": "RE",
@@ -494,7 +488,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "20",
       "scheduledPlatform": "20",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -529,7 +523,6 @@
       "mediumId": "5036600979734019557-1908070946",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 371",
         "number": "371",
         "trainCategory": "ICE",
@@ -658,7 +651,7 @@
       "destination": "Interlaken Ost",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -693,7 +686,6 @@
       "mediumId": "2307301279586290347-1908071310",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 629",
         "number": "629",
         "trainCategory": "ICE",
@@ -744,7 +736,7 @@
       "destination": "München Hbf",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -770,7 +762,6 @@
       "mediumId": "929343339578447900-1908071054",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1632",
         "number": "1632",
         "trainCategory": "ICE",
@@ -839,7 +830,6 @@
       "mediumId": "214091682486605617-1908071417",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "35645",
         "trainCategory": "S",
@@ -929,7 +919,7 @@
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
       "scheduledPlatform": "101",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -965,7 +955,6 @@
       "mediumId": "6286028773478327867-1908071438",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "36136",
         "trainCategory": "S",
@@ -1044,7 +1033,7 @@
       "destination": "Hochheim (Main)",
       "platform": "103",
       "scheduledPlatform": "103",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1079,7 +1068,6 @@
       "mediumId": "1302275594339840200-1908071324",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 576",
         "number": "576",
         "trainCategory": "ICE",
@@ -1138,7 +1126,7 @@
       "destination": "Hamburg-Altona",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -1165,7 +1153,6 @@
       "mediumId": "2032242170749555121-1908071355",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 20",
         "number": "15223",
         "trainCategory": "RE",
@@ -1209,7 +1196,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1245,7 +1232,6 @@
       "mediumId": "4964548439570537829-1908071411",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 9",
         "number": "35945",
         "trainCategory": "S",
@@ -1347,7 +1333,7 @@
       "destination": "Hanau Hbf",
       "platform": "102",
       "scheduledPlatform": "102",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1383,7 +1369,6 @@
       "mediumId": "4337412589827788229-1908071434",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "35446",
         "trainCategory": "S",
@@ -1471,7 +1456,7 @@
       "destination": "Kronberg (Taunus)",
       "platform": "104",
       "scheduledPlatform": "104",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1498,7 +1483,6 @@
       "mediumId": "707323972295804230-1908071413",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 61",
         "number": "15646",
         "trainCategory": "RB",
@@ -1569,7 +1553,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1594,7 +1578,6 @@
       "mediumId": "3586603511727500049-1908071501",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 20",
         "number": "15218",
         "trainCategory": "RE",
@@ -1641,7 +1624,7 @@
       "destination": "Limburg (Lahn)",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1677,7 +1660,6 @@
       "mediumId": "7987537601933216163-1908071431",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 9",
         "number": "35946",
         "trainCategory": "S",
@@ -1779,7 +1761,7 @@
       "destination": "Wiesbaden Hbf",
       "platform": "103",
       "scheduledPlatform": "103",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1815,7 +1797,6 @@
       "mediumId": "6776951685345067056-1908071438",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "35447",
         "trainCategory": "S",
@@ -1903,7 +1884,7 @@
       "destination": "Langen (Hess)",
       "platform": "101",
       "scheduledPlatform": "101",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -1927,7 +1908,6 @@
       "mediumId": "7045405255925623225-1908071502",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1631",
         "number": "1631",
         "trainCategory": "ICE",
@@ -1964,7 +1944,7 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -2000,7 +1980,6 @@
       "mediumId": "725791618662085586-1908071453",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "35646",
         "trainCategory": "S",
@@ -2085,7 +2064,7 @@
       "destination": "Friedberg (Hess)",
       "platform": "104",
       "scheduledPlatform": "104",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2121,7 +2100,6 @@
       "mediumId": "635433394074313501-1908071454",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "36139",
         "trainCategory": "S",
@@ -2212,7 +2190,7 @@
       "destination": "Rödermark-Ober Roden",
       "platform": "102",
       "scheduledPlatform": "102",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2239,7 +2217,6 @@
       "mediumId": "2062482644552481486-1908071237",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "VIA RB10",
         "number": "25019",
         "trainCategory": "VIA",
@@ -2341,7 +2318,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "24",
       "scheduledPlatform": "24",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2376,7 +2353,6 @@
       "mediumId": "3868889213374348128-1908071046",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 577",
         "number": "577",
         "trainCategory": "ICE",
@@ -2434,7 +2410,7 @@
       "destination": "Stuttgart Hbf",
       "platform": "6",
       "scheduledPlatform": "6",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -2461,7 +2437,6 @@
       "mediumId": "8819939235450025236-1908071430",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "35746",
         "trainCategory": "S",
@@ -2515,7 +2490,7 @@
       "destination": "Frankfurt-Niederrad",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2543,7 +2518,6 @@
       "mediumId": "3858488015115894671-1908071506",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 68",
         "number": "15323",
         "trainCategory": "RB",
@@ -2639,7 +2613,7 @@
       "destination": "Wiesloch-Walldorf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2675,7 +2649,6 @@
       "mediumId": "6288823494565802022-1908071438",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "35547",
         "trainCategory": "S",
@@ -2748,7 +2721,7 @@
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
       "scheduledPlatform": "101",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2784,7 +2757,6 @@
       "mediumId": "1888967141155203621-1908071448",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "36240",
         "trainCategory": "S",
@@ -2857,7 +2829,7 @@
       "destination": "Hofheim (Taunus)",
       "platform": "103",
       "scheduledPlatform": "103",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2884,7 +2856,6 @@
       "mediumId": "7905496543427052776-1908071508",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 2",
         "number": "4260",
         "trainCategory": "RE",
@@ -2953,7 +2924,7 @@
       "destination": "Koblenz Hbf",
       "platform": "20",
       "scheduledPlatform": "20",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -2978,7 +2949,6 @@
       "mediumId": "1182688627820985200-1908071508",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 8",
         "number": "36840",
         "trainCategory": "S",
@@ -3009,7 +2979,7 @@
       "destination": "Frankfurt (M)  Flughafen Regionalbf",
       "platform": "21",
       "scheduledPlatform": "21",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3045,7 +3015,6 @@
       "mediumId": "1247388627793260308-1908071433",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "35247",
         "trainCategory": "S",
@@ -3148,7 +3117,7 @@
       "destination": "Dietzenbach Bahnhof",
       "platform": "102",
       "scheduledPlatform": "102",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3180,7 +3149,6 @@
       "mediumId": "1471035024547127282-1908071458",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "36538",
         "trainCategory": "S",
@@ -3245,7 +3213,7 @@
       "destination": "Bad Homburg",
       "platform": "104",
       "scheduledPlatform": "104",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3280,7 +3248,6 @@
       "mediumId": "8429649765325465614-1908071151",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 628",
         "number": "628",
         "trainCategory": "ICE",
@@ -3334,7 +3301,7 @@
       "destination": "Düsseldorf Hbf",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -3370,7 +3337,6 @@
       "mediumId": "1259986309611779922-1908071428",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "35144",
         "trainCategory": "S",
@@ -3488,7 +3454,7 @@
       "destination": "Wiesbaden Hbf",
       "platform": "103",
       "scheduledPlatform": "103",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3524,7 +3490,6 @@
       "mediumId": "7049756108631948999-1908071440",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "36639",
         "trainCategory": "S",
@@ -3597,7 +3562,7 @@
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
       "scheduledPlatform": "101",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3624,7 +3589,6 @@
       "mediumId": "1910635254223353598-1908071512",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 70",
         "number": "4573",
         "trainCategory": "RE",
@@ -3701,7 +3665,7 @@
       "destination": "Mannheim Hbf",
       "platform": "17",
       "scheduledPlatform": "17",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3726,7 +3690,6 @@
       "mediumId": "8597215678518085218-1908071513",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 22",
         "number": "15264",
         "trainCategory": "RB",
@@ -3785,7 +3748,7 @@
       "destination": "Limburg (Lahn)",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -3820,7 +3783,6 @@
       "mediumId": "4961782681481677440-1908071000",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 278",
         "number": "278",
         "trainCategory": "ICE",
@@ -3922,7 +3884,7 @@
       "destination": "Berlin Ostbahnhof",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -3949,7 +3911,6 @@
       "mediumId": "6324236951854846568-1908071402",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 34",
         "number": "15751",
         "trainCategory": "RB",
@@ -4014,7 +3975,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4050,7 +4011,6 @@
       "mediumId": "6640690117282839967-1908071419",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 8",
         "number": "35845",
         "trainCategory": "S",
@@ -4156,7 +4116,7 @@
       "destination": "Hanau Hbf",
       "platform": "102",
       "scheduledPlatform": "102",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4192,7 +4152,6 @@
       "mediumId": "5525194407281379123-1908071435",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "35346",
         "trainCategory": "S",
@@ -4301,7 +4260,7 @@
       "destination": "Bad Soden (Taunus)",
       "platform": "104",
       "scheduledPlatform": "104",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4328,7 +4287,6 @@
       "mediumId": "1335250898465579502-1908071416",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 51",
         "number": "15519",
         "trainCategory": "RB",
@@ -4384,7 +4342,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "5",
       "scheduledPlatform": "5",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4411,7 +4369,6 @@
       "mediumId": "6923433839633855846-1908071515",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 61",
         "number": "15663",
         "trainCategory": "RB",
@@ -4482,7 +4439,7 @@
       "destination": "Dieburg",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4506,7 +4463,6 @@
       "mediumId": "1980200309778804828-1908071516",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 816",
         "number": "816",
         "trainCategory": "ICE",
@@ -4542,7 +4498,7 @@
       "destination": "Köln Hbf",
       "platform": "19",
       "scheduledPlatform": "19",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -4574,7 +4530,6 @@
       "mediumId": "768300833188159844-1908071353",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 12",
         "number": "24991",
         "trainCategory": "RB",
@@ -4663,7 +4618,7 @@
       "destination": "Königstein (Taunus)",
       "platform": "22",
       "scheduledPlatform": "22",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4699,7 +4654,6 @@
       "mediumId": "4092009418443293251-1908071450",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "35347",
         "trainCategory": "S",
@@ -4808,7 +4762,7 @@
       "destination": "Darmstadt Hbf",
       "platform": "101",
       "scheduledPlatform": "101",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4844,7 +4798,6 @@
       "mediumId": "1418209302547608527-1908071458",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 8",
         "number": "35846",
         "trainCategory": "S",
@@ -4943,7 +4896,7 @@
       "destination": "Wiesbaden Hbf",
       "platform": "103",
       "scheduledPlatform": "103",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -4979,7 +4932,6 @@
       "mediumId": "5801276901161263670-1908071435",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "35147",
         "trainCategory": "S",
@@ -5097,7 +5049,7 @@
       "destination": "Rödermark-Ober Roden",
       "platform": "102",
       "scheduledPlatform": "102",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5129,7 +5081,6 @@
       "mediumId": "2356893980509239431-1908071508",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "36640",
         "trainCategory": "S",
@@ -5200,7 +5151,7 @@
       "destination": "Groß Karben",
       "platform": "104",
       "scheduledPlatform": "104",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5235,7 +5186,6 @@
       "mediumId": "4185909531060188052-1908071303",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1579",
         "number": "1579",
         "trainCategory": "ICE",
@@ -5288,7 +5238,7 @@
       "destination": "Heidelberg Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -5315,7 +5265,6 @@
       "mediumId": "5808615129414944265-1908071349",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 14",
         "number": "4492",
         "trainCategory": "RE",
@@ -5361,7 +5310,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "1a",
       "scheduledPlatform": "1a",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5388,7 +5337,6 @@
       "mediumId": "7357640505402611806-1908071420",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "VIA RE85",
         "number": "25130",
         "trainCategory": "VIA",
@@ -5433,7 +5381,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5468,7 +5416,6 @@
       "mediumId": "8317284780065095268-1908071426",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1653",
         "number": "1653",
         "trainCategory": "ICE",
@@ -5528,7 +5475,7 @@
       "destination": "Dresden Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
+
       "reihung": true
     },
     {
@@ -5555,7 +5502,6 @@
       "mediumId": "7710200080056392956-1908071520",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "35749",
         "trainCategory": "S",
@@ -5612,7 +5558,7 @@
       "destination": "Riedstadt-Goddelau",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5637,7 +5583,6 @@
       "mediumId": "981870580973872963-1908071521",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 30",
         "number": "4160",
         "trainCategory": "RE",
@@ -5693,7 +5638,7 @@
       "destination": "Kassel Hbf",
       "platform": "16",
       "scheduledPlatform": "16",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5729,7 +5674,6 @@
       "mediumId": "4584671679641392197-1908071449",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "35246",
         "trainCategory": "S",
@@ -5832,7 +5776,7 @@
       "destination": "Niedernhausen (Taunus)",
       "platform": "103",
       "scheduledPlatform": "103",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5864,7 +5808,6 @@
       "mediumId": "2578003267704472125-1908071459",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "36539",
         "trainCategory": "S",
@@ -5929,7 +5872,7 @@
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
       "scheduledPlatform": "101",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -5954,7 +5897,6 @@
       "mediumId": "2497178133236516516-1908071503",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 8",
         "number": "36841",
         "trainCategory": "S",
@@ -5986,7 +5928,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "21",
       "scheduledPlatform": "21",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6011,7 +5953,6 @@
       "mediumId": "5318588127399277552-1908071523",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "VIA RB10",
         "number": "25074",
         "trainCategory": "VIA",
@@ -6110,7 +6051,7 @@
       "destination": "Koblenz Hbf",
       "platform": "24",
       "scheduledPlatform": "24",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6137,7 +6078,6 @@
       "mediumId": "9141550527027631705-1908071337",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 55",
         "number": "4618",
         "trainCategory": "RE",
@@ -6205,7 +6145,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "6",
       "scheduledPlatform": "6",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6232,7 +6172,6 @@
       "mediumId": "1876997644196450711-1908071420",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 60",
         "number": "4658",
         "trainCategory": "RE",
@@ -6282,7 +6221,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6314,7 +6253,6 @@
       "mediumId": "8162103845652612851-1908071513",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "35548",
         "trainCategory": "S",
@@ -6385,7 +6323,7 @@
       "destination": "Friedrichsdorf (Taunus)",
       "platform": "104",
       "scheduledPlatform": "104",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6417,7 +6355,6 @@
       "mediumId": "597562042097615234-1908071517",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "36239",
         "trainCategory": "S",
@@ -6485,7 +6422,7 @@
       "destination": "Dietzenbach Bahnhof",
       "platform": "102",
       "scheduledPlatform": "102",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6512,7 +6449,6 @@
       "mediumId": "509767477587096022-1908071525",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 3",
         "number": "29524",
         "trainCategory": "RE",
@@ -6585,7 +6521,7 @@
       "destination": "Saarbrücken Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
+
       "reihung": false
     },
     {
@@ -6610,7 +6546,6 @@
       "mediumId": "5031310367914604275-1908071525",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "VIA RB82",
         "number": "25169",
         "trainCategory": "VIA",
@@ -6682,7 +6617,7 @@
       "destination": "Erbach (Odenw)",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
+
       "reihung": false
     }
   ],
@@ -6712,7 +6647,6 @@
       "mediumId": "4149517719624270097-1908071406",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 67",
         "number": "15421",
         "trainCategory": "RB",
@@ -6791,7 +6725,7 @@
       "destination": "Mannheim Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
+
       "reihung": false
     },
     "859374122770042489-1908071421": {
@@ -6818,7 +6752,6 @@
       "mediumId": "859374122770042489-1908071421",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 99",
         "number": "24914",
         "trainCategory": "RE",
@@ -6864,7 +6797,7 @@
       "destination": "Siegen Hbf",
       "platform": "15",
       "scheduledPlatform": "15",
-      "auslastung": false,
+
       "reihung": false
     },
     "1181097143050291141-1908071431": {
@@ -6891,7 +6824,6 @@
       "mediumId": "1181097143050291141-1908071431",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 40",
         "number": "15118",
         "trainCategory": "RB",
@@ -6982,7 +6914,7 @@
       "destination": "Dillenburg",
       "platform": "16",
       "scheduledPlatform": "16",
-      "auslastung": false,
+
       "reihung": false
     },
     "8791795277896736185-1908071551": {
@@ -7007,7 +6939,6 @@
       "mediumId": "8791795277896736185-1908071551",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 40",
         "number": "15120",
         "trainCategory": "RB",
@@ -7081,7 +7012,7 @@
       "destination": "Dillenburg",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
+
       "reihung": false
     },
     "1186458192854678463-1908071506": {
@@ -7108,7 +7039,6 @@
       "mediumId": "1186458192854678463-1908071506",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 67",
         "number": "15423",
         "trainCategory": "RB",
@@ -7192,7 +7122,7 @@
       "destination": "Mannheim Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": false,
+
       "reihung": false
     },
     "5512194522829670175-1908071306": {
@@ -7219,7 +7149,6 @@
       "mediumId": "5512194522829670175-1908071306",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 67",
         "number": "15419",
         "trainCategory": "RB",
@@ -7298,7 +7227,7 @@
       "destination": "Mannheim Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
+
       "reihung": false
     },
     "7497450269011895840-1908071351": {
@@ -7325,7 +7254,6 @@
       "mediumId": "7497450269011895840-1908071351",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RB 40",
         "number": "15116",
         "trainCategory": "RB",
@@ -7401,7 +7329,7 @@
       "destination": "Dillenburg",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
+
       "reihung": false
     },
     "3626013332719834621-1908070826": {
@@ -7427,7 +7355,6 @@
       "mediumId": "3626013332719834621-1908070826",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 214",
         "number": "214",
         "trainCategory": "ICE",
@@ -7480,7 +7407,7 @@
       "destination": "Bruxelles Midi",
       "platform": "18",
       "scheduledPlatform": "18",
-      "auslastung": true,
+
       "reihung": true
     },
     "8922294650485137672-1908070815": {
@@ -7507,7 +7434,6 @@
       "mediumId": "8922294650485137672-1908070815",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 99",
         "number": "24908",
         "trainCategory": "RE",
@@ -7555,7 +7481,7 @@
       "destination": "Siegen Hbf",
       "platform": "15",
       "scheduledPlatform": "12",
-      "auslastung": false,
+
       "reihung": false
     }
   },

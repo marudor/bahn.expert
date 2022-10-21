@@ -748,9 +748,6 @@
           },
           "admin": {
             "type": "string"
-          },
-          "longDistance": {
-            "type": "boolean"
           }
         },
         "required": [
@@ -773,9 +770,6 @@
           },
           "arrival": {
             "$ref": "#/components/schemas/StopInfo"
-          },
-          "auslastung": {
-            "type": "boolean"
           },
           "currentStopPlace": {
             "$ref": "#/components/schemas/MinimalStopPlace"
@@ -842,7 +836,6 @@
         "required": [
           "initialDeparture",
           "initialStopPlace",
-          "auslastung",
           "currentStopPlace",
           "destination",
           "id",
@@ -891,11 +884,19 @@
             "type": "number",
             "format": "double",
             "description": "amount of departures/arrivals that are affected by a strike [Streik]"
+          },
+          "stopPlaces": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "Eva Numbers queried for this resultset"
           }
         },
         "required": [
           "departures",
-          "lookbehind"
+          "lookbehind",
+          "stopPlaces"
         ],
         "type": "object",
         "additionalProperties": true

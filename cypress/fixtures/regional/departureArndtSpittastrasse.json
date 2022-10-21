@@ -13,7 +13,6 @@
         "time": "2021-03-04T20:21:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -164,7 +163,6 @@
         "scheduledTime": "2021-03-04T20:21:00.000Z",
         "time": "2021-03-04T20:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -264,7 +262,6 @@
         "scheduledTime": "2021-03-04T20:27:00.000Z",
         "time": "2021-03-04T20:27:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -363,7 +360,6 @@
         "time": "2021-03-04T20:27:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -453,7 +449,6 @@
         "time": "2021-03-04T20:30:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -540,7 +535,6 @@
         "time": "2021-03-04T20:33:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -693,7 +687,6 @@
         "time": "2021-03-04T20:37:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -844,7 +837,6 @@
         "scheduledTime": "2021-03-04T20:36:00.000Z",
         "time": "2021-03-04T20:36:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -944,7 +936,6 @@
         "scheduledTime": "2021-03-04T20:42:00.000Z",
         "time": "2021-03-04T20:42:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -1043,7 +1034,6 @@
         "time": "2021-03-04T20:42:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -1133,7 +1123,6 @@
         "time": "2021-03-04T20:45:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -1220,7 +1209,6 @@
         "time": "2021-03-04T20:48:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -1373,7 +1361,6 @@
         "time": "2021-03-04T20:52:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -1524,7 +1511,6 @@
         "scheduledTime": "2021-03-04T20:51:00.000Z",
         "time": "2021-03-04T20:51:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -1624,7 +1610,6 @@
         "scheduledTime": "2021-03-04T20:57:00.000Z",
         "time": "2021-03-04T20:57:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -1723,7 +1708,6 @@
         "time": "2021-03-04T20:57:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -1813,7 +1797,6 @@
         "time": "2021-03-04T21:00:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -1900,7 +1883,6 @@
         "time": "2021-03-04T21:03:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -2053,7 +2035,6 @@
         "time": "2021-03-04T21:07:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -2204,7 +2185,6 @@
         "scheduledTime": "2021-03-04T21:06:00.000Z",
         "time": "2021-03-04T21:06:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -2304,7 +2284,6 @@
         "scheduledTime": "2021-03-04T21:12:00.000Z",
         "time": "2021-03-04T21:12:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -2403,7 +2382,6 @@
         "time": "2021-03-04T21:12:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -2493,7 +2471,6 @@
         "time": "2021-03-04T21:15:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -2580,7 +2557,6 @@
         "time": "2021-03-04T21:18:00.000Z",
         "delay": 0
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -2733,7 +2709,6 @@
         "time": "2021-03-04T21:22:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -2884,7 +2859,6 @@
         "scheduledTime": "2021-03-04T21:21:00.000Z",
         "time": "2021-03-04T21:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -2984,7 +2958,6 @@
         "scheduledTime": "2021-03-04T21:27:00.000Z",
         "time": "2021-03-04T21:27:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -3081,7 +3054,6 @@
         "scheduledTime": "2021-03-04T21:27:00.000Z",
         "time": "2021-03-04T21:27:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -3169,7 +3141,6 @@
         "scheduledTime": "2021-03-04T21:29:00.000Z",
         "time": "2021-03-04T21:29:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -3254,7 +3225,6 @@
         "scheduledTime": "2021-03-04T21:33:00.000Z",
         "time": "2021-03-04T21:33:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -3407,7 +3377,6 @@
         "time": "2021-03-04T21:37:00.000Z",
         "delay": 1
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -3558,7 +3527,6 @@
         "scheduledTime": "2021-03-04T21:36:00.000Z",
         "time": "2021-03-04T21:36:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -3658,7 +3626,6 @@
         "scheduledTime": "2021-03-04T21:42:00.000Z",
         "time": "2021-03-04T21:42:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -3755,7 +3722,6 @@
         "scheduledTime": "2021-03-04T21:42:00.000Z",
         "time": "2021-03-04T21:42:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -3843,7 +3809,6 @@
         "scheduledTime": "2021-03-04T21:44:00.000Z",
         "time": "2021-03-04T21:44:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -3928,7 +3893,6 @@
         "scheduledTime": "2021-03-04T21:48:00.000Z",
         "time": "2021-03-04T21:48:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -4079,7 +4043,6 @@
         "scheduledTime": "2021-03-04T21:51:00.000Z",
         "time": "2021-03-04T21:51:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -4230,7 +4193,6 @@
         "scheduledTime": "2021-03-04T21:51:00.000Z",
         "time": "2021-03-04T21:51:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -4330,7 +4292,6 @@
         "scheduledTime": "2021-03-04T21:57:00.000Z",
         "time": "2021-03-04T21:57:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -4427,7 +4388,6 @@
         "scheduledTime": "2021-03-04T21:57:00.000Z",
         "time": "2021-03-04T21:57:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -4515,7 +4475,6 @@
         "scheduledTime": "2021-03-04T21:59:00.000Z",
         "time": "2021-03-04T21:59:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -4600,7 +4559,6 @@
         "scheduledTime": "2021-03-04T22:03:00.000Z",
         "time": "2021-03-04T22:03:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -4751,7 +4709,6 @@
         "scheduledTime": "2021-03-04T22:06:00.000Z",
         "time": "2021-03-04T22:06:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -4902,7 +4859,6 @@
         "scheduledTime": "2021-03-04T22:06:00.000Z",
         "time": "2021-03-04T22:06:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -5002,7 +4958,6 @@
         "scheduledTime": "2021-03-04T22:12:00.000Z",
         "time": "2021-03-04T22:12:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -5099,7 +5054,6 @@
         "scheduledTime": "2021-03-04T22:12:00.000Z",
         "time": "2021-03-04T22:12:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -5187,7 +5141,6 @@
         "scheduledTime": "2021-03-04T22:14:00.000Z",
         "time": "2021-03-04T22:14:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -5272,7 +5225,6 @@
         "scheduledTime": "2021-03-04T22:18:00.000Z",
         "time": "2021-03-04T22:18:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -5423,7 +5375,6 @@
         "scheduledTime": "2021-03-04T22:21:00.000Z",
         "time": "2021-03-04T22:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -5574,7 +5525,6 @@
         "scheduledTime": "2021-03-04T22:21:00.000Z",
         "time": "2021-03-04T22:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -5674,7 +5624,6 @@
         "scheduledTime": "2021-03-04T22:27:00.000Z",
         "time": "2021-03-04T22:27:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -5771,7 +5720,6 @@
         "scheduledTime": "2021-03-04T22:27:00.000Z",
         "time": "2021-03-04T22:27:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -5859,7 +5807,6 @@
         "scheduledTime": "2021-03-04T22:29:00.000Z",
         "time": "2021-03-04T22:29:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -5944,7 +5891,6 @@
         "scheduledTime": "2021-03-04T22:33:00.000Z",
         "time": "2021-03-04T22:33:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -6095,7 +6041,6 @@
         "scheduledTime": "2021-03-04T22:36:00.000Z",
         "time": "2021-03-04T22:36:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -6246,7 +6191,6 @@
         "scheduledTime": "2021-03-04T22:36:00.000Z",
         "time": "2021-03-04T22:36:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -6346,7 +6290,6 @@
         "scheduledTime": "2021-03-04T22:42:00.000Z",
         "time": "2021-03-04T22:42:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -6443,7 +6386,6 @@
         "scheduledTime": "2021-03-04T22:42:00.000Z",
         "time": "2021-03-04T22:42:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -6531,7 +6473,6 @@
         "scheduledTime": "2021-03-04T22:44:00.000Z",
         "time": "2021-03-04T22:44:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -6616,7 +6557,6 @@
         "scheduledTime": "2021-03-04T22:48:00.000Z",
         "time": "2021-03-04T22:48:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -6767,7 +6707,6 @@
         "scheduledTime": "2021-03-04T22:51:00.000Z",
         "time": "2021-03-04T22:51:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -6918,7 +6857,6 @@
         "scheduledTime": "2021-03-04T22:51:00.000Z",
         "time": "2021-03-04T22:51:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -7018,7 +6956,6 @@
         "scheduledTime": "2021-03-04T22:57:00.000Z",
         "time": "2021-03-04T22:57:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -7115,7 +7052,6 @@
         "scheduledTime": "2021-03-04T22:57:00.000Z",
         "time": "2021-03-04T22:57:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -7203,7 +7139,6 @@
         "scheduledTime": "2021-03-04T22:59:00.000Z",
         "time": "2021-03-04T22:59:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -7288,7 +7223,6 @@
         "scheduledTime": "2021-03-04T23:03:00.000Z",
         "time": "2021-03-04T23:03:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -7439,7 +7373,6 @@
         "scheduledTime": "2021-03-04T23:06:00.000Z",
         "time": "2021-03-04T23:06:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -7590,7 +7523,6 @@
         "scheduledTime": "2021-03-04T23:06:00.000Z",
         "time": "2021-03-04T23:06:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -7690,7 +7622,6 @@
         "scheduledTime": "2021-03-04T23:12:00.000Z",
         "time": "2021-03-04T23:12:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -7787,7 +7718,6 @@
         "scheduledTime": "2021-03-04T23:12:00.000Z",
         "time": "2021-03-04T23:12:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -7875,7 +7805,6 @@
         "scheduledTime": "2021-03-04T23:14:00.000Z",
         "time": "2021-03-04T23:14:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -7960,7 +7889,6 @@
         "scheduledTime": "2021-03-04T23:18:00.000Z",
         "time": "2021-03-04T23:18:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -8111,7 +8039,6 @@
         "scheduledTime": "2021-03-04T23:21:00.000Z",
         "time": "2021-03-04T23:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",
@@ -8262,7 +8189,6 @@
         "scheduledTime": "2021-03-04T23:21:00.000Z",
         "time": "2021-03-04T23:21:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "369218",
         "name": "Arndt-/Spittastraße",
@@ -8362,7 +8288,6 @@
         "scheduledTime": "2021-03-04T23:27:00.000Z",
         "time": "2021-03-04T23:27:00.000Z"
       },
-      "auslastung": false,
       "currentStopPlace": {
         "evaNumber": "559177",
         "name": "Arndt-/Spittastraße",

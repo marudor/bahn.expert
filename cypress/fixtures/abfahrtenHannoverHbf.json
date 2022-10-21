@@ -24,7 +24,6 @@
       "mediumId": "8776933428192585631-2002221140",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34613",
         "line": "6",
@@ -61,7 +60,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -88,7 +86,6 @@
       "mediumId": "8549181729981028226-2002221216",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95801",
         "line": "RE70",
@@ -130,7 +127,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "12",
       "scheduledPlatform": "11",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -166,7 +162,6 @@
       "mediumId": "2386491637548356629-2002221151",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34431",
         "line": "4",
@@ -238,7 +233,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -273,7 +267,6 @@
       "mediumId": "8160985285898732989-2002220600",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 78",
         "number": "78",
         "type": "ICE"
@@ -363,7 +356,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -390,7 +382,6 @@
       "mediumId": "6956859578373426794-2002221220",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 8",
         "number": "4416",
         "line": "8",
@@ -450,7 +441,6 @@
       "destination": "Bremerhaven-Lehe",
       "platform": "11",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -477,7 +467,6 @@
       "mediumId": "3951876184810714171-2002221143",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34314",
         "line": "3",
@@ -523,7 +512,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -550,7 +538,6 @@
       "mediumId": "5549800907684389763-2002221134",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34172",
         "line": "1",
@@ -614,7 +601,6 @@
       "destination": "Hannover Hbf",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -650,7 +636,6 @@
       "mediumId": "837896264284425682-2002221206",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34549",
         "line": "5",
@@ -719,7 +704,6 @@
       "destination": "Hameln",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -755,7 +739,6 @@
       "mediumId": "7453810721306932927-2002221046",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 587",
         "number": "587",
         "type": "ICE"
@@ -811,7 +794,6 @@
       "destination": "München Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -836,7 +818,6 @@
       "mediumId": "2250330762243986818-2002221228",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34122",
         "line": "1",
@@ -894,7 +875,6 @@
       "destination": "Minden (Westf)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -921,7 +901,6 @@
       "mediumId": "2202565628843083703-2002221135",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34123",
         "line": "1",
@@ -976,7 +955,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -1013,7 +991,6 @@
       "mediumId": "8906112445839706377-2002220928",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 847",
         "number": "847",
         "type": "ICE"
@@ -1081,7 +1058,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -1118,7 +1094,6 @@
       "mediumId": "3844771116961649940-2002221035",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 640",
         "number": "640",
         "type": "ICE"
@@ -1173,7 +1148,6 @@
       "destination": "Düsseldorf Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -1209,7 +1183,6 @@
       "mediumId": "3903267114289140176-2002221109",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82817",
         "line": "RE2",
@@ -1299,7 +1272,6 @@
       "destination": "Göttingen",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -1324,7 +1296,6 @@
       "mediumId": "359006503805522264-2002221233",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34173",
         "line": "1",
@@ -1391,7 +1362,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -1416,7 +1386,6 @@
       "mediumId": "3875596145665588073-2002221234",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34317",
         "line": "3",
@@ -1465,7 +1434,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "13 A-C",
       "scheduledPlatform": "13 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -1501,7 +1469,6 @@
       "mediumId": "3363511246096439315-2002221150",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34550",
         "line": "5",
@@ -1570,7 +1537,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -1605,7 +1571,6 @@
       "mediumId": "4151394777712103696-2002220820",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 882",
         "number": "882",
         "type": "ICE"
@@ -1663,7 +1628,6 @@
       "destination": "Kiel Hbf",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -1698,7 +1662,6 @@
       "mediumId": "118238635598518792-2002220913",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2441",
         "number": "2441",
         "type": "IC"
@@ -1780,7 +1743,6 @@
       "destination": "Dresden Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -1807,7 +1769,6 @@
       "mediumId": "8982563108078925395-2002220839",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 1",
         "number": "4415",
         "line": "1",
@@ -1894,7 +1855,6 @@
       "destination": "Hannover Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -1929,7 +1889,6 @@
       "mediumId": "7485471744845804129-2002221022",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 146",
         "number": "146",
         "type": "IC"
@@ -2003,7 +1962,6 @@
       "destination": "Amsterdam Centraal",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -2039,7 +1997,6 @@
       "mediumId": "4695910514228116524-2002221107",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82824",
         "line": "RE2",
@@ -2120,7 +2077,6 @@
       "destination": "Uelzen",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2156,7 +2112,6 @@
       "mediumId": "2457566998689858307-2002221206",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34434",
         "line": "4",
@@ -2233,7 +2188,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2268,7 +2222,6 @@
       "mediumId": "3868889213374348128-2002221107",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 577",
         "number": "577",
         "type": "ICE"
@@ -2318,7 +2271,6 @@
       "destination": "Stuttgart Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -2345,7 +2297,6 @@
       "mediumId": "8561458942738220334-2002221241",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34614",
         "line": "6",
@@ -2395,7 +2346,6 @@
       "destination": "Celle",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2422,7 +2372,6 @@
       "mediumId": "4512594414201562816-2002221154",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95764",
         "line": "RE70",
@@ -2459,7 +2408,6 @@
       "destination": "Hannover Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2494,7 +2442,6 @@
       "mediumId": "7042552500258897940-2002220914",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2430",
         "number": "2430",
         "type": "IC"
@@ -2579,7 +2526,6 @@
       "destination": "Emden Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -2604,7 +2550,6 @@
       "mediumId": "8545106540996747631-2002221221",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34433",
         "line": "4",
@@ -2650,7 +2595,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2677,7 +2621,6 @@
       "mediumId": "5201420650512567840-2002221248",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83467",
         "line": "RE10",
@@ -2724,7 +2667,6 @@
       "destination": "Bad Harzburg",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2750,7 +2692,6 @@
       "mediumId": "5455028244636234067-2002221248",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83517",
         "line": "RE30",
@@ -2804,7 +2745,6 @@
       "destination": "Wolfsburg Hbf",
       "platform": "13 D-F",
       "scheduledPlatform": "13 D-F",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2831,7 +2771,6 @@
       "mediumId": "2910113320802328023-2002221251",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83720",
         "line": "RB38",
@@ -2912,7 +2851,6 @@
       "destination": "Hamburg-Harburg",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -2939,7 +2877,6 @@
       "mediumId": "1600188836712037801-2002221020",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82869",
         "line": "RE3",
@@ -3006,7 +2943,6 @@
       "destination": "Hannover Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3042,7 +2978,6 @@
       "mediumId": "1425903371853713152-2002221038",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE60",
         "number": "95779",
         "line": "RE60",
@@ -3143,7 +3078,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3170,7 +3104,6 @@
       "mediumId": "1652298358306615749-2002221208",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34725",
         "line": "7",
@@ -3219,7 +3152,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3251,7 +3183,6 @@
       "mediumId": "7356595096517172562-2002221236",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34551",
         "line": "5",
@@ -3336,7 +3267,6 @@
       "destination": "Altenbeken",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3372,7 +3302,6 @@
       "mediumId": "6443779865729235728-2002221204",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34218",
         "line": "2",
@@ -3477,7 +3406,6 @@
       "destination": "Nienburg (Weser)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3512,7 +3440,6 @@
       "mediumId": "6420722458247196361-2002220805",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 1986",
         "number": "1986",
         "type": "IC"
@@ -3602,7 +3529,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -3634,7 +3560,6 @@
       "mediumId": "6615017744725469742-2002221212",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34217",
         "line": "2",
@@ -3737,7 +3662,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3762,7 +3686,6 @@
       "mediumId": "8802910256598783947-2002221304",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34726",
         "line": "7",
@@ -3814,7 +3737,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3850,7 +3772,6 @@
       "mediumId": "3871966721492447540-2002221127",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34552",
         "line": "5",
@@ -3937,7 +3858,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -3964,7 +3884,6 @@
       "mediumId": "1973767056310355027-2002221307",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82874",
         "line": "RE3",
@@ -4030,7 +3949,6 @@
       "destination": "Hamburg Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4057,7 +3975,6 @@
       "mediumId": "8337789361279639671-2002221051",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83717",
         "line": "RB38",
@@ -4133,7 +4050,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4169,7 +4085,6 @@
       "mediumId": "1121324065844325978-2002221220",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE60",
         "number": "95778",
         "line": "RE60",
@@ -4265,7 +4180,6 @@
       "destination": "Rheine",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4292,7 +4206,6 @@
       "mediumId": "5993325557577694962-2002221148",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83466",
         "line": "RE10",
@@ -4335,7 +4248,6 @@
       "destination": "Hannover Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4360,7 +4272,6 @@
       "mediumId": "1662983345266542653-2002221310",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34436",
         "line": "4",
@@ -4409,7 +4320,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4435,7 +4345,6 @@
       "mediumId": "4131928373987407668-2002221214",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83514",
         "line": "RE30",
@@ -4484,7 +4393,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4511,7 +4419,6 @@
       "mediumId": "6229593701195627276-2002221057",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82119",
         "line": "RE3",
@@ -4577,7 +4484,6 @@
       "destination": "Hannover Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4604,7 +4510,6 @@
       "mediumId": "7053253185759217526-2002221240",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34615",
         "line": "6",
@@ -4654,7 +4559,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4681,7 +4585,6 @@
       "mediumId": "2480582854371638735-2002221316",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95803",
         "line": "RE70",
@@ -4723,7 +4626,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4755,7 +4657,6 @@
       "mediumId": "5346384203014534068-2002221251",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34435",
         "line": "4",
@@ -4825,7 +4726,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -4860,7 +4760,6 @@
       "mediumId": "2644894577584480568-2002220923",
       "substitute": true,
       "train": {
-        "longDistance": true,
         "name": "IC 2902",
         "number": "2902",
         "type": "IC"
@@ -4975,7 +4874,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -5010,7 +4908,6 @@
       "mediumId": "6012005053401607387-2002220923",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 770",
         "number": "770",
         "type": "ICE"
@@ -5083,7 +4980,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5110,7 +5006,6 @@
       "mediumId": "7252316897530371232-2002221320",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 1",
         "number": "4418",
         "line": "1",
@@ -5202,7 +5097,6 @@
       "destination": "Norddeich Mole",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5237,7 +5131,6 @@
       "mediumId": "2622763224815699783-2002220900",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 143",
         "number": "143",
         "type": "IC"
@@ -5316,7 +5209,6 @@
       "destination": "Berlin Ostbahnhof",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -5343,7 +5235,6 @@
       "mediumId": "2248315388738089451-2002221243",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34316",
         "line": "3",
@@ -5389,7 +5280,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5414,7 +5304,6 @@
       "mediumId": "7519284694570721529-2002221234",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34174",
         "line": "1",
@@ -5478,7 +5367,6 @@
       "destination": "Hannover Hbf",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5510,7 +5398,6 @@
       "mediumId": "1823194183785800280-2002221306",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34553",
         "line": "5",
@@ -5577,7 +5464,6 @@
       "destination": "Hameln",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5612,7 +5498,6 @@
       "mediumId": "5797981650559212701-2002221146",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 789",
         "number": "789",
         "type": "ICE"
@@ -5673,7 +5558,6 @@
       "destination": "München Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -5700,7 +5584,6 @@
       "mediumId": "7067075971380816933-2002221209",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82826",
         "line": "RE2",
@@ -5752,7 +5635,6 @@
       "destination": "Hannover Hbf",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5777,7 +5659,6 @@
       "mediumId": "3185532552132699192-2002221328",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34124",
         "line": "1",
@@ -5835,7 +5716,6 @@
       "destination": "Minden (Westf)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5860,7 +5740,6 @@
       "mediumId": "9156012010261127173-2002221235",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34125",
         "line": "1",
@@ -5915,7 +5794,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -5952,7 +5830,6 @@
       "mediumId": "211585818996437737-2002221052",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 547",
         "number": "547",
         "type": "ICE"
@@ -6019,7 +5896,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -6056,7 +5932,6 @@
       "mediumId": "2997741281188976229-2002221135",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 940",
         "number": "940",
         "type": "ICE"
@@ -6109,7 +5984,6 @@
       "destination": "Düsseldorf Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -6144,7 +6018,6 @@
       "mediumId": "7374787949111714164-2002221211",
       "substitute": true,
       "train": {
-        "longDistance": true,
         "name": "ICE 2847",
         "number": "2847",
         "type": "ICE"
@@ -6197,7 +6070,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -6222,7 +6094,6 @@
       "mediumId": "6805667093511362227-2002221333",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34175",
         "line": "1",
@@ -6289,7 +6160,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -6316,7 +6186,6 @@
       "mediumId": "6916055024154492067-2002221334",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34319",
         "line": "3",
@@ -6367,7 +6236,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "14",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -6399,7 +6267,6 @@
       "mediumId": "9070343976807149486-2002221250",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34554",
         "line": "5",
@@ -6466,7 +6333,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -6502,7 +6368,6 @@
       "mediumId": "4550748245722881479-2002220918",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1580",
         "number": "1580",
         "type": "ICE"
@@ -6557,7 +6422,6 @@
       "destination": "Hamburg-Altona",
       "platform": "8 D-G",
       "scheduledPlatform": "8 D-G",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -6584,7 +6448,6 @@
       "mediumId": "2682763881499580114-2002221336",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82819",
         "line": "RE2",
@@ -6641,7 +6504,6 @@
       "destination": "Göttingen",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -6676,7 +6538,6 @@
       "mediumId": "7707971615618156348-2002220936",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2039",
         "number": "2039",
         "type": "IC"
@@ -6778,7 +6639,6 @@
       "destination": "Leipzig Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -6805,7 +6665,6 @@
       "mediumId": "5338661897164179532-2002221123",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 8",
         "number": "4417",
         "line": "8",
@@ -6860,7 +6719,6 @@
       "destination": "Hannover Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -6895,7 +6753,6 @@
       "mediumId": "5036776284380011862-2002220909",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2048",
         "number": "2048",
         "type": "IC"
@@ -6981,7 +6838,6 @@
       "destination": "Köln Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -7013,7 +6869,6 @@
       "mediumId": "5309015142487890515-2002221306",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34438",
         "line": "4",
@@ -7083,7 +6938,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7110,7 +6964,6 @@
       "mediumId": "565299535191401709-2002221340",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82126",
         "line": "RE3",
@@ -7176,7 +7029,6 @@
       "destination": "Hamburg Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7211,7 +7063,6 @@
       "mediumId": "8900832569111771375-2002221113",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 77",
         "number": "77",
         "type": "ICE"
@@ -7281,7 +7132,6 @@
       "destination": "Zürich HB",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -7308,7 +7158,6 @@
       "mediumId": "703809007997655363-2002221254",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95768",
         "line": "RE70",
@@ -7345,7 +7194,6 @@
       "destination": "Hannover Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7372,7 +7220,6 @@
       "mediumId": "8572996016643485906-2002221341",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34616",
         "line": "6",
@@ -7422,7 +7269,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7457,7 +7303,6 @@
       "mediumId": "5624723375993531306-2002220918",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1530",
         "number": "1530",
         "type": "ICE"
@@ -7501,7 +7346,6 @@
       "destination": "Bremen Hbf",
       "platform": "8 A-D",
       "scheduledPlatform": "8 A-D",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -7526,7 +7370,6 @@
       "mediumId": "6132803214692267436-2002221321",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34437",
         "line": "4",
@@ -7572,7 +7415,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7598,7 +7440,6 @@
       "mediumId": "1285817131277507418-2002221348",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83519",
         "line": "RE30",
@@ -7652,7 +7493,6 @@
       "destination": "Wolfsburg Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7679,7 +7519,6 @@
       "mediumId": "2117866636697194288-2002221348",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83469",
         "line": "RE10",
@@ -7726,7 +7565,6 @@
       "destination": "Bad Harzburg",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7753,7 +7591,6 @@
       "mediumId": "2633607094496324741-2002221351",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83722",
         "line": "RB38",
@@ -7834,7 +7671,6 @@
       "destination": "Hamburg-Harburg",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7870,7 +7706,6 @@
       "mediumId": "4611955095092960007-2002221224",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95829",
         "line": "RE70",
@@ -7942,7 +7777,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -7967,7 +7801,6 @@
       "mediumId": "2282255652651388659-2002221308",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34727",
         "line": "7",
@@ -8016,7 +7849,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -8048,7 +7880,6 @@
       "mediumId": "4923593012529003319-2002221336",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34555",
         "line": "5",
@@ -8133,7 +7964,6 @@
       "destination": "Altenbeken",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -8165,7 +7995,6 @@
       "mediumId": "6476800060116790836-2002221304",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34220",
         "line": "2",
@@ -8268,7 +8097,6 @@
       "destination": "Nienburg (Weser)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -8303,7 +8131,6 @@
       "mediumId": "7357241754404858444-2002220906",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2374",
         "number": "2374",
         "type": "IC"
@@ -8404,7 +8231,6 @@
       "destination": "Westerland (Sylt)",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -8439,7 +8265,6 @@
       "mediumId": "3635312093175709895-2002220927",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1671",
         "number": "1671",
         "type": "ICE"
@@ -8543,7 +8368,6 @@
       "destination": "Karlsruhe Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -8575,7 +8399,6 @@
       "mediumId": "8589364397585155348-2002221312",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34219",
         "line": "2",
@@ -8678,7 +8501,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -8703,7 +8525,6 @@
       "mediumId": "6372684267841285163-2002221404",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34728",
         "line": "7",
@@ -8755,7 +8576,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -8787,7 +8607,6 @@
       "mediumId": "8699021241137097344-2002221227",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34556",
         "line": "5",
@@ -8872,7 +8691,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -8899,7 +8717,6 @@
       "mediumId": "1003885330951480113-2002221151",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83719",
         "line": "RB38",
@@ -8975,7 +8792,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9011,7 +8827,6 @@
       "mediumId": "1273850417038046266-2002221320",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95830",
         "line": "RE70",
@@ -9083,7 +8898,6 @@
       "destination": "Bielefeld Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9110,7 +8924,6 @@
       "mediumId": "7747949908437833025-2002221248",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83468",
         "line": "RE10",
@@ -9153,7 +8966,6 @@
       "destination": "Hannover Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9178,7 +8990,6 @@
       "mediumId": "4774123828323637081-2002221410",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34440",
         "line": "4",
@@ -9227,7 +9038,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9253,7 +9063,6 @@
       "mediumId": "1839271107440507858-2002221314",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83516",
         "line": "RE30",
@@ -9302,7 +9111,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9329,7 +9137,6 @@
       "mediumId": "5558430955013694238-2002221340",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34617",
         "line": "6",
@@ -9379,7 +9186,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9406,7 +9212,6 @@
       "mediumId": "8521656092414977601-2002221416",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95805",
         "line": "RE70",
@@ -9448,7 +9253,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9480,7 +9284,6 @@
       "mediumId": "9100991117049797393-2002221351",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34439",
         "line": "4",
@@ -9550,7 +9353,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9585,7 +9387,6 @@
       "mediumId": "1810961569118299205-2002220800",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 76",
         "number": "76",
         "type": "ICE"
@@ -9660,7 +9461,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -9685,7 +9485,6 @@
       "mediumId": "8000944323800059120-2002221420",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 8",
         "number": "4420",
         "line": "8",
@@ -9743,7 +9542,6 @@
       "destination": "Bremerhaven-Lehe",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9768,7 +9566,6 @@
       "mediumId": "6086980211276289527-2002221343",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34318",
         "line": "3",
@@ -9814,7 +9611,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9839,7 +9635,6 @@
       "mediumId": "8073876436429242496-2002221334",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34176",
         "line": "1",
@@ -9903,7 +9698,6 @@
       "destination": "Hannover Hbf",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -9935,7 +9729,6 @@
       "mediumId": "6128998835862265784-2002221406",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34557",
         "line": "5",
@@ -10002,7 +9795,6 @@
       "destination": "Hameln",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10034,7 +9826,6 @@
       "mediumId": "6507907371883116918-2002221246",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1589",
         "number": "1589",
         "type": "ICE"
@@ -10088,7 +9879,6 @@
       "destination": "München Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -10113,7 +9903,6 @@
       "mediumId": "1393335205773332247-2002221428",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34126",
         "line": "1",
@@ -10171,7 +9960,6 @@
       "destination": "Minden (Westf)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10196,7 +9984,6 @@
       "mediumId": "5060536156443793706-2002221335",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34127",
         "line": "1",
@@ -10251,7 +10038,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10288,7 +10074,6 @@
       "mediumId": "3935110464616838577-2002221152",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 849",
         "number": "849",
         "type": "ICE"
@@ -10354,7 +10139,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -10391,7 +10175,6 @@
       "mediumId": "3038761731734864195-2002221235",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 548",
         "number": "548",
         "type": "ICE"
@@ -10453,7 +10236,6 @@
       "destination": "Düsseldorf Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -10489,7 +10271,6 @@
       "mediumId": "2158727764577947970-2002221309",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82821",
         "line": "RE2",
@@ -10570,7 +10351,6 @@
       "destination": "Göttingen",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10595,7 +10375,6 @@
       "mediumId": "4518997152023220402-2002221433",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34177",
         "line": "1",
@@ -10662,7 +10441,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10687,7 +10465,6 @@
       "mediumId": "6015202073198771318-2002221434",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34321",
         "line": "3",
@@ -10736,7 +10513,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10768,7 +10544,6 @@
       "mediumId": "6508230411677312136-2002221350",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34558",
         "line": "5",
@@ -10835,7 +10610,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -10870,7 +10644,6 @@
       "mediumId": "561569379985084080-2002221021",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 880",
         "number": "880",
         "type": "ICE"
@@ -10925,7 +10698,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -10960,7 +10732,6 @@
       "mediumId": "998383187091030086-2002221113",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2049",
         "number": "2049",
         "type": "IC"
@@ -11037,7 +10808,6 @@
       "destination": "Dresden Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -11064,7 +10834,6 @@
       "mediumId": "2847706844180514194-2002221039",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 1",
         "number": "4419",
         "line": "1",
@@ -11151,7 +10920,6 @@
       "destination": "Hannover Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11182,7 +10950,6 @@
       "mediumId": "1529981537398557010-2002221222",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 144",
         "number": "144",
         "type": "IC"
@@ -11254,7 +11021,6 @@
       "destination": "Amsterdam Centraal",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -11290,7 +11056,6 @@
       "mediumId": "8934660157619536063-2002221307",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82828",
         "line": "RE2",
@@ -11371,7 +11136,6 @@
       "destination": "Uelzen",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11403,7 +11167,6 @@
       "mediumId": "238557981626823628-2002221406",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34442",
         "line": "4",
@@ -11473,7 +11236,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11508,7 +11270,6 @@
       "mediumId": "7296891133630702952-2002221309",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 579",
         "number": "579",
         "type": "ICE"
@@ -11558,7 +11319,6 @@
       "destination": "Stuttgart Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -11585,7 +11345,6 @@
       "mediumId": "7405977284347160627-2002221354",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95794",
         "line": "RE70",
@@ -11622,7 +11381,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11647,7 +11405,6 @@
       "mediumId": "5890269959711633058-2002221441",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34618",
         "line": "6",
@@ -11687,7 +11444,6 @@
       "destination": "Celle",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11722,7 +11478,6 @@
       "mediumId": "4512211485092713032-2002221114",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2038",
         "number": "2038",
         "type": "IC"
@@ -11812,7 +11567,6 @@
       "destination": "Emden Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -11837,7 +11591,6 @@
       "mediumId": "125696790597243591-2002221421",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34441",
         "line": "4",
@@ -11883,7 +11636,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11910,7 +11662,6 @@
       "mediumId": "3735455037651920715-2002221448",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83471",
         "line": "RE10",
@@ -11957,7 +11708,6 @@
       "destination": "Bad Harzburg",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -11983,7 +11733,6 @@
       "mediumId": "6354896552674583458-2002221448",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83521",
         "line": "RE30",
@@ -12037,7 +11786,6 @@
       "destination": "Wolfsburg Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12064,7 +11812,6 @@
       "mediumId": "3646468605893547023-2002221451",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83724",
         "line": "RB38",
@@ -12145,7 +11892,6 @@
       "destination": "Hamburg-Harburg",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12181,7 +11927,6 @@
       "mediumId": "4988481656268886235-2002221238",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE60",
         "number": "95781",
         "line": "RE60",
@@ -12277,7 +12022,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12302,7 +12046,6 @@
       "mediumId": "5546291310977731726-2002221408",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34729",
         "line": "7",
@@ -12351,7 +12094,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12383,7 +12125,6 @@
       "mediumId": "1257734594055799215-2002221436",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34559",
         "line": "5",
@@ -12468,7 +12209,6 @@
       "destination": "Altenbeken",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12500,7 +12240,6 @@
       "mediumId": "8085569426615765256-2002221404",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34222",
         "line": "2",
@@ -12603,7 +12342,6 @@
       "destination": "Nienburg (Weser)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12635,7 +12373,6 @@
       "mediumId": "1102869947694853110-2002221412",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34221",
         "line": "2",
@@ -12738,7 +12475,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12763,7 +12499,6 @@
       "mediumId": "4554369457498487747-2002221504",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34730",
         "line": "7",
@@ -12815,7 +12550,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12851,7 +12585,6 @@
       "mediumId": "3466507128738988351-2002221327",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34560",
         "line": "5",
@@ -12938,7 +12671,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -12965,7 +12697,6 @@
       "mediumId": "164025458755341646-2002221251",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83721",
         "line": "RB38",
@@ -13041,7 +12772,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13077,7 +12807,6 @@
       "mediumId": "5842541839645946958-2002221420",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE60",
         "number": "95780",
         "line": "RE60",
@@ -13173,7 +12902,6 @@
       "destination": "Rheine",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13200,7 +12928,6 @@
       "mediumId": "7008608635510407130-2002221348",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83470",
         "line": "RE10",
@@ -13243,7 +12970,6 @@
       "destination": "Hannover Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13268,7 +12994,6 @@
       "mediumId": "5652021403105542602-2002221510",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34444",
         "line": "4",
@@ -13317,7 +13042,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13343,7 +13067,6 @@
       "mediumId": "3293102965109218731-2002221414",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83518",
         "line": "RE30",
@@ -13392,7 +13115,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13419,7 +13141,6 @@
       "mediumId": "1721771494675524237-2002221257",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82123",
         "line": "RE3",
@@ -13480,7 +13201,6 @@
       "destination": "Hannover Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13507,7 +13227,6 @@
       "mediumId": "3123612374459275573-2002221440",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34619",
         "line": "6",
@@ -13557,7 +13276,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13584,7 +13302,6 @@
       "mediumId": "3471286186075391733-2002221516",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95807",
         "line": "RE70",
@@ -13626,7 +13343,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13658,7 +13374,6 @@
       "mediumId": "3804982280730553439-2002221451",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34443",
         "line": "4",
@@ -13728,7 +13443,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13763,7 +13477,6 @@
       "mediumId": "2843829057041584062-2002221123",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 578",
         "number": "578",
         "type": "ICE"
@@ -13812,7 +13525,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -13839,7 +13551,6 @@
       "mediumId": "6093943806994168079-2002221520",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 1",
         "number": "4422",
         "line": "1",
@@ -13931,7 +13642,6 @@
       "destination": "Norddeich Mole",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -13966,7 +13676,6 @@
       "mediumId": "3734400738937518806-2002221100",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 145",
         "number": "145",
         "type": "IC"
@@ -14045,7 +13754,6 @@
       "destination": "Berlin Ostbahnhof",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -14070,7 +13778,6 @@
       "mediumId": "7156278889717378501-2002221443",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34320",
         "line": "3",
@@ -14116,7 +13823,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -14141,7 +13847,6 @@
       "mediumId": "7448754990003008885-2002221434",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34178",
         "line": "1",
@@ -14205,7 +13910,6 @@
       "destination": "Hannover Hbf",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -14237,7 +13941,6 @@
       "mediumId": "1032070753111541334-2002221506",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34561",
         "line": "5",
@@ -14304,7 +14007,6 @@
       "destination": "Hameln",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -14339,7 +14041,6 @@
       "mediumId": "5828668492254781810-2002221346",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 881",
         "number": "881",
         "type": "ICE"
@@ -14398,7 +14099,6 @@
       "destination": "München Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -14425,7 +14125,6 @@
       "mediumId": "6917333477019546835-2002221407",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82830",
         "line": "RE2",
@@ -14477,7 +14176,6 @@
       "destination": "Hannover Hbf",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -14502,7 +14200,6 @@
       "mediumId": "6111648539004748479-2002221528",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34128",
         "line": "1",
@@ -14560,7 +14257,6 @@
       "destination": "Minden (Westf)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -14585,7 +14281,6 @@
       "mediumId": "7435026307863694580-2002221435",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34129",
         "line": "1",
@@ -14640,7 +14335,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -14673,7 +14367,6 @@
       "mediumId": "5225265888807154878-2002221252",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 549",
         "number": "549",
         "type": "ICE"
@@ -14720,7 +14413,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -14753,7 +14445,6 @@
       "mediumId": "6434717143434306115-2002221335",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 848",
         "number": "848",
         "type": "ICE"
@@ -14807,7 +14498,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -14842,7 +14532,6 @@
       "mediumId": "5494809838162286659-2002221119",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 538",
         "number": "538",
         "type": "ICE"
@@ -14914,7 +14603,6 @@
       "destination": "Hannover Hbf",
       "platform": "8 A-D",
       "scheduledPlatform": "8 A-D",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -14939,7 +14627,6 @@
       "mediumId": "5800537393243635841-2002221533",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34179",
         "line": "1",
@@ -15006,7 +14693,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15031,7 +14717,6 @@
       "mediumId": "4814552622395071901-2002221534",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34323",
         "line": "3",
@@ -15080,7 +14765,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15112,7 +14796,6 @@
       "mediumId": "4555902606777371656-2002221450",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34562",
         "line": "5",
@@ -15179,7 +14862,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15215,7 +14897,6 @@
       "mediumId": "1184509608867288236-2002221119",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 588",
         "number": "588",
         "type": "ICE"
@@ -15298,7 +14979,6 @@
       "destination": "Hamburg-Altona",
       "platform": "8 D-G",
       "scheduledPlatform": "8 D-G",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -15325,7 +15005,6 @@
       "mediumId": "842721567626615342-2002221536",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82823",
         "line": "RE2",
@@ -15382,7 +15061,6 @@
       "destination": "Göttingen",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15417,7 +15095,6 @@
       "mediumId": "3642361880164599102-2002221201",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2431",
         "number": "2431",
         "type": "IC"
@@ -15505,7 +15182,6 @@
       "destination": "Berlin Ostbahnhof",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -15530,7 +15206,6 @@
       "mediumId": "2141360230809167391-2002221323",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 8",
         "number": "4421",
         "line": "8",
@@ -15585,7 +15260,6 @@
       "destination": "Hannover Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15620,7 +15294,6 @@
       "mediumId": "4140470391187734614-2002221109",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2440",
         "number": "2440",
         "type": "IC"
@@ -15706,7 +15379,6 @@
       "destination": "Köln Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -15738,7 +15410,6 @@
       "mediumId": "8298228417039159711-2002221506",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34446",
         "line": "4",
@@ -15808,7 +15479,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15835,7 +15505,6 @@
       "mediumId": "2100960227665773124-2002221540",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82130",
         "line": "RE3",
@@ -15901,7 +15570,6 @@
       "destination": "Hamburg Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -15932,7 +15600,6 @@
       "mediumId": "1722455581587366838-2002221407",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 79",
         "number": "79",
         "type": "ICE"
@@ -15992,7 +15659,6 @@
       "destination": "Zürich HB",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -16019,7 +15685,6 @@
       "mediumId": "2236554780854834204-2002221454",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95796",
         "line": "RE70",
@@ -16056,7 +15721,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16083,7 +15747,6 @@
       "mediumId": "3860625379080601465-2002221541",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34620",
         "line": "6",
@@ -16133,7 +15796,6 @@
       "destination": "Celle",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16159,7 +15821,6 @@
       "mediumId": "5959097614914299166-2002221545",
       "substitute": true,
       "train": {
-        "longDistance": true,
         "name": "IC 2908",
         "number": "2908",
         "type": "IC"
@@ -16213,7 +15874,6 @@
       "destination": "Bremen Hbf",
       "platform": "8 A-D",
       "scheduledPlatform": "8 A-D",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -16238,7 +15898,6 @@
       "mediumId": "4318721276832611042-2002221521",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34445",
         "line": "4",
@@ -16284,7 +15943,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16310,7 +15968,6 @@
       "mediumId": "1718618097025257420-2002221548",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83523",
         "line": "RE30",
@@ -16364,7 +16021,6 @@
       "destination": "Wolfsburg Hbf",
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16391,7 +16047,6 @@
       "mediumId": "8329376164070112294-2002221548",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83473",
         "line": "RE10",
@@ -16438,7 +16093,6 @@
       "destination": "Bad Harzburg",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16465,7 +16119,6 @@
       "mediumId": "1412992560249832089-2002221551",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83726",
         "line": "RB38",
@@ -16546,7 +16199,6 @@
       "destination": "Hamburg-Harburg",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16582,7 +16234,6 @@
       "mediumId": "3563379797796138412-2002221424",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95831",
         "line": "RE70",
@@ -16654,7 +16305,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16679,7 +16329,6 @@
       "mediumId": "650711811790129960-2002221508",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34731",
         "line": "7",
@@ -16728,7 +16377,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16760,7 +16408,6 @@
       "mediumId": "234244069823596338-2002221536",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34563",
         "line": "5",
@@ -16845,7 +16492,6 @@
       "destination": "Altenbeken",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -16877,7 +16523,6 @@
       "mediumId": "2597046773453977928-2002221504",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34224",
         "line": "2",
@@ -16980,7 +16625,6 @@
       "destination": "Nienburg (Weser)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17015,7 +16659,6 @@
       "mediumId": "2849772715769172580-2002221110",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1578",
         "number": "1578",
         "type": "ICE"
@@ -17119,7 +16762,6 @@
       "destination": "Stralsund Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -17154,7 +16796,6 @@
       "mediumId": "3281432353838358850-2002221056",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2375",
         "number": "2375",
         "type": "IC"
@@ -17258,7 +16899,6 @@
       "destination": "Karlsruhe Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -17290,7 +16930,6 @@
       "mediumId": "5912720295202257000-2002221512",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34223",
         "line": "2",
@@ -17393,7 +17032,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17418,7 +17056,6 @@
       "mediumId": "7607425811225315756-2002221604",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34732",
         "line": "7",
@@ -17470,7 +17107,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17506,7 +17142,6 @@
       "mediumId": "6060922091403383080-2002221427",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34564",
         "line": "5",
@@ -17593,7 +17228,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17620,7 +17254,6 @@
       "mediumId": "2218929050095327824-2002221351",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83723",
         "line": "RB38",
@@ -17696,7 +17329,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17732,7 +17364,6 @@
       "mediumId": "6815601404651114984-2002221520",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95832",
         "line": "RE70",
@@ -17804,7 +17435,6 @@
       "destination": "Bielefeld Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17831,7 +17461,6 @@
       "mediumId": "1466556181673946611-2002221448",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83472",
         "line": "RE10",
@@ -17874,7 +17503,6 @@
       "destination": "Hannover Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17899,7 +17527,6 @@
       "mediumId": "2591618856405620107-2002221610",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34448",
         "line": "4",
@@ -17948,7 +17575,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -17974,7 +17600,6 @@
       "mediumId": "1200910621123205769-2002221514",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83520",
         "line": "RE30",
@@ -18023,7 +17648,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18048,7 +17672,6 @@
       "mediumId": "8001055097305188955-2002221540",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34621",
         "line": "6",
@@ -18085,7 +17708,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18110,7 +17732,6 @@
       "mediumId": "4062914221984966997-2002221616",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95809",
         "line": "RE70",
@@ -18150,7 +17771,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18182,7 +17802,6 @@
       "mediumId": "3203969236011005691-2002221551",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34447",
         "line": "4",
@@ -18252,7 +17871,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18287,7 +17905,6 @@
       "mediumId": "2677562958045670522-2002221000",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 74",
         "number": "74",
         "type": "ICE"
@@ -18356,7 +17973,6 @@
       "destination": "Kiel Hbf",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -18381,7 +17997,6 @@
       "mediumId": "5723512830700480294-2002221620",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 8",
         "number": "4424",
         "line": "8",
@@ -18439,7 +18054,6 @@
       "destination": "Bremerhaven-Lehe",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18469,7 +18083,6 @@
       "mediumId": "3642494987963817809-2002221412",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "FLX 76338",
         "number": "76338",
         "type": "FLX"
@@ -18514,7 +18127,6 @@
       "destination": "Köln Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18539,7 +18151,6 @@
       "mediumId": "4539282565857187629-2002221543",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34322",
         "line": "3",
@@ -18585,7 +18196,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18610,7 +18220,6 @@
       "mediumId": "2290818351903282212-2002221534",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34180",
         "line": "1",
@@ -18674,7 +18283,6 @@
       "destination": "Hannover Hbf",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18706,7 +18314,6 @@
       "mediumId": "1056791023005478998-2002221606",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34565",
         "line": "5",
@@ -18773,7 +18380,6 @@
       "destination": "Hameln",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18805,7 +18411,6 @@
       "mediumId": "5574299897835997930-2002221416",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1581",
         "number": "1581",
         "type": "ICE"
@@ -18856,7 +18461,6 @@
       "destination": "München Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -18881,7 +18485,6 @@
       "mediumId": "9068948725735656282-2002221628",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34130",
         "line": "1",
@@ -18939,7 +18542,6 @@
       "destination": "Minden (Westf)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -18964,7 +18566,6 @@
       "mediumId": "4790806762591800402-2002221535",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34131",
         "line": "1",
@@ -19019,7 +18620,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -19052,7 +18652,6 @@
       "mediumId": "1360629902197387952-2002221352",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 941",
         "number": "941",
         "type": "ICE"
@@ -19102,7 +18701,6 @@
       "destination": "Berlin Südkreuz",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -19135,7 +18733,6 @@
       "mediumId": "7902140562776965628-2002221435",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 546",
         "number": "546",
         "type": "ICE"
@@ -19183,7 +18780,6 @@
       "destination": "Düsseldorf Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -19219,7 +18815,6 @@
       "mediumId": "2462112612970490177-2002221509",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82825",
         "line": "RE2",
@@ -19300,7 +18895,6 @@
       "destination": "Göttingen",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -19325,7 +18919,6 @@
       "mediumId": "6261447436611650634-2002221633",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 1",
         "number": "34181",
         "line": "1",
@@ -19392,7 +18985,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -19417,7 +19009,6 @@
       "mediumId": "9109813059170414490-2002221634",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 3",
         "number": "34325",
         "line": "3",
@@ -19466,7 +19057,6 @@
       "destination": "Hildesheim Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -19498,7 +19088,6 @@
       "mediumId": "3257578210549897326-2002221550",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34566",
         "line": "5",
@@ -19565,7 +19154,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -19596,7 +19184,6 @@
       "mediumId": "7714364757423921343-2002221221",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 788",
         "number": "788",
         "type": "ICE"
@@ -19649,7 +19236,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -19684,7 +19270,6 @@
       "mediumId": "8912183872654497860-2002221313",
       "substitute": true,
       "train": {
-        "longDistance": true,
         "name": "IC 2901",
         "number": "2901",
         "type": "IC"
@@ -19780,7 +19365,6 @@
       "destination": "Leipzig Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -19815,7 +19399,6 @@
       "mediumId": "3068006615906234264-2002221313",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2047",
         "number": "2047",
         "type": "IC"
@@ -19900,7 +19483,6 @@
       "destination": "Leipzig Hbf",
       "platform": "10",
       "scheduledPlatform": "10",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -19925,7 +19507,6 @@
       "mediumId": "4024876283071378009-2002221239",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "RE 1",
         "number": "4423",
         "line": "1",
@@ -20007,7 +19588,6 @@
       "destination": "Hannover Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20038,7 +19618,6 @@
       "mediumId": "6651321817368009437-2002221422",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 142",
         "number": "142",
         "type": "IC"
@@ -20110,7 +19689,6 @@
       "destination": "Amsterdam Centraal",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -20146,7 +19724,6 @@
       "mediumId": "6200087246973699565-2002221507",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE2",
         "number": "82832",
         "line": "RE2",
@@ -20227,7 +19804,6 @@
       "destination": "Uelzen",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20259,7 +19835,6 @@
       "mediumId": "6654957763167820543-2002221606",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34450",
         "line": "4",
@@ -20329,7 +19904,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20360,7 +19934,6 @@
       "mediumId": "3225792409406152550-2002221506",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 771",
         "number": "771",
         "type": "ICE"
@@ -20408,7 +19981,6 @@
       "destination": "Stuttgart Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -20435,7 +20007,6 @@
       "mediumId": "4538329770509123581-2002221554",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95798",
         "line": "RE70",
@@ -20472,7 +20043,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20497,7 +20067,6 @@
       "mediumId": "6182195558170472253-2002221641",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 6",
         "number": "34622",
         "line": "6",
@@ -20537,7 +20106,6 @@
       "destination": "Celle",
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20572,7 +20140,6 @@
       "mediumId": "1154466046196233813-2002221314",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2036",
         "number": "2036",
         "type": "IC"
@@ -20652,7 +20219,6 @@
       "destination": "Emden Hbf",
       "platform": "11",
       "scheduledPlatform": "11",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -20676,7 +20242,6 @@
       "mediumId": "1105564042481556711-2002221645",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83525",
         "line": "RE30",
@@ -20728,7 +20293,6 @@
       "destination": "Wolfsburg Hbf",
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20753,7 +20317,6 @@
       "mediumId": "8880703740168708417-2002221621",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34449",
         "line": "4",
@@ -20799,7 +20362,6 @@
       "destination": "Hannover Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20824,7 +20386,6 @@
       "mediumId": "8403926538409904273-2002221648",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83475",
         "line": "RE10",
@@ -20869,7 +20430,6 @@
       "destination": "Bad Harzburg",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -20894,7 +20454,6 @@
       "mediumId": "4723092567507701318-2002221651",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83728",
         "line": "RB38",
@@ -20973,7 +20532,6 @@
       "destination": "Hamburg-Harburg",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21009,7 +20567,6 @@
       "mediumId": "6036386918811435216-2002221438",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE60",
         "number": "95783",
         "line": "RE60",
@@ -21105,7 +20662,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21130,7 +20686,6 @@
       "mediumId": "5863455528610250053-2002221608",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34733",
         "line": "7",
@@ -21179,7 +20734,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21211,7 +20765,6 @@
       "mediumId": "323168806434946993-2002221636",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34567",
         "line": "5",
@@ -21296,7 +20849,6 @@
       "destination": "Altenbeken",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21331,7 +20883,6 @@
       "mediumId": "8593658168921970782-2002220828",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "IC 2082",
         "number": "2082",
         "type": "IC"
@@ -21426,7 +20977,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -21458,7 +21008,6 @@
       "mediumId": "3288446878307295999-2002221604",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34226",
         "line": "2",
@@ -21561,7 +21110,6 @@
       "destination": "Nienburg (Weser)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21593,7 +21141,6 @@
       "mediumId": "5038105640762151212-2002221612",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34225",
         "line": "2",
@@ -21696,7 +21243,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21721,7 +21267,6 @@
       "mediumId": "2662648156024487041-2002221704",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34734",
         "line": "7",
@@ -21773,7 +21318,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21809,7 +21353,6 @@
       "mediumId": "135948021179836602-2002221527",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34568",
         "line": "5",
@@ -21896,7 +21439,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -21923,7 +21465,6 @@
       "mediumId": "6090443771344585120-2002221451",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83725",
         "line": "RB38",
@@ -21999,7 +21540,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22031,7 +21571,6 @@
       "mediumId": "8375696493341006692-2002221620",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE60",
         "number": "95782",
         "line": "RE60",
@@ -22125,7 +21664,6 @@
       "destination": "Rheine",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22152,7 +21690,6 @@
       "mediumId": "5413391821557433217-2002221548",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83474",
         "line": "RE10",
@@ -22195,7 +21732,6 @@
       "destination": "Hannover Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22220,7 +21756,6 @@
       "mediumId": "2514914820231586490-2002221710",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34452",
         "line": "4",
@@ -22269,7 +21804,6 @@
       "destination": "Bennemühlen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22293,7 +21827,6 @@
       "mediumId": "4732092021760003985-2002221614",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83522",
         "line": "RE30",
@@ -22342,7 +21875,6 @@
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
-      "auslastung": false,
       "reihung": false
     }
   ],
@@ -22371,7 +21903,6 @@
       "mediumId": "129921065476014072-2002220928",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82867",
         "line": "RE3",
@@ -22448,7 +21979,6 @@
       "destination": "Hannover Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22474,7 +22004,6 @@
       "mediumId": "2294735978985476965-2002221148",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83515",
         "line": "RE30",
@@ -22533,7 +22062,6 @@
       "destination": "Wolfsburg Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22568,7 +22096,6 @@
       "mediumId": "3212205364154915817-2002220615",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 886",
         "number": "886",
         "type": "ICE"
@@ -22642,7 +22169,6 @@
       "destination": "Hamburg-Altona",
       "platform": "7",
       "scheduledPlatform": "7",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -22678,7 +22204,6 @@
       "mediumId": "2379689238391834001-2002221023",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95827",
         "line": "RE70",
@@ -22755,7 +22280,6 @@
       "destination": "Braunschweig Hbf",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22782,7 +22306,6 @@
       "mediumId": "7530588623595067801-2002221108",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34723",
         "line": "7",
@@ -22831,7 +22354,6 @@
       "destination": "Hannover Hbf",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22867,7 +22389,6 @@
       "mediumId": "8659063088626413270-2002221136",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34547",
         "line": "5",
@@ -22954,7 +22475,6 @@
       "destination": "Altenbeken",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -22990,7 +22510,6 @@
       "mediumId": "5967072892888193768-2002221104",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34216",
         "line": "2",
@@ -23100,7 +22619,6 @@
       "destination": "Nienburg (Weser)",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -23135,7 +22653,6 @@
       "mediumId": "1698974169433520451-2002220702",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1672",
         "number": "1672",
         "type": "ICE"
@@ -23250,7 +22767,6 @@
       "destination": "Ostseebad Binz",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -23285,7 +22801,6 @@
       "mediumId": "1470222707133384842-2002221013",
       "substitute": true,
       "train": {
-        "longDistance": true,
         "name": "IC 2913",
         "number": "2913",
         "type": "IC"
@@ -23415,7 +22930,6 @@
       "destination": "Karlsruhe Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     {
@@ -23450,7 +22964,6 @@
       "mediumId": "5592824990971072116-2002221013",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1579",
         "number": "1579",
         "type": "ICE"
@@ -23559,7 +23072,6 @@
       "destination": "Karlsruhe Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -23595,7 +23107,6 @@
       "mediumId": "1364303874031023670-2002221112",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 2",
         "number": "34215",
         "line": "2",
@@ -23705,7 +23216,6 @@
       "destination": "Haste",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -23732,7 +23242,6 @@
       "mediumId": "5429443071575120563-2002221204",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 7",
         "number": "34724",
         "line": "7",
@@ -23786,7 +23295,6 @@
       "destination": "Celle",
       "platform": "14",
       "scheduledPlatform": "14",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -23822,7 +23330,6 @@
       "mediumId": "6847164217733032117-2002221027",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 5",
         "number": "34548",
         "line": "5",
@@ -23909,7 +23416,6 @@
       "destination": "Hannover Flughafen",
       "platform": "2",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -23936,7 +23442,6 @@
       "mediumId": "8400241610239571421-2002221207",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ME RE3",
         "number": "82872",
         "line": "RE3",
@@ -24013,7 +23518,6 @@
       "destination": "Hamburg Hbf",
       "platform": "3",
       "scheduledPlatform": "3",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -24040,7 +23544,6 @@
       "mediumId": "5632375561372956684-2002220951",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RB38",
         "number": "83715",
         "line": "RB38",
@@ -24116,7 +23619,6 @@
       "destination": "Hannover Hbf",
       "platform": "1",
       "scheduledPlatform": "1",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -24152,7 +23654,6 @@
       "mediumId": "6533014172122516634-2002221120",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "WFB RE70",
         "number": "95828",
         "line": "RE70",
@@ -24224,7 +23725,6 @@
       "destination": "Bielefeld Hbf",
       "platform": "11",
       "scheduledPlatform": "12",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -24251,7 +23751,6 @@
       "mediumId": "2623874677432042559-2002221048",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "erx RE10",
         "number": "83464",
         "line": "RE10",
@@ -24294,7 +23793,6 @@
       "destination": "Hannover Hbf",
       "platform": "8",
       "scheduledPlatform": "8",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -24321,7 +23819,6 @@
       "mediumId": "3841387371401832198-2002221210",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "S 4",
         "number": "34432",
         "line": "4",
@@ -24372,7 +23869,6 @@
       "destination": "Bennemühlen",
       "platform": "3",
       "scheduledPlatform": "2",
-      "auslastung": false,
       "reihung": false
     },
     {
@@ -24398,7 +23894,6 @@
       "mediumId": "6419712430263017490-2002221114",
       "substitute": false,
       "train": {
-        "longDistance": false,
         "name": "ENO RE30",
         "number": "83512",
         "line": "RE30",
@@ -24447,7 +23942,6 @@
       "destination": "Hannover Hbf",
       "platform": "13",
       "scheduledPlatform": "13",
-      "auslastung": false,
       "reihung": false
     }
   ],
@@ -24484,7 +23978,6 @@
       "mediumId": "7127812590731908748-2002220948",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 857",
         "number": "857",
         "type": "ICE"
@@ -24538,7 +24031,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     "5480249421472748019-2002221035": {
@@ -24573,7 +24065,6 @@
       "mediumId": "5480249421472748019-2002221035",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 650",
         "number": "650",
         "type": "ICE"
@@ -24625,7 +24116,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "3757333051659636301-2002221115": {
@@ -24660,7 +24150,6 @@
       "mediumId": "3757333051659636301-2002221115",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 537",
         "number": "537",
         "type": "ICE"
@@ -24707,7 +24196,6 @@
       "destination": "München Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     "8614664585551473503-2002221048": {
@@ -24742,7 +24230,6 @@
       "mediumId": "8614664585551473503-2002221048",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 557",
         "number": "557",
         "type": "ICE"
@@ -24804,7 +24291,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     "8435242070287707292-2002221135": {
@@ -24839,7 +24325,6 @@
       "mediumId": "8435242070287707292-2002221135",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 950",
         "number": "950",
         "type": "ICE"
@@ -24889,7 +24374,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "3966313825661476920-2002221235": {
@@ -24924,7 +24408,6 @@
       "mediumId": "3966313825661476920-2002221235",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 558",
         "number": "558",
         "type": "ICE"
@@ -25001,7 +24484,6 @@
       "destination": "Hamm (Westf) Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "9221432942161771616-2002221148": {
@@ -25036,7 +24518,6 @@
       "mediumId": "9221432942161771616-2002221148",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 859",
         "number": "859",
         "type": "ICE"
@@ -25090,7 +24571,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     "1266697995060816588-2002221315": {
@@ -25121,7 +24601,6 @@
       "mediumId": "1266697995060816588-2002221315",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1539",
         "number": "1539",
         "type": "ICE"
@@ -25166,7 +24645,6 @@
       "destination": "München Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     "360379485333124722-2002221335": {
@@ -25197,7 +24675,6 @@
       "mediumId": "360379485333124722-2002221335",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 858",
         "number": "858",
         "type": "ICE"
@@ -25245,7 +24722,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "5886092952094503689-2002221248": {
@@ -25276,7 +24752,6 @@
       "mediumId": "5886092952094503689-2002221248",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 559",
         "number": "559",
         "type": "ICE"
@@ -25320,7 +24795,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     "4020550040361167307-2002221348": {
@@ -25351,7 +24825,6 @@
       "mediumId": "4020550040361167307-2002221348",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 951",
         "number": "951",
         "type": "ICE"
@@ -25398,7 +24871,6 @@
       "destination": "Berlin Südkreuz",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     "8603587689572102071-2002221515": {
@@ -25429,7 +24901,6 @@
       "mediumId": "8603587689572102071-2002221515",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 1531",
         "number": "1531",
         "type": "ICE"
@@ -25474,7 +24945,6 @@
       "destination": "München Hbf",
       "platform": "4",
       "scheduledPlatform": "4",
-      "auslastung": true,
       "reihung": true
     },
     "543689973036291538-2002221435": {
@@ -25505,7 +24975,6 @@
       "mediumId": "543689973036291538-2002221435",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 556",
         "number": "556",
         "type": "ICE"
@@ -25550,7 +25019,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "1951882110793686742-2002221538": {
@@ -25581,7 +25049,6 @@
       "mediumId": "1951882110793686742-2002221538",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 856",
         "number": "856",
         "type": "ICE"
@@ -25629,7 +25096,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "6270903731699972278-2002221448": {
@@ -25660,7 +25126,6 @@
       "mediumId": "6270903731699972278-2002221448",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 651",
         "number": "651",
         "type": "ICE"
@@ -25704,7 +25169,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     },
     "2625224039751841654-2002220948": {
@@ -25739,7 +25203,6 @@
       "mediumId": "2625224039751841654-2002220948",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 952",
         "number": "952",
         "type": "ICE"
@@ -25786,7 +25249,6 @@
       "destination": "Köln Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "auslastung": true,
       "reihung": true
     },
     "5067205027928923412-2002220848": {
@@ -25821,7 +25283,6 @@
       "mediumId": "5067205027928923412-2002220848",
       "substitute": false,
       "train": {
-        "longDistance": true,
         "name": "ICE 555",
         "number": "555",
         "type": "ICE"
@@ -25872,7 +25333,6 @@
       "destination": "Berlin Gesundbrunnen",
       "platform": "10",
       "scheduledPlatform": "9",
-      "auslastung": true,
       "reihung": true
     }
   }

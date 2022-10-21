@@ -51,7 +51,6 @@ export default (
     initialDeparture: j.stops[0].departure!.scheduledTime,
     arrival: matchingArrival?.arrival,
     departure: j.departure,
-    auslastung: false,
     currentStopPlace: {
       name: j.currentStation.title,
       evaNumber: j.currentStation.id,
