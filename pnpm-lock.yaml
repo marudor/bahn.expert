@@ -117,7 +117,7 @@ specifiers:
   koa: ^2.13.4
   koa-bodyparser: ^4.3.0
   koa-static: ^5.0.0
-  libxmljs2: ^0.30.1
+  libxmljs2: ^0.31.0
   lint-staged: ^13.0.3
   ncp: ^2.0.0
   nock: ^13.2.9
@@ -186,7 +186,7 @@ dependencies:
   koa: 2.13.4
   koa-bodyparser: 4.3.0
   koa-static: 5.0.0
-  libxmljs2: 0.30.1
+  libxmljs2: 0.31.0
   on-finished: 2.4.1
   pino: 8.7.0
   pino-pretty: 9.1.1
@@ -2527,8 +2527,8 @@ packages:
       webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
-  /@mapbox/node-pre-gyp/1.0.9:
-    resolution: {integrity: sha512-aDF3S3rK9Q2gey/WAttUlISduDItz5BU3306M9Eyv6/oS40aMprnopshtlKTykxRNIBEZuRMaZAnbrQ4QtKGyw==}
+  /@mapbox/node-pre-gyp/1.0.10:
+    resolution: {integrity: sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==}
     hasBin: true
     dependencies:
       detect-libc: 2.0.1
@@ -8563,14 +8563,14 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /libxmljs2/0.30.1:
-    resolution: {integrity: sha512-Upgf6LnbDZV8oYrG2cONazKjnUPV2v8TbAKP951flkCsyyrEuMYBe8IgYtrcm5bXFOmQnKsbFeZwMwVvVNZLpg==}
+  /libxmljs2/0.31.0:
+    resolution: {integrity: sha512-+o8y4lhmmf7zUA67watbLcAcxE0lkBkuatoIwgFkWTmuFTPEOZKunNpSjW6V7ONzAj8Ey1qVeR12q1JMU/sTlQ==}
     engines: {node: '>=12'}
     requiresBuild: true
     dependencies:
-      '@mapbox/node-pre-gyp': 1.0.9
+      '@mapbox/node-pre-gyp': 1.0.10
       bindings: 1.5.0
-      nan: 2.15.0
+      nan: 2.17.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -9009,8 +9009,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /nan/2.15.0:
-    resolution: {integrity: sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==}
+  /nan/2.17.0:
+    resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
     dev: false
 
   /nanoid/3.3.4:

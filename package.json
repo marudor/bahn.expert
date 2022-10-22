@@ -4,11 +4,11 @@
   "description": "",
   "license": "MIT",
   "engines": {
-    "node": "^18.0.0"
+    "node": "^19.0.0"
   },
   "private": true,
   "engineStrict": true,
-  "packageManager": "pnpm@7.13.4",
+  "packageManager": "pnpm@7.14.0",
   "jest-junit": {
     "output": "./reports/junitresults.xml"
   },
@@ -214,7 +214,7 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-static": "^5.0.0",
-    "libxmljs2": "^0.30.1",
+    "libxmljs2": "^0.31.0",
     "on-finished": "^2.4.1",
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1",
