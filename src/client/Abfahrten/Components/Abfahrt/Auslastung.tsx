@@ -16,7 +16,7 @@ export const Auslastung: FC = () => {
   const auslastung = getAuslastung(abfahrt);
 
   const trainNumber = Number.parseInt(abfahrt.train.number);
-  if (auslastung === undefined && trainNumber < 3000) {
+  if (auslastung === undefined && trainNumber < 3000 && abfahrt.departure) {
     return <Loading type={1} />;
   }
 
