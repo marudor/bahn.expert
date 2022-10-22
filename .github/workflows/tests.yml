@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18
+      - name: Use Node.js 19
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 19
       - name: install
         run: |
           corepack enable
@@ -56,10 +56,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18
+      - name: Use Node.js 19
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 19
       - name: browser versions
         run: |
           firefox --version
@@ -102,10 +102,10 @@ jobs:
       - e2e
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18
+      - name: Use Node.js 19
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 19
       - name: finalize percy
         run: |
           corepack enable
