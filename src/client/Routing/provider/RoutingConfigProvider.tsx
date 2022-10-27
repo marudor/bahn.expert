@@ -1,6 +1,17 @@
-import { useCallback, useMemo, useState } from 'react';
+import {
+  addDays,
+  endOfDay,
+  isSameDay,
+  isSameYear,
+  isWithinInterval,
+  lightFormat,
+  startOfDay,
+  subDays,
+} from 'date-fns';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import deLocale from 'date-fns/locale/de';
 import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
@@ -23,7 +34,41 @@ const useRoutingConfigInternal = ({
   const [touchedDate, setTouchedDate] = useState(false);
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
   const [departureMode, setDepartureMode] = useState<'an' | 'ab'>('ab');
+  const [formattedDate, setFormattedDate] = useState('');
   const storage = useStorage();
+
+  const updateFormattedDate = useCallback(() => {
+    if (!touchedDate) {
+      setFormattedDate(`Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`);
+      return;
+    }
+    const today = startOfDay(new Date());
+    const tomorrow = endOfDay(addDays(today, 1));
+    const yesterday = subDays(today, 1);
+
+    let relativeDayString = '';
+
+    if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
+      if (isSameDay(date, today)) relativeDayString = 'Heute';
+      else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
+      else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
+      relativeDayString += `, ${deLocale.localize?.day(date.getDay(), {
+        width: 'short',
+      })}`;
+    } else {
+      relativeDayString = deLocale.localize?.day(date.getDay());
+    }
+    relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
+    if (!isSameYear(date, today)) {
+      relativeDayString += lightFormat(date, 'yyyy');
+    }
+    relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
+
+    setFormattedDate(relativeDayString);
+  }, [touchedDate, date]);
+  useEffect(() => {
+    updateFormattedDate();
+  }, [updateFormattedDate]);
 
   const updateSetting = useCallback(
     <K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
@@ -94,6 +139,8 @@ const useRoutingConfigInternal = ({
     updateSetting,
     departureMode,
     updateDepartureMode,
+    formattedDate,
+    updateFormattedDate,
   };
 };
 
@@ -111,6 +158,7 @@ export const [
     via: v.via,
     touchedDate: v.touchedDate,
     departureMode: v.departureMode,
+    formattedDate: v.formattedDate,
   }),
   (v) => v.settings,
   (v) => ({
@@ -122,6 +170,7 @@ export const [
     swapStartDestination: v.swapStartDestination,
     updateSettings: v.updateSetting,
     updateDepartureMode: v.updateDepartureMode,
+    updateFormattedDate: v.updateFormattedDate,
   }),
 );
 

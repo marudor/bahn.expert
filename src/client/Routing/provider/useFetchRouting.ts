@@ -1,11 +1,15 @@
+import { getRouteLink } from 'client/Routing/util';
 import { uniqBy } from 'client/util';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router';
 import { useRouting } from 'client/Routing/provider/RoutingProvider';
 import {
   useRoutingConfig,
+  useRoutingConfigActions,
   useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
 import Axios from 'axios';
+import type { MinimalStopPlace } from 'types/stopPlace';
 import type { RoutingResult } from 'types/routing';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -20,15 +24,19 @@ export const useFetchRouting = () => {
   } = useRouting();
   const { start, destination, date, via, touchedDate, departureMode } =
     useRoutingConfig();
+  const { updateFormattedDate } = useRoutingConfigActions();
   const settings = useRoutingSettings();
+  const navigate = useNavigate();
 
-  const commonRouteSettings = useMemo(
-    () =>
-      start && destination && start.evaNumber !== destination.evaNumber
+  const getRouteSettings = useCallback(
+    (commonStart = start, commonDestination = destination, commonVia = via) =>
+      commonStart &&
+      commonDestination &&
+      commonStart.evaNumber !== commonDestination.evaNumber
         ? {
-            start: start?.evaNumber,
-            destination: destination?.evaNumber,
-            via: via.filter(Boolean).map((v) => ({
+            start: commonStart?.evaNumber,
+            destination: commonDestination?.evaNumber,
+            via: commonVia.filter(Boolean).map((v) => ({
               evaId: v.evaNumber,
             })),
             ...settings,
@@ -40,8 +48,15 @@ export const useFetchRouting = () => {
   );
 
   const fetchRoutes = useCallback(
-    async (routeSettings: typeof commonRouteSettings = commonRouteSettings) => {
-      if (!routeSettings) return;
+    async (
+      start?: MinimalStopPlace,
+      destination?: MinimalStopPlace,
+      via: MinimalStopPlace[] = [],
+    ) => {
+      const routeSettings = getRouteSettings(start, destination, via);
+      if (!routeSettings) {
+        return;
+      }
       setError(undefined);
       setRoutes(undefined);
       try {
@@ -61,7 +76,6 @@ export const useFetchRouting = () => {
       }
     },
     [
-      commonRouteSettings,
       date,
       setEarlierContext,
       setError,
@@ -69,18 +83,38 @@ export const useFetchRouting = () => {
       setRoutes,
       touchedDate,
       departureMode,
+      getRouteSettings,
     ],
+  );
+
+  const fetchRoutesAndNavigate = useCallback(
+    (
+      start?: MinimalStopPlace,
+      destination?: MinimalStopPlace,
+      via: MinimalStopPlace[] = [],
+    ) => {
+      updateFormattedDate();
+
+      if (start && destination && start.evaNumber !== destination.evaNumber) {
+        void fetchRoutes(start, destination, via);
+        navigate(
+          getRouteLink(start, destination, via, touchedDate ? date : null),
+        );
+      }
+    },
+    [date, fetchRoutes, navigate, touchedDate, updateFormattedDate],
   );
 
   const fetchContext = useCallback(
     async (type: 'earlier' | 'later') => {
-      if (!commonRouteSettings) return;
+      const routeSettings = getRouteSettings();
+      if (!routeSettings) return;
 
       try {
         const routingResult = (
           await Axios.post<RoutingResult>('/api/hafas/v3/tripSearch', {
             ctxScr: type === 'earlier' ? earlierContext : laterContext,
-            ...commonRouteSettings,
+            ...routeSettings,
           })
         ).data;
 
@@ -103,7 +137,7 @@ export const useFetchRouting = () => {
       }
     },
     [
-      commonRouteSettings,
+      getRouteSettings,
       earlierContext,
       laterContext,
       setEarlierContext,
@@ -122,5 +156,6 @@ export const useFetchRouting = () => {
     fetchRoutes,
     fetchContext,
     clearRoutes,
+    fetchRoutesAndNavigate,
   };
 };

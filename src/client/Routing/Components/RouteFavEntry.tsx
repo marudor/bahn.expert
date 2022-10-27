@@ -1,12 +1,11 @@
 import { Delete } from '@mui/icons-material';
-import { getRouteLink } from 'client/Routing/util';
-import { Link } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import {
   routingFavKey,
   useRoutingFavActions,
 } from 'client/Routing/provider/RoutingFavProvider';
 import { useCallback } from 'react';
+import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
@@ -48,8 +47,10 @@ const ContainerPaper = styled(Paper)(({ theme }) => ({
 interface Props {
   fav: RoutingFav;
 }
+
 export const RouteFavEntry: FC<Props> = ({ fav }) => {
   const { unfav } = useRoutingFavActions();
+  const { fetchRoutesAndNavigate } = useFetchRouting();
   const removeFav = useCallback(
     (e: SyntheticEvent) => {
       e.stopPropagation();
@@ -59,17 +60,23 @@ export const RouteFavEntry: FC<Props> = ({ fav }) => {
     [fav, unfav],
   );
 
+  const searchFav = useCallback(
+    (e: SyntheticEvent) => {
+      e.preventDefault();
+      void fetchRoutesAndNavigate(fav.start, fav.destination, fav.via);
+    },
+    [fav, fetchRoutesAndNavigate],
+  );
+
   return (
-    <Link
-      date-testid="RouteFavEntry"
-      to={getRouteLink(fav.start, fav.destination, fav.via)}
+    <ContainerPaper
+      onClick={searchFav}
+      data-testid={`RouteFavEntry-${routingFavKey(fav)}`}
     >
-      <ContainerPaper data-testid={`RouteFavEntry-${routingFavKey(fav)}`}>
-        <StartName>{fav.start.name}</StartName>
-        <DestinationName>{fav.destination.name}</DestinationName>
-        <Arrow>{'->'}</Arrow>
-        <RemoveIcon data-testid="deleteFav" onClick={removeFav} />
-      </ContainerPaper>
-    </Link>
+      <StartName>{fav.start.name}</StartName>
+      <DestinationName>{fav.destination.name}</DestinationName>
+      <Arrow>{'->'}</Arrow>
+      <RemoveIcon data-testid="deleteFav" onClick={removeFav} />
+    </ContainerPaper>
   );
 };

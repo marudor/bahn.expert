@@ -1,14 +1,4 @@
 import {
-  addDays,
-  endOfDay,
-  isSameDay,
-  isSameYear,
-  isWithinInterval,
-  lightFormat,
-  startOfDay,
-  subDays,
-} from 'date-fns';
-import {
   Button,
   Divider,
   FormControlLabel,
@@ -24,19 +14,17 @@ import {
   SwapVert,
   Today,
 } from '@mui/icons-material';
-import { getRouteLink } from 'client/Routing/util';
 import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import {
   useRoutingConfig,
   useRoutingConfigActions,
 } from 'client/Routing/provider/RoutingConfigProvider';
-import deLocale from 'date-fns/locale/de';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
@@ -119,46 +107,11 @@ export const Search: FC = () => {
     setVia,
     updateDepartureMode,
   } = useRoutingConfigActions();
-  const { start, destination, date, via, touchedDate, departureMode } =
+  const { start, destination, date, via, departureMode, formattedDate } =
     useRoutingConfig();
-  const { fetchRoutes, clearRoutes } = useFetchRouting();
-  const [formattedDate, setFormattedDate] = useState('');
-  const updateFormattedDate = useCallback(() => {
-    if (!touchedDate) {
-      setFormattedDate(`Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`);
-      return;
-    }
-    const today = startOfDay(new Date());
-    const tomorrow = endOfDay(addDays(today, 1));
-    const yesterday = subDays(today, 1);
-
-    let relativeDayString = '';
-
-    if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
-      if (isSameDay(date, today)) relativeDayString = 'Heute';
-      else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
-      else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
-      relativeDayString += `, ${deLocale.localize?.day(date.getDay(), {
-        width: 'short',
-      })}`;
-    } else {
-      relativeDayString = deLocale.localize?.day(date.getDay());
-    }
-    relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
-    if (!isSameYear(date, today)) {
-      relativeDayString += lightFormat(date, 'yyyy');
-    }
-    relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
-
-    setFormattedDate(relativeDayString);
-  }, [touchedDate, date]);
-  useEffect(() => {
-    updateFormattedDate();
-  }, [updateFormattedDate]);
+  const { clearRoutes, fetchRoutesAndNavigate } = useFetchRouting();
 
   const params = useParams<'start' | 'destination' | 'date' | 'via'>();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (params.start) {
@@ -196,25 +149,10 @@ export const Search: FC = () => {
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
-      updateFormattedDate();
 
-      if (start && destination && start.evaNumber !== destination.evaNumber) {
-        void fetchRoutes();
-        navigate(
-          getRouteLink(start, destination, via, touchedDate ? date : null),
-        );
-      }
+      void fetchRoutesAndNavigate(start, destination, via);
     },
-    [
-      date,
-      destination,
-      fetchRoutes,
-      navigate,
-      start,
-      via,
-      touchedDate,
-      updateFormattedDate,
-    ],
+    [destination, start, via, fetchRoutesAndNavigate],
   );
 
   const mappedViaList = useMemo(
