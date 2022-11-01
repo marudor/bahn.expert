@@ -49,8 +49,8 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
   const imageName = useMemo(() => {
     if (
       !allowedTypes.has(type) ||
-      fahrzeug.category === 'TRIEBKOPF' ||
-      fahrzeug.category === 'LOK'
+      fahrzeug.vehicleCategory === 'POWERCAR' ||
+      fahrzeug.vehicleCategory === 'LOCOMOTIVE'
     ) {
       return;
     }
@@ -77,7 +77,7 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
       }
       return relevantUIC;
     }
-  }, [fahrzeug.category, fahrzeug.type, fahrzeug.uic, identifier, type]);
+  }, [fahrzeug.vehicleCategory, fahrzeug.type, fahrzeug.uic, identifier, type]);
 
   if (!imageName) {
     return (

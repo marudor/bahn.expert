@@ -20,28 +20,52 @@ import type {
   CoachSequenceSector,
   CoachSequenceStop,
 } from 'types/coachSequence';
+import type { VehicleCategory } from 'business-hub/generated/coachSequence';
 
-const mapClass = (kategorie: FahrzeugKategorie) => {
-  switch (kategorie) {
-    case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE':
-    case 'DOPPELSTOCKWAGENZWEITEKLASSE':
-    case 'REISEZUGWAGENZWEITEKLASSE':
-    case 'STEUERWAGENZWEITEKLASSE':
-    case 'HALBSPEISEWAGENZWEITEKLASSE':
-    case 'SPEISEWAGEN':
+const mapClass = (category: VehicleCategory) => {
+  switch (category) {
+    // case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE':
+    // case 'DOPPELSTOCKWAGENZWEITEKLASSE':
+    // case 'REISEZUGWAGENZWEITEKLASSE':
+    // case 'STEUERWAGENZWEITEKLASSE':
+    // case 'HALBSPEISEWAGENZWEITEKLASSE':
+    // case 'SPEISEWAGEN':
+    case 'SLEEPER_ECONOMY_CLASS':
+    case 'COUCHETTE_ECONOMY_CLASS':
+    case 'CONTROLCAR_ECONOMY_CLASS':
+    case 'DOUBLEDECK_ECONOMY_CLASS':
+    case 'HALFDININGCAR_ECONOMY_CLASS':
+    case 'DOUBLECONTROLCAR_ECONOMY_CLASS':
+    case 'PASSENGERCARRIAGE_ECONOMY_CLASS':
+    case 'DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS':
+    case 'DININGCAR':
       return 2;
-    case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
-    case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
-    case 'STEUERWAGENERSTEZWEITEKLASSE':
-    case 'REISEZUGWAGENERSTEZWEITEKLASSE':
+    // case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
+    // case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
+    // case 'STEUERWAGENERSTEZWEITEKLASSE':
+    // case 'REISEZUGWAGENERSTEZWEITEKLASSE':
+    case 'SLEEPER_FIRST_ECONOMY_CLASS':
+    case 'CONTROLCAR_FIRST_ECONOMY_CLASS':
+    case 'DOUBLEDECK_FIRST_ECONOMY_CLASS':
+    case 'DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS':
+    case 'PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS':
+    case 'DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS':
       return 3;
-    case 'HALBSPEISEWAGENERSTEKLASSE':
-    case 'DOPPELSTOCKWAGENERSTEKLASSE':
-    case 'REISEZUGWAGENERSTEKLASSE':
-    case 'STEUERWAGENERSTEKLASSE':
+    // case 'HALBSPEISEWAGENERSTEKLASSE':
+    // case 'DOPPELSTOCKWAGENERSTEKLASSE':
+    // case 'REISEZUGWAGENERSTEKLASSE':
+    // case 'STEUERWAGENERSTEKLASSE':
+    case 'SLEEPER_FIRST_CLASS':
+    case 'COUCHETTE_FIRST_CLASS':
+    case 'CONTROLCAR_FIRST_CLASS':
+    case 'DOUBLEDECK_FIRST_CLASS':
+    case 'HALFDININGCAR_FIRST_CLASS':
+    case 'PASSENGERCARRIAGE_FIRST_CLASS':
+    case 'DOUBLEDECK_CONTROLCAR_FIRST_CLASS':
       return 1;
-    case 'TRIEBKOPF':
-    case 'LOK':
+    case 'BAGGAGECAR':
+    case 'POWERCAR':
+    case 'LOCOMOTIVE':
       return 4;
     default:
       return 0;
@@ -98,13 +122,54 @@ const mapFeatures = (fahrzeug: BaseFahrzeug): CoachSequenceCoachFeatures => {
   return features;
 };
 
+function mapFahrzeugkategorie(kategorie: FahrzeugKategorie): VehicleCategory {
+  switch (kategorie) {
+    case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
+      return 'DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS';
+    case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE':
+      return 'DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS';
+    case 'DOPPELSTOCKWAGENERSTEKLASSE':
+      return 'DOUBLEDECK_FIRST_CLASS';
+    case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
+      return 'DOUBLEDECK_FIRST_ECONOMY_CLASS';
+    case 'DOPPELSTOCKWAGENZWEITEKLASSE':
+      return 'DOUBLEDECK_ECONOMY_CLASS';
+    case 'HALBSPEISEWAGENERSTEKLASSE':
+      return 'HALFDININGCAR_FIRST_CLASS';
+    case 'HALBSPEISEWAGENZWEITEKLASSE':
+      return 'HALFDININGCAR_ECONOMY_CLASS';
+    case 'LOK':
+      return 'LOCOMOTIVE';
+    case 'REISEZUGWAGENERSTEKLASSE':
+      return 'PASSENGERCARRIAGE_FIRST_CLASS';
+    case 'REISEZUGWAGENERSTEZWEITEKLASSE':
+      return 'PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS';
+    case 'REISEZUGWAGENZWEITEKLASSE':
+      return 'PASSENGERCARRIAGE_ECONOMY_CLASS';
+    case 'SPEISEWAGEN':
+      return 'DININGCAR';
+    case 'STEUERWAGENERSTEKLASSE':
+      return 'CONTROLCAR_FIRST_CLASS';
+    case 'STEUERWAGENERSTEZWEITEKLASSE':
+      return 'CONTROLCAR_FIRST_ECONOMY_CLASS';
+    case 'STEUERWAGENZWEITEKLASSE':
+      return 'CONTROLCAR_ECONOMY_CLASS';
+    case 'TRIEBKOPF':
+      return 'POWERCAR';
+    case '':
+      return 'UNDEFINED';
+  }
+}
+
 const mapCoach = (fahrzeug: BaseFahrzeug): CoachSequenceCoach | undefined => {
   const position = mapPosition(fahrzeug.positionamhalt);
   if (!position) return;
-  const travellerClass = mapClass(fahrzeug.kategorie);
+  const vehicleCategory = mapFahrzeugkategorie(fahrzeug.kategorie);
+  const travellerClass = mapClass(vehicleCategory);
   return {
     class: travellerClass,
     category: fahrzeug.kategorie,
+    vehicleCategory,
     closed:
       fahrzeug.status === 'GESCHLOSSEN' || travellerClass === 4
         ? true

@@ -207,7 +207,9 @@ export const Fahrzeug: FC<Props> = ({
       style={position}
     >
       {Stripe && <Stripe />}
-      {fahrzeug.category.includes('DOPPELSTOCK') && <DoppelstockIndicator />}
+      {fahrzeug.vehicleCategory.includes('DOUBLEDECK') && (
+        <DoppelstockIndicator />
+      )}
       <Fahrzeugklasse coach={fahrzeug} />
       {fahrzeug.identificationNumber && (
         <IdentificationNumber>

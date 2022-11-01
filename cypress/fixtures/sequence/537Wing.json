@@ -6,6 +6,7 @@
           {
             "class": 4,
             "category": "TRIEBKOPF",
+            "vehicleCategory": "POWERCAR",
             "closed": true,
             "position": { "endPercent": 100, "startPercent": 95 },
             "identificationNumber": "",
@@ -16,6 +17,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 95, "startPercent": 89 },
             "identificationNumber": "12",
             "type": "Avmz",
@@ -25,6 +27,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 89, "startPercent": 82 },
             "identificationNumber": "11",
             "type": "Avmz",
@@ -34,6 +37,7 @@
           {
             "class": 2,
             "category": "SPEISEWAGEN",
+            "vehicleCategory": "DININGCAR",
             "position": { "endPercent": 82, "startPercent": 76 },
             "identificationNumber": "7",
             "type": "WRmz",
@@ -43,6 +47,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 76, "startPercent": 69 },
             "identificationNumber": "6",
             "type": "Bpmbsz",
@@ -58,6 +63,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 69, "startPercent": 63 },
             "identificationNumber": "5",
             "type": "Bvmz",
@@ -67,6 +73,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 63, "startPercent": 56 },
             "identificationNumber": "4",
             "type": "Bvmz",
@@ -76,6 +83,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 56, "startPercent": 50 },
             "identificationNumber": "3",
             "type": "Bvmz",
@@ -85,6 +93,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 50, "startPercent": 43 },
             "identificationNumber": "2",
             "type": "Bvmz",
@@ -94,6 +103,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 43, "startPercent": 37 },
             "identificationNumber": "1",
             "type": "Bvmz",
@@ -104,6 +114,7 @@
             "class": 4,
             "category": "TRIEBKOPF",
             "closed": true,
+            "vehicleCategory": "POWERCAR",
             "position": { "endPercent": 37, "startPercent": 32 },
             "identificationNumber": "",
             "type": "I4010",
@@ -127,6 +138,7 @@
           {
             "class": 4,
             "category": "TRIEBKOPF",
+            "vehicleCategory": "POWERCAR",
             "closed": true,
             "position": { "endPercent": 32, "startPercent": 27 },
             "identificationNumber": "",
@@ -137,6 +149,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 27, "startPercent": 21 },
             "identificationNumber": "37",
             "type": "Apmz",
@@ -147,6 +160,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 21, "startPercent": 14 },
             "identificationNumber": "36",
             "type": "Apmz",
@@ -157,6 +171,7 @@
           {
             "class": 2,
             "category": "SPEISEWAGEN",
+            "vehicleCategory": "DININGCAR",
             "position": { "endPercent": 14, "startPercent": 8 },
             "identificationNumber": "35",
             "type": "WRmbsz",
@@ -166,6 +181,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 8, "startPercent": 1 },
             "identificationNumber": "34",
             "type": "Bpmbz",
@@ -181,6 +197,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 1, "startPercent": -5 },
             "identificationNumber": "33",
             "type": "Bpmz",
@@ -191,6 +208,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": -5, "startPercent": -12 },
             "identificationNumber": "32",
             "type": "Bpmz",
@@ -200,6 +218,7 @@
           {
             "class": 2,
             "category": "STEUERWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": -12, "startPercent": -18 },
             "identificationNumber": "31",
             "type": "Bpmzf",

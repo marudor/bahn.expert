@@ -89,6 +89,7 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
         features: mapFeatures(w),
         identificationNumber: w.ranking ? String(w.ranking) : '',
         category: '',
+        vehicleCategory: 'UNDEFINED',
         closed: w.isLocked || w.kind === 'TFZ',
         position: positions[i],
         uic: w.uicNumber,

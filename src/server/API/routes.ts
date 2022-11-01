@@ -1380,6 +1380,11 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKSTEUERWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["HALBSPEISEWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["HALBSPEISEWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["LOK"]},{"dataType":"enum","enums":["REISEZUGWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["REISEZUGWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["REISEZUGWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["SPEISEWAGEN"]},{"dataType":"enum","enums":["STEUERWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["STEUERWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["STEUERWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["TRIEBKOPF"]},{"dataType":"enum","enums":[""]}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "VehicleCategory": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["DOUBLEDECK_FIRST_ECONOMY_CLASS"]},{"dataType":"enum","enums":["DOUBLEDECK_FIRST_CLASS"]},{"dataType":"enum","enums":["DOUBLEDECK_ECONOMY_CLASS"]},{"dataType":"enum","enums":["DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS"]},{"dataType":"enum","enums":["DOUBLEDECK_CONTROLCAR_FIRST_CLASS"]},{"dataType":"enum","enums":["DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS"]},{"dataType":"enum","enums":["DOUBLEDECK_CARCARRIER_PASSENGERTRAIN"]},{"dataType":"enum","enums":["PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS"]},{"dataType":"enum","enums":["PASSENGERCARRIAGE_FIRST_CLASS"]},{"dataType":"enum","enums":["PASSENGERCARRIAGE_ECONOMY_CLASS"]},{"dataType":"enum","enums":["CONTROLCAR_FIRST_CLASS"]},{"dataType":"enum","enums":["CONTROLCAR_ECONOMY_CLASS"]},{"dataType":"enum","enums":["CONTROLCAR_FIRST_ECONOMY_CLASS"]},{"dataType":"enum","enums":["DOUBLECONTROLCAR_ECONOMY_CLASS"]},{"dataType":"enum","enums":["DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS"]},{"dataType":"enum","enums":["DININGCAR"]},{"dataType":"enum","enums":["HALFDININGCAR_FIRST_CLASS"]},{"dataType":"enum","enums":["HALFDININGCAR_ECONOMY_CLASS"]},{"dataType":"enum","enums":["SLEEPER_FIRST_CLASS"]},{"dataType":"enum","enums":["SLEEPER_FIRST_ECONOMY_CLASS"]},{"dataType":"enum","enums":["SLEEPER_ECONOMY_CLASS"]},{"dataType":"enum","enums":["COUCHETTE_FIRST_CLASS"]},{"dataType":"enum","enums":["COUCHETTE_ECONOMY_CLASS"]},{"dataType":"enum","enums":["BAGGAGECAR"]},{"dataType":"enum","enums":["HALFBAGGAGECAR"]},{"dataType":"enum","enums":["LOCOMOTIVE"]},{"dataType":"enum","enums":["POWERCAR"]},{"dataType":"enum","enums":["UNDEFINED"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CoachSequenceCoachFeatures": {
         "dataType": "refObject",
         "properties": {
@@ -1412,6 +1417,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "class": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":[0]},{"dataType":"enum","enums":[1]},{"dataType":"enum","enums":[2]},{"dataType":"enum","enums":[3]},{"dataType":"enum","enums":[4]}],"required":true},
             "category": {"ref":"FahrzeugKategorie","required":true},
+            "vehicleCategory": {"ref":"VehicleCategory","required":true},
             "closed": {"dataType":"boolean"},
             "uic": {"dataType":"string"},
             "type": {"dataType":"string"},
