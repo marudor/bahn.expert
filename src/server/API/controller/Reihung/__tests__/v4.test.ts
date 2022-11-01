@@ -40,7 +40,7 @@ describe('Reihung V4', () => {
 
           if (!W11 || !W9 || !W7) throw new Error('Missing Waggon');
 
-          expect(W11.category).toBe('REISEZUGWAGENERSTEKLASSE');
+          expect(W11.vehicleCategory).toBe('PASSENGERCARRIAGE_FIRST_CLASS');
           expect(W11.type).toBe('Avmz');
           expect(W11.class).toBe(1);
           expect(W11.features).toEqual({
@@ -48,7 +48,7 @@ describe('Reihung V4', () => {
           });
           expect(W11.seats?.comfort).toEqual(expect.stringContaining(''));
 
-          expect(W9.category).toBe('REISEZUGWAGENERSTEKLASSE');
+          expect(W9.vehicleCategory).toBe('PASSENGERCARRIAGE_FIRST_CLASS');
           expect(W9.class).toBe(1);
           expect(W9.features).toEqual({
             info: true,

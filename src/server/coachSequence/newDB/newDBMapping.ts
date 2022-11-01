@@ -155,6 +155,7 @@ function mapVehicle(
     type: vehicle.type.constructionType,
     class: mapClass(vehicle.type),
     category: mapCategory(vehicle.type.category),
+    vehicleCategory: vehicle.type.category,
     closed:
       vehicle.status === 'CLOSED' ||
       vehicle.type.category === 'LOCOMOTIVE' ||

@@ -6,6 +6,7 @@
           {
             "class": 4,
             "category": "TRIEBKOPF",
+            "vehicleCategory": "POWERCAR",
             "closed": true,
             "position": { "endPercent": 18, "startPercent": 14 },
             "identificationNumber": "",
@@ -16,6 +17,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 24, "startPercent": 18 },
             "identificationNumber": "1",
             "type": "Bvmz",
@@ -25,6 +27,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 29, "startPercent": 24 },
             "identificationNumber": "2",
             "type": "Bvmz",
@@ -34,6 +37,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 35, "startPercent": 29 },
             "identificationNumber": "3",
             "type": "Bvmz",
@@ -43,6 +47,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 41, "startPercent": 35 },
             "identificationNumber": "4",
             "type": "Bvmz",
@@ -52,6 +57,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 46, "startPercent": 41 },
             "identificationNumber": "5",
             "type": "Bvmz",
@@ -62,6 +68,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 52, "startPercent": 46 },
             "identificationNumber": "6",
             "type": "Bvmz",
@@ -71,6 +78,7 @@
           {
             "class": 2,
             "category": "REISEZUGWAGENZWEITEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
             "position": { "endPercent": 57, "startPercent": 52 },
             "identificationNumber": "7",
             "type": "Bvmz",
@@ -81,6 +89,7 @@
           {
             "class": 2,
             "category": "SPEISEWAGEN",
+            "vehicleCategory": "DININGCAR",
             "position": { "endPercent": 63, "startPercent": 57 },
             "identificationNumber": "8",
             "type": "WRmz",
@@ -90,6 +99,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 69, "startPercent": 63 },
             "identificationNumber": "9",
             "type": "Apmbsz",
@@ -105,6 +115,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 74, "startPercent": 69 },
             "identificationNumber": "11",
             "type": "Avmz",
@@ -115,6 +126,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 80, "startPercent": 74 },
             "identificationNumber": "12",
             "type": "Avmz",
@@ -124,6 +136,7 @@
           {
             "class": 1,
             "category": "REISEZUGWAGENERSTEKLASSE",
+            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
             "position": { "endPercent": 85, "startPercent": 80 },
             "identificationNumber": "14",
             "type": "Avmz",
@@ -133,6 +146,7 @@
           {
             "class": 4,
             "category": "TRIEBKOPF",
+            "vehicleCategory": "POWERCAR",
             "closed": true,
             "position": { "endPercent": 90, "startPercent": 85 },
             "identificationNumber": "",
