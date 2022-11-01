@@ -98,6 +98,12 @@ function getBRWithoutNameFromGroupName(
       baureihe: '406',
     };
   }
+  if (groupName.startsWith('408.')) {
+    return {
+      identifier: '408',
+      baureihe: '408',
+    };
+  }
   if (groupName.startsWith('412_12')) {
     return {
       identifier: '412',

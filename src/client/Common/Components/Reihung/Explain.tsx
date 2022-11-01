@@ -92,7 +92,7 @@ export const Explain: FC = () => {
             )}
             <IconWrap data-testid="comfort">
               <ComfortIcon />
-              Bahn.Comfort Sitzplätze
+              BahnBonus Status Sitzplätze
             </IconWrap>
           </ContentContainer>
           <h3>Auslastung</h3>

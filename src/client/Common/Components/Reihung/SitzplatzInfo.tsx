@@ -41,7 +41,7 @@ export const SitzplatzInfo: FC<Props> = ({ seats, identificationNumber }) => {
           <h3>Sitzplätze Wagen {identificationNumber}</h3>
           {seats.comfort && (
             <TextLine data-testid="sitzplatzinfoComfort">
-              <span>Comfort:</span>
+              <span>BahnBonus Status:</span>
               <span>{seats.comfort}</span>
             </TextLine>
           )}
