@@ -68,6 +68,7 @@ export const AvailableBRConstant = [
   '403' as const,
   '406' as const,
   '407' as const,
+  '408' as const,
   '410.1' as const,
   '411' as const,
   '412' as const,
