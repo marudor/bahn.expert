@@ -1,3 +1,4 @@
+import { compareDesc } from 'date-fns';
 import { HimIrisMessage } from 'client/Common/Components/Messages/HimIrisMessage';
 import { IrisMessage } from 'client/Common/Components/Messages/IrisMessage';
 import { MessageContainer } from './Normal';
@@ -9,9 +10,13 @@ interface Props {
 }
 
 export const DetailMessages: FC<Props> = ({ messages }) => {
+  const sortedMessages = messages.sort((m1, m2) =>
+    compareDesc(m1.timestamp!, m2.timestamp!),
+  );
+
   return (
     <MessageContainer>
-      {messages.map((m, i) => {
+      {sortedMessages.map((m, i) => {
         const MessageComponent = 'head' in m ? HimIrisMessage : IrisMessage;
 
         return <MessageComponent key={i} message={m as any} />;
