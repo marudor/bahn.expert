@@ -85,6 +85,7 @@ export async function findJourney(
     }
     const result = await risJourneysClient.find({
       number: trainNumber,
+      // TODO: Kategorie ist manchmal schwierig, z.B. RE 11 / IC 5107 Luxemburg -> Düsseldorf
       category,
       date: date && format(date, 'yyyy-MM-dd'),
       transports: onlyFv ? longDistanceTypes : undefined,

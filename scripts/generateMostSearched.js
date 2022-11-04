@@ -1,26 +1,26 @@
 /* eslint-disable unicorn/prefer-module */
-const config = require('../babel.config');
+const axios = require('axios');
 
-require('@babel/register')({
-  extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  ...config,
-});
-
-const search = require('../src/server/StopPlace/search').searchStopPlace;
+const search = async (searchTerm) => {
+  const r = await axios.get(
+    `https://bahn.expert/api/stopPlace/v1/search/${searchTerm}`,
+  );
+  return r.data;
+};
 
 const mostUsedNames = [
   'Frankfurt (Main) Hbf',
   'Karlsruhe Hbf',
-  'Stuttgart Hbf',
   'Hamburg Hbf',
   'Hannover Hbf',
-  'Düsseldorf Hbf',
   'Köln Hbf',
+  'Stuttgart Hbf',
   'Berlin Hbf',
-  'Mannheim Hbf',
+  'Düsseldorf Hbf',
   'München Hbf',
+  'Mannheim Hbf',
   'Nürnberg Hbf',
-  'Ulm Hbf',
+  'Essen Hbf',
 ].map((n) => n.toLowerCase());
 
 Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
@@ -29,8 +29,8 @@ Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
     console.log(
       JSON.stringify(
         stopPlaces.map((s) => ({
-          title: s.title,
-          id: s.id,
+          evaNumber: s.evaNumber,
+          name: s.name,
         })),
       ),
     );
