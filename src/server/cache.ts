@@ -74,8 +74,8 @@ export class Cache<K extends string, V> {
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({
-          ttl: ttl,
-          max: maxEntries,
+          ttl: ttl / 2,
+          max: maxEntries / 500,
         });
     if (!skipRedis) {
       this.redisCache = new Redis({
@@ -102,7 +102,11 @@ export class Cache<K extends string, V> {
     }
     try {
       const redisCached = await this.redisCache?.get(key);
-      return this.redisDeserialize(redisCached);
+      const serialized = this.redisDeserialize(redisCached);
+      if (serialized) {
+        this.lruCache?.set(key, serialized);
+      }
+      return serialized;
     } catch (e) {
       logger.error(e, 'Redis get failed');
     }

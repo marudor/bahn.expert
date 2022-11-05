@@ -1,5 +1,10 @@
 import { calculateCurrentStopPlace } from 'server/HAFAS/Detail';
-import { differenceInMinutes, parseISO, subMinutes } from 'date-fns';
+import {
+  compareDesc,
+  differenceInMinutes,
+  parseISO,
+  subMinutes,
+} from 'date-fns';
 import { EventType, TimeType } from 'business-hub/generated/risJourneys';
 import { getAbfahrten } from 'server/iris';
 import { getJourneyDetails } from 'business-hub/risJourneys';
@@ -36,7 +41,7 @@ export async function addIrisMessagesToDetails(
             ...irisDeparture.messages.delay,
             ...irisDeparture.messages.qos,
             ...irisDeparture.messages.him,
-          ];
+          ].sort((m1, m2) => compareDesc(m1.timestamp!, m2.timestamp!));
           irisStop.irisMessages = irisMessages;
         }
       } catch {
