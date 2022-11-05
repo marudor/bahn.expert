@@ -96,17 +96,12 @@ export class Cache<K extends string, V> {
     return JSON.parse(raw, dateDeserialze);
   }
   async get(key: K): Promise<V | undefined> {
-    const memoryCached = this.lruCache?.get(key);
-    if (memoryCached !== undefined) {
-      return memoryCached;
+    if (this.lruCache?.has(key)) {
+      return this.lruCache?.get(key);
     }
     try {
       const redisCached = await this.redisCache?.get(key);
-      const serialized = this.redisDeserialize(redisCached);
-      if (serialized) {
-        this.lruCache?.set(key, serialized);
-      }
-      return serialized;
+      return this.redisDeserialize(redisCached);
     } catch (e) {
       logger.error(e, 'Redis get failed');
     }
