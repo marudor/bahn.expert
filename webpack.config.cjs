@@ -49,7 +49,6 @@ const rules = [
 const optimization = {};
 
 if (isDev) {
-  rules[0].use.unshift('cache-loader');
   plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),
