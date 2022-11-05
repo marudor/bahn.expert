@@ -1,9 +1,7 @@
-import { createNewCache } from 'server/cache';
+import { Cache } from 'server/cache';
 
-const defineCacheTests = (
-  createCache: () => ReturnType<typeof createNewCache>,
-) => {
-  const cache: ReturnType<typeof createNewCache> = createCache();
+const defineCacheTests = (createCache: () => Cache<string, unknown>) => {
+  const cache: Cache<string, unknown> = createCache();
 
   it('can save explicit undefined', async () => {
     await cache.set('undef', undefined);
@@ -19,33 +17,29 @@ const defineCacheTests = (
     expect(await cache.get('null')).toBeNull();
   });
 
-  it('mget and get work the same', async () => {
-    await cache.set('m1', 1);
-    await cache.set('m2', {});
-    await cache.set('m3', null);
-    await cache.set('m4', undefined);
+  it('can save objects', async () => {
+    const testObject = {
+      foo: '1',
+      bar: '2',
+      foobar: undefined,
+      really: null,
+    };
 
-    await expect(cache.get('m1')).resolves.toBe(1);
-    await expect(cache.get('m2')).resolves.toEqual({});
-    await expect(cache.get('m3')).resolves.toBeNull();
-    await expect(cache.get('m4')).resolves.toBeUndefined();
-    await expect(cache.mget(['m1', 'm2', 'm3', 'm4'])).resolves.toEqual([
-      1,
-      {},
-      null,
-      undefined,
-    ]);
+    await cache.set('obj', testObject);
+    expect(await cache.get('obj')).toEqual(testObject);
   });
 };
 
 describe('Cache', () => {
   describe('memory', () => {
-    defineCacheTests(() => createNewCache(0, 100, false));
+    defineCacheTests(() => new Cache(0, 100, undefined, { skipRedis: true }));
   });
 
   if (process.env.REDIS_HOST) {
     describe('redis', () => {
-      defineCacheTests(() => createNewCache(1, 100, true));
+      defineCacheTests(
+        () => new Cache(1, 100, undefined, { skipMemory: true }),
+      );
     });
   }
 });

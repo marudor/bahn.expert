@@ -1,5 +1,5 @@
 import { addRandomUseragent } from 'business-hub/randomUseragent';
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import { differenceInHours, format } from 'date-fns';
 import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
 import { risJourneysConfiguration } from 'business-hub/config';
@@ -14,8 +14,8 @@ import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
 
-const journeyFindCache = createNewCache<string, JourneyMatch[]>(
-  CacheDatabases.JourneyFind,
+const journeyFindCache = new Cache<string, JourneyMatch[]>(
+  CacheDatabase.JourneyFind,
   8 * 60 * 60,
 );
 

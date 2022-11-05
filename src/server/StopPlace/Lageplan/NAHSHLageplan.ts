@@ -1,11 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import { locMatch } from 'server/HAFAS/LocMatch';
 import Axios from 'axios';
 
 // 48 hours in seconds
-const cache = createNewCache<string, string | null>(
-  CacheDatabases.NAHSHLageplan,
+const cache = new Cache<string, string | null>(
+  CacheDatabase.NAHSHLageplan,
   48 * 60 * 60,
 );
 

@@ -16,7 +16,7 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import {
   calculateVia,
   getAttr,
@@ -59,8 +59,8 @@ type ParsedAr = ArDp & {
 };
 
 // 6 Hours in seconds
-const timetableCache = createNewCache<string, Record<string, any>>(
-  CacheDatabases.TimetableParsedPlan,
+const timetableCache = new Cache<string, Record<string, any>>(
+  CacheDatabase.TimetableParsedPlan,
   6 * 60 * 60,
 );
 

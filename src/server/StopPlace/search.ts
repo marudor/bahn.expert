@@ -6,7 +6,7 @@ import {
   groups,
   keys,
 } from 'business-hub/risStations';
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import { getSingleStation } from 'server/iris/station';
 import { manualNameOverrides } from 'server/StopPlace/manualNameOverrides';
 import { searchWithHafas } from 'server/StopPlace/hafasSearch';
@@ -18,27 +18,27 @@ import type {
   StopPlaceSearchResult,
 } from 'business-hub/types';
 
-const stopPlaceStationSearchCache = createNewCache<string, GroupedStopPlace[]>(
-  CacheDatabases.StopPlaceSearch,
+const stopPlaceStationSearchCache = new Cache<string, GroupedStopPlace[]>(
+  CacheDatabase.StopPlaceSearch,
 );
-const stopPlaceSalesSearchCache = createNewCache<string, GroupedStopPlace[]>(
-  CacheDatabases.StopPlaceSalesSearch,
+const stopPlaceSalesSearchCache = new Cache<string, GroupedStopPlace[]>(
+  CacheDatabase.StopPlaceSalesSearch,
 );
-const stopPlaceGeoCache = createNewCache<string, GroupedStopPlace[]>(
-  CacheDatabases.StopPlaceGeo,
+const stopPlaceGeoCache = new Cache<string, GroupedStopPlace[]>(
+  CacheDatabase.StopPlaceGeo,
 );
-const stopPlaceIdentifierCache = createNewCache<
+const stopPlaceIdentifierCache = new Cache<
   string,
   StopPlaceIdentifier | undefined
->(CacheDatabases.StopPlaceIdentifier);
-const stopPlaceByRilCache = createNewCache<string, StopPlace>(
-  CacheDatabases.StopPlaceByRil,
+>(CacheDatabase.StopPlaceIdentifier);
+const stopPlaceByRilCache = new Cache<string, StopPlace>(
+  CacheDatabase.StopPlaceByRil,
 );
-const stopPlaceByEvaCache = createNewCache<string, GroupedStopPlace>(
-  CacheDatabases.StopPlaceByEva,
+const stopPlaceByEvaCache = new Cache<string, GroupedStopPlace>(
+  CacheDatabase.StopPlaceByEva,
 );
-const stopPlaceGroupCache = createNewCache<string, ResolvedStopPlaceGroups>(
-  CacheDatabases.StopPlaceGroups,
+const stopPlaceGroupCache = new Cache<string, ResolvedStopPlaceGroups>(
+  CacheDatabase.StopPlaceGroups,
 );
 
 function mapToGroupedStopPlace(
@@ -298,6 +298,12 @@ export async function getIdentifiers(
   return undefined;
 }
 
-export function getGroups(evaNumber: string): Promise<ResolvedStopPlaceGroups> {
-  return stopPlaceGroupCache.wrap(evaNumber, () => groups(evaNumber));
+export async function getGroups(
+  evaNumber: string,
+): Promise<ResolvedStopPlaceGroups> {
+  const cached = await stopPlaceGroupCache.get(evaNumber);
+  if (cached) {
+    return cached;
+  }
+  return groups(evaNumber);
 }
