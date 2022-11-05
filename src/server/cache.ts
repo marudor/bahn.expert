@@ -74,8 +74,8 @@ export class Cache<K extends string, V> {
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({
-          ttl: ttl,
-          max: maxEntries,
+          ttl: ttl / 2,
+          max: maxEntries / 200,
         });
     if (!skipRedis) {
       this.redisCache = new Redis({
