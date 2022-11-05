@@ -10,7 +10,7 @@ certificate:
 
 docs: true
 redis:
-  host: redis
+  host: redis2
   port: 6379
 
 ingress:
