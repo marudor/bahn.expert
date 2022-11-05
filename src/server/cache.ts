@@ -74,8 +74,12 @@ export class Cache<K extends string, V> {
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({
-          ttl: ttl / 2,
-          max: maxEntries / 200,
+          ttl: ttl,
+          max: maxEntries,
+          // ROUGHLY 100Mb
+          maxSize: 100000,
+          // eslint-disable-next-line @typescript-eslint/unbound-method
+          sizeCalculation: this.sizeCalculation,
         });
     if (!skipRedis) {
       this.redisCache = new Redis({
@@ -84,6 +88,12 @@ export class Cache<K extends string, V> {
       });
       activeRedisCaches.add(this.redisCache);
     }
+  }
+  private sizeCalculation(val: V) {
+    if (val) {
+      return JSON.stringify(val).length;
+    }
+    return 1;
   }
   private redisSerialize(raw: any) {
     if (raw === undefined) return '__UNDEF__INED__';
