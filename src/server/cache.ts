@@ -74,12 +74,8 @@ export class Cache<K extends string, V> {
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({
-          ttl: ttl,
-          max: maxEntries,
-          // ROUGHLY 100Mb
-          maxSize: 100000,
-          // eslint-disable-next-line @typescript-eslint/unbound-method
-          sizeCalculation: this.sizeCalculation,
+          ttl: ttl / 2,
+          max: maxEntries / 500,
         });
     if (!skipRedis) {
       this.redisCache = new Redis({
@@ -88,12 +84,6 @@ export class Cache<K extends string, V> {
       });
       activeRedisCaches.add(this.redisCache);
     }
-  }
-  private sizeCalculation(val: V) {
-    if (val) {
-      return JSON.stringify(val).length;
-    }
-    return 1;
   }
   private redisSerialize(raw: any) {
     if (raw === undefined) return '__UNDEF__INED__';
@@ -112,7 +102,11 @@ export class Cache<K extends string, V> {
     }
     try {
       const redisCached = await this.redisCache?.get(key);
-      return this.redisDeserialize(redisCached);
+      const serialized = this.redisDeserialize(redisCached);
+      if (serialized) {
+        this.lruCache?.set(key, serialized);
+      }
+      return serialized;
     } catch (e) {
       logger.error(e, 'Redis get failed');
     }
