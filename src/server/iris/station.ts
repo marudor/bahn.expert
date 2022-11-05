@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import { irisGetRequest } from './helper';
 import { stationMetaFilter } from 'server/iris/stationMetaFilter';
 import xmljs from 'libxmljs2';
@@ -7,8 +7,8 @@ import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from 'types/iris';
 
 // 12 Hours in seconds
-const cache = createNewCache<string, IrisStation | null>(
-  CacheDatabases.Station,
+const cache = new Cache<string, IrisStation | null>(
+  CacheDatabase.Station,
   12 * 60 * 60,
 );
 

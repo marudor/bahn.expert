@@ -1,10 +1,10 @@
 import * as cheerio from 'cheerio';
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import Axios from 'axios';
 
 // 48 hours in seconds
-const cache = createNewCache<string, string | null>(
-  CacheDatabases.DBLageplan,
+const cache = new Cache<string, string | null>(
+  CacheDatabase.DBLageplan,
   48 * 60 * 60,
 );
 

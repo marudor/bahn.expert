@@ -1,4 +1,4 @@
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import { logger } from 'server/logger';
 import { parse } from 'date-fns';
 import makeRequest from 'server/HAFAS/Request';
@@ -59,8 +59,8 @@ const HimSearch = (
 export default HimSearch;
 
 // 24 hours in seconds
-const himMessageCache = createNewCache<string, ParsedHimMessage>(
-  CacheDatabases.HIMMessage,
+const himMessageCache = new Cache<string, ParsedHimMessage>(
+  CacheDatabase.HIMMessage,
   24 * 60 * 60,
 );
 

@@ -1,4 +1,4 @@
-import { CacheDatabases, createNewCache } from 'server/cache';
+import { Cache, CacheDatabase } from 'server/cache';
 import { coachSequenceConfiguration } from 'business-hub/config';
 import { format, formatISO } from 'date-fns';
 import { logger } from 'server/logger';
@@ -16,8 +16,8 @@ const coachSequenceClient = new TransportsApi(
   axiosWithTimeout,
 );
 
-const negativeHitCache = createNewCache<string, boolean>(
-  CacheDatabases.NegativeNewSequence,
+const negativeHitCache = new Cache<string, boolean>(
+  CacheDatabase.NegativeNewSequence,
   12 * 60 * 60,
 );
 
