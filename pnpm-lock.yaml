@@ -125,6 +125,7 @@ specifiers:
   pino-pretty: ^9.1.1
   pino-std-serializers: ^6.0.0
   prettier: ^2.7.1
+  prom-client: ^14.1.0
   qs: ^6.11.0
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -189,6 +190,7 @@ dependencies:
   pino: 8.7.0
   pino-pretty: 9.1.1
   pino-std-serializers: 6.0.0
+  prom-client: 14.1.0
   qs: 6.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -4758,6 +4760,10 @@ packages:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
     dependencies:
       file-uri-to-path: 1.0.0
+    dev: false
+
+  /bintrees/1.0.2:
+    resolution: {integrity: sha1-SfiW1uhYpKSZ34XDj7OZua/4QPg=}
     dev: false
 
   /bl/4.1.0:
@@ -9760,6 +9766,13 @@ packages:
     engines: {node: '>= 0.6.0'}
     dev: false
 
+  /prom-client/14.1.0:
+    resolution: {integrity: sha512-iFWCchQmi4170omLpFXbzz62SQTmPhtBL35v0qGEVRHKcqIeiexaoYeP0vfZTujxEq3tA87iqOdRbC9svS1B9A==}
+    engines: {node: '>=10'}
+    dependencies:
+      tdigest: 0.1.2
+    dev: false
+
   /promise.any/2.0.4:
     resolution: {integrity: sha512-Yyl7jstFInFv/eIjm8Sj+pyyzHKZJPMr6yOdxxls1xdVatc3kVyVOvMPmqDaKC5kzxjwuMCkn41isweIUf8DPw==}
     engines: {node: '>= 0.4'}
@@ -10880,6 +10893,12 @@ packages:
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
+    dev: false
+
+  /tdigest/0.1.2:
+    resolution: {integrity: sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==}
+    dependencies:
+      bintrees: 1.0.2
     dev: false
 
   /temp-dir/2.0.0:

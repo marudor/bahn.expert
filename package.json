@@ -217,6 +217,7 @@
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1",
     "pino-std-serializers": "^6.0.0",
+    "prom-client": "^14.1.0",
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
