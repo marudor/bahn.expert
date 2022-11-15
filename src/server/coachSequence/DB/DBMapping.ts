@@ -156,7 +156,9 @@ function mapFahrzeugkategorie(kategorie: FahrzeugKategorie): VehicleCategory {
       return 'CONTROLCAR_ECONOMY_CLASS';
     case 'TRIEBKOPF':
       return 'POWERCAR';
-    case '':
+    case 'DOPPELSTOCKSTEUERWAGENERSTEKLASSE':
+      return 'DOUBLEDECK_CONTROLCAR_FIRST_CLASS';
+    default:
       return 'UNDEFINED';
   }
 }

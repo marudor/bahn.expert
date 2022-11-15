@@ -3530,6 +3530,7 @@
       "FahrzeugKategorie": {
         "type": "string",
         "enum": [
+          "DOPPELSTOCKSTEUERWAGENERSTEKLASSE",
           "DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
           "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
           "DOPPELSTOCKWAGENERSTEKLASSE",
