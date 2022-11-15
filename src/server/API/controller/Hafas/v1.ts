@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -39,7 +40,6 @@ export class HafasController extends Controller {
   async detailsRedirect(
     tripId: string,
     @Res() res: TsoaResponse<500 | 302, void>,
-    @Query() profile?: AllowedHafasProfile,
   ): Promise<void> {
     const hafasDetails = await JourneyDetails(tripId);
     if (!hafasDetails) return res(500);
@@ -48,16 +48,16 @@ export class HafasController extends Controller {
     const evaNumber = hafasDetails.stops[0].station.id;
     const date = hafasDetails.stops[0].departure?.scheduledTime;
     const dataUrlPart = date?.toISOString() || '';
-    const profileUrlPart = profile ? `&profile=${profile}` : '';
 
     return res(302, undefined, {
-      location: `/details/${trainName}/${dataUrlPart}?stopEva=${evaNumber}${profileUrlPart}`,
+      location: `/details/${trainName}/${dataUrlPart}?stopEva=${evaNumber}`,
     });
   }
 
   /**
    * Can be used to find all stopPlaces within a radius around a specific geo location
    */
+  @Deprecated()
   @Get('/geoStation')
   @Tags('HAFAS')
   @OperationId('Geo Station v1')
@@ -78,10 +78,7 @@ export class HafasController extends Controller {
     );
   }
 
-  /**
-   * Only uses this for non DB profiles. If you need DB stopPlace search use Operation tagged with StopPlace.
-   * Used to search for stopPlaces based on a name.
-   */
+  @Deprecated()
   @Get('/stopPlace/{searchTerm}')
   @Tags('HAFAS')
   @OperationId('StopPlaceSearch v1')
@@ -98,6 +95,7 @@ export class HafasController extends Controller {
     return locMatch(searchTerm, type, profile, req.query.raw);
   }
 
+  @Deprecated()
   @Post('/journeyGeoPos')
   @Tags('HAFAS')
   @OperationId('Journey Geo Position v1')
@@ -116,6 +114,7 @@ export class HafasController extends Controller {
    * @example trainName "ICE 23"
    * @example trainName "STR 1988"
    */
+  @Deprecated()
   @Get('/positionForTrain/{trainName}')
   @Tags('HAFAS')
   @OperationId('Position for Train v1')

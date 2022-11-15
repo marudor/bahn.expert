@@ -12,9 +12,13 @@ import {
   Tags,
 } from '@tsoa/runtime';
 import Detail from 'server/HAFAS/Detail';
+import StationBoard from 'server/HAFAS/StationBoard';
+import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
 import TripSearch from 'server/HAFAS/TripSearch';
+import type { AbfahrtenResult } from 'types/iris';
 import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
 import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { ArrivalStationBoardEntry } from 'types/stationBoard';
 import type { EvaNumber } from 'types/common';
 import type { Request as KRequest } from 'koa';
 import type { Route$Auslastung, RoutingResult } from 'types/routing';
@@ -71,5 +75,56 @@ export class HafasControllerV3 extends Controller {
       };
     }
     return notFoundResponse(404);
+  }
+
+  @Get('/irisCompatibleAbfahrten/{evaId}')
+  @Tags('HAFAS')
+  async irisCompatibleAbfahrten(
+    evaId: string,
+    @Query() profile?: AllowedHafasProfile,
+  ): Promise<AbfahrtenResult> {
+    const hafasDeparture = await StationBoard(
+      {
+        type: 'DEP',
+        station: evaId,
+      },
+      profile,
+    );
+    const hafasArrivals = await StationBoard(
+      {
+        type: 'ARR',
+        station: evaId,
+      },
+      profile,
+    ).catch(() => undefined);
+
+    const mappedHafasArrivals =
+      hafasArrivals?.reduce(
+        (
+          map: {
+            [key: string]: ArrivalStationBoardEntry;
+          },
+          arrival,
+        ) => {
+          map[`${arrival.jid}${arrival.train.number}`] = arrival;
+
+          return map;
+        },
+        {},
+      ) || {};
+
+    const idSet = new Set<string>();
+
+    return {
+      lookbehind: [],
+      departures: hafasDeparture
+        .map((departure) =>
+          StationBoardToTimetables(departure, mappedHafasArrivals, idSet),
+        )
+        .filter(Boolean)
+        .slice(0, 75),
+      wings: {},
+      stopPlaces: [evaId],
+    };
   }
 }

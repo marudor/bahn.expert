@@ -16,10 +16,6 @@ import type {
   HimSearchResponse,
 } from 'types/HAFAS/HimSearch';
 import type {
-  JourneyCourseRequest,
-  JourneyCourseResponse,
-} from 'types/HAFAS/JourneyCourse';
-import type {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
@@ -28,17 +24,9 @@ import type {
   JourneyGeoPosResponse,
 } from 'types/HAFAS/JourneyGeoPos';
 import type {
-  JourneyGraphRequest,
-  JourneyGraphResponse,
-} from 'types/HAFAS/JourneyGraph';
-import type {
   JourneyMatchRequest,
   JourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
-import type {
-  JourneyTreeRequest,
-  JourneyTreeResponse,
-} from 'types/HAFAS/JourneyTree';
 import type {
   LocGeoPosRequest,
   LocGeoPosResponse,
@@ -122,12 +110,6 @@ export class HafasError extends Error {
 
 type CommonHafasResponse<R> = R extends TripSearchRequest
   ? TripSearchResponse
-  : R extends JourneyCourseRequest
-  ? JourneyCourseResponse
-  : R extends JourneyGraphRequest
-  ? JourneyGraphResponse
-  : R extends JourneyTreeRequest
-  ? JourneyTreeResponse
   : R extends StationBoardRequest
   ? StationBoardResponse
   : R extends HimSearchRequest

@@ -56,8 +56,6 @@ const HimSearch = (
   return makeRequest(req, raw ? undefined : parseHimSearch, profile);
 };
 
-export default HimSearch;
-
 // 24 hours in seconds
 const himMessageCache = new Cache<string, ParsedHimMessage>(
   CacheDatabase.HIMMessage,

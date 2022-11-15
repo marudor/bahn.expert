@@ -23,7 +23,7 @@ export const BahnhofsAbfahrten: FC = () => {
     <AuslastungsProvider>
       <AbfahrtenProvider
         urlPrefix="/regional/"
-        fetchApiUrl="/api/hafas/experimental/irisCompatibleAbfahrten"
+        fetchApiUrl="/api/hafas/v3/irisCompatibleAbfahrten"
         stopPlaceApiFunction={regionalStopPlaceApiFunction}
       >
         <FavProvider storageKey="regionalFavs">

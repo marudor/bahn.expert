@@ -1,10 +1,8 @@
 import type { HimSearchRequest } from 'types/HAFAS/HimSearch';
-import type { JourneyCourseRequest } from 'types/HAFAS/JourneyCourse';
 import type { JourneyDetailsRequest } from './JourneyDetails';
 import type { JourneyGeoPosRequest } from 'types/HAFAS/JourneyGeoPos';
-import type { JourneyGraphRequest } from 'types/HAFAS/JourneyGraph';
 import type { JourneyMatchRequest } from 'types/HAFAS/JourneyMatch';
-import type { JourneyTreeRequest } from 'types/HAFAS/JourneyTree';
+import type { JourneyTreeRequest } from 'types/HAFAS/deprecated/JourneyTree';
 import type { LocGeoPosRequest } from './LocGeoPos';
 import type { LocMatchRequest } from './LocMatch';
 import type { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
@@ -269,8 +267,8 @@ export enum AllowedHafasProfile {
 
 export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
-  | JourneyCourseRequest
-  | JourneyGraphRequest
+  // | JourneyCourseRequest
+  // | JourneyGraphRequest
   | JourneyTreeRequest
   | StationBoardRequest
   | HimSearchRequest
