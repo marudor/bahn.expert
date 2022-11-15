@@ -1,10 +1,5 @@
 certificate:
   enabled: true
-  # commonName: '${{ .Release.API_KEY }}.marudor.de'
-  # dnsNames:
-  #   - '{{ .Release.Name }}.marudor.de'
-  # domains:
-  #   - '{{ .Release.Name }}.marudor.de'
   issuerName: http-issuer
   issuerKind: ClusterIssuer
 
@@ -20,19 +15,9 @@ ingress:
 resources:
   requests:
     memory: '768Mi'
-    cpu: '300m'
+    cpu: '600m'
   limits:
     memory: 1512Mi
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
 
 nodeSelector: {}
 
