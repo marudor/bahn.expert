@@ -64,7 +64,8 @@ export class Cache<K extends string, V> {
   private redisCache?: Redis;
   constructor(
     database: CacheDatabase,
-    ttl: number = defaultTTL,
+    /** In Seconds */
+    private ttl: number = defaultTTL,
     maxEntries = 1000000,
     // eslint-disable-next-line unicorn/no-object-as-default-parameter
     { skipMemory, skipRedis }: { skipMemory?: boolean; skipRedis?: boolean } = {
@@ -74,7 +75,8 @@ export class Cache<K extends string, V> {
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({
-          ttl: ttl / 2,
+          /** in ms */
+          ttl: (ttl / 2) * 1000,
           max: maxEntries / 500,
         });
     if (!skipRedis) {
@@ -109,7 +111,12 @@ export class Cache<K extends string, V> {
   async set(key: K, value: V): Promise<void> {
     this.lruCache?.set(key, value);
     try {
-      await this.redisCache?.set(key, this.redisSerialize(value));
+      await this.redisCache?.set(
+        key,
+        this.redisSerialize(value),
+        'EX',
+        this.ttl,
+      );
     } catch (e) {
       logger.error(e, 'Redis set failed');
     }
