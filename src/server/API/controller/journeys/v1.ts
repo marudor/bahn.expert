@@ -1,4 +1,12 @@
-import { Controller, Get, Query, Res, Response, Route } from '@tsoa/runtime';
+import {
+  Controller,
+  Get,
+  Query,
+  Res,
+  Response,
+  Route,
+  Tags,
+} from '@tsoa/runtime';
 import { enrichedJourneyMatch } from 'server/HAFAS/JourneyMatch';
 import {
   findJourney,
@@ -17,6 +25,7 @@ import type { TsoaResponse } from '@tsoa/runtime';
 @Route('/journeys/v1')
 export class JourneysV1Controller extends Controller {
   @Get('/find/{trainName}')
+  @Tags('Journeys')
   async find(
     trainName: string,
     @Query() initialDepartureDate?: Date,
@@ -61,6 +70,7 @@ export class JourneysV1Controller extends Controller {
 
   @Get('/details/{trainName}')
   @Response(404)
+  @Tags('Journeys')
   async details(
     @Res() notFoundResponse: TsoaResponse<404, void>,
     trainName: string,

@@ -1941,7 +1941,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             async function OEBBExperimentalController_trainInfo(context: any, next: any) {
             const args = {
-                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"trainNumber"}}},
+                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"double"},
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     departureDate: {"in":"path","name":"departureDate","required":true,"dataType":"datetime"},
             };

@@ -1,9 +1,17 @@
-import { Controller, Get, OperationId, Route, Tags } from '@tsoa/runtime';
+import {
+  Controller,
+  Deprecated,
+  Get,
+  OperationId,
+  Route,
+  Tags,
+} from '@tsoa/runtime';
 import { info } from 'oebb';
 import type { EvaNumber } from 'types/common';
 
 @Route('/oebb/experimental')
 export class OEBBExperimentalController extends Controller {
+  @Deprecated()
   /** @isInt trainNumber */
   @Get('/trainInfo/{trainNumber}/{evaNumber}/{departureDate}')
   @Tags('OEBB')

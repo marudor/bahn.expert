@@ -14,7 +14,7 @@
         "description": "All Operation use a HAFAS backend. By default it will be the HAFAS backend by DB Vertrieb (DB Navigator). Different backends can be selected by providing the query paramter profile."
       },
       {
-        "name": "HAFAS Experimental"
+        "name": "Journeys"
       },
       {
         "name": "IRIS"
