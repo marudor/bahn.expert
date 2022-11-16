@@ -1,6 +1,7 @@
 import { logger } from 'server/logger';
 import LRUCache from 'lru-cache';
 import Redis from 'ioredis';
+import v8 from 'node:v8';
 
 function dateSerialize(this: any, key: string, value: any): any {
   // eslint-disable-next-line babel/no-invalid-this
@@ -60,7 +61,7 @@ export function disconnectRedis(): void {
 }
 
 export class Cache<K extends string, V> {
-  private lruCache?: LRUCache<K, V>;
+  private lruCache?: LRUCache<K, Buffer>;
   private redisCache?: Redis;
   constructor(
     database: CacheDatabase,
@@ -99,7 +100,10 @@ export class Cache<K extends string, V> {
   }
   async get(key: K): Promise<V | undefined> {
     if (this.lruCache?.has(key)) {
-      return this.lruCache?.get(key);
+      const cached = this.lruCache?.get(key);
+      if (cached) {
+        return v8.deserialize(cached);
+      }
     }
     try {
       const redisCached = await this.redisCache?.get(key);
@@ -109,7 +113,7 @@ export class Cache<K extends string, V> {
     }
   }
   async set(key: K, value: V): Promise<void> {
-    this.lruCache?.set(key, value);
+    this.lruCache?.set(key, v8.serialize(value));
     try {
       await this.redisCache?.set(
         key,

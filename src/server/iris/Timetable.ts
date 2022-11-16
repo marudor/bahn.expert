@@ -36,7 +36,6 @@ import {
   supersededMessages,
 } from './messageLookup';
 import { uniqBy } from 'client/util';
-import v8 from 'node:v8';
 import xmljs from 'libxmljs2';
 import type { AbfahrtenResult, IrisMessage, Messages } from 'types/iris';
 import type { Element } from 'libxmljs2';
@@ -710,7 +709,7 @@ export class Timetable {
         if (cached) {
           this.timetable = {
             ...this.timetable,
-            ...v8.deserialize(v8.serialize(cached)),
+            ...cached,
           };
           return;
         }
