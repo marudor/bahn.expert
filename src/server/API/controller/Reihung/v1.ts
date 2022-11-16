@@ -1,9 +1,18 @@
-import { Controller, Get, OperationId, Res, Route, Tags } from '@tsoa/runtime';
+import {
+  Controller,
+  Deprecated,
+  Get,
+  OperationId,
+  Res,
+  Route,
+  Tags,
+} from '@tsoa/runtime';
 import TrainNames from '../../../coachSequence/TrainNames';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
+  @Deprecated()
   @Get('/trainName/{tz}')
   @Tags('Reihung')
   @OperationId('Train Name v1')

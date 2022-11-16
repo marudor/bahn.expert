@@ -47,6 +47,7 @@ export class HafasControllerV2 extends Controller {
   /**
    * provides Details for a specific Journey [Fahrt]
    */
+  @Deprecated()
   @Get('/journeyDetails')
   @Tags('HAFAS')
   @OperationId('JourneyDetails v2')
@@ -95,6 +96,7 @@ export class HafasControllerV2 extends Controller {
   /**
    * Used to get all arrivals at a specific stopPlace
    */
+  @Deprecated()
   @Get('/arrivalStationBoard')
   @Tags('HAFAS')
   @OperationId('Arrival Station Board v2')
@@ -120,6 +122,7 @@ export class HafasControllerV2 extends Controller {
    * Used to get all departures at a specific stopPlace.
    * Optionally filterable to get only Journeys that travel via a specific stopPlace
    */
+  @Deprecated()
   @Get('/departureStationBoard')
   @Tags('HAFAS')
   @OperationId('Departure Station Board v2')
@@ -147,6 +150,7 @@ export class HafasControllerV2 extends Controller {
    *
    * Used to find a specific journey based on name, date and HAFAS filter.
    */
+  @Deprecated()
   @Post('/journeyMatch')
   @Tags('HAFAS')
   @OperationId('Journey Match v2')
@@ -161,8 +165,10 @@ export class HafasControllerV2 extends Controller {
 
   /**
    * This combines several HAFAS endpoint as well as IRIS data to get the best possible information for a specific journey.
+   * @deprecated Please use /journeys/v1
    * @example trainName "ICE 23"
    */
+  @Deprecated()
   @Response(404, 'Train not found')
   @Get('/details/{trainName}')
   @Tags('HAFAS')
@@ -192,6 +198,7 @@ export class HafasControllerV2 extends Controller {
   /**
    * Advanced HAFAS Method, not used by marudor.de and therefore quite undocumented
    */
+  @Deprecated()
   @Post('/searchOnTrip')
   @Tags('HAFAS')
   @OperationId('Search on Trip v2')

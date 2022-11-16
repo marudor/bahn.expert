@@ -10,7 +10,7 @@ describe('Regional', () => {
     );
     cy.intercept(
       {
-        url: '/api/hafas/experimental/irisCompatibleAbfahrten/0723869?*',
+        url: '/api/hafas/v3/irisCompatibleAbfahrten/0723869?*',
         query: {
           lookahead: '150',
           lookbehind: '10',
@@ -52,7 +52,7 @@ describe('Regional', () => {
     );
     cy.intercept(
       {
-        url: '/api/hafas/experimental/irisCompatibleAbfahrten/0369218?*',
+        url: '/api/hafas/v3/irisCompatibleAbfahrten/0369218?*',
         query: {
           lookahead: '150',
           lookbehind: '10',

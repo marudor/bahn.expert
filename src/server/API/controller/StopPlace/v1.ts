@@ -1,7 +1,6 @@
 import { AuslastungsValue } from 'types/routing';
 import {
   Controller,
-  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -13,7 +12,6 @@ import {
 } from '@tsoa/runtime';
 import {
   geoSearchStopPlace,
-  getIdentifiers,
   getStopPlaceByEva,
   searchStopPlace,
 } from 'server/StopPlace/search';
@@ -22,7 +20,6 @@ import axios from 'axios';
 import type { EvaNumber } from 'types/common';
 import type {
   GroupedStopPlace,
-  StopPlaceIdentifier,
   TrainOccupancy,
   TrainOccupancyList,
   VRRTrainOccupancy,
@@ -123,21 +120,6 @@ export class StopPlaceController extends Controller {
       }
       return notFoundResponse(404);
     }
-  }
-
-  @Response(404)
-  @Deprecated()
-  @Get('/{evaNumber}/identifier')
-  @Tags('StopPlace')
-  async stopPlaceIdentifier(
-    evaNumber: EvaNumber,
-    @Res() notFoundResponse: TsoaResponse<404, void>,
-  ): Promise<StopPlaceIdentifier> {
-    const identifiers = await getIdentifiers(evaNumber);
-    if (!identifiers) {
-      return notFoundResponse(404);
-    }
-    return identifiers;
   }
 
   /**
