@@ -7,7 +7,7 @@ alternativeHostNames:
   - abfahrten.in
   - marudor.de
 
-replicaCount: 16
+replicaCount: 5
 
 disruption:
   maxUnavailable: 4
