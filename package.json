@@ -1,5 +1,5 @@
 {
-  "name": "bahnhofs-abfahrten",
+  "name": "bahn.expert",
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
@@ -229,11 +229,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marudor/BahnhofsAbfahrten.git"
+    "url": "git+https://github.com/marudor/bahn.expert.git"
   },
   "author": "marudor",
   "bugs": {
-    "url": "https://github.com/marudor/BahnhofsAbfahrten/issues"
+    "url": "https://github.com/marudor/bahn.expert/issues"
   },
   "keywords": [],
   "contributors": [],

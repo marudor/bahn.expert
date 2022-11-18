@@ -17,7 +17,7 @@ const stopPlaceApiFunction = getStopPlacesFromAPI.bind(
   undefined,
 );
 
-export const BahnhofsAbfahrten: FC = () => {
+export const Abfahrten: FC = () => {
   const noHeader = useQuery().noHeader;
 
   return (
@@ -39,4 +39,4 @@ export const BahnhofsAbfahrten: FC = () => {
   );
 };
 // eslint-disable-next-line import/no-default-export
-export default BahnhofsAbfahrten;
+export default Abfahrten;

@@ -74,7 +74,7 @@ export const About: FC = () => {
         </span>
         <span>
           <a
-            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
+            href="https://github.com/marudor/bahn.expert/issues/new?assignees=&labels=bug&template=bug_report.md&title="
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -82,7 +82,7 @@ export const About: FC = () => {
           </a>{' '}
           sowie{' '}
           <a
-            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=feature&template=feature_request.md&title="
+            href="https://github.com/marudor/bahn.expert/issues/new?assignees=&labels=feature&template=feature_request.md&title="
             target="_blank"
             rel="noopener noreferrer"
           >

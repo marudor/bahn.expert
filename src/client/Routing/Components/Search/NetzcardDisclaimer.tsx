@@ -22,7 +22,7 @@ export const NetzcardDisclaimer: FC = () => {
         Aktuell werden nur EVUs der DB AG berücksichtigt. Die aktuelle Liste
         findet sich hier:{' '}
         <a
-          href="https://github.com/marudor/BahnhofsAbfahrten/tree/main/src/server/HAFAS/TripSearch/NetzcardBetreiber.json"
+          href="https://github.com/marudor/bahn.expert/tree/main/src/server/HAFAS/TripSearch/NetzcardBetreiber.json"
           target="_blank"
           rel="noreferrer"
         >

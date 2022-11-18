@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-imageRepository: ghcr.io/marudor/bahnhofsabfahrten/standalone
+imageRepository: ghcr.io/marudor/bahn.expert/standalone
 imageTag: latest
 imagePullPolicy: IfNotPresent
 imagePullSecret: github

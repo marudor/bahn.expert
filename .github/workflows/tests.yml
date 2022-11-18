@@ -122,7 +122,7 @@ jobs:
         env:
           DOCKER_BUILDKIT: 1
         with:
-          name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
+          name: marudor/bahn.expert/standalone:${{ github.sha }}
           username: marudor
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com

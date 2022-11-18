@@ -16,7 +16,7 @@ const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(
   true,
 );
 
-export const BahnhofsAbfahrten: FC = () => {
+export const Regional: FC = () => {
   const noHeader = useQuery().noHeader;
 
   return (
@@ -38,4 +38,4 @@ export const BahnhofsAbfahrten: FC = () => {
   );
 };
 // eslint-disable-next-line import/no-default-export
-export default BahnhofsAbfahrten;
+export default Regional;
