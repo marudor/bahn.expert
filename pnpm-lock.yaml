@@ -147,7 +147,7 @@ specifiers:
   webpack: ^5.75.0
   webpack-bundle-analyzer: ^4.7.0
   webpack-cli: ^5.0.0
-  webpack-dev-middleware: ^5.3.3
+  webpack-dev-middleware: ^6.0.0
   webpack-hot-middleware: ^2.25.3
   workbox-webpack-plugin: ^6.5.4
 
@@ -297,7 +297,7 @@ devDependencies:
   webpack: 5.75.0_webpack-cli@5.0.0
   webpack-bundle-analyzer: 4.7.0
   webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
-  webpack-dev-middleware: 5.3.3_webpack@5.75.0
+  webpack-dev-middleware: 6.0.0_webpack@5.75.0
   webpack-hot-middleware: 2.25.3
   workbox-webpack-plugin: 6.5.4_4p7asazmwy3dkm2lxatolxfa4m
 
@@ -8860,8 +8860,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /memfs/3.4.7:
-    resolution: {integrity: sha512-ygaiUSNalBX85388uskeCyhSAoOSgzBbtVCr9jA2RROssFL9Q19/ZXFqS+2Th2sr1ewNIWgFdLzLC3Yl1Zv+lw==}
+  /memfs/3.4.12:
+    resolution: {integrity: sha512-BcjuQn6vfqP+k100e0E9m61Hyqa//Brp+I3f0OBmN0ATHlFA8vx3Lt8z57R3u2bPqe3WGDBC+nF72fTH7isyEw==}
     engines: {node: '>= 4.0.0'}
     dependencies:
       fs-monkey: 1.0.3
@@ -11571,14 +11571,14 @@ packages:
       webpack-merge: 5.8.0
     dev: true
 
-  /webpack-dev-middleware/5.3.3_webpack@5.75.0:
-    resolution: {integrity: sha512-hj5CYrY0bZLB+eTO+x/j67Pkrquiy7kWepMHmUMoPsmcUaeEnQJqFzHJOyxgWlq746/wUuA64p9ta34Kyb01pA==}
-    engines: {node: '>= 12.13.0'}
+  /webpack-dev-middleware/6.0.0_webpack@5.75.0:
+    resolution: {integrity: sha512-A7jSXBifCJsJqUCVISlcbx9pkmCuP0KriMRcOJ13pOb6/xMXZvh4/ygeJeSArjRd50IT5IVbBFuejGDA/zWrNQ==}
+    engines: {node: '>= 14.15.0'}
     peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
+      webpack: ^5.0.0
     dependencies:
       colorette: 2.0.19
-      memfs: 3.4.7
+      memfs: 3.4.12
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
