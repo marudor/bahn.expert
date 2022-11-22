@@ -7,9 +7,4 @@ alternativeHostNames:
   - beta.abfahrten.in
   - beta.marudor.de
 
-resources:
-  requests:
-    memory: '128Mi'
-    cpu: '50m'
-
 replicaCount: 1

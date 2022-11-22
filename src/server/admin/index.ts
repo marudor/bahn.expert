@@ -1,11 +1,11 @@
 import Koa from 'koa';
-import PromClient, { Summary } from 'prom-client';
+import PromClient, { Histogram } from 'prom-client';
 import type { Server } from 'node:http';
 
 PromClient.register.clear();
 PromClient.collectDefaultMetrics();
 
-export const ApiRequestMetric = new Summary({
+export const ApiRequestMetric = new Histogram({
   name: 'api_requests',
   help: 'api requests',
   labelNames: ['route', 'status'],

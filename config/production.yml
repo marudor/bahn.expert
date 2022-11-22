@@ -11,3 +11,8 @@ replicaCount: 5
 
 disruption:
   maxUnavailable: 4
+
+resources:
+  requests:
+    memory: '768Mi'
+    cpu: '600m'
