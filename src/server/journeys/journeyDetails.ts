@@ -185,7 +185,7 @@ export async function journeyDetails(
       },
     },
     type: 'JNY',
-    cancelled: stops.every((s) => s.cancelled),
+    cancelled: stops.every((s) => s.cancelled) || undefined,
   };
 
   result.currentStop = calculateCurrentStopPlace(result);

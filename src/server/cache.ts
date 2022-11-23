@@ -98,6 +98,9 @@ export class Cache<K extends string, V> {
 
     return JSON.parse(raw, dateDeserialze);
   }
+  private memorySet(key: K, value: V) {
+    this.lruCache?.set(key, v8.serialize(value));
+  }
   async get(key: K): Promise<V | undefined> {
     if (this.lruCache?.has(key)) {
       const cached = this.lruCache?.get(key);
@@ -107,13 +110,21 @@ export class Cache<K extends string, V> {
     }
     try {
       const redisCached = await this.redisCache?.get(key);
-      return this.redisDeserialize(redisCached);
+      const deserialized = this.redisDeserialize(redisCached);
+      try {
+        if (deserialized) {
+          this.memorySet(key, deserialized);
+        }
+      } catch {
+        // we ignore this, memory set just failed
+      }
+      return deserialized;
     } catch (e) {
       logger.error(e, 'Redis get failed');
     }
   }
   async set(key: K, value: V): Promise<void> {
-    this.lruCache?.set(key, v8.serialize(value));
+    this.memorySet(key, value);
     try {
       await this.redisCache?.set(
         key,
