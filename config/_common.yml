@@ -4,9 +4,6 @@ certificate:
   issuerKind: ClusterIssuer
 
 docs: true
-redis:
-  host: redis2
-  port: 6379
 
 ingress:
   enabled: true
@@ -26,6 +23,16 @@ tolerations: []
 affinity: {}
 
 baseEnv:
+  - name: REDIS_HOST
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: REDIS_HOST
+  - name: REDIS_PORT
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: REDIS_PORT
   - name: USER_AGENT
     valueFrom:
       secretKeyRef:

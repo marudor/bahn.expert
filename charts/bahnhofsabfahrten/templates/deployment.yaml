@@ -38,12 +38,6 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 3
           env:
-            {{ if .Values.redis.host }}
-            - name: REDIS_HOST
-              value: {{ .Values.redis.host }}
-            - name: REDIS_PORT
-              value: "{{ .Values.redis.port }}"
-            {{ end }}
             - name: BASE_URL
               value: {{ .Values.hostName }}
 {{ if .Values.baseEnv }}
