@@ -23,6 +23,7 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   lookbehind: (value) => numberCheck(value, 0).toString(),
   showCancelled: booleanCheck,
   sortByTime: booleanCheck,
+  onlyDepartures: booleanCheck,
 };
 
 export const commonConfigSanitize: CommonConfigSanitize = {

@@ -48,8 +48,14 @@ const AutoUpdateField = styled(TextField)`
 `;
 
 export const SettingsModal: FC = () => {
-  const { lineAndNumber, lookahead, lookbehind, showCancelled, sortByTime } =
-    useAbfahrtenConfig();
+  const {
+    lineAndNumber,
+    lookahead,
+    lookbehind,
+    showCancelled,
+    sortByTime,
+    onlyDepartures,
+  } = useAbfahrtenConfig();
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
@@ -147,6 +153,20 @@ export const SettingsModal: FC = () => {
             />
           }
           label="Zeige ausfallende Fahrten"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="onlyDepartures"
+              checked={onlyDepartures}
+              value="onlyDepartures"
+              onChange={handleConfigCheckedChange(
+                'onlyDepartures',
+                setConfigKey,
+              )}
+            />
+          }
+          label="Zeige nur Abfahrten"
         />
         <Label
           control={
