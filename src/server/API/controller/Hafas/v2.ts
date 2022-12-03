@@ -12,7 +12,7 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import Auslastung from 'server/HAFAS/Auslastung';
+import { maxOccupancy } from 'server/HAFAS/occupancy';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
@@ -61,13 +61,14 @@ export class HafasControllerV2 extends Controller {
   }
 
   /**
-   * Provides Auslstaung based on DB Vertrieb HAFAS (DB Navigator).
+   * Provides maximum Auslstaung based on DB Vertrieb HAFAS (DB Navigator).
    * Based on a rough estimate, handles first and second class.
    * @example start "Frankfurt (Main) Hbf"
    * @example destination "Basel SBB"
    * @example trainNumber "23"
    * @example plannedDepartureTime "2022-03-24T11:50:00.000Z"
    */
+  @Deprecated()
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{plannedDepartureTime}')
   @Tags('HAFAS')
   @OperationId('Auslastung v2')
@@ -90,7 +91,7 @@ export class HafasControllerV2 extends Controller {
     plannedDepartureTime: Date,
   ): Promise<Route$Auslastung> {
     // @ts-expect-error TODO: use @res with 404
-    return Auslastung(start, destination, trainNumber, plannedDepartureTime);
+    return maxOccupancy(start, destination, trainNumber, plannedDepartureTime);
   }
 
   /**

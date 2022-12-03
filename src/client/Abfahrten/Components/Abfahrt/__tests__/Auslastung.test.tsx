@@ -35,11 +35,13 @@ describe('Auslastung', () => {
     nock
       .get(
         encodeURI(
-          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStopPlace.name}/${
+          `/api/hafas/v3/occupancy/${mockAbfahrt.currentStopPlace.name}/${
             mockAbfahrt.destination
           }/${
             mockAbfahrt.train.number
-          }/${mockAbfahrt.departure!.scheduledTime.toISOString()}`,
+          }/${mockAbfahrt.departure!.scheduledTime.toISOString()}/${
+            mockAbfahrt.currentStopPlace.evaNumber
+          }`,
         ),
       )
       .reply(500);
@@ -53,11 +55,13 @@ describe('Auslastung', () => {
     nock
       .get(
         encodeURI(
-          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStopPlace.name}/${
+          `/api/hafas/v3/occupancy/${mockAbfahrt.currentStopPlace.name}/${
             mockAbfahrt.destination
           }/${
             mockAbfahrt.train.number
-          }/${mockAbfahrt.departure!.scheduledTime.toISOString()}`,
+          }/${mockAbfahrt.departure!.scheduledTime.toISOString()}/${
+            mockAbfahrt.currentStopPlace.evaNumber
+          }`,
         ),
       )
       .reply(200, {

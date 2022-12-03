@@ -11,6 +11,7 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
+import { stopOccupancy } from 'server/HAFAS/occupancy';
 import Detail from 'server/HAFAS/Detail';
 import StationBoard from 'server/HAFAS/StationBoard';
 import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
@@ -75,6 +76,46 @@ export class HafasControllerV3 extends Controller {
       };
     }
     return notFoundResponse(404);
+  }
+
+  /**
+   * Provides occupancy for specified stop based on DB Vertrieb HAFAS (DB Navigator).
+   * Based on a rough estimate, handles first and second class.
+   * @example start "Frankfurt (Main) Hbf"
+   * @example destination "Basel SBB"
+   * @example trainNumber "23"
+   * @example plannedDepartureTime "2022-03-24T11:50:00.000Z"
+   * @example evaStop "8000105"
+   */
+  @Get(
+    '/occupancy/{start}/{destination}/{trainNumber}/{plannedDepartureTime}/{stopEva}',
+  )
+  @Tags('HAFAS')
+  async occupancy(
+    @Res() notFoundResponse: TsoaResponse<404, void>,
+    /**
+     * Name of the start stop
+     */
+    start: string,
+    /**
+     * Name of the destination stop
+     */
+    destination: string,
+    /**
+     * Planned Departure time of the stop you want the occpuancy for
+     */
+    plannedDepartureTime: Date,
+    trainNumber: string,
+    stopEva: string,
+  ): Promise<Route$Auslastung> {
+    const foundOccupancy = await stopOccupancy(
+      start,
+      destination,
+      trainNumber,
+      plannedDepartureTime,
+      stopEva,
+    );
+    return foundOccupancy || notFoundResponse(404);
   }
 
   @Get('/irisCompatibleAbfahrten/{evaId}')
