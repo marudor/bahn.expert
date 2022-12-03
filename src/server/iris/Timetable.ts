@@ -209,8 +209,8 @@ export class Timetable {
     await Promise.all(
       timetable.route.map(async (routeStop: Stop) => {
         try {
-          const regexResult = routeStop.name.match(
-            UnbekannteBetriebsstelleRegex,
+          const regexResult = UnbekannteBetriebsstelleRegex.exec(
+            routeStop.name,
           );
           if (regexResult) {
             const eva = regexResult[1];
