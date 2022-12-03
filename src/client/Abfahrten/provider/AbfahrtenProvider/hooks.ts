@@ -21,8 +21,8 @@ function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {
   const departures = useAbfahrtenDepartures();
-  const { showCancelled, sortByTime } = useAbfahrtenConfig();
-  const { onlyDepartures, productFilter } = useAbfahrtenFilter();
+  const { showCancelled, sortByTime, onlyDepartures } = useAbfahrtenConfig();
+  const { productFilter } = useAbfahrtenFilter();
 
   return {
     filteredAbfahrten: useMemo(() => {

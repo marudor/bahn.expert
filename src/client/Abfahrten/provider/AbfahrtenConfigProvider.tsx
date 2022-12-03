@@ -131,7 +131,6 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
 
   const savedConfig: AbfahrtenConfigProviderValue = {
     filter: {
-      onlyDepartures: Boolean(query.onlyDepartures),
       products: Array.isArray(savedFilter) ? savedFilter : [],
     },
     config: {
@@ -141,6 +140,7 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
       showSupersededMessages: storage.get('showSupersededMessages') ?? false,
       showCancelled: storage.get('showCancelled') ?? true,
       sortByTime: storage.get('sortByTime') ?? false,
+      onlyDepartures: storage.get('onlyDepartures') ?? false,
       ...globalThis.configOverride.abfahrten,
     },
     fetchApiUrl,
