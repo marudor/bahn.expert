@@ -29,6 +29,7 @@ import { diffArrays } from 'diff';
 import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { getSingleStation } from 'server/iris/station';
+import { getStopPlaceByEva } from 'server/StopPlace/search';
 import {
   ignoredMessageNumbers,
   messages,
@@ -37,7 +38,7 @@ import {
 } from './messageLookup';
 import { uniqBy } from 'client/util';
 import xmljs from 'libxmljs2';
-import type { AbfahrtenResult, IrisMessage, Messages } from 'types/iris';
+import type { AbfahrtenResult, IrisMessage, Messages, Stop } from 'types/iris';
 import type { Element } from 'libxmljs2';
 
 interface ArDp {
@@ -83,6 +84,8 @@ const normalizeRouteName = (name: string) =>
   name.replace('(', ' (').replace(')', ') ').trim();
 const deNormalizeRouteName = (name: string) =>
   name.replace(' (', '(').replace(') ', ')');
+
+const UnbekannteBetriebsstelleRegex = /Betriebsstelle nicht bekannt (\d{7})/;
 
 export function parseRealtimeDp(
   dp: null | xmljs.Element,
@@ -202,6 +205,26 @@ export class Timetable {
       currentRoutePart,
       ...timetable.routePost,
     ];
+
+    await Promise.all(
+      timetable.route.map(async (routeStop: Stop) => {
+        try {
+          const regexResult = routeStop.name.match(
+            UnbekannteBetriebsstelleRegex,
+          );
+          if (regexResult) {
+            const eva = regexResult[1];
+            const realStopPlace = await getStopPlaceByEva(eva);
+            if (realStopPlace) {
+              routeStop.name = realStopPlace.name;
+            }
+          }
+        } catch {
+          // we do nothing
+        }
+      }),
+    );
+
     const nonCancelled = timetable.route.filter((r: any) => !r.cancelled);
     const last = nonCancelled.length
       ? nonCancelled[nonCancelled.length - 1]
