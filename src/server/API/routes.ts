@@ -1830,6 +1830,35 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/hafas/v3/occupancy/:start/:destination/:trainNumber/:plannedDepartureTime/:stopEva',
+            ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
+            ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.occupancy)),
+
+            async function HafasControllerV3_occupancy(context: any, next: any) {
+            const args = {
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
+                    start: {"in":"path","name":"start","required":true,"dataType":"string"},
+                    destination: {"in":"path","name":"destination","required":true,"dataType":"string"},
+                    plannedDepartureTime: {"in":"path","name":"plannedDepartureTime","required":true,"dataType":"datetime"},
+                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"string"},
+                    stopEva: {"in":"path","name":"stopEva","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new HafasControllerV3();
+
+            const promise = controller.occupancy.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/irisCompatibleAbfahrten/:evaId',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.irisCompatibleAbfahrten)),

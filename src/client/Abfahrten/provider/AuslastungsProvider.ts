@@ -26,7 +26,9 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
     try {
       auslastung = (
         await Axios.get<Route$Auslastung>(
-          `/api/hafas/v2/auslastung/${key}/${abfahrt.departure?.scheduledTime.toISOString()}`,
+          `/api/hafas/v3/occupancy/${key}/${abfahrt.departure?.scheduledTime.toISOString()}/${
+            abfahrt.currentStopPlace.evaNumber
+          }`,
         )
       ).data;
     } catch {

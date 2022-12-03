@@ -3792,10 +3792,11 @@
             }
           }
         },
-        "description": "Provides Auslstaung based on DB Vertrieb HAFAS (DB Navigator).\nBased on a rough estimate, handles first and second class.",
+        "description": "Provides maximum Auslstaung based on DB Vertrieb HAFAS (DB Navigator).\nBased on a rough estimate, handles first and second class.",
         "tags": [
           "HAFAS"
         ],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -4380,6 +4381,81 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v3/occupancy/{start}/{destination}/{trainNumber}/{plannedDepartureTime}/{stopEva}": {
+      "get": {
+        "operationId": "Occupancy",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Route$Auslastung"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "description": "Provides occupancy for specified stop based on DB Vertrieb HAFAS (DB Navigator).\nBased on a rough estimate, handles first and second class.",
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "description": "Name of the start stop",
+            "in": "path",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Frankfurt (Main) Hbf"
+          },
+          {
+            "description": "Name of the destination stop",
+            "in": "path",
+            "name": "destination",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basel SBB"
+          },
+          {
+            "description": "Planned Departure time of the stop you want the occpuancy for",
+            "in": "path",
+            "name": "plannedDepartureTime",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "example": "2022-03-24T11:50:00.000Z"
+          },
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "23"
+          },
+          {
+            "in": "path",
+            "name": "stopEva",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ]

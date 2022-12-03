@@ -1,13 +1,13 @@
 import { searchStopPlace } from 'server/StopPlace/search';
-import tripSearch from '../HAFAS/TripSearch';
-import type { Route$Auslastung } from 'types/routing';
+import tripSearch from './TripSearch';
+import type { Route$Auslastung, SingleRoute } from 'types/routing';
 
-export default async (
+async function getRelevantTrip(
   start: string,
   destination: string,
   trainNumber: string,
   time: Date,
-): Promise<Route$Auslastung | undefined> => {
+): Promise<SingleRoute | undefined> {
   const startStations = await searchStopPlace(start, 1);
   const destStations = await searchStopPlace(destination, 1);
 
@@ -31,7 +31,6 @@ export default async (
     start: startStation.evaNumber,
     destination: destStation.evaNumber,
     time,
-    getPasslist: false,
     maxChanges: 0,
   });
 
@@ -42,6 +41,22 @@ export default async (
         (s.train.number === trainNumber ||
           Boolean(s.wings?.some((w) => w.train.number === trainNumber))),
     ),
+  );
+
+  return relevantTrip;
+}
+
+export async function maxOccupancy(
+  start: string,
+  destination: string,
+  trainNumber: string,
+  time: Date,
+): Promise<Route$Auslastung | undefined> {
+  const relevantTrip = await getRelevantTrip(
+    start,
+    destination,
+    trainNumber,
+    time,
   );
 
   if (
@@ -56,4 +71,29 @@ export default async (
   }
 
   return relevantTrip.segments[0].auslastung;
-};
+}
+
+export async function stopOccupancy(
+  start: string,
+  destination: string,
+  trainNumber: string,
+  time: Date,
+  stopEva: string,
+): Promise<Route$Auslastung | undefined> {
+  const relevantTrip = await getRelevantTrip(
+    start,
+    destination,
+    trainNumber,
+    time,
+  );
+
+  if (relevantTrip?.segments[0].type !== 'JNY') {
+    return;
+  }
+
+  const relevantStop = relevantTrip.segments[0].stops.find(
+    (s) => s.station.id === stopEva,
+  );
+
+  return relevantStop?.auslastung;
+}
