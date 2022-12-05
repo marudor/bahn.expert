@@ -1,5 +1,5 @@
-import * as cheerio from 'cheerio';
 import { Cache, CacheDatabase } from 'server/cache';
+import { getStopPlaceByEva } from 'server/StopPlace/search';
 import Axios from 'axios';
 
 // 48 hours in seconds
@@ -9,61 +9,36 @@ const cache = new Cache<string, string | null>(
 );
 
 export async function getDBLageplan(
-  stationName: string,
+  evaNumber: string,
 ): Promise<string | undefined> {
   try {
-    const cached = await getCachedDBLageplan(stationName);
+    const cached = await getCachedDBLageplan(evaNumber);
 
     if (cached) return cached;
     // undefined = haven't tried yet
     // null = already tried to fetch, but nothing found
     if (cached === null) return undefined;
-    const searchHtml = (
-      await Axios.get<string>(
-        `https://www.bahnhof.de/service/search/bahnhof-de/3464932`,
-        {
-          params: {
-            query: stationName,
-          },
-        },
-      )
-    ).data;
 
-    let $ = cheerio.load(searchHtml);
-    const firstResultLink = [...$('#result .title > a')]
-      .map((node) => node.attribs['href'])
-      .filter(Boolean)
-      .find((href) => href.startsWith('/bahnhof'));
-
-    if (!firstResultLink) {
-      void cache.set(stationName, null);
-
-      return undefined;
+    const stopPlace = await getStopPlaceByEva(evaNumber);
+    if (stopPlace?.identifier?.stationId) {
+      const lageplanUrl = `https://www.bahnhof.de/downloads/station-plans/${stopPlace.identifier.stationId}.pdf`;
+      try {
+        await Axios.get(lageplanUrl);
+        void cache.set(evaNumber, lageplanUrl);
+        return lageplanUrl;
+      } catch (e) {
+        if (!Axios.isAxiosError(e) || e.status !== 404) {
+          throw e;
+        }
+      }
     }
-
-    const bahnhofHtml = (
-      await Axios.get<string>(`https://www.bahnhof.de${firstResultLink}`)
-    ).data;
-
-    $ = cheerio.load(bahnhofHtml);
-    const rawPdfLink = $('.bahnhof > .embeddedDownload > .download-asset > a')
-      .first()
-      .attr('href');
-
-    if (!rawPdfLink) {
-      void cache.set(stationName, null);
-
-      return undefined;
-    }
-    const pdfLink = `https://www.bahnhof.de${rawPdfLink}`;
-
-    void cache.set(stationName, pdfLink);
-
-    return pdfLink;
+    void cache.set(evaNumber, null);
   } catch {
-    return undefined;
+    // we just return nothing
   }
+  return undefined;
 }
+
 export function getCachedDBLageplan(
   stationName: string,
 ): Promise<string | null | undefined> {

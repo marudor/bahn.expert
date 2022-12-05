@@ -2,12 +2,12 @@ import { getDBLageplan } from './DBLageplan';
 import { getNAHSHLageplan } from './NAHSHLageplan';
 
 export async function getLageplan(
-  stationName: string,
-  evaId: string,
+  _stationName: string,
+  evaNumber: string,
 ): Promise<string | undefined> {
   const [DBLageplan, NahSHLageplan] = await Promise.all([
-    getDBLageplan(stationName),
-    getNAHSHLageplan(evaId),
+    getDBLageplan(evaNumber),
+    getNAHSHLageplan(evaNumber),
   ]);
 
   return DBLageplan || NahSHLageplan;
