@@ -1,7 +1,9 @@
 import {
   Controller,
   Get,
+  Hidden,
   Query,
+  Request,
   Res,
   Response,
   Route,
@@ -18,21 +20,40 @@ import {
 } from 'server/journeys/journeyDetails';
 import Detail from 'server/HAFAS/Detail';
 import type { EvaNumber } from 'types/common';
+import type { Request as KoaRequest } from 'koa';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import type { TsoaResponse } from '@tsoa/runtime';
 
+const allowedReferer = ['https://bahn.expert', 'https://beta.bahn.expert'];
+function isAllowed(req: KoaRequest) {
+  // console.log(req);
+  return (
+    process.env.NODE_ENV !== 'production' ||
+    allowedReferer.some((r) => req.headers.referer?.startsWith(r))
+  );
+}
+
 @Route('/journeys/v1')
 export class JourneysV1Controller extends Controller {
+  @Hidden()
   @Get('/find/{trainName}')
   @Tags('Journeys')
   async find(
+    @Request() req: KoaRequest,
+    @Res() response: TsoaResponse<401, string>,
     trainName: string,
     @Query() initialDepartureDate?: Date,
     // Only FV, legacy reasons for hafas compatibility
     @Query() filtered?: boolean,
     @Query() limit?: number,
   ): Promise<ParsedJourneyMatchResponse[]> {
+    if (!isAllowed(req)) {
+      return response(
+        401,
+        'This is rate-limited upstream, please do not use it.',
+      );
+    }
     let risPromise: Promise<ParsedJourneyMatchResponse[]> = Promise.resolve([]);
     const productDetails = getCategoryAndNumberFromName(trainName);
     if (productDetails) {
@@ -68,15 +89,20 @@ export class JourneysV1Controller extends Controller {
     return await hafasPromise;
   }
 
+  @Hidden()
   @Get('/details/{trainName}')
   @Response(404)
   @Tags('Journeys')
   async details(
-    @Res() notFoundResponse: TsoaResponse<404, void>,
+    @Request() req: KoaRequest,
+    @Res() res: TsoaResponse<401 | 404, unknown>,
     trainName: string,
     @Query() evaNumberAlongRoute?: EvaNumber,
     @Query() initialDepartureDate?: Date,
   ): Promise<ParsedSearchOnTripResponse> {
+    if (!isAllowed(req)) {
+      return res(401, 'This is rate-limited upstream, please do not use it.');
+    }
     const hafasDetailsPromise = Detail(
       trainName,
       undefined,
@@ -86,7 +112,7 @@ export class JourneysV1Controller extends Controller {
     const hafasFallback = async () => {
       const hafasResult = await hafasDetailsPromise;
       if (!hafasResult) {
-        return notFoundResponse(404);
+        return res(404, undefined);
       }
       return hafasResult;
     };

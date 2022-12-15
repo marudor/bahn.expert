@@ -1916,6 +1916,8 @@ export function RegisterRoutes(router: KoaRouter) {
 
             async function JourneysV1Controller_find(context: any, next: any) {
             const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    response: {"in":"res","name":"401","required":true,"dataType":"string"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
                     filtered: {"in":"query","name":"filtered","dataType":"boolean"},
@@ -1943,7 +1945,8 @@ export function RegisterRoutes(router: KoaRouter) {
 
             async function JourneysV1Controller_details(context: any, next: any) {
             const args = {
-                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    res: {"in":"res","name":"404","required":true,"dataType":"any"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     evaNumberAlongRoute: {"in":"query","name":"evaNumberAlongRoute","ref":"EvaNumber"},
                     initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
