@@ -2,7 +2,6 @@
 {{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
 {{- range .Values.alternativeHostNames }}
 {{- $altName := print $fullName "-app-" . | replace "." "-" -}}
-{{- $altDocName := print $fullName "-docs-" . | replace "." "-" -}}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -40,42 +39,6 @@ spec:
         - www.{{ . }}
       secretName: {{ $altName }}
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ $altDocName }}
-  labels:
-    app.kubernetes.io/managed-by: {{ $.Release.Service }}
-  annotations:
-    nginx.ingress.kubernetes.io/permanent-redirect: 'https://docs.{{$.Values.hostName}}$request_uri'
-spec:
-  rules:
-    - host: docs.{{ . }}
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: docs-{{ $fullName }}
-                port:
-                  name: http
-    - host: www.docs.{{ . }}
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: docs-{{ $fullName }}
-                port:
-                  name: http
-  tls:
-    - hosts:
-        - docs.{{ . }}
-        - www.docs.{{ . }}
-      secretName: {{ $altName }}
----
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -88,8 +51,6 @@ spec:
   dnsNames:
     - {{ . }}
     - www.{{ . }}
-    - docs.{{ . }}
-    - www.docs.{{ . }}
 ---
 {{- end }}
 {{ end }}

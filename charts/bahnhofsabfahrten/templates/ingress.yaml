@@ -15,31 +15,12 @@ spec:
     - hosts:
         - {{ .Values.hostName }}
         - www.{{ .Values.hostName }}
-        - docs.{{ .Values.hostName }}
-        - www.docs.{{ .Values.hostName }}
       secretName: {{ $fullName }}
   rules:
     - host: {{ .Values.hostName }}
       http:
         paths:
           - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  name: http
-    - host: docs.{{ .Values.hostName }}
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: docs-{{ $fullName }}
-                port:
-                  number: 80
-          - path: /swagger.json
             pathType: ImplementationSpecific
             backend:
               service:

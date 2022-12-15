@@ -18,23 +18,3 @@ spec:
     app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: docs-{{ include "bahnhofsAbfahrten.fullname" . }}
-  labels:
-    app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
-    helm.sh/chart: {{ include "bahnhofsAbfahrten.chart" . }}
-    app.kubernetes.io/instance: docs-{{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-      name: http
-  selector:
-    app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
-    app.kubernetes.io/instance: docs-{{ .Release.Name }}
-  

@@ -16,7 +16,3 @@ spec:
   dnsNames:
     - {{ .Values.hostName }}
     - www.{{ .Values.hostName }}
-    {{ if .Values.docs }}
-    - docs.{{ .Values.hostName }}
-    - www.docs.{{ .Values.hostName }}
-    {{ end }}
