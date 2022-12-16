@@ -19,11 +19,12 @@ function randomUseragent() {
   return `Bahnhof live/${appVersion} (${type}; iOS ${osVersion}; Scale/${scale})`;
 }
 
-export function addRandomUseragent(
+export function addUseragent(
+  userAgentFunction: () => string = randomUseragent,
   req: AxiosRequestConfig,
 ): AxiosRequestConfig {
   const headers = req.headers || {};
-  headers['user-agent'] = randomUseragent();
+  headers['user-agent'] = userAgentFunction();
   req.headers = headers;
   return req;
 }

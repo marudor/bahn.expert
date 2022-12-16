@@ -1,4 +1,4 @@
-import { addRandomUseragent } from 'business-hub/randomUseragent';
+import { addUseragent } from 'business-hub/randomUseragent';
 import { Cache, CacheDatabase } from 'server/cache';
 import { differenceInHours, format } from 'date-fns';
 import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
@@ -22,7 +22,14 @@ const journeyFindCache = new Cache<string, JourneyMatch[]>(
 const axiosWithTimeout = axios.create({
   timeout: 4500,
 });
-axiosWithTimeout.interceptors.request.use(addRandomUseragent);
+axiosWithTimeout.interceptors.request.use(
+  addUseragent.bind(
+    undefined,
+    process.env.RIS_JOURNEYS_USER_AGENT
+      ? () => process.env.RIS_JOURNEYS_USER_AGENT!
+      : undefined,
+  ),
+);
 
 const risJourneysClient = new JourneysApi(
   risJourneysConfiguration,
@@ -73,11 +80,11 @@ export async function findJourney(
   originEvaNumber?: string,
 ): Promise<JourneyMatch[]> {
   try {
-    const isWithin30Hours = date && differenceInHours(date, Date.now()) <= 30;
+    const isWithin20Hours = date && differenceInHours(date, Date.now()) <= 20;
     const cacheKey = `${trainNumber}|${category}|${
       date && format(date, 'yyyy-MM-dd')
     }|${onlyFv ?? false}|${originEvaNumber}`;
-    if (isWithin30Hours) {
+    if (isWithin20Hours) {
       const cacheHit = await journeyFindCache.get(cacheKey);
       if (cacheHit) {
         return cacheHit;
@@ -92,7 +99,7 @@ export async function findJourney(
       originEvaNumber,
     });
 
-    if (isWithin30Hours) {
+    if (isWithin20Hours) {
       void journeyFindCache.set(cacheKey, result.data.journeys);
     }
 

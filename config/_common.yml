@@ -111,6 +111,12 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: RIS_JOURNEYS_CLIENT_ID
+  - name: RIS_JOURNEYS_USER_AGENT
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: RIS_JOURNEYS_USER_AGENT
+        optional: true
   - name: RIS_JOURNEYS_URL
     valueFrom:
       secretKeyRef:
