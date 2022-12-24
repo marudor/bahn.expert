@@ -2,22 +2,8 @@
 
 This is the program behind [bahn.expert](https://bahn.expert)
 
-## API Documentation
-
-https://docs.bahn.expert
-## Prerequisites
-
-- node v18
-- pnpm/corepack
-
-## Quickstart
-
-```
-pnpm i
-pnpm dev
-```
-
-Open http://localhost:9042
+## Legacy API Documentation
+I no longer provide public API.
 
 ## Self Hosting
 Due to the amount of secret that I can not make public (They can usually be found in DB Applications) I do not support self hosting this.
