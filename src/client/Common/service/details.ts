@@ -16,7 +16,7 @@ export async function getDetails(
       params: {
         evaNumberAlongRoute,
         initialDepartureDate,
-        journeyId,
+        journeyId: journeyId || undefined,
       },
     },
   );

@@ -25,4 +25,13 @@ describe('Details', () => {
     cy.wait('@details');
     cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
   });
+
+  it('uses journeyId if provided', () => {
+    cy.intercept('/api/journeys/v1/details/S30665?journeyId=jid', {
+      fixture: 'details/S6',
+    }).as('details');
+    cy.visit('/details/S30665?journeyId=jid');
+    cy.wait('@details');
+    cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
+  });
 });

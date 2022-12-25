@@ -1,6 +1,5 @@
 import {
   createContext,
-  memo,
   useCallback,
   useContext,
   useEffect,
@@ -17,6 +16,7 @@ import { useSetSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailPr
 import loadable from '@loadable/component';
 import styled from '@emotion/styled';
 import type { Abfahrt } from 'types/iris';
+import type { FC } from 'react';
 
 const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
 
@@ -98,13 +98,13 @@ export interface Props {
   wingStart?: boolean;
 }
 
-export const BaseAbfahrt = memo(function BaseAbfahrt({
+export const BaseAbfahrt: FC<Props> = ({
   abfahrt,
   wingNumbers,
   wingEnd,
   wingStart,
   detail,
-}: Props) {
+}) => {
   const wingNumbersWithoutSelf = wingNumbers?.filter(
     (wn) => wn !== abfahrt.train.number,
   );
@@ -175,4 +175,4 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
       </Container>
     </AbfahrtContext.Provider>
   );
-});
+};
