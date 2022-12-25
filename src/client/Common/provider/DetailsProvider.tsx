@@ -55,6 +55,7 @@ const useInnerDetails = ({
               setAdditionalInformation(
                 await getAdditionalJourneyInformation(
                   trainName,
+                  details.jid,
                   initialDepartureDate,
                   evaNumberAlongRoute,
                 ),

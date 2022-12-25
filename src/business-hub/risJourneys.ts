@@ -1,3 +1,4 @@
+import { additionalJourneyInformation } from 'server/journeys/additionalJourneyInformation';
 import { addUseragent } from 'business-hub/randomUseragent';
 import { Cache, CacheDatabase } from 'server/cache';
 import { differenceInHours, format } from 'date-fns';
@@ -105,6 +106,15 @@ export async function findJourney(
 
     if (isWithin20Hours) {
       void journeyFindCache.set(cacheKey, result.data.journeys);
+    }
+
+    for (const j of result.data.journeys) {
+      void additionalJourneyInformation(
+        `${j.transport.category} ${j.transport.number}`,
+        j.journeyID,
+        j.originSchedule.evaNumber,
+        new Date(j.date),
+      );
     }
 
     return result.data.journeys;

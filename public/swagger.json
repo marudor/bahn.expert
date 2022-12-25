@@ -3173,6 +3173,66 @@
         ]
       }
     },
+    "/hafas/v3/additionalInformation/{trainName}/{journeyId}": {
+      "get": {
+        "operationId": "Additional Information",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdditionalJourneyInformation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "RIS JourneyId",
+            "in": "path",
+            "name": "journeyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "evaNumberAlongRoute",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "initialDepartureDate",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/hafas/v2/details/{trainName}": {
       "get": {
         "operationId": "Details v2",

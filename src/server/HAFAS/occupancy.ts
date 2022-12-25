@@ -1,3 +1,4 @@
+import { Cache, CacheDatabase } from 'server/cache';
 import { searchStopPlace } from 'server/StopPlace/search';
 import tripSearch from './TripSearch';
 import type { Route$Auslastung, SingleRoute } from 'types/routing';
@@ -46,6 +47,12 @@ async function getRelevantTrip(
   return relevantTrip;
 }
 
+const stopOccupancyCache = new Cache<string, Route$Auslastung | undefined>(
+  CacheDatabase.HafasStopOccupancy,
+  10 * 60,
+  undefined,
+);
+
 export async function stopOccupancy(
   start: string,
   destination: string,
@@ -53,6 +60,11 @@ export async function stopOccupancy(
   time: Date,
   stopEva: string,
 ): Promise<Route$Auslastung | undefined> {
+  const keyWithouEva = `${start}-${destination}-${trainNumber}-${time}`;
+  const key = `${keyWithouEva}-${stopEva}`;
+  if (await stopOccupancyCache.exists(key)) {
+    return await stopOccupancyCache.get(key);
+  }
   const relevantTrip = await getRelevantTrip(
     start,
     destination,
@@ -64,9 +76,11 @@ export async function stopOccupancy(
     return;
   }
 
-  const relevantStop = relevantTrip.segments[0].stops.find(
-    (s) => s.station.id === stopEva,
-  );
+  await Promise.all([
+    relevantTrip.segments[0].stops.map((s) =>
+      stopOccupancyCache.set(`${keyWithouEva}-${s.station.id}`, s.auslastung),
+    ),
+  ]);
 
-  return relevantStop?.auslastung;
+  return await stopOccupancyCache.get(key);
 }

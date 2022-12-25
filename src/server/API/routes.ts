@@ -1315,7 +1315,7 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/hafas/v3/additionalInformation/:trainName',
+        router.get('/api/hafas/v3/additionalInformation/:trainName/:journeyId',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.additionalInformation)),
 
@@ -1323,6 +1323,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const args = {
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
+                    journeyId: {"in":"path","name":"journeyId","required":true,"dataType":"string"},
                     evaNumberAlongRoute: {"in":"query","name":"evaNumberAlongRoute","dataType":"string"},
                     initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
             };

@@ -24,13 +24,14 @@ export async function getDetails(
 
 export async function getAdditionalJourneyInformation(
   trainName: string,
+  journeyId: string,
   initialDepartureDate?: Date,
   evaNumberAlongRoute?: string,
 ): Promise<AdditionalJourneyInformation | undefined> {
   try {
     return (
       await Axios.get<AdditionalJourneyInformation>(
-        `/api/hafas/v3/additionalInformation/${trainName}`,
+        `/api/hafas/v3/additionalInformation/${trainName}/${journeyId}`,
         {
           params: {
             evaNumberAlongRoute,

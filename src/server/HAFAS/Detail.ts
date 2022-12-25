@@ -38,6 +38,7 @@ export default async (
   currentStopId?: string,
   station?: string,
   date: Date = new Date(),
+  plainDetails = false,
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
   let possibleTrains: undefined | ParsedJourneyMatchResponse[];
@@ -87,7 +88,22 @@ export default async (
 
   if (!journeyDetails) return undefined;
 
-  let relevantSegment: ParsedSearchOnTripResponse;
+  let relevantSegment: ParsedSearchOnTripResponse = {
+    type: 'JNY',
+    cancelled: journeyDetails.stops.every((s) => s.cancelled),
+    finalDestination: journeyDetails.lastStop.station.title,
+    jid: train.jid,
+    train: journeyDetails.train,
+    segmentDestination: journeyDetails.lastStop.station,
+    segmentStart: journeyDetails.firstStop.station,
+    stops: journeyDetails.stops,
+    messages: journeyDetails.messages,
+    arrival: journeyDetails.lastStop.arrival,
+    departure: journeyDetails.firstStop.departure,
+  };
+  if (plainDetails) {
+    return relevantSegment;
+  }
 
   try {
     const route = await searchOnTrip(
@@ -107,19 +123,7 @@ export default async (
       (s) => s.type === 'JNY',
     ) as Route$JourneySegmentTrain;
   } catch {
-    relevantSegment = {
-      type: 'JNY',
-      cancelled: journeyDetails.stops.every((s) => s.cancelled),
-      finalDestination: journeyDetails.lastStop.station.title,
-      jid: train.jid,
-      train: journeyDetails.train,
-      segmentDestination: journeyDetails.lastStop.station,
-      segmentStart: journeyDetails.firstStop.station,
-      stops: journeyDetails.stops,
-      messages: journeyDetails.messages,
-      arrival: journeyDetails.lastStop.arrival,
-      departure: journeyDetails.firstStop.departure,
-    };
+    // we keep using the JourneyDetailsOne
   }
 
   if (relevantSegment.stops.length !== journeyDetails.stops.length) {

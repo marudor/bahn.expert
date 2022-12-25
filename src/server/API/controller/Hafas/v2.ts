@@ -49,7 +49,14 @@ export class HafasControllerV2 extends Controller {
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedSearchOnTripResponse> {
-    const details = await Detail(trainName, stop, station, date, profile);
+    const details = await Detail(
+      trainName,
+      stop,
+      station,
+      date,
+      undefined,
+      profile,
+    );
 
     if (!details) {
       return notFoundResponse(404);
