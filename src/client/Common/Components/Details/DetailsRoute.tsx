@@ -21,6 +21,7 @@ export const DetailsRoute: FC<Props> = ({ urlPrefix }) => {
       evaNumberAlongRoute={evaNumberAlongRoute}
       initialDepartureDateString={initialDeparture}
       urlPrefix={urlPrefix}
+      journeyId={query.journeyId as string | undefined}
     >
       <Details />
     </DetailsProvider>

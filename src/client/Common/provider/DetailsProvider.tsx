@@ -4,7 +4,6 @@ import {
 } from 'client/Common/service/details';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
-import { useSearchParams } from 'react-router-dom';
 import constate from 'constate';
 import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
 import type { AxiosError } from 'axios';
@@ -16,6 +15,7 @@ interface Props {
   initialDepartureDateString?: string;
   evaNumberAlongRoute?: string;
   urlPrefix?: string;
+  journeyId?: string;
 }
 
 const useInnerDetails = ({
@@ -23,6 +23,7 @@ const useInnerDetails = ({
   evaNumberAlongRoute,
   trainName,
   urlPrefix,
+  journeyId,
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
 
@@ -30,17 +31,6 @@ const useInnerDetails = ({
   const [additionalInformation, setAdditionalInformation] =
     useState<AdditionalJourneyInformation>();
   const [error, setError] = useState<AxiosError>();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    // we got a ris id, lets append this
-    if (details?.jid.includes('-')) {
-      setSearchParams((old) => {
-        old.set('journeyId', details.jid);
-        return old;
-      });
-    }
-  }, [details, setSearchParams]);
 
   const initialDepartureDate = useMemo(() => {
     if (!initialDepartureDateString) return undefined;
@@ -62,7 +52,7 @@ const useInnerDetails = ({
         trainName,
         initialDepartureDate,
         evaNumberAlongRoute,
-        searchParams.get('journeyId'),
+        journeyId,
       )
         .then(async (details) => {
           setDetails(details);
@@ -99,7 +89,7 @@ const useInnerDetails = ({
           }
         });
     },
-    [trainName, initialDepartureDate, evaNumberAlongRoute, searchParams],
+    [trainName, initialDepartureDate, evaNumberAlongRoute, journeyId],
   );
 
   useEffect(() => {
