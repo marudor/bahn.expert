@@ -1433,6 +1433,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     response: {"in":"res","name":"401","required":true,"dataType":"string"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
+                    initialEvaNumber: {"in":"query","name":"initialEvaNumber","dataType":"string"},
                     filtered: {"in":"query","name":"filtered","dataType":"boolean"},
                     limit: {"in":"query","name":"limit","dataType":"double"},
             };

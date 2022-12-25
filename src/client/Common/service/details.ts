@@ -52,6 +52,7 @@ const journeyMatchCancelTokens: { [key: string]: Canceler } = {};
 export async function journeyFind(
   trainName: string,
   initialDepartureDate?: Date,
+  initialEvaNumber?: string,
   filtered?: boolean,
   cancelIdent?: string,
 ): Promise<ParsedJourneyMatchResponse[]> {
@@ -70,6 +71,7 @@ export async function journeyFind(
       params: {
         initialDepartureDate,
         filtered,
+        initialEvaNumber,
         limit: 5,
       },
     },

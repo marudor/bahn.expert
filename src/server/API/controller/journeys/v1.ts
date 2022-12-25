@@ -44,6 +44,7 @@ export class JourneysV1Controller extends Controller {
     @Res() response: TsoaResponse<401, string>,
     trainName: string,
     @Query() initialDepartureDate?: Date,
+    @Query() initialEvaNumber?: string,
     // Only FV, legacy reasons for hafas compatibility
     @Query() filtered?: boolean,
     @Query() limit?: number,
@@ -82,11 +83,14 @@ export class JourneysV1Controller extends Controller {
 
     const risResult = await risPromise;
 
-    if (risResult.length) {
-      return risResult.slice(0, limit);
+    let result = risResult.length ? risResult : await hafasPromise;
+    if (initialEvaNumber) {
+      result = result.filter(
+        (r) => r.firstStop.station.id === initialEvaNumber,
+      );
     }
 
-    return await hafasPromise;
+    return result.slice(0, limit);
   }
 
   @Hidden()

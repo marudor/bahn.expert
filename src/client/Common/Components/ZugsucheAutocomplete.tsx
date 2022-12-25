@@ -50,6 +50,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
         const suggestions = await debouncedJourneyFind(
           value,
           initialDeparture,
+          undefined,
           filtered,
           'zugsuche',
         );

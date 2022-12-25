@@ -30,7 +30,7 @@ const Links = styled.div`
 
 export const Start: FC = () => {
   const urlPrefix = useAbfahrtenUrlPrefix();
-  const { abfahrt, detail } = useAbfahrt();
+  const { abfahrt, detail, journeyId } = useAbfahrt();
 
   return (
     <Container data-testid="abfahrtStart">
@@ -48,6 +48,7 @@ export const Start: FC = () => {
             train={abfahrt.train}
             evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
             initialDeparture={abfahrt.initialDeparture}
+            journeyId={journeyId}
           />
         </Links>
       )}

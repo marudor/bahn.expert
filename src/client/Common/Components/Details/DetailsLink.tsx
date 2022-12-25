@@ -8,12 +8,14 @@ interface Props {
   train: Pick<CommonProductInfo, 'type' | 'number'>;
   evaNumberAlongRoute?: string;
   initialDeparture: Date;
+  journeyId?: string;
   urlPrefix?: string;
 }
 export const DetailsLink: FC<Props> = ({
   train,
   evaNumberAlongRoute,
   initialDeparture,
+  journeyId,
   urlPrefix = '/',
 }) => (
   <Link
@@ -24,6 +26,7 @@ export const DetailsLink: FC<Props> = ({
     }/${initialDeparture.toISOString()}${qs.stringify(
       {
         evaNumberAlongRoute,
+        journeyId,
       },
       {
         addQueryPrefix: true,

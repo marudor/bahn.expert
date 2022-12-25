@@ -1,6 +1,15 @@
-import { createContext, memo, useCallback, useContext, useMemo } from 'react';
+import {
+  createContext,
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { css } from '@emotion/react';
 import { End } from './End';
+import { journeyFind } from 'client/Common/service/details';
 import { Mid } from './Mid';
 import { Paper } from '@mui/material';
 import { Start } from './Start';
@@ -14,6 +23,7 @@ const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
 interface AbfahrtContextValues {
   abfahrt: Abfahrt;
   detail: boolean;
+  journeyId?: string;
 }
 
 // @ts-expect-error default context not needed
@@ -102,13 +112,33 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
   const handleClick = useCallback(() => {
     setSelectedDetail(abfahrt.id);
   }, [abfahrt.id, setSelectedDetail]);
+  const [journeyId, setJourneyId] = useState<string>();
   const contextValue = useMemo(
     () => ({
       detail,
       abfahrt,
+      journeyId,
     }),
-    [detail, abfahrt],
+    [detail, abfahrt, journeyId],
   );
+
+  useEffect(() => {
+    async function getJourney() {
+      if (!journeyId && detail) {
+        const foundJourney = await journeyFind(
+          abfahrt.train.number,
+          abfahrt.initialDeparture,
+          abfahrt.initialStopPlace,
+          false,
+          'detailsClick',
+        );
+        if (foundJourney.length === 1) {
+          setJourneyId(foundJourney[0].jid);
+        }
+      }
+    }
+    void getJourney();
+  }, [detail, abfahrt, journeyId]);
 
   return (
     <AbfahrtContext.Provider value={contextValue}>
