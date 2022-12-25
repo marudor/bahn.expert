@@ -1,6 +1,7 @@
 import type {
   Common,
   CommonStopInfo,
+  GenericHafasRequest,
   Journey,
   OptionalLocL,
   ParsedProduct,
@@ -23,30 +24,29 @@ export interface JourneyDetailsResponse {
   planrtTS: string;
 }
 
-export interface JourneyDetailsRequest {
-  req: {
-    jid: string;
-    getAltCoordinates?: boolean;
-    getAnnotations?: boolean;
-    getPasslist?: boolean;
-    getPolyline?: boolean;
-    getSimpleTrainComposition?: boolean;
-    getTrainComposition?: boolean;
+interface JourneyDetailsRequestReq {
+  jid: string;
+  getAltCoordinates?: boolean;
+  getAnnotations?: boolean;
+  getPasslist?: boolean;
+  getPolyline?: boolean;
+  getSimpleTrainComposition?: boolean;
+  getTrainComposition?: boolean;
 
-    aDate?: string;
-    aIdx?: number;
-    aLoc?: OptionalLocL;
-    aTime?: string;
-    dDate?: string;
-    dIdx?: number;
-    dLoc?: OptionalLocL;
-    dTime?: string;
-    date?: string;
-    name?: string;
-    polySplitting?: boolean;
-  };
-  meth: 'JourneyDetails';
+  aDate?: string;
+  aIdx?: number;
+  aLoc?: OptionalLocL;
+  aTime?: string;
+  dDate?: string;
+  dIdx?: number;
+  dLoc?: OptionalLocL;
+  dTime?: string;
+  date?: string;
+  name?: string;
+  polySplitting?: boolean;
 }
+export interface JourneyDetailsRequest
+  extends GenericHafasRequest<'JourneyDetails', JourneyDetailsRequestReq> {}
 
 export interface Route$ValidArrivalStop extends Route$Stop {
   arrival: CommonStopInfo;

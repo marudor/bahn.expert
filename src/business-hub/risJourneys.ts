@@ -3,6 +3,7 @@ import { Cache, CacheDatabase } from 'server/cache';
 import { differenceInHours, format } from 'date-fns';
 import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
 import { risJourneysConfiguration } from 'business-hub/config';
+import { upstreamApiCountInterceptor } from 'server/admin';
 import axios from 'axios';
 import type {
   JourneyEventBased,
@@ -29,6 +30,9 @@ axiosWithTimeout.interceptors.request.use(
       ? () => process.env.RIS_JOURNEYS_USER_AGENT!
       : undefined,
   ),
+);
+axiosWithTimeout.interceptors.request.use(
+  upstreamApiCountInterceptor.bind(undefined, 'ris-journeys'),
 );
 
 const risJourneysClient = new JourneysApi(

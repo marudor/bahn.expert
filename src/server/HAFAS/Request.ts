@@ -1,11 +1,13 @@
 import * as HafasProfiles from './profiles';
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { UpstremaApiRequestMetric } from 'server/admin';
 import Axios from 'axios';
 import parseLocL from './helper/parseLocL';
 import parsePolyline from 'server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
 import type {
   Common,
+  GenericHafasRequest,
   GenericRes,
   HafasResponse,
   ParsedCommon,
@@ -100,7 +102,10 @@ export class HafasError extends Error {
   }
 }
 
-type CommonHafasResponse<R> = R extends TripSearchRequest
+type CommonHafasResponse<
+  T extends string,
+  R extends GenericHafasRequest<T>,
+> = R extends TripSearchRequest
   ? TripSearchResponse
   : R extends StationBoardRequest
   ? StationBoardResponse
@@ -117,7 +122,7 @@ type CommonHafasResponse<R> = R extends TripSearchRequest
   : never;
 async function makeRequest<
   R extends SingleHafasRequest,
-  HR extends GenericRes = CommonHafasResponse<R>,
+  HR extends GenericRes = CommonHafasResponse<any, R>,
   P = HR,
 >(
   hafasRequest: R,
@@ -132,6 +137,9 @@ async function makeRequest<
     // eslint-disable-next-line no-console
     console.log(extraParam);
   }
+  UpstremaApiRequestMetric.inc({
+    api: `hafas-${hafasRequest.meth}`,
+  });
   const r = (
     await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
       params: extraParam,

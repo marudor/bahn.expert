@@ -1,9 +1,7 @@
 import type { HimSearchRequest } from 'types/HAFAS/HimSearch';
 import type { JourneyDetailsRequest } from './JourneyDetails';
-import type { JourneyGeoPosRequest } from 'types/HAFAS/JourneyGeoPos';
 import type { JourneyMatchRequest } from 'types/HAFAS/JourneyMatch';
 import type { JourneyTreeRequest } from 'types/HAFAS/deprecated/JourneyTree';
-import type { LocGeoPosRequest } from './LocGeoPos';
 import type { LocMatchRequest } from './LocMatch';
 import type { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
 import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
@@ -265,6 +263,10 @@ export enum AllowedHafasProfile {
   // all = 'all',
 }
 
+export interface GenericHafasRequest<Meth extends string, Req = any> {
+  meth: Meth;
+  req: Req;
+}
 export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
   // | JourneyCourseRequest
@@ -273,12 +275,10 @@ export type SingleHafasRequest =
   | StationBoardRequest
   | HimSearchRequest
   | JourneyMatchRequest
-  | LocGeoPosRequest
   | LocMatchRequest
   | JourneyDetailsRequest
   | SearchOnTripRequest
-  | TripSearchRequest
-  | JourneyGeoPosRequest;
+  | TripSearchRequest;
 
 interface CInfo {
   code: string;

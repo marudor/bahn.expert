@@ -1,4 +1,4 @@
-import type { Common } from '.';
+import type { Common, GenericHafasRequest } from '.';
 
 export interface LocMatchResponse {
   common: Common;
@@ -27,15 +27,15 @@ export interface LocMatchResponse {
   };
 }
 
-export interface LocMatchRequest {
-  req: {
-    input: {
-      loc: {
-        name: string;
-        type: 'S' | 'ALL';
-      };
-      field: 'S';
+interface LocMatchRequestReq {
+  input: {
+    loc: {
+      name: string;
+      type: 'S' | 'ALL';
     };
+    field: 'S';
   };
-  meth: 'LocMatch';
 }
+
+export interface LocMatchRequest
+  extends GenericHafasRequest<'LocMatch', LocMatchRequestReq> {}

@@ -1,4 +1,4 @@
-import type { Common } from '.';
+import type { Common, GenericHafasRequest } from '.';
 import type { OutConL, SotCtxt } from './TripSearch';
 import type { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
 
@@ -24,10 +24,11 @@ interface SearchOnTripCTXRequest {
   sotMode: 'RC';
 }
 
-export interface SearchOnTripRequest {
-  req: SearchOnTripJIDRequest | SearchOnTripCTXRequest;
-  meth: 'SearchOnTrip';
-}
+export interface SearchOnTripRequest
+  extends GenericHafasRequest<
+    'SearchOnTrip',
+    SearchOnTripJIDRequest | SearchOnTripCTXRequest
+  > {}
 
 export interface ParsedSearchOnTripResponse extends Route$JourneySegmentTrain {
   currentStop?: Route$Stop;

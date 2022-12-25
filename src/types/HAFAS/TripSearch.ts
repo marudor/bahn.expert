@@ -4,6 +4,7 @@ import type {
   CommonDeparture,
   CommonJny,
   CommonStop,
+  GenericHafasRequest,
   JourneyFilter,
   MsgL,
   OptionalLocL,
@@ -130,9 +131,11 @@ interface DateTimeTripSeachRequest extends GenericTripSearchRequest {
 interface AfterBeforeTripSearchRequest extends GenericTripSearchRequest {
   ctxScr: string;
 }
-export interface TripSearchRequest {
-  req: DateTimeTripSeachRequest | AfterBeforeTripSearchRequest;
-  meth: 'TripSearch';
+export interface TripSearchRequest
+  extends GenericHafasRequest<
+    'TripSearch',
+    DateTimeTripSeachRequest | AfterBeforeTripSearchRequest
+  > {
   cfg?: {
     rtMode: 'HYBRID';
   };
