@@ -46,33 +46,6 @@ async function getRelevantTrip(
   return relevantTrip;
 }
 
-export async function maxOccupancy(
-  start: string,
-  destination: string,
-  trainNumber: string,
-  time: Date,
-): Promise<Route$Auslastung | undefined> {
-  const relevantTrip = await getRelevantTrip(
-    start,
-    destination,
-    trainNumber,
-    time,
-  );
-
-  if (
-    !relevantTrip ||
-    relevantTrip.segments[0].type !== 'JNY' ||
-    !relevantTrip.segments[0].auslastung
-  ) {
-    throw {
-      status: 404,
-      message: 'Auslastung not found',
-    };
-  }
-
-  return relevantTrip.segments[0].auslastung;
-}
-
 export async function stopOccupancy(
   start: string,
   destination: string,

@@ -20,17 +20,9 @@ import type {
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
 import type {
-  JourneyGeoPosRequest,
-  JourneyGeoPosResponse,
-} from 'types/HAFAS/JourneyGeoPos';
-import type {
   JourneyMatchRequest,
   JourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
-import type {
-  LocGeoPosRequest,
-  LocGeoPosResponse,
-} from 'types/HAFAS/LocGeoPos';
 import type { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import type {
   SearchOnTripRequest,
@@ -116,16 +108,12 @@ type CommonHafasResponse<R> = R extends TripSearchRequest
   ? HimSearchResponse
   : R extends JourneyMatchRequest
   ? JourneyMatchResponse
-  : R extends LocGeoPosRequest
-  ? LocGeoPosResponse
   : R extends LocMatchRequest
   ? LocMatchResponse
   : R extends JourneyDetailsRequest
   ? JourneyDetailsResponse
   : R extends SearchOnTripRequest
   ? SearchOnTripResponse
-  : R extends JourneyGeoPosRequest
-  ? JourneyGeoPosResponse
   : never;
 async function makeRequest<
   R extends SingleHafasRequest,

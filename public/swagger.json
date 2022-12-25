@@ -6,98 +6,6 @@
     "requestBodies": {},
     "responses": {},
     "schemas": {
-      "OpL": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "icoX": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "name",
-          "icoX"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "CommonProductInfo": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "line": {
-            "type": "string"
-          },
-          "number": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "description": "This is actually category"
-          },
-          "operator": {
-            "$ref": "#/components/schemas/OpL"
-          },
-          "admin": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "ParsedProduct": {
-        "$ref": "#/components/schemas/CommonProductInfo"
-      },
-      "HafasCoordinates": {
-        "properties": {
-          "lat": {
-            "type": "number",
-            "format": "double"
-          },
-          "lng": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "lat",
-          "lng"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "HafasStation": {
-        "properties": {
-          "products": {
-            "items": {
-              "$ref": "#/components/schemas/ParsedProduct"
-            },
-            "type": "array"
-          },
-          "coordinates": {
-            "$ref": "#/components/schemas/HafasCoordinates"
-          },
-          "title": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "coordinates",
-          "title",
-          "id"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
       "AllowedHafasProfile": {
         "enum": [
           "db",
@@ -274,6 +182,98 @@
         "type": "object",
         "additionalProperties": true
       },
+      "OpL": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "name",
+          "icoX"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CommonProductInfo": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "line": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "This is actually category"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/OpL"
+          },
+          "admin": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "ParsedProduct": {
+        "$ref": "#/components/schemas/CommonProductInfo"
+      },
+      "HafasCoordinates": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "HafasStation": {
+        "properties": {
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedProduct"
+            },
+            "type": "array"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/HafasCoordinates"
+          },
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "coordinates",
+          "title",
+          "id"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "HimIrisMessage": {
         "properties": {
           "text": {
@@ -352,576 +352,6 @@
         },
         "required": [
           "station"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "SingleParsedJourneyGeoPos": {
-        "properties": {
-          "jid": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "position": {
-            "$ref": "#/components/schemas/HafasCoordinates"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "jid",
-          "date",
-          "train",
-          "position",
-          "stops"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "ParsedJourneyGeoPosResponse": {
-        "items": {
-          "$ref": "#/components/schemas/SingleParsedJourneyGeoPos"
-        },
-        "type": "array"
-      },
-      "InOutMode": {
-        "type": "string",
-        "enum": [
-          "B",
-          "I",
-          "N",
-          "O"
-        ]
-      },
-      "JourneyFilterMode": {
-        "type": "string",
-        "enum": [
-          "BIT",
-          "EXC",
-          "INC",
-          "UNDEF"
-        ]
-      },
-      "JourneyFilterType": {
-        "type": "string",
-        "enum": [
-          "ADM",
-          "ATTRF",
-          "ATTRJ",
-          "ATTRL",
-          "BC",
-          "CAT",
-          "COUCH",
-          "CTX_RECON",
-          "GROUP",
-          "INFOTEXTS",
-          "JID",
-          "LID",
-          "LINE",
-          "LINEID",
-          "META",
-          "NAME",
-          "NUM",
-          "OP",
-          "PID",
-          "PROD",
-          "ROUTE",
-          "SLEEP",
-          "STATIONS",
-          "UIC"
-        ]
-      },
-      "JourneyFilter": {
-        "properties": {
-          "mode": {
-            "$ref": "#/components/schemas/JourneyFilterMode"
-          },
-          "type": {
-            "$ref": "#/components/schemas/JourneyFilterType"
-          },
-          "value": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "mode",
-          "type",
-          "value"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "Crd": {
-        "properties": {
-          "x": {
-            "type": "number",
-            "format": "double"
-          },
-          "y": {
-            "type": "number",
-            "format": "double"
-          },
-          "z": {
-            "type": "number",
-            "format": "double"
-          },
-          "layerX": {
-            "type": "number",
-            "format": "double"
-          },
-          "crdSysX": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "x",
-          "y"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "OptionalLocL": {
-        "properties": {
-          "lid": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "icoX": {
-            "type": "number",
-            "format": "double"
-          },
-          "extId": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "crd": {
-            "$ref": "#/components/schemas/Crd"
-          },
-          "pCls": {
-            "type": "number",
-            "format": "double"
-          },
-          "pRefL": {
-            "items": {
-              "type": "number",
-              "format": "double"
-            },
-            "type": "array",
-            "description": "Reference to prodL"
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
-      "GeoRect": {
-        "properties": {
-          "llCrd": {
-            "$ref": "#/components/schemas/Crd"
-          },
-          "urCrd": {
-            "$ref": "#/components/schemas/Crd"
-          }
-        },
-        "required": [
-          "llCrd",
-          "urCrd"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "GeoRing": {
-        "properties": {
-          "cCrd": {
-            "$ref": "#/components/schemas/Crd"
-          },
-          "maxDist": {
-            "type": "number",
-            "format": "double"
-          },
-          "minDist": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "cCrd",
-          "maxDist"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "JourneyTrainPosMode": {
-        "type": "string",
-        "enum": [
-          "CALC",
-          "CALC_FOR_REPORT",
-          "CALC_ONLY",
-          "CALC_REPORT",
-          "REPORT_ONLY",
-          "REPORT_ONLY_WITH_STOPS"
-        ]
-      },
-      "JourneyGeoPosRequestOptions": {
-        "properties": {
-          "ageOfReport": {
-            "type": "boolean"
-          },
-          "date": {
-            "type": "string"
-          },
-          "time": {
-            "type": "string"
-          },
-          "getSimpleTrainComposition": {
-            "type": "boolean"
-          },
-          "getUnmatched": {
-            "type": "boolean"
-          },
-          "inOut": {
-            "$ref": "#/components/schemas/InOutMode"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array"
-          },
-          "locL": {
-            "items": {
-              "$ref": "#/components/schemas/OptionalLocL"
-            },
-            "type": "array"
-          },
-          "maxJny": {
-            "type": "boolean"
-          },
-          "onlyRT": {
-            "type": "boolean"
-          },
-          "perSize": {
-            "type": "number",
-            "format": "double"
-          },
-          "perStep": {
-            "type": "number",
-            "format": "double"
-          },
-          "rect": {
-            "$ref": "#/components/schemas/GeoRect"
-          },
-          "ring": {
-            "$ref": "#/components/schemas/GeoRing"
-          },
-          "rtMsgStatus": {
-            "type": "boolean"
-          },
-          "trainPosMode": {
-            "$ref": "#/components/schemas/JourneyTrainPosMode"
-          },
-          "zoom": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
-      "JourneyGeoPosOptions": {
-        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
-      },
-      "Route$ValidDepartureStop": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          },
-          "station": {
-            "$ref": "#/components/schemas/RoutingStation"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "station",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "Route$ValidArrivalStop": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          },
-          "station": {
-            "$ref": "#/components/schemas/RoutingStation"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "station",
-          "arrival"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "ParsedJourneyDetails": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$ValidDepartureStop"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$ValidArrivalStop"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "train",
-          "jid",
-          "firstStop",
-          "lastStop",
-          "stops"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "ArrivalStationBoardEntry": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "arrival"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "EvaNumber": {
-        "type": "string",
-        "example": "8000105",
-        "description": "Usually 7 digits, leading zeros can be omitted"
-      },
-      "DepartureStationBoardEntry": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "ParsedJourneyMatchResponse": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "train",
-          "stops",
-          "jid",
-          "firstStop",
-          "lastStop"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "JourneyMatchOptions": {
-        "properties": {
-          "trainName": {
-            "type": "string",
-            "description": "Usually \"<Gattung> <Fahrtnummer>\"",
-            "example": "ICE 23"
-          },
-          "initialDepartureDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Used to find the correct journey for a specific day.",
-            "default": "now"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array",
-            "description": "These are raw HAFAS Filter and quite advanced."
-          },
-          "onlyRT": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "trainName"
         ],
         "type": "object",
         "additionalProperties": true
@@ -1839,6 +1269,11 @@
         "type": "object",
         "additionalProperties": true
       },
+      "EvaNumber": {
+        "type": "string",
+        "example": "8000105",
+        "description": "Usually 7 digits, leading zeros can be omitted"
+      },
       "Route$JourneySegmentTrain": {
         "properties": {
           "cancelled": {
@@ -2054,29 +1489,6 @@
           "changes",
           "segments",
           "segmentTypes"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "AllowedSotMode": {
-        "type": "string",
-        "enum": [
-          "JI",
-          "RC"
-        ]
-      },
-      "SearchOnTripBody": {
-        "properties": {
-          "sotMode": {
-            "$ref": "#/components/schemas/AllowedSotMode"
-          },
-          "id": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "sotMode",
-          "id"
         ],
         "type": "object",
         "additionalProperties": true
@@ -2601,6 +2013,43 @@
           "departures",
           "lookbehind",
           "stopPlaces"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "ParsedJourneyMatchResponse": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "stops",
+          "jid",
+          "firstStop",
+          "lastStop"
         ],
         "type": "object",
         "additionalProperties": true
@@ -3724,185 +3173,6 @@
         ]
       }
     },
-    "/hafas/v2/arrivalStationBoard": {
-      "get": {
-        "operationId": "Arrival Station Board v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ArrivalStationBoardEntry"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "description": "Used to get all arrivals at a specific stopPlace",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "station",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/EvaNumber"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v2/auslastung/{start}/{destination}/{trainNumber}/{plannedDepartureTime}": {
-      "get": {
-        "operationId": "Auslastung v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Route$Auslastung"
-                }
-              }
-            }
-          }
-        },
-        "description": "Provides maximum Auslstaung based on DB Vertrieb HAFAS (DB Navigator).\nBased on a rough estimate, handles first and second class.",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "description": "Name of the start stop",
-            "in": "path",
-            "name": "start",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Frankfurt (Main) Hbf"
-          },
-          {
-            "description": "Name of the destination stop",
-            "in": "path",
-            "name": "destination",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basel SBB"
-          },
-          {
-            "in": "path",
-            "name": "trainNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "23"
-          },
-          {
-            "description": "Planned Departure time of the stop you want the occpuancy for",
-            "in": "path",
-            "name": "plannedDepartureTime",
-            "required": true,
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            },
-            "example": "2022-03-24T11:50:00.000Z"
-          }
-        ]
-      }
-    },
-    "/hafas/v2/departureStationBoard": {
-      "get": {
-        "operationId": "Departure Station Board v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/DepartureStationBoardEntry"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "description": "Used to get all departures at a specific stopPlace.\nOptionally filterable to get only Journeys that travel via a specific stopPlace",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "station",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/EvaNumber"
-            }
-          },
-          {
-            "in": "query",
-            "name": "direction",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/EvaNumber"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v2/details/{trainName}": {
       "get": {
         "operationId": "Details v2",
@@ -4004,70 +3274,6 @@
         ]
       }
     },
-    "/hafas/v1/geoStation": {
-      "get": {
-        "operationId": "Geo Station v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/HafasStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "description": "Can be used to find all stopPlaces within a radius around a specific geo location",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "lat",
-            "required": true,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "lng",
-            "required": true,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "maxDist",
-            "required": false,
-            "schema": {
-              "default": 1000,
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v3/irisCompatibleAbfahrten/{evaId}": {
       "get": {
         "operationId": "IrisCompatibleAbfahrten",
@@ -4091,135 +3297,6 @@
           {
             "in": "path",
             "name": "evaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/journeyGeoPos": {
-      "post": {
-        "operationId": "Journey Geo Position v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyGeoPosOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v2/journeyMatch": {
-      "post": {
-        "operationId": "Journey Match v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "description": "\nUsed to find a specific journey based on name, date and HAFAS filter.",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyMatchOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v2/journeyDetails": {
-      "get": {
-        "operationId": "JourneyDetails v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyDetails"
-                }
-              }
-            }
-          }
-        },
-        "description": "provides Details for a specific Journey [Fahrt]",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "jid",
             "required": true,
             "schema": {
               "type": "string"
@@ -4350,55 +3427,6 @@
         ]
       }
     },
-    "/hafas/v1/positionForTrain/{trainName}": {
-      "get": {
-        "operationId": "Position for Train v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
-                }
-              }
-            }
-          }
-        },
-        "description": "Used to find the position of a specific journey. Based on predictions, not GPS.",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "examples": {
-              "Example 1": {
-                "value": "ICE 23"
-              },
-              "Example 2": {
-                "value": "STR 1988"
-              }
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/reihung/v4/runsPerDate/{date}": {
       "get": {
         "operationId": "Runs per Date v4",
@@ -4470,49 +3498,6 @@
             "example": "[8000105, 8000191]"
           }
         ]
-      }
-    },
-    "/hafas/v2/searchOnTrip": {
-      "post": {
-        "operationId": "Search on Trip v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SingleRoute"
-                }
-              }
-            }
-          }
-        },
-        "description": "Advanced HAFAS Method, not used by marudor.de and therefore quite undocumented",
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SearchOnTripBody"
-              }
-            }
-          }
-        }
       }
     },
     "/stopPlace/v1/{evaNumber}": {
@@ -4681,63 +3666,6 @@
             "schema": {
               "default": false,
               "type": "boolean"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/stopPlace/{searchTerm}": {
-      "get": {
-        "operationId": "StopPlaceSearch v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/HafasStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HAFAS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "S returns only StopPlaces, ALL also returns Point of Interests",
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "default": "S",
-              "type": "string",
-              "enum": [
-                "S",
-                "ALL"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
             }
           }
         ]
