@@ -3,6 +3,7 @@ import type {
   CommonArrival,
   CommonDeparture,
   CommonJny,
+  GenericHafasRequest,
   JourneyFilter,
   OptionalLocL,
 } from '.';
@@ -13,30 +14,30 @@ export const enum StationBoardSortType {
   RT = 'RT',
 }
 
-export interface StationBoardRequest {
-  req: {
-    type: 'DEP' | 'ARR';
-    date: string;
-    dateB?: string;
-    dateE?: string;
-    dur?: number;
-    getPasslist?: boolean;
-    getSimpleTrainComposition?: boolean;
-    getTrainComposition?: boolean;
-    time: string;
-    stbLoc: OptionalLocL;
-    dirLoc?: OptionalLocL;
-    jnyFltrL?: JourneyFilter[];
-    locFltrL?: any[];
-    maxJny?: number;
-    minDur?: number;
-    per?: boolean;
-    qrCode?: string;
-    sort?: StationBoardSortType;
-    stbFltrEquiv?: boolean;
-  };
-  meth: 'StationBoard';
+interface StationBoardRequestReq {
+  type: 'DEP' | 'ARR';
+  date: string;
+  dateB?: string;
+  dateE?: string;
+  dur?: number;
+  getPasslist?: boolean;
+  getSimpleTrainComposition?: boolean;
+  getTrainComposition?: boolean;
+  time: string;
+  stbLoc: OptionalLocL;
+  dirLoc?: OptionalLocL;
+  jnyFltrL?: JourneyFilter[];
+  locFltrL?: any[];
+  maxJny?: number;
+  minDur?: number;
+  per?: boolean;
+  qrCode?: string;
+  sort?: StationBoardSortType;
+  stbFltrEquiv?: boolean;
 }
+
+export interface StationBoardRequest
+  extends GenericHafasRequest<'StationBoard', StationBoardRequestReq> {}
 export interface CommonStationBoardResponse {
   common: Common;
   fpB: string;

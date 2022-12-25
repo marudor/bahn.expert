@@ -8,6 +8,7 @@ export async function getDetails(
   train: string,
   initialDepartureDate?: Date,
   evaNumberAlongRoute?: string,
+  journeyId?: string | null,
 ): Promise<ParsedSearchOnTripResponse> {
   const r = await Axios.get<ParsedSearchOnTripResponse>(
     `/api/journeys/v1/details/${train}`,
@@ -15,6 +16,7 @@ export async function getDetails(
       params: {
         evaNumberAlongRoute,
         initialDepartureDate,
+        journeyId: journeyId || undefined,
       },
     },
   );
@@ -24,13 +26,14 @@ export async function getDetails(
 
 export async function getAdditionalJourneyInformation(
   trainName: string,
+  journeyId: string,
   initialDepartureDate?: Date,
   evaNumberAlongRoute?: string,
 ): Promise<AdditionalJourneyInformation | undefined> {
   try {
     return (
       await Axios.get<AdditionalJourneyInformation>(
-        `/api/hafas/v3/additionalInformation/${trainName}`,
+        `/api/hafas/v3/additionalInformation/${trainName}/${journeyId}`,
         {
           params: {
             evaNumberAlongRoute,
@@ -49,6 +52,7 @@ const journeyMatchCancelTokens: { [key: string]: Canceler } = {};
 export async function journeyFind(
   trainName: string,
   initialDepartureDate?: Date,
+  initialEvaNumber?: string,
   filtered?: boolean,
   cancelIdent?: string,
 ): Promise<ParsedJourneyMatchResponse[]> {
@@ -67,6 +71,7 @@ export async function journeyFind(
       params: {
         initialDepartureDate,
         filtered,
+        initialEvaNumber,
         limit: 5,
       },
     },

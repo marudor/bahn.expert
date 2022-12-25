@@ -1,4 +1,10 @@
-import type { GeoRect, GeoRing, HimFilter, JourneyFilter } from 'types/HAFAS';
+import type {
+  GenericHafasRequest,
+  GeoRect,
+  GeoRing,
+  HimFilter,
+  JourneyFilter,
+} from 'types/HAFAS';
 
 export interface JourneyTreeRequestOptions {
   getChilds?: number;
@@ -12,9 +18,8 @@ export interface JourneyTreeRequestOptions {
   ring?: GeoRing;
 }
 
-export interface JourneyTreeRequest {
+export interface JourneyTreeRequest extends GenericHafasRequest<'JourneyTree'> {
   req: JourneyTreeRequestOptions;
-  meth: 'JourneyTree';
 }
 
 export type JourneyTreeResponse = any;

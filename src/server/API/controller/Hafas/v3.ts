@@ -1,8 +1,8 @@
+import { additionalJourneyInformation } from 'server/journeys/additionalJourneyInformation';
 import {
   Body,
   Controller,
   Get,
-  Hidden,
   OperationId,
   Post,
   Query,
@@ -12,7 +12,6 @@ import {
   Tags,
 } from '@tsoa/runtime';
 import { stopOccupancy } from 'server/HAFAS/occupancy';
-import Detail from 'server/HAFAS/Detail';
 import StationBoard from 'server/HAFAS/StationBoard';
 import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
 import TripSearch from 'server/HAFAS/TripSearch';
@@ -20,7 +19,6 @@ import type { AbfahrtenResult } from 'types/iris';
 import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { ArrivalStationBoardEntry } from 'types/stationBoard';
-import type { EvaNumber } from 'types/common';
 import type { Request as KRequest } from 'koa';
 import type { Route$Auslastung, RoutingResult } from 'types/routing';
 import type { TripSearchOptionsV3 } from 'types/HAFAS/TripSearch';
@@ -44,38 +42,27 @@ export class HafasControllerV3 extends Controller {
     return TripSearch(body, profile, req.query.raw);
   }
 
-  @Hidden()
-  @Get('/additionalInformation/{trainName}')
+  @Get('/additionalInformation/{trainName}/{journeyId}')
   @Tags('HAFAS')
   @OperationId('Additional Information')
   async additionalInformation(
     @Res() notFoundResponse: TsoaResponse<404, void>,
     trainName: string,
+    /**
+     * RIS JourneyId
+     */
+    journeyId: string,
     @Query() evaNumberAlongRoute?: string,
     @Query() initialDepartureDate?: Date,
   ): Promise<AdditionalJourneyInformation> {
-    const journeyDetails = await Detail(
+    const additionalInformation = await additionalJourneyInformation(
       trainName,
-      undefined,
+      journeyId,
       evaNumberAlongRoute,
       initialDepartureDate,
     );
-    if (!journeyDetails) {
-      return notFoundResponse(404);
-    }
-    const occupancy: Record<EvaNumber, Route$Auslastung> = {};
-    for (const stop of journeyDetails.stops) {
-      if (stop.auslastung) {
-        occupancy[stop.station.id] = stop.auslastung;
-      }
-    }
-    if (journeyDetails.train.operator || Object.keys(occupancy).length) {
-      return {
-        occupancy,
-        operatorName: journeyDetails.train.operator?.name,
-      };
-    }
-    return notFoundResponse(404);
+
+    return additionalInformation || notFoundResponse(404);
   }
 
   /**

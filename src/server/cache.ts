@@ -47,6 +47,8 @@ export const enum CacheDatabase {
   JourneyFind,
   NegativeNewSequence,
   TimetableParsedPlan,
+  HafasStopOccupancy,
+  AdditionalJourneyInformation,
 }
 
 const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
@@ -71,6 +73,7 @@ export class Cache<K extends string, V> {
     // eslint-disable-next-line unicorn/no-object-as-default-parameter
     { skipMemory, skipRedis }: { skipMemory?: boolean; skipRedis?: boolean } = {
       skipRedis: !redisSettings,
+      skipMemory: Boolean(redisSettings),
     },
   ) {
     this.lruCache = skipMemory

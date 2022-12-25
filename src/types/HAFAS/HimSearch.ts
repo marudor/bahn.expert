@@ -1,5 +1,6 @@
 import type {
   Common,
+  GenericHafasRequest,
   HafasStation,
   HimFilter,
   OptionalLocL,
@@ -22,10 +23,8 @@ export interface HimSearchRequestOptions {
   timeB?: string;
   timeE?: string;
 }
-export interface HimSearchRequest {
-  req: HimSearchRequestOptions;
-  meth: 'HimSearch';
-}
+export interface HimSearchRequest
+  extends GenericHafasRequest<'HimSearch', HimSearchRequestOptions> {}
 
 export interface PubChL {
   name: string;

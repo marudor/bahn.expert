@@ -5,6 +5,7 @@ import {
   StopPlaceSearchGroupByKey,
 } from 'business-hub/generated/risStations';
 import { TransportType } from 'business-hub/types';
+import { upstreamApiCountInterceptor } from 'server/admin';
 import axios from 'axios';
 import type {
   ResolvedStopPlaceGroups,
@@ -24,6 +25,10 @@ const nonÖPNVTypes: Set<TransportType> = new Set([
 const axiosWithTimeout = axios.create({
   timeout: 4500,
 });
+
+axiosWithTimeout.interceptors.request.use(
+  upstreamApiCountInterceptor.bind(undefined, 'ris-stations'),
+);
 
 const stopPlaceClient = new StopPlacesApi(
   risStationsConfiguration,

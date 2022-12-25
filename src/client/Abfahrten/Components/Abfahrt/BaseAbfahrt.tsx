@@ -1,6 +1,14 @@
-import { createContext, memo, useCallback, useContext, useMemo } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { css } from '@emotion/react';
 import { End } from './End';
+import { journeyFind } from 'client/Common/service/details';
 import { Mid } from './Mid';
 import { Paper } from '@mui/material';
 import { Start } from './Start';
@@ -8,12 +16,14 @@ import { useSetSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailPr
 import loadable from '@loadable/component';
 import styled from '@emotion/styled';
 import type { Abfahrt } from 'types/iris';
+import type { FC } from 'react';
 
 const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
 
 interface AbfahrtContextValues {
   abfahrt: Abfahrt;
   detail: boolean;
+  journeyId?: string;
 }
 
 // @ts-expect-error default context not needed
@@ -88,13 +98,13 @@ export interface Props {
   wingStart?: boolean;
 }
 
-export const BaseAbfahrt = memo(function BaseAbfahrt({
+export const BaseAbfahrt: FC<Props> = ({
   abfahrt,
   wingNumbers,
   wingEnd,
   wingStart,
   detail,
-}: Props) {
+}) => {
   const wingNumbersWithoutSelf = wingNumbers?.filter(
     (wn) => wn !== abfahrt.train.number,
   );
@@ -102,13 +112,37 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
   const handleClick = useCallback(() => {
     setSelectedDetail(abfahrt.id);
   }, [abfahrt.id, setSelectedDetail]);
+  const [journeyId, setJourneyId] = useState<string>();
   const contextValue = useMemo(
     () => ({
       detail,
       abfahrt,
+      journeyId,
     }),
-    [detail, abfahrt],
+    [detail, abfahrt, journeyId],
   );
+
+  useEffect(() => {
+    async function getJourney() {
+      if (!journeyId && detail) {
+        try {
+          const foundJourney = await journeyFind(
+            abfahrt.train.number,
+            abfahrt.initialDeparture,
+            abfahrt.initialStopPlace,
+            false,
+            'detailsClick',
+          );
+          if (foundJourney.length === 1) {
+            setJourneyId(foundJourney[0].jid);
+          }
+        } catch {
+          // we just ignore errors
+        }
+      }
+    }
+    void getJourney();
+  }, [detail, abfahrt, journeyId]);
 
   return (
     <AbfahrtContext.Provider value={contextValue}>
@@ -141,4 +175,4 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
       </Container>
     </AbfahrtContext.Provider>
   );
-});
+};
