@@ -8,6 +8,7 @@ export async function getDetails(
   train: string,
   initialDepartureDate?: Date,
   evaNumberAlongRoute?: string,
+  journeyId?: string | null,
 ): Promise<ParsedSearchOnTripResponse> {
   const r = await Axios.get<ParsedSearchOnTripResponse>(
     `/api/journeys/v1/details/${train}`,
@@ -15,6 +16,7 @@ export async function getDetails(
       params: {
         evaNumberAlongRoute,
         initialDepartureDate,
+        journeyId,
       },
     },
   );

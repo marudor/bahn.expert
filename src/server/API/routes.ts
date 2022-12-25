@@ -1463,6 +1463,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     evaNumberAlongRoute: {"in":"query","name":"evaNumberAlongRoute","ref":"EvaNumber"},
                     initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
+                    journeyId: {"in":"query","name":"journeyId","dataType":"string"},
             };
 
             let validatedArgs: any[] = [];

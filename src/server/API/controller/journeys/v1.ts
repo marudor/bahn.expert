@@ -99,6 +99,7 @@ export class JourneysV1Controller extends Controller {
     trainName: string,
     @Query() evaNumberAlongRoute?: EvaNumber,
     @Query() initialDepartureDate?: Date,
+    @Query() journeyId?: string,
   ): Promise<ParsedSearchOnTripResponse> {
     if (!isAllowed(req)) {
       return res(401, 'This is rate-limited upstream, please do not use it.');
@@ -116,6 +117,10 @@ export class JourneysV1Controller extends Controller {
       }
       return hafasResult;
     };
+    if (journeyId) {
+      const journey = await journeyDetails(journeyId);
+      return journey || hafasFallback();
+    }
     const productDetails = getCategoryAndNumberFromName(trainName);
     if (!productDetails) {
       return hafasFallback();
