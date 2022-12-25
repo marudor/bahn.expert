@@ -125,15 +125,19 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
   useEffect(() => {
     async function getJourney() {
       if (!journeyId && detail) {
-        const foundJourney = await journeyFind(
-          abfahrt.train.number,
-          abfahrt.initialDeparture,
-          abfahrt.initialStopPlace,
-          false,
-          'detailsClick',
-        );
-        if (foundJourney.length === 1) {
-          setJourneyId(foundJourney[0].jid);
+        try {
+          const foundJourney = await journeyFind(
+            abfahrt.train.number,
+            abfahrt.initialDeparture,
+            abfahrt.initialStopPlace,
+            false,
+            'detailsClick',
+          );
+          if (foundJourney.length === 1) {
+            setJourneyId(foundJourney[0].jid);
+          }
+        } catch {
+          // we just ignore errors
         }
       }
     }
