@@ -37,7 +37,7 @@ specifiers:
   '@percy/cli': 1.16.0
   '@percy/cypress': ^3.1.2
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.10
-  '@testing-library/cypress': 8.0.7
+  '@testing-library/cypress': 9.0.0
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
   '@tsoa/cli': 4.1.3
@@ -89,7 +89,7 @@ specifiers:
   cookie: ^0.5.0
   core-js: ^3.27.1
   css-loader: ^6.7.3
-  cypress: ^11.2.0
+  cypress: ^12.2.0
   date-fns: ^2.29.3
   date-fns-tz: ^1.3.7
   debounce-promise: ^3.1.2
@@ -218,9 +218,9 @@ devDependencies:
   '@loadable/webpack-plugin': 5.15.2_webpack@5.75.0
   '@openapitools/openapi-generator-cli': 2.5.2
   '@percy/cli': 1.16.0
-  '@percy/cypress': 3.1.2_cypress@11.2.0
+  '@percy/cypress': 3.1.2_cypress@12.2.0
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.10_i37nu3inj4mau7izq5stih36li
-  '@testing-library/cypress': 8.0.7_cypress@11.2.0
+  '@testing-library/cypress': 9.0.0_cypress@12.2.0
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@types/babel__core': 7.1.20
@@ -266,7 +266,7 @@ devDependencies:
   chokidar: 3.5.3
   compression-webpack-plugin: 10.0.0_webpack@5.75.0
   css-loader: 6.7.3_webpack@5.75.0
-  cypress: 11.2.0
+  cypress: 12.2.0
   eslint: 8.31.0
   eslint-config-marudor: 9.1.1_5pgcdxbdmnvjuy5sdo2pdvluoa
   eslint-import-resolver-typescript: 3.5.2_ol7jqilc3wemtdbq3nzhywgxq4
@@ -3010,13 +3010,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@percy/cypress/3.1.2_cypress@11.2.0:
+  /@percy/cypress/3.1.2_cypress@12.2.0:
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.16.0
-      cypress: 11.2.0
+      cypress: 12.2.0
     dev: true
 
   /@percy/dom/1.16.0:
@@ -3184,15 +3184,15 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /@testing-library/cypress/8.0.7_cypress@11.2.0:
-    resolution: {integrity: sha512-3HTV725rOS+YHve/gD9coZp/UcPK5xhr4H0GMnq/ni6USdtzVtSOG9WBFtd8rYnrXk8rrGD+0toRFYouJNIG0Q==}
+  /@testing-library/cypress/9.0.0_cypress@12.2.0:
+    resolution: {integrity: sha512-c1XiCGeHGGTWn0LAU12sFUfoX3qfId5gcSE2yHode+vsyHDWraxDPALjVnHd4/Fa3j4KBcc5k++Ccy6A9qnkMA==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
-      cypress: ^2.1.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0
+      cypress: ^12.0.0
     dependencies:
       '@babel/runtime': 7.20.7
       '@testing-library/dom': 8.19.1
-      cypress: 11.2.0
+      cypress: 12.2.0
     dev: true
 
   /@testing-library/dom/8.19.1:
@@ -5305,9 +5305,9 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
-  /cypress/11.2.0:
-    resolution: {integrity: sha512-u61UGwtu7lpsNWLUma/FKNOsrjcI6wleNmda/TyKHe0dOBcVjbCPlp1N6uwFZ0doXev7f/91YDpU9bqDCFeBLA==}
-    engines: {node: '>=12.0.0'}
+  /cypress/12.2.0:
+    resolution: {integrity: sha512-kvl95ri95KK8mAy++tEU/wUgzAOMiIciZSL97LQvnOinb532m7dGvwN0mDSIGbOd71RREtmT9o4h088RjK5pKw==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
