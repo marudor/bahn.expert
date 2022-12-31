@@ -34,9 +34,6 @@ const globalStyles = (theme: Theme): any => ({
     textDecoration: 'none',
     color: theme.colors.blue,
   },
-  main: {
-    marginTop: theme.shape.headerSpacing,
-  },
   'html, body': {
     height: '100%',
   },

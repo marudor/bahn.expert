@@ -8,15 +8,18 @@ import styled from '@emotion/styled';
 import type { CommonProductInfo } from 'types/HAFAS';
 import type { FC } from 'react';
 
-const Operator = styled.span(({ theme }) => theme.mixins.singleLineText, {
-  gridArea: 'o',
-});
+const SingleLineSpan = styled.span(({ theme }) => theme.mixins.singleLineText);
+
+const Operator = styled(SingleLineSpan)`
+  grid-area: o;
+`;
 
 const Destination = styled.span`
   grid-area: g;
+  max-height: 2rem;
+  overflow: hidden;
+  word-break: break-all;
 `;
-
-const TrainText = styled.span(({ theme }) => theme.mixins.singleLineText);
 
 const Container = styled.div`
   font-size: 90%;
@@ -29,9 +32,9 @@ const Container = styled.div`
   justify-items: center;
 `;
 
-const DateDisplay = styled.span(({ theme }) => theme.mixins.singleLineText, {
-  gridArea: 'd',
-});
+const DateDisplay = styled(SingleLineSpan)`
+  grid-area: d;
+`;
 
 const Arrow = styled.span`
   grid-area: a;
@@ -70,9 +73,9 @@ export const Header: FC = () => {
   return (
     <BaseHeader>
       <Container data-testid="detailsHeader">
-        <TrainText>
+        <SingleLineSpan>
           <FullTrainName train={details?.train} fallback={trainName} />
-        </TrainText>
+        </SingleLineSpan>
         {details && (
           <>
             {operatorName && <Operator>{operatorName}</Operator>}

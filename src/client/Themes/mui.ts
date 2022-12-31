@@ -73,6 +73,7 @@ const getMuiOptions = (themeType: E<typeof ThemeType>): ThemeOptions => {
       MuiToolbar: {
         styleOverrides: {
           regular: {
+            height: `${headerSpacing}px!important`,
             minHeight: `${headerSpacing}px!important`,
           },
         },

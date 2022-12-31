@@ -39,16 +39,16 @@ const Privacy = () => (
   </div>
 );
 
-const Container = styled.div(({ theme }) => ({
-  margin: `${theme.shape.headerSpacing + 5}px 10px 0`,
-  display: 'flex',
-  flexDirection: 'column',
-}));
+const Container = styled.div`
+  margin: 0 10px 0;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const About: FC = () => {
   return (
     <>
-      <BaseHeader>About</BaseHeader>
+      <BaseHeader spacing={5}>About</BaseHeader>
       <Container>
         <span>
           Entwickelt von{' '}

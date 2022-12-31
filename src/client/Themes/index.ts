@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { createMuiTheme } from './mui';
 import { css } from '@emotion/react';
 import { getColors } from './colors';
@@ -13,7 +14,6 @@ declare module '@mui/system' {
     headerSpacing: number;
   }
 }
-
 declare module '@mui/material/styles/createMixins' {
   interface Mixins extends MaruMixins {}
 }
