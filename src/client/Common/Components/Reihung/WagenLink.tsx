@@ -66,6 +66,7 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
       identifier &&
       identifier !== 'TGV' &&
       identifier !== 'MET' &&
+      identifier !== '408' &&
       fahrzeug.uic
     ) {
       let relevantUIC = fahrzeug.uic.slice(4, 9);
