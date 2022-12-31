@@ -356,7 +356,7 @@ export class Timetable {
       return;
     }
     const previous = this.timetable[a.departure.transition];
-    if (!previous) {
+    if (!previous || a.train.number !== previous.train.number) {
       return;
     }
     a.arrival = previous.arrival;
