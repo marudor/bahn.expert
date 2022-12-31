@@ -117,14 +117,14 @@ const InnerLoading = ({
   }
 };
 
-type CheckFn<T> = (check: T) => ReactElement | null;
+type CheckFn<in T> = (check: T) => ReactElement | null;
 
 interface CommonProps {
   className?: string;
   type?: LoadingType;
   relative?: boolean;
 }
-interface Props<T> extends CommonProps {
+interface Props<in out T> extends CommonProps {
   children: CheckFn<T>;
   check: T | undefined;
 }

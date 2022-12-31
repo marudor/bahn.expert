@@ -20,11 +20,11 @@ export interface GroupedStopPlace {
 
 export type MinimalStopPlace = Pick<GroupedStopPlace, 'name' | 'evaNumber'>;
 
-export interface TrainOccupancy<T> {
+export interface TrainOccupancy<out T> {
   train: TrainOccupancyList<T>;
 }
 
-export interface TrainOccupancyList<T = Route$Auslastung> {
+export interface TrainOccupancyList<out T = Route$Auslastung> {
   [trainNumber: string]: T | null;
 }
 

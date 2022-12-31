@@ -263,7 +263,7 @@ export enum AllowedHafasProfile {
   // all = 'all',
 }
 
-export interface GenericHafasRequest<Meth extends string, Req = any> {
+export interface GenericHafasRequest<out Meth extends string, out Req = any> {
   meth: Meth;
   req: Req;
 }

@@ -23,7 +23,7 @@ interface ContextWithOptions<V = any> extends React.Context<V> {
   initialState?: V;
 }
 export interface ProviderWithOptions<
-  C extends React.FunctionComponent = React.FunctionComponent<any>,
+  out C extends React.FunctionComponent = React.FunctionComponent<any>,
 > {
   Provider: C;
   // FIXME: should be Props of C

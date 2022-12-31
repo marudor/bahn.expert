@@ -1,4 +1,4 @@
-type IdFn<T> = (item: T) => unknown;
+type IdFn<in T> = (item: T) => unknown;
 type Identifier<T> = IdFn<T> | keyof T;
 
 const getIdFn = <T>(identifier?: Identifier<T>) => {
