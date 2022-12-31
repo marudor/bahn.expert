@@ -2,7 +2,7 @@ import {
   Badge,
   Collapse,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
@@ -43,22 +43,21 @@ export const ThemeSelection: FC = () => {
 
   return (
     <>
-      <ListItem data-testid="themes" button onClick={toggle}>
+      <ListItemButton data-testid="themes" onClick={toggle}>
         <ListItemIcon>
           <Palette />
         </ListItemIcon>
         <ListItemText primary="Themes" />
         {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
+      </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <ThemeList disablePadding data-testid="themeList">
           {Object.values(ThemeType).map((themeOption: string) => {
             const name = themeOption[0].toUpperCase() + themeOption.slice(1);
 
             return (
-              <ListItem
+              <ListItemButton
                 key={themeOption}
-                button
                 onClick={selectTheme}
                 data-value={themeOption}
               >
@@ -69,7 +68,7 @@ export const ThemeSelection: FC = () => {
                 ) : (
                   <ListItemText primary={name} />
                 )}
-              </ListItem>
+              </ListItemButton>
             );
           })}
         </ThemeList>

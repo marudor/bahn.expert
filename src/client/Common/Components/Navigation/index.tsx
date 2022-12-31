@@ -8,7 +8,7 @@ import {
 import {
   Drawer,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
@@ -57,55 +57,55 @@ export const Navigation: FC<Props> = ({ children }) => {
         <Headline>Bahn Experte</Headline>
         <DrawerContent onClick={toggleDrawer}>
           <Link to="/">
-            <ListItem button>
+            <ListItemButton>
               <ListItemIcon>
                 <AlarmOnOutlined />
               </ListItemIcon>
               <ListItemText primary="Abfahrten" />
-            </ListItem>
+            </ListItemButton>
           </Link>
           <Link to="/regional">
-            <ListItem button data-testid="regional">
+            <ListItemButton data-testid="regional">
               <ListItemIcon>
                 <AlarmOnOutlined />
               </ListItemIcon>
               <ListItemText primary="Nahverkehr Abfahrten" />
-            </ListItem>
+            </ListItemButton>
           </Link>
           <Link to="/routing">
-            <ListItem button>
+            <ListItemButton>
               <ListItemIcon>
                 <Explore />
               </ListItemIcon>
               <ListItemText primary="Routing" />
-            </ListItem>
+            </ListItemButton>
           </Link>
           <Zugsuche>
             {(toggle) => (
-              <ListItem button onClick={toggle}>
+              <ListItemButton onClick={toggle}>
                 <ListItemIcon>
                   <Search />
                 </ListItemIcon>
                 <ListItemText primary="Zugsuche" />
-              </ListItem>
+              </ListItemButton>
             )}
           </Zugsuche>
           <Link to="/trainRuns">
-            <ListItem button>
+            <ListItemButton>
               <ListItemIcon>
                 <Train />
               </ListItemIcon>
               <ListItemText primary="Zugläufe" />
-            </ListItem>
+            </ListItemButton>
           </Link>
           <ThemeSelection />
           <Link to="/about">
-            <ListItem button>
+            <ListItemButton>
               <ListItemIcon>
                 <Info />
               </ListItemIcon>
               <ListItemText primary="About" />
-            </ListItem>
+            </ListItemButton>
           </Link>
         </DrawerContent>
       </Drawer>
