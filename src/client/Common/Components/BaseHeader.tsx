@@ -14,7 +14,18 @@ const NotchFix = styled.div(({ theme }) => ({
   background: theme.palette.background.default,
 }));
 
-export const BaseHeader: FC<PropsWithChildren<unknown>> = ({ children }) => {
+const Offset = styled.div<{ spacing?: number }>(({ theme, spacing = 0 }) => ({
+  minHeight: `${theme.shape.headerSpacing + spacing}px`,
+}));
+
+interface Props {
+  spacing?: number;
+}
+
+export const BaseHeader: FC<PropsWithChildren<Props>> = ({
+  children,
+  spacing,
+}) => {
   const { toggleDrawer } = useContext(NavigationContext);
 
   return (
@@ -34,6 +45,7 @@ export const BaseHeader: FC<PropsWithChildren<unknown>> = ({ children }) => {
           {children}
         </Toolbar>
       </AppBar>
+      <Offset spacing={spacing} />
     </>
   );
 };
