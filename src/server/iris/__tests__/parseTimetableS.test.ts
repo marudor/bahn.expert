@@ -24,7 +24,7 @@ describe('parseTimetableS', () => {
       const nodes = xmljs.parseXml(inXml).find<Element>('//timetable/s');
 
       for (const n of nodes)
-        expect(timetable.parseTimetableS(n)).toMatchSnapshot();
+        expect(timetable.parseTimetableS(n, {})).toMatchSnapshot();
     });
   }
 });

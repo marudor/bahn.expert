@@ -32,7 +32,7 @@ const redisSettings = process.env.REDIS_HOST
 
 export const enum CacheDatabase {
   Station,
-  TimetableXML,
+  TimetableParsedWithWings,
   DBLageplan,
   LocMatch,
   HIMMessage,
@@ -45,9 +45,9 @@ export const enum CacheDatabase {
   StopPlaceGroups,
   StopPlaceSalesSearch,
   JourneyFind,
-  NegativeNewSequence,
-  TimetableParsedPlan,
-  HafasStopOccupancy,
+  NegativeNewSequence = 14,
+  // Was TimetableParsedPlan
+  HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
 }
 
