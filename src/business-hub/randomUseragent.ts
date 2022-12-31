@@ -24,6 +24,7 @@ export function addUseragent(
   req: AxiosRequestConfig,
 ): AxiosRequestConfig {
   const headers = req.headers || {};
+  // @ts-expect-error horrible typings for header
   headers['user-agent'] = userAgentFunction();
   req.headers = headers;
   return req;
