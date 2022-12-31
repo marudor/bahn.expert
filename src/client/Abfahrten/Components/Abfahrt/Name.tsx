@@ -1,3 +1,4 @@
+import { Stack } from '@mui/material';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useAbfahrtenConfig } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import styled from '@emotion/styled';
@@ -16,7 +17,10 @@ export const Name: FC<Props> = () => {
 
   return (
     <>
-      <span>{abfahrt.train.name}</span>
+      <Stack>
+        {abfahrt.previousTrain && <span>{abfahrt.previousTrain.name}</span>}
+        <span>{abfahrt.train.name}</span>
+      </Stack>
       {lineAndNumber && abfahrt.train.line && (
         <Extra>
           {longDistance

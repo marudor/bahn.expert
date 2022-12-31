@@ -153,9 +153,7 @@ function parseRawId(rawId: string) {
 
 export class Timetable {
   errors: any[] = [];
-  timetable: {
-    [key: string]: any;
-  } = {};
+  timetable: Record<string, any> = {};
   realtimeIds: string[] = [];
   segments: Date[];
   currentStopPlaceName: string;
@@ -270,6 +268,10 @@ export class Timetable {
     await this.getTimetables();
     await this.getRealtime();
 
+    for (const t of Object.values(this.timetable)) {
+      this.transition(t);
+    }
+
     const timetables: any[] = Object.values(this.timetable);
 
     const filtered = timetables.filter(
@@ -282,7 +284,6 @@ export class Timetable {
         delay: [],
         him: [],
       };
-      // t.platform = t.scheduledPlatform;
     }
 
     const wings: { [key: string]: any } = {};
@@ -340,6 +341,24 @@ export class Timetable {
       wings,
       stopPlaces: [this.evaNumber],
     };
+  }
+  /**
+   * Durchbindungen, Züge ädern ihre Kategorie/Nummer und sind eigene Einträge hier. Hier mergen wir das ganze und schreiben prev/next dran
+   */
+  // Hier kommt vermutlich eine Abfahrt rein, danke past marudor für fehlende Typen
+  transition(a: any): void {
+    // Wir nehmen nur abfahrende Züge, suchen den vorherigen, mergen es in den neuen und schmeißen den vorherigen raus.
+    if (!a.departure?.transition) {
+      return;
+    }
+    const previous = this.timetable[a.departure.transition];
+    if (!previous) {
+      return;
+    }
+    a.arrival = previous.arrival;
+    a.previousTrain = previous.train;
+    a.routePre = previous.routePre;
+    delete this.timetable[previous.rawId];
   }
   parseRef(tl: xmljs.Element) {
     const { trainCategory, trainNumber } = parseTl(tl);
@@ -671,6 +690,7 @@ export class Timetable {
         platform: getAttr(ar, 'pp'),
         scheduledPlatform: getAttr(ar, 'pp'),
         hidden: Boolean(getAttr(ar, 'hi')),
+        transition: getAttr(ar, 'tra'),
       },
       departure: scheduledDeparture && {
         scheduledTime: scheduledDeparture,
@@ -679,9 +699,9 @@ export class Timetable {
         platform: getAttr(dp, 'pp'),
         scheduledPlatform: getAttr(dp, 'pp'),
         hidden: Boolean(getAttr(dp, 'hi')),
+        transition: getAttr(dp, 'tra'),
       },
       productClass,
-      // classes: getAttr(tl, 'f'),
       currentStopPlace: {
         name: this.currentStopPlaceName,
         evaNumber: this.evaNumber,
@@ -691,11 +711,8 @@ export class Timetable {
       id,
       rawId,
       mediumId,
-      // routeEnd: getAttr(dp, 'pde'),
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
-      // routeStart: getAttr(ar, 'pde'),
-      // transfer: getAttr(dp || ar, 'tra'),
       substitute: t === 'e',
       train: {
         name: fullTrainText,

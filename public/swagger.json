@@ -1746,6 +1746,10 @@
           },
           "hidden": {
             "type": "boolean"
+          },
+          "transition": {
+            "type": "string",
+            "description": "Durchbindung? Zug wechselt die Kategorie, theoretisch aber sogar Zugnummer?"
           }
         },
         "required": [
@@ -1948,6 +1952,10 @@
           },
           "train": {
             "$ref": "#/components/schemas/TrainInfo"
+          },
+          "previousTrain": {
+            "$ref": "#/components/schemas/TrainInfo",
+            "description": "Sofern Durchbindung passiert ist steht hier der vorherige Transport drin. Is fachlich ultra hacky."
           }
         },
         "required": [

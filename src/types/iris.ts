@@ -89,6 +89,10 @@ export interface Abfahrt {
   scheduledPlatform: string;
   substitute?: boolean;
   train: TrainInfo;
+  /**
+   * Sofern Durchbindung passiert ist steht hier der vorherige Transport drin. Is fachlich ultra hacky.
+   */
+  previousTrain?: TrainInfo;
 }
 
 export interface IrisMessage {
@@ -125,6 +129,10 @@ export interface StopInfo extends CommonStopInfo {
   wingIds?: string[];
   cancelled?: boolean;
   hidden?: boolean;
+  /**
+   * Durchbindung? Zug wechselt die Kategorie, theoretisch aber sogar Zugnummer?
+   */
+  transition?: string;
 }
 
 export interface SubstituteRef {
