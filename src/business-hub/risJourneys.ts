@@ -97,12 +97,21 @@ export async function findJourney(
     }
     const result = await risJourneysClient.find({
       number: trainNumber,
-      // TODO: Kategorie ist manchmal schwierig, z.B. RE 11 / IC 5107 Luxemburg -> Düsseldorf
-      category,
+      // Kategorie ist schwierig, wir filtern quasi optional
+      // category,
       date: date && format(date, 'yyyy-MM-dd'),
       transports: onlyFv ? longDistanceTypes : undefined,
       originEvaNumber,
     });
+
+    if (category) {
+      const categoryFiltered = result.data.journeys.filter(
+        (j) => j.transport.category.toLowerCase() === category.toLowerCase(),
+      );
+      if (categoryFiltered.length) {
+        result.data.journeys = categoryFiltered;
+      }
+    }
 
     if (isWithin20Hours) {
       void journeyFindCache.set(cacheKey, result.data.journeys);
