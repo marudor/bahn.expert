@@ -45,6 +45,7 @@ interface ArDp {
   platform?: string;
   status?: string;
 }
+
 type ParsedDp = ArDp & {
   departureTs?: string;
   scheduledDepartureTs?: string;
@@ -60,10 +61,13 @@ type ParsedAr = ArDp & {
 };
 
 // 6 Hours in seconds
-const timetableCache = new Cache<string, Record<string, any>>(
-  CacheDatabase.TimetableParsedPlan,
-  6 * 60 * 60,
-);
+const timetableCache = new Cache<
+  string,
+  {
+    timetable: Record<string, any>;
+    wingIds: Record<string, string>;
+  }
+>(CacheDatabase.TimetableParsedWithWings, 6 * 60 * 60);
 
 interface Route {
   name: string;
@@ -157,7 +161,7 @@ export class Timetable {
   realtimeIds: string[] = [];
   segments: Date[];
   currentStopPlaceName: string;
-  wingIds: Map<string, string> = new Map();
+  wingIds: Record<string, string> = {};
   currentDate: Date;
   maxDate: Date;
   minDate: Date;
@@ -292,7 +296,7 @@ export class Timetable {
     const lookbehind = [] as any[];
 
     const computePromises = uniqBy(timetables, 'rawId').map(async (a: any) => {
-      const referenceWingId = this.wingIds.get(a.mediumId);
+      const referenceWingId = this.wingIds[a.mediumId];
 
       if (referenceWingId) {
         const referenceTrain = this.timetable[referenceWingId];
@@ -457,7 +461,7 @@ export class Timetable {
     const ref = sNode.get<Element>('ref/tl');
 
     if (!this.timetable[rawId] && tl) {
-      const timetable = this.parseTimetableS(sNode);
+      const timetable = this.parseTimetableS(sNode, this.wingIds);
 
       if (timetable) {
         timetable.additional = !timetable.substitute;
@@ -633,6 +637,7 @@ export class Timetable {
     node: null | xmljs.Element,
     displayAsWing: boolean,
     referenceTrainRawId: string,
+    wingIds: Record<string, string>,
   ) {
     const wingAttr = getAttr(node, 'wings');
 
@@ -642,12 +647,14 @@ export class Timetable {
     const mediumWings = rawWings.map<string>((w) => parseRawId(w).mediumId);
 
     if (displayAsWing) {
-      for (const i of mediumWings) this.wingIds.set(i, referenceTrainRawId);
+      for (const i of mediumWings) {
+        wingIds[i] = referenceTrainRawId;
+      }
     }
 
     return mediumWings;
   }
-  parseTimetableS(sNode: xmljs.Element) {
+  parseTimetableS(sNode: xmljs.Element, wingIds: Record<string, string>) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) {
@@ -686,7 +693,7 @@ export class Timetable {
       arrival: scheduledArrival && {
         scheduledTime: scheduledArrival,
         time: scheduledArrival,
-        wingIds: this.getWings(ar, false, rawId),
+        wingIds: this.getWings(ar, false, rawId, wingIds),
         platform: getAttr(ar, 'pp'),
         scheduledPlatform: getAttr(ar, 'pp'),
         hidden: Boolean(getAttr(ar, 'hi')),
@@ -695,7 +702,7 @@ export class Timetable {
       departure: scheduledDeparture && {
         scheduledTime: scheduledDeparture,
         time: scheduledDeparture,
-        wingIds: this.getWings(dp, true, rawId),
+        wingIds: this.getWings(dp, true, rawId, wingIds),
         platform: getAttr(dp, 'pp'),
         scheduledPlatform: getAttr(dp, 'pp'),
         hidden: Boolean(getAttr(dp, 'hi')),
@@ -723,7 +730,7 @@ export class Timetable {
       additional: undefined as undefined | boolean,
     };
   }
-  getTimetable(rawXml: string) {
+  getTimetable(rawXml: string, wingIds: Record<string, string>) {
     const timetableXml = xmljs.parseXml(rawXml);
 
     const sArr = timetableXml.find<Element>('/timetable/s');
@@ -732,7 +739,7 @@ export class Timetable {
 
     if (sArr) {
       for (const s of sArr) {
-        const departure = this.parseTimetableS(s);
+        const departure = this.parseTimetableS(s, wingIds);
 
         if (!departure) continue;
         timetables[departure.rawId] = departure;
@@ -749,21 +756,34 @@ export class Timetable {
         if (cached) {
           this.timetable = {
             ...this.timetable,
-            ...cached,
+            ...cached.timetable,
+          };
+          this.wingIds = {
+            ...this.wingIds,
+            ...cached.wingIds,
           };
           return;
         }
 
         try {
           const rawXml = await irisGetRequest<string>(key);
-          const newDepartures = this.getTimetable(rawXml);
+          const newWingIDs: Record<string, string> = {};
+          const newDepartures = this.getTimetable(rawXml, newWingIDs);
 
           this.timetable = {
             ...this.timetable,
             ...newDepartures,
           };
 
-          void timetableCache.set(key, newDepartures);
+          this.wingIds = {
+            ...this.wingIds,
+            ...newWingIDs,
+          };
+
+          void timetableCache.set(key, {
+            timetable: newDepartures,
+            wingIds: newWingIDs,
+          });
         } catch (error) {
           this.errors.push(error);
         }
