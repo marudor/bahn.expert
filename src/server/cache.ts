@@ -1,3 +1,4 @@
+import { checkSecrets } from 'server/checkSecret';
 import { logger } from 'server/logger';
 import LRUCache from 'lru-cache';
 import Redis from 'ioredis';
@@ -18,6 +19,8 @@ function dateDeserialze(_key: string, value: any): any {
   }
   return value;
 }
+
+checkSecrets(process.env.REDIS_HOST);
 
 const redisSettings = process.env.REDIS_HOST
   ? {

@@ -1,3 +1,4 @@
+import { checkSecrets } from 'server/checkSecret';
 import { isValid, parse } from 'date-fns';
 import { upstreamApiCountInterceptor } from 'server/admin';
 import { zonedTimeToUtc } from 'date-fns-tz';
@@ -7,8 +8,7 @@ import type { Element } from 'libxmljs2';
 import type { Stop } from 'types/iris';
 
 const noncdRequest = Axios.create({
-  baseURL:
-    process.env.IRIS_URL || 'https://iris.noncd.db.de/iris-tts/timetable',
+  baseURL: process.env.IRIS_URL,
   headers: {
     'user-agent': '',
   },
@@ -32,6 +32,8 @@ if (process.env.IRIS_FALLBACK_URL) {
 noncdRequest.interceptors.request.use(
   upstreamApiCountInterceptor.bind(undefined, 'iris-noncd'),
 );
+
+checkSecrets(process.env.IRIS_URL, process.env.IRIS_FALLBACK_URL);
 
 export async function irisGetRequest<T>(url: string): Promise<T> {
   try {
