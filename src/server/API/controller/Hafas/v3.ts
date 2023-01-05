@@ -38,8 +38,7 @@ export class HafasControllerV3 extends Controller {
     @Body() body: TripSearchOptionsV3,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<RoutingResult> {
-    // @ts-expect-error untyped
-    return TripSearch(body, profile, req.query.raw);
+    return TripSearch(body, profile, Boolean(req.query.raw));
   }
 
   @Get('/additionalInformation/{trainName}/{journeyId}')
