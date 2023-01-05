@@ -17,14 +17,12 @@ export function mockSearch(
   for (let i = 0; i <= count; i += 1) {
     const hour = startTime + i;
 
-    Nock('https://iris.noncd.db.de')
-      .get(`/iris-tts/timetable/plan/test/190317/${hour}`)
+    Nock('http://iris.dummy')
+      .get(`/plan/test/190317/${hour}`)
       .reply(200, results[i] || emptyTimetable);
   }
 }
 
 export function mockFchg(result: string = emptyTimetable): void {
-  Nock('https://iris.noncd.db.de')
-    .get('/iris-tts/timetable/fchg/test')
-    .reply(200, result);
+  Nock('http://iris.dummy').get('/fchg/test').reply(200, result);
 }

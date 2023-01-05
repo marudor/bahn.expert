@@ -8,7 +8,7 @@ import type { Element } from 'libxmljs2';
 import type { Stop } from 'types/iris';
 
 const noncdRequest = Axios.create({
-  baseURL: process.env.IRIS_URL,
+  baseURL: process.env.IRIS_URL || 'http://iris.dummy',
   headers: {
     'user-agent': '',
   },
