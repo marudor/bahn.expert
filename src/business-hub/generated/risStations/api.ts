@@ -3,9 +3,9 @@
 /* eslint-disable */
 /**
  * RIS::Stations
- * ## Info  * member of the **RIS-API** family  ## Capabilities  ### Stations  Information on stations [Bahnhöfe] from DB Station & Service and DB Regio like:  * name, address, category [Bahnhofskategorie], owner [Betreiber / Verwaltung], country, timezone and geo coordinate * region information the station belongs [Regionalbereich] * available local services [bahnhofsnahe Dienstleistungen] at station  ### Stop Places  Information on a huge amount of stop-places [Haltestellen] coming from different source like EFZ [Europäisches Fahrplanzentrum] and DB Station & Service. The service offers therefore all stop-place that are part or that were part of the official sales time table for germany including foreign stop-places for transports driving into germany / leaving germany and connecting journeys in foreign countries that are part of the rail team alliance. ÖPNV stop-places are returned as well.  Brief information for particular stop-place like  * language dependent short, long, speech and symbol names from different sources [EFZ or BHW] * metropolis information [Metropole] * parent station [Bahnhof] * geo coordinates, country and timezone * transport types [Verkehrsmittel / Produktart] that depart / arrive * foreign key mappings [Fremdschlüssel] like EVA, RL100 / DS100, EPA, IBNR, DHID / IFOPT, STADA, EBHF, PLC and UIC * validity ranges [Gültigkeitsbereiche]  Different query options for stop-places like  * by name query with fuzzy-search [fehlertolerante Suche] and order by relevance [gewichtete Suche] and optional grouping by station [Bahnhof] in case stop-places belong to a station * by geo-coordinate and radius ordered by distance * by foreign key  Multiple groups a stop-place may belong to like  * Station [selber Bahnhof] * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]s * Metropolitan Area [Stadtgebiet]  ### Platforms  General information on platforms [Gleise, Bussteige, Plattformen etc.] for a particular stop-place like:  * name, start and end in meters, linked platforms [selber Bahnsteig], parent platform [für Teilgleise]s * sectors with name, start and end in meters, cube position [Würfelposition] and information ob cube signage [Beschilderung] * accessibility information [Barrierefreier Zugang] like audible signals, automatic doors, stair markings and a lot more  ### Connecting-Times  Connecting-times [Umsteigezeiten / Anschlusszeiten] for a stop-place [Haltestelle] and all members of stop-place group [Umsteigebereich] including foreign stop-places [Auslandshalte gemäß Railteam-Flag etc.]:  * for different kind of stop-place groups     * Station [selber Bahnhof]     * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]     * All [alle Umsteigebereiche] supported * and different personae, if available     * Occasional Traveller [Gelegenheitsreisender]     * Frequent Traveller [Pendler]     * Handicapped Traveller [Mobilitätseingeschränkter Reisender] * from various sources     * RIL420 [Konzernrichtlinie]     * EFZ [Europäisches Fahrplanzentrum inkl. ÖPNV & Auslandshalte]     * IndoorRouting [Indoor Routing RIS-Maps] available  ### Local Services  Information about Travel-Center, Triple-S-Center [3S Zentrale],Railway Mission[Bahnhofsmission] and many more available by position or station.  ### Station Equipments  Detailed information about equipment at the train station such as:  * Locker with payment types, size, fee and many more. * **stay tuned*  ## Limitations  * *[backlog]* support active and inactive versions of stop-places/stations (differing date ranges) * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes * *[backlog]* include Station & Service Bahnhofswissen with it\'s fully functional API starting from ~Q4 2021
+ * ## Info  * member of the **RIS-API** family  ## Capabilities  ### Stations  Information on stations [Bahnhöfe] from DB Station & Service and DB Regio like:  * name, address, category [Bahnhofskategorie], owner [Betreiber / Verwaltung], country, timezone and geo coordinate * region information the station belongs [Regionalbereich] * available local services [bahnhofsnahe Dienstleistungen] at station  ### Stop Places  Information on a huge amount of stop-places [Haltestellen] coming from different source like EFZ [Europäisches Fahrplanzentrum] and DB Station & Service. The service offers therefore all stop-place that are part or that were part of the official sales time table for germany including foreign stop-places for transports driving into germany / leaving germany and connecting journeys in foreign countries that are part of the rail team alliance. ÖPNV stop-places are returned as well.  Brief information for particular stop-place like  * language dependent short, long, speech and symbol names from different sources [EFZ or BHW] * metropolis information [Metropole] * parent station [Bahnhof] * geo coordinates, country and timezone * transport types [Verkehrsmittel / Produktart] that depart / arrive * foreign key mappings [Fremdschlüssel] like EVA, RL100 / DS100, EPA, IBNR, DHID / IFOPT, STADA, EBHF, PLC and UIC * validity ranges [Gültigkeitsbereiche]  Different query options for stop-places like  * by name query with fuzzy-search [fehlertolerante Suche] and order by relevance [gewichtete Suche] and optional grouping by station [Bahnhof] in case stop-places belong to a station * by geo-coordinate and radius ordered by distance * by foreign key  Multiple groups a stop-place may belong to like  * Station [selber Bahnhof] * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]s * Metropolitan Area [Stadtgebiet]  ### Platforms  General information on platforms [Gleise, Bussteige, Plattformen etc.] for a particular stop-place like:  * name, start and end in meters, linked platforms [selber Bahnsteig], parent platform [für Teilgleise]s * sectors with name, start and end in meters, cube position [Würfelposition] and information ob cube signage [Beschilderung] * accessibility information [Barrierefreier Zugang] like audible signals, automatic doors, stair markings and a lot more * information on operational platforms [Betriebsgleise], optics [Optiken], reference points [Referenzpunkte] and orientations [Orientierung gemäß Nullpunkt]  ### Connecting-Times  Connecting-times [Umsteigezeiten / Anschlusszeiten] for a stop-place [Haltestelle] and all members of stop-place group [Umsteigebereich] including foreign stop-places [Auslandshalte gemäß Railteam-Flag etc.]:  * for different kind of stop-place groups     * Station [selber Bahnhof]     * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]     * All [alle Umsteigebereiche] supported * and different personae, if available     * Occasional Traveller [Gelegenheitsreisender]     * Frequent Traveller [Pendler]     * Handicapped Traveller [Mobilitätseingeschränkter Reisender] * from various sources     * RIL420 [Konzernrichtlinie]     * EFZ [Europäisches Fahrplanzentrum inkl. ÖPNV & Auslandshalte]     * IndoorRouting [Indoor Routing RIS-Maps] available  ### Local Services  Information about Travel-Center, Triple-S-Center [3S Zentrale],Railway Mission[Bahnhofsmission] and many more available by position or station.  ### Station Equipments  Detailed information about equipment at the train station such as:  * Locker with payment types, size, fee and many more. * **stay tuned*  ## Limitations  * *[backlog]* support active and inactive versions of stop-places/stations (differing date ranges) * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes * *[backlog]* include Station & Service Bahnhofswissen with it\'s fully functional API starting from ~Q4 2021
  *
- * The version of the OpenAPI document: 1.8.0
+ * The version of the OpenAPI document: 1.10.0
  * Contact: doServices.Titan.Support@deutschebahn.com
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -138,6 +138,12 @@ export type AccessibilityStatus =
  * @interface AddressWithWeb
  */
 export interface AddressWithWeb {
+  /**
+   * Additional information [Addresszusatz] for this address, like for instance \'Hinterm Haus links\'.
+   * @type {string}
+   * @memberof AddressWithWeb
+   */
+  additionalInformation?: string;
   /**
    * City of address the position should be retrieved for.
    * @type {string}
@@ -612,7 +618,7 @@ export interface LocalService {
    */
   stationID: string;
   /**
-   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
    * @type {string}
    * @memberof LocalService
    */
@@ -791,6 +797,43 @@ export interface LockerFee {
   feePeriod: string;
 }
 /**
+ * Detailed operational [Betrieb] information.
+ * @export
+ * @interface Operational
+ */
+export interface Operational {
+  /**
+   * Total length of platform [Baulicher Bereich].
+   * @type {number}
+   * @memberof Operational
+   */
+  length?: number;
+  /**
+   * Names of the network platforms [Netzgleis] that belong to the platform.
+   * @type {Array<string>}
+   * @memberof Operational
+   */
+  networkPlatforms?: Array<string>;
+  /**
+   * Names of the operational units [Optiken] that belong to the platform.
+   * @type {Array<string>}
+   * @memberof Operational
+   */
+  optics?: Array<string>;
+  /**
+   * Orientation of the platform in degrees (north=0, east=90, ...), seen from the origin of the local coordinates.
+   * @type {number}
+   * @memberof Operational
+   */
+  orientation?: number;
+  /**
+   * Positions of the reference points that determine the position of a stopping train at the platform.
+   * @type {Array<ReferencePoint>}
+   * @memberof Operational
+   */
+  referencePoints?: Array<ReferencePoint>;
+}
+/**
  * Specifies different personae. - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
  * @export
  * @enum {string}
@@ -887,6 +930,12 @@ export interface Platform {
    */
   name: string;
   /**
+   *
+   * @type {Operational}
+   * @memberof Platform
+   */
+  operational?: Operational;
+  /**
    * Name of parent platform in case this is a sub platform [Teilgleis].
    * @type {string}
    * @memberof Platform
@@ -918,6 +967,63 @@ export interface Platforms {
    */
   platforms: Array<Platform>;
 }
+/**
+ * Reference point that indicates where a vehicle [Fahrzeug] stops at a platform [Gleis, Bahnsteig, Plattform].
+ * @export
+ * @interface ReferencePoint
+ */
+export interface ReferencePoint {
+  /**
+   * Length up to the reference point is to be used by a stopping formation.
+   * @type {number}
+   * @memberof ReferencePoint
+   */
+  maxLength?: number;
+  /**
+   * Name of the reference point.
+   * @type {string}
+   * @memberof ReferencePoint
+   */
+  name: string;
+  /**
+   * Position of the reference point in meter in local coordinates.
+   * @type {number}
+   * @memberof ReferencePoint
+   */
+  position: number;
+  /**
+   * Determines the direction the reference point is to be used. If true, the formation moves from origin to positive values in local coordinates.
+   * @type {boolean}
+   * @memberof ReferencePoint
+   */
+  readableFromOrigin: boolean;
+  /**
+   *
+   * @type {ReferencePointType}
+   * @memberof ReferencePoint
+   */
+  referencePointType: ReferencePointType;
+  /**
+   * Unique ID of reference point.
+   * @type {string}
+   * @memberof ReferencePoint
+   */
+  uuid: string;
+}
+/**
+ * Type of a reference point. - STOP_SIGNAL (Haltesignal) - STOP_BOARD (Haltetafel)
+ * @export
+ * @enum {string}
+ */
+
+export const ReferencePointType = {
+  Signal: 'STOP_SIGNAL',
+  Board: 'STOP_BOARD',
+} as const;
+
+export type ReferencePointType =
+  typeof ReferencePointType[keyof typeof ReferencePointType];
+
 /**
  * Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.
  * @export
@@ -968,7 +1074,7 @@ export interface Station {
    */
   address: AddressWithWeb;
   /**
-   * Deprecated: Use for example \'/local-services/by-key?keyType=STATION_ID&key=1866\' to get all available local-services for Frankfurt Hbf. All local services [Bahnhofsnahe Dienstleistungen] that are available at the station. - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * Deprecated: Use for example \'/local-services/by-key?keyType=STATION_ID&key=1866\' to get all available local-services for Frankfurt Hbf. All local services [Bahnhofsnahe Dienstleistungen] that are available at the station. - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
    * @type {Array<string>}
    * @memberof Station
    * @deprecated
@@ -987,17 +1093,17 @@ export interface Station {
    */
   countryCode: string;
   /**
-   * The district [Landkreis] the stop place belongs to.
-   * @type {string}
-   * @memberof Station
-   */
-  district?: string;
-  /**
    * Language dependent names for metropolis [Metropole].
    * @type {{ [key: string]: string; }}
    * @memberof Station
    */
   metropolis?: { [key: string]: string };
+  /**
+   * The municipality key [Amtlicher Gemeindeschlüssel (AGS)] the station belongs to. Only available for germany and may be empty.
+   * @type {string}
+   * @memberof Station
+   */
+  municipalityKey?: string;
   /**
    * Language dependent names for a station, may contain different station names for a specific language depending on names filter.
    * @type {{ [key: string]: StationName; }}
@@ -1029,7 +1135,7 @@ export interface Station {
    */
   roofing?: StationRoofingType;
   /**
-   * The state [Bundesland] the stop place belongs to.
+   * The state code [Bundeslandkürzel] the station belongs to.
    * @type {string}
    * @memberof Station
    */
@@ -1225,7 +1331,7 @@ export interface StopPlace {
    */
   countryCode: string;
   /**
-   * Eva number of stop place.
+   * Eva number of stop-place.
    * @type {string}
    * @memberof StopPlace
    */
@@ -1236,6 +1342,12 @@ export interface StopPlace {
    * @memberof StopPlace
    */
   metropolis?: { [key: string]: string };
+  /**
+   * The municipality key [Amtlicher Gemeindeschlüssel (AGS)] the stop place belongs to. Only available for germany and may be empty.
+   * @type {string}
+   * @memberof StopPlace
+   */
+  municipalityKey?: string;
   /**
    * Language dependent names for stop place, may contain different stop place names for a specific language depending on names filter.
    * @type {{ [key: string]: StopPlaceName; }}
@@ -1272,18 +1384,6 @@ export interface StopPlace {
    * @memberof StopPlace
    */
   transportAssociations?: Array<string>;
-  /**
-   * Date the stop place is valid from.
-   * @type {string}
-   * @memberof StopPlace
-   */
-  validFrom?: string;
-  /**
-   * Date the stop place is valid to.
-   * @type {string}
-   * @memberof StopPlace
-   */
-  validTo?: string;
 }
 /**
  * Group for stop places [Haltestellen] with all group members.
@@ -2181,7 +2281,7 @@ export const LocalServicesApiAxiosParamCreator = function (
     },
     /**
      * Returns all local-services [Bahnhofsnahe Dienstleistungen].
-     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
      * @param {string} [before] Cursor for retrieving the previous page in order to navigate through result list
      * @param {string} [after] Cursor for retrieving the next page in order to navigate through result list
      * @param {number} [limit] Limit total amount of results
@@ -2327,7 +2427,7 @@ export const LocalServicesApiAxiosParamCreator = function (
     },
     /**
      * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
-     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
      * @param {number} latitude geo reference position latitude
      * @param {number} longitude geo reference position longitude
      * @param {number} [radius] radius in meters around geo position
@@ -2449,7 +2549,7 @@ export const LocalServicesApiFp = function (configuration?: Configuration) {
     },
     /**
      * Returns all local-services [Bahnhofsnahe Dienstleistungen].
-     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
      * @param {string} [before] Cursor for retrieving the previous page in order to navigate through result list
      * @param {string} [after] Cursor for retrieving the next page in order to navigate through result list
      * @param {number} [limit] Limit total amount of results
@@ -2512,7 +2612,7 @@ export const LocalServicesApiFp = function (configuration?: Configuration) {
     },
     /**
      * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
-     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
      * @param {number} latitude geo reference position latitude
      * @param {number} longitude geo reference position longitude
      * @param {number} [radius] radius in meters around geo position
@@ -2576,7 +2676,7 @@ export const LocalServicesApiFactory = function (
     },
     /**
      * Returns all local-services [Bahnhofsnahe Dienstleistungen].
-     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
      * @param {string} [before] Cursor for retrieving the previous page in order to navigate through result list
      * @param {string} [after] Cursor for retrieving the next page in order to navigate through result list
      * @param {number} [limit] Limit total amount of results
@@ -2612,7 +2712,7 @@ export const LocalServicesApiFactory = function (
     },
     /**
      * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
-     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
      * @param {number} latitude geo reference position latitude
      * @param {number} longitude geo reference position longitude
      * @param {number} [radius] radius in meters around geo position
@@ -2663,7 +2763,7 @@ export interface LocalServicesApiGetLocalServiceRequest {
  */
 export interface LocalServicesApiGetLocalServicesRequest {
   /**
-   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
    * @type {Array<string>}
    * @memberof LocalServicesApiGetLocalServices
    */
@@ -2719,7 +2819,7 @@ export interface LocalServicesApiGetLocalServicesByKeyRequest {
  */
 export interface LocalServicesApiGetLocalServicesByPositionRequest {
   /**
-   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundstelle] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
    * @type {Array<string>}
    * @memberof LocalServicesApiGetLocalServicesByPosition
    */
@@ -2857,6 +2957,7 @@ export const PlatformsApiAxiosParamCreator = function (
      * @param {string} platformName name of desired platform
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2865,6 +2966,7 @@ export const PlatformsApiAxiosParamCreator = function (
       platformName: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'evaNumber' is not null or undefined
@@ -2914,6 +3016,10 @@ export const PlatformsApiAxiosParamCreator = function (
         localVarQueryParameter['includeAccessibility'] = includeAccessibility;
       }
 
+      if (includeOperational !== undefined) {
+        localVarQueryParameter['includeOperational'] = includeOperational;
+      }
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2933,6 +3039,7 @@ export const PlatformsApiAxiosParamCreator = function (
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2941,6 +3048,7 @@ export const PlatformsApiAxiosParamCreator = function (
       evaNumber: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -2987,6 +3095,10 @@ export const PlatformsApiAxiosParamCreator = function (
         localVarQueryParameter['includeAccessibility'] = includeAccessibility;
       }
 
+      if (includeOperational !== undefined) {
+        localVarQueryParameter['includeOperational'] = includeOperational;
+      }
+
       if (includeSubPlatforms !== undefined) {
         localVarQueryParameter['includeSubPlatforms'] = includeSubPlatforms;
       }
@@ -3011,6 +3123,7 @@ export const PlatformsApiAxiosParamCreator = function (
      * @param {string} key key to return platforms for
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3020,6 +3133,7 @@ export const PlatformsApiAxiosParamCreator = function (
       key: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -3073,6 +3187,10 @@ export const PlatformsApiAxiosParamCreator = function (
         localVarQueryParameter['includeAccessibility'] = includeAccessibility;
       }
 
+      if (includeOperational !== undefined) {
+        localVarQueryParameter['includeOperational'] = includeOperational;
+      }
+
       if (includeSubPlatforms !== undefined) {
         localVarQueryParameter['includeSubPlatforms'] = includeSubPlatforms;
       }
@@ -3108,6 +3226,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
      * @param {string} platformName name of desired platform
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3116,6 +3235,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
       platformName: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Platform>
@@ -3125,6 +3245,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
         platformName,
         includeSectors,
         includeAccessibility,
+        includeOperational,
         options,
       );
       return createRequestFunction(
@@ -3139,6 +3260,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3147,6 +3269,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
       evaNumber: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -3156,6 +3279,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
         evaNumber,
         includeSectors,
         includeAccessibility,
+        includeOperational,
         includeSubPlatforms,
         options,
       );
@@ -3172,6 +3296,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
      * @param {string} key key to return platforms for
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3181,6 +3306,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
       key: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -3192,6 +3318,7 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
           key,
           includeSectors,
           includeAccessibility,
+          includeOperational,
           includeSubPlatforms,
           options,
         );
@@ -3222,6 +3349,7 @@ export const PlatformsApiFactory = function (
      * @param {string} platformName name of desired platform
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3230,6 +3358,7 @@ export const PlatformsApiFactory = function (
       platformName: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       options?: any,
     ): AxiosPromise<Platform> {
       return localVarFp
@@ -3238,6 +3367,7 @@ export const PlatformsApiFactory = function (
           platformName,
           includeSectors,
           includeAccessibility,
+          includeOperational,
           options,
         )
         .then((request) => request(axios, basePath));
@@ -3247,6 +3377,7 @@ export const PlatformsApiFactory = function (
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3255,6 +3386,7 @@ export const PlatformsApiFactory = function (
       evaNumber: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       options?: any,
     ): AxiosPromise<Platforms> {
@@ -3263,6 +3395,7 @@ export const PlatformsApiFactory = function (
           evaNumber,
           includeSectors,
           includeAccessibility,
+          includeOperational,
           includeSubPlatforms,
           options,
         )
@@ -3274,6 +3407,7 @@ export const PlatformsApiFactory = function (
      * @param {string} key key to return platforms for
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
      * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3283,6 +3417,7 @@ export const PlatformsApiFactory = function (
       key: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
+      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       options?: any,
     ): AxiosPromise<Platforms> {
@@ -3292,6 +3427,7 @@ export const PlatformsApiFactory = function (
           key,
           includeSectors,
           includeAccessibility,
+          includeOperational,
           includeSubPlatforms,
           options,
         )
@@ -3333,6 +3469,13 @@ export interface PlatformsApiGetPlatformRequest {
    * @memberof PlatformsApiGetPlatform
    */
   readonly includeAccessibility?: boolean;
+
+  /**
+   * should operational information [Betriebsinformationen] be included
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatform
+   */
+  readonly includeOperational?: boolean;
 }
 
 /**
@@ -3361,6 +3504,13 @@ export interface PlatformsApiGetPlatformsRequest {
    * @memberof PlatformsApiGetPlatforms
    */
   readonly includeAccessibility?: boolean;
+
+  /**
+   * should operational information [Betriebsinformationen] be included
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatforms
+   */
+  readonly includeOperational?: boolean;
 
   /**
    * should sub platforms [Teilgleise] be included
@@ -3405,6 +3555,13 @@ export interface PlatformsApiGetPlatformsByKeyRequest {
   readonly includeAccessibility?: boolean;
 
   /**
+   * should operational information [Betriebsinformationen] be included
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatformsByKey
+   */
+  readonly includeOperational?: boolean;
+
+  /**
    * should sub platforms [Teilgleise] be included
    * @type {boolean}
    * @memberof PlatformsApiGetPlatformsByKey
@@ -3436,6 +3593,7 @@ export class PlatformsApi extends BaseAPI {
         requestParameters.platformName,
         requestParameters.includeSectors,
         requestParameters.includeAccessibility,
+        requestParameters.includeOperational,
         options,
       )
       .then((request) => request(this.axios, this.basePath));
@@ -3457,6 +3615,7 @@ export class PlatformsApi extends BaseAPI {
         requestParameters.evaNumber,
         requestParameters.includeSectors,
         requestParameters.includeAccessibility,
+        requestParameters.includeOperational,
         requestParameters.includeSubPlatforms,
         options,
       )
@@ -3480,6 +3639,7 @@ export class PlatformsApi extends BaseAPI {
         requestParameters.key,
         requestParameters.includeSectors,
         requestParameters.includeAccessibility,
+        requestParameters.includeOperational,
         requestParameters.includeSubPlatforms,
         options,
       )

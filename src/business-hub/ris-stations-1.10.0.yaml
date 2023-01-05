@@ -44,6 +44,9 @@ components:
     AddressWithWeb:
       description: Address information with www info.
       properties:
+        additionalInformation:
+          description: Additional information [Addresszusatz] for this address, like for instance 'Hinterm Haus links'.
+          type: string
         city:
           description: City of address the position should be retrieved for.
           type: string
@@ -357,7 +360,7 @@ components:
             - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
             - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
             - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
-            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - LOST_PROPERTY_OFFICE [Fundstelle]
             - RAILWAY_MISSION [Bahnhofsmission]
             - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
             - LOCKER [Schließfächer]
@@ -518,6 +521,35 @@ components:
         - fee
         - feePeriod
       type: object
+    Operational:
+      description: Detailed operational [Betrieb] information.
+      properties:
+        length:
+          description: Total length of platform [Baulicher Bereich].
+          format: double
+          type: number
+        networkPlatforms:
+          description: Names of the network platforms [Netzgleis] that belong to the platform.
+          items:
+            description: Names of the network platforms [Netzgleis] that belong to the platform.
+            type: string
+          type: array
+        optics:
+          description: Names of the operational units [Optiken] that belong to the platform.
+          items:
+            description: Names of the operational units [Optiken] that belong to the platform.
+            type: string
+          type: array
+        orientation:
+          description: Orientation of the platform in degrees (north=0, east=90, ...), seen from the origin of the local coordinates.
+          format: double
+          type: number
+        referencePoints:
+          description: Positions of the reference points that determine the position of a stopping train at the platform.
+          items:
+            $ref: '#/components/schemas/ReferencePoint'
+          type: array
+      type: object
     PersonaType:
       description: |-
         Specifies different personae.
@@ -576,6 +608,8 @@ components:
         name:
           description: Name of the platform (12, 1a, Nord, Süd etc.).
           type: string
+        operational:
+          $ref: '#/components/schemas/Operational'
         parentPlatform:
           description: Name of parent platform in case this is a sub platform [Teilgleis].
           type: string
@@ -602,6 +636,44 @@ components:
       required:
         - platforms
       type: object
+    ReferencePoint:
+      description: Reference point that indicates where a vehicle [Fahrzeug] stops at a platform [Gleis, Bahnsteig, Plattform].
+      properties:
+        maxLength:
+          description: Length up to the reference point is to be used by a stopping formation.
+          format: double
+          type: number
+        name:
+          description: Name of the reference point.
+          type: string
+        position:
+          description: Position of the reference point in meter in local coordinates.
+          format: double
+          type: number
+        readableFromOrigin:
+          description: Determines the direction the reference point is to be used. If true, the formation moves from origin to positive values in local coordinates.
+          type: boolean
+        referencePointType:
+          $ref: '#/components/schemas/ReferencePointType'
+        uuid:
+          description: Unique ID of reference point.
+          type: string
+      required:
+        - name
+        - position
+        - readableFromOrigin
+        - referencePointType
+        - uuid
+      type: object
+    ReferencePointType:
+      description: |-
+        Type of a reference point.
+        - STOP_SIGNAL (Haltesignal)
+        - STOP_BOARD (Haltetafel)
+      enum:
+        - STOP_SIGNAL
+        - STOP_BOARD
+      type: string
     Sector:
       description: Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.
       properties:
@@ -643,7 +715,7 @@ components:
             - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
             - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
             - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
-            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - LOST_PROPERTY_OFFICE [Fundstelle]
             - RAILWAY_MISSION [Bahnhofsmission]
             - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
             - LOCKER [Schließfächer]
@@ -667,7 +739,7 @@ components:
               - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
               - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
               - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
-              - LOST_PROPERTY_OFFICE [Fundbüro]
+              - LOST_PROPERTY_OFFICE [Fundstelle]
               - RAILWAY_MISSION [Bahnhofsmission]
               - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
               - LOCKER [Schließfächer]
@@ -691,15 +763,17 @@ components:
         countryCode:
           description: Country [Staat / Land] the station belongs to as ISO 3166-1 alpha-2 code [germany = 'DE' for instance].
           type: string
-        district:
-          description: The district [Landkreis] the stop place belongs to.
-          type: string
         metropolis:
           additionalProperties:
             description: Language dependent names for metropolis [Metropole].
             type: string
           description: Language dependent names for metropolis [Metropole].
           type: object
+        municipalityKey:
+          description: The municipality key [Amtlicher Gemeindeschlüssel (AGS)] the station belongs to. Only available for germany and may be empty.
+          externalDocs:
+            url: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html
+          type: string
         names:
           additionalProperties:
             $ref: '#/components/schemas/StationName'
@@ -719,7 +793,9 @@ components:
         roofing:
           $ref: '#/components/schemas/StationRoofingType'
         state:
-          description: The state [Bundesland] the stop place belongs to.
+          description: The state code [Bundeslandkürzel] the station belongs to.
+          externalDocs:
+            url: https://www.datenportal.bmbf.de/portal/de/G122.html
           type: string
         stationCategory:
           $ref: '#/components/schemas/StationCategory'
@@ -862,7 +938,7 @@ components:
           description: Country [Staat / Land] the stop place belongs to as ISO 3166-1 alpha-2 code [germany = 'DE' for instance].
           type: string
         evaNumber:
-          description: Eva number of stop place.
+          description: Eva number of stop-place.
           type: string
         metropolis:
           additionalProperties:
@@ -870,6 +946,11 @@ components:
             type: string
           description: Language dependent name for metropolis [Metropole].
           type: object
+        municipalityKey:
+          description: The municipality key [Amtlicher Gemeindeschlüssel (AGS)] the stop place belongs to. Only available for germany and may be empty.
+          externalDocs:
+            url: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html
+          type: string
         names:
           additionalProperties:
             $ref: '#/components/schemas/StopPlaceName'
@@ -894,14 +975,6 @@ components:
             description: Available transport associations [Verkehrsverbünde] at stop place.
             type: string
           type: array
-        validFrom:
-          description: Date the stop place is valid from.
-          format: date-time
-          type: string
-        validTo:
-          description: Date the stop place is valid to.
-          format: date-time
-          type: string
       required:
         - availableTransports
         - countryCode
@@ -1215,6 +1288,7 @@ info:
     * name, start and end in meters, linked platforms [selber Bahnsteig], parent platform [für Teilgleise]s
     * sectors with name, start and end in meters, cube position [Würfelposition] and information ob cube signage [Beschilderung]
     * accessibility information [Barrierefreier Zugang] like audible signals, automatic doors, stair markings and a lot more
+    * information on operational platforms [Betriebsgleise], optics [Optiken], reference points [Referenzpunkte] and orientations [Orientierung gemäß Nullpunkt]
 
     ### Connecting-Times
 
@@ -1250,7 +1324,7 @@ info:
     * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes
     * *[backlog]* include Station & Service Bahnhofswissen with it's fully functional API starting from ~Q4 2021
   title: RIS::Stations
-  version: 1.8.0
+  version: 1.10.0
   x-ibm-name: ris-stations
   x-pathalias: ris-stations
 openapi: 3.0.1
@@ -1421,7 +1495,7 @@ paths:
             - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
             - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
             - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
-            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - LOST_PROPERTY_OFFICE [Fundstelle]
             - RAILWAY_MISSION [Bahnhofsmission]
             - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
             - LOCKER [Schließfächer]
@@ -1458,7 +1532,6 @@ paths:
           schema:
             default: 100
             format: int32
-            maximum: 100
             type: integer
       responses:
         '200':
@@ -1534,7 +1607,7 @@ paths:
             - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
             - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
             - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
-            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - LOST_PROPERTY_OFFICE [Fundstelle]
             - RAILWAY_MISSION [Bahnhofsmission]
             - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
             - LOCKER [Schließfächer]
@@ -1575,14 +1648,12 @@ paths:
           schema:
             default: 200
             format: int32
-            maximum: 1000
             type: integer
         - description: limit parameter in order to limit total amount of results, if omitted no truncation applies
           in: query
           name: limit
           schema:
             format: int32
-            maximum: 100
             type: integer
       responses:
         '200':
@@ -1673,6 +1744,12 @@ paths:
           schema:
             default: false
             type: boolean
+        - description: should operational information [Betriebsinformationen] be included
+          in: query
+          name: includeOperational
+          schema:
+            default: false
+            type: boolean
         - description: should sub platforms [Teilgleise] be included
           in: query
           name: includeSubPlatforms
@@ -1720,6 +1797,12 @@ paths:
         - description: should accessibility information [Barrierefreiheit] be included
           in: query
           name: includeAccessibility
+          schema:
+            default: false
+            type: boolean
+        - description: should operational information [Betriebsinformationen] be included
+          in: query
+          name: includeOperational
           schema:
             default: false
             type: boolean
@@ -1776,6 +1859,12 @@ paths:
         - description: should accessibility information [Barrierefreiheit] be included
           in: query
           name: includeAccessibility
+          schema:
+            default: false
+            type: boolean
+        - description: should operational information [Betriebsinformationen] be included
+          in: query
+          name: includeOperational
           schema:
             default: false
             type: boolean
@@ -1916,7 +2005,6 @@ paths:
           schema:
             default: 100
             format: int32
-            maximum: 100
             type: integer
       responses:
         '200':
@@ -2142,7 +2230,6 @@ paths:
           schema:
             default: 25
             format: int32
-            maximum: 100
             type: integer
       responses:
         '200':
@@ -2195,7 +2282,6 @@ paths:
           schema:
             default: 200
             format: int32
-            maximum: 1000
             type: integer
         - description: transport associations [Verkehrsverbünde] to limit search results for
           in: query
@@ -2238,7 +2324,6 @@ paths:
           name: limit
           schema:
             format: int32
-            maximum: 100
             type: integer
       responses:
         '200':
