@@ -119,7 +119,7 @@ const getDEBR = (
     case '5406':
       return {
         baureihe: '406',
-        identifier: '406.R',
+        identifier: tzn?.endsWith('4651') ? '406.R' : '406',
       };
     case '5407':
       return {
