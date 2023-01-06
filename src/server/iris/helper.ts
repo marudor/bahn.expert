@@ -40,7 +40,11 @@ export async function irisGetRequest<T>(url: string): Promise<T> {
     const result = (await noncdRequest.get<T>(url)).data;
     return result;
   } catch (error) {
-    if (fallbackRequest && Axios.isAxiosError(error)) {
+    if (
+      fallbackRequest &&
+      Axios.isAxiosError(error) &&
+      error.response?.status !== 404
+    ) {
       const fallbackResult = (await fallbackRequest.get<T>(url)).data;
       return fallbackResult;
     }

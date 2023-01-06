@@ -55,7 +55,7 @@ export const enum CacheDatabase {
 }
 
 const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
-const defaultTTL = Number.isNaN(parsedEnvTTL) ? 12 * 60 * 60 : parsedEnvTTL;
+const defaultTTL = Number.isNaN(parsedEnvTTL) ? 24 * 60 * 60 : parsedEnvTTL;
 
 const activeRedisCaches = new Set<Redis>();
 
