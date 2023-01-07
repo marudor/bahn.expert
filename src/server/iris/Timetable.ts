@@ -67,7 +67,7 @@ const timetableCache = new Cache<
     timetable: Record<string, any>;
     wingIds: Record<string, string>;
   }
->(CacheDatabase.TimetableParsedWithWings, 6 * 60 * 60);
+>(CacheDatabase.TimetableParsedWithWings, 24 * 60 * 60);
 
 interface Route {
   name: string;

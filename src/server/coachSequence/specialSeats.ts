@@ -135,6 +135,8 @@ export function getFamilySeats(
       return '11-28';
     case '407':
       return '11-28';
+    case '408':
+      return '61-78';
     case '411':
       return '11-18, 31-38';
     case '412.7':

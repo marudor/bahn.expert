@@ -17,7 +17,7 @@ export const nameMap: Record<AvailableIdentifier, string> = {
   '406': 'ICE 3 (BR406)',
   '406.R': 'ICE 3 (BR406 Redesign)',
   '407': 'ICE 3 Velaro (BR407)',
-  '408': 'ICE 3 Neo (BR408)',
+  '408': 'ICE 3neo (BR408)',
   '410.1': 'ICE S (BR410.1)',
   '411': 'ICE T (BR411)',
   '411.S1': 'ICE T (BR411 1. Serie)',
