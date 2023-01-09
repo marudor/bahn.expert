@@ -1,5 +1,6 @@
 import { info } from 'oebb';
 import { mapInformation } from 'server/coachSequence/OEBB/OEBBMapping';
+import { UpstremaApiRequestMetric } from 'server/admin';
 import type { CoachSequenceInformation } from 'types/coachSequence';
 
 export async function OEBBCoachSequence(
@@ -7,6 +8,9 @@ export async function OEBBCoachSequence(
   evaNumber: string,
   initialDeparture: Date,
 ): Promise<CoachSequenceInformation | undefined> {
+  UpstremaApiRequestMetric.inc({
+    api: 'coachSequence-newDB',
+  });
   const rawSequence = await info(
     Number.parseInt(trainNumber),
     evaNumber,

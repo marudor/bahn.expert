@@ -3,6 +3,7 @@ import { coachSequenceConfiguration } from 'business-hub/config';
 import { format, formatISO } from 'date-fns';
 import { logger } from 'server/logger';
 import { TransportsApi } from 'business-hub/generated/coachSequence';
+import { UpstremaApiRequestMetric } from 'server/admin';
 import Axios from 'axios';
 import type { VehicleSequenceDeparture } from 'business-hub/generated/coachSequence';
 
@@ -35,6 +36,9 @@ export async function getDepartureSequence(
       return undefined;
     }
     logger.debug('Trying new coachSequence');
+    UpstremaApiRequestMetric.inc({
+      api: 'coachSequence-newDB',
+    });
     const r = await coachSequenceClient.vehicleSequenceDepartureUnmatched({
       category: trainCategory,
       number: trainNumber,

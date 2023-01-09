@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { mapInformation } from 'server/coachSequence/DB/DBMapping';
+import { UpstremaApiRequestMetric } from 'server/admin';
 import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
 import type { CoachSequenceInformation } from 'types/coachSequence';
@@ -17,8 +18,11 @@ export const getDBCoachSequenceUrl = (
   trainNumber: string,
   date: Date,
   type: 'apps' | 'noncd' = 'noncd',
-): string => {
-  return `${dbCoachSequenceUrls[type]}/${trainNumber}/${formatDate(date)}`;
+): [string, 'apps' | 'noncd'] => {
+  return [
+    `${dbCoachSequenceUrls[type]}/${trainNumber}/${formatDate(date)}`,
+    type,
+  ];
 };
 
 const formatDate = (date: Date) =>
@@ -30,13 +34,14 @@ async function coachSequence(trainNumber: string, date: Date) {
       const cancelToken = new Axios.CancelToken((c) => {
         setTimeout(c, dbCoachSequenceTimeout);
       });
+      const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
+      UpstremaApiRequestMetric.inc({
+        api: `coachSequence-${type}`,
+      });
       const info = (
-        await Axios.get<Wagenreihung>(
-          getDBCoachSequenceUrl(trainNumber, date),
-          {
-            cancelToken,
-          },
-        )
+        await Axios.get<Wagenreihung>(url, {
+          cancelToken,
+        })
       ).data;
       return info;
     } catch {
@@ -46,9 +51,13 @@ async function coachSequence(trainNumber: string, date: Date) {
   const cancelToken = new Axios.CancelToken((c) => {
     setTimeout(c, dbCoachSequenceTimeout);
   });
+  const type = 'apps';
+  UpstremaApiRequestMetric.inc({
+    api: `coachSequence-${type}`,
+  });
   const info = (
     await Axios.get<Wagenreihung>(
-      getDBCoachSequenceUrl(trainNumber, date, 'apps'),
+      getDBCoachSequenceUrl(trainNumber, date, type)[0],
       {
         cancelToken,
       },
