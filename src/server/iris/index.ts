@@ -8,7 +8,7 @@ import type { Abfahrt, AbfahrtenResult } from 'types/iris';
 interface AbfahrtenOptions {
   lookahead: number;
   lookbehind: number;
-  currentDate?: Date;
+  startTime?: Date;
 }
 
 const baseResult: AbfahrtenResult = {
@@ -121,7 +121,7 @@ export async function getAbfahrten(
   const timetable = new Timetable(evaId, station.name, {
     lookahead,
     lookbehind,
-    currentDate: options.currentDate,
+    startTime: options.startTime,
   });
   const result = (await Promise.all([timetable.start(), relatedAbfahrten]))
     // eslint-disable-next-line unicorn/no-array-reduce

@@ -29,7 +29,7 @@ export async function addIrisMessagesToDetails(
         const irisData = await getAbfahrten(irisStop.station.id, false, {
           lookahead: 10,
           lookbehind: 0,
-          currentDate: subMinutes(stopInfo.scheduledTime, 5),
+          startTime: subMinutes(stopInfo.scheduledTime, 5),
         });
 
         const irisDeparture = irisData.departures.find(

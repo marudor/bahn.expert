@@ -26,10 +26,12 @@ export class IrisControllerv2 extends Controller {
     @Query() lookahead = 150,
     /** minutes */
     @Query() lookbehind = 0,
+    @Query() startTime?: Date,
   ): Promise<AbfahrtenResult> {
     return getAbfahrten(evaNumber, true, {
       lookahead,
       lookbehind,
+      startTime,
     });
   }
 }

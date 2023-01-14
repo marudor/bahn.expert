@@ -17,6 +17,17 @@ const numberCheck = (
   return n;
 };
 
+const dateCheck = (value: string | string[] | undefined): Date | undefined => {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return undefined;
+  }
+  return date;
+};
+
 export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   lineAndNumber: booleanCheck,
   lookahead: (value) => numberCheck(value, 150).toString(),
@@ -24,6 +35,7 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   showCancelled: booleanCheck,
   sortByTime: booleanCheck,
   onlyDepartures: booleanCheck,
+  startTime: dateCheck,
 };
 
 export const commonConfigSanitize: CommonConfigSanitize = {
