@@ -40,6 +40,7 @@ function mockStopPlace({
   delay,
   name,
   fixture,
+  startTime,
   id,
 }: {
   lookbehind: number;
@@ -47,6 +48,7 @@ function mockStopPlace({
   delay: number;
   name: string;
   fixture: string;
+  startTime?: Date;
   id: string;
 }) {
   cy.intercept(
@@ -55,6 +57,9 @@ function mockStopPlace({
       query: {
         lookahead: lookahead.toString(),
         lookbehind: lookbehind.toString(),
+        ...(startTime && {
+          startTime: startTime.toISOString(),
+        }),
       },
     },
     {
@@ -73,10 +78,11 @@ function mockStopPlace({
 
 Cypress.Commands.add(
   'mockFrankfurt',
-  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
+      startTime,
       delay,
       name: 'Frankfurt (Main) Hbf',
       id: '8000105',
@@ -87,11 +93,12 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'mockHamburg',
-  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
       delay,
+      startTime,
       name: 'Hamburg Hbf',
       fixture: 'HamburgHbf',
       id: '8002549',
@@ -101,11 +108,12 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'mockHannover',
-  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
       delay,
+      startTime,
       name: 'Hannover Hbf',
       fixture: 'HannoverHbf',
       id: '8000152',

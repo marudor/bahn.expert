@@ -25,4 +25,13 @@ describe('Query Parameter', () => {
     cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.getCookie('lookbehind').should('have.property', 'value', '20');
   });
+
+  it('can set startTime for departures', () => {
+    const startTimeIso = '2023-01-14T08:00:00.000Z';
+    cy.mockFrankfurt({
+      startTime: new Date(startTimeIso),
+    });
+    // This ensures that the backend call includes startTime
+    cy.visit(`/Frankfurt (Main) Hbf?startTime=${startTimeIso}`);
+  });
 });

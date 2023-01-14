@@ -4,6 +4,7 @@
 interface MockOptions {
   lookahead?: number;
   lookbehind?: number;
+  startTime?: Date;
   delay?: number;
 }
 declare global {
