@@ -14,7 +14,7 @@ describe('Details', () => {
     }).as('details');
     cy.visit('/details/S30665');
     cy.wait('@details');
-    cy.findByTestId('header').should('have.css', 'height', '54px');
+    cy.percySnapshot('detailsHeader');
   });
 
   it('renders train line & number for regional stuff', () => {

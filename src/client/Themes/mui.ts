@@ -13,7 +13,8 @@ const getPaletteType = (themeType: E<typeof ThemeType>) => {
   }
 };
 
-const headerSpacing = 54;
+// unit: em
+const headerSpacing = 3.3;
 
 const primaryColor = {
   [ThemeType.dark]: blue[700],
@@ -73,8 +74,8 @@ const getMuiOptions = (themeType: E<typeof ThemeType>): ThemeOptions => {
       MuiToolbar: {
         styleOverrides: {
           regular: {
-            height: `${headerSpacing}px!important`,
-            minHeight: `${headerSpacing}px!important`,
+            height: `${headerSpacing}em!important`,
+            minHeight: `${headerSpacing}em!important`,
           },
         },
       },

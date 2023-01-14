@@ -48,18 +48,10 @@ const Container = styled.div`
 export const About: FC = () => {
   return (
     <>
-      <BaseHeader spacing={5}>About</BaseHeader>
+      <BaseHeader spacing={0.3}>About</BaseHeader>
       <Container>
         <span>
           Entwickelt von{' '}
-          <a
-            href="https://twitter.com/marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @marudor
-          </a>{' '}
-          /{' '}
           <a
             href="https://chaos.social/@marudor"
             target="_blank"
@@ -90,8 +82,8 @@ export const About: FC = () => {
           </a>
         </span>
         <span>
-          Wer mich anderweitig kontaktieren möchte kann dies neben den
-          verlinkten Social Media Profilen per mail an info (at) bahn (dot)
+          Wer mich anderweitig kontaktieren möchte kann dies neben dem
+          verlinkten Social Media Profil auch per mail an info (at) bahn (dot)
           expert
         </span>
         <Privacy />

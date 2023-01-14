@@ -8,7 +8,7 @@ const Container = styled.div<{ noHeader?: boolean }>(
   },
   ({ noHeader, theme }) =>
     noHeader && {
-      marginTop: -theme.shape.headerSpacing,
+      marginTop: `-${theme.shape.headerSpacing}`,
     },
 );
 interface Props {

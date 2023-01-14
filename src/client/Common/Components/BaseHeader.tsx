@@ -15,10 +15,11 @@ const NotchFix = styled.div(({ theme }) => ({
 }));
 
 const Offset = styled.div<{ spacing?: number }>(({ theme, spacing = 0 }) => ({
-  minHeight: `${theme.shape.headerSpacing + spacing}px`,
+  minHeight: `${theme.shape.headerSpacing + spacing}em`,
 }));
 
 interface Props {
+  /** Unit: em */
   spacing?: number;
 }
 
