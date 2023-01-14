@@ -1231,6 +1231,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     lookahead: {"default":150,"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
                     lookbehind: {"default":0,"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
+                    startTime: {"in":"query","name":"startTime","dataType":"datetime"},
             };
 
             let validatedArgs: any[] = [];

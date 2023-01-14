@@ -7,6 +7,7 @@ export interface AbfahrtenConfig {
   readonly showCancelled: boolean;
   readonly sortByTime: boolean;
   readonly onlyDepartures: boolean;
+  readonly startTime: Date | undefined;
 }
 
 export interface CommonConfig {

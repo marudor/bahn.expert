@@ -78,7 +78,7 @@ interface Route {
 export interface TimetableOptions {
   lookahead: number;
   lookbehind: number;
-  currentDate?: Date;
+  startTime?: Date;
 }
 
 const processRawRouteString = (rawRouteString?: string) =>
@@ -162,7 +162,7 @@ export class Timetable {
   segments: Date[];
   currentStopPlaceName: string;
   wingIds: Record<string, string> = {};
-  currentDate: Date;
+  startTime: Date;
   maxDate: Date;
   minDate: Date;
 
@@ -171,15 +171,15 @@ export class Timetable {
     currentStopPlaceName: string,
     options: TimetableOptions,
   ) {
-    this.currentDate = options.currentDate || new Date();
-    this.maxDate = addMinutes(this.currentDate, options.lookahead);
-    this.minDate = subMinutes(this.currentDate, options.lookbehind);
-    this.segments = [this.currentDate];
+    this.startTime = options.startTime || new Date();
+    this.maxDate = addMinutes(this.startTime, options.lookahead);
+    this.minDate = subMinutes(this.startTime, options.lookbehind);
+    this.segments = [this.startTime];
     for (let i = 1; i <= Math.ceil(options.lookahead / 60); i += 1) {
-      this.segments.push(addHours(this.currentDate, i));
+      this.segments.push(addHours(this.startTime, i));
     }
     for (let i = 1; i <= Math.ceil((options.lookbehind || 1) / 60); i += 1) {
-      this.segments.push(subHours(this.currentDate, i));
+      this.segments.push(subHours(this.startTime, i));
     }
     this.currentStopPlaceName = normalizeRouteName(currentStopPlaceName);
   }
@@ -328,7 +328,7 @@ export class Timetable {
           : departure || arrival;
 
       if (isAfter(realTime, this.minDate) && isBefore(time, this.maxDate)) {
-        if (isBefore(realTime, this.currentDate)) {
+        if (isBefore(realTime, this.startTime)) {
           lookbehind.push(a);
         } else {
           departures.push(a);

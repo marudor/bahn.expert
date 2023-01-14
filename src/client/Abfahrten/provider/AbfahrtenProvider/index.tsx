@@ -22,6 +22,7 @@ export const fetchAbfahrten = async (
   urlWithStationId: string,
   lookahead: string,
   lookbehind: string,
+  startTime?: Date,
 ): Promise<AbfahrtenResult | null> => {
   cancelGetAbfahrten();
   try {
@@ -33,6 +34,7 @@ export const fetchAbfahrten = async (
         params: {
           lookahead,
           lookbehind,
+          startTime,
         },
       })
     ).data;
@@ -71,7 +73,7 @@ const useAbfahrtenInner = ({
   const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
   const [departures, setDepartures] = useState<AbfahrtenResult>();
   const [error, setError] = useState<AbfahrtenError>();
-  const { lookahead, lookbehind } = useAbfahrtenConfig();
+  const { lookahead, lookbehind, startTime } = useAbfahrtenConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
   const { fetchVRRAuslastungForEva } = useAuslastung();
 
@@ -128,6 +130,7 @@ const useAbfahrtenInner = ({
       `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
       lookahead,
       lookbehind,
+      startTime,
     ).then(
       (deps) => {
         if (deps) {
@@ -139,7 +142,7 @@ const useAbfahrtenInner = ({
         setError(e);
       },
     );
-  }, [currentStopPlace, fetchApiUrl, lookahead, lookbehind]);
+  }, [currentStopPlace, fetchApiUrl, lookahead, lookbehind, startTime]);
 
   return {
     updateCurrentStopPlaceByString,
