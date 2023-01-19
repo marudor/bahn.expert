@@ -9,7 +9,7 @@ export async function OEBBCoachSequence(
   initialDeparture: Date,
 ): Promise<CoachSequenceInformation | undefined> {
   UpstremaApiRequestMetric.inc({
-    api: 'coachSequence-newDB',
+    api: 'coachSequence-OEBB',
   });
   const rawSequence = await info(
     Number.parseInt(trainNumber),
