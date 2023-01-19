@@ -2478,41 +2478,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "Pick_TrainRun.Exclude_keyofTrainRun.primaryVehicleGroupName__": {
-        "properties": {
-          "product": {
-            "$ref": "#/components/schemas/CoachSequenceProduct"
-          },
-          "origin": {
-            "$ref": "#/components/schemas/TrainRunStop"
-          },
-          "destination": {
-            "$ref": "#/components/schemas/TrainRunStop"
-          },
-          "via": {
-            "items": {
-              "$ref": "#/components/schemas/TrainRunStop"
-            },
-            "type": "array"
-          },
-          "dates": {
-            "items": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "product",
-          "origin",
-          "destination",
-          "via",
-          "dates"
-        ],
-        "type": "object",
-        "description": "From T, pick a set of properties whose keys are in the union K"
-      },
       "TrainRunWithBR": {
         "properties": {
           "product": {

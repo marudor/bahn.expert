@@ -21,7 +21,7 @@ import { ReihungControllerV4 } from './controller/Reihung/v4';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StopPlaceController } from './controller/StopPlace/v1';
 import type { Middleware } from 'koa';
-import * as KoaRouter from '@koa/router';
+import type * as KoaRouter from '@koa/router';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
@@ -954,11 +954,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_TrainRun.Exclude_keyofTrainRun.primaryVehicleGroupName__": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"product":{"ref":"CoachSequenceProduct","required":true},"origin":{"ref":"TrainRunStop","required":true},"destination":{"ref":"TrainRunStop","required":true},"via":{"dataType":"array","array":{"dataType":"refObject","ref":"TrainRunStop"},"required":true},"dates":{"dataType":"array","array":{"dataType":"datetime"},"required":true}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TrainRunWithBR": {
         "dataType": "refObject",
         "properties": {
@@ -1631,6 +1626,8 @@ export function RegisterRoutes(router: KoaRouter) {
                 return context.request;
             case 'query':
                 return validationService.ValidateParam(args[key], context.request.query[name], name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
+            case 'queries':
+                return validationService.ValidateParam(args[key], context.request.query, name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
             case 'path':
                 return validationService.ValidateParam(args[key], context.params[name], name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
             case 'header':
