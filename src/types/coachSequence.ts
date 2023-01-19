@@ -79,7 +79,7 @@ export const AvailableBRConstant = [
   '412' as const,
   '415' as const,
 ];
-export type AvailableBR = typeof AvailableBRConstant[number];
+export type AvailableBR = (typeof AvailableBRConstant)[number];
 
 export const AvailableIdentifierConstant = [
   '401.LDV' as const,
@@ -98,7 +98,7 @@ export const AvailableIdentifierConstant = [
   'TGV' as const,
 ];
 export type AvailableIdentifierOnly =
-  typeof AvailableIdentifierConstant[number];
+  (typeof AvailableIdentifierConstant)[number];
 export type AvailableIdentifier = AvailableIdentifierOnly | AvailableBR;
 
 export interface CoachSequenceBaureihe {
