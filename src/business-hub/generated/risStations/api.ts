@@ -130,7 +130,7 @@ export const AccessibilityStatus = {
 } as const;
 
 export type AccessibilityStatus =
-  typeof AccessibilityStatus[keyof typeof AccessibilityStatus];
+  (typeof AccessibilityStatus)[keyof typeof AccessibilityStatus];
 
 /**
  * Address information with www info.
@@ -261,7 +261,7 @@ export const ConnectingTimeGroup = {
 } as const;
 
 export type ConnectingTimeGroup =
-  typeof ConnectingTimeGroup[keyof typeof ConnectingTimeGroup];
+  (typeof ConnectingTimeGroup)[keyof typeof ConnectingTimeGroup];
 
 /**
  * Enumerates all possible sources for connecting times [Umsteigezeiten]. - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ = Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
@@ -276,7 +276,7 @@ export const ConnectingTimeSource = {
 } as const;
 
 export type ConnectingTimeSource =
-  typeof ConnectingTimeSource[keyof typeof ConnectingTimeSource];
+  (typeof ConnectingTimeSource)[keyof typeof ConnectingTimeSource];
 
 /**
  * Enumerates all possible sources to filter connecting times [Umsteigezeiten] for. - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ = Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
@@ -291,7 +291,7 @@ export const ConnectingTimeSourceFilter = {
 } as const;
 
 export type ConnectingTimeSourceFilter =
-  typeof ConnectingTimeSourceFilter[keyof typeof ConnectingTimeSourceFilter];
+  (typeof ConnectingTimeSourceFilter)[keyof typeof ConnectingTimeSourceFilter];
 
 /**
  * List of connecting times [Umsteigezeiten] for requested list of stop-places [Haltestellen].
@@ -468,7 +468,7 @@ export const EquipmentLockerKeyType = {
 } as const;
 
 export type EquipmentLockerKeyType =
-  typeof EquipmentLockerKeyType[keyof typeof EquipmentLockerKeyType];
+  (typeof EquipmentLockerKeyType)[keyof typeof EquipmentLockerKeyType];
 
 /**
  * Locker [Schließfächer] equipments of a station [Bahnhof] search result.
@@ -648,7 +648,7 @@ export const LocalServiceKeyType = {
 } as const;
 
 export type LocalServiceKeyType =
-  typeof LocalServiceKeyType[keyof typeof LocalServiceKeyType];
+  (typeof LocalServiceKeyType)[keyof typeof LocalServiceKeyType];
 
 /**
  * List of local services [Bahnhofsnahe Dienstleistungen].
@@ -707,7 +707,7 @@ export const Locale = {
   It: 'IT',
 } as const;
 
-export type Locale = typeof Locale[keyof typeof Locale];
+export type Locale = (typeof Locale)[keyof typeof Locale];
 
 /**
  * Locker [Schließfach] equipment of a particular station [Bahnhof].
@@ -845,7 +845,7 @@ export const PersonaType = {
   FrequentTraveller: 'FREQUENT_TRAVELLER',
 } as const;
 
-export type PersonaType = typeof PersonaType[keyof typeof PersonaType];
+export type PersonaType = (typeof PersonaType)[keyof typeof PersonaType];
 
 /**
  * a phone number.
@@ -879,7 +879,7 @@ export const PhoneNumberType = {
 } as const;
 
 export type PhoneNumberType =
-  typeof PhoneNumberType[keyof typeof PhoneNumberType];
+  (typeof PhoneNumberType)[keyof typeof PhoneNumberType];
 
 /**
  * Platform [Gleis, Bahnsteig, Plattform] information. All ranges and positions of objects are given in meter in local coordinates, e.g. as a distance to a fixed point somewhere on the platform and differentiating between the two possible directions by a plus- and a minus-sign.
@@ -1022,7 +1022,7 @@ export const ReferencePointType = {
 } as const;
 
 export type ReferencePointType =
-  typeof ReferencePointType[keyof typeof ReferencePointType];
+  (typeof ReferencePointType)[keyof typeof ReferencePointType];
 
 /**
  * Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.
@@ -1194,7 +1194,7 @@ export const StationCategory = {
 } as const;
 
 export type StationCategory =
-  typeof StationCategory[keyof typeof StationCategory];
+  (typeof StationCategory)[keyof typeof StationCategory];
 
 /**
  * Name information for a station [Bahnhof].
@@ -1266,7 +1266,7 @@ export const StationRoofingType = {
 } as const;
 
 export type StationRoofingType =
-  typeof StationRoofingType[keyof typeof StationRoofingType];
+  (typeof StationRoofingType)[keyof typeof StationRoofingType];
 
 /**
  * Stations [Bahnhof] result.
@@ -1417,7 +1417,7 @@ export const StopPlaceGroupType = {
 } as const;
 
 export type StopPlaceGroupType =
-  typeof StopPlaceGroupType[keyof typeof StopPlaceGroupType];
+  (typeof StopPlaceGroupType)[keyof typeof StopPlaceGroupType];
 
 /**
  * List of groups a stop place [Haltestelle] belongs to with all associated group members.
@@ -1470,7 +1470,7 @@ export const StopPlaceKeyFilter = {
 } as const;
 
 export type StopPlaceKeyFilter =
-  typeof StopPlaceKeyFilter[keyof typeof StopPlaceKeyFilter];
+  (typeof StopPlaceKeyFilter)[keyof typeof StopPlaceKeyFilter];
 
 /**
  * Enumerates all identifiers a stop-place [Haltestelle] can be mapped into or mapped from. - IFOPT (Transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary rl100 / ds100) - RL100_ALTERNATIVE (alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.]) - UIC (international station number) - PLC (primary location code)
@@ -1492,7 +1492,7 @@ export const StopPlaceKeyType = {
 } as const;
 
 export type StopPlaceKeyType =
-  typeof StopPlaceKeyType[keyof typeof StopPlaceKeyType];
+  (typeof StopPlaceKeyType)[keyof typeof StopPlaceKeyType];
 
 /**
  * Different key mappings a stop place [Haltestelle] may have.
@@ -1563,7 +1563,7 @@ export const StopPlaceSearchGroupByKey = {
 } as const;
 
 export type StopPlaceSearchGroupByKey =
-  typeof StopPlaceSearchGroupByKey[keyof typeof StopPlaceSearchGroupByKey];
+  (typeof StopPlaceSearchGroupByKey)[keyof typeof StopPlaceSearchGroupByKey];
 
 /**
  * Search result information for a stop place [Haltestelle].
@@ -1633,7 +1633,7 @@ export const StopPlaceSortKey = {
 } as const;
 
 export type StopPlaceSortKey =
-  typeof StopPlaceSortKey[keyof typeof StopPlaceSortKey];
+  (typeof StopPlaceSortKey)[keyof typeof StopPlaceSortKey];
 
 /**
  * Stop place [Haltestelle] result.
@@ -1674,7 +1674,7 @@ export const TransportType = {
   Unknown: 'UNKNOWN',
 } as const;
 
-export type TransportType = typeof TransportType[keyof typeof TransportType];
+export type TransportType = (typeof TransportType)[keyof typeof TransportType];
 
 /**
  * ConnectingTimesApi - axios parameter creator

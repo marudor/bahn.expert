@@ -80,7 +80,7 @@ export const AmenityStatus = {
   Undefined: 'UNDEFINED',
 } as const;
 
-export type AmenityStatus = typeof AmenityStatus[keyof typeof AmenityStatus];
+export type AmenityStatus = (typeof AmenityStatus)[keyof typeof AmenityStatus];
 
 /**
  * Type of amenity [Ausstattungsmerkmal] mostly according to VDV 454. - BISTRO (Bordbistro) - AIR_CONDITION (Klimaanlage) - BIKE_SPACE (Fahrradstellplätze) - WHEELCHAIR_SPACE (Rollstuhlstellplätze) - TOILET_WHEELCHAIR (Rollstuhlgängige Toilette) - ZONE_MULTI_PURPOSE (Mehrzweckbereich) - BOARDING_AID (Einstiegshilfe) - CABIN_INFANT (Kleinkindabteil) - ZONE_QUIET (Ruhebereich) - ZONE_FAMILY (Familienbereich) - INFO (Info-Abteil) - SEATS_SEVERELY_DISABLED (Plätze für Schwerbehinderte) - SEATS_BAHN_COMFORT (Plätze für BahnComfort-Kunden) - SEATS_LUFTHANSA_EXPRESS_RAIL (Plätze für LH-Codeshare) ??? - WIFI (WLAN-Hotspot)
@@ -106,7 +106,7 @@ export const AmenityType = {
   Wifi: 'WIFI',
 } as const;
 
-export type AmenityType = typeof AmenityType[keyof typeof AmenityType];
+export type AmenityType = (typeof AmenityType)[keyof typeof AmenityType];
 
 /**
  * Optional direction information [Richtungstext] for a particular transport that may differ from the destination [Zielhalt] on some parts of the journey.
@@ -233,7 +233,7 @@ export const OccupancyDetail = {
 } as const;
 
 export type OccupancyDetail =
-  typeof OccupancyDetail[keyof typeof OccupancyDetail];
+  (typeof OccupancyDetail)[keyof typeof OccupancyDetail];
 
 /**
  * Occupancy [Auslastung] level a journey [Fahrt], departure [Abfahrt], vehicle group [Fahrzeuggruppe] or vehicle [Fahrzeug] may have. - HIGH (occupancy is considered as high) - MIDDLE (occupancy is considered as middle) - LOW (occupancy is considered as low) - UNDEFINED (occupancy is unknown / undefined)
@@ -248,7 +248,8 @@ export const OccupancyLevel = {
   Undefined: 'UNDEFINED',
 } as const;
 
-export type OccupancyLevel = typeof OccupancyLevel[keyof typeof OccupancyLevel];
+export type OccupancyLevel =
+  (typeof OccupancyLevel)[keyof typeof OccupancyLevel];
 
 /**
  * Platform [Gleis, Bahnsteig, Plattform] information for vehicle-sequences [Wagenreihungsinformationen]. All ranges and positions of objects are given in meter in local coordinates, e.g. as a distance to a fixed point somewhere on the platform and differentiating between the two possible directions by a plus- and a minus-sign.
@@ -628,7 +629,7 @@ export const TransportType = {
   Unknown: 'UNKNOWN',
 } as const;
 
-export type TransportType = typeof TransportType[keyof typeof TransportType];
+export type TransportType = (typeof TransportType)[keyof typeof TransportType];
 
 /**
  * Vehicle amenity [Ausstattungsmerkmal].
@@ -694,7 +695,7 @@ export const VehicleCategory = {
 } as const;
 
 export type VehicleCategory =
-  typeof VehicleCategory[keyof typeof VehicleCategory];
+  (typeof VehicleCategory)[keyof typeof VehicleCategory];
 
 /**
  * Vehicle group [Fahrzeuggruppe] within the vehicle sequence [Wagenreihung] containing at least one vehicle [Fahrzeug] for arrival [Ankunft].
@@ -820,7 +821,7 @@ export const VehicleOrientation = {
 } as const;
 
 export type VehicleOrientation =
-  typeof VehicleOrientation[keyof typeof VehicleOrientation];
+  (typeof VehicleOrientation)[keyof typeof VehicleOrientation];
 
 /**
  * Position of a vehicle [Fahrzeug] at a platform [Gleis, Bahnsteig, Plattform].
@@ -977,7 +978,7 @@ export const VehicleSequenceStatus = {
 } as const;
 
 export type VehicleSequenceStatus =
-  typeof VehicleSequenceStatus[keyof typeof VehicleSequenceStatus];
+  (typeof VehicleSequenceStatus)[keyof typeof VehicleSequenceStatus];
 
 /**
  * Status of vehicle [Fahrzeug] with respect to accessibility for passengers. - OPEN  (Vehicle is open [Offen] - CLOSED (Vehicle is closed [Geschlossen]
@@ -990,7 +991,7 @@ export const VehicleStatus = {
   Closed: 'CLOSED',
 } as const;
 
-export type VehicleStatus = typeof VehicleStatus[keyof typeof VehicleStatus];
+export type VehicleStatus = (typeof VehicleStatus)[keyof typeof VehicleStatus];
 
 /**
  * Detailed information on the vehicle [Fahrzeug] type.

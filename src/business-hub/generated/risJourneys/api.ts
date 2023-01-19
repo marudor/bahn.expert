@@ -537,7 +537,7 @@ export const EventType = {
   Departure: 'DEPARTURE',
 } as const;
 
-export type EventType = typeof EventType[keyof typeof EventType];
+export type EventType = (typeof EventType)[keyof typeof EventType];
 
 /**
  * Event based [Fahrtereignisbasiert] information for a particular journey [Fahrtverlauf].
@@ -736,7 +736,7 @@ export const JourneyType = {
   Extra: 'EXTRA',
 } as const;
 
-export type JourneyType = typeof JourneyType[keyof typeof JourneyType];
+export type JourneyType = (typeof JourneyType)[keyof typeof JourneyType];
 
 /**
  * Message for customers and or employees, depends on type.
@@ -793,7 +793,7 @@ export const MessageType = {
   CustomerReason: 'CUSTOMER_REASON',
 } as const;
 
-export type MessageType = typeof MessageType[keyof typeof MessageType];
+export type MessageType = (typeof MessageType)[keyof typeof MessageType];
 
 /**
  * Journey segment information on departure and arrival [Fahrtabschnitt].
@@ -1003,7 +1003,7 @@ export const TimeType = {
   Real: 'REAL',
 } as const;
 
-export type TimeType = typeof TimeType[keyof typeof TimeType];
+export type TimeType = (typeof TimeType)[keyof typeof TimeType];
 
 /**
  * Public transport description for all types of trains, buses, subways, trams etc.
@@ -1239,7 +1239,7 @@ export const TransportType = {
   Unknown: 'UNKNOWN',
 } as const;
 
-export type TransportType = typeof TransportType[keyof typeof TransportType];
+export type TransportType = (typeof TransportType)[keyof typeof TransportType];
 
 /**
  * JourneysApi - axios parameter creator
