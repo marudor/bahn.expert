@@ -7,7 +7,7 @@ import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
-const debouncedStopPlacesFromAPI = debounce(getStopPlacesFromAPI, 500);
+const debouncedStopPlacesFromAPI = debounce(getStopPlacesFromAPI, 200);
 
 interface UseStationSearchOptions {
   maxSuggestions: number;

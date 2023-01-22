@@ -1,4 +1,4 @@
-import type { Common, GenericHafasRequest } from '.';
+import type { Common, GenericHafasRequest, ParsedPolyline } from '.';
 import type { OutConL, SotCtxt } from './TripSearch';
 import type { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
 
@@ -32,4 +32,5 @@ export interface SearchOnTripRequest
 
 export interface ParsedSearchOnTripResponse extends Route$JourneySegmentTrain {
   currentStop?: Route$Stop;
+  polyline?: ParsedPolyline;
 }

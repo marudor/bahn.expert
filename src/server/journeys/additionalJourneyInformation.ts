@@ -38,9 +38,10 @@ export async function additionalJourneyInformation(
     }
   }
   if (journeyDetails.train.operator || Object.keys(occupancy).length) {
-    const result = {
+    const result: AdditionalJourneyInformation = {
       occupancy,
       operatorName: journeyDetails.train.operator?.name,
+      polyline: journeyDetails.polyline,
     };
 
     void additionalInformationCache.set(journeyId, result);

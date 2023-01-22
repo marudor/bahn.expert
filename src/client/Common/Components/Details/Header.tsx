@@ -1,7 +1,7 @@
 import { BaseHeader } from '../BaseHeader';
 import { format } from 'date-fns';
 import { IconButton } from '@mui/material';
-import { Refresh } from '@mui/icons-material';
+import { Map, Refresh } from '@mui/icons-material';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from 'client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
@@ -61,8 +61,14 @@ const FullTrainName: FC<FTNProps> = ({ train, fallback }) => {
 };
 
 export const Header: FC = () => {
-  const { details, additionalInformation, refreshDetails, trainName } =
-    useDetails();
+  const {
+    details,
+    additionalInformation,
+    refreshDetails,
+    trainName,
+    polyline,
+    toggleMapDisplay,
+  } = useDetails();
   const refresh = useCallback(() => refreshDetails(), [refreshDetails]);
 
   const operatorName = useMemo(
@@ -87,6 +93,11 @@ export const Header: FC = () => {
           </>
         )}
       </Container>
+      {polyline && (
+        <IconButton onClick={toggleMapDisplay} aria-label="map" color="inherit">
+          <Map />
+        </IconButton>
+      )}
       <IconButton onClick={refresh} aria-label="refresh" color="inherit">
         <Refresh />
       </IconButton>

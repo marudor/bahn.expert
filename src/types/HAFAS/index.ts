@@ -525,7 +525,8 @@ export type ParsedCommon = _ParsedCommon &
 export type ParsedProduct = CommonProductInfo;
 
 export interface ParsedPolyline {
-  points: [number, number][];
+  // Actually [number, number][]
+  points: number[][];
   delta: boolean;
   locations: HafasStation[];
 }

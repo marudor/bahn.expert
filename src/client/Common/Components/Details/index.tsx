@@ -4,12 +4,18 @@ import { StopList } from './StopList';
 import { useDetails } from 'client/Common/provider/DetailsProvider';
 import { useEffect } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
+import loadable from '@loadable/component';
 import type { FC } from 'react';
+
+const LazyMapDisplay = loadable(() => import('./MapDisplay'), {
+  ssr: false,
+});
 
 export const Details: FC = () => {
   const { updateTitle, updateDescription, updateKeywords } =
     useHeaderTagsActions();
-  const { initialDepartureDate, details, trainName } = useDetails();
+  const { initialDepartureDate, details, trainName, isMapDisplay } =
+    useDetails();
 
   useEffect(() => {
     if (details) {
@@ -41,7 +47,7 @@ export const Details: FC = () => {
   return (
     <>
       <Header />
-      <StopList />
+      {isMapDisplay ? <LazyMapDisplay /> : <StopList />}
     </>
   );
 };

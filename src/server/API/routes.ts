@@ -181,6 +181,16 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ParsedPolyline": {
+        "dataType": "refObject",
+        "properties": {
+            "points": {"dataType":"array","array":{"dataType":"array","array":{"dataType":"double"}},"required":true},
+            "delta": {"dataType":"boolean","required":true},
+            "locations": {"dataType":"array","array":{"dataType":"refObject","ref":"HafasStation"},"required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ProdCtx": {
         "dataType": "refObject",
         "properties": {
@@ -493,6 +503,7 @@ const models: TsoaRoute.Models = {
             "departure": {"ref":"CommonStopInfo","required":true},
             "wings": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Journey"}},
             "currentStop": {"ref":"Route%24Stop"},
+            "polyline": {"ref":"ParsedPolyline"},
         },
         "additionalProperties": true,
     },
@@ -654,6 +665,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "operatorName": {"dataType":"string"},
             "occupancy": {"ref":"Record_EvaNumber.Route%24Auslastung_","required":true},
+            "polyline": {"ref":"ParsedPolyline"},
         },
         "additionalProperties": true,
     },

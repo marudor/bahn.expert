@@ -4,6 +4,7 @@ import type {
   GenericHafasRequest,
   Journey,
   OptionalLocL,
+  ParsedPolyline,
   ParsedProduct,
   RemL,
 } from '.';
@@ -14,6 +15,7 @@ import type { Route$Auslastung, Route$Stop } from 'types/routing';
 export interface AdditionalJourneyInformation {
   operatorName?: string;
   occupancy: Record<EvaNumber, Route$Auslastung>;
+  polyline?: ParsedPolyline;
 }
 
 export interface JourneyDetailsResponse {
@@ -64,4 +66,5 @@ export interface ParsedJourneyDetails {
   lastStop: Route$ValidArrivalStop;
   stops: Route$Stop[];
   messages?: RemL[];
+  polylines?: ParsedPolyline[];
 }

@@ -356,6 +356,36 @@
         "type": "object",
         "additionalProperties": true
       },
+      "ParsedPolyline": {
+        "properties": {
+          "points": {
+            "items": {
+              "items": {
+                "type": "number",
+                "format": "double"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "delta": {
+            "type": "boolean"
+          },
+          "locations": {
+            "items": {
+              "$ref": "#/components/schemas/HafasStation"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "points",
+          "delta",
+          "locations"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "ProdCtx": {
         "properties": {
           "name": {
@@ -1253,6 +1283,9 @@
           },
           "currentStop": {
             "$ref": "#/components/schemas/Route$Stop"
+          },
+          "polyline": {
+            "$ref": "#/components/schemas/ParsedPolyline"
           }
         },
         "required": [
@@ -1693,6 +1726,9 @@
           },
           "occupancy": {
             "$ref": "#/components/schemas/Record_EvaNumber.Route$Auslastung_"
+          },
+          "polyline": {
+            "$ref": "#/components/schemas/ParsedPolyline"
           }
         },
         "required": [
