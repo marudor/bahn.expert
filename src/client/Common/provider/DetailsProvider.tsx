@@ -7,8 +7,9 @@ import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import constate from 'constate';
 import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
 import type { AxiosError } from 'axios';
+import type { HafasStation, ParsedPolyline } from 'types/HAFAS';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import type { Route$Auslastung } from 'types/routing';
+import type { Route$Auslastung, Route$Stop } from 'types/routing';
 
 interface Props {
   trainName: string;
@@ -26,7 +27,7 @@ const useInnerDetails = ({
   journeyId,
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
-
+  const [isMapDisplay, setIsMapDisplay] = useState(false);
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [additionalInformation, setAdditionalInformation] =
     useState<AdditionalJourneyInformation>();
@@ -106,6 +107,33 @@ const useInnerDetails = ({
     return cleanup;
   }, [autoUpdate, refreshDetails]);
 
+  const toggleMapDisplay = useCallback(
+    () => setIsMapDisplay((old) => !old),
+    [],
+  );
+
+  const matchedPolyline:
+    | (Omit<ParsedPolyline, 'locations'> & {
+        locations: (HafasStation & {
+          details?: Route$Stop;
+        })[];
+      })
+    | undefined = useMemo(() => {
+    const polyline = additionalInformation?.polyline || details?.polyline;
+    if (!polyline) return undefined;
+    if (!details) return undefined;
+
+    for (const loc of polyline.locations) {
+      const detailsLoc = details.stops.find((s) => s.station.id === loc.id);
+      if (detailsLoc) {
+        // @ts-expect-error adding information
+        loc.details = detailsLoc;
+      }
+    }
+
+    return polyline;
+  }, [details, additionalInformation]);
+
   return {
     initialDepartureDate,
     trainName,
@@ -114,6 +142,9 @@ const useInnerDetails = ({
     error,
     urlPrefix,
     refreshDetails,
+    polyline: matchedPolyline,
+    isMapDisplay,
+    toggleMapDisplay,
   };
 };
 

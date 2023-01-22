@@ -9,7 +9,7 @@ import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
-const debouncedJourneyFind = debounce(journeyFind, 300);
+const debouncedJourneyFind = debounce(journeyFind, 200);
 
 const Container = styled.div`
   position: relative;

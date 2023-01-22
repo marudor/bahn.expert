@@ -126,4 +126,7 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/,
   },
+  experiments: {
+    topLevelAwait: true,
+  },
 };

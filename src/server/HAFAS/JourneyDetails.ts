@@ -15,7 +15,7 @@ import type {
   ParsedJourneyDetails,
 } from 'types/HAFAS/JourneyDetails';
 
-const parseJourneyDetails = (
+export const parseJourneyDetails = (
   d: HafasResponse<JourneyDetailsResponse>,
   common: ParsedCommon,
 ): ParsedJourneyDetails => {
@@ -38,6 +38,7 @@ const parseJourneyDetails = (
     firstStop: stops[0],
     lastStop: stops[stops.length - 1],
     messages: parseMessages(journey.msgL, common),
+    polylines: common.polyL,
   };
 
   return parsedJourney as ParsedJourneyDetails;
@@ -49,7 +50,7 @@ export default async (
   raw?: boolean,
 ): Promise<ParsedJourneyDetails | undefined> => {
   const req: JourneyDetailsRequest = {
-    req: { jid },
+    req: { jid, getPolyline: true, polySplitting: true },
     meth: 'JourneyDetails',
   };
 

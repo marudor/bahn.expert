@@ -100,6 +100,7 @@ export default async (
     messages: journeyDetails.messages,
     arrival: journeyDetails.lastStop.arrival,
     departure: journeyDetails.firstStop.departure,
+    polyline: journeyDetails.polylines?.[0],
   };
   if (plainDetails) {
     return relevantSegment;
