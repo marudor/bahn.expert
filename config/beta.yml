@@ -5,6 +5,5 @@ env:
 hostName: beta.bahn.expert
 alternativeHostNames:
   - beta.abfahrten.in
-  - beta.marudor.de
 
 replicaCount: 1

@@ -5,7 +5,6 @@ env:
 hostName: bahn.expert
 alternativeHostNames:
   - abfahrten.in
-  - marudor.de
 
 replicaCount: 5
 
