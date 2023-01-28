@@ -139,7 +139,13 @@ export class JourneysV1Controller extends Controller {
       return hafasFallback();
     }
     let foundJourney: ParsedSearchOnTripResponse | undefined;
-    if (possibleJourneys.length > 1 && evaNumberAlongRoute) {
+    if (
+      (possibleJourneys.length > 1 ||
+        (productDetails.category &&
+          possibleJourneys[0].transport.category !==
+            productDetails.category)) &&
+      evaNumberAlongRoute
+    ) {
       const allJourneys = (
         await Promise.all(
           possibleJourneys.map((j) => journeyDetails(j.journeyID)),
