@@ -12,7 +12,7 @@ export const ApiRequestMetric = new Histogram({
   labelNames: ['route', 'status'],
 });
 
-export const UpstremaApiRequestMetric = new Counter({
+export const UpstreamApiRequestMetric = new Counter({
   name: 'upstream_api_requests',
   help: 'upstream api requests => bahn',
   labelNames: ['api'],
@@ -22,7 +22,7 @@ export function upstreamApiCountInterceptor(
   apiName: string,
   req: AxiosRequestConfig,
 ): AxiosRequestConfig {
-  UpstremaApiRequestMetric.inc({ api: apiName });
+  UpstreamApiRequestMetric.inc({ api: apiName });
   return req;
 }
 

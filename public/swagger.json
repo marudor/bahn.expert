@@ -2747,6 +2747,14 @@
               "format": "date-time",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "allowBoards",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ]
       }

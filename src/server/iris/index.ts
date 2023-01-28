@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { compareAsc } from 'date-fns';
+import { compareAsc, parseISO } from 'date-fns';
 import { getStation } from './station';
 import { isStrikeMessage } from '@/server/iris/messageLookup';
 import { Timetable } from './Timetable';
@@ -33,7 +33,7 @@ export function reduceResults(
   };
 }
 
-const timeByScheduled = (a: Abfahrt) => {
+export const timeByScheduled = (a: Abfahrt): string | Date | undefined => {
   const onlyDepartureCancelled =
     !a.cancelled && a.departure && a.departure.cancelled;
   const arrivalScheduledTime = a.arrival && a.arrival.scheduledTime;
@@ -44,7 +44,7 @@ const timeByScheduled = (a: Abfahrt) => {
     : departureScheduledTime || arrivalScheduledTime;
 };
 
-const timeByReal = (a: Abfahrt) => {
+export const timeByReal = (a: Abfahrt): string | Date | undefined => {
   const onlyDepartureCancelled =
     !a.cancelled && a.departure && a.departure.cancelled;
   const arrivalTime = a.arrival && a.arrival.time;
@@ -55,23 +55,27 @@ const timeByReal = (a: Abfahrt) => {
     : departureTime || arrivalTime;
 };
 
-const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
-  const timeA = timeFn(a);
-  const timeB = timeFn(b);
-  // @ts-expect-error this works
-  const sort = compareAsc(timeA, timeB);
+export const sortAbfahrt =
+  (timeFn: typeof timeByReal) =>
+  (a: Abfahrt, b: Abfahrt): number => {
+    const timeA = timeFn(a)!;
+    const timeB = timeFn(b)!;
+    const sort = compareAsc(
+      typeof timeA === 'string' ? parseISO(timeA) : timeA,
+      typeof timeB === 'string' ? parseISO(timeB) : timeB,
+    );
 
-  if (!sort) {
-    const splittedA = a.rawId.split('-');
-    const splittedB = b.rawId.split('-');
+    if (!sort) {
+      const splittedA = a.rawId.split('-');
+      const splittedB = b.rawId.split('-');
 
-    return splittedA[splittedA.length - 2] > splittedB[splittedB.length - 2]
-      ? 1
-      : -1;
-  }
+      return splittedA[splittedA.length - 2] > splittedB[splittedB.length - 2]
+        ? 1
+        : -1;
+    }
 
-  return sort;
-};
+    return sort;
+  };
 
 function getRawIdsToRemove(
   departures: Abfahrt[],
@@ -103,6 +107,8 @@ export async function getAbfahrten(
   evaId: string,
   withRelated = true,
   options: AbfahrtenOptions,
+  sloppy?: boolean,
+  evaNumbers?: string[],
 ): Promise<AbfahrtenResult> {
   console.time(`abfahrten${evaId}`);
   const lookahead = options.lookahead;
@@ -112,8 +118,11 @@ export async function getAbfahrten(
   let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {
+    const filteredRelatedStations = evaNumbers
+      ? relatedStations.filter((s) => evaNumbers.includes(s.eva))
+      : relatedStations;
     relatedAbfahrten = Promise.all(
-      relatedStations.map((s) => getAbfahrten(s.eva, false, options)),
+      filteredRelatedStations.map((s) => getAbfahrten(s.eva, false, options)),
       // eslint-disable-next-line unicorn/no-array-reduce
     ).then((r) => r.reduce(reduceResults, baseResult));
   }
@@ -122,10 +131,16 @@ export async function getAbfahrten(
     lookahead,
     lookbehind,
     startTime: options.startTime,
+    sloppy,
   });
   const result = (await Promise.all([timetable.start(), relatedAbfahrten]))
     // eslint-disable-next-line unicorn/no-array-reduce
     .reduce(reduceResults, baseResult);
+
+  if (sloppy) {
+    console.timeEnd(`abfahrten${evaId}`);
+    return result;
+  }
 
   console.time('post');
 

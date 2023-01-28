@@ -1,6 +1,6 @@
 import * as HafasProfiles from './profiles';
 import { AllowedHafasProfile } from '@/types/HAFAS';
-import { UpstremaApiRequestMetric } from '@/server/admin';
+import { UpstreamApiRequestMetric } from '@/server/admin';
 import Axios from 'axios';
 import parseLocL from './helper/parseLocL';
 import parsePolyline from '@/server/HAFAS/helper/parsePolyline';
@@ -137,7 +137,7 @@ async function makeRequest<
     // eslint-disable-next-line no-console
     console.log(extraParam);
   }
-  UpstremaApiRequestMetric.inc({
+  UpstreamApiRequestMetric.inc({
     api: `hafas-${hafasRequest.meth}`,
   });
   const r = (
