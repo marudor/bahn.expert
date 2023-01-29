@@ -1239,6 +1239,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     lookahead: {"default":150,"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
                     lookbehind: {"default":0,"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
                     startTime: {"in":"query","name":"startTime","dataType":"datetime"},
+                    allowBoards: {"in":"query","name":"allowBoards","dataType":"boolean"},
             };
 
             let validatedArgs: any[] = [];

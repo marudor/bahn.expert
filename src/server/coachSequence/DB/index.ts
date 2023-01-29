@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
-import { UpstremaApiRequestMetric } from '@/server/admin';
+import { UpstreamApiRequestMetric } from '@/server/admin';
 import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
@@ -35,7 +35,7 @@ async function coachSequence(trainNumber: string, date: Date) {
         setTimeout(c, dbCoachSequenceTimeout);
       });
       const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
-      UpstremaApiRequestMetric.inc({
+      UpstreamApiRequestMetric.inc({
         api: `coachSequence-${type}`,
       });
       const info = (
@@ -52,7 +52,7 @@ async function coachSequence(trainNumber: string, date: Date) {
     setTimeout(c, dbCoachSequenceTimeout);
   });
   const type = 'apps';
-  UpstremaApiRequestMetric.inc({
+  UpstreamApiRequestMetric.inc({
     api: `coachSequence-${type}`,
   });
   const info = (

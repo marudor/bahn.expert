@@ -84,6 +84,10 @@ export interface TimetableOptions {
   lookahead: number;
   lookbehind: number;
   startTime?: Date;
+  /**
+   * This skips some time consuming calculations
+   */
+  sloppy?: boolean;
 }
 
 const processRawRouteString = (rawRouteString?: string) =>
@@ -170,6 +174,7 @@ export class Timetable {
   startTime: Date;
   maxDate: Date;
   minDate: Date;
+  sloppy?: boolean;
 
   constructor(
     private evaNumber: string,
@@ -187,8 +192,13 @@ export class Timetable {
       this.segments.push(subHours(this.startTime, i));
     }
     this.currentStopPlaceName = normalizeRouteName(currentStopPlaceName);
+    this.sloppy = options.sloppy;
   }
   async computeExtra(timetable: any) {
+    if (this.sloppy) {
+      return;
+    }
+
     timetable.cancelled =
       (timetable.arrival &&
         timetable.arrival.cancelled &&
@@ -417,12 +427,23 @@ export class Timetable {
       message,
     };
   }
-  async parseMessage(mNode: xmljs.Element, trainNumber: string) {
+  async parseMessage(
+    mNode: xmljs.Element,
+    trainNumber: string,
+    seenHafasBodies: Set<string>,
+  ) {
     const value = getNumberAttr(mNode, 'c');
     const indexType = getAttr(mNode, 't');
 
     if (!indexType) return undefined;
-    if (indexType === 'h') return this.parseHafasMessage(mNode, trainNumber);
+    if (indexType === 'h') {
+      const message = await this.parseHafasMessage(mNode, trainNumber);
+      if (message && !seenHafasBodies.has(message.message.text)) {
+        seenHafasBodies.add(message.message.text);
+        return message;
+      }
+      return undefined;
+    }
     const type: undefined | string =
       messageTypeLookup[indexType as keyof typeof messageTypeLookup];
 
@@ -493,8 +514,15 @@ export class Timetable {
       him: {},
     };
 
+    const seenHafasBodies = new Set<string>();
     const parsedMessages = await Promise.all(
-      mArr.map((m) => this.parseMessage(m, this.timetable[rawId].train.number)),
+      mArr.map((m) =>
+        this.parseMessage(
+          m,
+          this.timetable[rawId].train.number,
+          seenHafasBodies,
+        ),
+      ),
     );
 
     for (const { type, message, value } of parsedMessages
