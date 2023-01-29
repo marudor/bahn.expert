@@ -1,4 +1,4 @@
-import { ApiRequestMetric } from 'server/admin';
+import { ApiRequestMetric } from '@/server/admin';
 import { RegisterRoutes } from './routes';
 import cors from '@koa/cors';
 import router from './validationOverwrites';

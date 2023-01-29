@@ -1,9 +1,9 @@
-import { StationLink } from 'client/Common/Components/StationLink';
+import { StationLink } from '@/client/Common/Components/StationLink';
 import { StyledViaStop } from './Normal';
-import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
-import type { Stop } from 'types/iris';
+import type { Stop } from '@/types/iris';
 
 const StyledStationLink = StyledViaStop.withComponent(StationLink);
 

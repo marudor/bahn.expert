@@ -1,17 +1,17 @@
-import { BaseHeader } from 'client/Common/Components/BaseHeader';
+import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import {
   routingFavKey,
   useRoutingFavActions,
   useRoutingFavs,
-} from 'client/Routing/provider/RoutingFavProvider';
+} from '@/client/Routing/provider/RoutingFavProvider';
 import { useCallback, useMemo } from 'react';
-import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
+import { useRoutingConfig } from '@/client/Routing/provider/RoutingConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
-import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
+import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
 
 function stripToMinimalStopPlace(stopPlace: MinimalStopPlace): MinimalStopPlace;
 function stripToMinimalStopPlace(

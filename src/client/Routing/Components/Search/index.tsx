@@ -14,20 +14,20 @@ import {
   SwapVert,
   Today,
 } from '@mui/icons-material';
-import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
+import { getStopPlaceFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { SettingsPanel } from './SettingsPanel';
-import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
+import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo } from 'react';
-import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
+import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
 import { useParams } from 'react-router';
 import {
   useRoutingConfig,
   useRoutingConfigActions,
-} from 'client/Routing/provider/RoutingConfigProvider';
+} from '@/client/Routing/provider/RoutingConfigProvider';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 const setStopPlaceById = async (
   evaNumber: string,

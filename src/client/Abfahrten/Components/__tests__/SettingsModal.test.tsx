@@ -2,9 +2,9 @@ import { fireEvent, screen } from '@testing-library/react';
 import {
   InnerAbfahrtenConfigProvider,
   useAbfahrtenModalToggle,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { render } from 'client/__tests__/testHelper';
-import { SettingsModal } from 'client/Abfahrten/Components/SettingsModal';
+} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { render } from '@/client/__tests__/testHelper';
+import { SettingsModal } from '@/client/Abfahrten/Components/SettingsModal';
 
 const OpenDummy = () => {
   const { setConfigOpen } = useAbfahrtenModalToggle();

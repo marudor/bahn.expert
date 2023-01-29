@@ -1,12 +1,12 @@
 import { Loading, LoadingType } from './Loading';
 import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useRef } from 'react';
-import { useStopPlaceSearch } from 'client/Common/hooks/useStopPlaceSearch';
+import { useStopPlaceSearch } from '@/client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
 import styled from '@emotion/styled';
-import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type { FC } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 const PositionedLoading = styled(Loading)`
   right: 0.5em;

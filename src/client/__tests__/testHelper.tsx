@@ -1,19 +1,19 @@
 /* eslint-disable no-underscore-dangle */
-import { createTheme } from 'client/Themes';
+import { createTheme } from '@/client/Themes';
 import { HeadProvider } from 'react-head';
-import { InnerCommonConfigProvider } from 'client/Common/provider/CommonConfigProvider';
+import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { MemoryRouter, useLocation } from 'react-router';
-import { Navigation } from 'client/Common/Components/Navigation';
+import { Navigation } from '@/client/Common/Components/Navigation';
 import { render as realRender } from '@testing-library/react';
-import { StorageContext } from 'client/useStorage';
-import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
-import { ThemeWrap } from 'client/ThemeWrap';
+import { StorageContext } from '@/client/useStorage';
+import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
+import { ThemeWrap } from '@/client/ThemeWrap';
 import Cookies from 'universal-cookie';
-import type { CommonConfig } from 'client/Common/config';
+import type { CommonConfig } from '@/client/Common/config';
 import type { Location } from 'react-router';
 import type { ReactElement } from 'react';
 import type { Theme } from '@mui/material';
-import type { ThemeType } from 'client/Themes/type';
+import type { ThemeType } from '@/client/Themes/type';
 
 let currentThemeType: E<typeof ThemeType>;
 

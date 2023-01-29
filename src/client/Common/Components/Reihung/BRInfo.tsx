@@ -1,8 +1,8 @@
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { stopPropagation } from '@/client/Common/stopPropagation';
 import type {
   AvailableIdentifier,
   CoachSequenceBaureihe,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 import type { FC } from 'react';
 
 interface Props {

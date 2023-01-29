@@ -6,7 +6,7 @@ import type {
   CommonStopInfo,
   ParsedCommon,
   ParsedProduct,
-} from 'types/HAFAS';
+} from '@/types/HAFAS';
 
 export default (
   a: CommonArrival,

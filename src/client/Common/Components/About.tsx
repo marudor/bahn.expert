@@ -1,4 +1,4 @@
-import { BaseHeader } from 'client/Common/Components/BaseHeader';
+import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

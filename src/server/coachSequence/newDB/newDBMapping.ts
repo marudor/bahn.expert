@@ -1,6 +1,6 @@
-import { enrichCoachSequence } from 'server/coachSequence/commonMapping';
-import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
-import { logger } from 'server/logger';
+import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
+import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
+import { logger } from '@/server/logger';
 import type {
   CoachSequence,
   CoachSequenceCoach,
@@ -9,8 +9,8 @@ import type {
   CoachSequenceInformation,
   CoachSequenceSector,
   CoachSequenceStop,
-} from 'types/coachSequence';
-import type { FahrzeugKategorie } from 'types/reihung';
+} from '@/types/coachSequence';
+import type { FahrzeugKategorie } from '@/types/reihung';
 import type {
   Platform,
   Sector,
@@ -19,7 +19,7 @@ import type {
   VehicleInGroup,
   VehicleSequenceDeparture,
   VehicleType,
-} from 'business-hub/generated/coachSequence';
+} from '@/business-hub/generated/coachSequence';
 
 function mapSectors(
   sectors: Sector[] | undefined,

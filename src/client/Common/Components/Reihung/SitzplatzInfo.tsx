@@ -1,7 +1,7 @@
 import { Dialog, DialogContent } from '@mui/material';
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
-import type { CoachSequenceCoachSeats } from 'types/coachSequence';
+import type { CoachSequenceCoachSeats } from '@/types/coachSequence';
 import type { FC, SyntheticEvent } from 'react';
 
 const OpenText = styled.span(({ theme }) => ({

@@ -1,5 +1,5 @@
 import { Info } from './Info';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

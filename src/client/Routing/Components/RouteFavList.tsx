@@ -1,5 +1,5 @@
-import { RouteFavEntry } from 'client/Routing/Components/RouteFavEntry';
-import { useRoutingFavs } from 'client/Routing/provider/RoutingFavProvider';
+import { RouteFavEntry } from '@/client/Routing/Components/RouteFavEntry';
+import { useRoutingFavs } from '@/client/Routing/provider/RoutingFavProvider';
 import type { FC } from 'react';
 
 export const RouteFavList: FC = () => {

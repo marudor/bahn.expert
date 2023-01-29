@@ -1,5 +1,5 @@
-import { journeyFind } from 'client/Common/service/details';
-import { Loading, LoadingType } from 'client/Common/Components/Loading';
+import { journeyFind } from '@/client/Common/service/details';
+import { Loading, LoadingType } from '@/client/Common/Components/Loading';
 import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
@@ -7,7 +7,7 @@ import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
-import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
 const debouncedJourneyFind = debounce(journeyFind, 200);
 

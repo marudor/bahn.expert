@@ -1,5 +1,5 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
-import type { LoyalityCard } from 'types/HAFAS/Tarif';
+import { AllowedHafasProfile } from '@/types/HAFAS';
+import type { LoyalityCard } from '@/types/HAFAS/Tarif';
 
 const DBLoyalityCards: { [key in LoyalityCard]: number } = {
   BC25First: 1,

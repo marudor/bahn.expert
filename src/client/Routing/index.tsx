@@ -1,7 +1,7 @@
 import { Header } from './Components/Header';
-import { RoutingConfigProvider } from 'client/Routing/provider/RoutingConfigProvider';
-import { RoutingFavProvider } from 'client/Routing/provider/RoutingFavProvider';
-import { RoutingRoutes } from 'client/Routing/RoutingRoutes';
+import { RoutingConfigProvider } from '@/client/Routing/provider/RoutingConfigProvider';
+import { RoutingFavProvider } from '@/client/Routing/provider/RoutingFavProvider';
+import { RoutingRoutes } from '@/client/Routing/RoutingRoutes';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

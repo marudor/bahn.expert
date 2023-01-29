@@ -6,7 +6,7 @@ import {
   TileLayer,
   Tooltip,
 } from 'react-leaflet';
-import { useDetails } from 'client/Common/provider/DetailsProvider';
+import { useDetails } from '@/client/Common/provider/DetailsProvider';
 // @ts-expect-error TS doesn't know png
 import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-expect-error TS doesn't know png

@@ -9,13 +9,13 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import Detail from 'server/HAFAS/Detail';
-import type { AllowedHafasProfile } from 'types/HAFAS';
+import Detail from '@/server/HAFAS/Detail';
+import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type {
   AllowedSotMode,
   ParsedSearchOnTripResponse,
-} from 'types/HAFAS/SearchOnTrip';
-import type { EvaNumber } from 'types/common';
+} from '@/types/HAFAS/SearchOnTrip';
+import type { EvaNumber } from '@/types/common';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 export interface SearchOnTripBody {

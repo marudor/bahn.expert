@@ -1,11 +1,11 @@
-import { Cache, CacheDatabase } from 'server/cache';
-import { coachSequenceConfiguration } from 'business-hub/config';
+import { Cache, CacheDatabase } from '@/server/cache';
+import { coachSequenceConfiguration } from '@/business-hub/config';
 import { format, formatISO } from 'date-fns';
-import { logger } from 'server/logger';
-import { TransportsApi } from 'business-hub/generated/coachSequence';
-import { UpstremaApiRequestMetric } from 'server/admin';
+import { logger } from '@/server/logger';
+import { TransportsApi } from '@/business-hub/generated/coachSequence';
+import { UpstremaApiRequestMetric } from '@/server/admin';
 import Axios from 'axios';
-import type { VehicleSequenceDeparture } from 'business-hub/generated/coachSequence';
+import type { VehicleSequenceDeparture } from '@/business-hub/generated/coachSequence';
 
 const axiosWithTimeout = Axios.create({
   timeout: 4500,

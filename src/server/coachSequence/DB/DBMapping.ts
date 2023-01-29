@@ -1,5 +1,5 @@
-import { enrichCoachSequence } from 'server/coachSequence/commonMapping';
-import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
+import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
+import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import type {
   BaseFahrzeug,
   BaseFahrzeuggruppe,
@@ -8,7 +8,7 @@ import type {
   Halt,
   Position,
   Sektor,
-} from 'types/reihung';
+} from '@/types/reihung';
 import type {
   CoachSequence,
   CoachSequenceCoach,
@@ -19,8 +19,8 @@ import type {
   CoachSequenceProduct,
   CoachSequenceSector,
   CoachSequenceStop,
-} from 'types/coachSequence';
-import type { VehicleCategory } from 'business-hub/generated/coachSequence';
+} from '@/types/coachSequence';
+import type { VehicleCategory } from '@/business-hub/generated/coachSequence';
 
 const mapClass = (category: VehicleCategory) => {
   switch (category) {

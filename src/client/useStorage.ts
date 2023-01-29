@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react';
-import type { AbfahrtenConfig, CommonConfig } from 'client/Common/config';
+import type { AbfahrtenConfig, CommonConfig } from '@/client/Common/config';
 import type { Context } from 'react';
-import type { Favs } from 'client/Abfahrten/provider/FavProvider';
-import type { RoutingFavs } from 'client/Routing/provider/RoutingFavProvider';
-import type { RoutingSettings } from 'client/Routing/provider/RoutingConfigProvider';
-import type { StorageInterface } from 'client/Common/Storage';
+import type { Favs } from '@/client/Abfahrten/provider/FavProvider';
+import type { RoutingFavs } from '@/client/Routing/provider/RoutingFavProvider';
+import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
+import type { StorageInterface } from '@/client/Common/Storage';
 
 export interface WebConfigMap
   extends AbfahrtenConfig,

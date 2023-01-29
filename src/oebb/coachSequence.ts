@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import Axios from 'axios';
 import https from 'node:https';
-import type { OEBBInfo } from 'oebb/types/coachSequence';
+import type { OEBBInfo } from '@/oebb/types/coachSequence';
 
 const client = Axios.create({
   baseURL: 'https://live.oebb.at/backend',

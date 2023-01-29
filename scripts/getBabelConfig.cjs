@@ -41,7 +41,9 @@ const getBabelConfig = (type) => {
     [
       'module-resolver',
       {
-        root: 'src',
+        alias: {
+          '@': './src',
+        },
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     ],

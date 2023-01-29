@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import { useQuery } from 'client/Common/hooks/useQuery';
-import { useStorage } from 'client/useStorage';
+import { useQuery } from '@/client/Common/hooks/useQuery';
+import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
-import type { AbfahrtenConfig } from 'client/Common/config';
+import type { AbfahrtenConfig } from '@/client/Common/config';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 export interface Filter {

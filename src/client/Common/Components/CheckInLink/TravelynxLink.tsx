@@ -1,9 +1,9 @@
 import { addMinutes, isBefore } from 'date-fns';
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { stopPropagation } from '@/client/Common/stopPropagation';
 import { Tooltip } from '@mui/material';
 import { Train } from '@mui/icons-material';
-import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
-import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
+import type { CommonProductInfo, CommonStopInfo } from '@/types/HAFAS';
 import type { FC } from 'react';
 
 interface Props {

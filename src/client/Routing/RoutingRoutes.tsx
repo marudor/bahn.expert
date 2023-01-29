@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router';
-import { RoutesMain } from 'client/Routing/Components/RoutesMain';
+import { RoutesMain } from '@/client/Routing/Components/RoutesMain';
 import type { FC } from 'react';
 
 export const RoutingRoutes: FC = () => (

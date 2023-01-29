@@ -1,13 +1,13 @@
-import { AbfahrtenProvider } from 'client/Abfahrten/provider/AbfahrtenProvider';
-import { AbfahrtenRoutes } from 'client/Abfahrten/AbfahrtenRoutes';
-import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
+import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
+import { AbfahrtenRoutes } from '@/client/Abfahrten/AbfahrtenRoutes';
+import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { FavProvider } from './provider/FavProvider';
-import { getStopPlacesFromAPI } from 'client/Common/service/stopPlaceSearch';
+import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { Header } from './Components/Header';
-import { MainWrap } from 'client/Common/Components/MainWrap';
-import { MostUsed } from 'client/Abfahrten/Components/MostUsed';
+import { MainWrap } from '@/client/Common/Components/MainWrap';
+import { MostUsed } from '@/client/Abfahrten/Components/MostUsed';
 import { SettingsModal } from './Components/SettingsModal';
-import { useQuery } from 'client/Common/hooks/useQuery';
+import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
 const stopPlaceApiFunction = getStopPlacesFromAPI.bind(

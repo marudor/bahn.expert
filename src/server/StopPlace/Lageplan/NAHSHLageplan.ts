@@ -1,6 +1,6 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
-import { Cache, CacheDatabase } from 'server/cache';
-import { locMatch } from 'server/HAFAS/LocMatch';
+import { AllowedHafasProfile } from '@/types/HAFAS';
+import { Cache, CacheDatabase } from '@/server/cache';
+import { locMatch } from '@/server/HAFAS/LocMatch';
 import Axios from 'axios';
 
 // 48 hours in seconds

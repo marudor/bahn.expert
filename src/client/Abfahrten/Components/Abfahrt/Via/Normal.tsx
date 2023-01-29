@@ -3,7 +3,7 @@ import { isHbf } from './index';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
-import type { Stop } from 'types/iris';
+import type { Stop } from '@/types/iris';
 
 export const StyledViaStop = styled('span', {
   shouldForwardProp: (p) => p !== 'stop',

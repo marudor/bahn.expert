@@ -1,8 +1,8 @@
-import { commonConfigSanitize } from 'client/util';
+import { commonConfigSanitize } from '@/client/util';
 import { useCallback, useState } from 'react';
-import { useStorage } from 'client/useStorage';
+import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
-import type { CommonConfig } from 'client/Common/config';
+import type { CommonConfig } from '@/client/Common/config';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 const useCommonConfigInternal = ({

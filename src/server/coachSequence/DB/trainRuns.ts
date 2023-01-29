@@ -1,12 +1,12 @@
 import {
   getBRFromGroupName,
   planSequenceAxios,
-} from 'server/coachSequence/DB/plannedSequence';
-import { getGroups } from 'server/StopPlace/search';
-import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
-import type { AvailableBR, AvailableIdentifier } from 'types/coachSequence';
-import type { EvaNumber } from 'types/common';
-import type { TrainRun, TrainRunWithBR } from 'types/trainRuns';
+} from '@/server/coachSequence/DB/plannedSequence';
+import { getGroups } from '@/server/StopPlace/search';
+import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
+import type { AvailableBR, AvailableIdentifier } from '@/types/coachSequence';
+import type { EvaNumber } from '@/types/common';
+import type { TrainRun, TrainRunWithBR } from '@/types/trainRuns';
 
 export async function getTrainRunsByDate(
   date: Date,

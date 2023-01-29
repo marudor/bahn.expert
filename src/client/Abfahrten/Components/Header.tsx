@@ -1,15 +1,15 @@
-import { BaseHeader } from 'client/Common/Components/BaseHeader';
+import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { ExtraMenu } from './ExtraMenu';
 import { IconButton } from '@mui/material';
 import { Refresh } from '@mui/icons-material';
-import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
-import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
+import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useEffect, useState } from 'react';
-import { useCurrentAbfahrtenStopPlace } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { useNavigate } from 'react-router';
-import { useRefreshCurrent } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import { useRefreshCurrent } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import type { FC } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 interface Props {
   regional?: boolean;

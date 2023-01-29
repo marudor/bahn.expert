@@ -1,4 +1,4 @@
-import { coachSequence } from 'server/coachSequence';
+import { coachSequence } from '@/server/coachSequence';
 import {
   Controller,
   Get,
@@ -8,15 +8,15 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import { getPlannedSequence } from 'server/coachSequence/DB/plannedSequence';
-import { getTrainRunsByDate } from 'server/coachSequence/DB/trainRuns';
+import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
+import { getTrainRunsByDate } from '@/server/coachSequence/DB/trainRuns';
 import type {
   AvailableBR,
   AvailableIdentifier,
   CoachSequenceInformation,
-} from 'types/coachSequence';
-import type { EvaNumber } from 'types/common';
-import type { TrainRunWithBR } from 'types/trainRuns';
+} from '@/types/coachSequence';
+import type { EvaNumber } from '@/types/common';
+import type { TrainRunWithBR } from '@/types/trainRuns';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/reihung/v4')

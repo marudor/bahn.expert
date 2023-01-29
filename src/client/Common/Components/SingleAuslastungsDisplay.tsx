@@ -1,4 +1,4 @@
-import { AuslastungsValue } from 'types/routing';
+import { AuslastungsValue } from '@/types/routing';
 import { Close, Done, ErrorOutline, Help, Warning } from '@mui/icons-material';
 import styled from '@emotion/styled';
 import type { FC } from 'react';

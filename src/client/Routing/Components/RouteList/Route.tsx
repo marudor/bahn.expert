@@ -1,11 +1,11 @@
-import { formatDuration } from 'client/Routing/util';
+import { formatDuration } from '@/client/Routing/util';
 import { Paper } from '@mui/material';
 import { RouteSegments } from './RouteSegments';
-import { Time } from 'client/Common/Components/Time';
+import { Time } from '@/client/Common/Components/Time';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
-import type { SingleRoute } from 'types/routing';
+import type { SingleRoute } from '@/types/routing';
 
 interface Props {
   route: SingleRoute;

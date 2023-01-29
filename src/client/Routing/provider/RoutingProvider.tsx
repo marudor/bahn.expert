@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import constate from 'constate';
 import type { PropsWithChildren } from 'react';
-import type { SingleRoute } from 'types/routing';
+import type { SingleRoute } from '@/types/routing';
 
 const useRoutingInternal = (_p: PropsWithChildren<unknown>) => {
   const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);

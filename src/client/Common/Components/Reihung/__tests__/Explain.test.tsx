@@ -1,9 +1,9 @@
 import {
   Explain,
   iconExplanation,
-} from 'client/Common/Components/Reihung/Explain';
+} from '@/client/Common/Components/Reihung/Explain';
 import { fireEvent, screen } from '@testing-library/react';
-import { render } from 'client/__tests__/testHelper';
+import { render } from '@/client/__tests__/testHelper';
 
 describe('Explain', () => {
   function openLegende() {

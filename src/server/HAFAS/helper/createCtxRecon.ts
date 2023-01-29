@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
-import type { RemL } from 'types/HAFAS';
+import type { RemL } from '@/types/HAFAS';
 import type {
   Route$ValidArrivalStop,
   Route$ValidDepartureStop,
-} from 'types/HAFAS/JourneyDetails';
+} from '@/types/HAFAS/JourneyDetails';
 
 interface CreateCtxReconOptions {
   firstStop: Route$ValidDepartureStop;

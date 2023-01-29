@@ -1,9 +1,9 @@
 import { addSeconds, parse } from 'date-fns';
-import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
+import createCtxRecon from '@/server/HAFAS/helper/createCtxRecon';
 import type {
   Route$ValidArrivalStop,
   Route$ValidDepartureStop,
-} from 'types/HAFAS/JourneyDetails';
+} from '@/types/HAFAS/JourneyDetails';
 
 describe('createCtxRecon', () => {
   const expectedDeparture = '201912131045';

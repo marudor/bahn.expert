@@ -4,7 +4,7 @@ import type {
   ParsedProduct,
   RemL,
 } from './HAFAS';
-import type { Route$Stop } from 'types/routing';
+import type { Route$Stop } from '@/types/routing';
 
 interface CommonStationBoardEntry {
   train: ParsedProduct;

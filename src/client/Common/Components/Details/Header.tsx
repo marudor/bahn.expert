@@ -3,9 +3,9 @@ import { format } from 'date-fns';
 import { IconButton } from '@mui/material';
 import { Map, Refresh } from '@mui/icons-material';
 import { useCallback, useMemo } from 'react';
-import { useDetails } from 'client/Common/provider/DetailsProvider';
+import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
-import type { CommonProductInfo } from 'types/HAFAS';
+import type { CommonProductInfo } from '@/types/HAFAS';
 import type { FC } from 'react';
 
 const SingleLineSpan = styled.span(({ theme }) => theme.mixins.singleLineText);

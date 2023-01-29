@@ -1,7 +1,7 @@
-import { Details } from 'client/Common/Components/Details';
-import { DetailsProvider } from 'client/Common/provider/DetailsProvider';
+import { Details } from '@/client/Common/Components/Details';
+import { DetailsProvider } from '@/client/Common/provider/DetailsProvider';
 import { useParams } from 'react-router';
-import { useQuery } from 'client/Common/hooks/useQuery';
+import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
 interface Props {

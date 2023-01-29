@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
-import type { CoachSequenceInformation } from 'types/coachSequence';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
 import type { PropsWithChildren } from 'react';
 
 async function fetchSequence(

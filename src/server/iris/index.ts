@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
-import { isStrikeMessage } from 'server/iris/messageLookup';
+import { isStrikeMessage } from '@/server/iris/messageLookup';
 import { Timetable } from './Timetable';
-import type { Abfahrt, AbfahrtenResult } from 'types/iris';
+import type { Abfahrt, AbfahrtenResult } from '@/types/iris';
 
 interface AbfahrtenOptions {
   lookahead: number;

@@ -1,11 +1,11 @@
 /* eslint-disable unicorn/prefer-module */
 import { BrowserRouter } from 'react-router-dom';
-import { ClientStorage } from 'client/Common/Storage';
+import { ClientStorage } from '@/client/Common/Storage';
 import { HeadProvider } from 'react-head';
 import { hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';
-import { StorageContext } from 'client/useStorage';
-import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
+import { StorageContext } from '@/client/useStorage';
+import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
 import { ThemeWrap } from './ThemeWrap';
 import Axios from 'axios';
 import qs from 'qs';

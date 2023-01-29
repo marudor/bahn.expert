@@ -9,17 +9,17 @@ import {
 } from '@mui/material';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { NavigationContext } from './Navigation/NavigationContext';
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { stopPropagation } from '@/client/Common/stopPropagation';
 import { subHours } from 'date-fns';
 import { Today, Train } from '@mui/icons-material';
 import { useCallback, useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useStorage } from 'client/useStorage';
-import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
+import { useStorage } from '@/client/useStorage';
+import { ZugsucheAutocomplete } from '@/client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
 import styled from '@emotion/styled';
 import type { FC, ReactElement, SyntheticEvent } from 'react';
-import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
 const Title = styled(DialogTitle)`
   text-align: center;

@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import { useStorage } from 'client/useStorage';
+import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
 import type { FC, PropsWithChildren } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export interface RoutingFav {
   start: MinimalStopPlace;

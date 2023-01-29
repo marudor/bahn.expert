@@ -1,4 +1,4 @@
-import { createApp } from 'server/app';
+import { createApp } from '@/server/app';
 import type { Server } from 'node:http';
 
 export function createTestServer(): Server {

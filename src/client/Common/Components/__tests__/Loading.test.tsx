@@ -1,5 +1,5 @@
-import { Loading, LoadingType } from 'client/Common/Components/Loading';
-import { render } from 'client/__tests__/testHelper';
+import { Loading, LoadingType } from '@/client/Common/Components/Loading';
+import { render } from '@/client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
 import type { FC, ReactNode } from 'react';
 

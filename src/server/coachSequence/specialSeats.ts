@@ -2,7 +2,7 @@ import type {
   AvailableIdentifier,
   CoachSequenceCoach,
   CoachSequenceCoachSeats,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 
 export function getComfortSeats(
   identifier: AvailableIdentifier | undefined,

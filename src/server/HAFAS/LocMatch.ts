@@ -1,4 +1,4 @@
-import { Cache, CacheDatabase } from 'server/cache';
+import { Cache, CacheDatabase } from '@/server/cache';
 import makeRequest from './Request';
 import parseLocL from './helper/parseLocL';
 import type {
@@ -6,8 +6,8 @@ import type {
   HafasResponse,
   HafasStation,
   ParsedCommon,
-} from 'types/HAFAS';
-import type { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
+} from '@/types/HAFAS';
+import type { LocMatchRequest, LocMatchResponse } from '@/types/HAFAS/LocMatch';
 
 // 8 Hours in seconds
 const cache = new Cache<string, HafasStation[]>(

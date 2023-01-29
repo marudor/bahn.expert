@@ -1,4 +1,4 @@
-import { checkSecrets } from 'server/checkSecret';
+import { checkSecrets } from '@/server/checkSecret';
 
 export const imprint = {
   name: process.env.IMPRINT_NAME!,

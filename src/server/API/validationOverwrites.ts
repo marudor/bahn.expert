@@ -1,4 +1,4 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
+import { AllowedHafasProfile } from '@/types/HAFAS';
 import KoaRouter from '@koa/router';
 
 const router = new KoaRouter();

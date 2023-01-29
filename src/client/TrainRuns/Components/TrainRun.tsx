@@ -1,7 +1,7 @@
-import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
+import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import { format } from 'date-fns';
 import type { FC } from 'react';
-import type { TrainRunWithBR } from 'types/trainRuns';
+import type { TrainRunWithBR } from '@/types/trainRuns';
 
 interface Props {
   trainRun: TrainRunWithBR;

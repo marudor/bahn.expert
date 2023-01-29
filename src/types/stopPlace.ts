@@ -1,5 +1,5 @@
-import type { Coordinate2D, TransportType } from 'business-hub/types';
-import type { Route$Auslastung } from 'types/routing';
+import type { Coordinate2D, TransportType } from '@/business-hub/types';
+import type { Route$Auslastung } from '@/types/routing';
 
 export interface StopPlaceIdentifier {
   stationId?: string;

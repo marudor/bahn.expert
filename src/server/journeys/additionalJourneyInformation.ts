@@ -1,8 +1,8 @@
-import { Cache, CacheDatabase } from 'server/cache';
-import Detail from 'server/HAFAS/Detail';
-import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
-import type { EvaNumber } from 'types/common';
-import type { Route$Auslastung } from 'types/routing';
+import { Cache, CacheDatabase } from '@/server/cache';
+import Detail from '@/server/HAFAS/Detail';
+import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
+import type { EvaNumber } from '@/types/common';
+import type { Route$Auslastung } from '@/types/routing';
 
 const additionalInformationCache = new Cache<
   string,

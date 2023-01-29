@@ -4,12 +4,12 @@ import type {
   AllowedHafasProfile,
   HafasResponse,
   ParsedCommon,
-} from 'types/HAFAS';
+} from '@/types/HAFAS';
 import type {
   SearchOnTripRequest,
   SearchOnTripResponse,
-} from 'types/HAFAS/SearchOnTrip';
-import type { SingleRoute } from 'types/routing';
+} from '@/types/HAFAS/SearchOnTrip';
+import type { SingleRoute } from '@/types/routing';
 
 const parseSearchOnTrip = (
   d: HafasResponse<SearchOnTripResponse>,

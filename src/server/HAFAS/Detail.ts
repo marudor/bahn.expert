@@ -1,13 +1,13 @@
-import { addIrisMessagesToDetails } from 'server/journeys/journeyDetails';
-import { AllowedHafasProfile } from 'types/HAFAS';
+import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
+import { AllowedHafasProfile } from '@/types/HAFAS';
 import { isAfter } from 'date-fns';
-import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
-import JourneyDetails from 'server/HAFAS/JourneyDetails';
-import JourneyMatch from 'server/HAFAS/JourneyMatch';
+import createCtxRecon from '@/server/HAFAS/helper/createCtxRecon';
+import JourneyDetails from '@/server/HAFAS/JourneyDetails';
+import JourneyMatch from '@/server/HAFAS/JourneyMatch';
 import searchOnTrip from './SearchOnTrip';
-import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
-import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import type { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { Route$JourneySegmentTrain, Route$Stop } from '@/types/routing';
 
 export function calculateCurrentStopPlace(
   segment: ParsedSearchOnTripResponse,

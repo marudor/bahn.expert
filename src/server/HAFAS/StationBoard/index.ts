@@ -1,13 +1,13 @@
 import { format } from 'date-fns-tz';
 import makeRequest from '../Request';
 import parse from './parse';
-import type { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
+import type { AllowedHafasProfile, JourneyFilter } from '@/types/HAFAS';
 import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
   StationBoardEntry,
-} from 'types/stationBoard';
-import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
+} from '@/types/stationBoard';
+import type { StationBoardRequest } from '@/types/HAFAS/StationBoard';
 
 interface Options {
   date?: Date;

@@ -1,9 +1,9 @@
 /* eslint-disable unicorn/prefer-module */
-import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
+import { abfahrtenConfigSanitize, commonConfigSanitize } from '@/client/util';
 import { ChunkExtractor } from '@loadable/server';
 import { renderToString } from 'react-dom/server';
-import { sanitizeStorage } from 'server/sanitizeStorage';
-import { ServerBaseComponent } from 'client/ServerBaseComponent';
+import { sanitizeStorage } from '@/server/sanitizeStorage';
+import { ServerBaseComponent } from '@/client/ServerBaseComponent';
 import createEmotionCache from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 import ejs from 'ejs';
@@ -12,7 +12,7 @@ import path from 'node:path';
 import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
-} from 'client/Common/config';
+} from '@/client/Common/config';
 import type { Context } from 'koa';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');

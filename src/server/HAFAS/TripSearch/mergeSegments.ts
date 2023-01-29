@@ -1,4 +1,4 @@
-import type { Route$JourneySegment } from 'types/routing';
+import type { Route$JourneySegment } from '@/types/routing';
 
 export default (segments: Route$JourneySegment[]): Route$JourneySegment[] => {
   const mergedSegments: Route$JourneySegment[] = [];

@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
-import { Platform } from 'client/Common/Components/Platform';
-import { Time } from 'client/Common/Components/Time';
+import { Platform } from '@/client/Common/Components/Platform';
+import { Time } from '@/client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
 import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
-import type { Route$JourneySegment } from 'types/routing';
+import type { Route$JourneySegment } from '@/types/routing';
 
 const DepartureTime = styled(Time)`
   grid-area: dt;

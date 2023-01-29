@@ -1,27 +1,27 @@
 import { Abfahrt } from './Abfahrt';
-import { Loading } from 'client/Common/Components/Loading';
+import { Loading } from '@/client/Common/Components/Loading';
 import { Navigate, useParams } from 'react-router';
 import {
   SelectedDetailProvider,
   useSelectedDetail,
-} from 'client/Abfahrten/provider/SelectedDetailProvider';
-import { Streik } from 'client/Common/Components/Streik';
+} from '@/client/Abfahrten/provider/SelectedDetailProvider';
+import { Streik } from '@/client/Common/Components/Streik';
 import {
   useAbfahrten,
   useRefreshCurrent,
-} from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
+} from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import {
   useAbfahrtenError,
   useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
-} from 'client/Abfahrten/provider/AbfahrtenProvider';
-import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
+} from '@/client/Abfahrten/provider/AbfahrtenProvider';
+import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useEffect, useState } from 'react';
-import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
-import { useSequencesActions } from 'client/Common/provider/ReihungenProvider';
+import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
+import { useSequencesActions } from '@/client/Common/provider/ReihungenProvider';
 import styled from '@emotion/styled';
-import type { AbfahrtenResult } from 'types/iris';
+import type { AbfahrtenResult } from '@/types/iris';
 import type { FC } from 'react';
 
 const LookaheadMarker = styled.div`

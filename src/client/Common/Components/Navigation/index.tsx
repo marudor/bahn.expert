@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { NavigationContext } from './NavigationContext';
 import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
-import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 

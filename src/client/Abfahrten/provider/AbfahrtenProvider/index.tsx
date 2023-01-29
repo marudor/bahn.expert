@@ -2,15 +2,15 @@ import {
   AbfahrtenConfigProvider,
   useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { useAuslastung } from 'client/Abfahrten/provider/AuslastungsProvider';
+} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAuslastung } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { useCallback, useEffect, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
-import type { AbfahrtenResult } from 'types/iris';
+import type { AbfahrtenResult } from '@/types/iris';
 import type { AxiosError } from 'axios';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 let cancelGetAbfahrten = () => {};

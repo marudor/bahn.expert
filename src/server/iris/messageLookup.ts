@@ -1,4 +1,4 @@
-import type { Message } from 'types/iris';
+import type { Message } from '@/types/iris';
 
 /*
  ** Initially this file is copied from https://github.com/derf/Travel-Status-DE-IRIS

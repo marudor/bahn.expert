@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import { Header } from './Header';
 import { StopList } from './StopList';
-import { useDetails } from 'client/Common/provider/DetailsProvider';
+import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import { useEffect } from 'react';
-import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
+import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import loadable from '@loadable/component';
 import type { FC } from 'react';
 

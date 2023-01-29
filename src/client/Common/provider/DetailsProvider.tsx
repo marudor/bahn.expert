@@ -1,15 +1,15 @@
 import {
   getAdditionalJourneyInformation,
   getDetails,
-} from 'client/Common/service/details';
+} from '@/client/Common/service/details';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import constate from 'constate';
-import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
+import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { AxiosError } from 'axios';
-import type { HafasStation, ParsedPolyline } from 'types/HAFAS';
-import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import type { Route$Auslastung, Route$Stop } from 'types/routing';
+import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
+import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { Route$Auslastung, Route$Stop } from '@/types/routing';
 
 interface Props {
   trainName: string;

@@ -1,4 +1,4 @@
-import { partition } from 'client/util';
+import { partition } from '@/client/util';
 
 describe('partition', () => {
   it('smaller than partitionSize', () => {

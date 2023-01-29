@@ -1,10 +1,10 @@
-import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
-import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
-import { Name } from 'client/Abfahrten/Components/Abfahrt/Name';
+import { Auslastung } from '@/client/Abfahrten/Components/Abfahrt/Auslastung';
+import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
+import { Name } from '@/client/Abfahrten/Components/Abfahrt/Name';
 import { Substitute } from './Substitute';
-import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

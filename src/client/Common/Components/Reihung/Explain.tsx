@@ -1,6 +1,6 @@
 import { Dialog, DialogContent } from '@mui/material';
 import { icons } from './Fahrzeug';
-import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
+import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';

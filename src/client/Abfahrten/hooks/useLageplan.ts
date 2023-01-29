@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
-import type { LageplanResponse } from 'types/bahnhof';
+import type { LageplanResponse } from '@/types/bahnhof';
 
 export const useLageplan = (
   stationName?: string,

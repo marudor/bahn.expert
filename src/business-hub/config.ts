@@ -1,7 +1,7 @@
-import { checkSecrets } from 'server/checkSecret';
-import { Configuration as CoachSequenceConfiguration } from 'business-hub/generated/coachSequence';
-import { Configuration as RisJourneysConfiguration } from 'business-hub/generated/risJourneys';
-import { Configuration as RisStationsConfiguration } from 'business-hub/generated/risStations';
+import { checkSecrets } from '@/server/checkSecret';
+import { Configuration as CoachSequenceConfiguration } from '@/business-hub/generated/coachSequence';
+import { Configuration as RisJourneysConfiguration } from '@/business-hub/generated/risJourneys';
+import { Configuration as RisStationsConfiguration } from '@/business-hub/generated/risStations';
 
 export const risStationsConfiguration = new RisStationsConfiguration({
   basePath: process.env.RIS_STATIONS_URL,

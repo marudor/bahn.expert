@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
-import { Stop } from 'client/Common/Components/Details/Stop';
+import { Stop } from '@/client/Common/Components/Details/Stop';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useDetails } from 'client/Common/provider/DetailsProvider';
+import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { AxiosError } from 'axios';
 import type { FC } from 'react';
-import type { Route$Stop } from 'types/routing';
+import type { Route$Stop } from '@/types/routing';
 
 function getErrorText(error: AxiosError) {
   if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';

@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { stopPropagation } from '@/client/Common/stopPropagation';
 import { useMemo } from 'react';
 import type {
   AvailableIdentifier,
   CoachSequenceCoach,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 import type { FC } from 'react';
 
 const linkCss = css`

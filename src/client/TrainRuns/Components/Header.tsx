@@ -1,9 +1,9 @@
-import { BaseHeader } from 'client/Common/Components/BaseHeader';
+import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { de } from 'date-fns/locale';
 import { format } from 'date-fns';
 import { useEffect, useMemo } from 'react';
-import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
-import { useTrainRuns } from 'client/TrainRuns/provider/TrainRunProvider';
+import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
+import { useTrainRuns } from '@/client/TrainRuns/provider/TrainRunProvider';
 import type { FC } from 'react';
 
 export const Header: FC = () => {

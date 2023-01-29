@@ -1,4 +1,8 @@
-import type { CommonProductInfo, CommonStop, ParsedCommon } from 'types/HAFAS';
+import type {
+  CommonProductInfo,
+  CommonStop,
+  ParsedCommon,
+} from '@/types/HAFAS';
 
 export const adjustProductOperator = (
   mainProduct: CommonProductInfo,

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
-import type { AvailableBR, AvailableIdentifier } from 'types/coachSequence';
-import type { EvaNumber } from 'types/common';
+import type { AvailableBR, AvailableIdentifier } from '@/types/coachSequence';
+import type { EvaNumber } from '@/types/common';
 import type { FC, PropsWithChildren } from 'react';
-import type { TrainRunWithBR } from 'types/trainRuns';
+import type { TrainRunWithBR } from '@/types/trainRuns';
 
 const useInnerTrainRuns = (_p: PropsWithChildren<unknown>) => {
   const [trainRuns, setTrainRuns] = useState<TrainRunWithBR[]>();

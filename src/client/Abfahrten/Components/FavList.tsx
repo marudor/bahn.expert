@@ -2,18 +2,18 @@ import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { Link } from 'react-router-dom';
 import { MostUsed } from './MostUsed';
 import { Navigate } from 'react-router';
-import { useAbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useAbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useMemo, useState } from 'react';
 import {
   useFavs,
   useMostUsedComponent,
-} from 'client/Abfahrten/provider/FavProvider';
-import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
-import { Zugsuche } from 'client/Common/Components/Zugsuche';
+} from '@/client/Abfahrten/provider/FavProvider';
+import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
+import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import styled from '@emotion/styled';
-import type { AbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import type { AbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import type { FC, ReactNode } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { StaticRouterContext } from 'react-router';
 
 const Main = styled.main`

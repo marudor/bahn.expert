@@ -1,4 +1,4 @@
-import type { Crd, HafasStation, LocL, ParsedProduct } from 'types/HAFAS';
+import type { Crd, HafasStation, LocL, ParsedProduct } from '@/types/HAFAS';
 
 export function parseCoordinates(crd: Crd): {
   lng: number;

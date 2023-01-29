@@ -1,11 +1,11 @@
-import { checkSecrets } from 'server/checkSecret';
-import { getSeatsForCoach } from 'server/coachSequence/specialSeats';
-import { nameMap } from 'server/coachSequence/baureihe';
+import { checkSecrets } from '@/server/checkSecret';
+import { getSeatsForCoach } from '@/server/coachSequence/specialSeats';
+import { nameMap } from '@/server/coachSequence/baureihe';
 import Axios from 'axios';
 import type {
   CoachSequenceBaureihe,
   CoachSequenceInformation,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 
 const apiUrl = process.env.PRIVATE_API_URL;
 const apiKey = process.env.PRIVATE_API_KEY;

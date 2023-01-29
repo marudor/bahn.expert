@@ -8,12 +8,12 @@ import type {
   CommonDeparture,
   HafasResponse,
   ParsedCommon,
-} from 'types/HAFAS';
-import type { StationBoardEntry } from 'types/stationBoard';
+} from '@/types/HAFAS';
+import type { StationBoardEntry } from '@/types/stationBoard';
 import type {
   StationBoardJny,
   StationBoardResponse,
-} from 'types/HAFAS/StationBoard';
+} from '@/types/HAFAS/StationBoard';
 
 const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
   a.hasOwnProperty('aOutR');

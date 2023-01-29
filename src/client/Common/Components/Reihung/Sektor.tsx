@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
-import type { CoachSequenceSector } from 'types/coachSequence';
+import type { CoachSequenceSector } from '@/types/coachSequence';
 import type { FC } from 'react';
 
 const Container = styled.div`

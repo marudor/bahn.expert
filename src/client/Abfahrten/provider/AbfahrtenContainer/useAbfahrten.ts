@@ -1,7 +1,7 @@
-import { useAbfahrtenDepartures } from 'client/Abfahrten/provider/AbfahrtenProvider';
-import { useAbfahrtenFilter } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrtenDepartures } from '@/client/Abfahrten/provider/AbfahrtenProvider';
+import { useAbfahrtenFilter } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useMemo } from 'react';
-import type { Abfahrt } from 'types/iris';
+import type { Abfahrt } from '@/types/iris';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {

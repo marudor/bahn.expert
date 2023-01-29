@@ -1,7 +1,7 @@
 import {
   AvailableBRConstant,
   AvailableIdentifierConstant,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 import {
   Button,
   FormControl,
@@ -10,13 +10,16 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import { Disclaimer } from 'client/TrainRuns/Components/TrainRunFilter/Disclaimer';
+import { Disclaimer } from '@/client/TrainRuns/Components/TrainRunFilter/Disclaimer';
 import { Info } from '@mui/icons-material';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { useCallback, useEffect, useState } from 'react';
-import { useTrainRuns } from 'client/TrainRuns/provider/TrainRunProvider';
+import { useTrainRuns } from '@/client/TrainRuns/provider/TrainRunProvider';
 import styled from '@emotion/styled';
-import type { AvailableBR, AvailableIdentifierOnly } from 'types/coachSequence';
+import type {
+  AvailableBR,
+  AvailableIdentifierOnly,
+} from '@/types/coachSequence';
 import type { FC } from 'react';
 import type { SelectChangeEvent } from '@mui/material';
 

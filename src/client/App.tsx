@@ -1,11 +1,11 @@
-import { CommonConfigProvider } from 'client/Common/provider/CommonConfigProvider';
+import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { GlobalStyles } from '@mui/material';
-import { HeaderTagProvider } from 'client/Common/provider/HeaderTagProvider';
-import { Loading } from 'client/Common/Components/Loading';
-import { Navigation } from 'client/Common/Components/Navigation';
-import { ReihungenProvider } from 'client/Common/provider/ReihungenProvider';
+import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
+import { Loading } from '@/client/Common/Components/Loading';
+import { Navigation } from '@/client/Common/Components/Navigation';
+import { ReihungenProvider } from '@/client/Common/provider/ReihungenProvider';
 import { Route, Routes } from 'react-router-dom';
-import { RoutingProvider } from 'client/Routing/provider/RoutingProvider';
+import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
 import loadable from '@loadable/component';
 import type { FC } from 'react';
 import type { Theme } from '@mui/material';

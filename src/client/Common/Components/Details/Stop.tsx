@@ -1,17 +1,17 @@
-import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
+import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { DetailMessages } from '../Messages/Detail';
 import { Messages } from './Messages';
-import { Platform } from 'client/Common/Components/Platform';
+import { Platform } from '@/client/Common/Components/Platform';
 import { Reihung } from '../Reihung';
-import { StationLink } from 'client/Common/Components/StationLink';
-import { Time } from 'client/Common/Components/Time';
-import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
+import { StationLink } from '@/client/Common/Components/StationLink';
+import { Time } from '@/client/Common/Components/Time';
+import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { useCallback, useMemo } from 'react';
-import { useDetails } from 'client/Common/provider/DetailsProvider';
+import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
-import type { ParsedProduct } from 'types/HAFAS';
-import type { Route$Stop } from 'types/routing';
+import type { ParsedProduct } from '@/types/HAFAS';
+import type { Route$Stop } from '@/types/routing';
 
 const ArrivalTime = styled(Time)`
   grid-area: ar;

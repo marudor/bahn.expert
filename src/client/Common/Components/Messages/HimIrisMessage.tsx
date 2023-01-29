@@ -3,7 +3,7 @@ import { format, getDate } from 'date-fns';
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
-import type { Message } from 'types/iris';
+import type { Message } from '@/types/iris';
 
 const Container = styled.div<{ superseded?: boolean }>(
   {

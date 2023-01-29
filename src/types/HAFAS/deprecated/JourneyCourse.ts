@@ -5,7 +5,7 @@ import type {
   JourneyFilter,
   OptionalLocL,
   ParsedPolyline,
-} from 'types/HAFAS';
+} from '@/types/HAFAS';
 
 export interface JourneyCourseRequestOptions {
   arrLoc?: OptionalLocL;

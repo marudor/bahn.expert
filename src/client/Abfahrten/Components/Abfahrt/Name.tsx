@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import { useAbfahrtenConfig } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrtenConfig } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
