@@ -1,5 +1,5 @@
-import { render } from 'client/__tests__/testHelper';
-import { RouteHeader } from 'client/Routing/Components/RouteList/RouteHeader';
+import { render } from '@/client/__tests__/testHelper';
+import { RouteHeader } from '@/client/Routing/Components/RouteList/RouteHeader';
 import { screen } from '@testing-library/react';
 
 describe('RouteHeader', () => {

@@ -1,11 +1,11 @@
 import { HeadProvider } from 'react-head';
 import { StaticRouter } from 'react-router-dom/server';
-import { StorageContext } from 'client/useStorage';
-import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
-import { ThemeWrap } from 'client/ThemeWrap';
+import { StorageContext } from '@/client/useStorage';
+import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
+import { ThemeWrap } from '@/client/ThemeWrap';
 import type { EmotionCache } from '@emotion/react';
 import type { ReactElement } from 'react';
-import type { StorageInterface } from 'client/Common/Storage';
+import type { StorageInterface } from '@/client/Common/Storage';
 
 interface Props {
   headTags: any[];

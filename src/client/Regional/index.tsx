@@ -1,12 +1,12 @@
-import { AbfahrtenProvider } from 'client/Abfahrten/provider/AbfahrtenProvider';
-import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
-import { FavProvider } from 'client/Abfahrten/provider/FavProvider';
-import { getStopPlacesFromAPI } from 'client/Common/service/stopPlaceSearch';
-import { Header } from 'client/Abfahrten/Components/Header';
-import { MainWrap } from 'client/Common/Components/MainWrap';
-import { RegionalRoutes } from 'client/Regional/RegionalRoutes';
-import { SettingsModal } from 'client/Abfahrten/Components/SettingsModal';
-import { useQuery } from 'client/Common/hooks/useQuery';
+import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
+import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
+import { FavProvider } from '@/client/Abfahrten/provider/FavProvider';
+import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
+import { Header } from '@/client/Abfahrten/Components/Header';
+import { MainWrap } from '@/client/Common/Components/MainWrap';
+import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
+import { SettingsModal } from '@/client/Abfahrten/Components/SettingsModal';
+import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
 const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(

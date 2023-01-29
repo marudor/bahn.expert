@@ -1,11 +1,11 @@
-import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
-import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
-import { Reihung } from 'client/Common/Components/Reihung';
+import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
+import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
+import { Reihung } from '@/client/Common/Components/Reihung';
 import { segmentStyles } from './style';
-import { StopList } from 'client/Routing/Components/RouteList/StopList';
+import { StopList } from '@/client/Routing/Components/RouteList/StopList';
 import { Tooltip } from '@mui/material';
 import type { FC, HTMLProps, MouseEvent } from 'react';
-import type { Route$JourneySegmentTrain } from 'types/routing';
+import type { Route$JourneySegmentTrain } from '@/types/routing';
 
 interface Props extends HTMLProps<HTMLDivElement> {
   segment: Route$JourneySegmentTrain;

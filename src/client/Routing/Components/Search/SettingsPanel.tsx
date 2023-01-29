@@ -16,15 +16,15 @@ import {
   Train,
 } from '@mui/icons-material';
 import { css } from '@emotion/react';
-import { NetzcardDisclaimer } from 'client/Routing/Components/Search/NetzcardDisclaimer';
+import { NetzcardDisclaimer } from '@/client/Routing/Components/Search/NetzcardDisclaimer';
 import { useCallback, useMemo, useState } from 'react';
 import {
   useRoutingConfigActions,
   useRoutingSettings,
-} from 'client/Routing/provider/RoutingConfigProvider';
+} from '@/client/Routing/provider/RoutingConfigProvider';
 import styled from '@emotion/styled';
 import type { ChangeEvent, FC } from 'react';
-import type { RoutingSettings } from 'client/Routing/provider/RoutingConfigProvider';
+import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
 
 const StyledAccordion = styled(Accordion)`
   margin: 0 !important;

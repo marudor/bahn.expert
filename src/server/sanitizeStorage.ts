@@ -1,5 +1,5 @@
-import type { MinimalStopPlace } from 'types/stopPlace';
-import type { ServerStorage } from 'client/Common/Storage';
+import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { ServerStorage } from '@/client/Common/Storage';
 
 export function sanitizeStorage(storage: ServerStorage): void {
   sanitizeFavs(storage, 'favs');

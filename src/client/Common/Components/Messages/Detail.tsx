@@ -1,8 +1,8 @@
-import { HimIrisMessage } from 'client/Common/Components/Messages/HimIrisMessage';
-import { IrisMessage } from 'client/Common/Components/Messages/IrisMessage';
+import { HimIrisMessage } from '@/client/Common/Components/Messages/HimIrisMessage';
+import { IrisMessage } from '@/client/Common/Components/Messages/IrisMessage';
 import { MessageContainer } from './Normal';
 import type { FC } from 'react';
-import type { Message } from 'types/iris';
+import type { Message } from '@/types/iris';
 
 interface Props {
   messages: Message[];

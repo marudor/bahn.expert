@@ -1,4 +1,4 @@
-import { additionalJourneyInformation } from 'server/journeys/additionalJourneyInformation';
+import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import {
   Body,
   Controller,
@@ -11,17 +11,17 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import { stopOccupancy } from 'server/HAFAS/occupancy';
-import StationBoard from 'server/HAFAS/StationBoard';
-import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
-import TripSearch from 'server/HAFAS/TripSearch';
-import type { AbfahrtenResult } from 'types/iris';
-import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
-import type { AllowedHafasProfile } from 'types/HAFAS';
-import type { ArrivalStationBoardEntry } from 'types/stationBoard';
+import { stopOccupancy } from '@/server/HAFAS/occupancy';
+import StationBoard from '@/server/HAFAS/StationBoard';
+import StationBoardToTimetables from '@/server/HAFAS/StationBoard/StationBoardToTimetables';
+import TripSearch from '@/server/HAFAS/TripSearch';
+import type { AbfahrtenResult } from '@/types/iris';
+import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
+import type { AllowedHafasProfile } from '@/types/HAFAS';
+import type { ArrivalStationBoardEntry } from '@/types/stationBoard';
 import type { Request as KRequest } from 'koa';
-import type { Route$Auslastung, RoutingResult } from 'types/routing';
-import type { TripSearchOptionsV3 } from 'types/HAFAS/TripSearch';
+import type { Route$Auslastung, RoutingResult } from '@/types/routing';
+import type { TripSearchOptionsV3 } from '@/types/HAFAS/TripSearch';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/hafas/v3')

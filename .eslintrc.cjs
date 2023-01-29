@@ -7,7 +7,11 @@ module.exports = {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
-    'import/resolver': 'webpack',
+    'import/resolver': {
+      typescript: {
+        project: ['./tsconfig.json'],
+      },
+    },
     react: { version: 'detect' },
   },
   rules: {
@@ -51,7 +55,7 @@ module.exports = {
         'no-restricted-imports': [
           'error',
           {
-            patterns: ['server/*'],
+            patterns: ['@/server/*'],
           },
         ],
         'no-process-env': 2,

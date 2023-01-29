@@ -1,8 +1,8 @@
-import { createTheme } from 'client/Themes';
-import { ThemeType } from 'client/Themes/type';
+import { createTheme } from '@/client/Themes';
+import { ThemeType } from '@/client/Themes/type';
 import { useEffect, useMemo, useState } from 'react';
-import { useQuery } from 'client/Common/hooks/useQuery';
-import { useStorage } from 'client/useStorage';
+import { useQuery } from '@/client/Common/hooks/useQuery';
+import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
 import type { FC, PropsWithChildren } from 'react';
 

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useLocation } from 'react-router';
-import { useStorage } from 'client/useStorage';
+import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
 import type { FC, PropsWithChildren } from 'react';
 

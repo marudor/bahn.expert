@@ -1,10 +1,10 @@
-import { calculateVia } from 'server/iris/helper';
-import type { Abfahrt } from 'types/iris';
+import { calculateVia } from '@/server/iris/helper';
+import type { Abfahrt } from '@/types/iris';
 import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
-} from 'types/stationBoard';
-import type { Route$Stop } from 'types/routing';
+} from '@/types/stationBoard';
+import type { Route$Stop } from '@/types/routing';
 
 export interface MappedHafasArrivals {
   [key: string]: ArrivalStationBoardEntry | undefined;

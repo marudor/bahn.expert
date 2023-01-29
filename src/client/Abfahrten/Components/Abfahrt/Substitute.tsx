@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import type { FC } from 'react';
-import type { SubstituteRef } from 'types/iris';
+import type { SubstituteRef } from '@/types/iris';
 
 const Text = styled.span`
   font-size: 0.7em;

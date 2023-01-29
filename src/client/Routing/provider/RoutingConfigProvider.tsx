@@ -9,11 +9,11 @@ import {
   subDays,
 } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useStorage } from 'client/useStorage';
+import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
 import deLocale from 'date-fns/locale/de';
 import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export interface RoutingSettings {
   maxChanges: string;

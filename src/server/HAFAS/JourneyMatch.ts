@@ -1,6 +1,6 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
+import { AllowedHafasProfile } from '@/types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
-import JourneyDetails from 'server/HAFAS/JourneyDetails';
+import JourneyDetails from '@/server/HAFAS/JourneyDetails';
 import makeRequest from './Request';
 import parseMessages from './helper/parseMessages';
 import parseStop from './helper/parseStop';
@@ -10,8 +10,8 @@ import type {
   JourneyMatchRequest,
   JourneyMatchResponse,
   ParsedJourneyMatchResponse,
-} from 'types/HAFAS/JourneyMatch';
-import type { HafasResponse, ParsedCommon } from 'types/HAFAS';
+} from '@/types/HAFAS/JourneyMatch';
+import type { HafasResponse, ParsedCommon } from '@/types/HAFAS';
 
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,

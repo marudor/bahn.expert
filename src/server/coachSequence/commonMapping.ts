@@ -1,9 +1,9 @@
 import {
   getBaureiheByCoaches,
   getBaureiheByUIC,
-} from 'server/coachSequence/baureihe';
-import { getSeatsForCoach } from 'server/coachSequence/specialSeats';
-import { logger } from 'server/logger';
+} from '@/server/coachSequence/baureihe';
+import { getSeatsForCoach } from '@/server/coachSequence/specialSeats';
+import { logger } from '@/server/logger';
 import TrainNames from './TrainNames';
 import type {
   CoachSequenceBaureihe,
@@ -11,7 +11,7 @@ import type {
   CoachSequenceGroup,
   CoachSequenceInformation,
   CoachSequenceProduct,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 
 const hasNonLokCoach = (group: CoachSequenceGroup) =>
   group.coaches.some((c) => c.category !== 'LOK' && c.category !== 'TRIEBKOPF');

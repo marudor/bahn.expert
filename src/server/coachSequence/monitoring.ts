@@ -1,6 +1,6 @@
-import { coachSequence } from 'server/coachSequence';
-import { getAbfahrten } from 'server/iris';
-import type { CoachSequenceInformation } from 'types/coachSequence';
+import { coachSequence } from '@/server/coachSequence';
+import { getAbfahrten } from '@/server/iris';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
 
 function wagenReihungSpecificMonitoring(id: string, departure: Date) {
   return coachSequence(id, departure);

@@ -1,5 +1,5 @@
-import { Cache, CacheDatabase } from 'server/cache';
-import { getStopPlaceByEva } from 'server/StopPlace/search';
+import { Cache, CacheDatabase } from '@/server/cache';
+import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import Axios from 'axios';
 
 // 48 hours in seconds

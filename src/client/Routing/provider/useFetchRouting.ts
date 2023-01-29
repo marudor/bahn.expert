@@ -1,16 +1,16 @@
-import { getRouteLink } from 'client/Routing/util';
-import { uniqBy } from 'client/util';
+import { getRouteLink } from '@/client/Routing/util';
+import { uniqBy } from '@/client/util';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
-import { useRouting } from 'client/Routing/provider/RoutingProvider';
+import { useRouting } from '@/client/Routing/provider/RoutingProvider';
 import {
   useRoutingConfig,
   useRoutingConfigActions,
   useRoutingSettings,
-} from 'client/Routing/provider/RoutingConfigProvider';
+} from '@/client/Routing/provider/RoutingConfigProvider';
 import Axios from 'axios';
-import type { MinimalStopPlace } from 'types/stopPlace';
-import type { RoutingResult } from 'types/routing';
+import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { RoutingResult } from '@/types/routing';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useFetchRouting = () => {

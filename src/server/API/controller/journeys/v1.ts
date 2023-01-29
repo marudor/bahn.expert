@@ -9,20 +9,20 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import { enrichedJourneyMatch } from 'server/HAFAS/JourneyMatch';
+import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import {
   findJourney,
   findJourneyHafasCompatible,
-} from 'business-hub/risJourneys';
+} from '@/business-hub/risJourneys';
 import {
   getCategoryAndNumberFromName,
   journeyDetails,
-} from 'server/journeys/journeyDetails';
-import Detail from 'server/HAFAS/Detail';
-import type { EvaNumber } from 'types/common';
+} from '@/server/journeys/journeyDetails';
+import Detail from '@/server/HAFAS/Detail';
+import type { EvaNumber } from '@/types/common';
 import type { Request as KoaRequest } from 'koa';
-import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
-import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 const allowedReferer = ['https://bahn.expert', 'https://beta.bahn.expert'];

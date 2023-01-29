@@ -1,14 +1,14 @@
 import { Explain } from './Explain';
 import { Gruppe } from './Gruppe';
-import { Loading } from 'client/Common/Components/Loading';
+import { Loading } from '@/client/Common/Components/Loading';
 import { Sektor } from './Sektor';
-import { sequenceId } from 'client/Common/provider/ReihungenProvider';
-import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
+import { sequenceId } from '@/client/Common/provider/ReihungenProvider';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useEffect, useMemo } from 'react';
 import {
   useSequences,
   useSequencesActions,
-} from 'client/Common/provider/ReihungenProvider';
+} from '@/client/Common/provider/ReihungenProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

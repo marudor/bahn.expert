@@ -7,20 +7,20 @@ import {
   Switch,
   TextField,
 } from '@mui/material';
-import { handleConfigCheckedChange } from 'client/Common/config';
+import { handleConfigCheckedChange } from '@/client/Common/config';
 import {
   useAbfahrtenConfig,
   useAbfahrtenConfigOpen,
   useAbfahrtenModalToggle,
   useAbfahrtenSetConfig,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
 import {
   useCommonConfig,
   useSetCommonConfig,
-} from 'client/Common/provider/CommonConfigProvider';
+} from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
-import type { AbfahrtenConfig, CommonConfig } from 'client/Common/config';
+import type { AbfahrtenConfig, CommonConfig } from '@/client/Common/config';
 import type { ChangeEvent, FC } from 'react';
 
 const Title = styled(DialogTitle)`

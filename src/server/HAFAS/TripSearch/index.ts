@@ -1,14 +1,14 @@
 import { format } from 'date-fns-tz';
 import makeRequest from '../Request';
-import mapLoyalityCard from 'server/HAFAS/TripSearch/mapLoyalityCard';
+import mapLoyalityCard from '@/server/HAFAS/TripSearch/mapLoyalityCard';
 import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';
-import type { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
-import type { RoutingResult } from 'types/routing';
+import type { AllowedHafasProfile, JourneyFilter } from '@/types/HAFAS';
+import type { RoutingResult } from '@/types/routing';
 import type {
   TripSearchOptionsV3,
   TripSearchRequest,
-} from 'types/HAFAS/TripSearch';
+} from '@/types/HAFAS/TripSearch';
 
 const netzcardFilter: JourneyFilter[] = NetzcardBetreiber.map((betreiber) => ({
   mode: 'INC',

@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint no-sync: 0 */
-import { Timetable } from 'server/iris/Timetable';
+import { Timetable } from '@/server/iris/Timetable';
 import fs from 'node:fs';
 import path from 'node:path';
 import xmljs from 'libxmljs2';

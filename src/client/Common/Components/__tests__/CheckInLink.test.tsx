@@ -1,11 +1,11 @@
 /* eslint-disable unicorn/prefer-module */
 import { parse } from 'date-fns';
-import { render } from 'client/__tests__/testHelper';
+import { render } from '@/client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
-import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
+import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { Abfahrt } from 'types/iris';
+import type { Abfahrt } from '@/types/iris';
 
 const MockAbfahrt = globalThis.parseJson<Abfahrt>(
   fs.readFileSync(

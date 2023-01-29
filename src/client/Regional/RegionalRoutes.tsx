@@ -1,5 +1,5 @@
-import { AbfahrtenList } from 'client/Abfahrten/Components/AbfahrtenList';
-import { RegionalMainPage } from 'client/Regional/Components/MainPage';
+import { AbfahrtenList } from '@/client/Abfahrten/Components/AbfahrtenList';
+import { RegionalMainPage } from '@/client/Regional/Components/MainPage';
 import { Route, Routes } from 'react-router';
 import loadable from '@loadable/component';
 import type { FC } from 'react';

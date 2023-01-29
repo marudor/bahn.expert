@@ -21,7 +21,9 @@
     "resolveJsonModule": true,
     "types": ["@jest/globals", "@testing-library/jest-dom"],
     "keyofStringsOnly": true,
-    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "typescript-styled-plugin"

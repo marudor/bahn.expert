@@ -1,20 +1,23 @@
-import { additionalJourneyInformation } from 'server/journeys/additionalJourneyInformation';
-import { addUseragent } from 'business-hub/randomUseragent';
-import { Cache, CacheDatabase } from 'server/cache';
+import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
+import { addUseragent } from '@/business-hub/randomUseragent';
+import { Cache, CacheDatabase } from '@/server/cache';
 import { differenceInHours, format } from 'date-fns';
-import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
-import { risJourneysConfiguration } from 'business-hub/config';
-import { upstreamApiCountInterceptor } from 'server/admin';
+import {
+  JourneysApi,
+  TransportType,
+} from '@/business-hub/generated/risJourneys';
+import { risJourneysConfiguration } from '@/business-hub/config';
+import { upstreamApiCountInterceptor } from '@/server/admin';
 import axios from 'axios';
 import type {
   JourneyEventBased,
   JourneyMatch,
   StationShort,
   TransportPublic,
-} from 'business-hub/generated/risJourneys';
-import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
-import type { ParsedProduct } from 'types/HAFAS';
-import type { Route$Stop } from 'types/routing';
+} from '@/business-hub/generated/risJourneys';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { ParsedProduct } from '@/types/HAFAS';
+import type { Route$Stop } from '@/types/routing';
 
 const journeyFindCache = new Cache<string, JourneyMatch[]>(
   CacheDatabase.JourneyFind,

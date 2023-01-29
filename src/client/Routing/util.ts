@@ -1,5 +1,5 @@
 /* eslint import/prefer-default-export: 0 */
-import type { MinimalStopPlace } from 'types/stopPlace';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export function formatDuration(duration: number): string {
   const durInMinutes = duration / 1000 / 60;

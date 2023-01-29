@@ -33,6 +33,8 @@
     "basePath": "api/"
   },
   "compilerOptions": {
-    "baseUrl": "src"
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }

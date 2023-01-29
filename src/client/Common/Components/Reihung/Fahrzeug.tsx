@@ -17,7 +17,7 @@ import type {
   AvailableIdentifier,
   CoachSequenceCoach,
   CoachSequenceCoachFeatures,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 import type { ComponentType, FC } from 'react';
 
 const DummyIcon = styled.span(({ theme }) => ({

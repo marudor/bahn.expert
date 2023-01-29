@@ -1,4 +1,4 @@
-import { uniqBy } from 'client/util';
+import { uniqBy } from '@/client/util';
 
 describe('uniqBy', () => {
   it('All elements Unique', () => {

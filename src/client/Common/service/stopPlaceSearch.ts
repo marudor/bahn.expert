@@ -1,6 +1,6 @@
 /* eslint import/prefer-default-export: 0 */
 import Axios from 'axios';
-import type { GroupedStopPlace } from 'types/stopPlace';
+import type { GroupedStopPlace } from '@/types/stopPlace';
 
 export async function getStopPlaceFromAPI(
   evaNumber: string,

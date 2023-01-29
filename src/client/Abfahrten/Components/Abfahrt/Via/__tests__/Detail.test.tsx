@@ -1,6 +1,6 @@
-import { DetailVia } from 'client/Abfahrten/Components/Abfahrt/Via/Detail';
-import { InnerAbfahrtenConfigProvider } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { render } from 'client/__tests__/testHelper';
+import { DetailVia } from '@/client/Abfahrten/Components/Abfahrt/Via/Detail';
+import { InnerAbfahrtenConfigProvider } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { render } from '@/client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
 
 describe('DetailVia', () => {

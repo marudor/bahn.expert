@@ -1,5 +1,5 @@
-import { Platform } from 'client/Common/Components/Platform';
-import { render } from 'client/__tests__/testHelper';
+import { Platform } from '@/client/Common/Components/Platform';
+import { render } from '@/client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
 
 describe('Platform', () => {

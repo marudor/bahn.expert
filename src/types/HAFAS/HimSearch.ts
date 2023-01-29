@@ -5,7 +5,7 @@ import type {
   HimFilter,
   OptionalLocL,
   ParsedProduct,
-} from 'types/HAFAS';
+} from '@/types/HAFAS';
 
 export interface HimSearchRequestOptions {
   comp?: string;

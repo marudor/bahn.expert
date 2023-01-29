@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { FC } from 'react';
 
 interface Props {

@@ -1,9 +1,9 @@
 import { compareDesc } from 'date-fns';
-import { DetailMessages } from 'client/Common/Components/Messages/Detail';
+import { DetailMessages } from '@/client/Common/Components/Messages/Detail';
 import { DetailVia } from './Via/Detail';
-import { NormalMessages } from 'client/Common/Components/Messages/Normal';
+import { NormalMessages } from '@/client/Common/Components/Messages/Normal';
 import { NormalVia } from './Via/Normal';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 import type { FC } from 'react';

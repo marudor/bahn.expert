@@ -6,9 +6,9 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import { getAbfahrten } from 'server/iris';
-import type { AbfahrtenResult } from 'types/iris';
-import type { EvaNumber } from 'types/common';
+import { getAbfahrten } from '@/server/iris';
+import type { AbfahrtenResult } from '@/types/iris';
+import type { EvaNumber } from '@/types/common';
 
 @Route('/iris/v2')
 export class IrisControllerv2 extends Controller {

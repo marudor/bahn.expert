@@ -1,6 +1,6 @@
-import { Platform } from 'client/Common/Components/Platform';
+import { Platform } from '@/client/Common/Components/Platform';
 import { Times } from './Times';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

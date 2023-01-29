@@ -1,7 +1,7 @@
-import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
-import { Loading } from 'client/Common/Components/Loading';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import { useAuslastung } from 'client/Abfahrten/provider/AuslastungsProvider';
+import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
+import { Loading } from '@/client/Common/Components/Loading';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAuslastung } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

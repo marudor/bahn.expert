@@ -1,10 +1,10 @@
 /* eslint-disable unicorn/prefer-module */
-import { createTestServer } from 'server/testHelper';
+import { createTestServer } from '@/server/testHelper';
 import { promises as fs } from 'node:fs';
 import Nock from 'nock';
 import path from 'node:path';
 import request from 'supertest';
-import type { CoachSequenceInformation } from 'types/coachSequence';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
 
 const loadFixture = (fileName: string) =>
   fs.readFile(path.resolve(__dirname, '__fixtures__/', fileName), 'utf8');

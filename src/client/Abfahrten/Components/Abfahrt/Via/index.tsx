@@ -1,4 +1,4 @@
-import type { Stop } from 'types/iris';
+import type { Stop } from '@/types/iris';
 
 export function isHbf(stop: Stop): boolean {
   const lowered = stop.name.toLowerCase();

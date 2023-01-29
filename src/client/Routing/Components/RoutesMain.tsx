@@ -2,8 +2,8 @@ import { format } from 'date-fns';
 import { RouteList } from './RouteList';
 import { Search } from './Search';
 import { useEffect } from 'react';
-import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
-import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
+import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
+import { useRoutingConfig } from '@/client/Routing/provider/RoutingConfigProvider';
 import type { FC } from 'react';
 
 const RouteHeaderTags = () => {

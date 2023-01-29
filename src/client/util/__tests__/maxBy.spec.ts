@@ -1,4 +1,4 @@
-import { maxBy } from 'client/util';
+import { maxBy } from '@/client/util';
 
 describe('maxBy', () => {
   it('simple', () => {

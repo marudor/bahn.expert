@@ -1,6 +1,6 @@
-import { render } from 'client/__tests__/testHelper';
+import { render } from '@/client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
-import { StationLink } from 'client/Common/Components/StationLink';
+import { StationLink } from '@/client/Common/Components/StationLink';
 
 describe('StationLink', () => {
   it('renders anchor for stationName', () => {

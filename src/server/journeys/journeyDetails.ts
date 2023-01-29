@@ -1,17 +1,17 @@
-import { calculateCurrentStopPlace } from 'server/HAFAS/Detail';
+import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import {
   compareDesc,
   differenceInMinutes,
   parseISO,
   subMinutes,
 } from 'date-fns';
-import { EventType, TimeType } from 'business-hub/generated/risJourneys';
-import { getAbfahrten } from 'server/iris';
-import { getJourneyDetails } from 'business-hub/risJourneys';
-import type { ArrivalDepartureEvent } from 'business-hub/generated/risJourneys';
-import type { CommonStopInfo } from 'types/HAFAS';
-import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import type { Route$Stop } from 'types/routing';
+import { EventType, TimeType } from '@/business-hub/generated/risJourneys';
+import { getAbfahrten } from '@/server/iris';
+import { getJourneyDetails } from '@/business-hub/risJourneys';
+import type { ArrivalDepartureEvent } from '@/business-hub/generated/risJourneys';
+import type { CommonStopInfo } from '@/types/HAFAS';
+import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { Route$Stop } from '@/types/routing';
 
 const trainNumberRegex = /(.*?)(\d+).*/;
 

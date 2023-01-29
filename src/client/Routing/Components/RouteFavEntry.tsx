@@ -3,12 +3,12 @@ import { Paper } from '@mui/material';
 import {
   routingFavKey,
   useRoutingFavActions,
-} from 'client/Routing/provider/RoutingFavProvider';
+} from '@/client/Routing/provider/RoutingFavProvider';
 import { useCallback } from 'react';
-import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
+import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
-import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
+import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
 
 const RemoveIcon = styled(Delete)`
   grid-area: r;

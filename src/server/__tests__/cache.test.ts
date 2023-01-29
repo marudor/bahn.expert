@@ -1,4 +1,4 @@
-import { Cache } from 'server/cache';
+import { Cache } from '@/server/cache';
 
 const defineCacheTests = (createCache: () => Cache<string, unknown>) => {
   const cache: Cache<string, unknown> = createCache();

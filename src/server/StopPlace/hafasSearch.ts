@@ -1,7 +1,7 @@
-import { getSingleStation } from 'server/iris/station';
-import { irisFilter } from 'server/StopPlace/search';
-import { locMatch } from 'server/HAFAS/LocMatch';
-import type { GroupedStopPlace } from 'types/stopPlace';
+import { getSingleStation } from '@/server/iris/station';
+import { irisFilter } from '@/server/StopPlace/search';
+import { locMatch } from '@/server/HAFAS/LocMatch';
+import type { GroupedStopPlace } from '@/types/stopPlace';
 
 async function byRl100(rl100: string): Promise<GroupedStopPlace | void> {
   if (rl100.length > 5) {

@@ -1,5 +1,5 @@
 import { Link, Meta, Title } from 'react-head';
-import { useHeaderTags } from 'client/Common/provider/HeaderTagProvider';
+import { useHeaderTags } from '@/client/Common/provider/HeaderTagProvider';
 import { useLocation } from 'react-router';
 import type { FC } from 'react';
 

@@ -6,7 +6,7 @@ import type {
   ParsedProduct,
   RemL,
 } from '.';
-import type { Route$Stop } from 'types/routing';
+import type { Route$Stop } from '@/types/routing';
 
 interface JounreyMatchRequestRes {
   jnyFltrL?: JourneyFilter[];

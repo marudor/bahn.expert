@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import { BRInfo } from 'client/Common/Components/Reihung/BRInfo';
+import { BRInfo } from '@/client/Common/Components/Reihung/BRInfo';
 import { Fahrzeug } from './Fahrzeug';
-import { PrideStripe } from 'client/Common/Components/Reihung/Stripes/PrideStripe';
+import { PrideStripe } from '@/client/Common/Components/Reihung/Stripes/PrideStripe';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
-import type { CoachSequenceGroup } from 'types/coachSequence';
+import type { CoachSequenceGroup } from '@/types/coachSequence';
 import type { FC } from 'react';
 import type { InheritedProps } from './Fahrzeug';
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
-import type { Abfahrt, Message } from 'types/iris';
+import type { Abfahrt, Message } from '@/types/iris';
 import type { FC } from 'react';
 
 export const MessageContainer = styled.div(({ theme }) => ({

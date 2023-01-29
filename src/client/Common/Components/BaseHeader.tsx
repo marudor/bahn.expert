@@ -1,7 +1,7 @@
 import { AppBar, IconButton, Toolbar } from '@mui/material';
 import { HeaderTags } from './HeaderTags';
 import { Menu } from '@mui/icons-material';
-import { NavigationContext } from 'client/Common/Components/Navigation/NavigationContext';
+import { NavigationContext } from '@/client/Common/Components/Navigation/NavigationContext';
 import { useContext } from 'react';
 import styled from '@emotion/styled';
 import type { FC, PropsWithChildren } from 'react';

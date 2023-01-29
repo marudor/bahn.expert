@@ -1,6 +1,6 @@
-import type { FahrzeugKategorie } from 'types/reihung';
-import type { MinimalStopPlace } from 'types/stopPlace';
-import type { VehicleCategory } from 'business-hub/generated/coachSequence';
+import type { FahrzeugKategorie } from '@/types/reihung';
+import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { VehicleCategory } from '@/business-hub/generated/coachSequence';
 
 export interface CoachSequencePosition {
   startPercent: number;

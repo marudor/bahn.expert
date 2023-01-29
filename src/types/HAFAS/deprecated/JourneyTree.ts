@@ -4,7 +4,7 @@ import type {
   GeoRing,
   HimFilter,
   JourneyFilter,
-} from 'types/HAFAS';
+} from '@/types/HAFAS';
 
 export interface JourneyTreeRequestOptions {
   getChilds?: number;

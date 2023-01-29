@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-module */
 import 'core-js/stable';
-import { disconnectRedis } from 'server/cache';
+import { disconnectRedis } from '@/server/cache';
 import Nock from 'nock';
 
 // eslint-disable-next-line jest/no-standalone-expect

@@ -1,9 +1,9 @@
-import { DBCoachSequence } from 'server/coachSequence/DB';
+import { DBCoachSequence } from '@/server/coachSequence/DB';
 import { differenceInHours } from 'date-fns';
-import { newDBCoachSequence } from 'server/coachSequence/newDB';
-import { OEBBCoachSequence } from 'server/coachSequence/OEBB';
-import type { CoachSequenceInformation } from 'types/coachSequence';
-import type { EvaNumber } from 'types/common';
+import { newDBCoachSequence } from '@/server/coachSequence/newDB';
+import { OEBBCoachSequence } from '@/server/coachSequence/OEBB';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
+import type { EvaNumber } from '@/types/common';
 
 export async function coachSequence(
   trainNumber: string,

@@ -8,17 +8,19 @@ import {
 } from 'react';
 import { css } from '@emotion/react';
 import { End } from './End';
-import { journeyFind } from 'client/Common/service/details';
+import { journeyFind } from '@/client/Common/service/details';
 import { Mid } from './Mid';
 import { Paper } from '@mui/material';
 import { Start } from './Start';
-import { useSetSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailProvider';
+import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
 import loadable from '@loadable/component';
 import styled from '@emotion/styled';
-import type { Abfahrt } from 'types/iris';
+import type { Abfahrt } from '@/types/iris';
 import type { FC } from 'react';
 
-const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
+const LazyReihung = loadable(
+  () => import('@/client/Common/Components/Reihung'),
+);
 
 interface AbfahrtContextValues {
   abfahrt: Abfahrt;

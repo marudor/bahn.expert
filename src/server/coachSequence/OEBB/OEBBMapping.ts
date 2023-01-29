@@ -1,4 +1,4 @@
-import { enrichCoachSequence } from 'server/coachSequence/commonMapping';
+import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
 import type {
   CoachSequenceCoach,
   CoachSequenceCoachFeatures,
@@ -8,13 +8,13 @@ import type {
   CoachSequenceProduct,
   CoachSequenceSector,
   CoachSequenceStop,
-} from 'types/coachSequence';
+} from '@/types/coachSequence';
 import type {
   OEBBCoachSequenceWagon,
   OEBBInfo,
   OEBBPlatformInfo,
   OEBBTimeTableInfo,
-} from 'oebb/types/coachSequence';
+} from '@/oebb/types/coachSequence';
 
 function mapClass(wagon: OEBBCoachSequenceWagon): CoachSequenceCoach['class'] {
   if (wagon.kind === 'TFZ') return 4;

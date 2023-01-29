@@ -13,9 +13,9 @@ import {
 } from '@tsoa/runtime';
 import JourneyDetails, {
   parseJourneyDetails,
-} from 'server/HAFAS/JourneyDetails';
-import makeRequest from 'server/HAFAS/Request';
-import type { AllowedHafasProfile } from 'types/HAFAS';
+} from '@/server/HAFAS/JourneyDetails';
+import makeRequest from '@/server/HAFAS/Request';
+import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/hafas/v1')

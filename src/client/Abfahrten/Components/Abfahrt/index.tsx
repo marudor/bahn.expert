@@ -1,8 +1,8 @@
 import { BaseAbfahrt } from './BaseAbfahrt';
 import { useMemo } from 'react';
-import { useSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailProvider';
-import { useWings } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
-import type { Abfahrt as AbfahrtType } from 'types/iris';
+import { useSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
+import { useWings } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import type { Abfahrt as AbfahrtType } from '@/types/iris';
 import type { FC } from 'react';
 
 interface Props {

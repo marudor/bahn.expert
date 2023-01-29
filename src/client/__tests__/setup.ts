@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import Nock from 'nock';
 import path from 'node:path';
 // eslint-disable-next-line no-restricted-imports
-import routes from 'server/API';
+import routes from '@/server/API';
 
 if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
   throw new Error('Run `pnpm build:clean`. State dirty');

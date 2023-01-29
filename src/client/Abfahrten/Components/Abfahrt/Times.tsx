@@ -1,6 +1,6 @@
 /* eslint no-nested-ternary: 0 */
-import { Time } from 'client/Common/Components/Time';
-import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { Time } from '@/client/Common/Components/Time';
+import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

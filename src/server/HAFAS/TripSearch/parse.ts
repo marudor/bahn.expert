@@ -1,26 +1,26 @@
-import { adjustProductOperator } from 'server/HAFAS/helper/adjustProductOperator';
+import { adjustProductOperator } from '@/server/HAFAS/helper/adjustProductOperator';
 import { differenceInMilliseconds, parse } from 'date-fns';
-import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
+import mergeSegments from '@/server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
 import parseDuration from '../helper/parseDuration';
 import parseMessages from '../helper/parseMessages';
 import parseStop from '../helper/parseStop';
-import parseTarif from 'server/HAFAS/helper/parseTarif';
+import parseTarif from '@/server/HAFAS/helper/parseTarif';
 import type {
   CommonStop,
   CommonStopInfo,
   HafasResponse,
   ParsedCommon,
   ParsedProduct,
-} from 'types/HAFAS';
+} from '@/types/HAFAS';
 import type {
   Jny,
   OutConL,
   SecL,
   TripSearchResponse,
-} from 'types/HAFAS/TripSearch';
+} from '@/types/HAFAS/TripSearch';
 import type {
   Route$Journey,
   Route$JourneySegment,
@@ -28,7 +28,7 @@ import type {
   RoutingResult,
   RoutingStation,
   SingleRoute,
-} from 'types/routing';
+} from '@/types/routing';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;

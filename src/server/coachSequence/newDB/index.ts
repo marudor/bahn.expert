@@ -1,6 +1,6 @@
-import { getDepartureSequence } from 'business-hub/coachSequence';
-import { mapInformation } from 'server/coachSequence/newDB/newDBMapping';
-import type { CoachSequenceInformation } from 'types/coachSequence';
+import { getDepartureSequence } from '@/business-hub/coachSequence';
+import { mapInformation } from '@/server/coachSequence/newDB/newDBMapping';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
 
 const isDisabled = process.env.COACH_SEQUENCE_DISABLED
   ? JSON.parse(process.env.COACH_SEQUENCE_DISABLED)

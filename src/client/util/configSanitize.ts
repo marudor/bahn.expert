@@ -1,7 +1,7 @@
 import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
-} from 'client/Common/config';
+} from '@/client/Common/config';
 
 const booleanCheck = (value: string | string[] | undefined): boolean =>
   value === 'true';

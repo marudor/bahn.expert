@@ -1,5 +1,5 @@
-import { NormalVia } from 'client/Abfahrten/Components/Abfahrt/Via/Normal';
-import { render } from 'client/__tests__/testHelper';
+import { NormalVia } from '@/client/Abfahrten/Components/Abfahrt/Via/Normal';
+import { render } from '@/client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
 
 describe('NormalVia', () => {

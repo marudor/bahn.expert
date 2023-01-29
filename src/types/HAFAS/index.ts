@@ -1,10 +1,10 @@
-import type { HimSearchRequest } from 'types/HAFAS/HimSearch';
+import type { HimSearchRequest } from '@/types/HAFAS/HimSearch';
 import type { JourneyDetailsRequest } from './JourneyDetails';
-import type { JourneyMatchRequest } from 'types/HAFAS/JourneyMatch';
-import type { JourneyTreeRequest } from 'types/HAFAS/deprecated/JourneyTree';
+import type { JourneyMatchRequest } from '@/types/HAFAS/JourneyMatch';
+import type { JourneyTreeRequest } from '@/types/HAFAS/deprecated/JourneyTree';
 import type { LocMatchRequest } from './LocMatch';
-import type { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
-import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
+import type { SearchOnTripRequest } from '@/types/HAFAS/SearchOnTrip';
+import type { StationBoardRequest } from '@/types/HAFAS/StationBoard';
 import type { TripSearchRequest } from './TripSearch';
 
 export type JourneyFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';

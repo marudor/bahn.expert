@@ -10,8 +10,8 @@ import type {
   OptionalLocL,
   TrnCmpSX,
 } from '.';
-import type { CommonRoutingOptions } from 'types/common';
-import type { JnyCl, LoyalityCard, TravelerType } from 'types/HAFAS/Tarif';
+import type { CommonRoutingOptions } from '@/types/common';
+import type { JnyCl, LoyalityCard, TravelerType } from '@/types/HAFAS/Tarif';
 
 export interface TripSearchTraveler {
   type: TravelerType;

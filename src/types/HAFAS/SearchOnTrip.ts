@@ -1,6 +1,6 @@
 import type { Common, GenericHafasRequest, ParsedPolyline } from '.';
 import type { OutConL, SotCtxt } from './TripSearch';
-import type { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
+import type { Route$JourneySegmentTrain, Route$Stop } from '@/types/routing';
 
 export interface SearchOnTripResponse {
   common: Common;

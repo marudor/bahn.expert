@@ -16,7 +16,7 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { Cache, CacheDatabase } from 'server/cache';
+import { Cache, CacheDatabase } from '@/server/cache';
 import {
   calculateVia,
   getAttr,
@@ -26,19 +26,24 @@ import {
   parseTs,
 } from './helper';
 import { diffArrays } from 'diff';
-import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
-import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
-import { getSingleStation } from 'server/iris/station';
-import { getStopPlaceByEva } from 'server/StopPlace/search';
+import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
+import { getSingleHimMessageOfToday } from '@/server/HAFAS/HimSearch';
+import { getSingleStation } from '@/server/iris/station';
+import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import {
   ignoredMessageNumbers,
   messages,
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
-import { uniqBy } from 'client/util';
+import { uniqBy } from '@/client/util';
 import xmljs from 'libxmljs2';
-import type { AbfahrtenResult, IrisMessage, Messages, Stop } from 'types/iris';
+import type {
+  AbfahrtenResult,
+  IrisMessage,
+  Messages,
+  Stop,
+} from '@/types/iris';
 import type { Element } from 'libxmljs2';
 
 interface ArDp {

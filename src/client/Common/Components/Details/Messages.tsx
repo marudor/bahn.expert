@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { RemL } from 'types/HAFAS';
+import type { RemL } from '@/types/HAFAS';
 
 interface Props {
   messages?: RemL[];

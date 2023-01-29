@@ -3,14 +3,14 @@ import {
   useAbfahrtenDepartures,
   useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
-} from 'client/Abfahrten/provider/AbfahrtenProvider';
+} from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
   useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
   useAbfahrtenFilter,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useMemo } from 'react';
-import type { Abfahrt } from 'types/iris';
+import type { Abfahrt } from '@/types/iris';
 
 function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
   const aTime = (a.departure?.time || a.arrival?.time)!;

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
-import type { Abfahrt } from 'types/iris';
+import type { Abfahrt } from '@/types/iris';
 import type { PropsWithChildren } from 'react';
-import type { Route$Auslastung } from 'types/routing';
-import type { TrainOccupancyList } from 'types/stopPlace';
+import type { Route$Auslastung } from '@/types/routing';
+import type { TrainOccupancyList } from '@/types/stopPlace';
 
 function getAuslastungKey(abfahrt: Abfahrt) {
   return `${encodeURIComponent(

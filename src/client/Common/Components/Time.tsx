@@ -1,6 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
-import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 

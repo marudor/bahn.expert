@@ -1,4 +1,4 @@
-import { orderBy } from 'client/util';
+import { orderBy } from '@/client/util';
 
 describe('orderBy', () => {
   it('simple', () => {

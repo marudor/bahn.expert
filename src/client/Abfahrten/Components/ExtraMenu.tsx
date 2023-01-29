@@ -9,15 +9,15 @@ import {
 } from '@mui/icons-material';
 import { FilterModal } from './FilterModal';
 import { IconButton, Menu, MenuItem } from '@mui/material';
-import { useAbfahrtenModalToggle } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrtenModalToggle } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useState } from 'react';
-import { useCurrentAbfahrtenStopPlace } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
   useFav,
   useFavs,
   useUnfav,
-} from 'client/Abfahrten/provider/FavProvider';
-import { useLageplan } from 'client/Abfahrten/hooks/useLageplan';
+} from '@/client/Abfahrten/provider/FavProvider';
+import { useLageplan } from '@/client/Abfahrten/hooks/useLageplan';
 import type { FC, SyntheticEvent } from 'react';
 
 export const ExtraMenu: FC = () => {

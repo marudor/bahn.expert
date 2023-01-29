@@ -1,4 +1,4 @@
-import { minBy } from 'client/util';
+import { minBy } from '@/client/util';
 
 describe('minBy', () => {
   it('simple', () => {

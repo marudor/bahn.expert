@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { stopPropagation } from '@/client/Common/stopPropagation';
 import qs from 'qs';
-import type { CommonProductInfo } from 'types/HAFAS';
+import type { CommonProductInfo } from '@/types/HAFAS';
 import type { FC } from 'react';
 
 interface Props {

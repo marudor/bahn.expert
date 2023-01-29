@@ -1,4 +1,4 @@
-import { AuslastungsValue } from 'types/routing';
+import { AuslastungsValue } from '@/types/routing';
 import {
   Controller,
   Get,
@@ -14,18 +14,18 @@ import {
   geoSearchStopPlace,
   getStopPlaceByEva,
   searchStopPlace,
-} from 'server/StopPlace/search';
-import { getLageplan } from 'server/StopPlace/Lageplan';
+} from '@/server/StopPlace/search';
+import { getLageplan } from '@/server/StopPlace/Lageplan';
 import axios from 'axios';
-import type { EvaNumber } from 'types/common';
+import type { EvaNumber } from '@/types/common';
 import type {
   GroupedStopPlace,
   TrainOccupancy,
   TrainOccupancyList,
   VRRTrainOccupancy,
   VRRTrainOccupancyValues,
-} from 'types/stopPlace';
-import type { LageplanResponse } from 'types/bahnhof';
+} from '@/types/stopPlace';
+import type { LageplanResponse } from '@/types/bahnhof';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/stopPlace/v1')

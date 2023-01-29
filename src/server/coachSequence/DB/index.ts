@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
-import { mapInformation } from 'server/coachSequence/DB/DBMapping';
-import { UpstremaApiRequestMetric } from 'server/admin';
+import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
+import { UpstremaApiRequestMetric } from '@/server/admin';
 import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
-import type { CoachSequenceInformation } from 'types/coachSequence';
-import type { Wagenreihung } from 'types/reihung';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
+import type { Wagenreihung } from '@/types/reihung';
 
 const dbCoachSequenceUrls = {
   apps: 'https://www.apps-bahn.de/wr/wagenreihung/1.0',
