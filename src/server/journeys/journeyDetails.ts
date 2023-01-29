@@ -2,6 +2,8 @@ import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import {
   compareDesc,
   differenceInMinutes,
+  isAfter,
+  isBefore,
   parseISO,
   subMinutes,
 } from 'date-fns';
@@ -100,11 +102,31 @@ interface JourneyStop extends Route$Stop {
   departure?: StopInfoWithAdditional;
 }
 
+function newStopInfoIsAfter(stop: JourneyStop, event: ArrivalDepartureEvent) {
+  const timeSchedule = new Date(event.timeSchedule);
+  if (
+    event.type === EventType.Arrival &&
+    stop.departure &&
+    isAfter(timeSchedule, stop.departure.scheduledTime)
+  ) {
+    return false;
+  }
+  if (
+    event.type === EventType.Departure &&
+    stop.arrival &&
+    isBefore(timeSchedule, stop.arrival.scheduledTime)
+  ) {
+    return false;
+  }
+  return true;
+}
+
 function stopsFromEvents(events: ArrivalDepartureEvent[]) {
   const stops: JourneyStop[] = [];
   for (const e of events) {
+    const stopInfo = mapEventToCommonStopInfo(e);
     const possibleStops = stops.filter(
-      (s) => s.station.id === e.station.evaNumber,
+      (s) => s.station.id === e.station.evaNumber && newStopInfoIsAfter(s, e),
     );
     let stop = possibleStops.length
       ? possibleStops[possibleStops.length - 1]
@@ -120,7 +142,6 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
       stops.push(stop);
     }
 
-    const stopInfo = mapEventToCommonStopInfo(e);
     stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
   }
 

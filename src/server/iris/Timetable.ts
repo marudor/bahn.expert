@@ -251,12 +251,6 @@ export class Timetable {
     calculateVia(timetable.routePost);
 
     if (timetable.departure) {
-      if (
-        !timetable.departure.cancelled &&
-        timetable.destination === timetable.currentStopPlace.name
-      ) {
-        timetable.departure.cancelled = true;
-      }
       timetable.platform = timetable.departure.platform;
       timetable.scheduledPlatform = timetable.departure.scheduledPlatform;
     } else if (timetable.arrival) {
@@ -371,13 +365,17 @@ export class Timetable {
       return;
     }
     const previous = this.timetable[a.departure.transition];
-    if (!previous || a.train.number !== previous.train.number) {
+    if (!previous) {
       return;
     }
-    a.arrival = previous.arrival;
-    a.previousTrain = previous.train;
-    a.routePre = previous.routePre;
-    delete this.timetable[previous.rawId];
+    // Weiterfahrt mit gleicher Zugnummer (Kategoriewechsel z.B.)
+    if (a.train.number === previous.train.number) {
+      a.arrival = previous.arrival;
+      a.previousTrain = previous.train;
+      a.routePre = previous.routePre;
+      delete this.timetable[previous.rawId];
+    }
+    // TODO: Scheiß Ringbahn
   }
   parseRef(tl: xmljs.Element) {
     const { trainCategory, trainNumber } = parseTl(tl);
