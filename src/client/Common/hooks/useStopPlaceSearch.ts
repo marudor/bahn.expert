@@ -1,7 +1,4 @@
-import {
-  getStopPlacesFromAPI,
-  getStopPlacesFromCoordinates,
-} from '@/client/Common/service/stopPlaceSearch';
+import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';
@@ -36,28 +33,17 @@ export const useStopPlaceSearch = ({
       ),
     [filterForIris, groupedBySales, maxSuggestions],
   );
-  const geoFn = useMemo(
-    () =>
-      getStopPlacesFromCoordinates.bind(
-        undefined,
-        filterForIris,
-        maxSuggestions,
-      ),
-    [filterForIris, maxSuggestions],
-  );
 
   const loadOptions = useCallback(
-    async (value: string | GeolocationCoordinates) => {
+    async (value: string) => {
       setLoading(true);
 
-      const currentSuggestions = await (typeof value === 'string'
-        ? stopPlaceFn(value)
-        : geoFn(value));
+      const currentSuggestions = await stopPlaceFn(value);
 
       setSuggestions(currentSuggestions);
       setLoading(false);
     },
-    [geoFn, stopPlaceFn],
+    [stopPlaceFn],
   );
   const selectRef = useRef<ControllerStateAndHelpers<MinimalStopPlace>>();
 

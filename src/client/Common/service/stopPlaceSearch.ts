@@ -35,25 +35,3 @@ export async function getStopPlacesFromAPI(
   }
   return [];
 }
-
-export async function getStopPlacesFromCoordinates(
-  filterForIris: boolean,
-  max?: number,
-  coordinates?: GeolocationCoordinates,
-): Promise<GroupedStopPlace[]> {
-  if (!coordinates) return [];
-  try {
-    return (
-      await Axios.get<GroupedStopPlace[]>('/api/stopPlace/v1/geoSearch', {
-        params: {
-          lat: coordinates.latitude,
-          lng: coordinates.longitude,
-          filterForIris,
-          max,
-        },
-      })
-    ).data;
-  } catch {
-    return [];
-  }
-}

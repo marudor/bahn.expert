@@ -97,29 +97,6 @@ export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
   }
 }
 
-export async function byPosition(
-  latitude: number,
-  longitude: number,
-  radius: number,
-  groupBySales?: boolean,
-): Promise<StopPlaceSearchResult[]> {
-  try {
-    const result = (
-      await stopPlaceClient.getStopPlacesByPosition({
-        longitude,
-        latitude,
-        radius,
-        groupBy: groupBySales
-          ? StopPlaceSearchGroupByKey.Sales
-          : StopPlaceSearchGroupByKey.Station,
-      })
-    ).data;
-    return result.stopPlaces || [];
-  } catch {
-    return [];
-  }
-}
-
 export async function groups(
   evaNumber: string,
 ): Promise<ResolvedStopPlaceGroups> {

@@ -1473,34 +1473,6 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/stopPlace/v1/geoSearch',
-            ...(fetchMiddlewares<Middleware>(StopPlaceController)),
-            ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceGeoSearch)),
-
-            async function StopPlaceController_stopPlaceGeoSearch(context: any, next: any) {
-            const args = {
-                    lat: {"in":"query","name":"lat","required":true,"dataType":"double"},
-                    lng: {"in":"query","name":"lng","required":true,"dataType":"double"},
-                    radius: {"default":5000,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
-                    filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
-                    max: {"in":"query","name":"max","dataType":"integer","validators":{"isInt":{"errorMsg":"max"}}},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new StopPlaceController();
-
-            const promise = controller.stopPlaceGeoSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/:evaNumber',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceByEva)),

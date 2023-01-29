@@ -10,12 +10,8 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
-import {
-  geoSearchStopPlace,
-  getStopPlaceByEva,
-  searchStopPlace,
-} from '@/server/StopPlace/search';
 import { getLageplan } from '@/server/StopPlace/Lageplan';
+import { getStopPlaceByEva, searchStopPlace } from '@/server/StopPlace/search';
 import axios from 'axios';
 import type { EvaNumber } from '@/types/common';
 import type {
@@ -65,24 +61,6 @@ export class StopPlaceController extends Controller {
       filterForIris,
       groupedBySales,
     );
-  }
-
-  /**
-   * @isInt radius
-   * @isInt max
-   */
-  @Get('/geoSearch')
-  @Tags('StopPlace')
-  stopPlaceGeoSearch(
-    @Query() lat: number,
-    @Query() lng: number,
-    /** meter */
-    @Query() radius = 5000,
-    /** Only returns stopPlaces iris-tts can handle (/abfahrten) */
-    @Query() filterForIris = false,
-    @Query() max?: number,
-  ): Promise<GroupedStopPlace[]> {
-    return geoSearchStopPlace(lat, lng, radius, max, filterForIris);
   }
 
   @Response(404)
