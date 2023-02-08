@@ -256,6 +256,7 @@ const naming = {
   //
   // ICE 3 - BR 407
   4712: 'Dillingen a.d. Donau',
+  4710: 'Ansbach',
   4717: 'Paris',
   //
   // ICE 4 - BR 412
