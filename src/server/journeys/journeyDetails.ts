@@ -5,6 +5,7 @@ import {
   isAfter,
   isBefore,
   parseISO,
+  subHours,
   subMinutes,
 } from 'date-fns';
 import { EventType, TimeType } from '@/business-hub/generated/risJourneys';
@@ -28,11 +29,16 @@ export async function addIrisMessagesToDetails(
 
     if (stopInfo) {
       try {
-        const irisData = await getAbfahrten(irisStop.station.id, false, {
-          lookahead: 10,
-          lookbehind: 0,
-          startTime: subMinutes(stopInfo.scheduledTime, 5),
-        });
+        const irisData = await getAbfahrten(
+          irisStop.station.id,
+          false,
+          {
+            lookahead: 10,
+            lookbehind: 0,
+            startTime: subMinutes(stopInfo.scheduledTime, 5),
+          },
+          true,
+        );
 
         const irisDeparture = irisData.departures.find(
           (a) => a.train.name === details.train.name,
@@ -211,7 +217,9 @@ export async function journeyDetails(
 
   result.currentStop = calculateCurrentStopPlace(result);
 
-  await addIrisMessagesToDetails(result);
+  if (isAfter(result.departure.scheduledTime, subHours(new Date(), 20))) {
+    await addIrisMessagesToDetails(result);
+  }
 
   return result;
 }

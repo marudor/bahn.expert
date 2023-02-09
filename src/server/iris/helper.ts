@@ -12,7 +12,7 @@ const noncdRequest = Axios.create({
   headers: {
     'user-agent': '',
   },
-  timeout: 5000,
+  timeout: 4000,
 });
 
 // eslint-disable-next-line import/no-mutable-exports
@@ -23,6 +23,7 @@ if (process.env.IRIS_FALLBACK_URL) {
     headers: {
       'user-agent': '',
     },
+    timeout: 3000,
   });
   fallbackRequest.interceptors.request.use(
     upstreamApiCountInterceptor.bind(undefined, 'iris-fallback'),
@@ -43,7 +44,8 @@ export async function irisGetRequest<T>(url: string): Promise<T> {
     if (
       fallbackRequest &&
       Axios.isAxiosError(error) &&
-      error.response?.status !== 404
+      error.response?.status !== 404 &&
+      error.response?.status !== 410
     ) {
       const fallbackResult = (await fallbackRequest.get<T>(url)).data;
       return fallbackResult;
