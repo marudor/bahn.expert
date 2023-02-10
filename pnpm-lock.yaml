@@ -88,7 +88,7 @@ specifiers:
   css-loader: ^6.7.3
   cypress: ^12.5.1
   date-fns: ^2.29.3
-  date-fns-tz: ^1.3.7
+  date-fns-tz: ^2.0.0
   debounce-promise: ^3.1.2
   diff: ^5.1.0
   downshift: ^7.2.0
@@ -119,7 +119,7 @@ specifiers:
   npm-run-all: ^4.1.5
   on-finished: ^2.4.1
   pino: ^8.10.0
-  pino-pretty: ^9.1.1
+  pino-pretty: ^9.2.0
   pino-std-serializers: ^6.1.0
   prettier: ^2.8.4
   prom-client: ^14.1.1
@@ -169,7 +169,7 @@ dependencies:
   cookie: 0.5.0
   core-js: 3.27.2
   date-fns: 2.29.3
-  date-fns-tz: 1.3.7_date-fns@2.29.3
+  date-fns-tz: 2.0.0_date-fns@2.29.3
   debounce-promise: 3.1.2
   diff: 5.1.0
   downshift: 7.2.0_react@18.2.0
@@ -186,7 +186,7 @@ dependencies:
   lru-cache: 7.14.1
   on-finished: 2.4.1
   pino: 8.10.0
-  pino-pretty: 9.1.1
+  pino-pretty: 9.2.0
   pino-std-serializers: 6.1.0
   prom-client: 14.1.1
   qs: 6.11.0
@@ -1807,7 +1807,7 @@ packages:
       '@commitlint/types': 17.4.0
       fs-extra: 11.1.0
       git-raw-commits: 2.0.11
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /@commitlint/resolve-extends/17.4.0:
@@ -5433,8 +5433,8 @@ packages:
       whatwg-url: 11.0.0
     dev: true
 
-  /date-fns-tz/1.3.7_date-fns@2.29.3:
-    resolution: {integrity: sha512-1t1b8zyJo+UI8aR+g3iqr5fkUHWpd58VBx8J/ZSQ+w7YrGlw80Ag4sA86qkfCXRBLmMc4I2US+aPMd4uKvwj5g==}
+  /date-fns-tz/2.0.0_date-fns@2.29.3:
+    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
     peerDependencies:
       date-fns: '>=2.0.0'
     dependencies:
@@ -8876,9 +8876,6 @@ packages:
       kind-of: 6.0.3
     dev: true
 
-  /minimist/1.2.7:
-    resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
-
   /minimist/1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
@@ -9420,8 +9417,8 @@ packages:
       split2: 4.1.0
     dev: false
 
-  /pino-pretty/9.1.1:
-    resolution: {integrity: sha512-iJrnjgR4FWQIXZkUF48oNgoRI9BpyMhaEmihonHeCnZ6F50ZHAS4YGfGBT/ZVNsPmd+hzkIPGzjKdY08+/yAXw==}
+  /pino-pretty/9.2.0:
+    resolution: {integrity: sha512-7CeszmFqrUD08+JvtYcFXowNE7duFlE1XScmR41qTMbwQOhn7gijYYrRb5udH+z8xq4+A8vN8rQNYVPCTfzmGw==}
     hasBin: true
     dependencies:
       colorette: 2.0.19
@@ -9430,12 +9427,12 @@ packages:
       fast-safe-stringify: 2.1.1
       help-me: 4.2.0
       joycon: 3.1.1
-      minimist: 1.2.7
+      minimist: 1.2.8
       on-exit-leak-free: 2.1.0
       pino-abstract-transport: 1.0.0
       pump: 3.0.0
       readable-stream: 4.3.0
-      secure-json-parse: 2.6.0
+      secure-json-parse: 2.7.0
       sonic-boom: 3.2.1
       strip-json-comments: 3.1.1
     dev: false
@@ -10221,8 +10218,8 @@ packages:
       ajv-keywords: 5.1.0_ajv@8.12.0
     dev: true
 
-  /secure-json-parse/2.6.0:
-    resolution: {integrity: sha512-B9osKohb6L+EZ6Kve3wHKfsAClzOC/iISA2vSuCe5Jx5NAKiwitfxx8ZKYapHXr0sYRj7UZInT7pLb3rp2Yx6A==}
+  /secure-json-parse/2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
     dev: false
 
   /semver/5.7.1:
