@@ -26,126 +26,126 @@ baseEnv:
   - name: REDIS_HOST
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: REDIS_HOST
   - name: REDIS_PORT
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: REDIS_PORT
   - name: USER_AGENT
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: USER_AGENT
         optional: true
   - name: DEFAULT_TTL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: DEFAULT_TTL
         optional: true
   - name: IMPRINT_NAME
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: IMPRINT_NAME
   - name: IMPRINT_STREET
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: IMPRINT_STREET
   - name: IMPRINT_TOWN
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: IMPRINT_TOWN
   - name: RIS_STATIONS_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_STATIONS_CLIENT_SECRET
   - name: RIS_STATIONS_CLIENT_ID
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_STATIONS_CLIENT_ID
   - name: RIS_STATIONS_URL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_STATIONS_URL
   - name: HIM_MAX_FETCH
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: HIM_MAX_FETCH
         optional: true
   - name: PRIVATE_API_URL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: PRIVATE_API_URL
   - name: PRIVATE_API_KEY
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: PRIVATE_API_KEY
   - name: IRIS_URL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: IRIS_URL
   - name: IRIS_FALLBACK_URL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: IRIS_FALLBACK_URL
   - name: RIS_JOURNEYS_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_JOURNEYS_CLIENT_SECRET
   - name: RIS_JOURNEYS_CLIENT_ID
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_JOURNEYS_CLIENT_ID
   - name: RIS_JOURNEYS_USER_AGENT
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_JOURNEYS_USER_AGENT
         optional: true
   - name: RIS_JOURNEYS_URL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: RIS_JOURNEYS_URL
   - name: COACH_SEQUENCE_CLIENT_ID
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: COACH_SEQUENCE_CLIENT_ID
   - name: COACH_SEQUENCE_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: COACH_SEQUENCE_CLIENT_SECRET
   - name: COACH_SEQUENCE_URL
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: COACH_SEQUENCE_URL
   - name: COACH_SEQUENCE_DISABLED
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: COACH_SEQUENCE_DISABLED
         optional: true
   - name: REFERER_BLOCK_LIST
     valueFrom:
       secretKeyRef:
-        name: bahnhofs-abfahrten-config
+        name: bahn-expert-config
         key: REFERER_BLOCK_LIST
         optional: true
