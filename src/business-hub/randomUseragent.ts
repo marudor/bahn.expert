@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig } from 'axios';
+import type { InternalAxiosRequestConfig } from 'axios';
 
 const possibleAppVersions = ['3.18.0', '3.17.1'];
 const possibleScales = ['2.00', '3.00'];
@@ -21,10 +21,9 @@ function randomUseragent() {
 
 export function addUseragent(
   userAgentFunction: () => string = randomUseragent,
-  req: AxiosRequestConfig,
-): AxiosRequestConfig {
+  req: InternalAxiosRequestConfig,
+): InternalAxiosRequestConfig {
   const headers = req.headers || {};
-  // @ts-expect-error horrible typings for header
   headers['user-agent'] = userAgentFunction();
   req.headers = headers;
   return req;
