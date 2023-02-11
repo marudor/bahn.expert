@@ -11,6 +11,7 @@ const NotchFix = styled.div(({ theme }) => ({
   height: '5em',
   width: '100%',
   position: 'fixed',
+  zIndex: 99999,
   background: theme.palette.background.default,
 }));
 
