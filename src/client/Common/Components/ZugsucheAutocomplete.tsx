@@ -1,4 +1,4 @@
-import { journeyFind } from '@/client/Common/service/details';
+import { journeyNumberFind } from '@/client/Common/service/details';
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
 import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useState } from 'react';
@@ -9,11 +9,19 @@ import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
-const debouncedJourneyFind = debounce(journeyFind, 200);
+const debouncedJourneyNumberFind = debounce(journeyNumberFind, 200);
 
 const Container = styled.div`
   position: relative;
   margin: 20px;
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  input[type='number']:hover,
+  input[type='number']:focus {
+    -moz-appearance: number-input;
+  }
 `;
 
 const PositionedLoading = styled(Loading)`
@@ -45,10 +53,14 @@ export const ZugsucheAutocomplete: FC<Props> = ({
   const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
     async (value: string) => {
+      const enteredNumber = Number.parseInt(value);
+      if (Number.isNaN(enteredNumber)) {
+        return;
+      }
       setLoading((old) => old + 1);
       try {
-        const suggestions = await debouncedJourneyFind(
-          value,
+        const suggestions = await debouncedJourneyNumberFind(
+          enteredNumber,
           initialDeparture,
           undefined,
           filtered,
@@ -106,17 +118,19 @@ export const ZugsucheAutocomplete: FC<Props> = ({
             <div>
               <TextField
                 fullWidth
-                label="Zug"
-                placeholder="z.B. ICE 71"
+                label="Zugnummer"
+                placeholder="z.B. 71"
                 InputLabelProps={getLabelProps({ shrink: true } as any)}
                 InputProps={{
                   onBlur,
                   onChange,
                   onFocus,
+                  type: 'number',
                 }}
                 inputProps={{
                   ...inputProps,
                   'data-testid': 'zugsucheAutocompleteInput',
+                  inputMode: 'numeric',
                 }}
               />
 

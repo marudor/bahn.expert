@@ -72,7 +72,38 @@ export async function journeyFind(
         initialDepartureDate,
         filtered,
         initialEvaNumber,
-        limit: 5,
+        limit: 10,
+      },
+    },
+  );
+
+  return r.data;
+}
+
+export async function journeyNumberFind(
+  trainNumber: number,
+  initialDepartureDate?: Date,
+  initialEvaNumber?: string,
+  filtered?: boolean,
+  cancelIdent?: string,
+): Promise<ParsedJourneyMatchResponse[]> {
+  let cancelToken;
+
+  if (cancelIdent) {
+    journeyMatchCancelTokens[cancelIdent]?.();
+    cancelToken = new Axios.CancelToken((c) => {
+      journeyMatchCancelTokens[cancelIdent] = c;
+    });
+  }
+  const r = await Axios.get<ParsedJourneyMatchResponse[]>(
+    `/api/journeys/v1/find/number/${trainNumber}`,
+    {
+      cancelToken,
+      params: {
+        initialDepartureDate,
+        filtered,
+        initialEvaNumber,
+        limit: 10,
       },
     },
   );

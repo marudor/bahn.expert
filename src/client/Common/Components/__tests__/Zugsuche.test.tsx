@@ -36,26 +36,15 @@ describe('Zugsuche', () => {
   describe('Uses Search', () => {
     beforeEach(() => {
       nock
-        .get('/api/journeys/v1/find/EC 6')
+        .get('/api/journeys/v1/find/number/6')
         .query(true)
         .reply(200, [
           {
-            jid: 'test',
-            train: {
-              type: 'EC',
-              number: 6,
-              name: 'EC 6',
-            },
-            lastStop: {
-              station: {
-                title: 'Dortmund Hbf',
-              },
-            },
-            firstStop: {
-              station: {
-                id: 6000,
-              },
-            },
+            jid: 'ee7b2fbd-1370-4585-8108-22938c252836',
+            train: { name: 'EC 6', line: null, type: 'EC', number: '6' },
+            stops: [],
+            firstStop: { station: { id: '6000', title: 'Interlaken Ost' } },
+            lastStop: { station: { id: '8000050', title: 'Bremen Hbf' } },
           },
         ]);
     });
@@ -65,7 +54,7 @@ describe('Zugsuche', () => {
 
       fireEvent.click(screen.getByTestId('dummytoggle'));
       fireEvent.change(screen.getByTestId('zugsucheAutocompleteInput'), {
-        target: { value: 'EC 6' },
+        target: { value: '6' },
       });
       await screen.findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
