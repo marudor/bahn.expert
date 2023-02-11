@@ -1,4 +1,3 @@
-import type { FahrzeugKategorie } from '@/types/reihung';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { VehicleCategory } from '@/business-hub/generated/coachSequence';
 
@@ -47,10 +46,6 @@ export interface CoachSequenceCoach {
    * 0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers
    */
   class: 0 | 1 | 2 | 3 | 4;
-  /**
-   * @deprecated
-   */
-  category: FahrzeugKategorie;
   vehicleCategory: VehicleCategory;
   closed?: boolean;
   /**

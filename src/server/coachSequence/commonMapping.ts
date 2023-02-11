@@ -14,7 +14,10 @@ import type {
 } from '@/types/coachSequence';
 
 const hasNonLokCoach = (group: CoachSequenceGroup) =>
-  group.coaches.some((c) => c.category !== 'LOK' && c.category !== 'TRIEBKOPF');
+  group.coaches.some(
+    (c) =>
+      c.vehicleCategory !== 'LOCOMOTIVE' && c.vehicleCategory !== 'POWERCAR',
+  );
 
 export function enrichCoachSequence(
   coachSequence: CoachSequenceInformation,

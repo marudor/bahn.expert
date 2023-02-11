@@ -1,4 +1,3 @@
-import notRedesigned from './notRedesigned.json';
 import type {
   AvailableIdentifier,
   CoachSequenceBaureihe,
@@ -13,7 +12,7 @@ export const nameMap: Record<AvailableIdentifier, string> = {
   '403': 'ICE 3 (BR403)',
   '403.S1': 'ICE 3 (BR403 1. Serie)',
   '403.S2': 'ICE 3 (BR403 2. Serie)',
-  '403.R': 'ICE 3 (BR403 Redesign)',
+  '403.R': 'ICE 3 (BR403)',
   '406': 'ICE 3 (BR406)',
   '406.R': 'ICE 3 (BR406 Redesign)',
   '407': 'ICE 3 Velaro (BR407)',
@@ -108,12 +107,12 @@ const getDEBR = (
         identifier: '402',
       };
     case '5403': {
-      const identifier: AvailableIdentifier = `403.S${
-        Number.parseInt(uicOrdnungsnummer.slice(1), 10) <= 37 ? '1' : '2'
-      }`;
+      // const identifier: AvailableIdentifier = `403.S${
+      //   Number.parseInt(uicOrdnungsnummer.slice(1), 10) <= 37 ? '1' : '2'
+      // }`;
       return {
         baureihe: '403',
-        identifier: tzn && notRedesigned.includes(tzn) ? identifier : '403.R',
+        identifier: '403.R',
       };
     }
     case '5406':

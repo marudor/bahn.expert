@@ -10,7 +10,6 @@ import type {
   CoachSequenceSector,
   CoachSequenceStop,
 } from '@/types/coachSequence';
-import type { FahrzeugKategorie } from '@/types/reihung';
 import type {
   Platform,
   Sector,
@@ -76,22 +75,6 @@ function mapClass(vehicleType: VehicleType): CoachSequenceCoach['class'] {
   return 0;
 }
 
-// This is just german/english
-function mapCategory(vehicleCategory: VehicleCategory): FahrzeugKategorie {
-  // I just use this to show doubledeck trains a little bit differnt. No need to map everything for now
-  // TODO: Just include a flag?
-  if (vehicleCategory.includes('DOUBLEDECK')) {
-    return 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE';
-  }
-  if (vehicleCategory === 'LOCOMOTIVE') {
-    return 'LOK';
-  }
-  if (vehicleCategory === 'POWERCAR') {
-    return 'TRIEBKOPF';
-  }
-  return '';
-}
-
 const diningCategories: Set<VehicleCategory> = new Set([
   'DININGCAR',
   'HALFDININGCAR_ECONOMY_CLASS',
@@ -154,7 +137,6 @@ function mapVehicle(
     uic: vehicle.vehicleID,
     type: vehicle.type.constructionType,
     class: mapClass(vehicle.type),
-    category: mapCategory(vehicle.type.category),
     vehicleCategory: vehicle.type.category,
     closed:
       vehicle.status === 'CLOSED' ||
@@ -233,7 +215,9 @@ export const mapInformation = (
       type: trainCategory,
       line: getLineFromNumber(trainNumber.toString()),
     },
-    isRealtime: allCoaches.every((c) => c.uic || c.category === 'LOK'),
+    isRealtime: allCoaches.every(
+      (c) => c.uic || c.vehicleCategory === 'LOCOMOTIVE',
+    ),
     stop,
     sequence,
     direction: mapDirection(allCoaches),

@@ -2170,29 +2170,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "FahrzeugKategorie": {
-        "type": "string",
-        "enum": [
-          "DOPPELSTOCKSTEUERWAGENERSTEKLASSE",
-          "DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
-          "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
-          "DOPPELSTOCKWAGENERSTEKLASSE",
-          "DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
-          "DOPPELSTOCKWAGENZWEITEKLASSE",
-          "HALBSPEISEWAGENERSTEKLASSE",
-          "HALBSPEISEWAGENZWEITEKLASSE",
-          "LOK",
-          "REISEZUGWAGENERSTEKLASSE",
-          "REISEZUGWAGENERSTEZWEITEKLASSE",
-          "REISEZUGWAGENZWEITEKLASSE",
-          "SPEISEWAGEN",
-          "STEUERWAGENERSTEKLASSE",
-          "STEUERWAGENERSTEZWEITEKLASSE",
-          "STEUERWAGENZWEITEKLASSE",
-          "TRIEBKOPF",
-          ""
-        ]
-      },
       "VehicleCategory": {
         "type": "string",
         "enum": [
@@ -2291,10 +2268,6 @@
             ],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
-          "category": {
-            "$ref": "#/components/schemas/FahrzeugKategorie",
-            "deprecated": true
-          },
           "vehicleCategory": {
             "$ref": "#/components/schemas/VehicleCategory"
           },
@@ -2324,7 +2297,6 @@
         },
         "required": [
           "class",
-          "category",
           "vehicleCategory",
           "position",
           "features"

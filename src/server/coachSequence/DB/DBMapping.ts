@@ -170,7 +170,7 @@ const mapCoach = (fahrzeug: BaseFahrzeug): CoachSequenceCoach | undefined => {
   const travellerClass = mapClass(vehicleCategory);
   return {
     class: travellerClass,
-    category: fahrzeug.kategorie,
+    // category: fahrzeug.kategorie,
     vehicleCategory,
     closed:
       fahrzeug.status === 'GESCHLOSSEN' || travellerClass === 4
@@ -290,7 +290,9 @@ export const mapInformation = (
     product: mapProduct(formation),
     stop: mapStop(formation.halt),
     direction: mapDirection(allCoaches),
-    isRealtime: allCoaches.every((c) => c.uic || c.category === 'LOK'),
+    isRealtime: allCoaches.every(
+      (c) => c.uic || c.vehicleCategory === 'LOCOMOTIVE',
+    ),
   };
   enrichCoachSequence(information);
   return information;
