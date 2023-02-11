@@ -11,6 +11,7 @@ import {
 import { EventType, TimeType } from '@/business-hub/generated/risJourneys';
 import { getAbfahrten } from '@/server/iris';
 import { getJourneyDetails } from '@/business-hub/risJourneys';
+import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import type { ArrivalDepartureEvent } from '@/business-hub/generated/risJourneys';
 import type { CommonStopInfo } from '@/types/HAFAS';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
@@ -206,6 +207,7 @@ export async function journeyDetails(
         firstEvent.transport.line || firstEvent.transport.number
       }`,
       admin: firstEvent.administration.administrationID,
+      line: getLineFromNumber(firstEvent.transport.number.toString()),
       operator: {
         name: operatorNames,
         icoX: 0,
