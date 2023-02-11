@@ -258,6 +258,8 @@ const naming = {
   4712: 'Dillingen a.d. Donau',
   4710: 'Ansbach',
   4717: 'Paris',
+  // ICE 3neo - BR 408
+  8007: 'Rheinland',
   //
   // ICE 4 - BR 412
   9006: 'Martin Luther',
