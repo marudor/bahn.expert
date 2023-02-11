@@ -21,7 +21,7 @@ import type { Route$Stop } from '@/types/routing';
 
 const journeyFindCache = new Cache<string, JourneyMatch[]>(
   CacheDatabase.JourneyFind,
-  8 * 60 * 60,
+  18 * 60 * 60,
 );
 
 const axiosWithTimeout = axios.create({

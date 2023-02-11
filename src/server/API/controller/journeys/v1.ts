@@ -37,6 +37,41 @@ function isAllowed(req: KoaRequest) {
 @Route('/journeys/v1')
 export class JourneysV1Controller extends Controller {
   @Hidden()
+  @Get('/find/number/{trainNumber}')
+  @Tags('Journeys')
+  async findNumber(
+    @Request() req: KoaRequest,
+    @Res() response: TsoaResponse<401, string>,
+    trainNumber: number,
+    @Query() initialDepartureDate?: Date,
+    @Query() initialEvaNumber?: string,
+    // Only FV, legacy reasons for hafas compatibility
+    @Query() filtered?: boolean,
+    @Query() limit?: number,
+  ): Promise<ParsedJourneyMatchResponse[]> {
+    if (!isAllowed(req)) {
+      return response(
+        401,
+        'This is rate-limited upstream, please do not use it.',
+      );
+    }
+    let risJourneysResult = await findJourneyHafasCompatible(
+      trainNumber,
+      undefined,
+      initialDepartureDate,
+      filtered,
+    );
+
+    if (initialEvaNumber) {
+      risJourneysResult = risJourneysResult.filter(
+        (r) => r.firstStop.station.id === initialEvaNumber,
+      );
+    }
+
+    return risJourneysResult.slice(0, limit);
+  }
+
+  @Hidden()
   @Get('/find/{trainName}')
   @Tags('Journeys')
   async find(

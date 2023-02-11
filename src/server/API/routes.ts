@@ -1257,6 +1257,36 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/journeys/v1/find/number/:trainNumber',
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.findNumber)),
+
+            async function JourneysV1Controller_findNumber(context: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    response: {"in":"res","name":"401","required":true,"dataType":"string"},
+                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"double"},
+                    initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
+                    initialEvaNumber: {"in":"query","name":"initialEvaNumber","dataType":"string"},
+                    filtered: {"in":"query","name":"filtered","dataType":"boolean"},
+                    limit: {"in":"query","name":"limit","dataType":"double"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new JourneysV1Controller();
+
+            const promise = controller.findNumber.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/journeys/v1/find/:trainName',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.find)),
