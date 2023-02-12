@@ -44,13 +44,6 @@ const LocationHelper = ({ children }: any) => {
   return children;
 };
 
-// const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
-//   // @ts-expect-error sheet wrongly typed
-//   const name = `${sheet.options.name}-${rule.key}`;
-
-//   return name;
-// };
-
 export function render(
   ui: ReactElement,
   { withNavigation, context, commonConfig, provider }: Options = {},

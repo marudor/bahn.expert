@@ -165,8 +165,7 @@ function mapGroup(
     destinationName: group.transport.destination.name,
     originName: 'UNKNOWN',
     number: group.transport.number.toString(),
-    // @ts-expect-error I just checked that undefiend is not included
-    coaches,
+    coaches: coaches as CoachSequenceCoach[],
   };
 }
 
@@ -184,8 +183,7 @@ function mapSequence(
   const groups = sequence.groups.map((g) => mapGroup(g, basePercent));
   if (groups.includes(undefined)) return undefined;
   return {
-    // @ts-expect-error we checked for undefined
-    groups,
+    groups: groups as CoachSequenceGroup[],
   };
 }
 

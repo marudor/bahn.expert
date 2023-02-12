@@ -49,17 +49,12 @@ export default (
 
   return {
     initialDeparture: j.stops[0].departure!.scheduledTime,
+    initialStopPlace: j.stops[0].station.id,
     arrival: matchingArrival?.arrival,
     departure: j.departure,
     currentStopPlace: {
       name: j.currentStation.title,
       evaNumber: j.currentStation.id,
-    },
-    // TODO: remove this
-    // @ts-expect-error temporary only
-    currentStation: {
-      title: j.currentStation.title,
-      id: j.currentStation.id,
     },
     destination: j.finalDestination,
     scheduledDestination: j.finalDestination,
@@ -80,7 +75,6 @@ export default (
     },
     platform: j.departure.platform ?? '',
     scheduledPlatform: j.departure.scheduledPlatform ?? '',
-    reihung: false,
     route: [...arrivalRoute, ...mapDepartureRoute(j.stops)],
     train: {
       type: '',

@@ -1,6 +1,8 @@
 // List from https://de.wikipedia.org/wiki/Liste_nach_Gemeinden_und_Regionen_benannter_IC/ICE-Fahrzeuge#Namensgebung_ICE-Triebz%C3%BCge_nach_Gemeinden
 
-const naming = {
+const naming: {
+  [key: number]: string;
+} = {
   // ICE 1 - BR 401
   101: 'Gießen',
   102: 'Jever',
@@ -276,6 +278,5 @@ const naming = {
 };
 
 export default (tzn?: string): string | undefined => {
-  // @ts-expect-error ???
   if (tzn) return naming[Number.parseInt(tzn, 10)];
 };

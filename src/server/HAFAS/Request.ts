@@ -54,8 +54,7 @@ function createRequest(
 
   data.auth = auth;
 
-  // @ts-expect-error 7053
-  const extraParam = profile.secret ? profile.secret(data) : undefined;
+  const extraParam = 'secret' in profile ? profile.secret(data) : undefined;
 
   return {
     data,

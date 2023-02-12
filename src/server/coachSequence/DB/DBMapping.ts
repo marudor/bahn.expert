@@ -190,8 +190,7 @@ const mapGroup = (
   const coaches = gruppe.allFahrzeug.map(mapCoach);
   if (coaches.includes(undefined)) return;
   return {
-    // @ts-expect-error we checked for undefined
-    coaches,
+    coaches: coaches as CoachSequenceCoach[],
     destinationName: gruppe.zielbetriebsstellename,
     originName: gruppe.startbetriebsstellename,
     name: gruppe.fahrzeuggruppebezeichnung,
@@ -233,8 +232,7 @@ const mapSequence = (formation: BaseFormation): CoachSequence | undefined => {
   const groups = regrouped.map(mapGroup);
   if (groups.includes(undefined)) return;
   return {
-    // @ts-expect-error we checked for undefined
-    groups,
+    groups: groups as CoachSequenceGroup[],
   };
 };
 

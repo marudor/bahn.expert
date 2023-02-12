@@ -528,8 +528,7 @@ export class Timetable {
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
       )) {
-      // @ts-expect-error This ´works...
-      const supersedes: undefined | number[] = supersededMessages[value];
+      const supersedes = supersededMessages[value];
 
       if (!messages[type]) messages[type] = {};
       if (supersedes) {

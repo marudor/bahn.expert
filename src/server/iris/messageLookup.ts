@@ -118,13 +118,15 @@ export const messageTypeLookup = {
   c: 'connection',
 } as const;
 
-export const supersededMessages = {
+export const supersededMessages: {
+  [key: string]: number[] | undefined;
+} = {
   '84': [80, 82, 85],
   '88': [70, 71, 83, 90, 91, 92, 93, 94, 96, 97, 98],
   '89': [86, 87],
   '96': [97],
   '97': [96],
-} as const;
+};
 
 export const ignoredMessageNumbers = [1000, 1001];
 
