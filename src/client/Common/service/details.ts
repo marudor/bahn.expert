@@ -49,13 +49,15 @@ export async function getAdditionalJourneyInformation(
 
 const journeyMatchCancelTokens: { [key: string]: Canceler } = {};
 
-export async function journeyFind(
-  trainName: string,
+async function find(
+  baseUrl: string,
+  phrase: string | number,
   initialDepartureDate?: Date,
   initialEvaNumber?: string,
   filtered?: boolean,
   cancelIdent?: string,
-): Promise<ParsedJourneyMatchResponse[]> {
+  limit = 10,
+) {
   let cancelToken;
 
   if (cancelIdent) {
@@ -65,14 +67,14 @@ export async function journeyFind(
     });
   }
   const r = await Axios.get<ParsedJourneyMatchResponse[]>(
-    `/api/journeys/v1/find/${trainName}`,
+    `${baseUrl}/${phrase}`,
     {
       cancelToken,
       params: {
         initialDepartureDate,
         filtered,
         initialEvaNumber,
-        limit: 10,
+        limit,
       },
     },
   );
@@ -80,33 +82,9 @@ export async function journeyFind(
   return r.data;
 }
 
-export async function journeyNumberFind(
-  trainNumber: number,
-  initialDepartureDate?: Date,
-  initialEvaNumber?: string,
-  filtered?: boolean,
-  cancelIdent?: string,
-): Promise<ParsedJourneyMatchResponse[]> {
-  let cancelToken;
+export const journeyFind = find.bind(undefined, '/api/journeys/v1/find');
 
-  if (cancelIdent) {
-    journeyMatchCancelTokens[cancelIdent]?.();
-    cancelToken = new Axios.CancelToken((c) => {
-      journeyMatchCancelTokens[cancelIdent] = c;
-    });
-  }
-  const r = await Axios.get<ParsedJourneyMatchResponse[]>(
-    `/api/journeys/v1/find/number/${trainNumber}`,
-    {
-      cancelToken,
-      params: {
-        initialDepartureDate,
-        filtered,
-        initialEvaNumber,
-        limit: 10,
-      },
-    },
-  );
-
-  return r.data;
-}
+export const journeyNumberFind = find.bind(
+  undefined,
+  '/api/journeys/v1/find/number',
+);

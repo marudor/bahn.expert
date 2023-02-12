@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { css } from '@emotion/react';
 import { End } from './End';
-import { journeyFind } from '@/client/Common/service/details';
+import { journeyNumberFind } from '@/client/Common/service/details';
 import { Mid } from './Mid';
 import { Paper } from '@mui/material';
 import { Start } from './Start';
@@ -128,12 +128,13 @@ export const BaseAbfahrt: FC<Props> = ({
     async function getJourney() {
       if (!journeyId && detail) {
         try {
-          const foundJourney = await journeyFind(
+          const foundJourney = await journeyNumberFind(
             abfahrt.train.number,
             abfahrt.initialDeparture,
             abfahrt.initialStopPlace,
             false,
-            'detailsClick',
+            `detailsClick${abfahrt.train.number}`,
+            2,
           );
           if (foundJourney.length === 1) {
             setJourneyId(foundJourney[0].jid);
