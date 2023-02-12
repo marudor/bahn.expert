@@ -11,7 +11,11 @@ import {
   Tags,
 } from '@tsoa/runtime';
 import { getLageplan } from '@/server/StopPlace/Lageplan';
-import { getStopPlaceByEva, searchStopPlace } from '@/server/StopPlace/search';
+import {
+  getStopPlaceByEva,
+  getStopPlaceByRl100,
+  searchStopPlace,
+} from '@/server/StopPlace/search';
 import axios from 'axios';
 import type { EvaNumber } from '@/types/common';
 import type {
@@ -64,13 +68,16 @@ export class StopPlaceController extends Controller {
   }
 
   @Response(404)
-  @Get('/{evaNumber}')
+  @Get('/{evaNumberOrRl100}')
   @Tags('StopPlace')
-  async stopPlaceByEva(
-    evaNumber: EvaNumber,
+  async stopPlaceByEvaOrRl100(
+    evaNumberOrRl100: string,
     @Res() notFoundResponse: TsoaResponse<404, void>,
   ): Promise<GroupedStopPlace> {
-    const stopPlace = await getStopPlaceByEva(evaNumber);
+    let stopPlace = await getStopPlaceByRl100(evaNumberOrRl100);
+    if (!stopPlace) {
+      stopPlace = await getStopPlaceByEva(evaNumberOrRl100);
+    }
     if (!stopPlace) {
       return notFoundResponse(404);
     }

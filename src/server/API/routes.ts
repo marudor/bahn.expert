@@ -1497,13 +1497,13 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/stopPlace/v1/:evaNumber',
+        router.get('/api/stopPlace/v1/:evaNumberOrRl100',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
-            ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceByEva)),
+            ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceByEvaOrRl100)),
 
-            async function StopPlaceController_stopPlaceByEva(context: any, next: any) {
+            async function StopPlaceController_stopPlaceByEvaOrRl100(context: any, next: any) {
             const args = {
-                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+                    evaNumberOrRl100: {"in":"path","name":"evaNumberOrRl100","required":true,"dataType":"string"},
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
@@ -1518,7 +1518,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new StopPlaceController();
 
-            const promise = controller.stopPlaceByEva.apply(controller, validatedArgs as any);
+            const promise = controller.stopPlaceByEvaOrRl100.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

@@ -3118,9 +3118,9 @@
         ]
       }
     },
-    "/stopPlace/v1/{evaNumber}": {
+    "/stopPlace/v1/{evaNumberOrRl100}": {
       "get": {
-        "operationId": "StopPlaceByEva",
+        "operationId": "StopPlaceByEvaOrRl100",
         "responses": {
           "200": {
             "description": "Ok",
@@ -3143,10 +3143,10 @@
         "parameters": [
           {
             "in": "path",
-            "name": "evaNumber",
+            "name": "evaNumberOrRl100",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/EvaNumber"
+              "type": "string"
             }
           }
         ]
