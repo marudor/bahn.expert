@@ -152,7 +152,7 @@ export async function getStopPlaceByEva(
   }
 }
 
-export async function byRl100WithSpaceHandling(
+async function byRl100WithSpaceHandling(
   rl100: string,
 ): Promise<StopPlace | undefined> {
   if (rl100.length > 5) {
@@ -172,6 +172,18 @@ export async function byRl100WithSpaceHandling(
     void stopPlaceByRilCache.set(rl100, result);
   }
   return result;
+}
+
+export async function getStopPlaceByRl100(
+  rl100: string,
+): Promise<GroupedStopPlace | undefined> {
+  const stopPlace = await byRl100WithSpaceHandling(rl100);
+  if (!stopPlace) {
+    return;
+  }
+  const grouped = mapToGroupedStopPlace(stopPlace);
+  await addIdentifiers([grouped]);
+  return grouped;
 }
 
 async function searchStopPlaceRemote(
