@@ -37,6 +37,7 @@ export const BaseHeader: FC<PropsWithChildren<Props>> = ({
         <HeaderTags />
         <Toolbar disableGutters>
           <IconButton
+            size="small"
             data-testid="navToggle"
             aria-label="Menu"
             onClick={toggleDrawer}

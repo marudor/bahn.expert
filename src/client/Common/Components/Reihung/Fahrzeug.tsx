@@ -233,11 +233,11 @@ export const Fahrzeug: FC<Props> = ({
         <WagenLink fahrzeug={fahrzeug} identifier={identifier} type={type} />
       )}
       <ExtraInfoContainer showCoachType={showCoachType}>
+        {showUIC && <UIC uic={fahrzeug.uic} />}
         <SitzplatzInfo
           identificationNumber={fahrzeug.identificationNumber}
           seats={fahrzeug.seats}
         />
-        {showUIC && <UIC uic={fahrzeug.uic} />}
       </ExtraInfoContainer>
     </Container>
   );

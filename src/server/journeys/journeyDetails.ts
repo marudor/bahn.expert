@@ -143,7 +143,11 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
       stop = {
         station: {
           id: e.station.evaNumber,
-          title: e.station.name,
+          title: e.station.name
+            .replaceAll('(', ' (')
+            .replaceAll(')', ') ')
+            .replaceAll('  ', ' ')
+            .trim(),
         },
       };
       stops.push(stop);

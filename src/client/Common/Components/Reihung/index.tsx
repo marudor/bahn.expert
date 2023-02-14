@@ -17,7 +17,7 @@ const ContainerWrap = styled.div`
 `;
 
 const Container = styled.div`
-  min-width: 70em;
+  min-width: 80em;
   overflow: hidden;
   position: relative;
   font-size: 170%;
