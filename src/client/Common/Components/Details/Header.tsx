@@ -18,7 +18,7 @@ const Destination = styled.span`
   grid-area: g;
   max-height: 2rem;
   overflow: hidden;
-  word-break: break-all;
+  word-break: break-word;
 `;
 
 const Container = styled.div`
@@ -38,7 +38,6 @@ const DateDisplay = styled(SingleLineSpan)`
 
 const Arrow = styled.span`
   grid-area: a;
-  min-width: 1.5em;
 `;
 
 interface FTNProps {
@@ -94,11 +93,21 @@ export const Header: FC = () => {
         )}
       </Container>
       {polyline && (
-        <IconButton onClick={toggleMapDisplay} aria-label="map" color="inherit">
+        <IconButton
+          size="small"
+          onClick={toggleMapDisplay}
+          aria-label="map"
+          color="inherit"
+        >
           <Map />
         </IconButton>
       )}
-      <IconButton onClick={refresh} aria-label="refresh" color="inherit">
+      <IconButton
+        size="small"
+        onClick={refresh}
+        aria-label="refresh"
+        color="inherit"
+      >
         <Refresh />
       </IconButton>
     </BaseHeader>
