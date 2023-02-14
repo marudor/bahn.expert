@@ -29,24 +29,22 @@ const formatDate = (date: Date) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
 
 async function coachSequence(trainNumber: string, date: Date) {
-  if (trainNumber.length <= 4) {
-    try {
-      const cancelToken = new Axios.CancelToken((c) => {
-        setTimeout(c, dbCoachSequenceTimeout);
-      });
-      const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
-      UpstreamApiRequestMetric.inc({
-        api: `coachSequence-${type}`,
-      });
-      const info = (
-        await Axios.get<Wagenreihung>(url, {
-          cancelToken,
-        })
-      ).data;
-      return info;
-    } catch {
-      // we just ignore it and try the next one
-    }
+  try {
+    const cancelToken = new Axios.CancelToken((c) => {
+      setTimeout(c, dbCoachSequenceTimeout);
+    });
+    const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
+    UpstreamApiRequestMetric.inc({
+      api: `coachSequence-${type}`,
+    });
+    const info = (
+      await Axios.get<Wagenreihung>(url, {
+        cancelToken,
+      })
+    ).data;
+    return info;
+  } catch {
+    // we just ignore it and try the next one
   }
   const cancelToken = new Axios.CancelToken((c) => {
     setTimeout(c, dbCoachSequenceTimeout);
