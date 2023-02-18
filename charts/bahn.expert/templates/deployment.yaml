@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "bahnhofsAbfahrten.fullname" . }}
+  name: {{ include "bahn-expert.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
-    helm.sh/chart: {{ include "bahnhofsAbfahrten.chart" . }}
+    app.kubernetes.io/name: {{ include "bahn-expert.name" . }}
+    helm.sh/chart: {{ include "bahn-expert.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
+      app.kubernetes.io/name: {{ include "bahn-expert.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
@@ -20,7 +20,7 @@ spec:
         prometheus.io/port: "9000"
         prometheus.io/scrape: "true"
       labels:
-        app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
+        app.kubernetes.io/name: {{ include "bahn-expert.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       topologySpreadConstraints:

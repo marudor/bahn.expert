@@ -1,11 +1,11 @@
-{{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
+{{- $fullName := include "bahn-expert.fullname" . -}}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ $fullName }}
   labels:
-    app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
-    helm.sh/chart: {{ include "bahnhofsAbfahrten.chart" . }}
+    app.kubernetes.io/name: {{ include "bahn-expert.name" . }}
+    helm.sh/chart: {{ include "bahn-expert.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:

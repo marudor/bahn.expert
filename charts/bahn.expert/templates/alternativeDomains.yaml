@@ -1,5 +1,5 @@
 {{ if .Values.alternativeHostNames }}
-{{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
+{{- $fullName := include "bahn-expert.fullname" . -}}
 {{- range .Values.alternativeHostNames }}
 {{- $altName := print $fullName "-app-" . | replace "." "-" -}}
 ---
