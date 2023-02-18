@@ -778,8 +778,8 @@ export class Timetable {
 
     return timetables;
   }
-  getTimetables() {
-    return Promise.all(
+  async getTimetables() {
+    await Promise.all(
       this.segments.map(async (date) => {
         const key = `/plan/${this.evaNumber}/${format(date, 'yyMMdd/HH')}`;
         const cached = await timetableCache.get(key);
@@ -819,5 +819,20 @@ export class Timetable {
         }
       }),
     );
+
+    // Fixup recursive wings
+    for (const [wingId, referenceRawId] of Object.entries(this.wingIds)) {
+      const { mediumId } = parseRawId(referenceRawId);
+      if (this.wingIds[mediumId]) {
+        const arrival = this.timetable[this.wingIds[mediumId]]?.arrival;
+        const departure = this.timetable[this.wingIds[mediumId]]?.departure;
+
+        arrival.wingIds = [...(arrival.wingIds || []), wingId];
+
+        departure.wingIds = [...(departure.wingIds || []), wingId];
+
+        this.wingIds[wingId] = this.wingIds[mediumId];
+      }
+    }
   }
 }
