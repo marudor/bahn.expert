@@ -24,10 +24,12 @@ const TimeContainer = styled.span<{
   isRealTime?: boolean;
   early?: boolean;
   delayed?: boolean;
+  multiLine?: boolean;
 }>(
-  {
-    marginRight: '.2em',
-  },
+  ({ multiLine }) =>
+    !multiLine && {
+      marginRight: '.2em',
+    },
   ({ isRealTime }) => isRealTime && { fontWeight: 'bold' },
   ({ theme, early }) => early && theme.mixins.early,
   ({ theme, delayed }) => delayed && theme.mixins.delayed,
@@ -61,11 +63,12 @@ export const Time: FC<Props> = ({
       cancelled={cancelled}
       multiLine={multiLine}
     >
-      <TimeContainer data-testid="scheduledTime">
+      <TimeContainer multiLine={multiLine} data-testid="scheduledTime">
         {format(scheduledTime, 'HH:mm')}
       </TimeContainer>
       {delay != null && (
         <TimeContainer
+          multiLine={multiLine}
           data-testid="realTime"
           isRealTime={isRealTime}
           early={delay != null && delay <= 0}
