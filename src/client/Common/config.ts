@@ -15,7 +15,6 @@ export interface CommonConfig {
   readonly showCoachType: boolean;
   readonly autoUpdate: number;
   readonly fahrzeugGruppe: boolean;
-  readonly time: boolean;
   readonly hideTravelynx: boolean;
 }
 

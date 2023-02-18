@@ -43,6 +43,5 @@ export const commonConfigSanitize: CommonConfigSanitize = {
   hideTravelynx: booleanCheck,
   showUIC: booleanCheck,
   fahrzeugGruppe: booleanCheck,
-  time: booleanCheck,
   showCoachType: booleanCheck,
 };

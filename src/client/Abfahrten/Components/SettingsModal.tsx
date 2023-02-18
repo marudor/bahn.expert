@@ -59,14 +59,8 @@ export const SettingsModal: FC = () => {
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
-  const {
-    fahrzeugGruppe,
-    showUIC,
-    time,
-    autoUpdate,
-    hideTravelynx,
-    showCoachType,
-  } = useCommonConfig();
+  const { fahrzeugGruppe, showUIC, autoUpdate, hideTravelynx, showCoachType } =
+    useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
@@ -104,16 +98,6 @@ export const SettingsModal: FC = () => {
             />
           }
           label="AutoUpdate in Sekunden"
-        />
-        <Label
-          control={
-            <Switch
-              checked={time}
-              value="timeConfig"
-              onChange={handleConfigCheckedChange('time', setCommonConfigKey)}
-            />
-          }
-          label="Neue Ankunft bei Verspätung"
         />
         <Label
           control={
