@@ -30,6 +30,12 @@ const Content = styled(DialogContent)`
   min-width: 40%;
 `;
 
+const StyledDialog = styled(Dialog)`
+  .MuiDialog-container {
+    height: initial;
+  }
+`;
+
 const DateInputField = styled(TextField)`
   margin: 20px;
 `;
@@ -99,7 +105,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 
   return (
     <>
-      <Dialog
+      <StyledDialog
         maxWidth="md"
         open={open}
         // @ts-expect-error stupid ts cant handle optional here
@@ -148,7 +154,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
             </FormControl>
           </form>
         </Content>
-      </Dialog>
+      </StyledDialog>
       {children?.(toggleModal)}
     </>
   );

@@ -126,6 +126,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
                   onChange,
                   onFocus,
                   type: 'number',
+                  autoFocus: true,
                 }}
                 inputProps={{
                   ...inputProps,
