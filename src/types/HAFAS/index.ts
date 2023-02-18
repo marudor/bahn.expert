@@ -210,6 +210,7 @@ export interface CommonStopInfo {
   reihung?: boolean;
   messages?: RemL[];
   cancelled?: boolean;
+  isRealTime?: boolean;
 }
 
 export interface RemL {

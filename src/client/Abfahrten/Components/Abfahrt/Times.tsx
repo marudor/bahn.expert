@@ -32,7 +32,7 @@ export const Times: FC = () => {
               data-testid="arrivalTimeContainer"
             >
               <span>{'An: '}</span>
-              <Time alignEnd delay={arrival.delay} real={arrival.time} />
+              <Time multiLine delay={arrival.delay} real={arrival.time} />
             </TimeContainer>
           )}
           {departure && (
@@ -41,13 +41,13 @@ export const Times: FC = () => {
               data-testid="departureTimeContainer"
             >
               <span>{'Ab: '}</span>
-              <Time alignEnd delay={departure.delay} real={departure.time} />
+              <Time multiLine delay={departure.delay} real={departure.time} />
             </TimeContainer>
           )}
         </>
       ) : departure && (!departure.cancelled || cancelled) ? (
         <Time
-          alignEnd
+          multiLine
           delay={departure.delay}
           real={departure.time}
           cancelled={cancelled}
@@ -55,7 +55,7 @@ export const Times: FC = () => {
       ) : (
         arrival && (
           <Time
-            alignEnd
+            multiLine
             delay={arrival.delay}
             real={arrival.time}
             cancelled={cancelled}

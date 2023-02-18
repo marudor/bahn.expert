@@ -1,6 +1,5 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
-import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
@@ -10,88 +9,70 @@ const DelayContainer = styled.span<{ early?: boolean; delayed?: boolean }>(
 );
 
 const Container = styled(DelayContainer.withComponent('div'))<{
-  alignEnd?: boolean;
-  multiLine?: boolean;
   cancelled?: boolean;
+  multiLine?: boolean;
 }>(
   {
+    fontSize: '0.9em',
     display: 'flex',
   },
-  ({ alignEnd }) =>
-    alignEnd && {
-      alignItems: 'flex-end',
-    },
-  ({ multiLine }) =>
-    multiLine && {
-      flexDirection: 'column',
-    },
   ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+  ({ multiLine }) => multiLine && { flexDirection: 'column' },
 );
 
-const TimeContainer = styled.span<{ oneLine?: boolean }>(
-  ({ oneLine }) =>
-    oneLine && {
-      marginRight: '.2em',
-    },
+const TimeContainer = styled.span<{
+  isRealTime?: boolean;
+  early?: boolean;
+  delayed?: boolean;
+}>(
+  {
+    marginRight: '.2em',
+  },
+  ({ isRealTime }) => isRealTime && { fontWeight: 'bold' },
+  ({ theme, early }) => early && theme.mixins.early,
+  ({ theme, delayed }) => delayed && theme.mixins.delayed,
 );
 
 interface Props {
-  alignEnd?: boolean;
   className?: string;
   delay?: number;
   real?: Date;
-  showZero?: boolean;
-  oneLine?: boolean;
   cancelled?: boolean;
-}
-
-function delayString(delay: number) {
-  if (delay < 0) {
-    return `-${Math.abs(delay)}`;
-  }
-
-  return `+${delay}`;
+  /** Not Schedule, not preview */
+  isRealTime?: boolean;
+  multiLine?: boolean;
 }
 
 export const Time: FC<Props> = ({
   className,
   delay,
   real,
-  showZero = true,
-  alignEnd,
-  oneLine,
   cancelled,
+  isRealTime,
+  multiLine,
 }) => {
-  const showOriginalTime = !useCommonConfig().time;
-
   if (!real) return null;
-  const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
-
-  const hasDelay = showZero ? delay != null : Boolean(delay);
+  const scheduledTime = delay ? subMinutes(real, delay) : real;
 
   return (
     <Container
       data-testid="timeContainer"
       className={className}
-      delayed={Boolean(!showOriginalTime && hasDelay && delay && delay > 0)}
-      early={Boolean(
-        !showOriginalTime && hasDelay && delay != null && delay <= 0,
-      )}
-      alignEnd={alignEnd}
-      multiLine={!oneLine}
       cancelled={cancelled}
+      multiLine={multiLine}
     >
-      <TimeContainer oneLine={oneLine} data-testid="time">
-        {format(time, 'HH:mm')}
+      <TimeContainer data-testid="scheduledTime">
+        {format(scheduledTime, 'HH:mm')}
       </TimeContainer>
-      {hasDelay && (
-        <DelayContainer
-          delayed={Boolean(delay && delay > 0)}
-          early={Boolean(delay && delay <= 0)}
-          data-testid="delay"
+      {delay != null && (
+        <TimeContainer
+          data-testid="realTime"
+          isRealTime={isRealTime}
+          early={delay != null && delay <= 0}
+          delayed={delay != null && delay > 0}
         >
-          {delayString(delay as number)}
-        </DelayContainer>
+          {format(real, 'HH:mm')}
+        </TimeContainer>
       )}
     </Container>
   );

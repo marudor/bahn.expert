@@ -101,6 +101,7 @@ function mapEventToCommonStopInfo(
     delay,
     scheduledPlatform: e.platformSchedule,
     platform: e.platform,
+    isRealTime: e.timeType === 'REAL' || undefined,
   };
 }
 

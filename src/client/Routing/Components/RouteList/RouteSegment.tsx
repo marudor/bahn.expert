@@ -64,12 +64,14 @@ export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
     <>
       <Container>
         <DepartureTime
+          multiLine
           real={segment.departure.time}
           delay={segment.departure.delay}
         />
         <DepartureName>{segment.segmentStart.title}</DepartureName>
 
         <ArrivalTime
+          multiLine
           real={segment.arrival.time}
           delay={segment.arrival.delay}
         />

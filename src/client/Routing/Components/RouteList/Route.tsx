@@ -52,8 +52,16 @@ export const Route: FC<Props> = ({ route, detail, onClick }) => {
 
   return (
     <Container data-testid={`Route-${route.cid}`} onClick={onClick} square>
-      <StyledTime real={route.departure.time} delay={route.departure.delay} />
-      <StyledTime real={route.arrival.time} delay={route.arrival.delay} />
+      <StyledTime
+        multiLine
+        real={route.departure.time}
+        delay={route.departure.delay}
+      />
+      <StyledTime
+        multiLine
+        real={route.arrival.time}
+        delay={route.arrival.delay}
+      />
       <span>{formatDuration(route.duration)}</span>
       <span>{route.changes}</span>
       {detail ? (

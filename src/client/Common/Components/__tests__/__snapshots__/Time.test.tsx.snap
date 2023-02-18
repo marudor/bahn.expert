@@ -1,44 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Time does not show 0 delay number 1`] = `
+exports[`Time 5 Minutes early 1`] = `
 .emotion-0 {
+  font-size: 0.9em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .emotion-0 {
+  font-size: 0.9em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .emotion-0 {
+  font-size: 0.9em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-2 {
+  margin-right: .2em;
+  color: #7cb342;
 }
 
 <div
@@ -47,7 +48,62 @@ exports[`Time does not show 0 delay number 1`] = `
 >
   <span
     class="emotion-1"
-    data-testid="time"
+    data-testid="scheduledTime"
+  >
+    14:00
+  </span>
+  <span
+    class="emotion-2"
+    data-testid="realTime"
+  >
+    13:55
+  </span>
+</div>
+`;
+
+exports[`Time 10 Minutes delay 1`] = `
+.emotion-0 {
+  font-size: 0.9em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-0 {
+  font-size: 0.9em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-2 {
+  margin-right: .2em;
+  color: #ff1744;
+}
+
+<div
+  class="emotion-0"
+  data-testid="timeContainer"
+>
+  <span
+    class="emotion-1"
+    data-testid="scheduledTime"
+  >
+    13:45
+  </span>
+  <span
+    class="emotion-2"
+    data-testid="realTime"
   >
     13:55
   </span>
@@ -56,203 +112,63 @@ exports[`Time does not show 0 delay number 1`] = `
 
 exports[`Time no time 1`] = `null`;
 
-exports[`Time showOriginalTime = false 5 Minutes early 1`] = `
-.emotion-0 {
-  color: #7cb342;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-2 {
-  color: #7cb342;
-}
-
-<div
-  class="emotion-0"
-  data-testid="timeContainer"
->
-  <span
-    class="emotion-1"
-    data-testid="time"
-  >
-    13:55
-  </span>
-  <span
-    class="emotion-2"
-    data-testid="delay"
-  >
-    -5
-  </span>
-</div>
-`;
-
-exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
-.emotion-0 {
-  color: #ff1744;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-2 {
-  color: #ff1744;
-}
-
-<div
-  class="emotion-0"
-  data-testid="timeContainer"
->
-  <span
-    class="emotion-1"
-    data-testid="time"
-  >
-    13:55
-  </span>
-  <span
-    class="emotion-2"
-    data-testid="delay"
-  >
-    +10
-  </span>
-</div>
-`;
-
-exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-2 {
-  color: #7cb342;
-}
-
-.emotion-2 {
-  color: #7cb342;
-}
-
-<div
-  class="emotion-0"
-  data-testid="timeContainer"
->
-  <span
-    class="emotion-1"
-    data-testid="time"
-  >
-    14:00
-  </span>
-  <span
-    class="emotion-2"
-    data-testid="delay"
-  >
-    -5
-  </span>
-</div>
-`;
-
-exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.emotion-2 {
-  color: #ff1744;
-}
-
-.emotion-2 {
-  color: #ff1744;
-}
-
-<div
-  class="emotion-0"
-  data-testid="timeContainer"
->
-  <span
-    class="emotion-1"
-    data-testid="time"
-  >
-    13:45
-  </span>
-  <span
-    class="emotion-2"
-    data-testid="delay"
-  >
-    +10
-  </span>
-</div>
-`;
-
 exports[`Time shows 0 delay number 1`] = `
 .emotion-0 {
-  color: #7cb342;
+  font-size: 0.9em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .emotion-0 {
-  color: #7cb342;
+  font-size: 0.9em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+}
+
+.emotion-0 {
+  font-size: 0.9em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-0 {
+  font-size: 0.9em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-1 {
+  margin-right: .2em;
+}
+
+.emotion-2 {
+  margin-right: .2em;
+  color: #7cb342;
+}
+
+.emotion-2 {
+  margin-right: .2em;
+  color: #7cb342;
 }
 
 <div
@@ -261,15 +177,15 @@ exports[`Time shows 0 delay number 1`] = `
 >
   <span
     class="emotion-1"
-    data-testid="time"
+    data-testid="scheduledTime"
   >
     13:55
   </span>
   <span
-    class="emotion-1"
-    data-testid="delay"
+    class="emotion-2"
+    data-testid="realTime"
   >
-    +0
+    13:55
   </span>
 </div>
 `;

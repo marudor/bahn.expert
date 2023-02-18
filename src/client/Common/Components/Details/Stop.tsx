@@ -64,7 +64,7 @@ const StyledOccupancy = styled(AuslastungsDisplay)`
 
 const Container = styled.div<{ past?: boolean; hasOccupancy: boolean }>(
   ({ theme, hasOccupancy }) => ({
-    padding: '.1em .5em',
+    padding: '.1em .3em',
     display: 'grid',
     gridGap: '0 .3em',
     gridTemplateRows: '1fr',
@@ -135,9 +135,9 @@ export const Stop: FC<Props> = ({
       {stop.arrival && (
         <ArrivalTime
           cancelled={stop.arrival.cancelled}
-          oneLine
           real={stop.arrival.time}
           delay={stop.arrival.delay}
+          isRealTime={stop.arrival.isRealTime}
         />
       )}
       <StopName stop={stop}>
@@ -157,9 +157,9 @@ export const Stop: FC<Props> = ({
       {stop.departure && (
         <DepartureTime
           cancelled={stop.departure.cancelled}
-          oneLine
           real={stop.departure.time}
           delay={stop.departure.delay}
+          isRealTime={stop.departure.isRealTime}
         />
       )}
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
