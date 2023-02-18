@@ -38,6 +38,7 @@ const DateDisplay = styled(SingleLineSpan)`
 
 const Arrow = styled.span`
   grid-area: a;
+  margin-right: 0.2em;
 `;
 
 interface FTNProps {
@@ -87,7 +88,8 @@ export const Header: FC = () => {
             <DateDisplay>
               {format(details.departure.time, 'dd.MM.yyyy')}
             </DateDisplay>
-            <Arrow> -&gt; </Arrow>
+            {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
+            <Arrow> → </Arrow>
             <Destination>{details.segmentDestination.title}</Destination>
           </>
         )}
