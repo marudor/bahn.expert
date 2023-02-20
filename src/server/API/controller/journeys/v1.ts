@@ -55,20 +55,43 @@ export class JourneysV1Controller extends Controller {
         'This is rate-limited upstream, please do not use it.',
       );
     }
-    let risJourneysResult = await findJourneyHafasCompatible(
-      trainNumber,
-      undefined,
-      initialDepartureDate,
-      filtered,
-    );
+    let risPromise: Promise<ParsedJourneyMatchResponse[]> = Promise.resolve([]);
+    if (trainNumber) {
+      risPromise = findJourneyHafasCompatible(
+        trainNumber,
+        undefined,
+        initialDepartureDate,
+        filtered,
+      );
+    }
 
+    const trainName = trainNumber.toString();
+    const hafasPromise = enrichedJourneyMatch({
+      onlyRT: true,
+      jnyFltrL: filtered
+        ? [
+            {
+              mode: 'INC',
+              type: 'PROD',
+              value: '7',
+            },
+          ]
+        : undefined,
+      trainName,
+      initialDepartureDate,
+      limit,
+    });
+
+    const risResult = await risPromise;
+
+    let result = risResult.length ? risResult : await hafasPromise;
     if (initialEvaNumber) {
-      risJourneysResult = risJourneysResult.filter(
+      result = result.filter(
         (r) => r.firstStop.station.id === initialEvaNumber,
       );
     }
 
-    return risJourneysResult.slice(0, limit);
+    return result.slice(0, limit);
   }
 
   @Hidden()
