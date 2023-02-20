@@ -827,9 +827,13 @@ export class Timetable {
         const arrival = this.timetable[this.wingIds[mediumId]]?.arrival;
         const departure = this.timetable[this.wingIds[mediumId]]?.departure;
 
-        arrival.wingIds = [...(arrival.wingIds || []), wingId];
+        if (arrival) {
+          arrival.wingIds = [...(arrival.wingIds || []), wingId];
+        }
 
-        departure.wingIds = [...(departure.wingIds || []), wingId];
+        if (departure) {
+          departure.wingIds = [...(departure.wingIds || []), wingId];
+        }
 
         this.wingIds[wingId] = this.wingIds[mediumId];
       }
