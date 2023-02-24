@@ -59,8 +59,14 @@ export const SettingsModal: FC = () => {
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
-  const { fahrzeugGruppe, showUIC, autoUpdate, hideTravelynx, showCoachType } =
-    useCommonConfig();
+  const {
+    fahrzeugGruppe,
+    showUIC,
+    autoUpdate,
+    hideTravelynx,
+    showCoachType,
+    delayTime,
+  } = useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
@@ -109,6 +115,20 @@ export const SettingsModal: FC = () => {
             />
           }
           label="Sortiere Abfahrten nach Echtzeit"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="delayTime"
+              checked={delayTime}
+              value="delayTime"
+              onChange={handleConfigCheckedChange(
+                'delayTime',
+                setCommonConfigKey,
+              )}
+            />
+          }
+          label="Zeige Zeiten mit Verspätung"
         />
         <Label
           control={

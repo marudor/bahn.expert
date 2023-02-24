@@ -1,5 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
@@ -45,6 +46,14 @@ interface Props {
   multiLine?: boolean;
 }
 
+function delayString(delay: number) {
+  if (delay < 0) {
+    return `-${Math.abs(delay)}`;
+  }
+
+  return `+${delay}`;
+}
+
 export const Time: FC<Props> = ({
   className,
   delay,
@@ -53,8 +62,15 @@ export const Time: FC<Props> = ({
   isRealTime,
   multiLine,
 }) => {
+  const showDelayTime = useCommonConfig().delayTime;
   if (!real) return null;
-  const scheduledTime = delay ? subMinutes(real, delay) : real;
+  const hasDelay = delay != null;
+  // Wenn mit Delay dann immer Echtzeit, sonst plan
+  const timeToDisplay = showDelayTime
+    ? real
+    : hasDelay
+    ? subMinutes(real, delay)
+    : real;
 
   return (
     <Container
@@ -63,18 +79,23 @@ export const Time: FC<Props> = ({
       cancelled={cancelled}
       multiLine={multiLine}
     >
-      <TimeContainer multiLine={multiLine} data-testid="scheduledTime">
-        {format(scheduledTime, 'HH:mm')}
+      <TimeContainer
+        multiLine={multiLine}
+        data-testid="timeToDisplay"
+        early={showDelayTime && hasDelay && delay <= 0}
+        delayed={showDelayTime && hasDelay && delay > 0}
+      >
+        {format(timeToDisplay, 'HH:mm')}
       </TimeContainer>
-      {delay != null && (
+      {hasDelay && (
         <TimeContainer
           multiLine={multiLine}
-          data-testid="realTime"
-          isRealTime={isRealTime}
-          early={delay != null && delay <= 0}
-          delayed={delay != null && delay > 0}
+          data-testid="realTimeOrDelay"
+          isRealTime={!showDelayTime && isRealTime}
+          early={delay <= 0}
+          delayed={delay > 0}
         >
-          {format(real, 'HH:mm')}
+          {showDelayTime ? delayString(delay) : format(real, 'HH:mm')}
         </TimeContainer>
       )}
     </Container>
