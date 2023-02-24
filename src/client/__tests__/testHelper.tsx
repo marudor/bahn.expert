@@ -88,6 +88,7 @@ export function render(
       autoUpdate: 0,
       hideTravelynx: false,
       showCoachType: false,
+      delayTime: false,
       ...commonConfig,
     };
 

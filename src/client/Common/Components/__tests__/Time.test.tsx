@@ -14,16 +14,16 @@ describe('Time', () => {
   it('only scheduled Data', () => {
     render(<Time real={sampleTime} />);
 
-    expect(screen.queryByTestId('realTime')).toBeNull();
-    expect(screen.queryByTestId('scheduledTime')).toHaveTextContent('13:55');
+    expect(screen.queryByTestId('realTimeOrDelay')).toBeNull();
+    expect(screen.queryByTestId('timeToDisplay')).toHaveTextContent('13:55');
   });
 
   it('10 Minutes delay', () => {
     const { container, theme } = render(<Time real={sampleTime} delay={10} />);
 
-    expect(screen.queryByTestId('scheduledTime')).toHaveTextContent('13:45');
-    expect(screen.queryByTestId('realTime')).toHaveTextContent('13:55');
-    expect(screen.queryByTestId('realTime')).toHaveStyle(
+    expect(screen.queryByTestId('timeToDisplay')).toHaveTextContent('13:45');
+    expect(screen.queryByTestId('realTimeOrDelay')).toHaveTextContent('13:55');
+    expect(screen.queryByTestId('realTimeOrDelay')).toHaveStyle(
       `color: ${theme.colors.red}`,
     );
     expect(container).toMatchSnapshot();
@@ -32,9 +32,9 @@ describe('Time', () => {
   it('5 Minutes early', () => {
     const { container, theme } = render(<Time real={sampleTime} delay={-5} />);
 
-    expect(screen.queryByTestId('scheduledTime')).toHaveTextContent('14:00');
-    expect(screen.queryByTestId('realTime')).toHaveTextContent('13:55');
-    expect(screen.queryByTestId('realTime')).toHaveStyle(
+    expect(screen.queryByTestId('timeToDisplay')).toHaveTextContent('14:00');
+    expect(screen.queryByTestId('realTimeOrDelay')).toHaveTextContent('13:55');
+    expect(screen.queryByTestId('realTimeOrDelay')).toHaveStyle(
       `color: ${theme.colors.green}`,
     );
     expect(container).toMatchSnapshot();
@@ -43,9 +43,9 @@ describe('Time', () => {
   it('shows 0 delay number', () => {
     const { container, theme } = render(<Time real={sampleTime} delay={0} />);
 
-    expect(screen.queryByTestId('scheduledTime')).toHaveTextContent('13:55');
-    expect(screen.queryByTestId('realTime')).toHaveTextContent('13:55');
-    expect(screen.queryByTestId('realTime')).toHaveStyle(
+    expect(screen.queryByTestId('timeToDisplay')).toHaveTextContent('13:55');
+    expect(screen.queryByTestId('realTimeOrDelay')).toHaveTextContent('13:55');
+    expect(screen.queryByTestId('realTimeOrDelay')).toHaveStyle(
       `color: ${theme.colors.green}`,
     );
     expect(container).toMatchSnapshot();

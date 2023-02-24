@@ -48,13 +48,13 @@ exports[`Time 5 Minutes early 1`] = `
 >
   <span
     class="emotion-1"
-    data-testid="scheduledTime"
+    data-testid="timeToDisplay"
   >
     14:00
   </span>
   <span
     class="emotion-2"
-    data-testid="realTime"
+    data-testid="realTimeOrDelay"
   >
     13:55
   </span>
@@ -97,13 +97,13 @@ exports[`Time 10 Minutes delay 1`] = `
 >
   <span
     class="emotion-1"
-    data-testid="scheduledTime"
+    data-testid="timeToDisplay"
   >
     13:45
   </span>
   <span
     class="emotion-2"
-    data-testid="realTime"
+    data-testid="realTimeOrDelay"
   >
     13:55
   </span>
@@ -177,13 +177,13 @@ exports[`Time shows 0 delay number 1`] = `
 >
   <span
     class="emotion-1"
-    data-testid="scheduledTime"
+    data-testid="timeToDisplay"
   >
     13:55
   </span>
   <span
     class="emotion-2"
-    data-testid="realTime"
+    data-testid="realTimeOrDelay"
   >
     13:55
   </span>
