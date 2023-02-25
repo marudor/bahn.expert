@@ -10,14 +10,14 @@ import {
 import { handleConfigCheckedChange } from '@/client/Common/config';
 import {
   useAbfahrtenConfig,
-  useAbfahrtenConfigOpen,
-  useAbfahrtenModalToggle,
   useAbfahrtenSetConfig,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
 import {
   useCommonConfig,
+  useCommonConfigOpen,
   useSetCommonConfig,
+  useSetCommonConfigOpen,
 } from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
 import type { AbfahrtenConfig, CommonConfig } from '@/client/Common/config';
@@ -56,8 +56,8 @@ export const SettingsModal: FC = () => {
     sortByTime,
     onlyDepartures,
   } = useAbfahrtenConfig();
-  const { setConfigOpen } = useAbfahrtenModalToggle();
-  const configOpen = useAbfahrtenConfigOpen();
+  const setConfigOpen = useSetCommonConfigOpen();
+  const configOpen = useCommonConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
   const {
     fahrzeugGruppe,

@@ -43,7 +43,6 @@ const useFilter = (initialFilter: Filter) => {
 
 const useConfig = (initialConfig: AbfahrtenConfig) => {
   const [config, setConfig] = useState(initialConfig);
-  const [configOpen, setConfigOpen] = useState(false);
   const storage = useStorage();
 
   const setConfigKey = useCallback(
@@ -57,8 +56,6 @@ const useConfig = (initialConfig: AbfahrtenConfig) => {
   return {
     config,
     setConfigKey,
-    configOpen,
-    setConfigOpen,
   };
 };
 
@@ -92,7 +89,6 @@ export const [
   useAbfahrtenUrlPrefix,
   useAbfahrtenModalToggle,
   useAbfahrtenFilterOpen,
-  useAbfahrtenConfigOpen,
   useAbfahrtenFilter,
   useAbfahrtenSetConfig,
 ] = constate(
@@ -102,10 +98,8 @@ export const [
   (v) => v.urlPrefix,
   (v) => ({
     setFilterOpen: v.filterConfig.setFilterOpen,
-    setConfigOpen: v.setConfigOpen,
   }),
   (v) => v.filterConfig.filterOpen,
-  (v) => v.configOpen,
   (v) => v.filterConfig,
   (v) => v.setConfigKey,
 );

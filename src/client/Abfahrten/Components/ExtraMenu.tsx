@@ -18,10 +18,12 @@ import {
   useUnfav,
 } from '@/client/Abfahrten/provider/FavProvider';
 import { useLageplan } from '@/client/Abfahrten/hooks/useLageplan';
+import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import type { FC, SyntheticEvent } from 'react';
 
 export const ExtraMenu: FC = () => {
-  const { setConfigOpen, setFilterOpen } = useAbfahrtenModalToggle();
+  const { setFilterOpen } = useAbfahrtenModalToggle();
+  const setConfigOpen = useSetCommonConfigOpen();
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const lageplan = useLageplan(
     currentStopPlace?.name,

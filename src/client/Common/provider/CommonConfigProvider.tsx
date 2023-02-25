@@ -11,6 +11,7 @@ const useCommonConfigInternal = ({
   initialConfig: CommonConfig;
 }>) => {
   const [config, setConfig] = useState(initialConfig);
+  const [configOpen, setConfigOpen] = useState(false);
   const storage = useStorage();
   const setCommonConfigKey = useCallback(
     <K extends keyof CommonConfig>(key: K, value: CommonConfig[K]) => {
@@ -23,6 +24,8 @@ const useCommonConfigInternal = ({
   return {
     config,
     setCommonConfigKey,
+    configOpen,
+    setConfigOpen,
   };
 };
 
@@ -30,12 +33,19 @@ interface Props {
   children: ReactNode;
 }
 
-export const [InnerCommonConfigProvider, useCommonConfig, useSetCommonConfig] =
-  constate(
-    useCommonConfigInternal,
-    (v) => v.config,
-    (v) => v.setCommonConfigKey,
-  );
+export const [
+  InnerCommonConfigProvider,
+  useCommonConfig,
+  useSetCommonConfig,
+  useSetCommonConfigOpen,
+  useCommonConfigOpen,
+] = constate(
+  useCommonConfigInternal,
+  (v) => v.config,
+  (v) => v.setCommonConfigKey,
+  (v) => v.setConfigOpen,
+  (v) => v.configOpen,
+);
 
 export const CommonConfigProvider: FC<Props> = ({ children }) => {
   const storage = useStorage();
