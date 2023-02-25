@@ -1,7 +1,4 @@
-import type {
-  AbfahrtenConfigSanitize,
-  CommonConfigSanitize,
-} from '@/client/Common/config';
+import type { CommonConfigSanitize } from '@/client/Common/config';
 
 const booleanCheck = (value: string | string[] | undefined): boolean =>
   value === 'true';
@@ -28,16 +25,6 @@ const dateCheck = (value: string | string[] | undefined): Date | undefined => {
   return date;
 };
 
-export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
-  lineAndNumber: booleanCheck,
-  lookahead: (value) => numberCheck(value, 150).toString(),
-  lookbehind: (value) => numberCheck(value, 0).toString(),
-  showCancelled: booleanCheck,
-  sortByTime: booleanCheck,
-  onlyDepartures: booleanCheck,
-  startTime: dateCheck,
-};
-
 export const commonConfigSanitize: CommonConfigSanitize = {
   autoUpdate: (value) => numberCheck(value, 0),
   hideTravelynx: booleanCheck,
@@ -45,4 +32,11 @@ export const commonConfigSanitize: CommonConfigSanitize = {
   fahrzeugGruppe: booleanCheck,
   showCoachType: booleanCheck,
   delayTime: booleanCheck,
+  lineAndNumber: booleanCheck,
+  showCancelled: booleanCheck,
+  sortByTime: booleanCheck,
+  onlyDepartures: booleanCheck,
+  startTime: dateCheck,
+  lookahead: (value) => numberCheck(value, 150).toString(),
+  lookbehind: (value) => numberCheck(value, 0).toString(),
 };

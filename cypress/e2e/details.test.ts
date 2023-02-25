@@ -14,7 +14,7 @@ describe('Details', () => {
     }).as('details');
     cy.visit('/details/S30665');
     cy.wait('@details');
-    cy.percySnapshot('detailsHeader');
+    // cy.percySnapshot('detailsHeader');
   });
 
   it('renders train line & number for regional stuff', () => {

@@ -5,7 +5,6 @@ import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { Header } from '@/client/Abfahrten/Components/Header';
 import { MainWrap } from '@/client/Common/Components/MainWrap';
 import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
-import { SettingsModal } from '@/client/Abfahrten/Components/SettingsModal';
 import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
@@ -29,7 +28,6 @@ export const Regional: FC = () => {
         <FavProvider storageKey="regionalFavs">
           <MainWrap noHeader={Boolean(noHeader)}>
             {!noHeader && <Header regional />}
-            <SettingsModal />
             <RegionalRoutes />
           </MainWrap>
         </FavProvider>

@@ -80,15 +80,20 @@ export function render(
       }
     }
 
-    const mergedCommonConfig = {
-      time: true,
-      zoomReihung: true,
+    const mergedCommonConfig: CommonConfig = {
       showUIC: false,
       fahrzeugGruppe: false,
       autoUpdate: 0,
       hideTravelynx: false,
       showCoachType: false,
       delayTime: false,
+      lineAndNumber: false,
+      showCancelled: true,
+      sortByTime: false,
+      onlyDepartures: false,
+      startTime: undefined,
+      lookahead: '115020',
+      lookbehind: '10',
       ...commonConfig,
     };
 

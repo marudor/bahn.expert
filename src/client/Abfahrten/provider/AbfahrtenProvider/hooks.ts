@@ -5,11 +5,11 @@ import {
   useRawAbfahrten,
 } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
-  useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
   useAbfahrtenFilter,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useMemo } from 'react';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { Abfahrt } from '@/types/iris';
 
 function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
@@ -21,7 +21,7 @@ function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {
   const departures = useAbfahrtenDepartures();
-  const { showCancelled, sortByTime, onlyDepartures } = useAbfahrtenConfig();
+  const { showCancelled, sortByTime, onlyDepartures } = useCommonConfig();
   const { productFilter } = useAbfahrtenFilter();
 
   return {
@@ -98,7 +98,7 @@ export const useAllTrainTypes = () => {
 export const useRefreshCurrent = (visible = false) => {
   const { setDepartures } = useRawAbfahrten();
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
-  const { lookahead, lookbehind } = useAbfahrtenConfig();
+  const { lookahead, lookbehind } = useCommonConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
 
   return useCallback(async () => {

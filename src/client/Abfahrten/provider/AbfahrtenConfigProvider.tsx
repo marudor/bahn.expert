@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { useQuery } from '@/client/Common/hooks/useQuery';
 import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
-import type { AbfahrtenConfig } from '@/client/Common/config';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 export interface Filter {
@@ -41,30 +40,8 @@ const useFilter = (initialFilter: Filter) => {
   };
 };
 
-const useConfig = (initialConfig: AbfahrtenConfig) => {
-  const [config, setConfig] = useState(initialConfig);
-  const [configOpen, setConfigOpen] = useState(false);
-  const storage = useStorage();
-
-  const setConfigKey = useCallback(
-    <K extends keyof AbfahrtenConfig>(key: K, value: AbfahrtenConfig[K]) => {
-      storage.set(key, value);
-      setConfig((oldConfig) => ({ ...oldConfig, [key]: value }));
-    },
-    [storage],
-  );
-
-  return {
-    config,
-    setConfigKey,
-    configOpen,
-    setConfigOpen,
-  };
-};
-
 export interface AbfahrtenConfigProviderValue {
   filter: Filter;
-  config: AbfahrtenConfig;
   fetchApiUrl: string;
   urlPrefix: string;
 }
@@ -75,11 +52,9 @@ const useAbfahrtenConfigInner = ({
   initialState: AbfahrtenConfigProviderValue;
 }>) => {
   const filterConfig = useFilter(initialState.filter);
-  const config = useConfig(initialState.config);
 
   return {
     filterConfig,
-    ...config,
     fetchApiUrl: initialState.fetchApiUrl,
     urlPrefix: initialState.urlPrefix,
   };
@@ -87,27 +62,16 @@ const useAbfahrtenConfigInner = ({
 
 export const [
   InnerAbfahrtenConfigProvider,
-  useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
   useAbfahrtenUrlPrefix,
-  useAbfahrtenModalToggle,
   useAbfahrtenFilterOpen,
-  useAbfahrtenConfigOpen,
   useAbfahrtenFilter,
-  useAbfahrtenSetConfig,
 ] = constate(
   useAbfahrtenConfigInner,
-  (v) => v.config,
   (v) => v.fetchApiUrl,
   (v) => v.urlPrefix,
-  (v) => ({
-    setFilterOpen: v.filterConfig.setFilterOpen,
-    setConfigOpen: v.setConfigOpen,
-  }),
-  (v) => v.filterConfig.filterOpen,
-  (v) => v.configOpen,
+  (v) => v.filterConfig.setFilterOpen,
   (v) => v.filterConfig,
-  (v) => v.setConfigKey,
 );
 
 interface Props {
@@ -132,16 +96,6 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
   const savedConfig: AbfahrtenConfigProviderValue = {
     filter: {
       products: Array.isArray(savedFilter) ? savedFilter : [],
-    },
-    config: {
-      lineAndNumber: storage.get('lineAndNumber') ?? false,
-      lookahead: storage.get('lookahead') ?? '150',
-      lookbehind: storage.get('lookbehind') ?? '10',
-      showSupersededMessages: storage.get('showSupersededMessages') ?? false,
-      showCancelled: storage.get('showCancelled') ?? true,
-      sortByTime: storage.get('sortByTime') ?? false,
-      onlyDepartures: storage.get('onlyDepartures') ?? false,
-      ...globalThis.configOverride.abfahrten,
     },
     fetchApiUrl,
     urlPrefix,

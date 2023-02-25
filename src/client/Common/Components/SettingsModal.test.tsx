@@ -1,17 +1,15 @@
 import { fireEvent, screen } from '@testing-library/react';
-import {
-  InnerAbfahrtenConfigProvider,
-  useAbfahrtenModalToggle,
-} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { InnerAbfahrtenConfigProvider } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { render } from '@/client/__tests__/testHelper';
-import { SettingsModal } from '@/client/Abfahrten/Components/SettingsModal';
+import { SettingsModal } from '@/client/Common/Components/SettingsModal';
+import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 
 const OpenDummy = () => {
-  const { setConfigOpen } = useAbfahrtenModalToggle();
+  const setCommonConfigOpen = useSetCommonConfigOpen();
 
   return (
     <>
-      <span onClick={() => setConfigOpen(true)} data-testid="open">
+      <span onClick={() => setCommonConfigOpen(true)} data-testid="open">
         open
       </span>
       <SettingsModal />

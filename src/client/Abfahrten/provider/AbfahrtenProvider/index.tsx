@@ -1,10 +1,10 @@
 import {
   AbfahrtenConfigProvider,
-  useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useAuslastung } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { useCallback, useEffect, useState } from 'react';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import Axios from 'axios';
 import constate from 'constate';
 import type { AbfahrtenResult } from '@/types/iris';
@@ -73,9 +73,9 @@ const useAbfahrtenInner = ({
   const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
   const [departures, setDepartures] = useState<AbfahrtenResult>();
   const [error, setError] = useState<AbfahrtenError>();
-  const { lookahead, lookbehind, startTime } = useAbfahrtenConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
   const { fetchVRRAuslastungForEva } = useAuslastung();
+  const { startTime, lookahead, lookbehind } = useCommonConfig();
 
   useEffect(() => {
     if (departures?.stopPlaces) {

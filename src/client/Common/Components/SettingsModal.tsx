@@ -8,20 +8,16 @@ import {
   TextField,
 } from '@mui/material';
 import { handleConfigCheckedChange } from '@/client/Common/config';
-import {
-  useAbfahrtenConfig,
-  useAbfahrtenConfigOpen,
-  useAbfahrtenModalToggle,
-  useAbfahrtenSetConfig,
-} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
 import {
   useCommonConfig,
+  useCommonConfigOpen,
   useSetCommonConfig,
+  useSetCommonConfigOpen,
 } from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
-import type { AbfahrtenConfig, CommonConfig } from '@/client/Common/config';
 import type { ChangeEvent, FC } from 'react';
+import type { CommonConfig } from '@/client/Common/config';
 
 const Title = styled(DialogTitle)`
   text-align: center;
@@ -48,30 +44,27 @@ const AutoUpdateField = styled(TextField)`
 `;
 
 export const SettingsModal: FC = () => {
+  const setConfigOpen = useSetCommonConfigOpen();
+  const configOpen = useCommonConfigOpen();
   const {
     lineAndNumber,
-    lookahead,
-    lookbehind,
-    showCancelled,
-    sortByTime,
-    onlyDepartures,
-  } = useAbfahrtenConfig();
-  const { setConfigOpen } = useAbfahrtenModalToggle();
-  const configOpen = useAbfahrtenConfigOpen();
-  const setConfigKey = useAbfahrtenSetConfig();
-  const {
     fahrzeugGruppe,
     showUIC,
     autoUpdate,
     hideTravelynx,
     showCoachType,
     delayTime,
+    showCancelled,
+    sortByTime,
+    onlyDepartures,
+    lookahead,
+    lookbehind,
   } = useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
-    (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
-      setConfigKey(key, e.currentTarget.value),
-    [setConfigKey],
+    (key: keyof CommonConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
+      setCommonConfigKey(key, e.currentTarget.value),
+    [setCommonConfigKey],
   );
   const handleNumberValueChange = useCallback(
     (key: keyof CommonConfig) => (e: ChangeEvent<HTMLInputElement>) =>
@@ -111,7 +104,10 @@ export const SettingsModal: FC = () => {
               data-testid="sortByTime"
               checked={sortByTime}
               value="sortByTime"
-              onChange={handleConfigCheckedChange('sortByTime', setConfigKey)}
+              onChange={handleConfigCheckedChange(
+                'sortByTime',
+                setCommonConfigKey,
+              )}
             />
           }
           label="Sortiere Abfahrten nach Echtzeit"
@@ -138,7 +134,7 @@ export const SettingsModal: FC = () => {
               value="lineAndNumberConfig"
               onChange={handleConfigCheckedChange(
                 'lineAndNumber',
-                setConfigKey,
+                setCommonConfigKey,
               )}
             />
           }
@@ -152,7 +148,7 @@ export const SettingsModal: FC = () => {
               value="showCancelled"
               onChange={handleConfigCheckedChange(
                 'showCancelled',
-                setConfigKey,
+                setCommonConfigKey,
               )}
             />
           }
@@ -166,7 +162,7 @@ export const SettingsModal: FC = () => {
               value="onlyDepartures"
               onChange={handleConfigCheckedChange(
                 'onlyDepartures',
-                setConfigKey,
+                setCommonConfigKey,
               )}
             />
           }

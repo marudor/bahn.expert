@@ -1,15 +1,5 @@
 import type { ChangeEvent } from 'react';
 
-export interface AbfahrtenConfig {
-  readonly lookahead: string;
-  readonly lookbehind: string;
-  readonly lineAndNumber: boolean;
-  readonly showCancelled: boolean;
-  readonly sortByTime: boolean;
-  readonly onlyDepartures: boolean;
-  readonly startTime: Date | undefined;
-}
-
 export interface CommonConfig {
   readonly showUIC: boolean;
   readonly showCoachType: boolean;
@@ -17,17 +7,24 @@ export interface CommonConfig {
   readonly fahrzeugGruppe: boolean;
   readonly hideTravelynx: boolean;
   readonly delayTime: boolean;
+
+  readonly lineAndNumber: boolean;
+  readonly showCancelled: boolean;
+  readonly sortByTime: boolean;
+  readonly onlyDepartures: boolean;
+  readonly startTime: Date | undefined;
+  readonly lookahead: string;
+  readonly lookbehind: string;
 }
 
 type Sanitize<Config> = {
   [K in keyof Config]: (input: string | string[] | undefined) => Config[K];
 };
 
-export type AbfahrtenConfigSanitize = Sanitize<AbfahrtenConfig>;
 export type CommonConfigSanitize = Sanitize<CommonConfig>;
 
 export function handleConfigCheckedChange<
-  K extends keyof AbfahrtenConfig | keyof CommonConfig,
+  K extends keyof CommonConfig,
   SC extends (k: K, value: any) => void,
 >(key: K, setConfig: SC) {
   return (e: ChangeEvent<HTMLInputElement>): void =>
@@ -35,7 +32,7 @@ export function handleConfigCheckedChange<
 }
 
 export function handleConfigNumberSelectChange<
-  K extends keyof AbfahrtenConfig | keyof CommonConfig,
+  K extends keyof CommonConfig,
   SC extends (k: K, value: any) => void,
 >(key: K, setConfig: SC) {
   return (e: ChangeEvent<HTMLSelectElement>): void =>

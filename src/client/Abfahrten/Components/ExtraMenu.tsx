@@ -4,32 +4,29 @@ import {
   FilterList,
   Layers,
   LayersClear,
-  Settings,
   Tune,
 } from '@mui/icons-material';
 import { FilterModal } from './FilterModal';
 import { IconButton, Menu, MenuItem } from '@mui/material';
-import { useAbfahrtenModalToggle } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrtenFilterOpen } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useState } from 'react';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
-  useFav,
+  useFavActions,
   useFavs,
-  useUnfav,
 } from '@/client/Abfahrten/provider/FavProvider';
 import { useLageplan } from '@/client/Abfahrten/hooks/useLageplan';
 import type { FC, SyntheticEvent } from 'react';
 
 export const ExtraMenu: FC = () => {
-  const { setConfigOpen, setFilterOpen } = useAbfahrtenModalToggle();
+  const setFilterOpen = useAbfahrtenFilterOpen();
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const lageplan = useLageplan(
     currentStopPlace?.name,
     currentStopPlace?.evaNumber,
   );
   const favs = useFavs();
-  const fav = useFav();
-  const unfav = useUnfav();
+  const { fav, unfav } = useFavActions();
   const isFaved = Boolean(currentStopPlace && favs[currentStopPlace.evaNumber]);
   const [anchor, setAnchor] = useState<undefined | HTMLElement>();
   const toggleFav = useCallback(() => {
@@ -58,10 +55,6 @@ export const ExtraMenu: FC = () => {
     setFilterOpen(true);
     setAnchor(undefined);
   }, [setFilterOpen]);
-  const openSettingsCb = useCallback(() => {
-    setConfigOpen(true);
-    setAnchor(undefined);
-  }, [setConfigOpen]);
 
   return (
     <>
@@ -93,9 +86,6 @@ export const ExtraMenu: FC = () => {
         ]}
         <MenuItem data-testid="openFilter" onClick={openFilterCb}>
           <FilterList /> Filter
-        </MenuItem>
-        <MenuItem data-testid="openSettings" onClick={openSettingsCb}>
-          <Settings /> Einstellungen
         </MenuItem>
       </Menu>
     </>

@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-module */
-import { abfahrtenConfigSanitize, commonConfigSanitize } from '@/client/util';
 import { ChunkExtractor } from '@loadable/server';
+import { commonConfigSanitize } from '@/client/util';
 import { renderToString } from 'react-dom/server';
 import { sanitizeStorage } from '@/server/sanitizeStorage';
 import { ServerBaseComponent } from '@/client/ServerBaseComponent';
@@ -9,10 +9,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import ejs from 'ejs';
 import fs from 'node:fs';
 import path from 'node:path';
-import type {
-  AbfahrtenConfigSanitize,
-  CommonConfigSanitize,
-} from '@/client/Common/config';
+import type { CommonConfigSanitize } from '@/client/Common/config';
 import type { Context } from 'koa';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
@@ -55,13 +52,6 @@ export default (ctx: Context): void => {
       );
 
       globalThis.configOverride.common[key] = value;
-    }
-    if (abfahrtenConfigSanitize.hasOwnProperty(key)) {
-      const value = abfahrtenConfigSanitize[
-        key as keyof AbfahrtenConfigSanitize
-      ](ctx.query[key]);
-
-      globalThis.configOverride.abfahrten[key] = value;
     }
   }
 

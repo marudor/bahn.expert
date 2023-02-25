@@ -6,7 +6,6 @@ import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { Header } from './Components/Header';
 import { MainWrap } from '@/client/Common/Components/MainWrap';
 import { MostUsed } from '@/client/Abfahrten/Components/MostUsed';
-import { SettingsModal } from './Components/SettingsModal';
 import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
@@ -30,7 +29,6 @@ export const Abfahrten: FC = () => {
         <FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
           <MainWrap noHeader={Boolean(noHeader)}>
             {!noHeader && <Header />}
-            <SettingsModal />
             <AbfahrtenRoutes />
           </MainWrap>
         </FavProvider>

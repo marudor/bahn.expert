@@ -67,19 +67,16 @@ function useFavStorage({
   };
 }
 
-export const [
-  InnerFavProvider,
-  useFav,
-  useUnfav,
-  useFavs,
-  useMostUsedComponent,
-] = constate(
-  useFavStorage,
-  (v) => v.fav,
-  (v) => v.unfav,
-  (v) => v.favs,
-  (v) => v.MostUsedComponent,
-);
+export const [InnerFavProvider, useFavActions, useFavs, useMostUsedComponent] =
+  constate(
+    useFavStorage,
+    (v) => ({
+      fav: v.fav,
+      unfav: v.unfav,
+    }),
+    (v) => v.favs,
+    (v) => v.MostUsedComponent,
+  );
 
 interface Props {
   children: ReactNode;
