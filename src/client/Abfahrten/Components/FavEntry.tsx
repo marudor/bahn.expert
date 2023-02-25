@@ -3,7 +3,7 @@ import { IconButton, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
-import { useUnfav } from '@/client/Abfahrten/provider/FavProvider';
+import { useFavActions } from '@/client/Abfahrten/provider/FavProvider';
 import styled from '@emotion/styled';
 import type { FC, MouseEvent, ReactNode } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
@@ -80,7 +80,7 @@ export const FavEntry: FC<Props> = ({
   'data-testid': testid = 'favEntry',
 }) => {
   const urlPrefix = useAbfahrtenUrlPrefix();
-  const unfav = useUnfav();
+  const { unfav } = useFavActions();
   const deleteFav = useCallback(
     (e: MouseEvent) => {
       e.stopPropagation();

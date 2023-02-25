@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { NavigationContext } from './NavigationContext';
+import { SettingsModal } from '@/client/Common/Components/SettingsModal';
 import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
@@ -52,64 +53,67 @@ export const Navigation: FC<Props> = ({ children }) => {
   );
 
   return (
-    <NavigationContext.Provider value={navigationContext}>
-      <Drawer open={open} onClose={toggleDrawer}>
-        <Headline>Bahn Experte</Headline>
-        <DrawerContent onClick={toggleDrawer}>
-          <Link to="/">
-            <ListItemButton>
-              <ListItemIcon>
-                <AlarmOnOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Abfahrten" />
-            </ListItemButton>
-          </Link>
-          <Link to="/regional">
-            <ListItemButton data-testid="regional">
-              <ListItemIcon>
-                <AlarmOnOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Nahverkehr Abfahrten" />
-            </ListItemButton>
-          </Link>
-          <Link to="/routing">
-            <ListItemButton>
-              <ListItemIcon>
-                <Explore />
-              </ListItemIcon>
-              <ListItemText primary="Routing" />
-            </ListItemButton>
-          </Link>
-          <Zugsuche>
-            {(toggle) => (
-              <ListItemButton onClick={toggle}>
+    <>
+      <SettingsModal />
+      <NavigationContext.Provider value={navigationContext}>
+        <Drawer open={open} onClose={toggleDrawer}>
+          <Headline>Bahn Experte</Headline>
+          <DrawerContent onClick={toggleDrawer}>
+            <Link to="/">
+              <ListItemButton>
                 <ListItemIcon>
-                  <Search />
+                  <AlarmOnOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Zugsuche" />
+                <ListItemText primary="Abfahrten" />
               </ListItemButton>
-            )}
-          </Zugsuche>
-          <Link to="/trainRuns">
-            <ListItemButton>
-              <ListItemIcon>
-                <Train />
-              </ListItemIcon>
-              <ListItemText primary="Zugläufe" />
-            </ListItemButton>
-          </Link>
-          <ThemeSelection />
-          <Link to="/about">
-            <ListItemButton>
-              <ListItemIcon>
-                <Info />
-              </ListItemIcon>
-              <ListItemText primary="About" />
-            </ListItemButton>
-          </Link>
-        </DrawerContent>
-      </Drawer>
-      {children}
-    </NavigationContext.Provider>
+            </Link>
+            <Link to="/regional">
+              <ListItemButton data-testid="regional">
+                <ListItemIcon>
+                  <AlarmOnOutlined />
+                </ListItemIcon>
+                <ListItemText primary="Nahverkehr Abfahrten" />
+              </ListItemButton>
+            </Link>
+            <Link to="/routing">
+              <ListItemButton>
+                <ListItemIcon>
+                  <Explore />
+                </ListItemIcon>
+                <ListItemText primary="Routing" />
+              </ListItemButton>
+            </Link>
+            <Zugsuche>
+              {(toggle) => (
+                <ListItemButton onClick={toggle}>
+                  <ListItemIcon>
+                    <Search />
+                  </ListItemIcon>
+                  <ListItemText primary="Zugsuche" />
+                </ListItemButton>
+              )}
+            </Zugsuche>
+            <Link to="/trainRuns">
+              <ListItemButton>
+                <ListItemIcon>
+                  <Train />
+                </ListItemIcon>
+                <ListItemText primary="Zugläufe" />
+              </ListItemButton>
+            </Link>
+            <ThemeSelection />
+            <Link to="/about">
+              <ListItemButton>
+                <ListItemIcon>
+                  <Info />
+                </ListItemIcon>
+                <ListItemText primary="About" />
+              </ListItemButton>
+            </Link>
+          </DrawerContent>
+        </Drawer>
+        {children}
+      </NavigationContext.Provider>
+    </>
   );
 };

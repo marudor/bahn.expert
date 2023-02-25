@@ -59,6 +59,13 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
     showCoachType: storage.get('showCoachType') ?? false,
     hideTravelynx: storage.get('hideTravelynx') ?? false,
+    lineAndNumber: storage.get('lineAndNumber') ?? false,
+    lookahead: storage.get('lookahead') ?? '150',
+    lookbehind: storage.get('lookbehind') ?? '10',
+    showSupersededMessages: storage.get('showSupersededMessages') ?? false,
+    showCancelled: storage.get('showCancelled') ?? true,
+    sortByTime: storage.get('sortByTime') ?? false,
+    onlyDepartures: storage.get('onlyDepartures') ?? false,
     ...globalThis.configOverride.common,
   };
 
