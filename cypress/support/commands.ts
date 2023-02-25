@@ -122,6 +122,6 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add('openSettings', () => {
-  cy.findByTestId('menu').click();
+  cy.findByTestId('navToggle').click();
   cy.findByTestId('openSettings').click();
 });

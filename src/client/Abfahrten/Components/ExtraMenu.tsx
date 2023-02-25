@@ -4,7 +4,6 @@ import {
   FilterList,
   Layers,
   LayersClear,
-  Settings,
   Tune,
 } from '@mui/icons-material';
 import { FilterModal } from './FilterModal';
@@ -17,12 +16,10 @@ import {
   useFavs,
 } from '@/client/Abfahrten/provider/FavProvider';
 import { useLageplan } from '@/client/Abfahrten/hooks/useLageplan';
-import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import type { FC, SyntheticEvent } from 'react';
 
 export const ExtraMenu: FC = () => {
   const setFilterOpen = useAbfahrtenFilterOpen();
-  const setConfigOpen = useSetCommonConfigOpen();
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const lageplan = useLageplan(
     currentStopPlace?.name,
@@ -58,10 +55,6 @@ export const ExtraMenu: FC = () => {
     setFilterOpen(true);
     setAnchor(undefined);
   }, [setFilterOpen]);
-  const openSettingsCb = useCallback(() => {
-    setConfigOpen(true);
-    setAnchor(undefined);
-  }, [setConfigOpen]);
 
   return (
     <>
@@ -93,9 +86,6 @@ export const ExtraMenu: FC = () => {
         ]}
         <MenuItem data-testid="openFilter" onClick={openFilterCb}>
           <FilterList /> Filter
-        </MenuItem>
-        <MenuItem data-testid="openSettings" onClick={openSettingsCb}>
-          <Settings /> Einstellungen
         </MenuItem>
       </Menu>
     </>

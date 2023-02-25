@@ -3,6 +3,7 @@ import {
   Explore,
   Info,
   Search,
+  Settings,
   Train,
 } from '@mui/icons-material';
 import {
@@ -17,6 +18,7 @@ import { NavigationContext } from './NavigationContext';
 import { SettingsModal } from '@/client/Common/Components/SettingsModal';
 import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
+import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
@@ -41,6 +43,7 @@ interface Props {
 }
 
 export const Navigation: FC<Props> = ({ children }) => {
+  const setConfigOpen = useSetCommonConfigOpen();
   const [open, setOpen] = useState(false);
   const toggleDrawer = useCallback(() => {
     setOpen((old) => !old);
@@ -51,6 +54,10 @@ export const Navigation: FC<Props> = ({ children }) => {
     }),
     [toggleDrawer],
   );
+
+  const openSettingsCb = useCallback(() => {
+    setConfigOpen(true);
+  }, [setConfigOpen]);
 
   return (
     <>
@@ -101,6 +108,12 @@ export const Navigation: FC<Props> = ({ children }) => {
                 <ListItemText primary="Zugläufe" />
               </ListItemButton>
             </Link>
+            <ListItemButton data-testid="openSettings" onClick={openSettingsCb}>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary="Einstellungen" />
+            </ListItemButton>
             <ThemeSelection />
             <Link to="/about">
               <ListItemButton>
