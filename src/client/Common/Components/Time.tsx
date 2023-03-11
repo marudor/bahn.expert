@@ -91,7 +91,7 @@ export const Time: FC<Props> = ({
         <TimeContainer
           multiLine={multiLine}
           data-testid="realTimeOrDelay"
-          isRealTime={!showDelayTime && isRealTime}
+          isRealTime={isRealTime}
           early={delay <= 0}
           delayed={delay > 0}
         >
