@@ -17,16 +17,16 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v1
+      - uses: wagoid/commitlint-github-action@v5
   node:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js 19
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 19
       - name: install
@@ -55,9 +55,9 @@ jobs:
         browser: [firefox, chrome]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js 19
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 19
       - name: browser versions
@@ -66,7 +66,7 @@ jobs:
           google-chrome --version
       - name: Cache Cypress
         id: cache-cypress
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
@@ -75,7 +75,7 @@ jobs:
           corepack enable
           pnpm i --frozen-lockfile
       - name: Run Cypress
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           install: false
           record: true
@@ -101,9 +101,9 @@ jobs:
     needs:
       - e2e
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js 19
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 19
       - name: finalize percy
@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: docker
         uses: elgohr/Publish-Docker-Github-Action@master
         env:
@@ -136,7 +136,7 @@ jobs:
       - node
     steps:
       - name: 'Create Deployment'
-        uses: avakar/create-deployment@v1.0.1
+        uses: avakar/create-deployment@v1.0.2
         with:
           ref: ${{ github.sha }}
           task: deploy
