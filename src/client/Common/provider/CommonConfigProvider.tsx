@@ -54,7 +54,6 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     autoUpdate: commonConfigSanitize.autoUpdate(
       storage.get<string>('autoUpdate'),
     ),
-    time: storage.get('time') ?? true,
     showUIC: storage.get('showUIC') ?? false,
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
     showCoachType: storage.get('showCoachType') ?? false,
@@ -62,11 +61,12 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     lineAndNumber: storage.get('lineAndNumber') ?? false,
     lookahead: storage.get('lookahead') ?? '150',
     lookbehind: storage.get('lookbehind') ?? '10',
-    showSupersededMessages: storage.get('showSupersededMessages') ?? false,
     showCancelled: storage.get('showCancelled') ?? true,
     sortByTime: storage.get('sortByTime') ?? false,
     onlyDepartures: storage.get('onlyDepartures') ?? false,
-    ...globalThis.configOverride.common,
+    delayTime: storage.get('delayTime') ?? false,
+    startTime: undefined,
+    ...(globalThis.configOverride.common as Record<string, never>),
   };
 
   return (
