@@ -119,11 +119,9 @@ export const Header: FC = () => {
             <ArrowForward data-testid="next" onClick={dateForward} />
           </DateDisplay>
           {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
+          <Arrow> → </Arrow>
           {details && (
-            <>
-              <Arrow> → </Arrow>
-              <Destination>{details.segmentDestination.title}</Destination>
-            </>
+            <Destination>{details.segmentDestination.title}</Destination>
           )}
         </>
       </Container>
