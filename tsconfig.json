@@ -20,7 +20,6 @@
     "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
     "types": ["@jest/globals", "@testing-library/jest-dom"],
-    "keyofStringsOnly": true,
     "paths": {
       "@/*": ["./src/*"]
     },

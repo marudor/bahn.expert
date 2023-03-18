@@ -33,13 +33,6 @@ describe('Loading', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('defaults to grid', () => {
-    const { container } = render(<Loading type={5} />);
-
-    expect(screen.queryByTestId('grid')).toBeVisible();
-    expect(container).toMatchSnapshot();
-  });
-
   it('shows children if check is true', () => {
     render(<Loading check>{() => <DummyComponent />}</Loading>);
     expect(screen.getByTestId('dummy')).toBeInTheDocument();
