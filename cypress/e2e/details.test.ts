@@ -51,4 +51,41 @@ describe('Details', () => {
     cy.wait('@details');
     cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
   });
+
+  it('goes to next & sets administration', () => {
+    cy.intercept(
+      {
+        pathname: '/api/journeys/v1/details/S30665',
+        times: 1,
+      },
+      {
+        fixture: 'details/S6',
+      },
+    ).as('details');
+    cy.visit('/details/S30665');
+    cy.wait('@details');
+    cy.findByTestId('next').click();
+    cy.url()
+      .should('contain', '2020-02-29')
+      .should('contain', 'administration=800337');
+  });
+
+  it('goes to previous & shows arrows even if unknown', () => {
+    cy.intercept(
+      {
+        pathname: '/api/journeys/v1/details/S30665',
+        times: 1,
+      },
+      {
+        fixture: 'details/S6',
+      },
+    ).as('details');
+    cy.visit('/details/S30665');
+    cy.wait('@details');
+    cy.findByTestId('previous').click();
+    cy.url().should('contain', '2020-02-27');
+    cy.findByTestId('error');
+    cy.findByTestId('previous');
+    cy.findByTestId('next');
+  });
 });

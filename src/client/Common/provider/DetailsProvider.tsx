@@ -50,7 +50,7 @@ const useInnerDetails = ({
 
   const sameTrainDaysInFuture = useCallback(
     (daysForward: number) => {
-      const oldDate = initialDepartureDate || details?.departure.scheduledTime;
+      const oldDate = details?.departure.scheduledTime || initialDepartureDate;
       const newDate = addDays(oldDate, daysForward);
       const newAdministration = administration || details?.train.admin;
       navigate(

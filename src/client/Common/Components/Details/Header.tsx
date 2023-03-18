@@ -111,12 +111,12 @@ export const Header: FC = () => {
         <>
           {operatorName && <Operator>{operatorName}</Operator>}
           <DateDisplay>
-            <ArrowBack onClick={dateBack} />
+            <ArrowBack data-testid="previous" onClick={dateBack} />
             {format(
               details?.departure.time || initialDepartureDate,
               'dd.MM.yyyy',
             )}
-            <ArrowForward onClick={dateForward} />
+            <ArrowForward data-testid="next" onClick={dateForward} />
           </DateDisplay>
           {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
           {details && (
