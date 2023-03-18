@@ -88,16 +88,18 @@ export const TrainRunFilter: FC = () => {
     <div>
       <FilterContainer>
         <MobileDatePicker
-          renderInput={(props) => (
-            <TextField
-              {...props}
-              label="Datum"
-              inputProps={{
-                ...props.inputProps,
-                'data-testid': 'trainRunsDatePicker',
-              }}
-            />
-          )}
+          slots={{
+            textField: (props) => (
+              <TextField
+                {...props}
+                label="Datum"
+                inputProps={{
+                  ...props.inputProps,
+                  'data-testid': 'trainRunsDatePicker',
+                }}
+              />
+            ),
+          }}
           closeOnSelect
           value={date}
           onChange={setDate as any}

@@ -118,13 +118,15 @@ export const Zugsuche: FC<Props> = ({ children }) => {
             <FormControl fullWidth component="fieldset">
               <InputContainer>
                 <MobileDatePicker
-                  componentsProps={{
+                  closeOnSelect
+                  slotProps={{
                     actionBar: {
                       actions: ['today', 'cancel', 'accept'],
                     },
                   }}
-                  closeOnSelect
-                  renderInput={(props) => <DateInputField {...props} />}
+                  slots={{
+                    textField: (props) => <DateInputField {...props} />,
+                  }}
                   label="Datum"
                   value={date}
                   onChange={setDate}
