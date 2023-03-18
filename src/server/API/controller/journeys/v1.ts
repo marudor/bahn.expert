@@ -162,6 +162,7 @@ export class JourneysV1Controller extends Controller {
     @Query() evaNumberAlongRoute?: EvaNumber,
     @Query() initialDepartureDate?: Date,
     @Query() journeyId?: string,
+    @Query() administration?: string,
   ): Promise<ParsedSearchOnTripResponse> {
     if (!isAllowed(req)) {
       return res(401, 'This is rate-limited upstream, please do not use it.');
@@ -171,6 +172,9 @@ export class JourneysV1Controller extends Controller {
       undefined,
       evaNumberAlongRoute,
       initialDepartureDate,
+      undefined,
+      undefined,
+      administration,
     );
     const hafasFallback = async () => {
       const hafasResult = await hafasDetailsPromise;
@@ -192,6 +196,8 @@ export class JourneysV1Controller extends Controller {
       productDetails.category,
       initialDepartureDate,
       false,
+      undefined,
+      administration,
     );
     if (!possibleJourneys.length) {
       return hafasFallback();

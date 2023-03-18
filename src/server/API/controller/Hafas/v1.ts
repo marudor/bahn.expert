@@ -11,9 +11,7 @@ import {
   SuccessResponse,
   Tags,
 } from '@tsoa/runtime';
-import JourneyDetails, {
-  parseJourneyDetails,
-} from '@/server/HAFAS/JourneyDetails';
+import JourneyDetails from '@/server/HAFAS/JourneyDetails';
 import makeRequest from '@/server/HAFAS/Request';
 import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type { TsoaResponse } from '@tsoa/runtime';
@@ -51,6 +49,6 @@ export class HafasController extends Controller {
     @Body() body: any,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
-    return makeRequest(body, parseJourneyDetails, profile);
+    return makeRequest(body, undefined, profile);
   }
 }

@@ -86,6 +86,7 @@ export async function findJourney(
   date?: Date,
   onlyFv?: boolean,
   originEvaNumber?: string,
+  administration?: string,
 ): Promise<JourneyMatch[]> {
   try {
     const isWithin20Hours = date && differenceInHours(date, Date.now()) <= 20;
@@ -105,6 +106,7 @@ export async function findJourney(
       date: date && format(date, 'yyyy-MM-dd'),
       transports: onlyFv ? longDistanceTypes : undefined,
       originEvaNumber,
+      administrationID: administration,
     });
 
     if (category) {

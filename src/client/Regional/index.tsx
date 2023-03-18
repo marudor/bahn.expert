@@ -2,7 +2,6 @@ import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider
 import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { FavProvider } from '@/client/Abfahrten/provider/FavProvider';
 import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
-import { Header } from '@/client/Abfahrten/Components/Header';
 import { MainWrap } from '@/client/Common/Components/MainWrap';
 import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
 import { useQuery } from '@/client/Common/hooks/useQuery';
@@ -27,7 +26,6 @@ export const Regional: FC = () => {
       >
         <FavProvider storageKey="regionalFavs">
           <MainWrap noHeader={Boolean(noHeader)}>
-            {!noHeader && <Header regional />}
             <RegionalRoutes />
           </MainWrap>
         </FavProvider>

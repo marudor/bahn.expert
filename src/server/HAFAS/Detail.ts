@@ -5,6 +5,7 @@ import createCtxRecon from '@/server/HAFAS/helper/createCtxRecon';
 import JourneyDetails from '@/server/HAFAS/JourneyDetails';
 import JourneyMatch from '@/server/HAFAS/JourneyMatch';
 import searchOnTrip from './SearchOnTrip';
+import type { JourneyFilter } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { Route$JourneySegmentTrain, Route$Stop } from '@/types/routing';
@@ -33,6 +34,16 @@ export function calculateCurrentStopPlace(
   return currentStop;
 }
 
+const filterByAdministration = (
+  journeys: ParsedJourneyMatchResponse[],
+  administration?: string,
+) => {
+  if (!administration) return journeys;
+  return journeys.filter(
+    (j) => j.train.admin?.replaceAll('_', '') === administration,
+  );
+};
+
 export default async (
   trainName: string,
   currentStopId?: string,
@@ -40,31 +51,34 @@ export default async (
   date: Date = new Date(),
   plainDetails = false,
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB,
+  administration?: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
-  let possibleTrains: undefined | ParsedJourneyMatchResponse[];
+  let possibleTrains: ParsedJourneyMatchResponse[] = [];
 
   if (station) {
     try {
+      const jnyFltrL: JourneyFilter[] = [
+        {
+          type: 'STATIONS',
+          mode: 'INC',
+          value: station,
+        },
+      ];
       possibleTrains = await JourneyMatch(
         {
           trainName,
           initialDepartureDate: date,
-          jnyFltrL: [
-            {
-              type: 'STATIONS',
-              mode: 'INC',
-              value: station,
-            },
-          ],
+          jnyFltrL,
         },
         hafasProfile,
       );
+      possibleTrains = filterByAdministration(possibleTrains, administration);
     } catch {
       // ignore
     }
   }
 
-  if (!possibleTrains) {
+  if (!possibleTrains?.length) {
     possibleTrains = await JourneyMatch(
       {
         trainName,
@@ -72,6 +86,7 @@ export default async (
       },
       hafasProfile,
     );
+    possibleTrains = filterByAdministration(possibleTrains, administration);
   }
 
   // possibleTrains.sort(t1 =>

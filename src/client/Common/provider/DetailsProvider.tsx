@@ -1,9 +1,11 @@
+import { addDays } from 'date-fns';
 import {
   getAdditionalJourneyInformation,
   getDetails,
 } from '@/client/Common/service/details';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
+import { useNavigate } from 'react-router';
 import constate from 'constate';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { AxiosError } from 'axios';
@@ -17,6 +19,7 @@ interface Props {
   evaNumberAlongRoute?: string;
   urlPrefix?: string;
   journeyId?: string;
+  administration?: string;
 }
 
 const useInnerDetails = ({
@@ -25,6 +28,7 @@ const useInnerDetails = ({
   trainName,
   urlPrefix,
   journeyId,
+  administration,
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
   const [isMapDisplay, setIsMapDisplay] = useState(false);
@@ -32,9 +36,10 @@ const useInnerDetails = ({
   const [additionalInformation, setAdditionalInformation] =
     useState<AdditionalJourneyInformation>();
   const [error, setError] = useState<AxiosError>();
+  const navigate = useNavigate();
 
   const initialDepartureDate = useMemo(() => {
-    if (!initialDepartureDateString) return undefined;
+    if (!initialDepartureDateString) return new Date();
     const initialDepartureNumber = +initialDepartureDateString;
     return new Date(
       Number.isNaN(initialDepartureNumber)
@@ -42,6 +47,30 @@ const useInnerDetails = ({
         : initialDepartureNumber,
     );
   }, [initialDepartureDateString]);
+
+  const sameTrainDaysInFuture = useCallback(
+    (daysForward: number) => {
+      const oldDate = initialDepartureDate || details?.departure.scheduledTime;
+      const newDate = addDays(oldDate, daysForward);
+      const newAdministration = administration || details?.train.admin;
+      navigate(
+        `${
+          urlPrefix || '/'
+        }details/${trainName}/${newDate.toISOString()}?administration=${newAdministration}`,
+      );
+      setDetails(undefined);
+      setAdditionalInformation(undefined);
+      setError(undefined);
+    },
+    [
+      initialDepartureDate,
+      details,
+      administration,
+      navigate,
+      urlPrefix,
+      trainName,
+    ],
+  );
 
   const refreshDetails = useCallback(
     (isAutorefresh?: boolean) => {
@@ -54,6 +83,7 @@ const useInnerDetails = ({
         initialDepartureDate,
         evaNumberAlongRoute,
         journeyId,
+        administration,
       )
         .then(async (details) => {
           setDetails(details);
@@ -90,7 +120,13 @@ const useInnerDetails = ({
           }
         });
     },
-    [trainName, initialDepartureDate, evaNumberAlongRoute, journeyId],
+    [
+      trainName,
+      initialDepartureDate,
+      evaNumberAlongRoute,
+      journeyId,
+      administration,
+    ],
   );
 
   useEffect(() => {
@@ -145,6 +181,7 @@ const useInnerDetails = ({
     polyline: matchedPolyline,
     isMapDisplay,
     toggleMapDisplay,
+    sameTrainDaysInFuture,
   };
 };
 
