@@ -1,7 +1,12 @@
+import {
+  ArrowBackIos,
+  ArrowForwardIos,
+  Map,
+  Refresh,
+} from '@mui/icons-material';
 import { BaseHeader } from '../BaseHeader';
 import { format } from 'date-fns';
 import { IconButton } from '@mui/material';
-import { Map, Refresh } from '@mui/icons-material';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
@@ -33,12 +38,24 @@ const Container = styled.div`
 `;
 
 const DateDisplay = styled(SingleLineSpan)`
+  display: flex;
+  align-items: center;
   grid-area: d;
 `;
 
 const Arrow = styled.span`
   grid-area: a;
   margin-right: 0.2em;
+`;
+
+const ArrowBack = styled(ArrowBackIos)`
+  height: 0.5em;
+  width: 0.5em;
+  cursor: pointer;
+`;
+
+const ArrowForward = styled(ArrowBack.withComponent(ArrowForwardIos))`
+  margin-left: 0.1em;
 `;
 
 interface FTNProps {
@@ -68,8 +85,17 @@ export const Header: FC = () => {
     trainName,
     polyline,
     toggleMapDisplay,
+    initialDepartureDate,
+    sameTrainDaysInFuture,
   } = useDetails();
   const refresh = useCallback(() => refreshDetails(), [refreshDetails]);
+  const dateForward = useCallback(() => {
+    sameTrainDaysInFuture(1);
+  }, [sameTrainDaysInFuture]);
+
+  const dateBack = useCallback(() => {
+    sameTrainDaysInFuture(-1);
+  }, [sameTrainDaysInFuture]);
 
   const operatorName = useMemo(
     () => additionalInformation?.operatorName || details?.train.operator?.name,
@@ -82,17 +108,24 @@ export const Header: FC = () => {
         <SingleLineSpan>
           <FullTrainName train={details?.train} fallback={trainName} />
         </SingleLineSpan>
-        {details && (
-          <>
-            {operatorName && <Operator>{operatorName}</Operator>}
-            <DateDisplay>
-              {format(details.departure.time, 'dd.MM.yyyy')}
-            </DateDisplay>
-            {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
-            <Arrow> → </Arrow>
-            <Destination>{details.segmentDestination.title}</Destination>
-          </>
-        )}
+        <>
+          {operatorName && <Operator>{operatorName}</Operator>}
+          <DateDisplay>
+            <ArrowBack data-testid="previous" onClick={dateBack} />
+            {format(
+              details?.departure.time || initialDepartureDate,
+              'dd.MM.yyyy',
+            )}
+            <ArrowForward data-testid="next" onClick={dateForward} />
+          </DateDisplay>
+          {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
+          {details && (
+            <>
+              <Arrow> → </Arrow>
+              <Destination>{details.segmentDestination.title}</Destination>
+            </>
+          )}
+        </>
       </Container>
       {polyline && (
         <IconButton

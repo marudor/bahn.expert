@@ -1325,6 +1325,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     evaNumberAlongRoute: {"in":"query","name":"evaNumberAlongRoute","ref":"EvaNumber"},
                     initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
                     journeyId: {"in":"query","name":"journeyId","dataType":"string"},
+                    administration: {"in":"query","name":"administration","dataType":"string"},
             };
 
             let validatedArgs: any[] = [];
