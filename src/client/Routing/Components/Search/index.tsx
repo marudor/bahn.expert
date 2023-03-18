@@ -215,27 +215,28 @@ export const Search: FC = () => {
         </StyledRadioGroup>
         <MobileDateTimePicker
           openTo="hours"
-          componentsProps={{
+          value={date}
+          slotProps={{
             actionBar: {
               actions: ['clear', 'cancel', 'accept'],
             },
           }}
-          value={date}
-          renderInput={(props) => (
-            <DateTimePickerInput
-              {...props}
-              error={false}
-              inputProps={{
-                ...props.inputProps,
-                'data-testid': 'routingDatePicker',
-                value: formattedDate,
-                required: false,
-              }}
-            />
-          )}
+          slots={{
+            textField: (props) => (
+              <DateTimePickerInput
+                {...props}
+                error={false}
+                inputProps={{
+                  ...props.inputProps,
+                  'data-testid': 'routingDatePicker',
+                  value: formattedDate,
+                  required: false,
+                }}
+              />
+            ),
+          }}
           onChange={setDate}
           minutesStep={5}
-          toolbarTitle=""
         />
         <TodayIcon />
       </DateTimeContainer>
