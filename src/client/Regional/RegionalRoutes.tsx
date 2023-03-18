@@ -1,4 +1,5 @@
 import { AbfahrtenList } from '@/client/Abfahrten/Components/AbfahrtenList';
+import { Header } from '@/client/Abfahrten/Components/Header';
 import { RegionalMainPage } from '@/client/Regional/Components/MainPage';
 import { Route, Routes } from 'react-router';
 import loadable from '@loadable/component';
@@ -10,7 +11,15 @@ const DetailsRoute = loadable(
 
 export const RegionalRoutes: FC = () => (
   <Routes>
-    <Route path="/" element={<RegionalMainPage />} />
+    <Route
+      path="/"
+      element={
+        <>
+          <Header />
+          <RegionalMainPage />
+        </>
+      }
+    />
     <Route
       path="/details/:train/:initialDeparture/*"
       element={<DetailsRoute urlPrefix="/regional/" />}
@@ -19,6 +28,14 @@ export const RegionalRoutes: FC = () => (
       path="/details/:train"
       element={<DetailsRoute urlPrefix="/regional/" />}
     />
-    <Route path="/:station" element={<AbfahrtenList />} />
+    <Route
+      path="/:station"
+      element={
+        <>
+          <Header />
+          <AbfahrtenList />
+        </>
+      }
+    />
   </Routes>
 );
