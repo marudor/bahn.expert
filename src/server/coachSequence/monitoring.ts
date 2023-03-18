@@ -9,8 +9,8 @@ function wagenReihungSpecificMonitoring(id: string, departure: Date) {
 export async function coachSequenceMonitoring(): Promise<
   CoachSequenceInformation | undefined
 > {
-  const abfahrten = await getAbfahrten('8002549', false, {
-    lookahead: 300,
+  const abfahrten = await getAbfahrten('8000105', false, {
+    lookahead: 400,
     lookbehind: 0,
   });
   const maybeDepartures = abfahrten.departures.filter(
