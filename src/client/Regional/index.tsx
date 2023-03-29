@@ -9,7 +9,7 @@ import type { FC } from 'react';
 
 const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(
   undefined,
-  undefined,
+  false,
   7,
   true,
 );

@@ -15,7 +15,7 @@ export const RegionalRoutes: FC = () => (
       path="/"
       element={
         <>
-          <Header />
+          <Header regional />
           <RegionalMainPage />
         </>
       }
@@ -32,7 +32,7 @@ export const RegionalRoutes: FC = () => (
       path="/:station"
       element={
         <>
-          <Header />
+          <Header regional />
           <AbfahrtenList />
         </>
       }
