@@ -25,7 +25,7 @@
     },
     "plugins": [
       {
-        "name": "typescript-styled-plugin"
+        "name": "@styled/typescript-styled-plugin"
       }
     ],
     "jsxImportSource": "@emotion/react"
