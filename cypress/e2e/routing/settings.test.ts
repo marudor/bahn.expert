@@ -29,7 +29,7 @@ describe('Routing Settings', () => {
         .should('include.text', '0mAlle Zuege')
         .click();
       cy.findByTestId('routingMaxChanges').as('maxChanges').clear();
-      cy.find('@maxChanges').type('5');
+      cy.get('@maxChanges').type('5');
       cy.findByTestId('routingSettingsPanel-maxChange').should(
         'include.text',
         '5',
@@ -41,7 +41,7 @@ describe('Routing Settings', () => {
         .should('include.text', '0mAlle Zuege')
         .click();
       cy.findByTestId('routingTransferTime').as('transferTime').clear();
-      cy.find('@transferTime').type('5');
+      cy.get('@transferTime').type('5');
       cy.findByTestId('routingSettingsPanel-transferTime').should(
         'include.text',
         '5m',
