@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import PromClient, { Counter, Histogram } from 'prom-client';
-import type { InternalAxiosRequestConfig } from 'axios';
+import type { AxiosResponse } from 'axios';
 import type { Server } from 'node:http';
 
 PromClient.register.clear();
@@ -15,15 +15,15 @@ export const ApiRequestMetric = new Histogram({
 export const UpstreamApiRequestMetric = new Counter({
   name: 'upstream_api_requests',
   help: 'upstream api requests => bahn',
-  labelNames: ['api'],
+  labelNames: ['api', 'status'],
 });
 
 export function upstreamApiCountInterceptor(
   apiName: string,
-  req: InternalAxiosRequestConfig,
-): InternalAxiosRequestConfig {
-  UpstreamApiRequestMetric.inc({ api: apiName });
-  return req;
+  res: AxiosResponse,
+): AxiosResponse {
+  UpstreamApiRequestMetric.inc({ api: apiName, status: res.status });
+  return res;
 }
 
 export default (adminPort = 9000): Server => {
