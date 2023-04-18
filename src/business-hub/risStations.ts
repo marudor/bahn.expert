@@ -26,7 +26,7 @@ const axiosWithTimeout = axios.create({
   timeout: 4500,
 });
 
-axiosWithTimeout.interceptors.response.use(
+axiosWithTimeout.interceptors.request.use(
   upstreamApiCountInterceptor.bind(undefined, 'ris-stations'),
 );
 

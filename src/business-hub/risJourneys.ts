@@ -35,7 +35,7 @@ axiosWithTimeout.interceptors.request.use(
       : undefined,
   ),
 );
-axiosWithTimeout.interceptors.response.use(
+axiosWithTimeout.interceptors.request.use(
   upstreamApiCountInterceptor.bind(undefined, 'ris-journeys'),
 );
 

@@ -25,12 +25,12 @@ if (process.env.IRIS_FALLBACK_URL) {
     },
     timeout: 3000,
   });
-  fallbackRequest.interceptors.response.use(
+  fallbackRequest.interceptors.request.use(
     upstreamApiCountInterceptor.bind(undefined, 'iris-fallback'),
   );
 }
 
-noncdRequest.interceptors.response.use(
+noncdRequest.interceptors.request.use(
   upstreamApiCountInterceptor.bind(undefined, 'iris-noncd'),
 );
 
