@@ -10,7 +10,7 @@ jobs:
       - name: 'Deploy'
         # Parameters are pulled directly from the GitHub deployment event so the
         # configuration for the job here is very minimal.
-        uses: 'elseu/sdu-helm-deploy-action@0.0.9'
+        uses: 'vimeda/helm@v1.7.0'
         with:
           helm: 'helm3'
           token: '${{ github.token }}'
