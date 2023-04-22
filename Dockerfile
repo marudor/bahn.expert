@@ -1,4 +1,4 @@
-FROM node:19-alpine as base
+FROM node:20-alpine as base
 RUN corepack enable
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
@@ -18,7 +18,7 @@ FROM base as cleanedDeps
 RUN pnpm i --production --frozen-lockfile
 RUN pnpm dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 
-FROM node:19-alpine
+FROM node:20-alpine
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
 WORKDIR /app
