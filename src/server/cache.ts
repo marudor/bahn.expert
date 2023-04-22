@@ -1,6 +1,6 @@
 import { checkSecrets } from '@/server/checkSecret';
 import { logger } from '@/server/logger';
-import LRUCache from 'lru-cache';
+import { LRUCache } from 'lru-cache';
 import Redis from 'ioredis';
 import v8 from 'node:v8';
 
