@@ -20,6 +20,7 @@ const identifierWithPDF = new Set<AvailableIdentifier>([
   '406',
   '406.R',
   '407',
+  '408',
   '411.S1',
   '411.S2',
   '412.7',
