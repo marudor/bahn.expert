@@ -690,14 +690,26 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_GroupedStopPlace.name-or-evaNumber_": {
+    "StopPlaceIdentifier": {
+        "dataType": "refObject",
+        "properties": {
+            "stationId": {"dataType":"string"},
+            "ifopt": {"dataType":"string"},
+            "ril100": {"dataType":"string"},
+            "alternativeRil100": {"dataType":"array","array":{"dataType":"string"}},
+            "evaNumber": {"dataType":"string","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_GroupedStopPlace.name-or-evaNumber-or-identifier_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string","required":true},"evaNumber":{"dataType":"string","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string","required":true},"evaNumber":{"dataType":"string","required":true},"identifier":{"ref":"StopPlaceIdentifier"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "MinimalStopPlace": {
         "dataType": "refAlias",
-        "type": {"ref":"Pick_GroupedStopPlace.name-or-evaNumber_","validators":{}},
+        "type": {"ref":"Pick_GroupedStopPlace.name-or-evaNumber-or-identifier_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Messages": {
@@ -956,6 +968,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "name": {"dataType":"string","required":true},
             "evaNumber": {"dataType":"string","required":true},
+            "identifier": {"ref":"StopPlaceIdentifier"},
             "arrivalTime": {"dataType":"datetime"},
             "departureTime": {"dataType":"datetime"},
         },
@@ -993,18 +1006,6 @@ const models: TsoaRoute.Models = {
         "properties": {
             "latitude": {"dataType":"double","required":true},
             "longitude": {"dataType":"double","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "StopPlaceIdentifier": {
-        "dataType": "refObject",
-        "properties": {
-            "stationId": {"dataType":"string"},
-            "ifopt": {"dataType":"string"},
-            "ril100": {"dataType":"string"},
-            "alternativeRil100": {"dataType":"array","array":{"dataType":"string"}},
-            "evaNumber": {"dataType":"string","required":true},
         },
         "additionalProperties": true,
     },

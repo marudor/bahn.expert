@@ -94,6 +94,7 @@ export function render(
       startTime: undefined,
       lookahead: '115020',
       lookbehind: '10',
+      showRl100: false,
       ...commonConfig,
     };
 

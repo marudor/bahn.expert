@@ -39,4 +39,5 @@ export const commonConfigSanitize: CommonConfigSanitize = {
   startTime: dateCheck,
   lookahead: (value) => numberCheck(value, 150).toString(),
   lookbehind: (value) => numberCheck(value, 0).toString(),
+  showRl100: booleanCheck,
 };

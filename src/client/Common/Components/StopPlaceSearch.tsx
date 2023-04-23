@@ -1,6 +1,7 @@
 import { Loading, LoadingType } from './Loading';
 import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useRef } from 'react';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useStopPlaceSearch } from '@/client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
 import styled from '@emotion/styled';
@@ -52,6 +53,18 @@ export const StopPlaceSearch: FC<Props> = ({
   groupedBySales = false,
 }) => {
   const inputRef = useRef<HTMLInputElement>();
+  const { showRl100 } = useCommonConfig();
+
+  const formatSuggestion = useCallback(
+    (suggestion: MinimalStopPlace) => {
+      let r = suggestion.name;
+      if (showRl100 && suggestion.identifier?.ril100) {
+        r += ` [${suggestion.identifier.ril100}]`;
+      }
+      return r;
+    },
+    [showRl100],
+  );
 
   const {
     suggestions,
@@ -158,7 +171,7 @@ export const StopPlaceSearch: FC<Props> = ({
                             selected={highlighted}
                             component="div"
                           >
-                            {suggestion.name}
+                            {formatSuggestion(suggestion)}
                           </MenuItem>
                         );
                       })

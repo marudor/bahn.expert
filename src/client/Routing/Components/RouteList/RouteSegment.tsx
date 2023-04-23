@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
 import { Platform } from '@/client/Common/Components/Platform';
+import { StationNameWithRL100 } from '@/client/Common/Components/StationNameWithRl100';
 import { Time } from '@/client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
 import styled from '@emotion/styled';
@@ -68,14 +69,18 @@ export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
           real={segment.departure.time}
           delay={segment.departure.delay}
         />
-        <DepartureName>{segment.segmentStart.title}</DepartureName>
+        <DepartureName>
+          <StationNameWithRL100 station={segment.segmentStart} />
+        </DepartureName>
 
         <ArrivalTime
           multiLine
           real={segment.arrival.time}
           delay={segment.arrival.delay}
         />
-        <ArrivalName>{segment.segmentDestination.title}</ArrivalName>
+        <ArrivalName>
+          <StationNameWithRL100 station={segment.segmentDestination} />
+        </ArrivalName>
         {segment.type === 'JNY' && (
           <>
             <DeparturePlatform

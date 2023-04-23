@@ -15,6 +15,7 @@ export interface CommonConfig {
   readonly startTime: Date | undefined;
   readonly lookahead: string;
   readonly lookbehind: string;
+  readonly showRl100: boolean;
 }
 
 type Sanitize<Config> = {

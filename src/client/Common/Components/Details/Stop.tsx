@@ -141,7 +141,11 @@ export const Stop: FC<Props> = ({
         />
       )}
       <StopName stop={stop}>
-        <StationLink stationName={stop.station.title} urlPrefix={urlPrefix} />
+        <StationLink
+          evaNumber={stop.station.id}
+          stationName={stop.station.title}
+          urlPrefix={urlPrefix}
+        />
       </StopName>
       {!doNotRenderOccupancy && occupancy && (
         <StyledOccupancy oneLine auslastung={occupancy} />

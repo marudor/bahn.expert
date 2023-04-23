@@ -1801,13 +1801,44 @@
         "type": "object",
         "additionalProperties": true
       },
-      "Pick_GroupedStopPlace.name-or-evaNumber_": {
+      "StopPlaceIdentifier": {
+        "properties": {
+          "stationId": {
+            "type": "string"
+          },
+          "ifopt": {
+            "type": "string",
+            "description": "also known as DHID, globalId"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "alternativeRil100": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "evaNumber": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "evaNumber"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Pick_GroupedStopPlace.name-or-evaNumber-or-identifier_": {
         "properties": {
           "name": {
             "type": "string"
           },
           "evaNumber": {
             "type": "string"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/StopPlaceIdentifier"
           }
         },
         "required": [
@@ -1818,7 +1849,7 @@
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
       "MinimalStopPlace": {
-        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber_"
+        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber-or-identifier_"
       },
       "Messages": {
         "properties": {
@@ -2476,6 +2507,9 @@
           "evaNumber": {
             "type": "string"
           },
+          "identifier": {
+            "$ref": "#/components/schemas/StopPlaceIdentifier"
+          },
           "arrivalTime": {
             "type": "string",
             "format": "date-time"
@@ -2579,34 +2613,6 @@
         "required": [
           "latitude",
           "longitude"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "StopPlaceIdentifier": {
-        "properties": {
-          "stationId": {
-            "type": "string"
-          },
-          "ifopt": {
-            "type": "string",
-            "description": "also known as DHID, globalId"
-          },
-          "ril100": {
-            "type": "string"
-          },
-          "alternativeRil100": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "evaNumber": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "evaNumber"
         ],
         "type": "object",
         "additionalProperties": true
