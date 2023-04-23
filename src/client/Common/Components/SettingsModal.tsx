@@ -59,6 +59,7 @@ export const SettingsModal: FC = () => {
     onlyDepartures,
     lookahead,
     lookbehind,
+    showRl100,
   } = useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
@@ -181,6 +182,20 @@ export const SettingsModal: FC = () => {
             />
           }
           label="Verstecke Travelynx button"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="showRl100"
+              checked={showRl100}
+              value="showRl100"
+              onChange={handleConfigCheckedChange(
+                'showRl100',
+                setCommonConfigKey,
+              )}
+            />
+          }
+          label="Haltestellennamen mit RL100 (Teilweise)"
         />
         <Label
           control={

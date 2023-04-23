@@ -7,6 +7,7 @@ import {
 import { BaseHeader } from '../BaseHeader';
 import { format } from 'date-fns';
 import { IconButton } from '@mui/material';
+import { StationNameWithRL100 } from '@/client/Common/Components/StationNameWithRl100';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
@@ -121,7 +122,9 @@ export const Header: FC = () => {
           {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
           <Arrow> → </Arrow>
           {details && (
-            <Destination>{details.segmentDestination.title}</Destination>
+            <Destination>
+              <StationNameWithRL100 station={details.segmentDestination} />
+            </Destination>
           )}
         </>
       </Container>

@@ -80,6 +80,7 @@ export const messages = {
   '75': '1. Klasse vorne',
   '76': '1. Klasse hinten',
   '77': '1. Klasse fehlt',
+  '78': 'Ersatzverkehr mit Bus ist eingerichtet',
   '79': 'Mehrzweckabteil fehlt',
   '80': 'Abweichende Wagenreihung',
   '82': 'Mehrere Wagen fehlen',

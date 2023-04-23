@@ -18,7 +18,10 @@ export interface GroupedStopPlace {
   identifier?: StopPlaceIdentifier;
 }
 
-export type MinimalStopPlace = Pick<GroupedStopPlace, 'name' | 'evaNumber'>;
+export type MinimalStopPlace = Pick<
+  GroupedStopPlace,
+  'name' | 'evaNumber' | 'identifier'
+>;
 
 export interface TrainOccupancy<out T> {
   train: TrainOccupancyList<T>;

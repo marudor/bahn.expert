@@ -66,6 +66,7 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     onlyDepartures: storage.get('onlyDepartures') ?? false,
     delayTime: storage.get('delayTime') ?? false,
     startTime: undefined,
+    showRl100: storage.get('showRl100') ?? false,
     ...(globalThis.configOverride.common as Record<string, never>),
   };
 
