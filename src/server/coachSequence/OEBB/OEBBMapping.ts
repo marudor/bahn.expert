@@ -176,7 +176,8 @@ export const mapInformation = (
 
   const coachsequenceInfo: CoachSequenceInformation = {
     source: 'OEBB',
-    isRealtime: info.train?.isReported ?? false,
+    // can't decide this for OEBB anymore.
+    isRealtime: true,
     product: mapProduct(info.timeTableInfo),
     direction: info.trainOnPlatform
       ? !info.trainOnPlatform.departureTowardsFirstSector
