@@ -90,14 +90,18 @@ export async function findJourney(
 ): Promise<JourneyMatch[]> {
   try {
     const isWithin20Hours = date && differenceInHours(date, Date.now()) <= 20;
+    // some EVUs (Looking at you DB FV) might not be available for >20h, others are.
+    if (!isWithin20Hours) {
+      return [];
+    }
+
     const cacheKey = `${trainNumber}|${category}|${
       date && format(date, 'yyyy-MM-dd')
     }|${onlyFv ?? false}|${originEvaNumber}`;
-    if (isWithin20Hours) {
-      const cacheHit = await journeyFindCache.get(cacheKey);
-      if (cacheHit) {
-        return cacheHit;
-      }
+
+    const cacheHit = await journeyFindCache.get(cacheKey);
+    if (cacheHit) {
+      return cacheHit;
     }
     const result = await risJourneysClient.find({
       number: trainNumber,
