@@ -22,6 +22,7 @@ export const DetailsRoute: FC<Props> = ({ urlPrefix }) => {
       initialDepartureDateString={initialDeparture}
       urlPrefix={urlPrefix}
       journeyId={query.journeyId as string | undefined}
+      jid={query.jid as string | undefined}
       administration={query.administration as string | undefined}
     >
       <Details />

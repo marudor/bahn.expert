@@ -41,6 +41,7 @@ export const JnySegmentTrain: FC<Props> = ({
             train={segment.train}
             evaNumberAlongRoute={segment.segmentStart.id}
             initialDeparture={segment.departure.scheduledTime}
+            jid={segment.jid}
           />
         </span>
         {segment.auslastung && (

@@ -10,29 +10,37 @@ interface Props {
   initialDeparture: Date;
   journeyId?: string;
   urlPrefix?: string;
+  jid?: string;
 }
 export const DetailsLink: FC<Props> = ({
   train,
   evaNumberAlongRoute,
   initialDeparture,
   journeyId,
+  jid,
   urlPrefix = '/',
-}) => (
-  <Link
-    data-testid="detailsLink"
-    onClick={stopPropagation}
-    to={`${urlPrefix}details/${train.type} ${
-      train.number
-    }/${initialDeparture.toISOString()}${qs.stringify(
-      {
-        evaNumberAlongRoute,
-        journeyId,
-      },
-      {
-        addQueryPrefix: true,
-      },
-    )}`}
-  >
-    Details
-  </Link>
-);
+}) => {
+  if (!train.number || !train.type) {
+    return null;
+  }
+  return (
+    <Link
+      data-testid="detailsLink"
+      onClick={stopPropagation}
+      to={`${urlPrefix}details/${train.type} ${
+        train.number
+      }/${initialDeparture.toISOString()}${qs.stringify(
+        {
+          evaNumberAlongRoute,
+          journeyId,
+          jid,
+        },
+        {
+          addQueryPrefix: true,
+        },
+      )}`}
+    >
+      Details
+    </Link>
+  );
+};

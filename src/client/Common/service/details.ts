@@ -10,6 +10,8 @@ export async function getDetails(
   evaNumberAlongRoute?: string,
   journeyId?: string | null,
   administration?: string,
+  // HAFAS JID
+  jid?: string | null,
 ): Promise<ParsedSearchOnTripResponse> {
   const r = await Axios.get<ParsedSearchOnTripResponse>(
     `/api/journeys/v1/details/${train}`,
@@ -19,6 +21,7 @@ export async function getDetails(
         initialDepartureDate,
         journeyId: journeyId,
         administration,
+        jid,
       },
     },
   );

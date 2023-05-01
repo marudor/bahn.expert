@@ -19,6 +19,8 @@ interface Props {
   evaNumberAlongRoute?: string;
   urlPrefix?: string;
   journeyId?: string;
+  // HAFAS
+  jid?: string;
   administration?: string;
 }
 
@@ -28,6 +30,7 @@ const useInnerDetails = ({
   trainName,
   urlPrefix,
   journeyId,
+  jid,
   administration,
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
@@ -84,6 +87,7 @@ const useInnerDetails = ({
         evaNumberAlongRoute,
         journeyId,
         administration,
+        jid,
       )
         .then(async (details) => {
           setDetails(details);
@@ -126,6 +130,7 @@ const useInnerDetails = ({
       evaNumberAlongRoute,
       journeyId,
       administration,
+      jid,
     ],
   );
 

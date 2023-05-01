@@ -11,6 +11,7 @@ import type { SecL } from './HAFAS/TripSearch';
 export interface RoutingStation {
   title: string;
   id: string;
+  rl100?: string;
 }
 
 export interface Route$Stop {

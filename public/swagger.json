@@ -118,6 +118,9 @@
           },
           "id": {
             "type": "string"
+          },
+          "rl100": {
+            "type": "string"
           }
         },
         "required": [

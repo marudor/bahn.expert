@@ -162,6 +162,8 @@ export class JourneysV1Controller extends Controller {
     @Query() evaNumberAlongRoute?: EvaNumber,
     @Query() initialDepartureDate?: Date,
     @Query() journeyId?: string,
+    // HAFAS JID as fallback for number 0 trains
+    @Query() jid?: string,
     @Query() administration?: string,
   ): Promise<ParsedSearchOnTripResponse> {
     if (!isAllowed(req)) {
@@ -175,6 +177,7 @@ export class JourneysV1Controller extends Controller {
       undefined,
       undefined,
       administration,
+      jid,
     );
     const hafasFallback = async () => {
       const hafasResult = await hafasDetailsPromise;
