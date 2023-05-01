@@ -19,6 +19,8 @@ interface Props {
   evaNumberAlongRoute?: string;
   urlPrefix?: string;
   journeyId?: string;
+  // HAFAS
+  jid?: string;
   administration?: string;
 }
 
@@ -28,6 +30,7 @@ const useInnerDetails = ({
   trainName,
   urlPrefix,
   journeyId,
+  jid,
   administration,
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
@@ -84,6 +87,7 @@ const useInnerDetails = ({
         evaNumberAlongRoute,
         journeyId,
         administration,
+        jid,
       )
         .then(async (details) => {
           setDetails(details);
@@ -105,7 +109,7 @@ const useInnerDetails = ({
             const occupancy: Record<string, Route$Auslastung> = {};
             for (const s of details.stops) {
               if (s.auslastung) {
-                occupancy[s.station.id] = s.auslastung;
+                occupancy[s.station.evaNumber] = s.auslastung;
               }
             }
             setAdditionalInformation({
@@ -126,6 +130,7 @@ const useInnerDetails = ({
       evaNumberAlongRoute,
       journeyId,
       administration,
+      jid,
     ],
   );
 
@@ -160,7 +165,9 @@ const useInnerDetails = ({
     if (!details) return undefined;
 
     for (const loc of polyline.locations) {
-      const detailsLoc = details.stops.find((s) => s.station.id === loc.id);
+      const detailsLoc = details.stops.find(
+        (s) => s.station.evaNumber === loc.evaNumber,
+      );
       if (detailsLoc) {
         // @ts-expect-error adding information
         loc.details = detailsLoc;

@@ -15,7 +15,7 @@ export default (product: ProdL, common: Common): ParsedProduct => {
       product.matchId ||
       product.nameS ||
       getLineFromNumber(number),
-    admin: product.prodCtx?.admin,
+    admin: product.prodCtx?.admin?.replaceAll('_', ''),
     number,
     type:
       product.prodCtx && (product.prodCtx.catOut || product.prodCtx.catOutL),

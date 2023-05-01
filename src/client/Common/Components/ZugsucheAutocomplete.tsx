@@ -155,7 +155,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
                           >
                             {suggestion.train.name} -&gt;
                             <br />
-                            {suggestion.lastStop.station.title}
+                            {suggestion.lastStop.station.name}
                           </StyledMenuItem>
                         );
                       })

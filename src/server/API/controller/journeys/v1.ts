@@ -87,7 +87,7 @@ export class JourneysV1Controller extends Controller {
     let result = risResult.length ? risResult : await hafasPromise;
     if (initialEvaNumber) {
       result = result.filter(
-        (r) => r.firstStop.station.id === initialEvaNumber,
+        (r) => r.firstStop.station.evaNumber === initialEvaNumber,
       );
     }
 
@@ -144,7 +144,7 @@ export class JourneysV1Controller extends Controller {
     let result = risResult.length ? risResult : await hafasPromise;
     if (initialEvaNumber) {
       result = result.filter(
-        (r) => r.firstStop.station.id === initialEvaNumber,
+        (r) => r.firstStop.station.evaNumber === initialEvaNumber,
       );
     }
 
@@ -162,6 +162,8 @@ export class JourneysV1Controller extends Controller {
     @Query() evaNumberAlongRoute?: EvaNumber,
     @Query() initialDepartureDate?: Date,
     @Query() journeyId?: string,
+    // HAFAS JID as fallback for number 0 trains
+    @Query() jid?: string,
     @Query() administration?: string,
   ): Promise<ParsedSearchOnTripResponse> {
     if (!isAllowed(req)) {
@@ -175,6 +177,7 @@ export class JourneysV1Controller extends Controller {
       undefined,
       undefined,
       administration,
+      jid,
     );
     const hafasFallback = async () => {
       const hafasResult = await hafasDetailsPromise;
@@ -216,7 +219,7 @@ export class JourneysV1Controller extends Controller {
         )
       ).filter(Boolean);
       foundJourney = allJourneys.find((j) =>
-        j.stops.map((s) => s.station.id).includes(evaNumberAlongRoute),
+        j.stops.map((s) => s.station.evaNumber).includes(evaNumberAlongRoute),
       );
     } else {
       foundJourney = await journeyDetails(possibleJourneys[0].journeyID);

@@ -18,7 +18,9 @@ export function calculateCurrentStopPlace(
   let currentStop;
 
   if (currentStopId) {
-    currentStop = segment.stops.find((s) => s.station.id === currentStopId);
+    currentStop = segment.stops.find(
+      (s) => s.station.evaNumber === currentStopId,
+    );
   }
 
   if (!currentStop) {
@@ -52,62 +54,70 @@ export default async (
   plainDetails = false,
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB,
   administration?: string,
+  jid?: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
-  let possibleTrains: ParsedJourneyMatchResponse[] = [];
+  let relevantJid = jid;
+  if (!relevantJid) {
+    let possibleTrains: ParsedJourneyMatchResponse[] = [];
 
-  if (station) {
-    try {
-      const jnyFltrL: JourneyFilter[] = [
-        {
-          type: 'STATIONS',
-          mode: 'INC',
-          value: station,
-        },
-      ];
+    if (station) {
+      try {
+        const jnyFltrL: JourneyFilter[] = [
+          {
+            type: 'STATIONS',
+            mode: 'INC',
+            value: station,
+          },
+        ];
+        possibleTrains = await JourneyMatch(
+          {
+            trainName,
+            initialDepartureDate: date,
+            jnyFltrL,
+          },
+          hafasProfile,
+        );
+        possibleTrains = filterByAdministration(possibleTrains, administration);
+      } catch {
+        // ignore
+      }
+    }
+
+    if (!possibleTrains?.length) {
       possibleTrains = await JourneyMatch(
         {
           trainName,
           initialDepartureDate: date,
-          jnyFltrL,
         },
         hafasProfile,
       );
       possibleTrains = filterByAdministration(possibleTrains, administration);
-    } catch {
-      // ignore
     }
+
+    // possibleTrains.sort(t1 =>
+    //   t1.firstStop.station.id.startsWith('80') ||
+    //   t1.lastStop.station.id.startsWith('80')
+    //     ? -1
+    //     : 1
+    // );
+    const train: ParsedJourneyMatchResponse | undefined = possibleTrains[0];
+
+    relevantJid = train?.jid;
   }
 
-  if (!possibleTrains?.length) {
-    possibleTrains = await JourneyMatch(
-      {
-        trainName,
-        initialDepartureDate: date,
-      },
-      hafasProfile,
-    );
-    possibleTrains = filterByAdministration(possibleTrains, administration);
+  if (!relevantJid) {
+    return;
   }
 
-  // possibleTrains.sort(t1 =>
-  //   t1.firstStop.station.id.startsWith('80') ||
-  //   t1.lastStop.station.id.startsWith('80')
-  //     ? -1
-  //     : 1
-  // );
-  const train: ParsedJourneyMatchResponse | undefined = possibleTrains[0];
-
-  if (!train) return undefined;
-
-  const journeyDetails = await JourneyDetails(train.jid, hafasProfile);
+  const journeyDetails = await JourneyDetails(relevantJid, hafasProfile);
 
   if (!journeyDetails) return undefined;
 
   let relevantSegment: ParsedSearchOnTripResponse = {
     type: 'JNY',
     cancelled: journeyDetails.stops.every((s) => s.cancelled),
-    finalDestination: journeyDetails.lastStop.station.title,
-    jid: train.jid,
+    finalDestination: journeyDetails.lastStop.station.name,
+    jid: relevantJid,
     train: journeyDetails.train,
     segmentDestination: journeyDetails.lastStop.station,
     segmentStart: journeyDetails.firstStop.station,
@@ -156,7 +166,7 @@ export default async (
 
   if (currentStopId) {
     relevantSegment.currentStop = relevantSegment.stops.find(
-      (s) => s.station.id === currentStopId,
+      (s) => s.station.evaNumber === currentStopId,
     );
   }
 
@@ -164,7 +174,7 @@ export default async (
     for (const [index, stop] of relevantSegment.stops.entries()) {
       const jDetailStop = journeyDetails.stops[index];
 
-      if (jDetailStop.station.id !== stop.station.id) continue;
+      if (jDetailStop.station.evaNumber !== stop.station.evaNumber) continue;
       if (jDetailStop.arrival && stop.arrival) {
         stop.arrival.delay = jDetailStop.arrival.delay;
         stop.arrival.time = jDetailStop.arrival.time;

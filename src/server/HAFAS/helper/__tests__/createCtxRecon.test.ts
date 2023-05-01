@@ -13,8 +13,8 @@ describe('createCtxRecon', () => {
 
   const firstStop: Route$ValidDepartureStop = {
     station: {
-      id: '123',
-      title: 'dummy',
+      evaNumber: '123',
+      name: 'dummy',
     },
     departure: {
       scheduledTime: departureTime,
@@ -24,8 +24,8 @@ describe('createCtxRecon', () => {
 
   const lastStop: Route$ValidArrivalStop = {
     station: {
-      id: '321',
-      title: 'otherDummy',
+      evaNumber: '321',
+      name: 'otherDummy',
     },
     arrival: {
       scheduledTime: arrivalTime,
@@ -41,7 +41,7 @@ describe('createCtxRecon', () => {
         trainName: 'test',
       }),
     ).toBe(
-      `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${lastStop.station.id}@a=128@$${expectedDeparture}$${expectedArrival}$test$$1$`,
+      `¶HKI¶T$A=1@L=${firstStop.station.evaNumber}@a=128@$A=1@L=${lastStop.station.evaNumber}@a=128@$${expectedDeparture}$${expectedArrival}$test$$1$`,
     );
   });
 
@@ -61,7 +61,7 @@ describe('createCtxRecon', () => {
         ],
       }),
     ).toBe(
-      `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${lastStop.station.id}@a=128@$${expectedDeparture}$${expectedArrival}$ersatz$$2$`,
+      `¶HKI¶T$A=1@L=${firstStop.station.evaNumber}@a=128@$A=1@L=${lastStop.station.evaNumber}@a=128@$${expectedDeparture}$${expectedArrival}$ersatz$$2$`,
     );
   });
 });

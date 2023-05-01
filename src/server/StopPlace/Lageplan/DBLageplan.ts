@@ -20,8 +20,8 @@ export async function getDBLageplan(
     if (cached === null) return undefined;
 
     const stopPlace = await getStopPlaceByEva(evaNumber);
-    if (stopPlace?.identifier?.stationId) {
-      const lageplanUrl = `https://www.bahnhof.de/downloads/station-plans/${stopPlace.identifier.stationId}.pdf`;
+    if (stopPlace?.stationId) {
+      const lageplanUrl = `https://www.bahnhof.de/downloads/station-plans/${stopPlace.stationId}.pdf`;
       try {
         await Axios.get(lageplanUrl);
         void cache.set(evaNumber, lageplanUrl);

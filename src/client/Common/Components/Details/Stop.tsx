@@ -100,7 +100,9 @@ export const Stop: FC<Props> = ({
 }) => {
   const { urlPrefix, additionalInformation } = useDetails();
   const occupancy = useMemo(
-    () => additionalInformation?.occupancy[stop.station.id] || stop.auslastung,
+    () =>
+      additionalInformation?.occupancy[stop.station.evaNumber] ||
+      stop.auslastung,
     [stop, additionalInformation],
   );
   const depOrArrival = stop.departure || stop.arrival;
@@ -128,10 +130,10 @@ export const Stop: FC<Props> = ({
     <Container
       hasOccupancy={Boolean(occupancy) && !doNotRenderOccupancy}
       past={isPast}
-      data-testid={stop.station.id}
+      data-testid={stop.station.evaNumber}
       onClick={onClick}
     >
-      <ScrollMarker id={stop.station.id} />
+      <ScrollMarker id={stop.station.evaNumber} />
       {stop.arrival && (
         <ArrivalTime
           cancelled={stop.arrival.cancelled}
@@ -142,8 +144,8 @@ export const Stop: FC<Props> = ({
       )}
       <StopName stop={stop}>
         <StationLink
-          evaNumber={stop.station.id}
-          stationName={stop.station.title}
+          evaNumber={stop.station.evaNumber}
+          stationName={stop.station.name}
           urlPrefix={urlPrefix}
         />
       </StopName>
@@ -152,7 +154,7 @@ export const Stop: FC<Props> = ({
       )}
       {train && (
         <StyledTravelynxLink
-          evaNumber={stop.station.id}
+          evaNumber={stop.station.evaNumber}
           train={train}
           departure={stop.departure}
           arrival={stop.arrival}
@@ -173,7 +175,7 @@ export const Stop: FC<Props> = ({
           <Reihung
             trainNumber={showWR.number}
             trainCategory={showWR.type}
-            currentEvaNumber={stop.station.id}
+            currentEvaNumber={stop.station.evaNumber}
             scheduledDeparture={depOrArrival.scheduledTime}
             initialDeparture={initialDepartureDate}
             loadHidden={!depOrArrival?.reihung}

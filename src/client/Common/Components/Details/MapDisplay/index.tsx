@@ -43,7 +43,7 @@ const MapDisplay: FC = () => {
       {polyline.locations.map((location, i) => (
         <Marker position={location.coordinates} key={i}>
           <Tooltip direction="auto">
-            {location.details?.station.title || location.title}
+            {location.details?.station.name || location.name}
           </Tooltip>
         </Marker>
       ))}

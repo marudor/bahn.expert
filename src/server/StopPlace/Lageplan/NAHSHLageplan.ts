@@ -34,7 +34,7 @@ export async function getNAHSHLageplan(
     )[0];
     if (station) {
       const fullLink = `https://www.nah.sh/assets/downloads/Stationsplaene/${normalizeStationName(
-        station.title,
+        station.name,
       )}.pdf`;
 
       try {

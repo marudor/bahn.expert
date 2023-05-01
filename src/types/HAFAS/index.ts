@@ -3,6 +3,7 @@ import type { JourneyDetailsRequest } from './JourneyDetails';
 import type { JourneyMatchRequest } from '@/types/HAFAS/JourneyMatch';
 import type { JourneyTreeRequest } from '@/types/HAFAS/deprecated/JourneyTree';
 import type { LocMatchRequest } from './LocMatch';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { SearchOnTripRequest } from '@/types/HAFAS/SearchOnTrip';
 import type { StationBoardRequest } from '@/types/HAFAS/StationBoard';
 import type { TripSearchRequest } from './TripSearch';
@@ -236,11 +237,9 @@ export interface HafasCoordinates {
   lng: number;
 }
 
-export interface HafasStation {
+export interface HafasStation extends MinimalStopPlace {
   products?: ParsedProduct[];
   coordinates: HafasCoordinates;
-  title: string;
-  id: string;
 }
 
 export enum AllowedHafasProfile {

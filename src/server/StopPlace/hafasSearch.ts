@@ -13,10 +13,7 @@ async function byRl100(rl100: string): Promise<GroupedStopPlace | void> {
       name: irisRl100.name,
       evaNumber: irisRl100.eva,
       availableTransports: [],
-      identifier: {
-        evaNumber: irisRl100.eva,
-        ril100: irisRl100.ds100,
-      },
+      ril100: irisRl100.ds100,
     };
   } catch {
     // we just return nothing on fail
@@ -40,10 +37,10 @@ export async function searchWithHafas(
   }
 
   const result: GroupedStopPlace[] = hafasResult
-    .filter((s) => s.id.length <= 7 || !s.id.startsWith('99'))
+    .filter((s) => s.evaNumber.length <= 7 || !s.evaNumber.startsWith('99'))
     .map((s) => ({
-      evaNumber: s.id,
-      name: s.title,
+      evaNumber: s.evaNumber,
+      name: s.name,
       position: {
         latitude: s.coordinates.lat,
         longitude: s.coordinates.lng,

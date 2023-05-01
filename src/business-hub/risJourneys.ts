@@ -62,10 +62,7 @@ const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
 });
 
 const mapStationShortToRouteStops = (station: StationShort): Route$Stop => ({
-  station: {
-    id: station.evaNumber,
-    title: station.name,
-  },
+  station,
 });
 
 function mapToParsedJourneyMatchResponse(

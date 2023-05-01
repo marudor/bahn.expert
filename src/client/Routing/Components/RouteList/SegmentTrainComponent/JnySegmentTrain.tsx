@@ -39,8 +39,9 @@ export const JnySegmentTrain: FC<Props> = ({
           {segment.finalDestination}
           <DetailsLink
             train={segment.train}
-            evaNumberAlongRoute={segment.segmentStart.id}
+            evaNumberAlongRoute={segment.segmentStart.evaNumber}
             initialDeparture={segment.departure.scheduledTime}
+            jid={segment.jid}
           />
         </span>
         {segment.auslastung && (
@@ -54,7 +55,7 @@ export const JnySegmentTrain: FC<Props> = ({
               css={segmentStyles.reihung}
               trainNumber={segment.train.number}
               trainCategory={segment.train.type}
-              currentEvaNumber={segment.segmentStart.id}
+              currentEvaNumber={segment.segmentStart.evaNumber}
               scheduledDeparture={segment.departure.scheduledTime}
               loadHidden={!segment.departure.reihung}
             />

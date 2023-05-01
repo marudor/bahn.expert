@@ -34,7 +34,7 @@ export async function additionalJourneyInformation(
   const occupancy: Record<EvaNumber, Route$Auslastung> = {};
   for (const stop of journeyDetails.stops) {
     if (stop.auslastung) {
-      occupancy[stop.station.id] = stop.auslastung;
+      occupancy[stop.station.evaNumber] = stop.auslastung;
     }
   }
   if (journeyDetails.train.operator || Object.keys(occupancy).length) {

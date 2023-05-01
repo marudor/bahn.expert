@@ -89,7 +89,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
           qs.stringify(
             {
               profile: storage.get('hafasProfile'),
-              station: match.firstStop.station.id,
+              station: match.firstStop.station.evaNumber,
             },
             { addQueryPrefix: true },
           ),
