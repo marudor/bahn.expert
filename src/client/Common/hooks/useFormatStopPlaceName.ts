@@ -10,8 +10,8 @@ export const useFormatStopPlaceName: () => (
   return useCallback(
     (stopPlace: MinimalStopPlace) => {
       let r = stopPlace.name;
-      if (showRl100 && stopPlace.identifier?.ril100) {
-        r += ` [${stopPlace.identifier.ril100}]`;
+      if (showRl100 && stopPlace?.ril100) {
+        r += ` [${stopPlace.ril100}]`;
       }
       return r;
     },

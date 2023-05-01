@@ -15,12 +15,15 @@ export interface GroupedStopPlace {
   name: string;
   availableTransports: TransportType[];
   position?: Coordinate2D;
-  identifier?: StopPlaceIdentifier;
+  ifopt?: string;
+  ril100?: string;
+  alternativeRil100?: string[];
+  stationId?: string;
 }
 
 export type MinimalStopPlace = Pick<
   GroupedStopPlace,
-  'name' | 'evaNumber' | 'identifier'
+  'name' | 'evaNumber' | 'ril100'
 >;
 
 export interface TrainOccupancy<out T> {

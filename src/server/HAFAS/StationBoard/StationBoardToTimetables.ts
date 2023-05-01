@@ -11,7 +11,7 @@ export interface MappedHafasArrivals {
 }
 
 const stationMap = (s: Route$Stop) => ({
-  name: s.station.title,
+  name: s.station.name,
   cancelled: s.cancelled,
   additional: s.additional,
 });
@@ -39,22 +39,22 @@ export default (
   const arrivalRoute = matchingArrival?.stops?.map(stationMap) || [];
 
   arrivalRoute.pop();
-  const splittedName = j.stops[0].station.title.split(',');
+  const splittedName = j.stops[0].station.name.split(',');
   const townSuffix = `,${splittedName[splittedName.length - 1]}`;
 
-  if (j.stops.every((s) => s.station.title.endsWith(townSuffix))) {
+  if (j.stops.every((s) => s.station.name.endsWith(townSuffix))) {
     for (const s of j.stops)
-      s.station.title = s.station.title.replace(townSuffix, '');
+      s.station.name = s.station.name.replace(townSuffix, '');
   }
 
   return {
     initialDeparture: j.stops[0].departure!.scheduledTime,
-    initialStopPlace: j.stops[0].station.id,
+    initialStopPlace: j.stops[0].station.evaNumber,
     arrival: matchingArrival?.arrival,
     departure: j.departure,
     currentStopPlace: {
-      name: j.currentStation.title,
-      evaNumber: j.currentStation.id,
+      name: j.currentStation.name,
+      evaNumber: j.currentStation.evaNumber,
     },
     destination: j.finalDestination,
     scheduledDestination: j.finalDestination,

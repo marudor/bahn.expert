@@ -18,18 +18,18 @@
     "type": "STR"
   },
   "segmentStart": {
-    "title": "Knielingen Lassallestraße, Karlsruhe",
-    "id": "0361526"
+    "name": "Knielingen Lassallestraße, Karlsruhe",
+    "evaNumber": "0361526"
   },
   "segmentDestination": {
-    "title": "Wolfartsweier Nord, Karlsruhe",
-    "id": "0720595"
+    "name": "Wolfartsweier Nord, Karlsruhe",
+    "evaNumber": "0720595"
   },
   "stops": [
     {
       "station": {
-        "id": "361526",
-        "title": "Knielingen Lassallestraße, Karlsruhe",
+        "evaNumber": "361526",
+        "name": "Knielingen Lassallestraße, Karlsruhe",
         "coordinates": {
           "lng": 8.347024,
           "lat": 49.029424
@@ -51,8 +51,8 @@
     },
     {
       "station": {
-        "id": "372525",
-        "title": "Knielingen Siemensallee, Karlsruhe",
+        "evaNumber": "372525",
+        "name": "Knielingen Siemensallee, Karlsruhe",
         "coordinates": {
           "lng": 8.349981,
           "lat": 49.027725
@@ -71,8 +71,8 @@
     },
     {
       "station": {
-        "id": "372524",
-        "title": "Neureuter Straße, Karlsruhe",
+        "evaNumber": "372524",
+        "name": "Neureuter Straße, Karlsruhe",
         "coordinates": {
           "lng": 8.357361,
           "lat": 49.023743
@@ -91,8 +91,8 @@
     },
     {
       "station": {
-        "id": "360523",
-        "title": "Feierabendweg, Karlsruhe",
+        "evaNumber": "360523",
+        "name": "Feierabendweg, Karlsruhe",
         "coordinates": {
           "lng": 8.360301,
           "lat": 49.022097
@@ -111,8 +111,8 @@
     },
     {
       "station": {
-        "id": "720543",
-        "title": "Hertzstraße, Karlsruhe",
+        "evaNumber": "720543",
+        "name": "Hertzstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.365155,
           "lat": 49.020255
@@ -131,8 +131,8 @@
     },
     {
       "station": {
-        "id": "367521",
-        "title": "Kußmaulstraße, Karlsruhe",
+        "evaNumber": "367521",
+        "name": "Kußmaulstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.369218,
           "lat": 49.016893
@@ -151,8 +151,8 @@
     },
     {
       "station": {
-        "id": "367101",
-        "title": "Städt. Klinikum/Moltkestraße, Karlsruhe",
+        "evaNumber": "367101",
+        "name": "Städt. Klinikum/Moltkestraße, Karlsruhe",
         "coordinates": {
           "lng": 8.374692,
           "lat": 49.015158
@@ -171,8 +171,8 @@
     },
     {
       "station": {
-        "id": "372041",
-        "title": "Yorckstraße, Karlsruhe",
+        "evaNumber": "372041",
+        "name": "Yorckstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.375456,
           "lat": 49.010906
@@ -191,8 +191,8 @@
     },
     {
       "station": {
-        "id": "721433",
-        "title": "Schillerstraße, Karlsruhe",
+        "evaNumber": "721433",
+        "name": "Schillerstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.379618,
           "lat": 49.009755
@@ -211,8 +211,8 @@
     },
     {
       "station": {
-        "id": "721441",
-        "title": "Sophienstraße, Karlsruhe",
+        "evaNumber": "721441",
+        "name": "Sophienstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.379025,
           "lat": 49.007517
@@ -231,8 +231,8 @@
     },
     {
       "station": {
-        "id": "721672",
-        "title": "Weinbrennerplatz, Karlsruhe",
+        "evaNumber": "721672",
+        "name": "Weinbrennerplatz, Karlsruhe",
         "coordinates": {
           "lng": 8.378666,
           "lat": 49.005387
@@ -251,8 +251,8 @@
     },
     {
       "station": {
-        "id": "364507",
-        "title": "Lessingstraße, Karlsruhe",
+        "evaNumber": "364507",
+        "name": "Lessingstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.384643,
           "lat": 49.004317
@@ -279,8 +279,8 @@
     },
     {
       "station": {
-        "id": "723254",
-        "title": "Arbeitsagentur, Karlsruhe",
+        "evaNumber": "723254",
+        "name": "Arbeitsagentur, Karlsruhe",
         "coordinates": {
           "lng": 8.386531,
           "lat": 49.003921
@@ -307,8 +307,8 @@
     },
     {
       "station": {
-        "id": "723255",
-        "title": "ZKM, Karlsruhe",
+        "evaNumber": "723255",
+        "name": "ZKM, Karlsruhe",
         "coordinates": {
           "lng": 8.386109,
           "lat": 48.999795
@@ -327,8 +327,8 @@
     },
     {
       "station": {
-        "id": "723960",
-        "title": "Welfenstraße, Karlsruhe",
+        "evaNumber": "723960",
+        "name": "Welfenstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.384922,
           "lat": 48.995292
@@ -347,8 +347,8 @@
     },
     {
       "station": {
-        "id": "723862",
-        "title": "Barbarossaplatz, Karlsruhe",
+        "evaNumber": "723862",
+        "name": "Barbarossaplatz, Karlsruhe",
         "coordinates": {
           "lng": 8.389354,
           "lat": 48.994941
@@ -367,8 +367,8 @@
     },
     {
       "station": {
-        "id": "721347",
-        "title": "Ebertstraße, Karlsruhe",
+        "evaNumber": "721347",
+        "name": "Ebertstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.395278,
           "lat": 48.994519
@@ -395,8 +395,8 @@
     },
     {
       "station": {
-        "id": "8079041",
-        "title": "Karlsruhe Bahnhofsvorplatz",
+        "evaNumber": "8079041",
+        "name": "Karlsruhe Bahnhofsvorplatz",
         "coordinates": {
           "lng": 8.399583,
           "lat": 48.994348
@@ -415,8 +415,8 @@
     },
     {
       "station": {
-        "id": "723870",
-        "title": "Poststraße, Karlsruhe",
+        "evaNumber": "723870",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -435,8 +435,8 @@
     },
     {
       "station": {
-        "id": "379084",
-        "title": "Tivoli, Karlsruhe",
+        "evaNumber": "379084",
+        "name": "Tivoli, Karlsruhe",
         "coordinates": {
           "lng": 8.410424,
           "lat": 48.996595
@@ -455,8 +455,8 @@
     },
     {
       "station": {
-        "id": "361483",
-        "title": "Werderstraße, Karlsruhe",
+        "evaNumber": "361483",
+        "name": "Werderstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.410613,
           "lat": 49.000451
@@ -475,8 +475,8 @@
     },
     {
       "station": {
-        "id": "721759",
-        "title": "Rüppurrer Tor, Karlsruhe",
+        "evaNumber": "721759",
+        "name": "Rüppurrer Tor, Karlsruhe",
         "coordinates": {
           "lng": 8.410424,
           "lat": 49.005036
@@ -495,8 +495,8 @@
     },
     {
       "station": {
-        "id": "364080",
-        "title": "Kronenplatz (Fritz-Erler-Str.), Karlsruhe",
+        "evaNumber": "364080",
+        "name": "Kronenplatz (Fritz-Erler-Str.), Karlsruhe",
         "coordinates": {
           "lng": 8.410083,
           "lat": 49.008272
@@ -515,8 +515,8 @@
     },
     {
       "station": {
-        "id": "377803",
-        "title": "Durlacher Tor/KIT-Campus Süd, Karlsruhe",
+        "evaNumber": "377803",
+        "name": "Durlacher Tor/KIT-Campus Süd, Karlsruhe",
         "coordinates": {
           "lng": 8.418083,
           "lat": 49.008784
@@ -535,8 +535,8 @@
     },
     {
       "station": {
-        "id": "723616",
-        "title": "Gottesauer Platz/BGV, Karlsruhe",
+        "evaNumber": "723616",
+        "name": "Gottesauer Platz/BGV, Karlsruhe",
         "coordinates": {
           "lng": 8.424636,
           "lat": 49.00758
@@ -555,8 +555,8 @@
     },
     {
       "station": {
-        "id": "721736",
-        "title": "Tullastraße/Verkehrsbetriebe, Karlsruhe",
+        "evaNumber": "721736",
+        "name": "Tullastraße/Verkehrsbetriebe, Karlsruhe",
         "coordinates": {
           "lng": 8.432493,
           "lat": 49.00607
@@ -575,8 +575,8 @@
     },
     {
       "station": {
-        "id": "366909",
-        "title": "Weinweg, Karlsruhe",
+        "evaNumber": "366909",
+        "name": "Weinweg, Karlsruhe",
         "coordinates": {
           "lng": 8.441563,
           "lat": 49.004371
@@ -595,8 +595,8 @@
     },
     {
       "station": {
-        "id": "364010",
-        "title": "Durlach Untermühlstraße, Karlsruhe",
+        "evaNumber": "364010",
+        "name": "Durlach Untermühlstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.455874,
           "lat": 49.001881
@@ -615,8 +615,8 @@
     },
     {
       "station": {
-        "id": "377561",
-        "title": "Durlach Auer Straße/Dr.Willmar Schwabe, Karlsruhe",
+        "evaNumber": "377561",
+        "name": "Durlach Auer Straße/Dr.Willmar Schwabe, Karlsruhe",
         "coordinates": {
           "lng": 8.463677,
           "lat": 49.000371
@@ -635,8 +635,8 @@
     },
     {
       "station": {
-        "id": "364499",
-        "title": "Durlach Gritznerstraße, Karlsruhe",
+        "evaNumber": "364499",
+        "name": "Durlach Gritznerstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.463955,
           "lat": 48.999328
@@ -655,8 +655,8 @@
     },
     {
       "station": {
-        "id": "364497",
-        "title": "Durlach Killisfeldstraße, Karlsruhe",
+        "evaNumber": "364497",
+        "name": "Durlach Killisfeldstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.462382,
           "lat": 48.997746
@@ -675,8 +675,8 @@
     },
     {
       "station": {
-        "id": "364495",
-        "title": "Durlach Ellmendinger Straße, Karlsruhe",
+        "evaNumber": "364495",
+        "name": "Durlach Ellmendinger Straße, Karlsruhe",
         "coordinates": {
           "lng": 8.458391,
           "lat": 48.994105
@@ -695,8 +695,8 @@
     },
     {
       "station": {
-        "id": "364494",
-        "title": "Durlach Ostmarkstraße, Karlsruhe",
+        "evaNumber": "364494",
+        "name": "Durlach Ostmarkstraße, Karlsruhe",
         "coordinates": {
           "lng": 8.452449,
           "lat": 48.991166
@@ -715,8 +715,8 @@
     },
     {
       "station": {
-        "id": "364493",
-        "title": "Durlach Schlesier Straße West, Karlsruhe",
+        "evaNumber": "364493",
+        "name": "Durlach Schlesier Straße West, Karlsruhe",
         "coordinates": {
           "lng": 8.452161,
           "lat": 48.988604
@@ -735,8 +735,8 @@
     },
     {
       "station": {
-        "id": "364496",
-        "title": "Durlach Steiermärker Straße, Karlsruhe",
+        "evaNumber": "364496",
+        "name": "Durlach Steiermärker Straße, Karlsruhe",
         "coordinates": {
           "lng": 8.45582,
           "lat": 48.985862
@@ -755,8 +755,8 @@
     },
     {
       "station": {
-        "id": "720609",
-        "title": "Durlach Zündhütle, Karlsruhe",
+        "evaNumber": "720609",
+        "name": "Durlach Zündhütle, Karlsruhe",
         "coordinates": {
           "lng": 8.460638,
           "lat": 48.982608
@@ -775,8 +775,8 @@
     },
     {
       "station": {
-        "id": "720595",
-        "title": "Wolfartsweier Nord, Karlsruhe",
+        "evaNumber": "720595",
+        "name": "Wolfartsweier Nord, Karlsruhe",
         "coordinates": {
           "lng": 8.458858,
           "lat": 48.979156
@@ -821,8 +821,8 @@
   "type": "JNY",
   "currentStop": {
     "station": {
-      "id": "721347",
-      "title": "Ebertstraße, Karlsruhe",
+      "evaNumber": "721347",
+      "name": "Ebertstraße, Karlsruhe",
       "coordinates": {
         "lng": 8.395278,
         "lat": 48.994519

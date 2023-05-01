@@ -87,7 +87,7 @@ export class JourneysV1Controller extends Controller {
     let result = risResult.length ? risResult : await hafasPromise;
     if (initialEvaNumber) {
       result = result.filter(
-        (r) => r.firstStop.station.id === initialEvaNumber,
+        (r) => r.firstStop.station.evaNumber === initialEvaNumber,
       );
     }
 
@@ -144,7 +144,7 @@ export class JourneysV1Controller extends Controller {
     let result = risResult.length ? risResult : await hafasPromise;
     if (initialEvaNumber) {
       result = result.filter(
-        (r) => r.firstStop.station.id === initialEvaNumber,
+        (r) => r.firstStop.station.evaNumber === initialEvaNumber,
       );
     }
 
@@ -219,7 +219,7 @@ export class JourneysV1Controller extends Controller {
         )
       ).filter(Boolean);
       foundJourney = allJourneys.find((j) =>
-        j.stops.map((s) => s.station.id).includes(evaNumberAlongRoute),
+        j.stops.map((s) => s.station.evaNumber).includes(evaNumberAlongRoute),
       );
     } else {
       foundJourney = await journeyDetails(possibleJourneys[0].journeyID);

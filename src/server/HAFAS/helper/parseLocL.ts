@@ -11,8 +11,8 @@ export function parseCoordinates(crd: Crd): {
 }
 
 export default (locL: LocL, products: ParsedProduct[]): HafasStation => ({
-  id: locL.extId,
-  title: locL.name,
+  evaNumber: locL.extId,
+  name: locL.name,
   coordinates: locL.crd && parseCoordinates(locL.crd),
   products: locL.pRefL && locL.pRefL.map((p) => products[p]),
 });

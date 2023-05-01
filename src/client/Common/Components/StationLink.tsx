@@ -29,8 +29,8 @@ export const StationLink: FC<Props> = ({
       {evaNumber ? (
         <StationNameWithRL100
           station={{
-            title: stationName,
-            id: evaNumber,
+            name: stationName,
+            evaNumber,
           }}
         />
       ) : (

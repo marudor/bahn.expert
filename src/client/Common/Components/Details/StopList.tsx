@@ -36,17 +36,19 @@ const ErrorIcon = styled(Error)(ErrorStyle);
 export const StopList: FC = () => {
   const { details, error, initialDepartureDate } = useDetails();
   const [currentSequenceStop, setCurrentSequenceStop] = useState(
-    details?.currentStop?.station.id,
+    details?.currentStop?.station.evaNumber,
   );
 
   const onStopClick = useCallback((stop: Route$Stop) => {
-    setCurrentSequenceStop(stop.station.id);
+    setCurrentSequenceStop(stop.station.evaNumber);
   }, []);
 
   useEffect(() => {
     if (details && details.currentStop) {
-      setCurrentSequenceStop(details.currentStop.station.id);
-      const scrollDom = document.getElementById(details.currentStop.station.id);
+      setCurrentSequenceStop(details.currentStop.station.evaNumber);
+      const scrollDom = document.getElementById(
+        details.currentStop.station.evaNumber,
+      );
 
       if (scrollDom) {
         scrollDom.scrollIntoView();
@@ -59,7 +61,7 @@ export const StopList: FC = () => {
     let hadCurrent = false;
 
     return details.stops.map((s) => {
-      if (details.currentStop?.station.id === s.station.id) {
+      if (details.currentStop?.station.evaNumber === s.station.evaNumber) {
         hadCurrent = true;
       }
 
@@ -69,9 +71,11 @@ export const StopList: FC = () => {
           isPast={!hadCurrent}
           train={details.train}
           stop={s}
-          key={s.station.id}
+          key={s.station.evaNumber}
           showWR={
-            currentSequenceStop === s.station.id ? details.train : undefined
+            currentSequenceStop === s.station.evaNumber
+              ? details.train
+              : undefined
           }
           initialDepartureDate={initialDepartureDate}
         />

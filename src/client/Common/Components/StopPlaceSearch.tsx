@@ -58,8 +58,8 @@ export const StopPlaceSearch: FC<Props> = ({
   const formatSuggestion = useCallback(
     (suggestion: MinimalStopPlace) => {
       let r = suggestion.name;
-      if (showRl100 && suggestion.identifier?.ril100) {
-        r += ` [${suggestion.identifier.ril100}]`;
+      if (showRl100 && suggestion?.ril100) {
+        r += ` [${suggestion.ril100}]`;
       }
       return r;
     },

@@ -21,31 +21,31 @@ import type {
   SecL,
   TripSearchResponse,
 } from '@/types/HAFAS/TripSearch';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 import type {
   Route$Journey,
   Route$JourneySegment,
   Route$Stop,
   RoutingResult,
-  RoutingStation,
   SingleRoute,
 } from '@/types/routing';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
 
-function parseFullStation(fullStation: string): RoutingStation {
+function parseFullStation(fullStation: string): MinimalStopPlace {
   const titleMatch = nameRegex.exec(fullStation);
   const idMatch = evaRegex.exec(fullStation);
 
-  let title = '';
-  let id = '';
+  let name = '';
+  let evaNumber = '';
 
-  if (titleMatch && titleMatch[1]) title = titleMatch[1];
-  if (idMatch && idMatch[1]) id = idMatch[1].padStart(7, '0');
+  if (titleMatch && titleMatch[1]) name = titleMatch[1];
+  if (idMatch && idMatch[1]) evaNumber = idMatch[1].padStart(7, '0');
 
   return {
-    title,
-    id,
+    name,
+    evaNumber,
   };
 }
 

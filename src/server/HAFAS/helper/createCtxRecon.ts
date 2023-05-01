@@ -25,8 +25,8 @@ export default ({
     replacementNumber = 2;
   }
 
-  return `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${
-    lastStop.station.id
+  return `¶HKI¶T$A=1@L=${firstStop.station.evaNumber}@a=128@$A=1@L=${
+    lastStop.station.evaNumber
   }@a=128@$${format(
     firstStop.departure.scheduledTime,
     'yyyyMMddHHmm',

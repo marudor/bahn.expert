@@ -43,8 +43,10 @@ describe('Zugsuche', () => {
             jid: 'ee7b2fbd-1370-4585-8108-22938c252836',
             train: { name: 'EC 6', line: null, type: 'EC', number: '6' },
             stops: [],
-            firstStop: { station: { id: '6000', title: 'Interlaken Ost' } },
-            lastStop: { station: { id: '8000050', title: 'Bremen Hbf' } },
+            firstStop: {
+              station: { evaNumber: '6000', name: 'Interlaken Ost' },
+            },
+            lastStop: { station: { evaNumber: '8000050', name: 'Bremen Hbf' } },
           },
         ]);
     });

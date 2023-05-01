@@ -1,20 +1,20 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useStopPlace } from '@/client/Common/hooks/useStopPlace';
 import type { FC } from 'react';
-import type { RoutingStation } from '@/types/routing';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export const StationNameWithRL100: FC<{
-  station: RoutingStation;
+  station: MinimalStopPlace;
 }> = ({ station }) => {
   const { showRl100 } = useCommonConfig();
-  const stopPlace = useStopPlace(station.id, !showRl100);
+  const stopPlace = useStopPlace(station.evaNumber, !showRl100);
 
-  if (!showRl100 || !stopPlace?.identifier?.ril100) {
-    return <>{station.title}</>;
+  if (!showRl100 || !stopPlace?.ril100) {
+    return <>{station.name}</>;
   }
   return (
     <>
-      {station.title} [{stopPlace.identifier.ril100}]
+      {station.name} [{stopPlace.ril100}]
     </>
   );
 };

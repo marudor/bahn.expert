@@ -78,7 +78,10 @@ export async function stopOccupancy(
 
   await Promise.all([
     relevantTrip.segments[0].stops.map((s) =>
-      stopOccupancyCache.set(`${keyWithouEva}-${s.station.id}`, s.auslastung),
+      stopOccupancyCache.set(
+        `${keyWithouEva}-${s.station.evaNumber}`,
+        s.auslastung,
+      ),
     ),
   ]);
 

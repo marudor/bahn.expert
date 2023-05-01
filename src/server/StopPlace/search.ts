@@ -219,7 +219,13 @@ async function searchStopPlaceRemote(
 async function addIdentifiers(stopPlaces: GroupedStopPlace[]): Promise<void> {
   await Promise.all(
     stopPlaces.map(async (stopPlace) => {
-      stopPlace.identifier = await getIdentifiers(stopPlace.evaNumber);
+      const identifier = await getIdentifiers(stopPlace.evaNumber);
+      if (identifier) {
+        stopPlace.alternativeRil100 = identifier.alternativeRil100;
+        stopPlace.ifopt = identifier.ifopt;
+        stopPlace.ril100 = identifier.ril100;
+        stopPlace.stationId = identifier.stationId;
+      }
     }),
   );
 }

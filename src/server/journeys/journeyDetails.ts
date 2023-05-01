@@ -31,7 +31,7 @@ export async function addIrisMessagesToDetails(
     if (stopInfo) {
       try {
         const irisData = await getAbfahrten(
-          irisStop.station.id,
+          irisStop.station.evaNumber,
           false,
           {
             lookahead: 10,
@@ -134,7 +134,8 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
   for (const e of events) {
     const stopInfo = mapEventToCommonStopInfo(e);
     const possibleStops = stops.filter(
-      (s) => s.station.id === e.station.evaNumber && newStopInfoIsAfter(s, e),
+      (s) =>
+        s.station.evaNumber === e.station.evaNumber && newStopInfoIsAfter(s, e),
     );
     let stop = possibleStops.length
       ? possibleStops[possibleStops.length - 1]
@@ -143,8 +144,8 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
     if (!stop || (stop.arrival && stop.departure)) {
       stop = {
         station: {
-          id: e.station.evaNumber,
-          title: e.station.name
+          evaNumber: e.station.evaNumber,
+          name: e.station.name
             .replaceAll('(', ' (')
             .replaceAll(')', ') ')
             .replaceAll('  ', ' ')

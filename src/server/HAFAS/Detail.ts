@@ -18,7 +18,9 @@ export function calculateCurrentStopPlace(
   let currentStop;
 
   if (currentStopId) {
-    currentStop = segment.stops.find((s) => s.station.id === currentStopId);
+    currentStop = segment.stops.find(
+      (s) => s.station.evaNumber === currentStopId,
+    );
   }
 
   if (!currentStop) {
@@ -114,7 +116,7 @@ export default async (
   let relevantSegment: ParsedSearchOnTripResponse = {
     type: 'JNY',
     cancelled: journeyDetails.stops.every((s) => s.cancelled),
-    finalDestination: journeyDetails.lastStop.station.title,
+    finalDestination: journeyDetails.lastStop.station.name,
     jid: relevantJid,
     train: journeyDetails.train,
     segmentDestination: journeyDetails.lastStop.station,
@@ -164,7 +166,7 @@ export default async (
 
   if (currentStopId) {
     relevantSegment.currentStop = relevantSegment.stops.find(
-      (s) => s.station.id === currentStopId,
+      (s) => s.station.evaNumber === currentStopId,
     );
   }
 
@@ -172,7 +174,7 @@ export default async (
     for (const [index, stop] of relevantSegment.stops.entries()) {
       const jDetailStop = journeyDetails.stops[index];
 
-      if (jDetailStop.station.id !== stop.station.id) continue;
+      if (jDetailStop.station.evaNumber !== stop.station.evaNumber) continue;
       if (jDetailStop.arrival && stop.arrival) {
         stop.arrival.delay = jDetailStop.arrival.delay;
         stop.arrival.time = jDetailStop.arrival.time;

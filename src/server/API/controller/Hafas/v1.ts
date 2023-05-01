@@ -33,7 +33,7 @@ export class HafasController extends Controller {
     if (!hafasDetails) return res(500);
 
     const trainName = `${hafasDetails.train.type} ${hafasDetails.train.number}`;
-    const evaNumber = hafasDetails.stops[0].station.id;
+    const evaNumber = hafasDetails.stops[0].station.evaNumber;
     const date = hafasDetails.stops[0].departure?.scheduledTime;
     const dataUrlPart = date?.toISOString() || '';
 

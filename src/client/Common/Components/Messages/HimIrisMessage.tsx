@@ -42,7 +42,7 @@ export const HimIrisMessage: FC<Props> = ({
     : headerMessage;
   const stopPlaceInfo =
     'stopPlace' in message && message.stopPlace
-      ? ` - ${message.stopPlace.title}`
+      ? ` - ${message.stopPlace.name}`
       : '';
 
   const text = `${

@@ -6,18 +6,13 @@ import type {
   RemL,
 } from './HAFAS';
 import type { Message } from './iris';
+import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { SecL } from './HAFAS/TripSearch';
-
-export interface RoutingStation {
-  title: string;
-  id: string;
-  rl100?: string;
-}
 
 export interface Route$Stop {
   arrival?: CommonStopInfo;
   departure?: CommonStopInfo;
-  station: RoutingStation;
+  station: MinimalStopPlace;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
   additional?: boolean;
@@ -51,8 +46,8 @@ export interface Route$Journey {
   jid: string;
   product?: ProdL;
   raw?: SecL;
-  segmentDestination: RoutingStation;
-  segmentStart: RoutingStation;
+  segmentDestination: MinimalStopPlace;
+  segmentStart: MinimalStopPlace;
   stops: Route$Stop[];
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
