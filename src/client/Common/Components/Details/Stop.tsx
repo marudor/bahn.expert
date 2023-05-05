@@ -178,6 +178,7 @@ export const Stop: FC<Props> = ({
             currentEvaNumber={stop.station.evaNumber}
             scheduledDeparture={depOrArrival.scheduledTime}
             initialDeparture={initialDepartureDate}
+            administration={train?.admin}
             loadHidden={!depOrArrival?.reihung}
           />
         )}

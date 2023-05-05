@@ -57,6 +57,11 @@ export const JnySegmentTrain: FC<Props> = ({
               trainCategory={segment.train.type}
               currentEvaNumber={segment.segmentStart.evaNumber}
               scheduledDeparture={segment.departure.scheduledTime}
+              initialDeparture={
+                (segment.stops[0].departure || segment.stops[0].arrival)
+                  ?.scheduledTime
+              }
+              administration={segment.train.admin}
               loadHidden={!segment.departure.reihung}
             />
           )}

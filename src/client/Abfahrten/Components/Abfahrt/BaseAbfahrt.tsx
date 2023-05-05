@@ -168,6 +168,7 @@ export const BaseAbfahrt: FC<Props> = ({
               currentEvaNumber={abfahrt.currentStopPlace.evaNumber}
               initialDeparture={abfahrt.initialDeparture}
               scheduledDeparture={abfahrt.departure.scheduledTime}
+              administration={abfahrt.train.admin}
               fallbackTrainNumbers={wingNumbersWithoutSelf}
             />
           )}

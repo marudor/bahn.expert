@@ -117,7 +117,7 @@ export interface CoachSequence {
 }
 
 export interface CoachSequenceInformation {
-  source: 'OEBB' | 'NEW' | 'DB';
+  source: 'OEBB' | 'NEW' | 'DB-apps' | 'DB-noncd' | 'DB-newApps';
   stop: CoachSequenceStop;
   product: CoachSequenceProduct;
   sequence: CoachSequence;

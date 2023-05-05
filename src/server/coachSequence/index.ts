@@ -11,6 +11,7 @@ export async function coachSequence(
   evaNumber?: EvaNumber,
   initialDeparture?: Date,
   trainCategory?: string,
+  administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
   if (evaNumber && initialDeparture && !evaNumber.startsWith('80')) {
     const oebbSequence = await OEBBCoachSequence(
@@ -28,7 +29,14 @@ export async function coachSequence(
 
   let newDBSequencePromise: Promise<CoachSequenceInformation | void> =
     Promise.resolve();
-  const dbSequencePromise = DBCoachSequence(trainNumber, departure);
+  const dbSequencePromise = DBCoachSequence(
+    trainNumber,
+    departure,
+    initialDeparture,
+    trainCategory,
+    evaNumber,
+    administration,
+  );
   // We only use the new API for ICEs (for now)
   if (evaNumber && initialDeparture && trainCategory === 'ICE') {
     newDBSequencePromise = newDBCoachSequence(

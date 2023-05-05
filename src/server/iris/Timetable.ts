@@ -756,6 +756,7 @@ export class Timetable {
         number: trainNumber,
         line: timetableLineNumber || customLineNumber,
         type: trainCategory,
+        admin: o,
       },
       additional: undefined as undefined | boolean,
     };
