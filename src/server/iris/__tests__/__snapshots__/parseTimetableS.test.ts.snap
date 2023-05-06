@@ -149,6 +149,7 @@ exports[`parseTimetableS arrivalCancelled.xml 1`] = `
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
   "train": {
+    "admin": "800354",
     "line": "8",
     "name": "S 8",
     "number": "30889",
@@ -236,6 +237,7 @@ exports[`parseTimetableS arrivalWing.xml 1`] = `
   "scheduledDestination": "Hamburg-Altona",
   "substitute": false,
   "train": {
+    "admin": "80",
     "line": undefined,
     "name": "ICE 1680",
     "number": "1680",
@@ -312,6 +314,7 @@ exports[`parseTimetableS arrivalWing.xml 2`] = `
   "scheduledDestination": "Bremen Hbf",
   "substitute": false,
   "train": {
+    "admin": "80",
     "line": undefined,
     "name": "ICE 1580",
     "number": "1580",
@@ -469,6 +472,7 @@ exports[`parseTimetableS cancelled.xml 1`] = `
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
   "train": {
+    "admin": "800354",
     "line": "8",
     "name": "S 8",
     "number": "30889",
@@ -626,6 +630,7 @@ exports[`parseTimetableS departureCancelled.xml 1`] = `
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
   "train": {
+    "admin": "800354",
     "line": "8",
     "name": "S 8",
     "number": "30889",
@@ -707,6 +712,7 @@ exports[`parseTimetableS departureWing.xml 1`] = `
   "scheduledDestination": "München Hbf",
   "substitute": false,
   "train": {
+    "admin": "80",
     "line": undefined,
     "name": "ICE 1689",
     "number": "1689",
@@ -777,6 +783,7 @@ exports[`parseTimetableS departureWing.xml 2`] = `
   "scheduledDestination": "München Hbf",
   "substitute": false,
   "train": {
+    "admin": "80",
     "line": undefined,
     "name": "ICE 1589",
     "number": "1589",
@@ -934,6 +941,7 @@ exports[`parseTimetableS filteredDueToTime.xml 1`] = `
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
   "train": {
+    "admin": "800354",
     "line": "8",
     "name": "S 8",
     "number": "30889",
@@ -1004,6 +1012,7 @@ exports[`parseTimetableS lookbehind.xml 1`] = `
   "scheduledDestination": "Frankfurt (Main) Hbf",
   "substitute": false,
   "train": {
+    "admin": "84",
     "line": undefined,
     "name": "ICE 123",
     "number": "123",
@@ -1083,6 +1092,7 @@ exports[`parseTimetableS multipleWings.xml 1`] = `
   "scheduledDestination": "Bayrischzell",
   "substitute": false,
   "train": {
+    "admin": "T8",
     "line": undefined,
     "name": "BOB 86871",
     "number": "86871",
@@ -1147,6 +1157,7 @@ exports[`parseTimetableS multipleWings.xml 2`] = `
   "scheduledDestination": "Tegernsee",
   "substitute": false,
   "train": {
+    "admin": "T8",
     "line": undefined,
     "name": "BOB 86971",
     "number": "86971",
@@ -1214,6 +1225,7 @@ exports[`parseTimetableS multipleWings.xml 3`] = `
   "scheduledDestination": "Lenggries",
   "substitute": false,
   "train": {
+    "admin": "T8",
     "line": undefined,
     "name": "BOB 86921",
     "number": "86921",
@@ -1281,6 +1293,7 @@ exports[`parseTimetableS onlyArrival.xml 1`] = `
   "scheduledDestination": "test",
   "substitute": false,
   "train": {
+    "admin": "AR",
     "line": "RE11",
     "name": "ABR RE11",
     "number": "26712",
@@ -1357,6 +1370,7 @@ exports[`parseTimetableS onlyDeparture.xml 1`] = `
   "scheduledDestination": "Paderborn Hbf",
   "substitute": false,
   "train": {
+    "admin": "AR",
     "line": "RE11",
     "name": "ABR RE11",
     "number": "26719",
@@ -1514,6 +1528,7 @@ exports[`parseTimetableS simple1.xml 1`] = `
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
   "train": {
+    "admin": "800354",
     "line": "8",
     "name": "S 8",
     "number": "30889",
@@ -1584,6 +1599,7 @@ exports[`parseTimetableS simple2.xml 1`] = `
   "scheduledDestination": "Frankfurt (Main) Hbf",
   "substitute": false,
   "train": {
+    "admin": "84",
     "line": undefined,
     "name": "ICE 123",
     "number": "123",
@@ -1741,6 +1757,7 @@ exports[`parseTimetableS visibleDueToDelay.xml 1`] = `
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
   "train": {
+    "admin": "800354",
     "line": "8",
     "name": "S 8",
     "number": "30889",
@@ -1827,6 +1844,7 @@ exports[`parseTimetableS wings.xml 1`] = `
   "scheduledDestination": "München Hbf",
   "substitute": false,
   "train": {
+    "admin": "80",
     "line": undefined,
     "name": "ICE 1587",
     "number": "1587",

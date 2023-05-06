@@ -166,6 +166,7 @@ exports[`onlyPlan arrivalCancelled.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -276,6 +277,7 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
       "scheduledPlatform": "8 D-G",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1680",
         "number": "1680",
@@ -361,6 +363,7 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
       "scheduledPlatform": "8 A-D",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1580",
         "number": "1580",
@@ -542,6 +545,7 @@ exports[`onlyPlan cancelled.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -723,6 +727,7 @@ exports[`onlyPlan departureCancelled.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -828,6 +833,7 @@ exports[`onlyPlan departureWing.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1689",
         "number": "1689",
@@ -916,6 +922,7 @@ exports[`onlyPlan departureWing.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1589",
         "number": "1589",
@@ -1015,6 +1022,7 @@ exports[`onlyPlan lookbehind.xml 1`] = `
       "scheduledPlatform": "16",
       "substitute": false,
       "train": {
+        "admin": "84",
         "line": undefined,
         "name": "ICE 123",
         "number": "123",
@@ -1119,6 +1127,7 @@ exports[`onlyPlan multipleWings.xml 1`] = `
       "scheduledPlatform": "34",
       "substitute": false,
       "train": {
+        "admin": "T8",
         "line": undefined,
         "name": "BOB 86871",
         "number": "86871",
@@ -1202,6 +1211,7 @@ exports[`onlyPlan multipleWings.xml 1`] = `
       "scheduledPlatform": "34",
       "substitute": false,
       "train": {
+        "admin": "T8",
         "line": undefined,
         "name": "BOB 86971",
         "number": "86971",
@@ -1282,6 +1292,7 @@ exports[`onlyPlan multipleWings.xml 1`] = `
       "scheduledPlatform": "34",
       "substitute": false,
       "train": {
+        "admin": "T8",
         "line": undefined,
         "name": "BOB 86921",
         "number": "86921",
@@ -1366,6 +1377,7 @@ exports[`onlyPlan onlyArrival.xml 1`] = `
       "scheduledPlatform": "10",
       "substitute": false,
       "train": {
+        "admin": "AR",
         "line": "RE11",
         "name": "ABR RE11",
         "number": "26712",
@@ -1467,6 +1479,7 @@ exports[`onlyPlan onlyDeparture.xml 1`] = `
       "scheduledPlatform": "10",
       "substitute": false,
       "train": {
+        "admin": "AR",
         "line": "RE11",
         "name": "ABR RE11",
         "number": "26719",
@@ -1648,6 +1661,7 @@ exports[`onlyPlan simple1.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -1741,6 +1755,7 @@ exports[`onlyPlan simple2.xml 1`] = `
       "scheduledPlatform": "16",
       "substitute": false,
       "train": {
+        "admin": "84",
         "line": undefined,
         "name": "ICE 123",
         "number": "123",
@@ -1862,6 +1877,7 @@ exports[`onlyPlan wings.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1587",
         "number": "1587",

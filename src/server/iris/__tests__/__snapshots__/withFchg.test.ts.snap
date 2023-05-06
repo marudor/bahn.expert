@@ -169,6 +169,7 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -284,6 +285,7 @@ exports[`withFchg arrivalWing.xml 1`] = `
       "scheduledPlatform": "8 D-G",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1680",
         "number": "1680",
@@ -374,6 +376,7 @@ exports[`withFchg arrivalWing.xml 1`] = `
       "scheduledPlatform": "8 A-D",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1580",
         "number": "1580",
@@ -582,6 +585,7 @@ exports[`withFchg cancelled.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -788,6 +792,7 @@ exports[`withFchg departureCancelled.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -898,6 +903,7 @@ exports[`withFchg departureWing.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1689",
         "number": "1689",
@@ -991,6 +997,7 @@ exports[`withFchg departureWing.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1589",
         "number": "1589",
@@ -1118,6 +1125,7 @@ exports[`withFchg lookbehind.xml 1`] = `
       "scheduledPlatform": "16",
       "substitute": false,
       "train": {
+        "admin": "84",
         "line": undefined,
         "name": "ICE 123",
         "number": "123",
@@ -1256,6 +1264,7 @@ exports[`withFchg multipleWings.xml 1`] = `
       "scheduledPlatform": "34",
       "substitute": false,
       "train": {
+        "admin": "T8",
         "line": undefined,
         "name": "BOB 86871",
         "number": "86871",
@@ -1365,6 +1374,7 @@ exports[`withFchg multipleWings.xml 1`] = `
       "scheduledPlatform": "34",
       "substitute": false,
       "train": {
+        "admin": "T8",
         "line": undefined,
         "name": "BOB 86971",
         "number": "86971",
@@ -1473,6 +1483,7 @@ exports[`withFchg multipleWings.xml 1`] = `
       "scheduledPlatform": "34",
       "substitute": false,
       "train": {
+        "admin": "T8",
         "line": undefined,
         "name": "BOB 86921",
         "number": "86921",
@@ -1560,6 +1571,7 @@ exports[`withFchg onlyArrival.xml 1`] = `
       "scheduledPlatform": "10",
       "substitute": false,
       "train": {
+        "admin": "AR",
         "line": "RE11",
         "name": "ABR RE11",
         "number": "26712",
@@ -1664,6 +1676,7 @@ exports[`withFchg onlyDeparture.xml 1`] = `
       "scheduledPlatform": "10",
       "substitute": false,
       "train": {
+        "admin": "AR",
         "line": "RE11",
         "name": "ABR RE11",
         "number": "26719",
@@ -1845,6 +1858,7 @@ exports[`withFchg simple1.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -1966,6 +1980,7 @@ exports[`withFchg simple2.xml 1`] = `
       "scheduledPlatform": "16",
       "substitute": false,
       "train": {
+        "admin": "84",
         "line": undefined,
         "name": "ICE 123",
         "number": "123",
@@ -2152,6 +2167,7 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
       "scheduledPlatform": "13",
       "substitute": false,
       "train": {
+        "admin": "800354",
         "line": "8",
         "name": "S 8",
         "number": "30889",
@@ -2267,6 +2283,7 @@ exports[`withFchg wings.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
+        "admin": "80",
         "line": undefined,
         "name": "ICE 1587",
         "number": "1587",
