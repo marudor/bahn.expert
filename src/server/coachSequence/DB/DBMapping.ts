@@ -1,5 +1,6 @@
 import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
+import { logger } from '@/server/logger';
 import type {
   BaseFahrzeug,
   BaseFahrzeuggruppe,
@@ -278,6 +279,14 @@ function mapDirection(coaches: CoachSequenceCoach[]) {
 export const mapInformation = (
   formation: BaseFormation,
 ): CoachSequenceInformation | undefined => {
+  if (
+    formation.auslastungsstufe &&
+    (formation.auslastungsstufe.auslastungsstufeErsteKlasse !== 'UNDEFINIERT' ||
+      formation.auslastungsstufe.auslastungsstufeZweiteKlasse !== 'UNDEFINIERT')
+  ) {
+    logger.info(`Auslastung Wagenreihung gefunden: ${formation.zugnummer}`);
+  }
+
   const sequence = mapSequence(formation);
   if (!sequence) return;
   const allCoaches = sequence.groups.flatMap((g) => g.coaches);

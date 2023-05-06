@@ -1,5 +1,10 @@
 import type { AvailableBR, AvailableIdentifier } from '@/types/coachSequence';
 
+interface Auslastungsstufe {
+  auslastungsstufeErsteKlasse: string;
+  auslastungsstufeZweiteKlasse: string;
+}
+
 export interface BaseFormation {
   /**
    * Should always be VORWAERTS
@@ -20,6 +25,7 @@ export interface BaseFormation {
    */
   fahrtid: string;
   istplaninformation: boolean;
+  auslastungsstufe?: Auslastungsstufe;
 }
 
 export interface Formation extends BaseFormation {

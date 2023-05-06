@@ -13,7 +13,7 @@ export function getComfortSeats(
       return klasse === 1 ? '11-36' : '11-57';
     case '401.9':
     case '401.LDV':
-      return klasse === 1 ? '12-31' : '11-44';
+      return klasse === 1 ? '12, 14, 16, 21-26, 31' : '11-44';
     case '402':
       return klasse === 1 ? '11-16, 21, 22' : '81-108';
     case '403':
@@ -56,7 +56,10 @@ export function getDisabledSeats(
       return klasse === 1 ? '51, 52, 53, 55' : '111-116';
     case '401.9':
     case '401.LDV':
-      return klasse === 1 ? '11, 13, 15' : '11, 13, 111-116';
+      if (klasse === 1) {
+        return '11, 13, 15';
+      }
+      return wagenordnungsnummer === '6' ? '53, 54' : '11-15, 17';
     case '402':
       return klasse === 1 ? '12, 21' : '81, 85-88';
     case '403':

@@ -67,11 +67,14 @@ function enrichCoachSequenceGroup(
         group.baureihe.identifier === '401.LDV' ||
         group.baureihe.identifier === '401.9'
       ) {
-        const wagen6 = group.coaches.find(
-          (c) => c.identificationNumber === '6',
-        );
-        if (wagen6 && wagen6.type === 'Bpmbsz') {
-          wagen6.features.disabled = false;
+        // Schwerbehindertenplätze/Vorrangplätze sind in Wagen 11, nicht 12
+        for (const coach of group.coaches) {
+          if (coach.identificationNumber === '11') {
+            coach.features.disabled = true;
+          }
+          if (coach.identificationNumber === '12') {
+            coach.features.disabled = false;
+          }
         }
       }
       for (const c of group.coaches) {
