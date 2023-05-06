@@ -71,6 +71,7 @@ interface Props {
   currentEvaNumber: string;
   scheduledDeparture: Date;
   initialDeparture?: Date;
+  administration?: string;
   withLegend?: boolean;
   loadHidden?: boolean;
 }
@@ -83,6 +84,7 @@ export const Reihung: FC<Props> = ({
   initialDeparture,
   fallbackTrainNumbers,
   trainCategory,
+  administration,
   loadHidden,
 }) => {
   const sequences = useSequences();
@@ -101,6 +103,7 @@ export const Reihung: FC<Props> = ({
         initialDeparture,
         fallbackTrainNumbers,
         trainCategory,
+        administration,
       );
     }
   }, [
@@ -112,6 +115,7 @@ export const Reihung: FC<Props> = ({
     scheduledDeparture,
     trainNumber,
     trainCategory,
+    administration,
   ]);
 
   const [scale, startPercent] = useMemo(() => {

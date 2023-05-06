@@ -46,6 +46,8 @@ export class ReihungControllerV4 extends Controller {
     @Query() initialDeparture?: Date,
     /** needed for new DB Reihung */
     @Query() category?: string,
+    /** needed for new DB Navigator Reihung */
+    @Query() administration?: string,
   ): Promise<CoachSequenceInformation | void> {
     try {
       const sequence = await coachSequence(
@@ -54,6 +56,7 @@ export class ReihungControllerV4 extends Controller {
         evaNumber,
         initialDeparture,
         category,
+        administration,
       );
       if (sequence) return sequence;
     } catch {

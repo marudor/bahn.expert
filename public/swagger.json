@@ -2422,7 +2422,9 @@
             "enum": [
               "OEBB",
               "NEW",
-              "DB"
+              "DB-apps",
+              "DB-noncd",
+              "DB-newApps"
             ]
           },
           "stop": {
@@ -3390,6 +3392,15 @@
             "description": "needed for new DB Reihung",
             "in": "query",
             "name": "category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "needed for new DB Navigator Reihung",
+            "in": "query",
+            "name": "administration",
             "required": false,
             "schema": {
               "type": "string"

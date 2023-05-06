@@ -13,8 +13,6 @@ import { IrisControllerv2 } from './controller/Iris/v2';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { JourneysV1Controller } from './controller/journeys/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ReihungMonitoringController } from './controller/Reihung/monitor';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV1 } from './controller/Reihung/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV4 } from './controller/Reihung/v4';
@@ -931,7 +929,7 @@ const models: TsoaRoute.Models = {
     "CoachSequenceInformation": {
         "dataType": "refObject",
         "properties": {
-            "source": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["OEBB"]},{"dataType":"enum","enums":["NEW"]},{"dataType":"enum","enums":["DB"]}],"required":true},
+            "source": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["OEBB"]},{"dataType":"enum","enums":["NEW"]},{"dataType":"enum","enums":["DB-apps"]},{"dataType":"enum","enums":["DB-noncd"]},{"dataType":"enum","enums":["DB-newApps"]}],"required":true},
             "stop": {"ref":"CoachSequenceStop","required":true},
             "product": {"ref":"CoachSequenceProduct","required":true},
             "sequence": {"ref":"CoachSequence","required":true},
@@ -1328,30 +1326,6 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/reihung/monitoring/wagen',
-            ...(fetchMiddlewares<Middleware>(ReihungMonitoringController)),
-            ...(fetchMiddlewares<Middleware>(ReihungMonitoringController.prototype.monitoring)),
-
-            async function ReihungMonitoringController_monitoring(context: any, next: any) {
-            const args = {
-                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new ReihungMonitoringController();
-
-            const promise = controller.monitoring.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v1/trainName/:tz',
             ...(fetchMiddlewares<Middleware>(ReihungControllerV1)),
             ...(fetchMiddlewares<Middleware>(ReihungControllerV1.prototype.trainName)),
@@ -1389,6 +1363,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     evaNumber: {"in":"query","name":"evaNumber","ref":"EvaNumber"},
                     initialDeparture: {"in":"query","name":"initialDeparture","dataType":"datetime"},
                     category: {"in":"query","name":"category","dataType":"string"},
+                    administration: {"in":"query","name":"administration","dataType":"string"},
             };
 
             let validatedArgs: any[] = [];
