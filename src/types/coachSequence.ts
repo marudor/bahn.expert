@@ -131,4 +131,7 @@ export interface CoachSequenceInformation {
    * undefined = we do not know
    */
   direction?: boolean;
+
+  // Only for DB-newApps
+  journeyId?: string;
 }

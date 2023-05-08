@@ -179,7 +179,7 @@ export async function DBCoachSequence(
   );
   if (!sequence) return undefined;
 
-  const mapped = mapInformation(sequence[0].data.istformation);
+  const mapped = mapInformation(sequence[0]);
   if (mapped) {
     mapped.source = `DB-${sequence[1]}`;
   }

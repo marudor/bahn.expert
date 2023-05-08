@@ -193,6 +193,7 @@ export const Reihung: FC<Props> = ({
               showDestination={
                 sequence.multipleDestinations && g.coaches.length > 1
               }
+              scheduledDeparture={scheduledDeparture}
               showGruppenZugnummer={sequence.multipleTrainNumbers}
               gruppe={g}
               key={i}

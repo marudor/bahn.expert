@@ -1,12 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BRInfo } from '@/client/Common/Components/Reihung/BRInfo';
+import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import { Fahrzeug } from './Fahrzeug';
+import { journeyNumberFind } from '@/client/Common/service/details';
 import { PrideStripe } from '@/client/Common/Components/Reihung/Stripes/PrideStripe';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import type { CoachSequenceGroup } from '@/types/coachSequence';
 import type { FC } from 'react';
 import type { InheritedProps } from './Fahrzeug';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
 const Bezeichnung = styled.div`
   display: flex;
@@ -24,11 +27,60 @@ interface Props extends InheritedProps {
   originalTrainNumber: string;
   showUIC: boolean;
   showCoachType: boolean;
+  scheduledDeparture: Date;
 }
 
 const RPFRegex = /(RP)(F\d)(\d{5})/;
 
 const prideTZName = 'ICE0304';
+
+const ClickableTrainLink: FC<{
+  type: string;
+  number: string;
+  scheduledDeparture: Date;
+}> = ({ type, number, scheduledDeparture }) => {
+  const [foundJourney, setFoundJourney] =
+    useState<ParsedJourneyMatchResponse>();
+  useEffect(() => {
+    void journeyNumberFind(
+      Number.parseInt(number),
+      scheduledDeparture,
+      undefined,
+      undefined,
+      undefined,
+      3,
+    ).then((journeys) => {
+      const relevantJourney = journeys.filter((j) => j.train.type === type);
+      if (relevantJourney.length) {
+        setFoundJourney(relevantJourney[0]);
+      }
+    });
+  }, [number, scheduledDeparture, type]);
+
+  if (foundJourney) {
+    return (
+      <DetailsLink
+        train={{
+          type,
+          number,
+        }}
+        initialDeparture={scheduledDeparture}
+        journeyId={
+          foundJourney.jid.includes('-') ? foundJourney.jid : undefined
+        }
+        jid={foundJourney.jid.includes('|') ? foundJourney.jid : undefined}
+      >
+        {type} {number}
+      </DetailsLink>
+    );
+  }
+
+  return (
+    <span>
+      {type} {number}
+    </span>
+  );
+};
 
 export const Gruppe: FC<Props> = ({
   gruppe,
@@ -36,6 +88,7 @@ export const Gruppe: FC<Props> = ({
   showFahrzeugGruppe,
   showGruppenZugnummer,
   originalTrainNumber,
+  scheduledDeparture,
   ...rest
 }) => {
   const gruppenPos = useMemo(() => {
@@ -85,9 +138,11 @@ export const Gruppe: FC<Props> = ({
         <Bezeichnung style={gruppenPos}>
           {gruppe.baureihe && <BRInfo br={gruppe.baureihe} />}
           {showGruppenZugnummer && gruppe.number && (
-            <span>
-              {rest.type} {gruppe.number}
-            </span>
+            <ClickableTrainLink
+              type={rest.type}
+              number={gruppe.number}
+              scheduledDeparture={scheduledDeparture}
+            />
           )}
           {showDestination && <span>Ziel: {gruppe.destinationName}</span>}
           {gruppe.trainName && <span>Zugname: "{gruppe.trainName}"</span>}

@@ -937,6 +937,7 @@ const models: TsoaRoute.Models = {
             "multipleDestinations": {"dataType":"boolean"},
             "isRealtime": {"dataType":"boolean","required":true},
             "direction": {"dataType":"boolean"},
+            "journeyId": {"dataType":"string"},
         },
         "additionalProperties": true,
     },

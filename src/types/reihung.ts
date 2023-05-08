@@ -187,6 +187,8 @@ export interface Fahrzeugausstattung {
 export interface Wagenreihung {
   meta: Meta;
   data: Data;
+  // only for DB-newApps
+  journeyID?: string;
 }
 
 export interface Meta {

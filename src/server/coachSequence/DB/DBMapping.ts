@@ -9,6 +9,7 @@ import type {
   Halt,
   Position,
   Sektor,
+  Wagenreihung,
 } from '@/types/reihung';
 import type {
   CoachSequence,
@@ -277,8 +278,9 @@ function mapDirection(coaches: CoachSequenceCoach[]) {
 }
 
 export const mapInformation = (
-  formation: BaseFormation,
+  wr: Wagenreihung,
 ): CoachSequenceInformation | undefined => {
+  const formation = wr.data.istformation;
   if (
     formation.auslastungsstufe &&
     (formation.auslastungsstufe.auslastungsstufeErsteKlasse !== 'UNDEFINIERT' ||
@@ -293,6 +295,7 @@ export const mapInformation = (
 
   const information: CoachSequenceInformation = {
     source: 'DB-newApps',
+    journeyId: wr.journeyID,
     sequence,
     product: mapProduct(formation),
     stop: mapStop(formation.halt),

@@ -2448,6 +2448,9 @@
           "direction": {
             "type": "boolean",
             "description": "true = in direction of first sector in array\nfalse = in direction of last sector in array\nundefined = we do not know"
+          },
+          "journeyId": {
+            "type": "string"
           }
         },
         "required": [

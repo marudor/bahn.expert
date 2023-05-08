@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { stopPropagation } from '@/client/Common/stopPropagation';
 import qs from 'qs';
 import type { CommonProductInfo } from '@/types/HAFAS';
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 interface Props {
   train: Pick<CommonProductInfo, 'type' | 'number'>;
@@ -12,13 +12,14 @@ interface Props {
   urlPrefix?: string;
   jid?: string;
 }
-export const DetailsLink: FC<Props> = ({
+export const DetailsLink: FC<PropsWithChildren<Props>> = ({
   train,
   evaNumberAlongRoute,
   initialDeparture,
   journeyId,
   jid,
   urlPrefix = '/',
+  children = 'Details',
 }) => {
   if (!train.number || !train.type) {
     return null;
@@ -40,7 +41,7 @@ export const DetailsLink: FC<Props> = ({
         },
       )}`}
     >
-      Details
+      {children}
     </Link>
   );
 };
