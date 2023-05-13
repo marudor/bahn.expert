@@ -38,11 +38,12 @@ const getATBR = (
   _coaches: Pick<CoachSequenceCoach, 'class'>[],
 ): undefined | Omit<CoachSequenceBaureihe, 'name'> => {
   switch (code) {
-    case '4011':
+    case '4011': {
       return {
         baureihe: '411',
         identifier: '411.S1',
       };
+    }
   }
 };
 const getDEBR = (
@@ -69,12 +70,14 @@ const getDEBR = (
     case '9812': {
       let identifier: '412' | '412.13' | '412.7' = '412';
       switch (coaches.length) {
-        case 13:
+        case 13: {
           identifier = '412.13';
           break;
-        case 7:
+        }
+        case 7: {
           identifier = '412.7';
           break;
+        }
       }
       return {
         identifier,
@@ -102,11 +105,12 @@ const getDEBR = (
     case '5805':
     case '5806':
     case '5807':
-    case '5808':
+    case '5808': {
       return {
         baureihe: '402',
         identifier: '402',
       };
+    }
     case '5403': {
       // const identifier: AvailableIdentifier = `403.S${
       //   Number.parseInt(uicOrdnungsnummer.slice(1), 10) <= 37 ? '1' : '2'
@@ -116,42 +120,49 @@ const getDEBR = (
         identifier: '403.R',
       };
     }
-    case '5406':
+    case '5406': {
       return {
         baureihe: '406',
         identifier: tzn?.endsWith('4651') ? '406.R' : '406',
       };
-    case '5407':
+    }
+    case '5407': {
       return {
         baureihe: '407',
         identifier: '407',
       };
-    case '5410':
+    }
+    case '5410': {
       return {
         baureihe: '410.1',
         identifier: '410.1',
       };
-    case '5408':
+    }
+    case '5408': {
       return {
         baureihe: '408',
         identifier: '408',
       };
-    case '5411':
+    }
+    case '5411': {
       return {
         baureihe: '411',
         identifier: `411.S${
           Number.parseInt(uicOrdnungsnummer, 10) <= 32 ? '1' : '2'
         }`,
       };
-    case '5415':
+    }
+    case '5415': {
       return {
         baureihe: '415',
         identifier: '415',
       };
-    case '5475':
+    }
+    case '5475': {
       return {
         identifier: 'TGV',
       };
+    }
   }
 };
 
@@ -165,12 +176,14 @@ export const getBaureiheByUIC = (
   const serial = uic.slice(8, 11);
   let br: undefined | Omit<CoachSequenceBaureihe, 'name'>;
   switch (country) {
-    case '80':
+    case '80': {
       br = getDEBR(code, serial, coaches, tzn);
       break;
-    case '81':
+    }
+    case '81': {
       br = getATBR(code, serial, coaches);
       break;
+    }
   }
   if (!br) return undefined;
 

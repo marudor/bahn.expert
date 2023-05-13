@@ -6,10 +6,12 @@ import type { Theme as MuiTheme, ThemeOptions } from '@mui/material';
 const getPaletteType = (themeType: E<typeof ThemeType>) => {
   switch (themeType) {
     case ThemeType.black:
-    case ThemeType.dark:
+    case ThemeType.dark: {
       return 'dark';
-    case ThemeType.light:
+    }
+    case ThemeType.light: {
       return 'light';
+    }
   }
 };
 

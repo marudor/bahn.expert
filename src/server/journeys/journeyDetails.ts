@@ -22,8 +22,7 @@ const trainNumberRegex = /(.*?)(\d+).*/;
 export async function addIrisMessagesToDetails(
   details: ParsedSearchOnTripResponse,
 ): Promise<void> {
-  const irisStop =
-    details.currentStop || details.stops[details.stops.length - 1];
+  const irisStop = details.currentStop || details.stops.at(-1);
 
   if (irisStop) {
     const stopInfo = irisStop.departure || irisStop.arrival;
@@ -89,9 +88,9 @@ function mapEventToCommonStopInfo(
   const time = parseISO(e.time);
   // Delay is undefined for scheduled stuff => no real time Information
   const delay =
-    e.timeType !== TimeType.Schedule
-      ? differenceInMinutes(time, scheduledTime)
-      : undefined;
+    e.timeType === TimeType.Schedule
+      ? undefined
+      : differenceInMinutes(time, scheduledTime);
 
   return {
     scheduledTime,
@@ -137,9 +136,7 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
       (s) =>
         s.station.evaNumber === e.station.evaNumber && newStopInfoIsAfter(s, e),
     );
-    let stop = possibleStops.length
-      ? possibleStops[possibleStops.length - 1]
-      : undefined;
+    let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
 
     if (!stop || (stop.arrival && stop.departure)) {
       stop = {
@@ -192,7 +189,7 @@ export async function journeyDetails(
     return undefined;
   }
   const firstStop = stops[0];
-  const lastStop = stops[stops.length - 1];
+  const lastStop = stops.at(-1)!;
 
   const operatorNames = [
     ...new Set(journey.events.map((e) => e.administration.operatorName)),

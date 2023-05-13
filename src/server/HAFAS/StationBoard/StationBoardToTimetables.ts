@@ -40,7 +40,7 @@ export default (
 
   arrivalRoute.pop();
   const splittedName = j.stops[0].station.name.split(',');
-  const townSuffix = `,${splittedName[splittedName.length - 1]}`;
+  const townSuffix = `,${splittedName.at(-1)}`;
 
   if (j.stops.every((s) => s.station.name.endsWith(townSuffix))) {
     for (const s of j.stops)

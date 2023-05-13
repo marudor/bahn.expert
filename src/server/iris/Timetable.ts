@@ -243,9 +243,7 @@ export class Timetable {
     );
 
     const nonCancelled = timetable.route.filter((r: any) => !r.cancelled);
-    const last = nonCancelled.length
-      ? nonCancelled[nonCancelled.length - 1]
-      : undefined;
+    const last = nonCancelled.length ? nonCancelled.at(-1) : undefined;
 
     timetable.destination = last?.name || timetable.scheduledDestination;
     calculateVia(timetable.routePost);
@@ -416,7 +414,7 @@ export class Timetable {
         himMessage.fromStopPlace && !himMessage.toStopPlace
           ? himMessage.fromStopPlace
           : undefined,
-      raw: process.env.NODE_ENV !== 'production' ? himMessage : undefined,
+      raw: process.env.NODE_ENV === 'production' ? undefined : himMessage,
     };
 
     return {
@@ -743,8 +741,7 @@ export class Timetable {
         name: this.currentStopPlaceName,
         evaNumber: this.evaNumber,
       },
-      scheduledDestination:
-        routePost[routePost.length - 1] || this.currentStopPlaceName,
+      scheduledDestination: routePost.at(-1) || this.currentStopPlaceName,
       id,
       rawId,
       mediumId,

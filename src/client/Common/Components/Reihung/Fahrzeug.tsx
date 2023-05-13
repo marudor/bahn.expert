@@ -92,13 +92,14 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
   },
   ({ coach, theme }) => {
     switch (coach.class) {
-      case 0:
+      case 0: {
         return {
           '&::after': {
             content: '"?"',
           },
         };
-      case 1:
+      }
+      case 1: {
         return {
           backgroundColor: theme.colors.yellow,
           color: theme.palette.getContrastText(theme.colors.yellow),
@@ -106,7 +107,8 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
             content: '"1"',
           },
         };
-      case 2:
+      }
+      case 2: {
         return {
           backgroundColor: theme.colors.red,
           color: theme.palette.getContrastText(theme.colors.red),
@@ -114,14 +116,16 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
             content: '"2"',
           },
         };
-      case 3:
+      }
+      case 3: {
         return {
           background: `linear-gradient(to right, ${theme.colors.yellow}, ${theme.colors.red})`,
           '&::after': {
             content: '"1/2"',
           },
         };
-      case 4:
+      }
+      case 4: {
         return {
           right: '50%',
           transform: 'translateX(50%)',
@@ -129,6 +133,7 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
             content: '"LOK"',
           },
         };
+      }
     }
   },
 );

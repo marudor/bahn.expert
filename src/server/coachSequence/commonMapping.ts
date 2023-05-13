@@ -83,14 +83,17 @@ function enrichCoachSequenceGroup(
       ) {
         for (const c of group.coaches) {
           switch (c.identificationNumber) {
-            case '6':
+            case '6': {
               c.features.disabled = true;
               break;
-            case '5':
+            }
+            case '5': {
               c.features.disabled = true;
               break;
-            case '4':
+            }
+            case '4': {
               c.features.disabled = false;
+            }
           }
         }
       }

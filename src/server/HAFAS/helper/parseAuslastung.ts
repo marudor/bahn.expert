@@ -20,14 +20,17 @@ export default (
     const a = tcocL[i];
 
     switch (a.c) {
-      case 'FIRST':
+      case 'FIRST': {
         auslastung.first = a.r;
         break;
-      case 'SECOND':
+      }
+      case 'SECOND': {
         auslastung.second = a.r;
         break;
-      default:
+      }
+      default: {
         break;
+      }
     }
   }
 

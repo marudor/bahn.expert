@@ -32,14 +32,17 @@ export default (adminPort = 9000): Server => {
   koa.use(async (ctx) => {
     try {
       switch (ctx.request.url) {
-        case '/ping':
+        case '/ping': {
           ctx.body = 'pong';
           break;
-        case '/metrics':
+        }
+        case '/metrics': {
           ctx.body = await PromClient.register.metrics();
           break;
-        default:
+        }
+        default: {
           break;
+        }
       }
     } catch {
       ctx.status = 500;

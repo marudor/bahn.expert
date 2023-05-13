@@ -147,11 +147,14 @@ function mapVrrOccupancy(
   vrrOccupancy: VRRTrainOccupancyValues,
 ): AuslastungsValue {
   switch (vrrOccupancy) {
-    case 1:
+    case 1: {
       return AuslastungsValue.Gering;
-    case 2:
+    }
+    case 2: {
       return AuslastungsValue.Hoch;
-    case 3:
+    }
+    case 3: {
       return AuslastungsValue.SehrHoch;
+    }
   }
 }

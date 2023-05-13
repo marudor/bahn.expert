@@ -58,10 +58,12 @@ function mapStop(
 function mapClass(vehicleType: VehicleType): CoachSequenceCoach['class'] {
   switch (vehicleType.category) {
     case 'LOCOMOTIVE':
-    case 'POWERCAR':
+    case 'POWERCAR': {
       return 4;
-    case 'DININGCAR':
+    }
+    case 'DININGCAR': {
       return 2;
+    }
   }
   if (vehicleType.hasFirstClass && vehicleType.hasEconomyClass) {
     return 3;
@@ -85,36 +87,46 @@ function mapFeatures(vehicle: VehicleInGroup): CoachSequenceCoachFeatures {
 
   for (const a of vehicle.amenities) {
     switch (a.type) {
-      case 'BIKE_SPACE':
+      case 'BIKE_SPACE': {
         features.bike = true;
         break;
-      case 'BISTRO':
+      }
+      case 'BISTRO': {
         features.dining = true;
         break;
-      case 'INFO':
+      }
+      case 'INFO': {
         features.info = true;
         break;
-      case 'SEATS_BAHN_COMFORT':
+      }
+      case 'SEATS_BAHN_COMFORT': {
         features.comfort = true;
         break;
-      case 'SEATS_SEVERELY_DISABLED':
+      }
+      case 'SEATS_SEVERELY_DISABLED': {
         features.disabled = true;
         break;
-      case 'WHEELCHAIR_SPACE':
+      }
+      case 'WHEELCHAIR_SPACE': {
         features.wheelchair = true;
         break;
-      case 'WIFI':
+      }
+      case 'WIFI': {
         features.wifi = true;
         break;
-      case 'ZONE_FAMILY':
+      }
+      case 'ZONE_FAMILY': {
         features.family = true;
         break;
-      case 'ZONE_QUIET':
+      }
+      case 'ZONE_QUIET': {
         features.quiet = true;
         break;
-      case 'CABIN_INFANT':
+      }
+      case 'CABIN_INFANT': {
         features.toddler = true;
         break;
+      }
     }
   }
 
@@ -171,7 +183,7 @@ function mapGroup(
 
 function mapDirection(coaches: CoachSequenceCoach[]) {
   const first = coaches[0];
-  const last = coaches[coaches.length - 1];
+  const last = coaches.at(-1)!;
 
   return last.position.startPercent > first.position.startPercent;
 }

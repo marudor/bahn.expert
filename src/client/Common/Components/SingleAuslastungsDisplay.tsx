@@ -6,16 +6,21 @@ import type { Theme } from '@emotion/react';
 
 function getIcon(auslastung?: AuslastungsValue) {
   switch (auslastung) {
-    case AuslastungsValue.Gering:
+    case AuslastungsValue.Gering: {
       return <Done fontSize="inherit" />;
-    case AuslastungsValue.Hoch:
+    }
+    case AuslastungsValue.Hoch: {
       return <Warning fontSize="inherit" />;
-    case AuslastungsValue.SehrHoch:
+    }
+    case AuslastungsValue.SehrHoch: {
       return <ErrorOutline fontSize="inherit" />;
-    case AuslastungsValue.Ausgebucht:
+    }
+    case AuslastungsValue.Ausgebucht: {
       return <Close fontSize="inherit" />;
-    default:
+    }
+    default: {
       return <Help fontSize="inherit" />;
+    }
   }
 }
 
@@ -35,16 +40,21 @@ const Container = styled.span<{ auslastung?: AuslastungsValue }>(
   },
   ({ theme, auslastung }) => {
     switch (auslastung) {
-      case AuslastungsValue.Gering:
+      case AuslastungsValue.Gering: {
         return getColors(theme.colors.green, theme);
-      case AuslastungsValue.Hoch:
+      }
+      case AuslastungsValue.Hoch: {
         return getColors(theme.colors.yellow, theme);
-      case AuslastungsValue.SehrHoch:
+      }
+      case AuslastungsValue.SehrHoch: {
         return getColors(theme.colors.orange, theme);
-      case AuslastungsValue.Ausgebucht:
+      }
+      case AuslastungsValue.Ausgebucht: {
         return getColors(theme.colors.red, theme);
-      default:
+      }
+      default: {
         return {};
+      }
     }
   },
 );

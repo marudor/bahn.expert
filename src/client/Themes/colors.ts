@@ -27,7 +27,7 @@ export function getColors(
   const europe = '#001489';
 
   switch (themeType) {
-    case ThemeType.black:
+    case ThemeType.black: {
       return {
         pride,
         red: red.A400,
@@ -39,7 +39,8 @@ export function getColors(
         transparentBackground: 'rgba(0, 0, 0, 0.55)',
         europe,
       };
-    case ThemeType.dark:
+    }
+    case ThemeType.dark: {
       return {
         pride,
         red: red.A400,
@@ -51,7 +52,8 @@ export function getColors(
         transparentBackground: 'rgba(48, 48, 48, 0.55)',
         europe,
       };
-    case ThemeType.light:
+    }
+    case ThemeType.light: {
       return {
         pride,
         red: red[700],
@@ -63,5 +65,6 @@ export function getColors(
         transparentBackground: 'rgba(255, 255, 255, 0.55)',
         europe,
       };
+    }
   }
 }
