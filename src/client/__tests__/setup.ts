@@ -57,7 +57,7 @@ beforeAll(() => {
     // eslint-disable-next-line func-names
     return function (this: any, ...args: any) {
       if (typeof args[0] === 'string') {
-        args[0] = args[0].replace(/ /g, '%20');
+        args[0] = args[0].replaceAll(' ', '%20');
       }
 
       return oldFn.apply(this, args);

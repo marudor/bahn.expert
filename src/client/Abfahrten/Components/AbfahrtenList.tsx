@@ -58,14 +58,14 @@ const InnerAbfahrtenList = () => {
     useHeaderTagsActions();
 
   useEffect(() => {
-    if (!currentStopPlace) {
-      updateTitle();
-      updateDescription();
-      updateKeywords();
-    } else {
+    if (currentStopPlace) {
       updateTitle(currentStopPlace.name);
       updateDescription(`Zugabfahrten für ${currentStopPlace.name}`);
       updateKeywords([currentStopPlace.name]);
+    } else {
+      updateTitle();
+      updateDescription();
+      updateKeywords();
     }
   }, [currentStopPlace, updateDescription, updateTitle, updateKeywords]);
 

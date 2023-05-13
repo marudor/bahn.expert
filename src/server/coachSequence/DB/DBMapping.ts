@@ -40,8 +40,9 @@ const mapClass = (category: VehicleCategory) => {
     case 'DOUBLECONTROLCAR_ECONOMY_CLASS':
     case 'PASSENGERCARRIAGE_ECONOMY_CLASS':
     case 'DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS':
-    case 'DININGCAR':
+    case 'DININGCAR': {
       return 2;
+    }
     // case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
     // case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
     // case 'STEUERWAGENERSTEZWEITEKLASSE':
@@ -51,8 +52,9 @@ const mapClass = (category: VehicleCategory) => {
     case 'DOUBLEDECK_FIRST_ECONOMY_CLASS':
     case 'DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS':
     case 'PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS':
-    case 'DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS':
+    case 'DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS': {
       return 3;
+    }
     // case 'HALBSPEISEWAGENERSTEKLASSE':
     // case 'DOPPELSTOCKWAGENERSTEKLASSE':
     // case 'REISEZUGWAGENERSTEKLASSE':
@@ -63,14 +65,17 @@ const mapClass = (category: VehicleCategory) => {
     case 'DOUBLEDECK_FIRST_CLASS':
     case 'HALFDININGCAR_FIRST_CLASS':
     case 'PASSENGERCARRIAGE_FIRST_CLASS':
-    case 'DOUBLEDECK_CONTROLCAR_FIRST_CLASS':
+    case 'DOUBLEDECK_CONTROLCAR_FIRST_CLASS': {
       return 1;
+    }
     case 'BAGGAGECAR':
     case 'POWERCAR':
-    case 'LOCOMOTIVE':
+    case 'LOCOMOTIVE': {
       return 4;
-    default:
+    }
+    default: {
       return 0;
+    }
   }
 };
 
@@ -91,33 +96,42 @@ const mapFeatures = (fahrzeug: BaseFahrzeug): CoachSequenceCoachFeatures => {
   }
   for (const ausstattung of fahrzeug.allFahrzeugausstattung) {
     switch (ausstattung.ausstattungsart) {
-      case 'PLAETZEROLLSTUHL':
+      case 'PLAETZEROLLSTUHL': {
         features.wheelchair = true;
         break;
-      case 'PLAETZEFAHRRAD':
+      }
+      case 'PLAETZEFAHRRAD': {
         features.bike = true;
         break;
-      case 'BISTRO':
+      }
+      case 'BISTRO': {
         features.dining = true;
         break;
-      case 'RUHE':
+      }
+      case 'RUHE': {
         features.quiet = true;
         break;
-      case 'FAMILIE':
+      }
+      case 'FAMILIE': {
         features.family = true;
         break;
-      case 'PLAETZEBAHNCOMFORT':
+      }
+      case 'PLAETZEBAHNCOMFORT': {
         features.comfort = true;
         break;
-      case 'PLAETZESCHWERBEH':
+      }
+      case 'PLAETZESCHWERBEH': {
         features.disabled = true;
         break;
-      case 'INFO':
+      }
+      case 'INFO': {
         features.info = true;
         break;
-      case 'ABTEILKLEINKIND':
+      }
+      case 'ABTEILKLEINKIND': {
         features.toddler = true;
         break;
+      }
     }
   }
 
@@ -126,42 +140,60 @@ const mapFeatures = (fahrzeug: BaseFahrzeug): CoachSequenceCoachFeatures => {
 
 function mapFahrzeugkategorie(kategorie: FahrzeugKategorie): VehicleCategory {
   switch (kategorie) {
-    case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
+    case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE': {
       return 'DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS';
-    case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE':
+    }
+    case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE': {
       return 'DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS';
-    case 'DOPPELSTOCKWAGENERSTEKLASSE':
+    }
+    case 'DOPPELSTOCKWAGENERSTEKLASSE': {
       return 'DOUBLEDECK_FIRST_CLASS';
-    case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
+    }
+    case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE': {
       return 'DOUBLEDECK_FIRST_ECONOMY_CLASS';
-    case 'DOPPELSTOCKWAGENZWEITEKLASSE':
+    }
+    case 'DOPPELSTOCKWAGENZWEITEKLASSE': {
       return 'DOUBLEDECK_ECONOMY_CLASS';
-    case 'HALBSPEISEWAGENERSTEKLASSE':
+    }
+    case 'HALBSPEISEWAGENERSTEKLASSE': {
       return 'HALFDININGCAR_FIRST_CLASS';
-    case 'HALBSPEISEWAGENZWEITEKLASSE':
+    }
+    case 'HALBSPEISEWAGENZWEITEKLASSE': {
       return 'HALFDININGCAR_ECONOMY_CLASS';
-    case 'LOK':
+    }
+    case 'LOK': {
       return 'LOCOMOTIVE';
-    case 'REISEZUGWAGENERSTEKLASSE':
+    }
+    case 'REISEZUGWAGENERSTEKLASSE': {
       return 'PASSENGERCARRIAGE_FIRST_CLASS';
-    case 'REISEZUGWAGENERSTEZWEITEKLASSE':
+    }
+    case 'REISEZUGWAGENERSTEZWEITEKLASSE': {
       return 'PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS';
-    case 'REISEZUGWAGENZWEITEKLASSE':
+    }
+    case 'REISEZUGWAGENZWEITEKLASSE': {
       return 'PASSENGERCARRIAGE_ECONOMY_CLASS';
-    case 'SPEISEWAGEN':
+    }
+    case 'SPEISEWAGEN': {
       return 'DININGCAR';
-    case 'STEUERWAGENERSTEKLASSE':
+    }
+    case 'STEUERWAGENERSTEKLASSE': {
       return 'CONTROLCAR_FIRST_CLASS';
-    case 'STEUERWAGENERSTEZWEITEKLASSE':
+    }
+    case 'STEUERWAGENERSTEZWEITEKLASSE': {
       return 'CONTROLCAR_FIRST_ECONOMY_CLASS';
-    case 'STEUERWAGENZWEITEKLASSE':
+    }
+    case 'STEUERWAGENZWEITEKLASSE': {
       return 'CONTROLCAR_ECONOMY_CLASS';
-    case 'TRIEBKOPF':
+    }
+    case 'TRIEBKOPF': {
       return 'POWERCAR';
-    case 'DOPPELSTOCKSTEUERWAGENERSTEKLASSE':
+    }
+    case 'DOPPELSTOCKSTEUERWAGENERSTEKLASSE': {
       return 'DOUBLEDECK_CONTROLCAR_FIRST_CLASS';
-    default:
+    }
+    default: {
       return 'UNDEFINED';
+    }
   }
 }
 
@@ -272,7 +304,7 @@ const mapProduct = (formation: BaseFormation): CoachSequenceProduct => ({
 
 function mapDirection(coaches: CoachSequenceCoach[]) {
   const first = coaches[0];
-  const last = coaches[coaches.length - 1];
+  const last = coaches.at(-1)!;
 
   return last.position.startPercent > first.position.startPercent;
 }

@@ -9,7 +9,7 @@ const Wrapper = styled.div<{ detail: boolean }>(({ detail }) => ({
   flex: 1,
   justifyContent: 'space-around',
   overflow: 'hidden',
-  whiteSpace: !detail ? 'nowrap' : undefined,
+  whiteSpace: detail ? undefined : 'nowrap',
 }));
 
 const Destination = styled.div<{

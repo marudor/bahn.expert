@@ -27,7 +27,7 @@ const parseJourneyMatch = (
       stops,
       jid: j.jid,
       firstStop: stops[0],
-      lastStop: stops[stops.length - 1],
+      lastStop: stops.at(-1)!,
       messages: parseMessages(j.msgL, common),
     };
   });

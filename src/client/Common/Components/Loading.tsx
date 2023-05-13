@@ -92,7 +92,7 @@ const InnerLoading = ({
 }: Pick<CommonProps, 'type' | 'relative'>) => {
   switch (type) {
     default:
-    case LoadingType.grid:
+    case LoadingType.grid: {
       return (
         <Grid absolute={!relative} data-testid="grid">
           <div />
@@ -106,7 +106,8 @@ const InnerLoading = ({
           <div />
         </Grid>
       );
-    case LoadingType.dots:
+    }
+    case LoadingType.dots: {
       return (
         <Dots data-testid="dots">
           <div />
@@ -114,6 +115,7 @@ const InnerLoading = ({
           <div />
         </Dots>
       );
+    }
   }
 };
 

@@ -3,7 +3,7 @@ import type { Common, ParsedProduct, ProdL } from '@/types/HAFAS';
 
 export default (product: ProdL, common: Common): ParsedProduct => {
   const operator =
-    product.oprX !== undefined ? common.opL[product.oprX] : undefined;
+    product.oprX === undefined ? undefined : common.opL[product.oprX];
   const number = product.prodCtx?.num ?? product.number;
 
   return {

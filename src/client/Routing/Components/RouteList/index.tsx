@@ -13,10 +13,12 @@ import type { FC } from 'react';
 const translateError = (e: any) => {
   if (e && e.response && e.response.data) {
     switch (e.response.data.errorCode) {
-      case 'H9380':
+      case 'H9380': {
         return 'Du bist schon da. Hör auf zu suchen!';
-      default:
+      }
+      default: {
         return `${e} (Hafas Code: ${e.response.data.errorCode})`;
+      }
     }
   }
 

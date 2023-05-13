@@ -103,9 +103,7 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
         trainNumber = info.timeTableInfo.trainNr.toString();
       } else {
         const stationsForTrain = train.stations;
-        if (
-          stationsForTrain[stationsForTrain.length - 1] === destinationDB640
-        ) {
+        if (stationsForTrain.at(-1) === destinationDB640) {
           trainNumber = train.trainNr.toString();
         } else if (info.timeTableInfo.portions.length <= 2) {
           trainNumber =

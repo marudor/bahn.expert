@@ -35,8 +35,7 @@ const parseStationBoardResponse = (
   };
 
   if (!commonResponse.finalDestination && commonResponse.stops) {
-    commonResponse.finalDestination =
-      commonResponse.stops[commonResponse.stops.length - 1].station.name;
+    commonResponse.finalDestination = commonResponse.stops.at(-1)!.station.name;
   }
 
   if (isArrival(jny.stbStop)) {

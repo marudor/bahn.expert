@@ -27,20 +27,23 @@ function getErrorText(
   staticContext?: StaticRouterContext,
 ): React.ReactNode {
   switch (error.errorType) {
-    case 'redirect':
+    case 'redirect': {
       return <Navigate to={error.redirect} />;
-    case '404':
+    }
+    case '404': {
       if (staticContext) {
         staticContext.status = 404;
       }
 
       return 'Die Abfahrt existiert nicht';
-    default:
+    }
+    default: {
       if (error.code === 'ECONNABORTED') {
         return 'Timeout - bitte erneut versuchen';
       }
 
       return 'Unbekannter Fehler';
+    }
   }
 }
 

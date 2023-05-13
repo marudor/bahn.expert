@@ -165,7 +165,9 @@ async function byRl100WithSpaceHandling(
   const rl100Promise = byRl100(rl100.toUpperCase());
   let rl100DoubleSpacePromise: typeof rl100Promise = Promise.resolve(undefined);
   if (rl100.length < 5 && rl100.includes(' ')) {
-    rl100DoubleSpacePromise = byRl100(rl100.replace(/ /g, '  ').toUpperCase());
+    rl100DoubleSpacePromise = byRl100(
+      rl100.replaceAll(' ', '  ').toUpperCase(),
+    );
   }
   const result = (await rl100Promise) || (await rl100DoubleSpacePromise);
   if (result) {
@@ -242,21 +244,25 @@ export async function getIdentifiers(
     const stopPlaceKeys = await keys(evaNumber);
     for (const { type, key } of stopPlaceKeys) {
       switch (type) {
-        case StopPlaceKeyType.Ifopt:
+        case StopPlaceKeyType.Ifopt: {
           identifier.ifopt = key;
           break;
-        case StopPlaceKeyType.Rl100:
+        }
+        case StopPlaceKeyType.Rl100: {
           identifier.ril100 = key;
           break;
-        case StopPlaceKeyType.Rl100Alternative:
+        }
+        case StopPlaceKeyType.Rl100Alternative: {
           if (!identifier.alternativeRil100) {
             identifier.alternativeRil100 = [];
           }
           identifier.alternativeRil100.push(key);
           break;
-        case StopPlaceKeyType.Stada:
+        }
+        case StopPlaceKeyType.Stada: {
           identifier.stationId = key;
           break;
+        }
       }
     }
     void stopPlaceIdentifierCache.set(evaNumber, identifier);

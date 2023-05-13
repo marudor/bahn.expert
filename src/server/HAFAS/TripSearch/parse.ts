@@ -66,11 +66,11 @@ function adjustToLastTrain(
   arrival: CommonStopInfo,
   segments: Route$JourneySegment[],
 ) {
-  if (segments.length && segments[segments.length - 1].type !== 'JNY') {
+  if (segments.length && segments.at(-1)!.type !== 'JNY') {
     const allTrainSegments = segments.filter((s) => s.type === 'JNY');
 
     if (allTrainSegments.length) {
-      const lastTrainSegment = allTrainSegments[allTrainSegments.length - 1];
+      const lastTrainSegment = allTrainSegments.at(-1)!;
 
       arrival.delay = lastTrainSegment.arrival.delay;
     }
@@ -181,7 +181,7 @@ export class Journey {
         };
       }
       case 'TRSF':
-      case 'WALK':
+      case 'WALK': {
         return {
           type: 'WALK',
           train: {
@@ -194,8 +194,10 @@ export class Journey {
           segmentStart: this.common.locL[t.dep.locX],
           segmentDestination: this.common.locL[t.arr.locX],
         };
-      default:
+      }
+      default: {
         return undefined;
+      }
     }
   };
 }
