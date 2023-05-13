@@ -26,7 +26,7 @@ const identifierWithPDF = new Set<AvailableIdentifier>([
   '412',
   '412.13',
   '415',
-  'IC2.KISS',
+  '4110',
   'IC2.TWIN',
   'MET',
 ]);

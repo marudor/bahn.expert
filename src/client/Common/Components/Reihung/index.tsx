@@ -10,6 +10,7 @@ import {
   useSequencesActions,
 } from '@/client/Common/provider/ReihungenProvider';
 import styled from '@emotion/styled';
+import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/ReihungenProvider';
 import type { FC } from 'react';
 
 const ContainerWrap = styled.div`
@@ -67,7 +68,7 @@ interface Props {
   className?: string;
   trainNumber: string;
   trainCategory?: string;
-  fallbackTrainNumbers?: string[];
+  fallbackWings?: FallbackTrainsForCoachSequence[];
   currentEvaNumber: string;
   scheduledDeparture: Date;
   initialDeparture?: Date;
@@ -82,7 +83,7 @@ export const Reihung: FC<Props> = ({
   scheduledDeparture,
   trainNumber,
   initialDeparture,
-  fallbackTrainNumbers,
+  fallbackWings: fallback,
   trainCategory,
   administration,
   loadHidden,
@@ -101,14 +102,14 @@ export const Reihung: FC<Props> = ({
         currentEvaNumber,
         scheduledDeparture,
         initialDeparture,
-        fallbackTrainNumbers,
+        fallback,
         trainCategory,
         administration,
       );
     }
   }, [
     currentEvaNumber,
-    fallbackTrainNumbers,
+    fallback,
     getSequences,
     initialDeparture,
     sequence,

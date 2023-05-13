@@ -77,6 +77,23 @@ function enrichCoachSequenceGroup(
           }
         }
       }
+      if (
+        group.baureihe.identifier === '4010' ||
+        group.baureihe.identifier === '4110'
+      ) {
+        for (const c of group.coaches) {
+          switch (c.identificationNumber) {
+            case '6':
+              c.features.disabled = true;
+              break;
+            case '5':
+              c.features.disabled = true;
+              break;
+            case '4':
+              c.features.disabled = false;
+          }
+        }
+      }
       for (const c of group.coaches) {
         c.seats = getSeatsForCoach(c, group.baureihe.identifier);
       }

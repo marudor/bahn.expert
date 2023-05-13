@@ -25,12 +25,10 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
     [abfahrt.train.number, abfahrt.train.type, wings],
   );
 
-  const wingNumbers = useMemo(
+  const wingTrains = useMemo(
     () =>
-      wings?.length
-        ? [...wings.map((w) => w.train.number), abfahrt.train.number]
-        : undefined,
-    [abfahrt.train.number, wings],
+      wings?.length ? [...wings.map((w) => w.train), abfahrt.train] : undefined,
+    [abfahrt.train, wings],
   );
 
   return (
@@ -39,8 +37,8 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
         detail={abfahrt.id === selectedDetail}
         abfahrt={abfahrt}
         sameTrainWing={sameTrainWing}
-        wingNumbers={wingNumbers}
-        wingStart={Boolean(wingNumbers)}
+        wings={wingTrains}
+        wingStart={Boolean(wingTrains)}
       />
       {wings &&
         wings.map((w, index) => (
@@ -49,7 +47,7 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
             sameTrainWing={sameTrainWing}
             abfahrt={w}
             key={w.rawId}
-            wingNumbers={wingNumbers}
+            wings={wingTrains}
             wingEnd={wings.length === index + 1}
           />
         ))}

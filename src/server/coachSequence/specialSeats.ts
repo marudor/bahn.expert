@@ -41,8 +41,10 @@ export function getComfortSeats(
       return klasse === 1 ? '61-66' : '91-106';
     case 'IC2.TWIN':
       return klasse === 1 ? '73, 75, 83-86' : '31-38, 41-45, 47';
-    case 'IC2.KISS':
-      return klasse === 3 ? '144, 145' : '55-68';
+    case '4110':
+      return klasse === 3 ? '134, 138' : '135-144';
+    case '4010':
+      return klasse === 1 ? '141, 142, 145, 146' : '111-138';
   }
 }
 
@@ -113,8 +115,10 @@ export function getDisabledSeats(
       return klasse === 1 ? '16, 21' : '12, 14, 16';
     case 'IC2.TWIN':
       return klasse === 1 ? '21, 71' : '25, 101-105, 171-173';
-    case 'IC2.KISS':
-      return klasse === 3 ? '143' : '21-26';
+    case '4110':
+      return klasse === 3 ? '148' : '21-26';
+    case '4010':
+      return klasse === 1 ? '46, 51' : '21-32';
   }
 }
 
@@ -151,8 +155,9 @@ export function getFamilySeats(
       return '11-26';
     case 'IC2.TWIN':
       return '121, 123, 131-138';
-    case 'IC2.KISS':
-      return '42, 43, 45, 46, 52-56';
+    case '4110':
+    case '4010':
+      return '21-38';
   }
 }
 

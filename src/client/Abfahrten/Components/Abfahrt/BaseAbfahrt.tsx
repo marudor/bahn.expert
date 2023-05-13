@@ -16,6 +16,7 @@ import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetail
 import loadable from '@loadable/component';
 import styled from '@emotion/styled';
 import type { Abfahrt } from '@/types/iris';
+import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/ReihungenProvider';
 import type { FC } from 'react';
 
 const LazyReihung = loadable(
@@ -95,20 +96,21 @@ export interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
   sameTrainWing: boolean;
-  wingNumbers?: string[];
+  wings?: FallbackTrainsForCoachSequence[];
   wingEnd?: boolean;
   wingStart?: boolean;
 }
 
 export const BaseAbfahrt: FC<Props> = ({
   abfahrt,
-  wingNumbers,
+  wings,
   wingEnd,
   wingStart,
   detail,
 }) => {
-  const wingNumbersWithoutSelf = wingNumbers?.filter(
-    (wn) => wn !== abfahrt.train.number,
+  const wingsWithoutSelf = useMemo(
+    () => wings?.filter((wn) => wn.number !== abfahrt.train.number),
+    [wings, abfahrt.train.number],
   );
   const setSelectedDetail = useSetSelectedDetail();
   const handleClick = useCallback(() => {
@@ -150,9 +152,7 @@ export const BaseAbfahrt: FC<Props> = ({
   return (
     <AbfahrtContext.Provider value={contextValue}>
       <Container square id={`${abfahrt.id}container`} onClick={handleClick}>
-        {wingNumbers && (
-          <WingIndicator wingEnd={wingEnd} wingStart={wingStart} />
-        )}
+        {wings && <WingIndicator wingEnd={wingEnd} wingStart={wingStart} />}
         <Entry
           data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
         >
@@ -169,7 +169,7 @@ export const BaseAbfahrt: FC<Props> = ({
               initialDeparture={abfahrt.initialDeparture}
               scheduledDeparture={abfahrt.departure.scheduledTime}
               administration={abfahrt.train.admin}
-              fallbackTrainNumbers={wingNumbersWithoutSelf}
+              fallbackWings={wingsWithoutSelf}
             />
           )}
           {detail && (

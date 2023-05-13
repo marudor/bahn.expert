@@ -26,7 +26,8 @@ export const nameMap: Record<AvailableIdentifier, string> = {
   '412.13': 'ICE 4 Lang (BR412)',
   '415': 'ICE T Kurz (BR415)',
   'IC2.TWIN': 'IC 2 (Twindexx)',
-  'IC2.KISS': 'IC 2 (KISS)',
+  '4110': 'IC 2 KISS (BR4110)',
+  '4010': 'IC 2 KISS (BR4010)',
   MET: 'MET',
   TGV: 'TGV',
 };
@@ -192,25 +193,13 @@ export const getBaureiheByCoaches = (
       identifier = 'IC2.TWIN';
       break;
     }
-    if (c.type === 'DBpdzfa') {
-      identifier = 'IC2.KISS';
+    if (c.uic?.slice(4, 8) === '4110') {
+      identifier = '4110';
       break;
     }
-  }
-  if (identifier === 'IC2.KISS') {
-    for (const c of coaches) {
-      switch (c.type) {
-        case 'DABpzfa':
-          c.features.comfort = true;
-          c.features.disabled = true;
-          break;
-        case 'DBpbza':
-          c.features.family = true;
-          break;
-        case 'DBpdzfa':
-          c.features.bike = true;
-          break;
-      }
+    if (c.uic?.slice(4, 8) === '4010') {
+      identifier = '4010';
+      break;
     }
   }
   if (identifier) {

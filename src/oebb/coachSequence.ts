@@ -18,15 +18,14 @@ export async function info(
   departureDate: Date,
 ): Promise<OEBBInfo | undefined> {
   try {
-    const info = (
-      await client.get<OEBBInfo>('/info', {
-        params: {
-          trainNr: trainNumber,
-          station: evaNumber,
-          date: format(departureDate, 'yyyy-MM-dd'),
-        },
-      })
-    ).data;
+    const req = await client.get<OEBBInfo>('/info', {
+      params: {
+        trainNr: trainNumber,
+        station: evaNumber,
+        date: format(departureDate, 'yyyy-MM-dd'),
+      },
+    });
+    const info = req.data;
     if (info.timeTableInfo.trainNr !== trainNumber) return undefined;
     return info;
   } catch {

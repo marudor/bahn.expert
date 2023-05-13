@@ -1,5 +1,5 @@
 import {
-  getBRFromGroupName,
+  getBRFromGroup,
   planSequenceAxios,
 } from '@/server/coachSequence/DB/plannedSequence';
 import { getGroups } from '@/server/StopPlace/search';
@@ -63,6 +63,9 @@ function calculateRunBR(run: TrainRun): TrainRunWithBR {
       ...product,
       line: getLineFromNumber(product.number),
     },
-    br: getBRFromGroupName(primaryVehicleGroupName),
+    br: getBRFromGroup({
+      name: primaryVehicleGroupName,
+      coaches: [],
+    }),
   };
 }

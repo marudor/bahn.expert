@@ -73,6 +73,8 @@ export const AvailableBRConstant = [
   '411' as const,
   '412' as const,
   '415' as const,
+  '4110' as const,
+  '4010' as const,
 ];
 export type AvailableBR = (typeof AvailableBRConstant)[number];
 
@@ -88,7 +90,6 @@ export const AvailableIdentifierConstant = [
   '403.S2' as const,
   '406.R' as const,
   'IC2.TWIN' as const,
-  'IC2.KISS' as const,
   'MET' as const,
   'TGV' as const,
 ];

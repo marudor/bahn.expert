@@ -4,6 +4,7 @@ import { nameMap } from '@/server/coachSequence/baureihe';
 import Axios from 'axios';
 import type {
   CoachSequenceBaureihe,
+  CoachSequenceGroup,
   CoachSequenceInformation,
 } from '@/types/coachSequence';
 
@@ -35,7 +36,7 @@ export async function getPlannedSequence(
     ).data;
 
     for (const g of plannedSequence.sequence.groups) {
-      const br = getBRFromGroupName(g.name);
+      const br = getBRFromGroup(g);
       g.baureihe = br;
       g.name = `${g.number}-planned`;
       if (br) {
@@ -50,9 +51,10 @@ export async function getPlannedSequence(
   }
 }
 
-function getBRWithoutNameFromGroupName(
-  groupName: string,
+function getBRWithoutNameFromGroup(
+  group: Pick<CoachSequenceGroup, 'coaches' | 'name'>,
 ): Omit<CoachSequenceBaureihe, 'name'> | undefined {
+  const groupName = group.name;
   // ICE
   if (groupName.startsWith('401_11')) {
     return {
@@ -151,9 +153,16 @@ function getBRWithoutNameFromGroupName(
   }
 
   // IC
-  if (groupName.startsWith('KISS')) {
+  if (groupName.startsWith('KISS_06')) {
     return {
-      identifier: 'IC2.KISS',
+      identifier: '4010',
+      baureihe: '4010',
+    };
+  }
+  if (groupName.startsWith('KISS_04')) {
+    return {
+      identifier: '4110',
+      baureihe: '4110',
     };
   }
   if (groupName.startsWith('Dosto')) {
@@ -163,10 +172,10 @@ function getBRWithoutNameFromGroupName(
   }
 }
 
-export function getBRFromGroupName(
-  groupName: string,
+export function getBRFromGroup(
+  group: Pick<CoachSequenceGroup, 'coaches' | 'name'>,
 ): CoachSequenceBaureihe | undefined {
-  const brWithoutName = getBRWithoutNameFromGroupName(groupName);
+  const brWithoutName = getBRWithoutNameFromGroup(group);
   if (brWithoutName) {
     return {
       ...brWithoutName,

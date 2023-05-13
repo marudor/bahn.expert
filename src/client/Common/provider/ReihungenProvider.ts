@@ -3,6 +3,12 @@ import Axios from 'axios';
 import constate from 'constate';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import type { PropsWithChildren } from 'react';
+import type { TrainInfo } from '@/types/iris';
+
+export type FallbackTrainsForCoachSequence = Pick<
+  TrainInfo,
+  'admin' | 'number' | 'type'
+>;
 
 async function fetchSequence(
   trainNumber: string,
@@ -51,7 +57,7 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
       currentEvaNumber: string,
       scheduledDeparture: Date,
       initialDeparture?: Date,
-      fallbackTrainNumbers: string[] = [],
+      fallback: FallbackTrainsForCoachSequence[] = [],
       trainCategory?: string,
       administration?: string,
     ) => {
@@ -66,14 +72,14 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
           trainCategory,
           administration,
         ),
-        ...fallbackTrainNumbers.map((fallback) =>
+        ...fallback.map((fallbackTrain) =>
           fetchSequence(
-            fallback,
+            fallbackTrain.number,
             scheduledDeparture,
             currentEvaNumber,
             initialDeparture,
-            trainCategory,
-            administration,
+            fallbackTrain.type,
+            fallbackTrain.admin,
           ),
         ),
       ]);
