@@ -30,7 +30,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
   });
   const watcher = chokidar.watch(path.resolve('./src/**'));
 
-  watcher.on('change', (file) => {
+  watcher.on('change', (file: any) => {
     if (file.includes('src/client')) return;
     if (file.includes('src/server/API/controller/')) {
       // eslint-disable-next-line no-console

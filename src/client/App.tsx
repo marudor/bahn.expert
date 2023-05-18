@@ -21,7 +21,7 @@ const LazyDetails = loadable(
 const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
 const LazyRegional = loadable(() => import('./Regional'), lazyOptions);
 const About = loadable(() => import('./Common/Components/About'), lazyOptions);
-const LazyTrainRuns = loadable(() => import('./TrainRuns'), lazyOptions);
+// const LazyTrainRuns = loadable(() => import('./TrainRuns'), lazyOptions);
 
 const globalStyles = (theme: Theme): any => ({
   body: {
@@ -63,7 +63,7 @@ export const App: FC = () => {
                   <Route path="/details/:train" element={<LazyDetails />} />
                   <Route path="/routing/*" element={<LazyRouting />} />
                   <Route path="/regional/*" element={<LazyRegional />} />
-                  <Route path="/trainRuns/*" element={<LazyTrainRuns />} />
+                  {/* <Route path="/trainRuns/*" element={<LazyTrainRuns />} /> */}
                   <Route path="/*" element={<LazyAbfahrten />} />
                 </Routes>
               </RoutingProvider>
