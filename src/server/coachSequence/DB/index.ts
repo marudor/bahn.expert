@@ -58,7 +58,9 @@ async function coachSequence(
   trainCategory?: string,
   stopEva?: string,
   administration?: string,
+  retry = 2,
 ): Promise<[Wagenreihung, DBSourceType] | undefined> {
+  let both404 = true;
   if (plannedStartDate && trainCategory && stopEva && administration) {
     try {
       const cancelToken = new Axios.CancelToken((c) => {
@@ -82,7 +84,8 @@ async function coachSequence(
         })
       ).data;
       return [info, type];
-    } catch {
+    } catch (e) {
+      both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
       // we just ignore it and try the next one
     }
   }
@@ -100,56 +103,13 @@ async function coachSequence(
       })
     ).data;
     return [info, type];
-  } catch {
+  } catch (e) {
+    both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
     // we just ignore it and try the next one
   }
-  const cancelToken = new Axios.CancelToken((c) => {
-    setTimeout(c, dbCoachSequenceTimeout);
-  });
-  const type = 'apps';
-  UpstreamApiRequestMetric.inc({
-    api: `coachSequence-${type}`,
-  });
-  const info = (
-    await Axios.get<Wagenreihung>(
-      getDBCoachSequenceUrl(
-        trainNumber,
-        date,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        type,
-      )[0],
-      {
-        cancelToken,
-      },
-    )
-  ).data;
-  return [info, type];
-}
-
-export async function rawDBCoachSequence(
-  trainNumber: string,
-  date: Date,
-  plannedStartDate?: Date,
-  trainCategory?: string,
-  stopEva?: string,
-  administration?: string,
-  retry = 2,
-): Promise<[Wagenreihung, DBSourceType] | undefined> {
-  try {
-    return await coachSequence(
-      trainNumber,
-      date,
-      plannedStartDate,
-      trainCategory,
-      stopEva,
-      administration,
-    );
-  } catch (error) {
-    if (Axios.isCancel(error) && retry)
-      return rawDBCoachSequence(
+  if (!both404) {
+    return new Promise((resolve) => setTimeout(resolve, 200)).then(() =>
+      coachSequence(
         trainNumber,
         date,
         plannedStartDate,
@@ -157,7 +117,8 @@ export async function rawDBCoachSequence(
         stopEva,
         administration,
         retry - 1,
-      );
+      ),
+    );
   }
 }
 
@@ -169,7 +130,7 @@ export async function DBCoachSequence(
   stopEva?: string,
   administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
-  const sequence = await rawDBCoachSequence(
+  const sequence = await coachSequence(
     trainNumber,
     date,
     plannedStartDate,
