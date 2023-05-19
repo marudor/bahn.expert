@@ -8,8 +8,8 @@ const debouncedStopPlacesFromAPI = debounce(getStopPlacesFromAPI, 200);
 
 interface UseStationSearchOptions {
   maxSuggestions: number;
-  filterForIris: boolean;
-  groupedBySales: boolean;
+  filterForIris?: boolean;
+  groupedBySales?: boolean;
 }
 
 const itemToString = (s: MinimalStopPlace | null) => (s ? s.name : '');

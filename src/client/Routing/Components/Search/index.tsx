@@ -160,6 +160,7 @@ export const Search: FC = () => {
       via.map((v, index) => (
         <FlexContainer key={index}>
           <StopPlaceSearch
+            groupedBySales
             id={`via${index}`}
             onChange={(s) => updateVia(index, s)}
             value={v}
@@ -176,6 +177,7 @@ export const Search: FC = () => {
   return (
     <>
       <StopPlaceSearch
+        groupedBySales
         id="routingStartSearch"
         value={start}
         onChange={setStart}
@@ -185,6 +187,7 @@ export const Search: FC = () => {
         {mappedViaList}
         {mappedViaList.length < 2 && (
           <StopPlaceSearch
+            groupedBySales
             placeholder="Via Station"
             id="addVia"
             onChange={(s) => updateVia(-1, s)}
@@ -193,6 +196,7 @@ export const Search: FC = () => {
       </div>
       <FlexContainer>
         <StopPlaceSearch
+          groupedBySales
           id="routingDestinationSearch"
           value={destination}
           onChange={setDestination}

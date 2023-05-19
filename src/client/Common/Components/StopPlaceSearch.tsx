@@ -49,8 +49,8 @@ export const StopPlaceSearch: FC<Props> = ({
   autoFocus,
   placeholder,
   maxSuggestions = 7,
-  filterForIris = false,
-  groupedBySales = false,
+  filterForIris,
+  groupedBySales,
 }) => {
   const inputRef = useRef<HTMLInputElement>();
   const { showRl100 } = useCommonConfig();
