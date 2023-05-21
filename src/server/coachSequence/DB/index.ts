@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { logger } from '@/server/logger';
 import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
 import { UpstreamApiRequestMetric } from '@/server/admin';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -86,6 +87,7 @@ async function coachSequence(
       return [info, type];
     } catch (e) {
       both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
+      logger.error(e);
       // we just ignore it and try the next one
     }
   }
@@ -105,10 +107,11 @@ async function coachSequence(
     return [info, type];
   } catch (e) {
     both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
+    logger.error(e);
     // we just ignore it and try the next one
   }
-  if (!both404) {
-    return new Promise((resolve) => setTimeout(resolve, 200)).then(() =>
+  if (!both404 && retry > 0) {
+    return new Promise((resolve) => setTimeout(resolve, 100)).then(() =>
       coachSequence(
         trainNumber,
         date,
