@@ -41,7 +41,8 @@
   },
   "browserslist": [
     ">2% in DE",
-    "not ie 9"
+    "not ie 9",
+    "firefox 68"
   ],
   "scripts": {
     "build:clean": "rimraf dist && mkdir dist && rimraf -g 'src/**/**/*.js'",
