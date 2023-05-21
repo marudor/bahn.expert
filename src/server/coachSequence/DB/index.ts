@@ -87,7 +87,6 @@ async function coachSequence(
       return [info, type];
     } catch (e) {
       both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
-      logger.error(e);
       // we just ignore it and try the next one
     }
   }
@@ -107,9 +106,9 @@ async function coachSequence(
     return [info, type];
   } catch (e) {
     both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
-    logger.error(e);
     // we just ignore it and try the next one
   }
+  logger.info(`WR failed, both404: ${both404}, retry: ${retry}`);
   if (!both404 && retry > 0) {
     return new Promise((resolve) => setTimeout(resolve, 100)).then(() =>
       coachSequence(

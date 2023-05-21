@@ -26,7 +26,7 @@ import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 const allowedReferer = ['https://bahn.expert', 'https://beta.bahn.expert'];
-function isAllowed(req: KoaRequest) {
+export function isAllowed(req: KoaRequest): boolean {
   // console.log(req);
   return (
     process.env.NODE_ENV !== 'production' ||

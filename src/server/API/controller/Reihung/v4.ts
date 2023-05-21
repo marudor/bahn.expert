@@ -4,13 +4,16 @@ import {
   Get,
   OperationId,
   Query,
+  Request,
   Res,
   Route,
   Tags,
 } from '@tsoa/runtime';
 import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
+import { isAllowed } from '@/server/API/controller/journeys/v1';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import type { EvaNumber } from '@/types/common';
+import type { Request as KoaRequest } from 'koa';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/reihung/v4')
@@ -28,7 +31,8 @@ export class ReihungControllerV4 extends Controller {
   @Tags('Reihung')
   @OperationId('Wagenreihung v4')
   async wagenreihung(
-    @Res() notFoundResponse: TsoaResponse<404, void>,
+    @Request() req: KoaRequest,
+    @Res() response: TsoaResponse<401 | 404, void | string>,
     trainNumber: number,
     /**
      * Departure at the stop you want the coachSequence for
@@ -43,6 +47,12 @@ export class ReihungControllerV4 extends Controller {
     /** needed for new DB Navigator Reihung */
     @Query() administration?: string,
   ): Promise<CoachSequenceInformation | void> {
+    if (!isAllowed(req)) {
+      return response(
+        401,
+        'This is heavily rate-limited upstream, please do not use it.',
+      );
+    }
     try {
       const sequence = await coachSequence(
         trainNumber.toString(),
@@ -67,6 +77,6 @@ export class ReihungControllerV4 extends Controller {
         return plannedSequence;
       }
     }
-    return notFoundResponse(404);
+    return response(404);
   }
 }

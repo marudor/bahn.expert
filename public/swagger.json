@@ -3198,8 +3198,35 @@
               }
             }
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {},
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {},
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            }
           }
         },
         "description": "Returns the coachSequence at a specific stop for a specific train.\nWorks for OEBB stops and DB stops.\n\nReturns plannedSequence if no real time information is available",
