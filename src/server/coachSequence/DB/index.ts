@@ -1,3 +1,4 @@
+import { Cache, CacheDatabase } from '@/server/cache';
 import { format } from 'date-fns';
 import { logger } from '@/server/logger';
 import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
@@ -17,6 +18,11 @@ type DBSourceType = 'apps' | 'noncd' | 'newApps';
 
 const dbCoachSequenceTimeout =
   process.env.NODE_ENV === 'production' ? 2500 : 10000;
+
+const notfoundCache = new Cache<string, boolean>(
+  CacheDatabase.CoachSequenceNotfound,
+  15 * 60,
+);
 
 export const getDBCoachSequenceUrl = (
   trainNumber: string,
@@ -61,6 +67,11 @@ async function coachSequence(
   administration?: string,
   retry = 2,
 ): Promise<[Wagenreihung, DBSourceType] | undefined> {
+  const cacheKey = `${trainNumber}-${date}-${plannedStartDate}-${trainCategory}-${stopEva}-${administration}`;
+  const isNotFound = await notfoundCache.exists(cacheKey);
+  if (isNotFound) {
+    return;
+  }
   let both404 = true;
   if (plannedStartDate && trainCategory && stopEva && administration) {
     try {
@@ -109,7 +120,9 @@ async function coachSequence(
     // we just ignore it and try the next one
   }
   logger.info(`WR failed, both404: ${both404}, retry: ${retry}`);
-  if (!both404 && retry > 0) {
+  if (both404) {
+    void notfoundCache.set(cacheKey, true);
+  } else if (retry > 0) {
     return new Promise((resolve) => setTimeout(resolve, 100)).then(() =>
       coachSequence(
         trainNumber,

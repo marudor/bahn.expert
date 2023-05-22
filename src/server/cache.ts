@@ -52,6 +52,7 @@ export const enum CacheDatabase {
   // Was TimetableParsedPlan
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
+  CoachSequenceNotfound,
 }
 
 const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
