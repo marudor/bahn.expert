@@ -89,7 +89,7 @@ export const AvailableIdentifierConstant = [
   '403.S1' as const,
   '403.S2' as const,
   '406.R' as const,
-  'IC2.TWIN' as const,
+  'IC2.TRE' as const,
   'MET' as const,
   'TGV' as const,
 ];

@@ -55,7 +55,7 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
       return;
     }
     if (
-      (!identifier || identifier === 'IC2.TWIN') &&
+      (!identifier || identifier === 'IC2.TRE') &&
       fahrzeug.type &&
       wagenWithImage.has(fahrzeug.type)
     ) {

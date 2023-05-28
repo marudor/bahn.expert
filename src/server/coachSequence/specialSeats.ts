@@ -51,7 +51,7 @@ export function getComfortSeats(
     case 'MET': {
       return klasse === 1 ? '61-66' : '91-106';
     }
-    case 'IC2.TWIN': {
+    case 'IC2.TRE': {
       return klasse === 1 ? '73, 75, 83-86' : '31-38, 41-45, 47';
     }
     case '4110': {
@@ -142,7 +142,7 @@ export function getDisabledSeats(
     case 'MET': {
       return klasse === 1 ? '16, 21' : '12, 14, 16';
     }
-    case 'IC2.TWIN': {
+    case 'IC2.TRE': {
       return klasse === 1 ? '21, 71' : '25, 101-105, 171-173';
     }
     case '4110': {
@@ -195,7 +195,7 @@ export function getFamilySeats(
     case 'MET': {
       return '11-26';
     }
-    case 'IC2.TWIN': {
+    case 'IC2.TRE': {
       return '121, 123, 131-138';
     }
     case '4110':

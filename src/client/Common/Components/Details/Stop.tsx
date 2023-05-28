@@ -39,8 +39,12 @@ const ScrollMarker = styled.div`
   top: -64px;
 `;
 
-const StyledPlatform = styled(Platform)`
-  grid-area: p;
+const ArrivalPlatform = styled(Platform)`
+  grid-area: arrP;
+`;
+
+const DeparturePlatform = styled(Platform)`
+  grid-area: depP;
 `;
 
 const ReihungContainer = styled.div`
@@ -62,15 +66,19 @@ const StyledOccupancy = styled(AuslastungsDisplay)`
   grid-area: o;
 `;
 
-const Container = styled.div<{ past?: boolean; hasOccupancy: boolean }>(
-  ({ theme, hasOccupancy }) => ({
+const Container = styled.div<{
+  past?: boolean;
+  hasOccupancy: boolean;
+  samePlatform: boolean;
+}>(
+  ({ theme, hasOccupancy, samePlatform }) => ({
     padding: '.1em .3em',
     display: 'grid',
     gridGap: '0 .3em',
     gridTemplateRows: '1fr',
-    gridTemplateAreas: `"ar t p c" "dp ${
+    gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} c" "dp ${
       hasOccupancy ? 'o' : 't'
-    } p c" "wr wr wr wr" "m m m m"`,
+    } depP c" "wr wr wr wr" "m m m m"`,
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.text.primary}`,
     position: 'relative',
@@ -106,17 +114,25 @@ export const Stop: FC<Props> = ({
     [stop, additionalInformation],
   );
   const depOrArrival = stop.departure || stop.arrival;
-  const platforms = stop.departure
-    ? {
-        real: stop.departure.platform,
-        scheduled: stop.departure.scheduledPlatform,
-      }
-    : stop.arrival
-    ? {
-        real: stop.arrival.platform,
-        scheduled: stop.arrival.scheduledPlatform,
-      }
-    : {};
+
+  const [platforms, samePlatform] = useMemo(() => {
+    const platforms = {
+      arrival: {
+        real: stop.arrival?.platform,
+        scheduled: stop.arrival?.scheduledPlatform,
+      },
+      departure: {
+        real: stop.departure?.platform || stop.arrival?.platform,
+        scheduled:
+          stop.departure?.scheduledPlatform || stop.arrival?.scheduledPlatform,
+      },
+    };
+    return [
+      platforms,
+      platforms.arrival.scheduled === platforms.departure.scheduled &&
+        platforms.arrival.real === platforms.departure.real,
+    ];
+  }, [stop.arrival, stop.departure]);
 
   const onClick = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -132,6 +148,7 @@ export const Stop: FC<Props> = ({
       past={isPast}
       data-testid={stop.station.evaNumber}
       onClick={onClick}
+      samePlatform={samePlatform}
     >
       <ScrollMarker id={stop.station.evaNumber} />
       {stop.arrival && (
@@ -168,8 +185,9 @@ export const Stop: FC<Props> = ({
           isRealTime={stop.departure.isRealTime}
         />
       )}
+      <DeparturePlatform {...platforms.departure} />
+      {!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
-      <StyledPlatform {...platforms} />
       <ReihungContainer>
         {showWR?.number && depOrArrival && (
           <Reihung

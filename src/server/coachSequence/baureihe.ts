@@ -25,7 +25,7 @@ export const nameMap: Record<AvailableIdentifier, string> = {
   '412.7': 'ICE 4 Kurz (BR412)',
   '412.13': 'ICE 4 Lang (BR412)',
   '415': 'ICE T Kurz (BR415)',
-  'IC2.TWIN': 'IC 2 (Twindexx)',
+  'IC2.TRE': 'IC 2 (TRE)',
   '4110': 'IC 2 KISS (BR4110)',
   '4010': 'IC 2 KISS (BR4010)',
   MET: 'MET',
@@ -203,7 +203,7 @@ export const getBaureiheByCoaches = (
       break;
     }
     if (c.type === 'DBpbzfa') {
-      identifier = 'IC2.TWIN';
+      identifier = 'IC2.TRE';
       break;
     }
     if (c.uic?.slice(4, 8) === '4110') {

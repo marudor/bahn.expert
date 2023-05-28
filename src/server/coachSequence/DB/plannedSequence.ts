@@ -167,7 +167,7 @@ function getBRWithoutNameFromGroup(
   }
   if (groupName.startsWith('Dosto')) {
     return {
-      identifier: 'IC2.TWIN',
+      identifier: 'IC2.TRE',
     };
   }
 }
