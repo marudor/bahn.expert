@@ -1,3 +1,4 @@
+import './axiosLogging';
 import { SHARE_ENV, Worker } from 'node:worker_threads';
 import cookie from 'cookie';
 import koaLogger from './koaLogger';
