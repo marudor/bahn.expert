@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid';
-import onFinished from 'on-finished';
 import util from 'node:util';
 import type { Context, Next } from 'koa';
 import type { IncomingMessage } from 'node:http';
@@ -10,14 +8,7 @@ declare module 'koa' {
   interface BaseContext {
     log: P.Logger;
   }
-  interface Request {
-    reqId: string;
-  }
 }
-
-const headerName = 'X-Request-Id';
-const ctxProp = 'reqId';
-const logField = 'req_id';
 
 const levelFromStatus = (status: number) => {
   if (status >= 500) {
@@ -53,15 +44,6 @@ const formatResponseMessage = (ctx: Context, data: any) =>
 export default (logger: P.Logger) =>
   (ctx: Context & RouterContext, next: Next): Promise<void> => {
     ctx.log = logger;
-
-    const reqId = ctx.request.get(headerName) || uuid();
-
-    ctx[ctxProp] = reqId;
-    ctx.request[ctxProp] = reqId;
-
-    ctx.log = ctx.log.child({
-      [logField]: reqId,
-    });
 
     if (process.env.NODE_ENV === 'production') {
       ctx.log.info(
@@ -102,7 +84,7 @@ export default (logger: P.Logger) =>
       })
       .then(() => {
         if (process.env.NODE_ENV === 'production') {
-          onFinished(ctx.response.res, onResponseFinished);
+          ctx.response.res.once('finish', onResponseFinished);
         }
 
         if (err) throw err;

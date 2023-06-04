@@ -48,9 +48,9 @@ const getBabelConfig = (type) => {
       },
     ],
     '@loadable/babel-plugin',
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-decorators', { version: 'legacy' }],
     './scripts/babelTransform/parameterDecorator.cjs',
-    '@babel/plugin-transform-react-constant-elements',
+    // 'babel-plugin-parameter-decorator',
   ];
 
   if (isServer) {
@@ -91,7 +91,6 @@ const getBabelConfig = (type) => {
         '@babel/preset-env',
         {
           ...presetEnvTargets,
-          // loose: true,
           useBuiltIns: 'usage',
           modules: isServer ? 'commonjs' : undefined,
           corejs: '3.24',
