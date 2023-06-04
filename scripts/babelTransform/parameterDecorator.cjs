@@ -5,11 +5,13 @@ function isInType(path) {
     case 'TSTypeReference':
     case 'TSQualifiedName':
     case 'TSExpressionWithTypeArguments':
-    case 'TSTypeQuery':
+    case 'TSTypeQuery': {
       return true;
+    }
 
-    default:
+    default: {
       return false;
+    }
   }
 }
 
@@ -69,7 +71,7 @@ module.exports = function ({ types: t }) {
         if (extension === '.ts' || extension === '.tsx') {
           const decorators = Object.create(null);
 
-          path.node.body
+          for (const clazz of path.node.body
             .filter(
               (it) =>
                 it.type === 'ClassDeclaration' ||
@@ -78,20 +80,19 @@ module.exports = function ({ types: t }) {
             )
             .map((it) => {
               return it.type === 'ClassDeclaration' ? it : it.declaration;
-            })
-            .forEach((clazz) => {
-              clazz.body.body.forEach(function (body) {
-                (body.params || []).forEach(function (param) {
-                  (param.decorators || []).forEach(function (decorator) {
-                    if (decorator.expression.callee) {
-                      decorators[decorator.expression.callee.name] = decorator;
-                    } else {
-                      decorators[decorator.expression.name] = decorator;
-                    }
-                  });
-                });
-              });
-            });
+            })) {
+            for (const body of clazz.body.body) {
+              for (const param of body.params || []) {
+                for (const decorator of param.decorators || []) {
+                  if (decorator.expression.callee) {
+                    decorators[decorator.expression.callee.name] = decorator;
+                  } else {
+                    decorators[decorator.expression.name] = decorator;
+                  }
+                }
+              }
+            }
+          }
 
           for (const stmt of path.get('body')) {
             if (stmt.node.type === 'ImportDeclaration') {
@@ -102,28 +103,29 @@ module.exports = function ({ types: t }) {
               for (const specifier of stmt.node.specifiers) {
                 const binding = stmt.scope.getBinding(specifier.local.name);
 
-                if (!binding.referencePaths.length) {
-                  if (decorators[specifier.local.name]) {
-                    binding.referencePaths.push({
-                      parent: decorators[specifier.local.name],
-                    });
-                  }
-                } else {
+                if (binding.referencePaths.length) {
+                  // eslint-disable-next-line unicorn/no-array-reduce
                   const allTypeRefs = binding.referencePaths.reduce(
                     (prev, next) => prev || isInType(next),
                     false,
                   );
                   if (allTypeRefs) {
-                    Object.keys(decorators).forEach((k) => {
+                    for (const k of Object.keys(decorators)) {
                       const decorator = decorators[k];
 
-                      (decorator.expression.arguments || []).forEach((arg) => {
+                      for (const arg of decorator.expression.arguments || []) {
                         if (arg.name === specifier.local.name) {
                           binding.referencePaths.push({
                             parent: decorator.expression,
                           });
                         }
-                      });
+                      }
+                    }
+                  }
+                } else {
+                  if (decorators[specifier.local.name]) {
+                    binding.referencePaths.push({
+                      parent: decorators[specifier.local.name],
                     });
                   }
                 }
@@ -165,13 +167,14 @@ module.exports = function ({ types: t }) {
           },
         });
 
-        [...decorators._methods_, decorators._constructor_].forEach(
-          (decoratorsOfMethod) => {
-            decoratorsOfMethod.reverse().forEach((expressions) => {
-              classPath.parentPath.insertAfter(expressions);
-            });
-          },
-        );
+        for (const decoratorsOfMethod of [
+          ...decorators._methods_,
+          decorators._constructor_,
+        ]) {
+          for (const expressions of decoratorsOfMethod.reverse()) {
+            classPath.parentPath.insertAfter(expressions);
+          }
+        }
       },
     },
   };

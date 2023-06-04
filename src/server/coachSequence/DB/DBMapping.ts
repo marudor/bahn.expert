@@ -22,7 +22,7 @@ import type {
   CoachSequenceSector,
   CoachSequenceStop,
 } from '@/types/coachSequence';
-import type { VehicleCategory } from '@/business-hub/generated/coachSequence';
+import type { VehicleCategory } from '@/external/generated/coachSequence';
 
 const mapClass = (category: VehicleCategory) => {
   switch (category) {

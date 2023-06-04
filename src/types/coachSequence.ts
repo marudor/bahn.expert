@@ -1,5 +1,5 @@
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import type { VehicleCategory } from '@/business-hub/generated/coachSequence';
+import type { VehicleCategory } from '@/external/generated/coachSequence';
 
 export interface CoachSequencePosition {
   startPercent: number;

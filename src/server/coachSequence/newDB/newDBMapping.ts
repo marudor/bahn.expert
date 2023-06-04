@@ -18,7 +18,7 @@ import type {
   VehicleInGroup,
   VehicleSequenceDeparture,
   VehicleType,
-} from '@/business-hub/generated/coachSequence';
+} from '@/external/generated/coachSequence';
 
 function mapSectors(
   sectors: Sector[] | undefined,
