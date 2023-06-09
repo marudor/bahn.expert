@@ -10,10 +10,16 @@ import {
   Tags,
 } from '@tsoa/runtime';
 import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
+import { getTrainRunsByDate } from '@/server/coachSequence/DB/trainRuns';
 import { isAllowed } from '@/server/API/controller/journeys/v1';
-import type { CoachSequenceInformation } from '@/types/coachSequence';
+import type {
+  AvailableBR,
+  AvailableIdentifier,
+  CoachSequenceInformation,
+} from '@/types/coachSequence';
 import type { EvaNumber } from '@/types/common';
 import type { Request as KoaRequest } from 'koa';
+import type { TrainRunWithBR } from '@/types/trainRuns';
 import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/reihung/v4')
@@ -78,5 +84,38 @@ export class ReihungControllerV4 extends Controller {
       }
     }
     return response(404);
+  }
+
+  /**
+   * Returns all journeys that run on a specific date. Only works for DB Fernverkehr
+   * @example stopsAt "[8000105, 8000191]"
+   */
+  @Get('/runsPerDate/{date}')
+  @Tags('Reihung')
+  @OperationId('Runs per Date v4')
+  async runsPerDate(
+    @Request() req: KoaRequest,
+    @Res() response: TsoaResponse<401, void | string>,
+    date: Date,
+    /**
+     * Used to filter for specific Baureihen
+     */
+    @Query() baureihen?: AvailableBR[],
+    /**
+     * Used to filter for specific identifier (identifier are defined by me, not DB)
+     */
+    @Query() identifier?: AvailableIdentifier[],
+    /**
+     * Used to filter for runs that stop at specific stopPlaces in the specifed order
+     */
+    @Query() stopsAt?: EvaNumber[],
+  ): Promise<TrainRunWithBR[]> {
+    if (!isAllowed(req)) {
+      return response(
+        401,
+        'This is heavily rate-limited upstream, please do not use it.',
+      );
+    }
+    return getTrainRunsByDate(date, baureihen, identifier, stopsAt);
   }
 }
