@@ -2464,6 +2464,71 @@
         "type": "object",
         "additionalProperties": true
       },
+      "TrainRunStop": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaNumber": {
+            "type": "string"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "arrivalTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "departureTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "evaNumber"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TrainRunWithBR": {
+        "properties": {
+          "product": {
+            "$ref": "#/components/schemas/CoachSequenceProduct"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/TrainRunStop"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TrainRunStop"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TrainRunStop"
+            },
+            "type": "array"
+          },
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "type": "array"
+          },
+          "br": {
+            "$ref": "#/components/schemas/CoachSequenceBaureihe"
+          }
+        },
+        "required": [
+          "product",
+          "origin",
+          "destination",
+          "via",
+          "dates"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "LageplanResponse": {
         "properties": {
           "lageplan": {
@@ -2965,6 +3030,94 @@
             "schema": {
               "type": "string"
             }
+          }
+        ]
+      }
+    },
+    "/reihung/v4/runsPerDate/{date}": {
+      "get": {
+        "operationId": "Runs per Date v4",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TrainRunWithBR"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {},
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns all journeys that run on a specific date. Only works for DB Fernverkehr",
+        "tags": [
+          "Reihung"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used to filter for specific Baureihen",
+            "in": "query",
+            "name": "baureihen",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AvailableBR"
+              }
+            }
+          },
+          {
+            "description": "Used to filter for specific identifier (identifier are defined by me, not DB)",
+            "in": "query",
+            "name": "identifier",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AvailableIdentifier"
+              }
+            }
+          },
+          {
+            "description": "Used to filter for runs that stop at specific stopPlaces in the specifed order",
+            "in": "query",
+            "name": "stopsAt",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/EvaNumber"
+              }
+            },
+            "example": "[8000105, 8000191]"
           }
         ]
       }
