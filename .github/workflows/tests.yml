@@ -117,16 +117,17 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
       - name: docker
         uses: elgohr/Publish-Docker-Github-Action@v5
-        env:
-          DOCKER_BUILDKIT: 1
         with:
           name: marudor/bahn.expert/standalone:${{ github.sha }}
           username: marudor
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           snapshot: 'true'
+          platforms: linux/amd64,linux/arm64
   createDeploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
