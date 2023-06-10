@@ -122,11 +122,12 @@ jobs:
       - name: docker
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: marudor/bahn.expert/standalone:${{ github.sha }}
+          name: marudor/bahn.expert/standalone
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           platforms: linux/amd64,linux/arm64
+          tags: 'latest,${{ github.sha }}'
   createDeploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
