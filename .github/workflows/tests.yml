@@ -123,10 +123,9 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: marudor/bahn.expert/standalone:${{ github.sha }}
-          username: marudor
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          snapshot: 'true'
+          registry: ghcr.io
           platforms: linux/amd64,linux/arm64
   createDeploy:
     runs-on: ubuntu-latest
