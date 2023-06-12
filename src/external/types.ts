@@ -1,4 +1,4 @@
-import type { StopPlaceGroupType } from '@/business-hub/generated/risStations';
+import type { StopPlaceGroupType } from '@/external/generated/risStations';
 
 export * from './generated/risStations/api';
 

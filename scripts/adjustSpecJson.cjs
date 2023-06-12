@@ -1,13 +1,13 @@
 /* eslint-disable no-sync */
-const fs = require('fs');
+const fs = require('node:fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
-const path = require('path');
+const path = require('node:path');
 
 const filePath = path.resolve(__dirname, '../public/swagger.json');
 
 const content = fs.readFileSync(filePath, 'utf8');
 
-const replacedDollar = content.replace(/%24/g, '$');
+const replacedDollar = content.replaceAll('%24', '$');
 
 const parsed = JSON.parse(replacedDollar);
 
@@ -20,9 +20,9 @@ sortedEntries.sort((a, b) => {
   return aName?.toLowerCase() > bName?.toLowerCase() ? 1 : -1;
 });
 
-sortedEntries.forEach(([key, val], i) => {
+for (const [i, [key, val]] of sortedEntries.entries()) {
   sortedPaths[key] = val;
-});
+}
 
 parsed.paths = sortedPaths;
 

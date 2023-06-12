@@ -108,7 +108,6 @@ export async function getAbfahrten(
   sloppy?: boolean,
   evaNumbers?: string[],
 ): Promise<AbfahrtenResult> {
-  console.time(`abfahrten${evaId}`);
   const lookahead = options.lookahead;
   const lookbehind = options.lookbehind;
 
@@ -136,11 +135,8 @@ export async function getAbfahrten(
     .reduce(reduceResults, baseResult);
 
   if (sloppy) {
-    console.timeEnd(`abfahrten${evaId}`);
     return result;
   }
-
-  console.time('post');
 
   /**
    * We search if trains with the same mediumId exist. Should only happen if the same train departs or arrives at the same station (like Stuttgart Hbf and Stuttgart Hbf (tief))
@@ -170,9 +166,6 @@ export async function getAbfahrten(
   ).length;
 
   result.strike = departureStrikes + loobehindStrikes;
-
-  console.timeEnd('post');
-  console.timeEnd(`abfahrten${evaId}`);
 
   return result;
 }

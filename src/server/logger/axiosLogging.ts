@@ -12,7 +12,7 @@ if (!Array.isArray(Axios.defaults.transformRequest)) {
 Axios.defaults.transformRequest.push(function (data, _headers) {
   let url = this.url;
   if (url?.startsWith('/')) {
-    url = `${this.baseURL}url`;
+    url = `${this.baseURL}${url}`;
   }
   logger.debug(`axiosRequest (${this.method}): ${url}`);
   if (data) {

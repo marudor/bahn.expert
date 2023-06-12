@@ -1,4 +1,4 @@
-import { getDepartureSequence } from '@/business-hub/coachSequence';
+import { getDepartureSequence } from '@/external/coachSequence';
 import { mapInformation } from '@/server/coachSequence/newDB/newDBMapping';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 

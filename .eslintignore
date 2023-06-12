@@ -1,7 +1,7 @@
 public/**
 research/**
 @types/**
-src/business-hub/generated
+src/external/generated
 !.babelrc.js
 !.babelrc.server.js
 !.eslintrc.js

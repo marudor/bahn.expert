@@ -1,5 +1,5 @@
-/* eslint no-sync: 0, no-console: 0, no-process-exit: 0 */
-const childProcess = require('child_process');
+/* eslint no-sync: 0, no-console: 0, unicorn/no-process-exit: 0 */
+const childProcess = require('node:child_process');
 const ncp = require('ncp');
 
 const webpackProductionProcess = childProcess.spawn('webpack', [], {

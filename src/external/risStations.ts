@@ -1,10 +1,10 @@
-import { risStationsConfiguration } from '@/business-hub/config';
+import { risStationsConfiguration } from '@/external/config';
 import {
   StopPlaceKeyFilter,
   StopPlacesApi,
   StopPlaceSearchGroupByKey,
-} from '@/business-hub/generated/risStations';
-import { TransportType } from '@/business-hub/types';
+} from '@/external/generated/risStations';
+import { TransportType } from '@/external/types';
 import { upstreamApiCountInterceptor } from '@/server/admin';
 import axios from 'axios';
 import type {
@@ -12,7 +12,7 @@ import type {
   StopPlace,
   StopPlaceKey,
   StopPlaceSearchResult,
-} from '@/business-hub/types';
+} from '@/external/types';
 
 const nonÖPNVTypes: Set<TransportType> = new Set([
   TransportType.HighSpeedTrain,

@@ -13,7 +13,7 @@ import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import {
   findJourney,
   findJourneyHafasCompatible,
-} from '@/business-hub/risJourneys';
+} from '@/external/risJourneys';
 import {
   getCategoryAndNumberFromName,
   journeyDetails,

@@ -8,11 +8,11 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { EventType, TimeType } from '@/business-hub/generated/risJourneys';
+import { EventType, TimeType } from '@/external/generated/risJourneys';
 import { getAbfahrten } from '@/server/iris';
-import { getJourneyDetails } from '@/business-hub/risJourneys';
+import { getJourneyDetails } from '@/external/risJourneys';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
-import type { ArrivalDepartureEvent } from '@/business-hub/generated/risJourneys';
+import type { ArrivalDepartureEvent } from '@/external/generated/risJourneys';
 import type { CommonStopInfo } from '@/types/HAFAS';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { Route$Stop } from '@/types/routing';

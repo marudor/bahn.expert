@@ -1,21 +1,15 @@
-import {
-  byEva,
-  byName,
-  byRl100,
-  groups,
-  keys,
-} from '@/business-hub/risStations';
+import { byEva, byName, byRl100, groups, keys } from '@/external/risStations';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { getSingleStation } from '@/server/iris/station';
 import { manualNameOverrides } from '@/server/StopPlace/manualNameOverrides';
 import { searchWithHafas } from '@/server/StopPlace/hafasSearch';
-import { StopPlaceKeyType } from '@/business-hub/types';
+import { StopPlaceKeyType } from '@/external/types';
 import type { GroupedStopPlace, StopPlaceIdentifier } from '@/types/stopPlace';
 import type {
   ResolvedStopPlaceGroups,
   StopPlace,
   StopPlaceSearchResult,
-} from '@/business-hub/types';
+} from '@/external/types';
 
 const stopPlaceStationSearchCache = new Cache<string, GroupedStopPlace[]>(
   CacheDatabase.StopPlaceSearch,
