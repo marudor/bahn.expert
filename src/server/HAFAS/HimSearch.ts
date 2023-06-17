@@ -36,11 +36,11 @@ const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
 const parseHimSearch = (
   d: HafasResponse<HimSearchResponse>,
   common: ParsedCommon,
-): ParsedHimSearchResponse => {
-  return {
+): Promise<ParsedHimSearchResponse> => {
+  return Promise.resolve({
     messages:
       d.svcResL[0].res?.msgL?.map((m) => parseHimMessage(m, common)) ?? [],
-  };
+  });
 };
 
 const HimSearch = (

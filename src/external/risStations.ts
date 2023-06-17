@@ -7,6 +7,7 @@ import {
 import { TransportType } from '@/external/types';
 import { upstreamApiCountInterceptor } from '@/server/admin';
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import type {
   ResolvedStopPlaceGroups,
   StopPlace,
@@ -24,6 +25,10 @@ const nonÖPNVTypes: Set<TransportType> = new Set([
 
 const axiosWithTimeout = axios.create({
   timeout: 4500,
+});
+
+axiosRetry(axiosWithTimeout, {
+  retries: 2,
 });
 
 axiosWithTimeout.interceptors.request.use(

@@ -40,7 +40,7 @@ const StyledButton = styled(Button)`
 `;
 
 export const RouteList: FC = () => {
-  const { routes, error, earlierContext, laterContext } = useRouting();
+  const { rideableRoutes, error, earlierContext, laterContext } = useRouting();
   const { fetchContext } = useFetchRouting();
   const [detail, setDetail] = useState<undefined | string>();
   const [loadingEarlier, setLoadingEarlier] = useState(false);
@@ -60,8 +60,8 @@ export const RouteList: FC = () => {
     return <Container>{translateError(error)}</Container>;
   }
 
-  if (!routes) return <Loading relative />;
-  if (!routes.length) return <RouteFavList />;
+  if (!rideableRoutes) return <Loading relative />;
+  if (!rideableRoutes.length) return <RouteFavList />;
 
   return (
     <Container>
@@ -77,24 +77,24 @@ export const RouteList: FC = () => {
             Früher
           </StyledButton>
         ))}
-      {routes
-        .filter((r) => r.isRideable)
-        .map((r, i) => {
-          return (
-            <Fragment key={r.checksum}>
-              {(i === 0 || !isSameDay(routes[i - 1].date, r.date)) && (
-                <RouteHeader date={r.date} />
-              )}
-              <Route
-                detail={detail === r.checksum}
-                onClick={() =>
-                  setDetail(detail === r.checksum ? undefined : r.checksum)
-                }
-                route={r}
-              />
-            </Fragment>
-          );
-        })}
+      {rideableRoutes.map((r, i) => {
+        return (
+          <Fragment key={r.checksum}>
+            {(i === 0 ||
+              !isSameDay(
+                rideableRoutes[i - 1].date,
+                rideableRoutes[i].date,
+              )) && <RouteHeader date={r.date} />}
+            <Route
+              detail={detail === r.checksum}
+              onClick={() =>
+                setDetail(detail === r.checksum ? undefined : r.checksum)
+              }
+              route={r}
+            />
+          </Fragment>
+        );
+      })}
       {laterContext &&
         (loadingLater ? (
           <Loading data-testid="fetchCtxLateLoading" type={1} />
