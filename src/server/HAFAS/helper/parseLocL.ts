@@ -1,3 +1,4 @@
+import { getIdentifiers } from '@/server/StopPlace/search';
 import type { Crd, HafasStation, LocL, ParsedProduct } from '@/types/HAFAS';
 
 export function parseCoordinates(crd: Crd): {
@@ -10,9 +11,16 @@ export function parseCoordinates(crd: Crd): {
   };
 }
 
-export default (locL: LocL, products: ParsedProduct[]): HafasStation => ({
-  evaNumber: locL.extId,
-  name: locL.name,
-  coordinates: locL.crd && parseCoordinates(locL.crd),
-  products: locL.pRefL && locL.pRefL.map((p) => products[p]),
-});
+export const parseLocL = async (
+  locL: LocL,
+  products: ParsedProduct[],
+): Promise<HafasStation> => {
+  const identifiers = await getIdentifiers(locL.extId);
+  return {
+    evaNumber: locL.extId,
+    name: locL.name,
+    coordinates: locL.crd && parseCoordinates(locL.crd),
+    products: locL.pRefL && locL.pRefL.map((p) => products[p]),
+    ril100: identifiers?.ril100,
+  };
+};

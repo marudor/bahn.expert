@@ -3,7 +3,7 @@ import { DetailMessages } from '../Messages/Detail';
 import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
 import { Reihung } from '../Reihung';
-import { StationLink } from '@/client/Common/Components/StationLink';
+import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { useCallback, useMemo } from 'react';
@@ -160,11 +160,7 @@ export const Stop: FC<Props> = ({
         />
       )}
       <StopName stop={stop}>
-        <StationLink
-          evaNumber={stop.station.evaNumber}
-          stationName={stop.station.name}
-          urlPrefix={urlPrefix}
-        />
+        <StopPlaceLink stopPlace={stop.station} urlPrefix={urlPrefix} />
       </StopName>
       {!doNotRenderOccupancy && occupancy && (
         <StyledOccupancy oneLine auslastung={occupancy} />

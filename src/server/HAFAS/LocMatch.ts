@@ -1,6 +1,6 @@
 import { Cache, CacheDatabase } from '@/server/cache';
+import { parseLocL } from './helper/parseLocL';
 import makeRequest from './Request';
-import parseLocL from './helper/parseLocL';
 import type {
   AllowedHafasProfile,
   HafasResponse,
@@ -18,13 +18,13 @@ const cache = new Cache<string, HafasStation[]>(
 function parseFn(
   d: HafasResponse<LocMatchResponse>,
   parsedCommon: ParsedCommon,
-): HafasStation[] {
+): Promise<HafasStation[]> {
   const stations = d.svcResL[0].res.match.locL;
 
-  return (
+  return Promise.all(
     stations
       // .filter(s => s.extId)
-      .map((s) => parseLocL(s, parsedCommon.prodL))
+      .map((s) => parseLocL(s, parsedCommon.prodL)),
   );
 }
 

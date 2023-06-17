@@ -1,8 +1,8 @@
 import * as HafasProfiles from './profiles';
 import { AllowedHafasProfile } from '@/types/HAFAS';
+import { parseLocL } from './helper/parseLocL';
 import { UpstreamApiRequestMetric } from '@/server/admin';
 import Axios from 'axios';
-import parseLocL from './helper/parseLocL';
 import parsePolyline from '@/server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
 import type {
@@ -62,9 +62,9 @@ function createRequest(
   };
 }
 
-function parseCommon(common: Common): ParsedCommon {
+async function parseCommon(common: Common): Promise<ParsedCommon> {
   const prodL = common.prodL.map((p) => parseProduct(p, common));
-  const locL = common.locL.map((l) => parseLocL(l, prodL));
+  const locL = await Promise.all(common.locL.map((l) => parseLocL(l, prodL)));
   const polyL = common.polyL?.map((p) => parsePolyline(p, locL));
 
   return {
@@ -125,7 +125,8 @@ async function makeRequest<
   P = HR,
 >(
   hafasRequest: R,
-  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
+  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => Promise<P> = (d) =>
+    d as any,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<P> {
   const { data, extraParam } = createRequest(hafasRequest, profile);
@@ -154,7 +155,7 @@ async function makeRequest<
   if (!rawCommon) {
     throw new HafasError(hafasRequest, r, profile);
   }
-  const parsedCommon = parseCommon(rawCommon);
+  const parsedCommon = await parseCommon(rawCommon);
 
   return parseFn(r, parsedCommon);
 }

@@ -77,10 +77,7 @@ export async function searchStopPlace(
     );
     if (result?.length || filterForIris || groupBySales) return result;
     return searchWithHafas(searchTerm, max, filterForIris);
-  } catch (e) {
-    // debug this shit
-    // eslint-disable-next-line no-console
-    console.error(e);
+  } catch {
     return searchWithHafas(searchTerm, max, filterForIris);
   }
 }

@@ -18,7 +18,7 @@ import type {
 export const parseJourneyDetails = (
   d: HafasResponse<JourneyDetailsResponse>,
   common: ParsedCommon,
-): ParsedJourneyDetails => {
+): Promise<ParsedJourneyDetails> => {
   const journey = d.svcResL[0].res.journey;
   const mainProduct = common.prodL[journey.prodX];
   adjustProductOperator(mainProduct, common, journey.stopL);
@@ -41,7 +41,7 @@ export const parseJourneyDetails = (
     polylines: common.polyL,
   };
 
-  return parsedJourney as ParsedJourneyDetails;
+  return Promise.resolve(parsedJourney as ParsedJourneyDetails);
 };
 
 export default async (

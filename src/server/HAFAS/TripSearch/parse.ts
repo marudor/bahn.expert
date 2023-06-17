@@ -80,44 +80,45 @@ function adjustToLastTrain(
 const AllowedLegTypes = new Set(['JNY', 'WALK', 'TRSF']);
 
 export class Journey {
-  raw: OutConL;
-  date: Date;
-  journey: SingleRoute;
-  common: ParsedCommon;
-  constructor(raw: OutConL, common: ParsedCommon) {
-    this.raw = raw;
-    this.common = common;
+  private date: Date;
+  constructor(private raw: OutConL, private common: ParsedCommon) {
     this.date = parse(raw.date, 'yyyyMMdd', new Date());
-    const allSegments = raw.secL
+  }
+  parseJourney = (): Promise<SingleRoute> => {
+    const allSegments = this.raw.secL
       .filter((leg) => AllowedLegTypes.has(leg.type))
       .map(this.parseSegment)
       .filter<Route$JourneySegment>(Boolean as any);
 
     const segments = mergeSegments(allSegments);
 
-    const arrival = parseCommonArrival(raw.arr, this.date, common);
-    const departure = parseCommonDeparture(raw.dep, this.date, common);
+    const arrival = parseCommonArrival(this.raw.arr, this.date, this.common);
+    const departure = parseCommonDeparture(
+      this.raw.dep,
+      this.date,
+      this.common,
+    );
 
     adjustToFirstTrain(departure, segments);
     adjustToLastTrain(arrival, segments);
 
-    this.journey = {
-      checksum: raw.cksum,
-      cid: raw.cid,
+    return Promise.resolve({
+      checksum: this.raw.cksum,
+      cid: this.raw.cid,
       date: this.date,
-      duration: parseDuration(raw.dur),
-      changes: raw.chg,
-      isRideable: !raw.isNotRdbl,
+      duration: parseDuration(this.raw.dur),
+      changes: this.raw.chg,
+      isRideable: !this.raw.isNotRdbl,
       arrival,
       departure,
       segments,
       segmentTypes: segments
         .map((s) => (s.type === 'JNY' ? s.train.type : s.train.name))
         .filter(Boolean as any),
-      tarifSet: parseTarif(raw.trfRes),
-    };
-  }
-  parseStops = (
+      tarifSet: parseTarif(this.raw.trfRes),
+    });
+  };
+  private parseStops = (
     stops: CommonStop[] | undefined,
     train: ParsedProduct,
   ): Route$Stop[] => {
@@ -125,7 +126,7 @@ export class Journey {
 
     return stops.map((stop) => parseStop(stop, this.common, this.date, train));
   };
-  parseSegmentJourney = (jny: Jny): Route$Journey => {
+  private parseSegmentJourney = (jny: Jny): Route$Journey => {
     // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
     const product = this.common.prodL[jny.prodX];
@@ -144,7 +145,7 @@ export class Journey {
       messages: parseMessages(jny.msgL, this.common),
     };
   };
-  parseSegment = (t: SecL): undefined | Route$JourneySegment => {
+  private parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
         const arrival = parseCommonArrival(
@@ -202,13 +203,17 @@ export class Journey {
   };
 }
 
-export default (
+export default async (
   r: HafasResponse<TripSearchResponse>,
   parsedCommon: ParsedCommon,
-): RoutingResult => {
-  const routes = r.svcResL[0].res.outConL
-    .flatMap((j) => new Journey(j, parsedCommon).journey)
-    .filter((j) => j.segments.length);
+): Promise<RoutingResult> => {
+  const routes = (
+    await Promise.all(
+      r.svcResL[0].res.outConL.flatMap((j) =>
+        new Journey(j, parsedCommon).parseJourney(),
+      ),
+    )
+  ).filter((j) => j.segments.length);
 
   return {
     context: {

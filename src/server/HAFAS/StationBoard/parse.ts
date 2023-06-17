@@ -54,10 +54,10 @@ const parseStationBoardResponse = (
 export default (
   r: HafasResponse<StationBoardResponse>,
   parsedCommon: ParsedCommon,
-): StationBoardEntry[] => {
+): Promise<StationBoardEntry[]> => {
   const abfahrten: StationBoardEntry[] = r.svcResL[0].res.jnyL.map((j) =>
     parseStationBoardResponse(j, parsedCommon),
   );
 
-  return abfahrten;
+  return Promise.resolve(abfahrten);
 };

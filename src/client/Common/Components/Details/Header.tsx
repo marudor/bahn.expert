@@ -7,7 +7,7 @@ import {
 import { BaseHeader } from '../BaseHeader';
 import { format } from 'date-fns';
 import { IconButton } from '@mui/material';
-import { StationNameWithRL100 } from '@/client/Common/Components/StationNameWithRl100';
+import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
@@ -123,7 +123,7 @@ export const Header: FC = () => {
           <Arrow> → </Arrow>
           {details && (
             <Destination>
-              <StationNameWithRL100 station={details.segmentDestination} />
+              <StopPlaceNameWithRl100 stopPlace={details.segmentDestination} />
             </Destination>
           )}
         </>

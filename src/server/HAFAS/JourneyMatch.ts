@@ -16,21 +16,23 @@ import type { HafasResponse, ParsedCommon } from '@/types/HAFAS';
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
   common: ParsedCommon,
-): ParsedJourneyMatchResponse[] => {
-  return d.svcResL[0].res.jnyL.map((j) => {
-    const date = parse(j.date, 'yyyyMMdd', new Date());
-    const train = common.prodL[j.prodX];
-    const stops = j.stopL.map((stop) => parseStop(stop, common, date, train));
+): Promise<ParsedJourneyMatchResponse[]> => {
+  return Promise.all(
+    d.svcResL[0].res.jnyL.map((j) => {
+      const date = parse(j.date, 'yyyyMMdd', new Date());
+      const train = common.prodL[j.prodX];
+      const stops = j.stopL.map((stop) => parseStop(stop, common, date, train));
 
-    return {
-      train,
-      stops,
-      jid: j.jid,
-      firstStop: stops[0],
-      lastStop: stops.at(-1)!,
-      messages: parseMessages(j.msgL, common),
-    };
-  });
+      return {
+        train,
+        stops,
+        jid: j.jid,
+        firstStop: stops[0],
+        lastStop: stops.at(-1)!,
+        messages: parseMessages(j.msgL, common),
+      };
+    }),
+  );
 };
 
 const JourneyMatch = async (

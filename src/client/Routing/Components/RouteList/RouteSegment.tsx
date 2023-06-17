@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
 import { Platform } from '@/client/Common/Components/Platform';
-import { StationNameWithRL100 } from '@/client/Common/Components/StationNameWithRl100';
+import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { Time } from '@/client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
 import styled from '@emotion/styled';
@@ -70,7 +70,7 @@ export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
           delay={segment.departure.delay}
         />
         <DepartureName>
-          <StationNameWithRL100 station={segment.segmentStart} />
+          <StopPlaceNameWithRl100 stopPlace={segment.segmentStart} />
         </DepartureName>
 
         <ArrivalTime
@@ -79,7 +79,7 @@ export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
           delay={segment.arrival.delay}
         />
         <ArrivalName>
-          <StationNameWithRL100 station={segment.segmentDestination} />
+          <StopPlaceNameWithRl100 stopPlace={segment.segmentDestination} />
         </ArrivalName>
         {segment.type === 'JNY' && (
           <>
