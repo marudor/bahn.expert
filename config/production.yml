@@ -15,4 +15,7 @@ disruption:
 resources:
   requests:
     memory: '768Mi'
-    cpu: '600m'
+    cpu: '400m'
+  limit:
+    memory: '2Gi'
+    cpu: '1'
