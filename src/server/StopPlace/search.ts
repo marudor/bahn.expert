@@ -225,9 +225,11 @@ async function addIdentifiers(stopPlaces: GroupedStopPlace[]): Promise<void> {
 
 export async function getIdentifiers(
   evaNumber: string,
+  cacheOnly?: boolean,
 ): Promise<StopPlaceIdentifier | undefined> {
   const cached = await stopPlaceIdentifierCache.get(evaNumber);
   if (cached) return Object.values(cached).length > 0 ? cached : undefined;
+  if (cacheOnly) return undefined;
   const identifier: StopPlaceIdentifier = {
     evaNumber,
   };

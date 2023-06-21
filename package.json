@@ -183,7 +183,6 @@
     "@styled/typescript-styled-plugin": "^1.0.0",
     "@tsoa/runtime": "5.0.0",
     "axios": "^1.4.0",
-    "axios-retry": "^3.5.0",
     "constate": "^3.3.2",
     "cookie": "^0.5.0",
     "core-js": "^3.31.0",

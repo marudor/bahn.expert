@@ -15,7 +15,7 @@ export const parseLocL = async (
   locL: LocL,
   products: ParsedProduct[],
 ): Promise<HafasStation> => {
-  const identifiers = await getIdentifiers(locL.extId);
+  const identifiers = await getIdentifiers(locL.extId, true);
   return {
     evaNumber: locL.extId,
     name: locL.name,

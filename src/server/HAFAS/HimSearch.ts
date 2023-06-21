@@ -52,7 +52,6 @@ const HimSearch = (
     req: request,
     meth: 'HimSearch',
   };
-
   return makeRequest(req, raw ? undefined : parseHimSearch, profile);
 };
 
@@ -77,7 +76,7 @@ async function fetchTodaysHimMessages() {
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     for (const message of messages.messages) {
-      void himMessageCache.set(message.hid, message);
+      await himMessageCache.set(message.hid, message);
     }
     logger.debug(`fetched ${messages.messages.length} HIM Messages`);
   } catch {
@@ -88,7 +87,7 @@ async function fetchTodaysHimMessages() {
 if (process.env.NODE_ENV !== 'test') {
   void fetchTodaysHimMessages();
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  setInterval(fetchTodaysHimMessages, 2 * 60 * 1000);
+  setInterval(fetchTodaysHimMessages, 10 * 60 * 1000);
 }
 
 export const getSingleHimMessageOfToday = (
