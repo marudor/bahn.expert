@@ -11,10 +11,6 @@ import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import type { Wagenreihung } from '@/types/reihung';
-const notfoundCache = new Cache<string, boolean>(
-  CacheDatabase.CoachSequenceNotfound,
-  45 * 60,
-);
 
 const dbCoachSequenceUrls = {
   apps: 'https://www.apps-bahn.de/wr/wagenreihung/1.0',
@@ -93,15 +89,10 @@ async function coachSequence(
     return undefined;
   }
   const cacheKey = `${trainNumber}-${date}-${plannedStartDate}-${trainCategory}-${stopEva}-${administration}`;
-  const isNotFound = await notfoundCache.exists(cacheKey);
-  if (isNotFound) {
-    return;
-  }
   const cached = await coachSequenceCache.get(cacheKey);
   if (cached) {
     return cached;
   }
-  let both404 = true;
   if (
     plannedStartDate &&
     trainCategory &&
@@ -125,8 +116,7 @@ async function coachSequence(
       const info = (await navigatorAxios.get<Wagenreihung>(url)).data;
       void coachSequenceCache.set(cacheKey, [info, type]);
       return [info, type];
-    } catch (e) {
-      both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
+    } catch {
       // we just ignore it and try the next one
     }
   }
@@ -139,12 +129,8 @@ async function coachSequence(
     const info = (await bahnhofLiveAxios.get<Wagenreihung>(url)).data;
     void coachSequenceCache.set(cacheKey, [info, type]);
     return [info, type];
-  } catch (e) {
-    both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
+  } catch {
     // we just ignore it and try the next one
-  }
-  if (both404) {
-    void notfoundCache.set(cacheKey, true);
   }
 }
 
