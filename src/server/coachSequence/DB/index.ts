@@ -1,5 +1,6 @@
 import {
   addUseragent,
+  randomBahnhofLiveUseragent,
   randomDBNavigatorUseragent,
 } from '@/external/randomUseragent';
 import { Cache, CacheDatabase } from '@/server/cache';
@@ -67,9 +68,17 @@ const coachSequenceCache = new Cache<string, [Wagenreihung, DBSourceType]>(
   5 * 60,
 );
 
-const navigatorAxios = Axios.create();
+const navigatorAxios = Axios.create({
+  timeout: dbCoachSequenceTimeout,
+});
 navigatorAxios.interceptors.request.use(
   addUseragent.bind(undefined, randomDBNavigatorUseragent),
+);
+const bahnhofLiveAxios = Axios.create({
+  timeout: dbCoachSequenceTimeout,
+});
+bahnhofLiveAxios.interceptors.request.use(
+  addUseragent.bind(undefined, randomBahnhofLiveUseragent),
 );
 async function coachSequence(
   trainNumber: string,
@@ -92,9 +101,6 @@ async function coachSequence(
   let both404 = true;
   if (plannedStartDate && trainCategory && stopEva && administration) {
     try {
-      const cancelToken = new Axios.CancelToken((c) => {
-        setTimeout(c, dbCoachSequenceTimeout);
-      });
       const [url, type] = getDBCoachSequenceUrl(
         trainNumber,
         date,
@@ -107,11 +113,7 @@ async function coachSequence(
       UpstreamApiRequestMetric.inc({
         api: `coachSequence-${type}`,
       });
-      const info = (
-        await navigatorAxios.get<Wagenreihung>(url, {
-          cancelToken,
-        })
-      ).data;
+      const info = (await navigatorAxios.get<Wagenreihung>(url)).data;
       void coachSequenceCache.set(cacheKey, [info, type]);
       return [info, type];
     } catch (e) {
@@ -120,18 +122,11 @@ async function coachSequence(
     }
   }
   try {
-    const cancelToken = new Axios.CancelToken((c) => {
-      setTimeout(c, dbCoachSequenceTimeout);
-    });
     const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
     UpstreamApiRequestMetric.inc({
       api: `coachSequence-${type}`,
     });
-    const info = (
-      await Axios.get<Wagenreihung>(url, {
-        cancelToken,
-      })
-    ).data;
+    const info = (await bahnhofLiveAxios.get<Wagenreihung>(url)).data;
     void coachSequenceCache.set(cacheKey, [info, type]);
     return [info, type];
   } catch (e) {
