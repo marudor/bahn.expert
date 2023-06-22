@@ -5,7 +5,6 @@ import {
 } from '@/external/randomUseragent';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { format } from 'date-fns';
-import { logger } from '@/server/logger';
 import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
 import { UpstreamApiRequestMetric } from '@/server/admin';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -23,11 +22,6 @@ type DBSourceType = 'apps' | 'noncd' | 'newApps';
 
 const dbCoachSequenceTimeout =
   process.env.NODE_ENV === 'production' ? 4500 : 10000;
-
-const notfoundCache = new Cache<string, boolean>(
-  CacheDatabase.CoachSequenceNotfound,
-  30 * 60,
-);
 
 export const getDBCoachSequenceUrl = (
   trainNumber: string,
@@ -87,18 +81,12 @@ async function coachSequence(
   trainCategory?: string,
   stopEva?: string,
   administration?: string,
-  retry = 2,
 ): Promise<[Wagenreihung, DBSourceType] | undefined> {
   const cacheKey = `${trainNumber}-${date}-${plannedStartDate}-${trainCategory}-${stopEva}-${administration}`;
-  const isNotFound = await notfoundCache.exists(cacheKey);
-  if (isNotFound) {
-    return;
-  }
   const cached = await coachSequenceCache.get(cacheKey);
   if (cached) {
     return cached;
   }
-  let both404 = true;
   if (plannedStartDate && trainCategory && stopEva && administration) {
     try {
       const [url, type] = getDBCoachSequenceUrl(
@@ -116,8 +104,7 @@ async function coachSequence(
       const info = (await navigatorAxios.get<Wagenreihung>(url)).data;
       void coachSequenceCache.set(cacheKey, [info, type]);
       return [info, type];
-    } catch (e) {
-      both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
+    } catch {
       // we just ignore it and try the next one
     }
   }
@@ -129,25 +116,8 @@ async function coachSequence(
     const info = (await bahnhofLiveAxios.get<Wagenreihung>(url)).data;
     void coachSequenceCache.set(cacheKey, [info, type]);
     return [info, type];
-  } catch (e) {
-    both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
+  } catch {
     // we just ignore it and try the next one
-  }
-  logger.info(`WR failed, both404: ${both404}, retry: ${retry}`);
-  if (both404) {
-    void notfoundCache.set(cacheKey, true);
-  } else if (retry > 0) {
-    return new Promise((resolve) => setTimeout(resolve, 100)).then(() =>
-      coachSequence(
-        trainNumber,
-        date,
-        plannedStartDate,
-        trainCategory,
-        stopEva,
-        administration,
-        retry - 1,
-      ),
-    );
   }
 }
 
