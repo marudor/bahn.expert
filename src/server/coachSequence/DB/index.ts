@@ -25,7 +25,7 @@ const dbCoachSequenceTimeout =
 
 const notfoundCache = new Cache<string, boolean>(
   CacheDatabase.CoachSequenceNotfound,
-  15 * 60,
+  30 * 60,
 );
 
 export const getDBCoachSequenceUrl = (
@@ -62,13 +62,9 @@ const formatDate = (date: Date) =>
 const formatPlannedDate = (date: Date) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd');
 
-const newAppsCoachSequenceCache = new Cache<string, Wagenreihung>(
-  CacheDatabase.CoachSequenceNewApps,
-  300,
-);
-const noncdCoachsSequenceCache = new Cache<string, Wagenreihung>(
-  CacheDatabase.CoachSequenceNoncd,
-  300,
+const coachSequenceCache = new Cache<string, [Wagenreihung, DBSourceType]>(
+  CacheDatabase.CoachSequenceFound,
+  5 * 60,
 );
 
 const navigatorAxios = Axios.create();
@@ -89,13 +85,13 @@ async function coachSequence(
   if (isNotFound) {
     return;
   }
+  const cached = await coachSequenceCache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
   let both404 = true;
   if (plannedStartDate && trainCategory && stopEva && administration) {
     try {
-      const cached = await newAppsCoachSequenceCache.get(cacheKey);
-      if (cached) {
-        return [cached, 'newApps'];
-      }
       const cancelToken = new Axios.CancelToken((c) => {
         setTimeout(c, dbCoachSequenceTimeout);
       });
@@ -116,7 +112,7 @@ async function coachSequence(
           cancelToken,
         })
       ).data;
-      void newAppsCoachSequenceCache.set(cacheKey, info);
+      void coachSequenceCache.set(cacheKey, [info, type]);
       return [info, type];
     } catch (e) {
       both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;
@@ -124,10 +120,6 @@ async function coachSequence(
     }
   }
   try {
-    const cached = await noncdCoachsSequenceCache.get(cacheKey);
-    if (cached) {
-      return [cached, 'noncd'];
-    }
     const cancelToken = new Axios.CancelToken((c) => {
       setTimeout(c, dbCoachSequenceTimeout);
     });
@@ -140,7 +132,7 @@ async function coachSequence(
         cancelToken,
       })
     ).data;
-    void noncdCoachsSequenceCache.set(cacheKey, info);
+    void coachSequenceCache.set(cacheKey, [info, type]);
     return [info, type];
   } catch (e) {
     both404 = both404 && Axios.isAxiosError(e) && e.response?.status === 404;

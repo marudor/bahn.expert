@@ -41,7 +41,7 @@ export const enum CacheDatabase {
   HIMMessage,
   NAHSHLageplan,
   StopPlaceSearch = 6,
-  // Was StopPlaceGeo,
+  CoachSequenceFound,
   StopPlaceIdentifier = 8,
   StopPlaceByEva,
   StopPlaceByRil,
@@ -53,8 +53,8 @@ export const enum CacheDatabase {
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
   CoachSequenceNotfound,
-  CoachSequenceNewApps,
-  CoachSequenceNoncd,
+  // CoachSequenceNewApps,
+  // CoachSequenceNoncd,
 }
 
 const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
