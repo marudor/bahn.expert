@@ -1,5 +1,10 @@
+import {
+  addDays,
+  differenceInHours,
+  isWithinInterval,
+  subDays,
+} from 'date-fns';
 import { DBCoachSequence } from '@/server/coachSequence/DB';
-import { differenceInHours } from 'date-fns';
 import { newDBCoachSequence } from '@/server/coachSequence/newDB';
 import { OEBBCoachSequence } from '@/server/coachSequence/OEBB';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
@@ -13,6 +18,14 @@ export async function coachSequence(
   trainCategory?: string,
   administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
+  if (
+    !isWithinInterval(departure, {
+      start: subDays(new Date(), 1),
+      end: addDays(new Date(), 1),
+    })
+  ) {
+    return;
+  }
   if (evaNumber && initialDeparture && !evaNumber.startsWith('80')) {
     const oebbSequence = await OEBBCoachSequence(
       trainNumber,
