@@ -16,6 +16,6 @@ resources:
   requests:
     memory: '768Mi'
     cpu: '400m'
-  limit:
+  limits:
     memory: '2Gi'
     cpu: '1'
