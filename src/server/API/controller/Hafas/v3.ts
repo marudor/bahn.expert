@@ -12,9 +12,9 @@ import {
   Tags,
 } from '@tsoa/runtime';
 import { stopOccupancy } from '@/server/HAFAS/occupancy';
+import { tripSearch } from '@/server/HAFAS/TripSearch/TripSearch';
 import StationBoard from '@/server/HAFAS/StationBoard';
 import StationBoardToTimetables from '@/server/HAFAS/StationBoard/StationBoardToTimetables';
-import TripSearch from '@/server/HAFAS/TripSearch';
 import type { AbfahrtenResult } from '@/types/iris';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { AllowedHafasProfile } from '@/types/HAFAS';
@@ -38,7 +38,7 @@ export class HafasControllerV3 extends Controller {
     @Body() body: TripSearchOptionsV3,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<RoutingResult> {
-    return TripSearch(body, profile, Boolean(req.query.raw));
+    return tripSearch(body, profile, Boolean(req.query.raw));
   }
 
   @Get('/additionalInformation/{trainName}/{journeyId}')

@@ -32,7 +32,7 @@ const profileConfig = {
   },
 };
 
-function route(
+export function tripSearch(
   {
     start,
     destination,
@@ -85,26 +85,26 @@ function route(
   const req: TripSearchRequest = {
     req: {
       jnyFltrL: journeyFilter.length ? journeyFilter : undefined,
-      getPT: true,
+      // getPT: true,
       numF,
       ...requestTypeSpecific,
-      maxChg: maxChanges,
-      minChgTime: transferTime,
+      maxChg: maxChanges === -1 ? undefined : maxChanges,
+      minChgTime: transferTime || undefined,
       getPasslist,
       economic,
       ushrp,
       getPolyline,
       getIV,
       // arrival / departure
-      outFrwd: searchForDeparture,
+      outFrwd: searchForDeparture ? undefined : false,
       arrLocL: [
         {
-          lid: `A=1@L=${destination}`,
+          lid: `A=1@L=${destination}@B=1`,
         },
       ],
       depLocL: [
         {
-          lid: `A=1@L=${start}`,
+          lid: `A=1@L=${start}@B=1`,
         },
       ],
       viaLocL: via?.length
@@ -128,10 +128,8 @@ function route(
     },
     meth: 'TripSearch',
     // @ts-expect-error spread works
-    ...profileConfig[profile],
+    ...profileConfig[profile ?? 'db'],
   };
 
   return makeRequest(req, raw ? undefined : tripSearchParse, profile);
 }
-
-export default route;
