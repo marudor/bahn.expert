@@ -37,6 +37,10 @@ spec:
               port: 9000
             initialDelaySeconds: 3
             periodSeconds: 3
+{{ if .Values.envFrom }}
+          envFrom:
+{{ toYaml .Values.envFrom | indent 12 }}
+{{ end }}
           env:
             - name: BASE_URL
               value: {{ .Values.hostName }}
