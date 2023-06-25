@@ -21,6 +21,11 @@ const journeyFindCache = new Cache<string, JourneyMatch[]>(
   36 * 60 * 60,
 );
 
+const journeyCache = new Cache<string, JourneyEventBased>(
+  CacheDatabase.Journey,
+  24 * 60 * 60,
+);
+
 const axiosWithTimeout = axios.create({
   timeout: 6500,
 });
@@ -154,6 +159,11 @@ export async function getJourneyDetails(
       journeyID: journeyId,
       includeJourneyReferences: true,
     });
+
+    const cacheExists = await journeyCache.exists(journeyId);
+    if (!cacheExists) {
+      void journeyCache.set(journeyId, r.data);
+    }
 
     return r.data;
   } catch {

@@ -53,8 +53,7 @@ export const enum CacheDatabase {
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
   CoachSequenceNotfound,
-  // CoachSequenceNewApps,
-  // CoachSequenceNoncd,
+  Journey,
 }
 
 const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
