@@ -18,11 +18,11 @@ import type { Route$Stop } from '@/types/routing';
 
 const journeyFindCache = new Cache<string, JourneyMatch[]>(
   CacheDatabase.JourneyFind,
-  18 * 60 * 60,
+  36 * 60 * 60,
 );
 
 const axiosWithTimeout = axios.create({
-  timeout: 4500,
+  timeout: 6500,
 });
 axiosWithTimeout.interceptors.request.use(
   addUseragent.bind(

@@ -18,4 +18,3 @@ resources:
     cpu: '400m'
   limits:
     memory: '2Gi'
-    cpu: '1'
