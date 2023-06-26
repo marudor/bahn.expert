@@ -155,13 +155,18 @@ export async function getJourneyDetails(
   journeyId: string,
 ): Promise<JourneyEventBased | undefined> {
   try {
+    if (!process.env.RIS_JOURNEYS_CACHE_DISABLED) {
+      const cached = await journeyCache.get(journeyId);
+      if (cached) {
+        return cached;
+      }
+    }
     const r = await risJourneysClient.journeyEventbasedById({
       journeyID: journeyId,
       includeJourneyReferences: true,
     });
 
-    const cacheExists = await journeyCache.exists(journeyId);
-    if (!cacheExists) {
+    if (!process.env.RIS_JOURNEYS_CACHE_DISABLED) {
       void journeyCache.set(journeyId, r.data);
     }
 
