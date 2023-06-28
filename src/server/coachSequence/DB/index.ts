@@ -5,6 +5,7 @@ import {
 } from '@/external/randomUseragent';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { format } from 'date-fns';
+import { logger } from '@/server/logger';
 import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
 import { UpstreamApiRequestMetric } from '@/server/admin';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -59,12 +60,21 @@ const formatDate = (date?: Date) =>
 const formatPlannedDate = (date?: Date) =>
   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 
+const coachSequenceCacheTTLParsed = Number.parseInt(
+  process.env.COACH_SEQUENCE_CACHE_TTL!,
+);
+const coachSequenceCacheTTL = Number.isNaN(coachSequenceCacheTTLParsed)
+  ? 15 * 60
+  : coachSequenceCacheTTLParsed;
+
+logger.info(`using ${coachSequenceCacheTTL} as CoachSequence cache TTL`);
+
 const coachSequenceCache = new Cache<string, [Wagenreihung, DBSourceType]>(
   CacheDatabase.CoachSequenceFound,
-  15 * 60,
+  coachSequenceCacheTTL,
 );
 
-const newDBCategories = new Set(['ICE', 'IC', 'EC', 'ECE']);
+const newDBCategories = new Set(['ICE', 'IC', 'EC', 'ECE', 'RE', 'RB']);
 const blockedCategories = new Set(['TRAM', 'STR', 'BUS', 'BSV', 'FLUG']);
 
 const navigatorAxios = Axios.create({

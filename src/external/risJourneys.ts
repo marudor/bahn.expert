@@ -3,6 +3,7 @@ import { addUseragent } from '@/external/randomUseragent';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { differenceInHours, format } from 'date-fns';
 import { JourneysApi, TransportType } from '@/external/generated/risJourneys';
+import { logger } from '@/server/logger';
 import { risJourneysConfiguration } from '@/external/config';
 import { upstreamApiCountInterceptor } from '@/server/admin';
 import axios from 'axios';
@@ -21,9 +22,22 @@ const journeyFindCache = new Cache<string, JourneyMatch[]>(
   36 * 60 * 60,
 );
 
+const journeyCacheTTLParsed = Number.parseInt(
+  process.env.RIS_JOURNEYS_CACHE_TTL!,
+);
+const journeyCacheTTL = Number.isNaN(journeyCacheTTLParsed)
+  ? 2 * 60
+  : journeyCacheTTLParsed;
+
+logger.info(`using ${journeyCacheTTL} as RIS::Journeys cache TTL`);
+
 const journeyCache = new Cache<string, JourneyEventBased>(
   CacheDatabase.Journey,
-  24 * 60 * 60,
+  journeyCacheTTL,
+);
+
+logger.info(
+  `using ${process.env.RIS_JOURNEYS_USER_AGENT} as RIS::Journeys UserAgent`,
 );
 
 const axiosWithTimeout = axios.create({
