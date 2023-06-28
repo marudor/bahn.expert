@@ -92,7 +92,7 @@ async function coachSequence(
   }
   const cacheKey = `${trainNumber}-${formatDate(date)}-${formatPlannedDate(
     plannedStartDate,
-  )}-${trainCategory}-${stopEva}}`;
+  )}-${trainCategory}-${stopEva}`;
   const cached = await coachSequenceCache.get(cacheKey);
   if (cached) {
     return cached;
