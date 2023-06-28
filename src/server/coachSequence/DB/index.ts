@@ -52,10 +52,12 @@ export const getDBCoachSequenceUrl = (
   ];
 };
 
-const formatDate = (date: Date) =>
-  format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
-const formatPlannedDate = (date: Date) =>
-  format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd');
+const formatDate = (date?: Date) =>
+  date
+    ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm')
+    : undefined;
+const formatPlannedDate = (date?: Date) =>
+  date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 
 const coachSequenceCache = new Cache<string, [Wagenreihung, DBSourceType]>(
   CacheDatabase.CoachSequenceFound,
@@ -88,7 +90,9 @@ async function coachSequence(
   if (trainCategory && blockedCategories.has(trainCategory)) {
     return undefined;
   }
-  const cacheKey = `${trainNumber}-${date}-${plannedStartDate}-${trainCategory}-${stopEva}-${administration}`;
+  const cacheKey = `${trainNumber}-${formatDate(date)}-${formatPlannedDate(
+    plannedStartDate,
+  )}-${trainCategory}-${stopEva}}`;
   const cached = await coachSequenceCache.get(cacheKey);
   if (cached) {
     return cached;
