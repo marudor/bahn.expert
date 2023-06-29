@@ -1,4 +1,5 @@
 import { Cache, CacheDatabase } from '@/server/cache';
+import { getOccupancy } from '@/server/sbb/occupancy';
 import Detail from '@/server/HAFAS/Detail';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { EvaNumber } from '@/types/common';
@@ -11,6 +12,7 @@ const additionalInformationCache = new Cache<
 
 /**
  * This currently queries HAFAS to get operatorNames & occupancy
+ * Also queries SBB for occupancy
  */
 export async function additionalJourneyInformation(
   trainName: string,
@@ -31,7 +33,17 @@ export async function additionalJourneyInformation(
   if (!journeyDetails) {
     return;
   }
-  const occupancy: Record<EvaNumber, Route$Auslastung> = {};
+
+  const sbbOccupancy = await getOccupancy(
+    journeyDetails.segmentStart.name,
+    journeyDetails.segmentDestination.name,
+    journeyDetails.train.number!,
+    journeyDetails.departure.scheduledTime,
+  );
+
+  const occupancy: Record<EvaNumber, Route$Auslastung> = {
+    ...sbbOccupancy,
+  };
   for (const stop of journeyDetails.stops) {
     if (stop.auslastung) {
       occupancy[stop.station.evaNumber] = stop.auslastung;
