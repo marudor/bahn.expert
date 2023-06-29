@@ -64,7 +64,7 @@ const coachSequenceCacheTTLParsed = Number.parseInt(
   process.env.COACH_SEQUENCE_CACHE_TTL!,
 );
 const coachSequenceCacheTTL = Number.isNaN(coachSequenceCacheTTLParsed)
-  ? 15 * 60
+  ? 'PT15M'
   : coachSequenceCacheTTLParsed;
 
 logger.info(`using ${coachSequenceCacheTTL} as CoachSequence cache TTL`);

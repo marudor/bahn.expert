@@ -1,4 +1,4 @@
-describe('Reihung', () => {
+describe('CoachSequence', () => {
   describe('Frankfurt Hbf', () => {
     beforeEach(() => {
       cy.mockFrankfurt();
@@ -19,7 +19,7 @@ describe('Reihung', () => {
       cy.findByTestId('abfahrtICE371').click();
     });
 
-    it('loads Reihung', () => {
+    it('loads coachSequence', () => {
       cy.findByTestId('reihung').should('exist');
     });
 
@@ -31,12 +31,12 @@ describe('Reihung', () => {
     });
 
     it('Sitzplatzinfo', () => {
-      cy.findByTestId('reihungFahrzeug11').within(() => {
+      cy.findByTestId('coachSequenceCoach11').within(() => {
         cy.findByTestId('sitzplatzinfoToggle').click();
       });
       cy.findByTestId('sitzplatzinfoComfort').should('exist');
       cy.closeModal();
-      cy.findByTestId('reihungFahrzeug7').within(() => {
+      cy.findByTestId('coachSequenceCoach7').within(() => {
         cy.findByTestId('sitzplatzinfoToggle').click();
       });
       cy.findByTestId('sitzplatzinfoComfort').should('exist');
@@ -74,7 +74,7 @@ describe('Reihung', () => {
         },
       ).as('587');
     });
-    it('only loads reihung of selected train if available', () => {
+    it('only loads coachSequence of selected train if available', () => {
       cy.findByTestId('abfahrtICE537').click();
       cy.wait('@537');
     });

@@ -1,6 +1,7 @@
 import { Cache, CacheDatabase } from '@/server/cache';
 import { logger } from '@/server/logger';
 import { parse } from 'date-fns';
+import { Temporal } from '@js-temporal/polyfill';
 import makeRequest from '@/server/HAFAS/Request';
 import parseTime from '@/server/HAFAS/helper/parseTime';
 import type {
@@ -55,14 +56,12 @@ const HimSearch = (
   return makeRequest(req, raw ? undefined : parseHimSearch, profile);
 };
 
-// 24 hours in seconds
 const himMessageCache = new Cache<string, ParsedHimMessage>(
   CacheDatabase.HIMMessage,
-  24 * 60 * 60,
+  'PT24H',
 );
 
-const maxNum =
-  Number.parseInt(process.env.HIM_MAX_FETCH || '5000', 10) || 50000;
+const maxNum = Number.parseInt(process.env.HIM_MAX_FETCH || '5000', 10);
 
 async function fetchTodaysHimMessages() {
   try {
@@ -87,7 +86,10 @@ async function fetchTodaysHimMessages() {
 if (process.env.NODE_ENV !== 'test') {
   void fetchTodaysHimMessages();
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  setInterval(fetchTodaysHimMessages, 10 * 60 * 1000);
+  setInterval(
+    fetchTodaysHimMessages,
+    Temporal.Duration.from('PT30M').total('millisecond'),
+  );
 }
 
 export const getSingleHimMessageOfToday = (

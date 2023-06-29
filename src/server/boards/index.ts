@@ -75,9 +75,9 @@ export async function getPrivateAbfahrten(
     ...result.lookbehind,
     ...Object.values(result.wings || {}),
   ]) {
-    const key = `${boardAbfahrt.train.number}${
-      (boardAbfahrt.departure || boardAbfahrt.arrival)?.scheduledTime
-    }`;
+    const key = `${boardAbfahrt.train.number}${(
+      boardAbfahrt.departure || boardAbfahrt.arrival
+    )?.scheduledTime}`;
     const irisAbfahrt = irisResultByProduct[key];
     if (irisAbfahrt) {
       boardAbfahrt.messages = irisAbfahrt.messages;

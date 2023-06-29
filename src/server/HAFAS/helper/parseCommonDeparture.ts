@@ -1,5 +1,5 @@
 import { differenceInMinutes } from 'date-fns';
-import checkReihung from './checkReihung';
+import checkCoachSequence from './checkCoachSequence';
 import parseTime from './parseTime';
 import type {
   CommonDeparture,
@@ -30,7 +30,7 @@ export default (
     scheduledTime,
     time,
     delay,
-    reihung: checkReihung(scheduledTime, d.dTrnCmpSX, train),
+    reihung: checkCoachSequence(scheduledTime, d.dTrnCmpSX, train),
     cancelled: d.dCncl,
     // messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
   };

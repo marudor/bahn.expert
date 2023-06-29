@@ -1,6 +1,6 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
+import { CoachSequence } from '@/client/Common/Components/CoachSequence/CoachSequence';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import { Reihung } from '@/client/Common/Components/Reihung';
 import { segmentStyles } from './style';
 import { StopList } from '@/client/Routing/Components/RouteList/StopList';
 import { Tooltip } from '@mui/material';
@@ -51,8 +51,8 @@ export const JnySegmentTrain: FC<Props> = ({
       {detail && (
         <>
           {segment.train.number && (
-            <Reihung
-              css={segmentStyles.reihung}
+            <CoachSequence
+              css={segmentStyles.sequence}
               trainNumber={segment.train.number}
               trainCategory={segment.train.type}
               currentEvaNumber={segment.segmentStart.evaNumber}

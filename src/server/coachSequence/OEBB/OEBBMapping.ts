@@ -1,3 +1,4 @@
+import { AuslastungsValue } from '@/types/routing';
 import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
 import type {
   CoachSequenceCoach,
@@ -47,8 +48,28 @@ const mapFeatures = (
   wifi: wagon.hasWifi,
 });
 
+function mapOccupancy(ratio?: number) {
+  if (!ratio) {
+    return undefined;
+  }
+  if (ratio > 0.95) {
+    return AuslastungsValue.Ausgebucht;
+  }
+  if (ratio > 0.7) {
+    return AuslastungsValue.SehrHoch;
+  }
+  if (ratio > 0.3) {
+    return AuslastungsValue.Hoch;
+  }
+  return AuslastungsValue.Gering;
+}
+
 const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
   if (!info.train) return [];
+  const loadByIdentificationNumber: Record<number, number> = {};
+  for (const loadStat of info.load?.stats || []) {
+    loadByIdentificationNumber[loadStat.ranking] = loadStat.ratio;
+  }
   let currentWagons: OEBBCoachSequenceWagon[] = [];
   const wagonsForGroups: OEBBCoachSequenceWagon[][] = [];
   let oldDestination: string | undefined = undefined;
@@ -93,6 +114,7 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
         position: positions[i],
         uic: w.uicNumber,
         type: w.kind,
+        occupancy: mapOccupancy(loadByIdentificationNumber[w.ranking]),
       });
     }
     let trainNumber = '';
@@ -175,11 +197,9 @@ export const mapInformation = (
   const coachsequenceInfo: CoachSequenceInformation = {
     source: 'OEBB',
     // can't decide this for OEBB anymore.
-    isRealtime: true,
+    isRealtime: info.train?.isReported,
     product: mapProduct(info.timeTableInfo),
-    direction: info.trainOnPlatform
-      ? !info.trainOnPlatform.departureTowardsFirstSector
-      : undefined,
+    direction: !info.trainOnPlatform?.departureTowardsFirstSector,
     stop: mapStop(info),
     sequence: {
       groups,

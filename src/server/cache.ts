@@ -1,6 +1,7 @@
 import { checkSecrets } from '@/server/checkSecret';
 import { logger } from '@/server/logger';
 import { LRUCache } from 'lru-cache';
+import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
 import v8 from 'node:v8';
 
@@ -49,7 +50,7 @@ export const enum CacheDatabase {
   StopPlaceSalesSearch,
   JourneyFind,
   NegativeNewSequence = 14,
-  // Was TimetableParsedPlan
+  SBBStopPlaces,
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
   CoachSequenceNotfound,
@@ -57,7 +58,7 @@ export const enum CacheDatabase {
 }
 
 const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
-const defaultTTL = Number.isNaN(parsedEnvTTL) ? 24 * 60 * 60 : parsedEnvTTL;
+const defaultTTL = Number.isNaN(parsedEnvTTL) ? 'PT24H' : parsedEnvTTL;
 
 const activeRedisCaches = new Set<Redis>();
 
@@ -70,10 +71,11 @@ export function disconnectRedis(): void {
 export class Cache<K extends string, V> {
   private lruCache?: LRUCache<K, Buffer>;
   private redisCache?: Redis;
+  private ttl: number;
   constructor(
     database: CacheDatabase,
-    /** In Seconds */
-    private ttl: number = defaultTTL,
+    /** In Seconds or ISO Duration **/
+    rawTTL: number | string = defaultTTL,
     maxEntries = 1000000,
     // eslint-disable-next-line unicorn/no-object-as-default-parameter
     { skipMemory, skipRedis }: { skipMemory?: boolean; skipRedis?: boolean } = {
@@ -81,11 +83,17 @@ export class Cache<K extends string, V> {
       skipMemory: Boolean(redisSettings),
     },
   ) {
+    if (typeof rawTTL === 'string') {
+      const duration = Temporal.Duration.from(rawTTL);
+      this.ttl = duration.total('second');
+    } else {
+      this.ttl = rawTTL;
+    }
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({
           /** in ms */
-          ttl: (ttl / 2) * 1000,
+          ttl: (this.ttl / 2) * 1000,
           max: maxEntries / 500,
         });
     if (!skipRedis) {

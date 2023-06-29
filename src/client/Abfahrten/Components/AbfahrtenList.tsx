@@ -19,7 +19,7 @@ import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConf
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
-import { useSequencesActions } from '@/client/Common/provider/ReihungenProvider';
+import { useSequencesActions } from '@/client/Common/provider/CoachSequenceProvider';
 import styled from '@emotion/styled';
 import type { AbfahrtenResult } from '@/types/iris';
 import type { FC } from 'react';

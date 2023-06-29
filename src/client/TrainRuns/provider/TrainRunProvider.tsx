@@ -21,7 +21,7 @@ const useInnerTrainRuns = (_p: PropsWithChildren<unknown>) => {
         setTrainRuns(undefined);
         const runs = (
           await Axios.get<TrainRunWithBR[]>(
-            `/api/reihung/v4/runsPerDate/${date.toISOString()}`,
+            `/api/coachSequence/v4/runsPerDate/${date.toISOString()}`,
             {
               params: {
                 baureihen,

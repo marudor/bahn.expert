@@ -19,7 +19,7 @@ const coachSequenceClient = new TransportsApi(
 
 const negativeHitCache = new Cache<string, boolean>(
   CacheDatabase.NegativeNewSequence,
-  12 * 60 * 60,
+  'PT12H',
 );
 
 export async function getDepartureSequence(

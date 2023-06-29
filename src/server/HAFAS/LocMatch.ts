@@ -9,11 +9,7 @@ import type {
 } from '@/types/HAFAS';
 import type { LocMatchRequest, LocMatchResponse } from '@/types/HAFAS/LocMatch';
 
-// 8 Hours in seconds
-const cache = new Cache<string, HafasStation[]>(
-  CacheDatabase.LocMatch,
-  8 * 60 * 60,
-);
+const cache = new Cache<string, HafasStation[]>(CacheDatabase.LocMatch, 'PT8H');
 
 function parseFn(
   d: HafasResponse<LocMatchResponse>,

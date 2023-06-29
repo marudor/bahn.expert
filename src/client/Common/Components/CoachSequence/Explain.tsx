@@ -1,5 +1,5 @@
 import { Dialog, DialogContent } from '@mui/material';
-import { icons } from './Fahrzeug';
+import { icons } from './Coach';
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
@@ -63,11 +63,11 @@ export const Explain: FC = () => {
 
   return (
     <>
-      <OpenLink onClick={toggle} data-testid="reihungLegendOpener">
+      <OpenLink onClick={toggle} data-testid="coachSequenceLegendOpener">
         Legende
       </OpenLink>
       <Dialog
-        data-testid="reihungLegend"
+        data-testid="coachSequenceLegend"
         fullWidth
         open={open}
         onClose={toggle}

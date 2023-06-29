@@ -17,13 +17,14 @@ async function fetchSequence(
   initialDeparture?: Date,
   trainCategory?: string,
   administration?: string,
+  initialDepartureEva?: string,
 ): Promise<CoachSequenceInformation | undefined> {
   if (trainNumber === '0') {
     return undefined;
   }
   try {
     const r = await Axios.get<CoachSequenceInformation>(
-      `/api/reihung/v4/wagen/${trainNumber}`,
+      `/api/coachSequence/v4/wagen/${trainNumber}`,
       {
         params: {
           evaNumber,
@@ -31,6 +32,7 @@ async function fetchSequence(
           initialDeparture: initialDeparture?.toISOString(),
           category: trainCategory,
           administration,
+          initialDepartureEva,
         },
       },
     );
@@ -47,7 +49,7 @@ export const sequenceId = (
 ): string =>
   `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`;
 
-function useReihungInner(_p: PropsWithChildren<unknown>) {
+function useCoachSequences(_p: PropsWithChildren<unknown>) {
   const [sequences, setSequences] = useState<{
     [key: string]: undefined | null | CoachSequenceInformation;
   }>({});
@@ -60,8 +62,9 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
       fallback: FallbackTrainsForCoachSequence[] = [],
       trainCategory?: string,
       administration?: string,
+      initialDepartureEva?: string,
     ) => {
-      let reihung: CoachSequenceInformation | undefined | null;
+      let coachSequence: CoachSequenceInformation | undefined | null;
 
       const sequence = await Promise.all([
         fetchSequence(
@@ -71,6 +74,7 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
           initialDeparture,
           trainCategory,
           administration,
+          initialDepartureEva,
         ),
         ...fallback.map((fallbackTrain) =>
           fetchSequence(
@@ -80,6 +84,7 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
             initialDeparture,
             fallbackTrain.type,
             fallbackTrain.admin,
+            initialDepartureEva,
           ),
         ),
       ]);
@@ -91,16 +96,16 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
           ] = s;
         }
       }
-      reihung = sequence.find(Boolean);
-      if (!reihung) {
-        reihung = null;
+      coachSequence = sequence.find(Boolean);
+      if (!coachSequence) {
+        coachSequence = null;
       }
       const key = `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`;
 
-      setSequences((oldReihungen) => ({
-        ...oldReihungen,
+      setSequences((oldSequence) => ({
+        ...oldSequence,
         ...newSequence,
-        [key]: reihung,
+        [key]: coachSequence,
       }));
     },
     [],
@@ -110,8 +115,9 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
   return { sequences, getSequences, clearSequences };
 }
 
-export const [ReihungenProvider, useSequences, useSequencesActions] = constate(
-  useReihungInner,
-  (v) => v.sequences,
-  ({ sequences, ...actions }) => actions,
-);
+export const [CoachSequenceProvider, useSequences, useSequencesActions] =
+  constate(
+    useCoachSequences,
+    (v) => v.sequences,
+    ({ sequences, ...actions }) => actions,
+  );

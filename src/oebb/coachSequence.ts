@@ -10,6 +10,7 @@ const client = Axios.create({
     // This allows connection to CVE-2009-3555 vulnerable servers. You shouldn't do that usually. idc here, I want coachSequences.
     secureOptions: 0x4,
   }),
+  timeout: 10000,
 });
 
 export async function info(

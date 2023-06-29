@@ -6,10 +6,9 @@ import xmljs from 'libxmljs2';
 import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from '@/types/iris';
 
-// 12 Hours in seconds
 const cache = new Cache<string, IrisStation | null>(
   CacheDatabase.Station,
-  12 * 60 * 60,
+  'PT12H',
 );
 
 export function parseStation(stationNode: xmljs.Element): IrisStation {
