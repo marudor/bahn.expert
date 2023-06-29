@@ -1749,6 +1749,910 @@
         "type": "object",
         "additionalProperties": true
       },
+      "ArrivalStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "DepartureStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "StationBoardEntry": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ArrivalStationBoardEntry"
+          },
+          {
+            "$ref": "#/components/schemas/DepartureStationBoardEntry"
+          }
+        ]
+      },
+      "CInfo": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "url",
+          "msg"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "ArrStbStop": {
+        "$ref": "#/components/schemas/CommonArrival"
+      },
+      "ArrivalJny": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "prodX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dirTxt": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isRchbl": {
+            "type": "boolean"
+          },
+          "isCncl": {
+            "type": "boolean"
+          },
+          "isPartCncl": {
+            "type": "boolean"
+          },
+          "subscr": {
+            "type": "string"
+          },
+          "stopL": {
+            "items": {
+              "$ref": "#/components/schemas/CommonStop"
+            },
+            "type": "array"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          },
+          "date": {
+            "type": "string"
+          },
+          "stbStop": {
+            "$ref": "#/components/schemas/ArrStbStop"
+          }
+        },
+        "required": [
+          "jid",
+          "prodX",
+          "dirTxt",
+          "status",
+          "isRchbl",
+          "subscr",
+          "date",
+          "stbStop"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Crd": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          },
+          "z": {
+            "type": "number",
+            "format": "double"
+          },
+          "layerX": {
+            "type": "number",
+            "format": "double"
+          },
+          "crdSysX": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Required_OptionalLocL_": {
+        "properties": {
+          "lid": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "extId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "crd": {
+            "$ref": "#/components/schemas/Crd"
+          },
+          "pCls": {
+            "type": "number",
+            "format": "double"
+          },
+          "pRefL": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array",
+            "description": "Reference to prodL"
+          }
+        },
+        "required": [
+          "lid",
+          "type",
+          "name",
+          "icoX",
+          "extId",
+          "state",
+          "crd",
+          "pCls",
+          "pRefL"
+        ],
+        "type": "object",
+        "description": "Make all properties in T required"
+      },
+      "LocL": {
+        "$ref": "#/components/schemas/Required_OptionalLocL_"
+      },
+      "PpLocRefL": {
+        "properties": {
+          "ppIdx": {
+            "type": "number",
+            "format": "double"
+          },
+          "locX": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "ppIdx",
+          "locX"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "PolyL": {
+        "properties": {
+          "delta": {
+            "type": "boolean"
+          },
+          "dim": {
+            "type": "number",
+            "format": "double"
+          },
+          "crdEncYX": {
+            "type": "string"
+          },
+          "crdEncS": {
+            "type": "string"
+          },
+          "crdEncF": {
+            "type": "string"
+          },
+          "ppLocRefL": {
+            "items": {
+              "$ref": "#/components/schemas/PpLocRefL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "delta",
+          "dim",
+          "crdEncYX",
+          "crdEncS",
+          "crdEncF",
+          "ppLocRefL"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "LayerL": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "index": {
+            "type": "number",
+            "format": "double"
+          },
+          "annoCnt": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "index",
+          "annoCnt"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CrdSysL": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "index": {
+            "type": "number",
+            "format": "double"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "index",
+          "type"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "IcoL": {
+        "properties": {
+          "res": {
+            "type": "string"
+          },
+          "txt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "res"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TcocL": {
+        "properties": {
+          "c": {
+            "type": "string"
+          },
+          "r": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "c"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "HimMsgEdgeL": {
+        "properties": {
+          "icoCrd": {
+            "properties": {
+              "y": {
+                "type": "string"
+              },
+              "x": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "y",
+              "x"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "icoCrd"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Common": {
+        "properties": {
+          "locL": {
+            "items": {
+              "$ref": "#/components/schemas/LocL"
+            },
+            "type": "array"
+          },
+          "prodL": {
+            "items": {
+              "$ref": "#/components/schemas/ProdL"
+            },
+            "type": "array"
+          },
+          "polyL": {
+            "items": {
+              "$ref": "#/components/schemas/PolyL"
+            },
+            "type": "array"
+          },
+          "layerL": {
+            "items": {
+              "$ref": "#/components/schemas/LayerL"
+            },
+            "type": "array"
+          },
+          "crdSysL": {
+            "items": {
+              "$ref": "#/components/schemas/CrdSysL"
+            },
+            "type": "array"
+          },
+          "opL": {
+            "items": {
+              "$ref": "#/components/schemas/OpL"
+            },
+            "type": "array"
+          },
+          "remL": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "icoL": {
+            "items": {
+              "$ref": "#/components/schemas/IcoL"
+            },
+            "type": "array"
+          },
+          "tcocL": {
+            "items": {
+              "$ref": "#/components/schemas/TcocL"
+            },
+            "type": "array"
+          },
+          "himMsgEdgeL": {
+            "items": {
+              "$ref": "#/components/schemas/HimMsgEdgeL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "locL",
+          "prodL",
+          "polyL",
+          "layerL",
+          "crdSysL",
+          "opL",
+          "remL",
+          "icoL"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "ArrivalStationBoardResponse": {
+        "properties": {
+          "common": {
+            "$ref": "#/components/schemas/Common"
+          },
+          "fpB": {
+            "type": "string"
+          },
+          "fpE": {
+            "type": "string"
+          },
+          "planrtTS": {
+            "type": "string"
+          },
+          "sD": {
+            "type": "string"
+          },
+          "sT": {
+            "type": "string"
+          },
+          "locRefL": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ARR"
+            ],
+            "nullable": false
+          },
+          "jnyL": {
+            "items": {
+              "$ref": "#/components/schemas/ArrivalJny"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "common",
+          "fpB",
+          "fpE",
+          "planrtTS",
+          "sD",
+          "sT",
+          "locRefL",
+          "type",
+          "jnyL"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "DepStbStop": {
+        "$ref": "#/components/schemas/CommonDeparture"
+      },
+      "DepartureJny": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "prodX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dirTxt": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isRchbl": {
+            "type": "boolean"
+          },
+          "isCncl": {
+            "type": "boolean"
+          },
+          "isPartCncl": {
+            "type": "boolean"
+          },
+          "subscr": {
+            "type": "string"
+          },
+          "stopL": {
+            "items": {
+              "$ref": "#/components/schemas/CommonStop"
+            },
+            "type": "array"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          },
+          "date": {
+            "type": "string"
+          },
+          "stbStop": {
+            "$ref": "#/components/schemas/DepStbStop"
+          }
+        },
+        "required": [
+          "jid",
+          "prodX",
+          "dirTxt",
+          "status",
+          "isRchbl",
+          "subscr",
+          "date",
+          "stbStop"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "DepartureStationBoardResponse": {
+        "properties": {
+          "common": {
+            "$ref": "#/components/schemas/Common"
+          },
+          "fpB": {
+            "type": "string"
+          },
+          "fpE": {
+            "type": "string"
+          },
+          "planrtTS": {
+            "type": "string"
+          },
+          "sD": {
+            "type": "string"
+          },
+          "sT": {
+            "type": "string"
+          },
+          "locRefL": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DEP"
+            ],
+            "nullable": false
+          },
+          "jnyL": {
+            "items": {
+              "$ref": "#/components/schemas/DepartureJny"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "common",
+          "fpB",
+          "fpE",
+          "planrtTS",
+          "sD",
+          "sT",
+          "locRefL",
+          "type",
+          "jnyL"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "StationBoardResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ArrivalStationBoardResponse"
+          },
+          {
+            "$ref": "#/components/schemas/DepartureStationBoardResponse"
+          }
+        ]
+      },
+      "SvcResL_StationBoardResponse_": {
+        "properties": {
+          "meth": {
+            "type": "string"
+          },
+          "err": {
+            "type": "string"
+          },
+          "res": {
+            "$ref": "#/components/schemas/StationBoardResponse"
+          }
+        },
+        "required": [
+          "meth",
+          "err",
+          "res"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "HafasResponse_StationBoardResponse_": {
+        "properties": {
+          "ver": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "err": {
+            "type": "string"
+          },
+          "cInfo": {
+            "$ref": "#/components/schemas/CInfo"
+          },
+          "svcResL": {
+            "items": {
+              "$ref": "#/components/schemas/SvcResL_StationBoardResponse_"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ver",
+          "lang",
+          "id",
+          "err",
+          "cInfo",
+          "svcResL"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "LocMatchResponse": {
+        "properties": {
+          "common": {
+            "$ref": "#/components/schemas/Common"
+          },
+          "match": {
+            "properties": {
+              "locL": {
+                "items": {
+                  "properties": {
+                    "wt": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "pRefL": {
+                      "items": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "type": "array"
+                    },
+                    "pCls": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "meta": {
+                      "type": "boolean"
+                    },
+                    "crd": {
+                      "properties": {
+                        "z": {
+                          "type": "number",
+                          "format": "double"
+                        },
+                        "crdSysX": {
+                          "type": "number",
+                          "format": "double"
+                        },
+                        "layerX": {
+                          "type": "number",
+                          "format": "double"
+                        },
+                        "y": {
+                          "type": "number",
+                          "format": "double"
+                        },
+                        "x": {
+                          "type": "number",
+                          "format": "double"
+                        }
+                      },
+                      "required": [
+                        "crdSysX",
+                        "layerX",
+                        "y",
+                        "x"
+                      ],
+                      "type": "object"
+                    },
+                    "state": {
+                      "type": "string"
+                    },
+                    "extId": {
+                      "type": "string"
+                    },
+                    "icoX": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "lid": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "wt",
+                    "pRefL",
+                    "pCls",
+                    "meta",
+                    "crd",
+                    "state",
+                    "extId",
+                    "icoX",
+                    "name",
+                    "type",
+                    "lid"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "state": {
+                "type": "string"
+              },
+              "field": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "locL",
+              "state",
+              "field"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "common",
+          "match"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "SvcResL_LocMatchResponse_": {
+        "properties": {
+          "meth": {
+            "type": "string"
+          },
+          "err": {
+            "type": "string"
+          },
+          "res": {
+            "$ref": "#/components/schemas/LocMatchResponse"
+          }
+        },
+        "required": [
+          "meth",
+          "err",
+          "res"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "HafasResponse_LocMatchResponse_": {
+        "properties": {
+          "ver": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "err": {
+            "type": "string"
+          },
+          "cInfo": {
+            "$ref": "#/components/schemas/CInfo"
+          },
+          "svcResL": {
+            "items": {
+              "$ref": "#/components/schemas/SvcResL_LocMatchResponse_"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ver",
+          "lang",
+          "id",
+          "err",
+          "cInfo",
+          "svcResL"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "StopInfo": {
         "properties": {
           "scheduledPlatform": {
@@ -2780,6 +3684,87 @@
         ]
       }
     },
+    "/hafas/v3/departures/{evaNumber}": {
+      "get": {
+        "operationId": "Departures",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/StationBoardEntry"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v3/departures/{evaNumber}/raw": {
+      "get": {
+        "operationId": "DeparturesRaw",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HafasResponse_StationBoardResponse_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
     "/hafas/v2/details/{trainName}": {
       "get": {
         "operationId": "Details v2",
@@ -3214,6 +4199,87 @@
             "schema": {
               "default": false,
               "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v3/stopPlaceSearch/{query}": {
+      "get": {
+        "operationId": "StopPlaceSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/HafasStation"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v3/stopPlaceSearch/{query}/raw": {
+      "get": {
+        "operationId": "StopPlaceSearchRaw",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HafasResponse_LocMatchResponse_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
             }
           }
         ]
