@@ -1,3 +1,4 @@
+import { AllowedHafasProfile } from '@/types/HAFAS';
 import { getRouteLink } from '@/client/Routing/util';
 import { uniqBy } from '@/client/util';
 import { useCallback } from 'react';
@@ -61,11 +62,22 @@ export const useFetchRouting = () => {
       setRoutes(undefined);
       try {
         const routingResult = (
-          await Axios.post<RoutingResult>('/api/hafas/v3/tripSearch', {
-            time: touchedDate ? date : new Date(),
-            searchForDeparture: departureMode === 'ab',
-            ...routeSettings,
-          })
+          await Axios.post<RoutingResult>(
+            '/api/hafas/v3/tripSearch',
+            {
+              time: touchedDate ? date : new Date(),
+              searchForDeparture: departureMode === 'ab',
+              ...routeSettings,
+            },
+            {
+              params: {
+                profile:
+                  routeSettings.hafasProfile === AllowedHafasProfile.OEBB
+                    ? routeSettings.hafasProfile
+                    : undefined,
+              },
+            },
+          )
         ).data;
 
         setRoutes(routingResult.routes);

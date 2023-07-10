@@ -9,6 +9,7 @@ import {
   PedalBike,
   WifiOutlined,
 } from '@mui/icons-material';
+import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { SitzplatzInfo } from './SitzplatzInfo';
 import { UIC } from './UIC';
 import { WagenLink } from './WagenLink';
@@ -169,6 +170,12 @@ const ExtraInfoContainer = styled.span<{ showCoachType: boolean }>(
   }),
 );
 
+const PositionedSingleAuslastungsDisplay = styled(SingleAuslastungsDisplay)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+`;
+
 export interface InheritedProps {
   scale: number;
   correctLeft: number;
@@ -186,7 +193,7 @@ export interface Props extends InheritedProps {
   'data-testid'?: string;
 }
 
-export const Fahrzeug: FC<Props> = ({
+export const Coach: FC<Props> = ({
   fahrzeug,
   wrongWing,
   scale,
@@ -208,7 +215,7 @@ export const Fahrzeug: FC<Props> = ({
     <Container
       wrongWing={wrongWing && !fahrzeug.closed}
       closed={fahrzeug.closed}
-      data-testid={`reihungFahrzeug${fahrzeug.identificationNumber}`}
+      data-testid={`coachSequenceCoach${fahrzeug.identificationNumber}`}
       style={position}
     >
       {Stripe && <Stripe />}
@@ -216,6 +223,9 @@ export const Fahrzeug: FC<Props> = ({
         <DoppelstockIndicator />
       )}
       <Fahrzeugklasse coach={fahrzeug} />
+      {fahrzeug.occupancy && (
+        <PositionedSingleAuslastungsDisplay auslastung={fahrzeug.occupancy} />
+      )}
       {fahrzeug.identificationNumber && (
         <IdentificationNumber>
           {fahrzeug.identificationNumber}

@@ -15,7 +15,7 @@ export const segmentStyles = {
   destination: css`
     flex: 1;
   `,
-  reihung: css`
+  sequence: css`
     font-size: 0.5em;
   `,
 };

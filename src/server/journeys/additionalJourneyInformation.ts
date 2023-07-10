@@ -8,7 +8,7 @@ import type { Route$Auslastung } from '@/types/routing';
 const additionalInformationCache = new Cache<
   string,
   AdditionalJourneyInformation | undefined
->(CacheDatabase.AdditionalJourneyInformation, 10 * 60);
+>(CacheDatabase.AdditionalJourneyInformation, 'PT10M');
 
 /**
  * This currently queries HAFAS to get operatorNames & occupancy
@@ -35,8 +35,8 @@ export async function additionalJourneyInformation(
   }
 
   const sbbOccupancy = await getOccupancy(
-    journeyDetails.segmentStart.name,
-    journeyDetails.segmentDestination.name,
+    journeyDetails.segmentStart,
+    journeyDetails.segmentDestination,
     journeyDetails.train.number!,
     journeyDetails.departure.scheduledTime,
   );

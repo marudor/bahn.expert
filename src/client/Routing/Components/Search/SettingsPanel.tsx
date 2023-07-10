@@ -4,7 +4,10 @@ import {
   AccordionSummary,
   Badge,
   Chip,
+  FormControl,
   FormControlLabel,
+  MenuItem,
+  Select,
   Switch,
   TextField,
 } from '@mui/material';
@@ -15,6 +18,7 @@ import {
   Timelapse,
   Train,
 } from '@mui/icons-material';
+import { AllowedHafasProfile } from '@/types/HAFAS';
 import { css } from '@emotion/react';
 import { NetzcardDisclaimer } from '@/client/Routing/Components/Search/NetzcardDisclaimer';
 import { useCallback, useMemo, useState } from 'react';
@@ -25,6 +29,7 @@ import {
 import styled from '@emotion/styled';
 import type { ChangeEvent, FC } from 'react';
 import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
+import type { SelectChangeEvent } from '@mui/material';
 
 const StyledAccordion = styled(Accordion)`
   margin: 0 !important;
@@ -74,6 +79,14 @@ export const SettingsPanel: FC = () => {
     (_: any, checked: boolean) => {
       updateSettings('onlyNetzcard', checked);
       setShowNetzcardDisclaimer(checked);
+    },
+    [updateSettings],
+  );
+
+  const handleHafasProfile = useCallback(
+    (event: SelectChangeEvent) => {
+      // @ts-expect-error just sanitized
+      updateSettings('hafasProfile', event.target.value);
     },
     [updateSettings],
   );
@@ -170,6 +183,26 @@ export const SettingsPanel: FC = () => {
             }
             label="Nur Regionalzüge"
           />
+          <FormControl size="small">
+            <FormLabel
+              labelPlacement="start"
+              control={
+                <Select
+                  value={settings.hafasProfile || ''}
+                  onChange={handleHafasProfile}
+                >
+                  <MenuItem value={AllowedHafasProfile.DB}>
+                    DB Navigator
+                  </MenuItem>
+                  <MenuItem value={AllowedHafasProfile.OEBB}>
+                    OEBB Scotty
+                  </MenuItem>
+                </Select>
+              }
+              label="Datenlieferant"
+            />
+          </FormControl>
+
           <FormLabel
             labelPlacement="start"
             control={

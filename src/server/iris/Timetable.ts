@@ -65,14 +65,13 @@ type ParsedAr = ArDp & {
   plannedRoutePre?: string[];
 };
 
-// 6 Hours in seconds
 const timetableCache = new Cache<
   string,
   {
     timetable: Record<string, any>;
     wingIds: Record<string, string>;
   }
->(CacheDatabase.TimetableParsedWithWings, 24 * 60 * 60);
+>(CacheDatabase.TimetableParsedWithWings, 'PT24H');
 
 interface Route {
   name: string;

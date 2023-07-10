@@ -2,10 +2,9 @@ import { Cache, CacheDatabase } from '@/server/cache';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import Axios from 'axios';
 
-// 48 hours in seconds
 const cache = new Cache<string, string | null>(
   CacheDatabase.DBLageplan,
-  48 * 60 * 60,
+  'PT48H',
 );
 
 export async function getDBLageplan(

@@ -45,7 +45,10 @@ export async function getPlannedSequence(
         }
       }
     }
-    return plannedSequence;
+    return {
+      ...plannedSequence,
+      source: 'DB-plan',
+    };
   } catch {
     return undefined;
   }

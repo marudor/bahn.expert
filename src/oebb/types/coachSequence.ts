@@ -118,10 +118,19 @@ export interface OEBBPlatformInfo {
   length: number;
   sectors: OEBBSector[];
 }
+
+interface OEBBLoadStat {
+  ranking: number;
+  ratio: number;
+}
+interface OEBBLoad {
+  stats: OEBBLoadStat[];
+}
 export interface OEBBInfo {
   timeTableInfo: OEBBTimeTableInfo;
   train?: OEBBTrainInfo;
   accessess: OEBBAccess[];
   trainOnPlatform?: OEBBTrainOnPlatform;
   platform?: OEBBPlatformInfo;
+  load?: OEBBLoad;
 }

@@ -57,7 +57,7 @@ export interface OebbPlatform {
   egresses: OebbEgress[];
 }
 
-export interface OebbReihung {
+export interface OebbCoachSequence {
   trainName: string;
   /**
    * always true so far?

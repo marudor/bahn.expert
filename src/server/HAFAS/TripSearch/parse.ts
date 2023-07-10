@@ -81,7 +81,10 @@ const AllowedLegTypes = new Set(['JNY', 'WALK', 'TRSF']);
 
 export class Journey {
   private date: Date;
-  constructor(private raw: OutConL, private common: ParsedCommon) {
+  constructor(
+    private raw: OutConL,
+    private common: ParsedCommon,
+  ) {
     this.date = parse(raw.date, 'yyyyMMdd', new Date());
   }
   parseJourney = (): Promise<SingleRoute> => {

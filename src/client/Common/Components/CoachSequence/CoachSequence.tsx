@@ -1,16 +1,17 @@
+/* eslint-disable no-process-env */
 import { Explain } from './Explain';
-import { Gruppe } from './Gruppe';
+import { Group } from './Group';
 import { Loading } from '@/client/Common/Components/Loading';
 import { Sektor } from './Sektor';
-import { sequenceId } from '@/client/Common/provider/ReihungenProvider';
+import { sequenceId } from '@/client/Common/provider/CoachSequenceProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useEffect, useMemo } from 'react';
 import {
   useSequences,
   useSequencesActions,
-} from '@/client/Common/provider/ReihungenProvider';
+} from '@/client/Common/provider/CoachSequenceProvider';
 import styled from '@emotion/styled';
-import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/ReihungenProvider';
+import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
 import type { FC } from 'react';
 
 const ContainerWrap = styled.div`
@@ -75,9 +76,20 @@ interface Props {
   administration?: string;
   withLegend?: boolean;
   loadHidden?: boolean;
+  initialDepartureEva?: string;
 }
 
-export const Reihung: FC<Props> = ({
+const Source: FC<{
+  source: string;
+}> = ({ source }) => {
+  // eslint-disable-next-line no-process-env
+  if (process.env.NODE_ENV === 'production') {
+    return null;
+  }
+  return <span> ({source})</span>;
+};
+
+export const CoachSequence: FC<Props> = ({
   className,
   currentEvaNumber,
   scheduledDeparture,
@@ -87,6 +99,7 @@ export const Reihung: FC<Props> = ({
   trainCategory,
   administration,
   loadHidden,
+  initialDepartureEva,
 }) => {
   const sequences = useSequences();
   const { getSequences } = useSequencesActions();
@@ -105,6 +118,7 @@ export const Reihung: FC<Props> = ({
         fallback,
         trainCategory,
         administration,
+        initialDepartureEva,
       );
     }
   }, [
@@ -117,6 +131,7 @@ export const Reihung: FC<Props> = ({
     trainNumber,
     trainCategory,
     administration,
+    initialDepartureEva,
   ]);
 
   const [scale, startPercent] = useMemo(() => {
@@ -169,7 +184,7 @@ export const Reihung: FC<Props> = ({
   }
 
   return (
-    <ContainerWrap className={className} data-testid="reihung">
+    <ContainerWrap className={className} data-testid="coachSequence">
       <Container style={mainStyle}>
         <Sectors>
           {sequence.stop.sectors.map((s) => (
@@ -183,7 +198,7 @@ export const Reihung: FC<Props> = ({
         </Sectors>
         <Sequence>
           {sequence.sequence.groups.map((g, i) => (
-            <Gruppe
+            <Group
               showCoachType={showCoachType}
               showUIC={showUIC}
               originalTrainNumber={trainNumber}
@@ -202,8 +217,11 @@ export const Reihung: FC<Props> = ({
           ))}
         </Sequence>
         <Explain />
-        {!sequence.isRealtime && (
-          <PlannedOnlyIndicator>Plandaten</PlannedOnlyIndicator>
+        {(!sequence.isRealtime || process.env.NODE_ENV !== 'production') && (
+          <PlannedOnlyIndicator>
+            {!sequence.isRealtime && 'Plandaten'}
+            <Source source={sequence.source} />
+          </PlannedOnlyIndicator>
         )}
         {sequence.direction != null && (
           <DirectionOfTravel reversed={!sequence.direction} />
@@ -213,4 +231,4 @@ export const Reihung: FC<Props> = ({
   );
 };
 // eslint-disable-next-line import/no-default-export
-export default Reihung;
+export default CoachSequence;

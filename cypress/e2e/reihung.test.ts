@@ -1,11 +1,11 @@
-describe('Reihung', () => {
+describe('CoachSequence', () => {
   describe('Frankfurt Hbf', () => {
     beforeEach(() => {
       cy.mockFrankfurt();
       cy.visit('/');
       cy.intercept(
         {
-          url: '/api/reihung/v4/wagen/371?*',
+          url: '/api/coachSequence/v4/wagen/371?*',
           query: {
             evaNumber: '8000105',
             departure: '2019-08-07T12:50:00.000Z',
@@ -19,24 +19,24 @@ describe('Reihung', () => {
       cy.findByTestId('abfahrtICE371').click();
     });
 
-    it('loads Reihung', () => {
-      cy.findByTestId('reihung').should('exist');
+    it('loads coachSequence', () => {
+      cy.findByTestId('coachSequence').should('exist');
     });
 
     it('Legend useable', () => {
-      cy.findByTestId('reihungLegendOpener').click();
-      cy.findByTestId('reihungLegend').should('exist');
+      cy.findByTestId('coachSequenceLegendOpener').click();
+      cy.findByTestId('coachSequenceLegend').should('exist');
       cy.closeModal();
-      cy.findByTestId('reihung').should('exist');
+      cy.findByTestId('coachSequence').should('exist');
     });
 
     it('Sitzplatzinfo', () => {
-      cy.findByTestId('reihungFahrzeug11').within(() => {
+      cy.findByTestId('coachSequenceCoach11').within(() => {
         cy.findByTestId('sitzplatzinfoToggle').click();
       });
       cy.findByTestId('sitzplatzinfoComfort').should('exist');
       cy.closeModal();
-      cy.findByTestId('reihungFahrzeug7').within(() => {
+      cy.findByTestId('coachSequenceCoach7').within(() => {
         cy.findByTestId('sitzplatzinfoToggle').click();
       });
       cy.findByTestId('sitzplatzinfoComfort').should('exist');
@@ -51,7 +51,7 @@ describe('Reihung', () => {
       cy.navigateToStation('Hannover Hbf');
       cy.intercept(
         {
-          url: '/api/reihung/v4/wagen/537?*',
+          url: '/api/coachSequence/v4/wagen/537?*',
           query: {
             evaNumber: '8000152',
             departure: '2020-02-22T11:26:00.000Z',
@@ -63,7 +63,7 @@ describe('Reihung', () => {
       ).as('537');
       cy.intercept(
         {
-          url: '/api/reihung/v4/wagen/587?*',
+          url: '/api/coachSequence/v4/wagen/587?*',
           query: {
             evaNumber: '8000152',
             departure: '2020-02-22T11:26:00.000Z',
@@ -74,7 +74,7 @@ describe('Reihung', () => {
         },
       ).as('587');
     });
-    it('only loads reihung of selected train if available', () => {
+    it('only loads coachSequence of selected train if available', () => {
       cy.findByTestId('abfahrtICE537').click();
       cy.wait('@537');
     });

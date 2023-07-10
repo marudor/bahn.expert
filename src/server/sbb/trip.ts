@@ -1,26 +1,9 @@
-import { AuslastungsValue } from '@/types/routing';
+import { findSingleStopPlace } from '@/server/sbb/stopPlace';
 import { format } from 'date-fns';
-import axios from 'axios';
-import type { EvaNumber } from '@/types/common';
-import type { Route$Auslastung } from '@/types/routing';
-
-function getJourneyDetailsRequest(jid: string) {
-  return {
-    operationName: 'getServiceJourneyById',
-    variables: { id: jid, language: 'DE' },
-    query:
-      'query getServiceJourneyById($id: ID!, $language: LanguageEnum!) {\n  serviceJourneyById(id: $id, language: $language) {\n    id\n    stopPoints {\n      stopStatus\n      stopStatusFormatted\n      arrival {\n        time\n        delay\n        __typename\n      }\n      departure {\n        time\n        delay\n        __typename\n      }\n      accessibilityBoardingAlighting {\n        limitation\n        __typename\n      }\n      occupancy {\n        firstClass\n        secondClass\n        __typename\n      }\n      place {\n        id\n        name\n        __typename\n      }\n      arrival {\n        quayAimedName\n        time\n        quayRtName\n        quayChanged\n        __typename\n      }\n      departure {\n        quayAimedName\n        quayRtName\n        time\n        quayChanged\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}',
-  };
-}
-
-function getStopPlaceRequest(name: string) {
-  return {
-    operationName: 'GetPlaces',
-    variables: { input: { type: 'NAME', value: name }, language: 'DE' },
-    query:
-      'query GetPlaces($input: PlaceInput, $language: LanguageEnum!) {\n  places(input: $input, language: $language) {\n    id\n    name\n    __typename\n  }\n}',
-  };
-}
+import { logger } from '@/server/logger';
+import { sbbAxios } from '@/server/sbb/sbbAxios';
+import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { SBBTrip } from '@/server/sbb/types';
 
 function getTripRequest(
   startId: string,
@@ -38,7 +21,7 @@ function getTripRequest(
         time: {
           date: format(departureTime, 'yyyy-MM-dd'),
           time: format(departureTime, 'HH:mm'),
-          type: 'DEPARTURE',
+          type: 'ARRIVAL',
         },
         includeEconomic: false,
         directConnection: true,
@@ -67,56 +50,37 @@ function getTripRequest(
   };
 }
 
-async function getJourneyDetails(jid: string) {
-  const data = getJourneyDetailsRequest(jid);
-
-  const result = (
-    await axios.post('https://graphql.beta.sbb.ch/', data, {
-      headers: {
-        'apollographql-client-name': 'sbb-webshop',
-      },
-    })
-  ).data;
-
-  return result;
-}
-
-async function findStopPlaceId(name: string) {
-  const data = getStopPlaceRequest(name);
-
-  const result = (
-    await axios.post('https://graphql.beta.sbb.ch/', data, {
-      headers: {
-        'apollographql-client-name': 'sbb-webshop',
-      },
-    })
-  ).data;
-
-  const exactMatch = result.data?.places.find((s: any) => s.name === name);
-
-  return exactMatch?.id;
-}
-
-async function findJourneyId(
-  startName: string,
-  destinationName: string,
+export async function getSingleJourneyTrip(
+  start: Omit<MinimalStopPlace, 'ril100'>,
+  destination: Omit<MinimalStopPlace, 'ril100'>,
   trainNumber: string,
   departureTime: Date,
-) {
-  const [startId, destinationId] = await Promise.all([
-    findStopPlaceId(startName),
-    findStopPlaceId(destinationName),
+): Promise<SBBTrip | undefined> {
+  const [startStopPlace, destinationStopPlace] = await Promise.all([
+    findSingleStopPlace(start),
+    findSingleStopPlace(destination),
   ]);
 
-  const data = getTripRequest(startId, destinationId, departureTime);
+  logger.debug(
+    {
+      startStopPlace,
+      destinationStopPlace,
+    },
+    'Found stopPlaces for coachSequenceTrip (from SBB)',
+  );
 
-  const result = (
-    await axios.post('https://graphql.beta.sbb.ch/', data, {
-      headers: {
-        'apollographql-client-name': 'sbb-webshop',
-      },
-    })
-  ).data;
+  if (!startStopPlace || !destinationStopPlace) {
+    return undefined;
+  }
+
+  const data = getTripRequest(
+    startStopPlace.id,
+    destinationStopPlace.id,
+    departureTime,
+  );
+
+  const result = (await sbbAxios.post('https://graphql.beta.sbb.ch/', data))
+    .data;
 
   const correctTrip = result.data?.trips.trips.find((t: any) =>
     t.legs[0].serviceJourney.serviceProducts.some(
@@ -124,57 +88,5 @@ async function findJourneyId(
     ),
   );
 
-  return correctTrip.legs[0].serviceJourney.id;
-}
-
-function mapSBBOccupancy(sbbOccupancy: string): AuslastungsValue | undefined {
-  switch (sbbOccupancy) {
-    case 'LOW': {
-      return AuslastungsValue.Gering;
-    }
-    case 'MEDIUM': {
-      return AuslastungsValue.Hoch;
-    }
-    case 'HIGH': {
-      return AuslastungsValue.SehrHoch;
-    }
-    case 'UNKNOWN': {
-      return undefined;
-    }
-  }
-}
-
-export async function getOccupancy(
-  startName: string,
-  destinationName: string,
-  trainNumber: string,
-  departureTime: Date,
-): Promise<Record<EvaNumber, Route$Auslastung>> {
-  try {
-    const journeyId = await findJourneyId(
-      startName,
-      destinationName,
-      trainNumber,
-      departureTime,
-    );
-
-    const details = await getJourneyDetails(journeyId);
-
-    const occupancyRecord: Record<EvaNumber, Route$Auslastung> = {};
-
-    for (const stopPoint of details?.data.serviceJourneyById.stopPoints ?? []) {
-      const occupancy: Route$Auslastung = {
-        first: mapSBBOccupancy(stopPoint.occupancy.firstClass),
-        second: mapSBBOccupancy(stopPoint.occupancy.secondClass),
-      };
-
-      if (occupancy.first || occupancy.second) {
-        occupancyRecord[stopPoint.place.id] = occupancy;
-      }
-    }
-
-    return occupancyRecord;
-  } catch {
-    return {};
-  }
+  return correctTrip;
 }

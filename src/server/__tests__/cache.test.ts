@@ -32,13 +32,15 @@ const defineCacheTests = (createCache: () => Cache<string, unknown>) => {
 
 describe('Cache', () => {
   describe('memory', () => {
-    defineCacheTests(() => new Cache(0, 100, undefined, { skipRedis: true }));
+    defineCacheTests(
+      () => new Cache(0, 'PT100S', undefined, { skipRedis: true }),
+    );
   });
 
   if (process.env.REDIS_HOST) {
     describe('redis', () => {
       defineCacheTests(
-        () => new Cache(1, 100, undefined, { skipMemory: true }),
+        () => new Cache(1, 'PT100S', undefined, { skipMemory: true }),
       );
     });
   }

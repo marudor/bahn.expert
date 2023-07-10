@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-import { BRInfo } from '@/client/Common/Components/Reihung/BRInfo';
+import { BRInfo } from '@/client/Common/Components/CoachSequence/BRInfo';
+import { Coach } from './Coach';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import { Fahrzeug } from './Fahrzeug';
 import { journeyNumberFind } from '@/client/Common/service/details';
-import { PrideStripe } from '@/client/Common/Components/Reihung/Stripes/PrideStripe';
+import { PrideStripe } from '@/client/Common/Components/CoachSequence/Stripes/PrideStripe';
 import { useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import type { CoachSequenceGroup } from '@/types/coachSequence';
 import type { FC } from 'react';
-import type { InheritedProps } from './Fahrzeug';
+import type { InheritedProps } from './Coach';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
 const Bezeichnung = styled.div`
@@ -82,7 +82,7 @@ const ClickableTrainLink: FC<{
   );
 };
 
-export const Gruppe: FC<Props> = ({
+export const Group: FC<Props> = ({
   gruppe,
   showDestination,
   showFahrzeugGruppe,
@@ -119,7 +119,7 @@ export const Gruppe: FC<Props> = ({
     const StripeElement = gruppe.name === prideTZName ? PrideStripe : undefined;
     return gruppe.coaches.map((c) => {
       return (
-        <Fahrzeug
+        <Coach
           {...rest}
           Stripe={StripeElement}
           identifier={gruppe.baureihe?.identifier}
@@ -147,7 +147,7 @@ export const Gruppe: FC<Props> = ({
           {showDestination && <span>Ziel: {gruppe.destinationName}</span>}
           {gruppe.trainName && <span>Zugname: "{gruppe.trainName}"</span>}
           {showFahrzeugGruppe && (
-            <span data-testid="reihungFahrzeugGruppe">
+            <span data-testid="coachSequenceCoachGroup">
               {gruppe.name.replace(RPFRegex, '$1 $2 $3')}
             </span>
           )}

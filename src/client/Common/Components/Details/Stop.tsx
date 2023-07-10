@@ -1,8 +1,8 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
+import { CoachSequence } from '../CoachSequence/CoachSequence';
 import { DetailMessages } from '../Messages/Detail';
 import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
-import { Reihung } from '../Reihung';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
@@ -47,7 +47,7 @@ const DeparturePlatform = styled(Platform)`
   grid-area: depP;
 `;
 
-const ReihungContainer = styled.div`
+const CoachSequenceContainer = styled.div`
   grid-area: wr;
   font-size: 0.5em;
   overflow: hidden;
@@ -96,6 +96,7 @@ interface Props {
   initialDepartureDate?: Date;
   onStopClick?: (stop: Route$Stop) => void;
   doNotRenderOccupancy?: boolean;
+  initialDepartureEva?: string;
 }
 export const Stop: FC<Props> = ({
   stop,
@@ -105,6 +106,7 @@ export const Stop: FC<Props> = ({
   initialDepartureDate,
   onStopClick,
   doNotRenderOccupancy,
+  initialDepartureEva,
 }) => {
   const { urlPrefix, additionalInformation } = useDetails();
   const occupancy = useMemo(
@@ -184,19 +186,20 @@ export const Stop: FC<Props> = ({
       <DeparturePlatform {...platforms.departure} />
       {!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
-      <ReihungContainer>
+      <CoachSequenceContainer>
         {showWR?.number && depOrArrival && (
-          <Reihung
+          <CoachSequence
             trainNumber={showWR.number}
             trainCategory={showWR.type}
             currentEvaNumber={stop.station.evaNumber}
             scheduledDeparture={depOrArrival.scheduledTime}
             initialDeparture={initialDepartureDate}
+            initialDepartureEva={initialDepartureEva}
             administration={train?.admin}
             loadHidden={!depOrArrival?.reihung}
           />
         )}
-      </ReihungContainer>
+      </CoachSequenceContainer>
       <MessageContainer>
         {stop.irisMessages && <DetailMessages messages={stop.irisMessages} />}
         <Messages messages={stop.messages} />

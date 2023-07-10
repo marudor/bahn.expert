@@ -16,11 +16,11 @@ import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetail
 import loadable from '@loadable/component';
 import styled from '@emotion/styled';
 import type { Abfahrt } from '@/types/iris';
-import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/ReihungenProvider';
+import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
 import type { FC } from 'react';
 
-const LazyReihung = loadable(
-  () => import('@/client/Common/Components/Reihung'),
+const LazyCoachSequence = loadable(
+  () => import('@/client/Common/Components/CoachSequence/CoachSequence'),
 );
 
 interface AbfahrtContextValues {
@@ -162,7 +162,7 @@ export const BaseAbfahrt: FC<Props> = ({
             <End />
           </MainWrap>
           {detail && abfahrt.departure && (
-            <LazyReihung
+            <LazyCoachSequence
               trainNumber={abfahrt.train.number}
               trainCategory={abfahrt.train.type}
               currentEvaNumber={abfahrt.currentStopPlace.evaNumber}

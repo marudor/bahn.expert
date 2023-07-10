@@ -1,3 +1,4 @@
+import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
 
 let lines: Record<string, string> = {};
@@ -24,7 +25,10 @@ async function fetchLineMapping() {
 if (process.env.NODE_ENV !== 'test') {
   void fetchLineMapping();
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  setInterval(fetchLineMapping, 2 * 60 * 1000);
+  setInterval(
+    fetchLineMapping,
+    Temporal.Duration.from('PT20M').total('millisecond'),
+  );
 }
 
 export function getLineFromNumber(journeyNumber?: string): string | undefined {

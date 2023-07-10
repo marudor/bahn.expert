@@ -22,8 +22,8 @@ import type { Request as KoaRequest } from 'koa';
 import type { TrainRunWithBR } from '@/types/trainRuns';
 import type { TsoaResponse } from '@tsoa/runtime';
 
-@Route('/reihung/v4')
-export class ReihungControllerV4 extends Controller {
+@Route('/coachSequence/v4')
+export class CoachSequenceControllerV4 extends Controller {
   /**
    * Returns the coachSequence at a specific stop for a specific train.
    * Works for OEBB stops and DB stops.
@@ -34,9 +34,9 @@ export class ReihungControllerV4 extends Controller {
    * @example trainNumber "42023"
    */
   @Get('/wagen/{trainNumber}')
-  @Tags('Reihung')
-  @OperationId('Wagenreihung v4')
-  async wagenreihung(
+  @Tags('CoachSequence')
+  @OperationId('CoachSequence v4')
+  async coachSequence(
     @Request() req: KoaRequest,
     @Res() response: TsoaResponse<401 | 404, void | string>,
     trainNumber: number,
@@ -44,14 +44,16 @@ export class ReihungControllerV4 extends Controller {
      * Departure at the stop you want the coachSequence for
      */
     @Query() departure: Date,
-    /** needed for OEBB Reihung, usually 7 digits */
+    /** needed for OEBB coachSequence, usually 7 digits */
     @Query() evaNumber?: EvaNumber,
-    /** needed for OEBB Reihung */
+    /** needed for OEBB coachSequence */
     @Query() initialDeparture?: Date,
-    /** needed for new DB Reihung */
+    /** needed for new DB coachSequence */
     @Query() category?: string,
-    /** needed for new DB Navigator Reihung */
+    /** needed for new DB Navigator coachSequence */
     @Query() administration?: string,
+    /** needed for SBB coachSequence */
+    @Query() initialDepartureEva?: string,
   ): Promise<CoachSequenceInformation | void> {
     if (!isAllowed(req)) {
       return response(
@@ -67,6 +69,7 @@ export class ReihungControllerV4 extends Controller {
         initialDeparture,
         category,
         administration,
+        initialDepartureEva,
       );
       if (sequence) return sequence;
     } catch {
@@ -91,7 +94,7 @@ export class ReihungControllerV4 extends Controller {
    * @example stopsAt "[8000105, 8000191]"
    */
   @Get('/runsPerDate/{date}')
-  @Tags('Reihung')
+  @Tags('CoachSequence')
   @OperationId('Runs per Date v4')
   async runsPerDate(
     @Request() req: KoaRequest,

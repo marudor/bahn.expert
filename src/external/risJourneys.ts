@@ -19,15 +19,15 @@ import type { Route$Stop } from '@/types/routing';
 
 const journeyFindCache = new Cache<string, JourneyMatch[]>(
   CacheDatabase.JourneyFind,
-  36 * 60 * 60,
+  'PT36H',
 );
 
 const journeyCacheTTLParsed = Number.parseInt(
   process.env.RIS_JOURNEYS_CACHE_TTL!,
 );
 const journeyCacheTTL = Number.isNaN(journeyCacheTTLParsed)
-  ? 2 * 60
-  : journeyCacheTTLParsed;
+  ? 'PT5M'
+  : process.env.RIS_JOURNEYS_CACHE_TTL!;
 
 logger.info(`using ${journeyCacheTTL} as RIS::Journeys cache TTL`);
 

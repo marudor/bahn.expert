@@ -1,9 +1,9 @@
+import { CoachSequenceProvider } from '@/client/Common/provider/CoachSequenceProvider';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { GlobalStyles } from '@mui/material';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { Loading } from '@/client/Common/Components/Loading';
 import { Navigation } from '@/client/Common/Components/Navigation';
-import { ReihungenProvider } from '@/client/Common/provider/ReihungenProvider';
 import { Route, Routes } from 'react-router-dom';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
 import loadable from '@loadable/component';
@@ -51,7 +51,7 @@ export const App: FC = () => {
       <HeaderTagProvider>
         <CommonConfigProvider>
           <Navigation>
-            <ReihungenProvider>
+            <CoachSequenceProvider>
               <RoutingProvider>
                 <Routes>
                   <Route path="/about" element={<About />} />
@@ -67,7 +67,7 @@ export const App: FC = () => {
                   <Route path="/*" element={<LazyAbfahrten />} />
                 </Routes>
               </RoutingProvider>
-            </ReihungenProvider>
+            </CoachSequenceProvider>
           </Navigation>
         </CommonConfigProvider>
       </HeaderTagProvider>
