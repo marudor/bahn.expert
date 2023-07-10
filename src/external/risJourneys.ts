@@ -27,7 +27,7 @@ const journeyCacheTTLParsed = Number.parseInt(
 );
 const journeyCacheTTL = Number.isNaN(journeyCacheTTLParsed)
   ? 'PT5M'
-  : process.env.RIS_JOURNEYS_CACHE_TTL!;
+  : journeyCacheTTLParsed;
 
 logger.info(`using ${journeyCacheTTL} as RIS::Journeys cache TTL`);
 
