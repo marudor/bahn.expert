@@ -1,9 +1,14 @@
 describe('Details', () => {
   it('Can Render (with error)', () => {
-    cy.intercept('/api/hafas/v2/details/ICE70', {
-      statusCode: 404,
-      response: {},
-    });
+    cy.intercept(
+      {
+        pathname: '/api/journeys/v1/details/ICE70',
+      },
+      {
+        statusCode: 404,
+        response: {},
+      },
+    );
     cy.visit('/details/ICE70');
     cy.findByTestId('error').should('exist');
   });

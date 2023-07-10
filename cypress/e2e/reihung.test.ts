@@ -5,7 +5,7 @@ describe('CoachSequence', () => {
       cy.visit('/');
       cy.intercept(
         {
-          url: '/api/reihung/v4/wagen/371?*',
+          url: '/api/coachSequence/v4/wagen/371?*',
           query: {
             evaNumber: '8000105',
             departure: '2019-08-07T12:50:00.000Z',
@@ -20,14 +20,14 @@ describe('CoachSequence', () => {
     });
 
     it('loads coachSequence', () => {
-      cy.findByTestId('reihung').should('exist');
+      cy.findByTestId('coachSequence').should('exist');
     });
 
     it('Legend useable', () => {
-      cy.findByTestId('reihungLegendOpener').click();
-      cy.findByTestId('reihungLegend').should('exist');
+      cy.findByTestId('coachSequenceLegendOpener').click();
+      cy.findByTestId('coachSequenceLegend').should('exist');
       cy.closeModal();
-      cy.findByTestId('reihung').should('exist');
+      cy.findByTestId('coachSequence').should('exist');
     });
 
     it('Sitzplatzinfo', () => {
@@ -51,7 +51,7 @@ describe('CoachSequence', () => {
       cy.navigateToStation('Hannover Hbf');
       cy.intercept(
         {
-          url: '/api/reihung/v4/wagen/537?*',
+          url: '/api/coachSequence/v4/wagen/537?*',
           query: {
             evaNumber: '8000152',
             departure: '2020-02-22T11:26:00.000Z',
@@ -63,7 +63,7 @@ describe('CoachSequence', () => {
       ).as('537');
       cy.intercept(
         {
-          url: '/api/reihung/v4/wagen/587?*',
+          url: '/api/coachSequence/v4/wagen/587?*',
           query: {
             evaNumber: '8000152',
             departure: '2020-02-22T11:26:00.000Z',
