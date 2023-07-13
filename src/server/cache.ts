@@ -5,6 +5,24 @@ import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
 import v8 from 'node:v8';
 
+export function parseCacheTTL(
+  defaultTTL: string,
+  rawCacheTTL?: string,
+): string {
+  if (!rawCacheTTL) {
+    return defaultTTL;
+  }
+  if (!Number.isNaN(Number.parseInt(rawCacheTTL))) {
+    return `PT${rawCacheTTL}S`;
+  }
+  try {
+    Temporal.Duration.from(rawCacheTTL).total('second');
+    return rawCacheTTL;
+  } catch {
+    return defaultTTL;
+  }
+}
+
 function dateSerialize(this: any, key: string, value: any): any {
   // eslint-disable-next-line babel/no-invalid-this
   if (this[key] instanceof Date) {

@@ -3,8 +3,9 @@ import {
   randomBahnhofLiveUseragent,
   randomDBNavigatorUseragent,
 } from '@/external/randomUseragent';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { Cache, CacheDatabase, parseCacheTTL } from '@/server/cache';
 import { format } from 'date-fns';
+import { isWithin20Hours } from '@/external/coachSequence';
 import { logger } from '@/server/logger';
 import { mapInformation } from '@/server/coachSequence/DB/DBMapping';
 import { UpstreamApiRequestMetric } from '@/server/admin';
@@ -60,12 +61,10 @@ const formatDate = (date?: Date) =>
 const formatPlannedDate = (date?: Date) =>
   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 
-const coachSequenceCacheTTLParsed = Number.parseInt(
-  process.env.COACH_SEQUENCE_CACHE_TTL!,
+const coachSequenceCacheTTL = parseCacheTTL(
+  'PT15M',
+  process.env.COACH_SEQUENCE_CACHE_TTL,
 );
-const coachSequenceCacheTTL = Number.isNaN(coachSequenceCacheTTLParsed)
-  ? 'PT15M'
-  : coachSequenceCacheTTLParsed;
 
 logger.info(`using ${coachSequenceCacheTTL} as CoachSequence cache TTL`);
 
@@ -98,6 +97,9 @@ async function coachSequence(
   administration?: string,
 ): Promise<[Wagenreihung, DBSourceType] | undefined> {
   if (trainCategory && blockedCategories.has(trainCategory)) {
+    return undefined;
+  }
+  if (!isWithin20Hours(date)) {
     return undefined;
   }
   const cacheKey = `${trainNumber}-${formatDate(date)}-${formatPlannedDate(
