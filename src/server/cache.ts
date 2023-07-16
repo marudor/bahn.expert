@@ -196,4 +196,8 @@ export class Cache<K extends string, V> {
     }
     return Boolean(await this.redisCache?.exists(key));
   }
+  async clearAll(): Promise<void> {
+    this.lruCache?.clear();
+    await this.redisCache?.flushall();
+  }
 }
