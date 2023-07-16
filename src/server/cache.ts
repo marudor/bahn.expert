@@ -52,7 +52,7 @@ const redisSettings = process.env.REDIS_HOST
     }
   : undefined;
 
-export const enum CacheDatabase {
+export enum CacheDatabase {
   Station,
   TimetableParsedWithWings,
   DBLageplan,
@@ -71,12 +71,36 @@ export const enum CacheDatabase {
   SBBStopPlaces,
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
-  CoachSequenceNotfound,
-  Journey,
+  Journey = 19,
 }
 
-const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
-const defaultTTL = Number.isNaN(parsedEnvTTL) ? 'PT24H' : parsedEnvTTL;
+const CacheTTLs: Record<CacheDatabase, string> = {
+  [CacheDatabase.Station]: 'PT24H',
+  [CacheDatabase.TimetableParsedWithWings]: 'PT24H',
+  [CacheDatabase.DBLageplan]: 'PT48H',
+  [CacheDatabase.LocMatch]: 'PT24H',
+  [CacheDatabase.HIMMessage]: 'PT24H',
+  [CacheDatabase.NAHSHLageplan]: 'PT48H',
+  [CacheDatabase.StopPlaceSearch]: 'PT24H',
+  [CacheDatabase.CoachSequenceFound]: parseCacheTTL(
+    'PT15M',
+    process.env.COACH_SEQUENCE_CACHE_TTL,
+  ),
+  [CacheDatabase.StopPlaceIdentifier]: 'PT24H',
+  [CacheDatabase.StopPlaceByEva]: 'PT24H',
+  [CacheDatabase.StopPlaceByRil]: 'PT24H',
+  [CacheDatabase.StopPlaceGroups]: 'PT24H',
+  [CacheDatabase.StopPlaceSalesSearch]: 'PT24H',
+  [CacheDatabase.JourneyFind]: 'PT36H',
+  [CacheDatabase.NegativeNewSequence]: 'PT12H',
+  [CacheDatabase.SBBStopPlaces]: 'P1D',
+  [CacheDatabase.HafasStopOccupancy]: 'PT30M',
+  [CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
+  [CacheDatabase.Journey]: parseCacheTTL(
+    'PT5M',
+    process.env.RIS_JOURNEYS_CACHE_TTL,
+  ),
+};
 
 const activeRedisCaches = new Set<Redis>();
 
@@ -92,8 +116,6 @@ export class Cache<K extends string, V> {
   private ttl: number;
   constructor(
     database: CacheDatabase,
-    /** In Seconds or ISO Duration **/
-    rawTTL: number | string = defaultTTL,
     maxEntries = 1000000,
     // eslint-disable-next-line unicorn/no-object-as-default-parameter
     { skipMemory, skipRedis }: { skipMemory?: boolean; skipRedis?: boolean } = {
@@ -101,12 +123,10 @@ export class Cache<K extends string, V> {
       skipMemory: Boolean(redisSettings),
     },
   ) {
-    if (typeof rawTTL === 'string') {
-      const duration = Temporal.Duration.from(rawTTL);
-      this.ttl = duration.total('second');
-    } else {
-      this.ttl = rawTTL;
-    }
+    this.ttl = Temporal.Duration.from(CacheTTLs[database]).total('second');
+    logger.info(
+      `Using ${CacheTTLs[database]} as TTL for ${CacheDatabase[database]}`,
+    );
     this.lruCache = skipMemory
       ? undefined
       : new LRUCache({

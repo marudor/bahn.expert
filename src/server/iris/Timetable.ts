@@ -71,7 +71,7 @@ const timetableCache = new Cache<
     timetable: Record<string, any>;
     wingIds: Record<string, string>;
   }
->(CacheDatabase.TimetableParsedWithWings, 'PT24H');
+>(CacheDatabase.TimetableParsedWithWings);
 
 interface Route {
   name: string;

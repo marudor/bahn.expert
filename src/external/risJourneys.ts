@@ -1,6 +1,6 @@
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { addUseragent } from '@/external/randomUseragent';
-import { Cache, CacheDatabase, parseCacheTTL } from '@/server/cache';
+import { Cache, CacheDatabase } from '@/server/cache';
 import { differenceInHours, format } from 'date-fns';
 import { JourneysApi, TransportType } from '@/external/generated/risJourneys';
 import { logger } from '@/server/logger';
@@ -19,19 +19,10 @@ import type { Route$Stop } from '@/types/routing';
 
 const journeyFindCache = new Cache<string, JourneyMatch[]>(
   CacheDatabase.JourneyFind,
-  'PT36H',
 );
-
-const journeyCacheTTL = parseCacheTTL(
-  'PT5M',
-  process.env.RIS_JOURNEYS_CACHE_TTL,
-);
-
-logger.info(`using ${journeyCacheTTL} as RIS::Journeys cache TTL`);
 
 const journeyCache = new Cache<string, JourneyEventBased>(
   CacheDatabase.Journey,
-  journeyCacheTTL,
 );
 
 logger.info(

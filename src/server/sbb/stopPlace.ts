@@ -2,7 +2,7 @@ import { Cache, CacheDatabase } from '@/server/cache';
 import { sbbAxios } from '@/server/sbb/sbbAxios';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
-const sbbStopPlaceCache = new Cache(CacheDatabase.SBBStopPlaces, 'P1D');
+const sbbStopPlaceCache = new Cache(CacheDatabase.SBBStopPlaces);
 
 function getStopPlaceRequest(name: string) {
   return {

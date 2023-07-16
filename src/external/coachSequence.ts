@@ -25,7 +25,6 @@ const coachSequenceClient = new TransportsApi(
 
 const negativeHitCache = new Cache<string, boolean>(
   CacheDatabase.NegativeNewSequence,
-  'PT12H',
 );
 
 export function isWithin20Hours(date: Date): boolean {

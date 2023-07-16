@@ -8,7 +8,7 @@ import type { Route$Auslastung } from '@/types/routing';
 const additionalInformationCache = new Cache<
   string,
   AdditionalJourneyInformation | undefined
->(CacheDatabase.AdditionalJourneyInformation, 'PT10M');
+>(CacheDatabase.AdditionalJourneyInformation);
 
 /**
  * This currently queries HAFAS to get operatorNames & occupancy

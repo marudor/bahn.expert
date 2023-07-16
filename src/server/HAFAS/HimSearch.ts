@@ -58,7 +58,6 @@ const HimSearch = (
 
 const himMessageCache = new Cache<string, ParsedHimMessage>(
   CacheDatabase.HIMMessage,
-  'PT24H',
 );
 
 const maxNum = Number.parseInt(process.env.HIM_MAX_FETCH || '5000', 10);
