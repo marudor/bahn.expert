@@ -73,7 +73,6 @@ const coachSequenceCache = new Cache<string, [Wagenreihung, DBSourceType]>(
   coachSequenceCacheTTL,
 );
 
-const newDBCategories = new Set(['ICE', 'IC', 'EC', 'ECE', 'RE', 'RB']);
 const blockedCategories = new Set(['TRAM', 'STR', 'BUS', 'BSV', 'FLUG']);
 
 const navigatorAxios = Axios.create({
@@ -109,13 +108,18 @@ async function coachSequence(
   if (cached) {
     return cached;
   }
-  if (
-    plannedStartDate &&
-    trainCategory &&
-    stopEva &&
-    administration &&
-    newDBCategories.has(trainCategory.toUpperCase())
-  ) {
+  try {
+    const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
+    UpstreamApiRequestMetric.inc({
+      api: `coachSequence-${type}`,
+    });
+    const info = (await bahnhofLiveAxios.get<Wagenreihung>(url)).data;
+    void coachSequenceCache.set(cacheKey, [info, type]);
+    return [info, type];
+  } catch {
+    // we just ignore it and try the next one
+  }
+  if (plannedStartDate && trainCategory && stopEva && administration) {
     try {
       const [url, type] = getDBCoachSequenceUrl(
         trainNumber,
@@ -135,18 +139,6 @@ async function coachSequence(
     } catch {
       // we just ignore it and try the next one
     }
-  }
-
-  try {
-    const [url, type] = getDBCoachSequenceUrl(trainNumber, date);
-    UpstreamApiRequestMetric.inc({
-      api: `coachSequence-${type}`,
-    });
-    const info = (await bahnhofLiveAxios.get<Wagenreihung>(url)).data;
-    void coachSequenceCache.set(cacheKey, [info, type]);
-    return [info, type];
-  } catch {
-    // we just ignore it and try the next one
   }
 }
 
