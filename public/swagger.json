@@ -3522,6 +3522,9 @@
           },
           "stationId": {
             "type": "string"
+          },
+          "uic": {
+            "type": "string"
           }
         },
         "required": [
@@ -3812,7 +3815,7 @@
           {
             "description": "needed for SBB coachSequence",
             "in": "query",
-            "name": "initialDepartureEva",
+            "name": "lastArrivalEva",
             "required": false,
             "schema": {
               "type": "string"

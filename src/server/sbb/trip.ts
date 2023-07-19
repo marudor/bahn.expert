@@ -1,9 +1,13 @@
+import { Cache, CacheDatabase } from '@/server/cache';
 import { findSingleStopPlace } from '@/server/sbb/stopPlace';
 import { format } from 'date-fns';
+import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { logger } from '@/server/logger';
 import { sbbAxios } from '@/server/sbb/sbbAxios';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { SBBTrip } from '@/server/sbb/types';
+
+const tripCache = new Cache<string, SBBTrip>(CacheDatabase.SBBTrip);
 
 function getTripRequest(
   startId: string,
@@ -21,7 +25,7 @@ function getTripRequest(
         time: {
           date: format(departureTime, 'yyyy-MM-dd'),
           time: format(departureTime, 'HH:mm'),
-          type: 'ARRIVAL',
+          type: 'DEPARTURE',
         },
         includeEconomic: false,
         directConnection: true,
@@ -56,28 +60,36 @@ export async function getSingleJourneyTrip(
   trainNumber: string,
   departureTime: Date,
 ): Promise<SBBTrip | undefined> {
+  const cacheKey = `${start.evaNumber}-${
+    destination.evaNumber
+  }-${trainNumber}-${departureTime.toISOString()}`;
+  const cached = await tripCache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
   const [startStopPlace, destinationStopPlace] = await Promise.all([
-    findSingleStopPlace(start),
-    findSingleStopPlace(destination),
+    getStopPlaceByEva(start.evaNumber),
+    getStopPlaceByEva(destination.evaNumber),
   ]);
+
+  const startUIC =
+    startStopPlace?.uic ?? (await findSingleStopPlace(start))?.id;
+  const destinationUIC =
+    destinationStopPlace?.uic ?? (await findSingleStopPlace(destination))?.id;
 
   logger.debug(
     {
-      startStopPlace,
-      destinationStopPlace,
+      startUIC,
+      destinationUIC,
     },
-    'Found stopPlaces for coachSequenceTrip (from SBB)',
+    'Found UICs for coachSequenceTrip',
   );
 
-  if (!startStopPlace || !destinationStopPlace) {
+  if (!startUIC || !destinationUIC) {
     return undefined;
   }
 
-  const data = getTripRequest(
-    startStopPlace.id,
-    destinationStopPlace.id,
-    departureTime,
-  );
+  const data = getTripRequest(startUIC, destinationUIC, departureTime);
 
   const result = (await sbbAxios.post('https://graphql.beta.sbb.ch/', data))
     .data;
@@ -87,6 +99,10 @@ export async function getSingleJourneyTrip(
       (p: any) => p.number === trainNumber,
     ),
   );
+
+  if (correctTrip) {
+    void tripCache.set(cacheKey, correctTrip);
+  }
 
   return correctTrip;
 }

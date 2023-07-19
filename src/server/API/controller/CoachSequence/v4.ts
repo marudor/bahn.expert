@@ -53,7 +53,7 @@ export class CoachSequenceControllerV4 extends Controller {
     /** needed for new DB Navigator coachSequence */
     @Query() administration?: string,
     /** needed for SBB coachSequence */
-    @Query() initialDepartureEva?: string,
+    @Query() lastArrivalEva?: string,
   ): Promise<CoachSequenceInformation | void> {
     if (!isAllowed(req)) {
       return response(
@@ -69,7 +69,7 @@ export class CoachSequenceControllerV4 extends Controller {
         initialDeparture,
         category,
         administration,
-        initialDepartureEva,
+        lastArrivalEva,
       );
       if (sequence) return sequence;
     } catch {

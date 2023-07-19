@@ -72,6 +72,7 @@ export enum CacheDatabase {
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
   Journey = 19,
+  SBBTrip,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
@@ -100,6 +101,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
     'PT5M',
     process.env.RIS_JOURNEYS_CACHE_TTL,
   ),
+  [CacheDatabase.SBBTrip]: 'PT2H',
 };
 
 const activeRedisCaches = new Set<Redis>();

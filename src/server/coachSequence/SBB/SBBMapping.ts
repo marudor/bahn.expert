@@ -67,9 +67,7 @@ export function mapSBBCoachSequence(
     return undefined;
   }
 
-  // const sequenceLegend = rawSequence.sequence.data.trainFormation.legendItems;
-  const sequence =
-    rawSequence.sequence.data.trainFormation.destinationFormation;
+  const sequence = rawSequence.sequence.data.trainFormation.originFormation;
   const tripProduct = rawSequence.trip.summary.product;
   const firstLeg = rawSequence.trip.legs[0];
 

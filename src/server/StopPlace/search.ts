@@ -218,6 +218,7 @@ async function addIdentifiers(stopPlaces: GroupedStopPlace[]): Promise<void> {
         stopPlace.ifopt = identifier.ifopt;
         stopPlace.ril100 = identifier.ril100;
         stopPlace.stationId = identifier.stationId;
+        stopPlace.uic = identifier.uic;
       }
     }),
   );
@@ -254,6 +255,10 @@ export async function getIdentifiers(
         }
         case StopPlaceKeyType.Stada: {
           identifier.stationId = key;
+          break;
+        }
+        case StopPlaceKeyType.Uic: {
+          identifier.uic = key;
           break;
         }
       }

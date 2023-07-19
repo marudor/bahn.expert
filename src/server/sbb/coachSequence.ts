@@ -24,27 +24,27 @@ function getCoachSequenceRequest(
 
 export async function fetchSBBCoachSequence(
   evaNumber: string,
-  initialDepartureEva: string,
   trainNumber: string,
   departureTime: Date,
+  lastArrivalEva: string,
 ): Promise<SBBCoachSequenceWithTrip | undefined> {
-  const [depStopPlace, initialStopPlace] = await Promise.all([
+  const [depStopPlace, lastArrivalStopPlace] = await Promise.all([
     getStopPlaceByEva(evaNumber, true),
-    getStopPlaceByEva(initialDepartureEva, true),
+    getStopPlaceByEva(lastArrivalEva, true),
   ]);
   logger.debug(
     {
       depStopPlace,
-      initialStopPlace,
+      lastArrivalStopPlace,
     },
     'Found stopPlaces for coachSequenceTrip (from DB)',
   );
-  if (!initialStopPlace || !depStopPlace) {
+  if (!lastArrivalStopPlace || !depStopPlace) {
     return undefined;
   }
   const trip = await getSingleJourneyTrip(
-    initialStopPlace,
     depStopPlace,
+    lastArrivalStopPlace,
     trainNumber,
     departureTime,
   );

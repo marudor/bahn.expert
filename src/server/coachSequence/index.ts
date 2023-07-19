@@ -18,7 +18,7 @@ export async function coachSequence(
   initialDeparture?: Date,
   trainCategory?: string,
   administration?: string,
-  initialDepartureEva?: string,
+  arrivalEva?: string,
 ): Promise<CoachSequenceInformation | undefined> {
   if (
     !isWithinInterval(departure, {
@@ -29,12 +29,12 @@ export async function coachSequence(
     return;
   }
 
-  if (evaNumber && initialDepartureEva && evaNumber.startsWith('85')) {
+  if (evaNumber && evaNumber.startsWith('85') && arrivalEva) {
     const sbbSequence = await SBBCoachSequence(
       evaNumber,
-      initialDepartureEva,
       trainNumber,
       departure,
+      arrivalEva,
     );
 
     return sbbSequence;

@@ -5,9 +5,9 @@ import type { CoachSequenceInformation } from '@/types/coachSequence';
 
 export async function SBBCoachSequence(
   evaNumber: string,
-  initialDepartureEva: string,
   trainNumber: string,
   departureTime: Date,
+  lastArrivalEva: string,
 ): Promise<CoachSequenceInformation | undefined> {
   UpstreamApiRequestMetric.inc({
     api: 'coachSequence-SBB',
@@ -15,9 +15,9 @@ export async function SBBCoachSequence(
 
   const rawSequence = await fetchSBBCoachSequence(
     evaNumber,
-    initialDepartureEva,
     trainNumber,
     departureTime,
+    lastArrivalEva,
   );
 
   return mapSBBCoachSequence(rawSequence);

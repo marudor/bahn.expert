@@ -76,7 +76,7 @@ interface Props {
   administration?: string;
   withLegend?: boolean;
   loadHidden?: boolean;
-  initialDepartureEva?: string;
+  lastArrivalEva?: string;
 }
 
 const Source: FC<{
@@ -99,7 +99,7 @@ export const CoachSequence: FC<Props> = ({
   trainCategory,
   administration,
   loadHidden,
-  initialDepartureEva,
+  lastArrivalEva,
 }) => {
   const sequences = useSequences();
   const { getSequences } = useSequencesActions();
@@ -118,7 +118,7 @@ export const CoachSequence: FC<Props> = ({
         fallback,
         trainCategory,
         administration,
-        initialDepartureEva,
+        lastArrivalEva,
       );
     }
   }, [
@@ -131,7 +131,7 @@ export const CoachSequence: FC<Props> = ({
     trainNumber,
     trainCategory,
     administration,
-    initialDepartureEva,
+    lastArrivalEva,
   ]);
 
   const [scale, startPercent] = useMemo(() => {

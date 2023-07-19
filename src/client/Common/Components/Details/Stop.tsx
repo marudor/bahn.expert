@@ -96,7 +96,7 @@ interface Props {
   initialDepartureDate?: Date;
   onStopClick?: (stop: Route$Stop) => void;
   doNotRenderOccupancy?: boolean;
-  initialDepartureEva?: string;
+  lastArrivalEva?: string;
 }
 export const Stop: FC<Props> = ({
   stop,
@@ -106,7 +106,7 @@ export const Stop: FC<Props> = ({
   initialDepartureDate,
   onStopClick,
   doNotRenderOccupancy,
-  initialDepartureEva,
+  lastArrivalEva,
 }) => {
   const { urlPrefix, additionalInformation } = useDetails();
   const occupancy = useMemo(
@@ -194,7 +194,7 @@ export const Stop: FC<Props> = ({
             currentEvaNumber={stop.station.evaNumber}
             scheduledDeparture={depOrArrival.scheduledTime}
             initialDeparture={initialDepartureDate}
-            initialDepartureEva={initialDepartureEva}
+            lastArrivalEva={lastArrivalEva}
             administration={train?.admin}
             loadHidden={!depOrArrival?.reihung}
           />

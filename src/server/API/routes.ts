@@ -1292,6 +1292,7 @@ const models: TsoaRoute.Models = {
             "ril100": {"dataType":"string"},
             "alternativeRil100": {"dataType":"array","array":{"dataType":"string"}},
             "stationId": {"dataType":"string"},
+            "uic": {"dataType":"string"},
         },
         "additionalProperties": true,
     },
@@ -1418,7 +1419,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     initialDeparture: {"in":"query","name":"initialDeparture","dataType":"datetime"},
                     category: {"in":"query","name":"category","dataType":"string"},
                     administration: {"in":"query","name":"administration","dataType":"string"},
-                    initialDepartureEva: {"in":"query","name":"initialDepartureEva","dataType":"string"},
+                    lastArrivalEva: {"in":"query","name":"lastArrivalEva","dataType":"string"},
             };
 
             let validatedArgs: any[] = [];

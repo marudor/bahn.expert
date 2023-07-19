@@ -8,6 +8,7 @@ export interface StopPlaceIdentifier {
   ril100?: string;
   alternativeRil100?: string[];
   evaNumber: string;
+  uic?: string;
 }
 
 export interface GroupedStopPlace {
@@ -19,6 +20,7 @@ export interface GroupedStopPlace {
   ril100?: string;
   alternativeRil100?: string[];
   stationId?: string;
+  uic?: string;
 }
 
 export type MinimalStopPlace = Pick<

@@ -77,7 +77,7 @@ export const StopList: FC = () => {
               ? details.train
               : undefined
           }
-          initialDepartureEva={details.segmentStart.evaNumber}
+          lastArrivalEva={details.segmentDestination.evaNumber}
           initialDepartureDate={initialDepartureDate}
         />
       );

@@ -17,7 +17,7 @@ async function fetchSequence(
   initialDeparture?: Date,
   trainCategory?: string,
   administration?: string,
-  initialDepartureEva?: string,
+  lastArrivalEva?: string,
 ): Promise<CoachSequenceInformation | undefined> {
   if (trainNumber === '0') {
     return undefined;
@@ -32,7 +32,7 @@ async function fetchSequence(
           initialDeparture: initialDeparture?.toISOString(),
           category: trainCategory,
           administration,
-          initialDepartureEva,
+          lastArrivalEva,
         },
       },
     );
@@ -62,7 +62,7 @@ function useCoachSequences(_p: PropsWithChildren<unknown>) {
       fallback: FallbackTrainsForCoachSequence[] = [],
       trainCategory?: string,
       administration?: string,
-      initialDepartureEva?: string,
+      lastArrivalEva?: string,
     ) => {
       let coachSequence: CoachSequenceInformation | undefined | null;
 
@@ -74,7 +74,7 @@ function useCoachSequences(_p: PropsWithChildren<unknown>) {
           initialDeparture,
           trainCategory,
           administration,
-          initialDepartureEva,
+          lastArrivalEva,
         ),
         ...fallback.map((fallbackTrain) =>
           fetchSequence(
@@ -84,7 +84,7 @@ function useCoachSequences(_p: PropsWithChildren<unknown>) {
             initialDeparture,
             fallbackTrain.type,
             fallbackTrain.admin,
-            initialDepartureEva,
+            lastArrivalEva,
           ),
         ),
       ]);
