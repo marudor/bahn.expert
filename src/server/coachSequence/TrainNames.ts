@@ -19,7 +19,6 @@ const naming: {
   115: 'Regensburg',
   116: 'Pforzheim',
   117: 'Hof',
-  118: 'Gelnhausen',
   119: 'Osnabrück',
   120: 'Lüneburg',
   152: 'Hanau',
