@@ -37,7 +37,7 @@ const MapDisplay: FC = () => {
     <StyledMapContainer center={position} zoom={7}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Polyline positions={polyline.points as [number, number][]} />
       {polyline.locations.map((location, i) => (
