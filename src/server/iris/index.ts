@@ -111,7 +111,7 @@ export async function getAbfahrten(
   const lookahead = options.lookahead;
   const lookbehind = options.lookbehind;
 
-  const { station, relatedStations } = await getStation(evaId, 1);
+  const { station, relatedStations } = await getStation(evaId);
   let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {

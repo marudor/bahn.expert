@@ -74,31 +74,18 @@ export async function getSingleStation(
 
 export async function getStation(
   evaId: string,
-  recursive = 0,
 ): Promise<IrisStationWithRelated> {
   const station = await getSingleStation(evaId);
-  let queue = station.meta;
-  const seen = [station.eva];
-  const relatedStations: IrisStation[] = [];
 
-  while (recursive > 0 && queue.length) {
-    recursive -= 1;
-    queue = (
-      await Promise.all(
-        queue.map(async (id) => {
-          if (seen.includes(id)) {
-            return [];
-          }
-          seen.push(id);
-          const station = await getSingleStation(id);
-
-          relatedStations.push(station);
-
-          return station.meta;
+  const relatedStations = (
+    await Promise.all(
+      station.meta.map((m) =>
+        getSingleStation(m).catch(() => {
+          // we just set this to undefined if resolve failed
         }),
-      )
-    ).flat();
-  }
+      ),
+    )
+  ).filter(Boolean);
 
   return {
     station,
