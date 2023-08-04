@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from '@/types/HAFAS';
+import { Cache, CacheDatabase } from '@/server/cache';
 import { format, parse, subDays } from 'date-fns';
 import JourneyDetails from '@/server/HAFAS/JourneyDetails';
 import makeRequest from './Request';
@@ -12,6 +13,10 @@ import type {
   ParsedJourneyMatchResponse,
 } from '@/types/HAFAS/JourneyMatch';
 import type { HafasResponse, ParsedCommon } from '@/types/HAFAS';
+
+const journeyMatchCache = new Cache<string, ParsedJourneyMatchResponse[]>(
+  CacheDatabase.HAFASJourneyMatch,
+);
 
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
@@ -49,9 +54,19 @@ const JourneyMatch = async (
       date = now.getHours() < 3 ? subDays(now, 1) : now;
     }
 
+    const formattedDate = format(date, 'yyyyMMdd');
+    const cacheKey = `${trainName}-${formattedDate}-${onlyRT}-${profile}-${JSON.stringify(
+      jnyFltrL,
+    )}`;
+    if (!raw) {
+      const cached = await journeyMatchCache.get(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
     const req: JourneyMatchRequest = {
       req: {
-        date: format(date, 'yyyyMMdd'),
+        date: formattedDate,
         input: trainName,
         jnyFltrL,
         onlyRT,
@@ -59,7 +74,17 @@ const JourneyMatch = async (
       meth: 'JourneyMatch',
     };
 
-    return await makeRequest(req, raw ? undefined : parseJourneyMatch, profile);
+    const result = await makeRequest(
+      req,
+      raw ? undefined : parseJourneyMatch,
+      profile,
+    );
+
+    if (!raw && result?.length) {
+      void journeyMatchCache.set(cacheKey, result);
+    }
+
+    return result;
   } catch {
     // We just ignore errors and pretend nothing got returned.
     return [];

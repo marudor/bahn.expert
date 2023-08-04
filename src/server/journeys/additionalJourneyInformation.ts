@@ -34,12 +34,20 @@ export async function additionalJourneyInformation(
     return;
   }
 
-  const sbbOccupancy = await getOccupancy(
-    journeyDetails.segmentStart,
-    journeyDetails.segmentDestination,
-    journeyDetails.train.number!,
-    journeyDetails.departure.scheduledTime,
-  );
+  let sbbOccupancy = {};
+
+  if (
+    journeyDetails.segmentStart.evaNumber.startsWith('85') ||
+    journeyDetails.segmentDestination.evaNumber.startsWith('85') ||
+    journeyDetails.train.operator?.name.startsWith('SBB')
+  ) {
+    sbbOccupancy = await getOccupancy(
+      journeyDetails.segmentStart,
+      journeyDetails.segmentDestination,
+      journeyDetails.train.number!,
+      journeyDetails.departure.scheduledTime,
+    );
+  }
 
   const occupancy: Record<EvaNumber, Route$Auslastung> = {
     ...sbbOccupancy,

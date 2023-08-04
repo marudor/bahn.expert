@@ -71,6 +71,7 @@ export enum CacheDatabase {
   SBBStopPlaces,
   HafasStopOccupancy = 16,
   AdditionalJourneyInformation,
+  HAFASJourneyMatch,
   Journey = 19,
   SBBTrip,
 }
@@ -93,6 +94,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
   [CacheDatabase.StopPlaceGroups]: 'PT24H',
   [CacheDatabase.StopPlaceSalesSearch]: 'PT24H',
   [CacheDatabase.JourneyFind]: 'PT36H',
+  [CacheDatabase.HAFASJourneyMatch]: 'PT12H',
   [CacheDatabase.NegativeNewSequence]: 'PT12H',
   [CacheDatabase.SBBStopPlaces]: 'P1D',
   [CacheDatabase.HafasStopOccupancy]: 'PT30M',
