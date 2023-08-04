@@ -170,7 +170,7 @@ export default async (
     );
   }
 
-  if (!lastStop || !lastStop.arrival || lastStop.arrival.delay == null) {
+  if (lastStop?.arrival?.delay == null) {
     for (const [index, stop] of relevantSegment.stops.entries()) {
       const jDetailStop = journeyDetails.stops[index];
 

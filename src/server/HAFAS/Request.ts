@@ -90,7 +90,7 @@ export class HafasError extends Error {
   ) {
     super(`${request.meth} HAFAS Error`);
     Error.captureStackTrace(this, HafasError);
-    if (response && response.svcResL && response.svcResL.length) {
+    if (response?.svcResL?.length) {
       this.errorCode = response.svcResL[0].err;
     }
     this.data = {

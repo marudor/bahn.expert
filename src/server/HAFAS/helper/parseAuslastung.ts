@@ -9,7 +9,7 @@ export default (
       second?: number;
     }
   | undefined => {
-  if (!tcocL || !dTrnCmpSX || !dTrnCmpSX.tcocX) return;
+  if (!tcocL || !dTrnCmpSX?.tcocX) return;
 
   const auslastung: {
     first?: number;

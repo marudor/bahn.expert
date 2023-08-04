@@ -89,11 +89,7 @@ export interface OEBBTimeTableInfo {
   portions: OEBBPortion[];
 }
 
-export type OEBBAccessType =
-  | 'STIEGENAUFGANG'
-  | 'AUFZUG'
-  | 'STIEGENAUFGANG'
-  | 'ROLLTREPPE';
+export type OEBBAccessType = 'STIEGENAUFGANG' | 'AUFZUG' | 'ROLLTREPPE';
 
 export interface OEBBAccess {
   platform: string;

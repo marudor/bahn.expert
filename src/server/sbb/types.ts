@@ -27,7 +27,7 @@ interface SBBCoachSequenceSection {
 }
 
 interface SBBCoachSequenceGroup {
-  destination: any | null;
+  destination?: any;
   sections: SBBCoachSequenceSection[];
 }
 
@@ -47,7 +47,7 @@ interface SBBTripProduct {
   name: string;
   line: string;
   number: string;
-  vehicleMode: 'TRAIN' | string;
+  vehicleMode: 'TRAIN' | Omit<string, 'TRAIN'>;
   vehicleSubModeShortName: string;
   corporateIdentityIcon: string;
 }

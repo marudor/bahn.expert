@@ -6,9 +6,10 @@ import type {
 } from '@/types/stationBoard';
 import type { Route$Stop } from '@/types/routing';
 
-export interface MappedHafasArrivals {
-  [key: string]: ArrivalStationBoardEntry | undefined;
-}
+export type MappedHafasArrivals = Record<
+  string,
+  ArrivalStationBoardEntry | undefined
+>;
 
 const stationMap = (s: Route$Stop) => ({
   name: s.station.name,

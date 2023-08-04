@@ -50,9 +50,9 @@ export const sequenceId = (
   `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`;
 
 function useCoachSequences(_p: PropsWithChildren<unknown>) {
-  const [sequences, setSequences] = useState<{
-    [key: string]: undefined | null | CoachSequenceInformation;
-  }>({});
+  const [sequences, setSequences] = useState<
+    Record<string, undefined | null | CoachSequenceInformation>
+  >({});
   const getSequences = useCallback(
     async (
       trainNumber: string,

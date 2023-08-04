@@ -1887,19 +1887,20 @@
       },
       "WalkStopInfo": {
         "properties": {
-          "delay": {
-            "type": "number",
-            "format": "double"
-          },
           "time": {
             "type": "string",
             "format": "date-time"
+          },
+          "delay": {
+            "type": "number",
+            "format": "double"
           }
         },
         "required": [
           "time"
         ],
-        "type": "object"
+        "type": "object",
+        "additionalProperties": true
       },
       "Route$JourneySegmentWalk": {
         "properties": {
@@ -3390,13 +3391,14 @@
         "type": "object",
         "additionalProperties": true
       },
-      "Wings": {
-        "description": "Map of \"mediumId\" to Abfahrt.",
+      "Record_string.Abfahrt_": {
         "properties": {},
         "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/Abfahrt"
-        }
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "Wings": {
+        "$ref": "#/components/schemas/Record_string.Abfahrt_",
+        "description": "Map of \"mediumId\" to Abfahrt."
       },
       "AbfahrtenResult": {
         "properties": {
@@ -3535,17 +3537,13 @@
         "type": "object",
         "additionalProperties": true
       },
-      "TrainOccupancyList": {
+      "Record_string.Route$Auslastung-or-null_": {
         "properties": {},
         "type": "object",
-        "additionalProperties": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Route$Auslastung"
-            }
-          ],
-          "nullable": true
-        }
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "TrainOccupancyList": {
+        "$ref": "#/components/schemas/Record_string.Route$Auslastung-or-null_"
       }
     },
     "securitySchemes": {}

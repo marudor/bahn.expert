@@ -61,10 +61,10 @@ export interface Route$JourneySegmentTrain extends Route$Journey {
   wings?: Route$Journey[];
 }
 
-export type WalkStopInfo = {
+export interface WalkStopInfo {
   time: Date;
   delay?: number;
-};
+}
 
 export interface Route$JourneySegmentWalk {
   type: 'WALK';

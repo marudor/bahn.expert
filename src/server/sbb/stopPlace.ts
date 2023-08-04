@@ -19,7 +19,7 @@ function sanitizeName(name: string) {
 
 export async function findSingleStopPlace(
   stopPlace: Omit<MinimalStopPlace, 'ril100'>,
-): Promise<any | undefined> {
+): Promise<any> {
   const sanitizedName = sanitizeName(stopPlace.name);
   const cached = await sbbStopPlaceCache.get(sanitizedName);
   if (cached) {

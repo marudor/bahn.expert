@@ -9,7 +9,7 @@ function getJourneyDetailsRequest(jid: string) {
   };
 }
 
-export async function getJourneyDetails(jid: string): Promise<any | undefined> {
+export async function getJourneyDetails(jid: string): Promise<any> {
   const data = getJourneyDetailsRequest(jid);
 
   const result = (await sbbAxios.post('/', data)).data;

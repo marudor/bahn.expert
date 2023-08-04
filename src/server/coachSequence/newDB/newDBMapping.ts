@@ -77,7 +77,7 @@ function mapClass(vehicleType: VehicleType): CoachSequenceCoach['class'] {
   return 0;
 }
 
-const diningCategories: Set<VehicleCategory> = new Set([
+const diningCategories = new Set<VehicleCategory>([
   'DININGCAR',
   'HALFDININGCAR_ECONOMY_CLASS',
   'HALFDININGCAR_FIRST_CLASS',

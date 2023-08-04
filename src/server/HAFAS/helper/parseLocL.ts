@@ -20,7 +20,7 @@ export const parseLocL = async (
     evaNumber: locL.extId,
     name: locL.name,
     coordinates: locL.crd && parseCoordinates(locL.crd),
-    products: locL.pRefL && locL.pRefL.map((p) => products[p]),
+    products: locL.pRefL?.map((p) => products[p]),
     ril100: identifiers?.ril100,
   };
 };

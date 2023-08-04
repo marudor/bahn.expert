@@ -128,7 +128,7 @@ export interface BaseFahrzeug {
   fahrzeugtyp: string;
   wagenordnungsnummer: string;
   positionamhalt: Position;
-  status: 'GESCHLOSSEN' | string;
+  status: 'GESCHLOSSEN' | Omit<string, 'GESCHLOSSEN'>;
 }
 
 export interface Fahrzeug extends BaseFahrzeug {

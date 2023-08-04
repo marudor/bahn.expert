@@ -154,12 +154,11 @@ function parseRawId(rawId: string) {
   const initialDepartureMatch = initialDepartureRegex.exec(rawId);
 
   return {
-    id: (idMatch && idMatch[1]) || rawId,
-    mediumId: (mediumIdMatch && mediumIdMatch[1]) || rawId,
-    initialDeparture:
-      initialDepartureMatch && initialDepartureMatch[1]
-        ? parse(initialDepartureMatch[1], 'yyMMddHHmm', Date.now())
-        : undefined,
+    id: idMatch?.[1] || rawId,
+    mediumId: mediumIdMatch?.[1] || rawId,
+    initialDeparture: initialDepartureMatch?.[1]
+      ? parse(initialDepartureMatch[1], 'yyMMddHHmm', Date.now())
+      : undefined,
   };
 }
 
@@ -199,14 +198,11 @@ export class Timetable {
     }
 
     timetable.cancelled =
-      (timetable.arrival &&
-        timetable.arrival.cancelled &&
+      (timetable.arrival?.cancelled &&
         (!timetable.departure ||
           timetable.departure.cancelled ||
           !timetable.departure.scheduledTime)) ||
-      (timetable.departure &&
-        timetable.departure.cancelled &&
-        (!timetable.arrival || !timetable.arrival.scheduledTime));
+      (timetable.departure?.cancelled && !timetable.arrival?.scheduledTime);
 
     timetable.messages.him = timetable.messages.him.filter((m: any) => m.text);
 
@@ -296,7 +292,7 @@ export class Timetable {
       };
     }
 
-    const wings: { [key: string]: any } = {};
+    const wings: Record<string, any> = {};
 
     const departures = [] as any[];
     const lookbehind = [] as any[];
@@ -319,19 +315,17 @@ export class Timetable {
         }
       }
 
-      const scheduledArrvial = a.arrival && a.arrival.scheduledTime;
-      const arrival = a.arrival && a.arrival.time;
-      const scheduledDeparture = a.departure && a.departure.scheduledTime;
-      const departure = a.departure && a.departure.time;
-      const time: Date =
-        a.departure && a.departure.cancelled
-          ? scheduledArrvial || scheduledDeparture
-          : scheduledDeparture || scheduledArrvial;
+      const scheduledArrvial = a.arrival?.scheduledTime;
+      const arrival = a.arrival?.time;
+      const scheduledDeparture = a.departure?.scheduledTime;
+      const departure = a.departure?.time;
+      const time: Date = a.departure?.cancelled
+        ? scheduledArrvial || scheduledDeparture
+        : scheduledDeparture || scheduledArrvial;
 
-      const realTime =
-        a.departure && a.departure.cancelled
-          ? arrival || departure
-          : departure || arrival;
+      const realTime = a.departure?.cancelled
+        ? arrival || departure
+        : departure || arrival;
 
       if (isAfter(realTime, this.minDate) && isBefore(time, this.maxDate)) {
         if (isBefore(realTime, this.startTime)) {
@@ -499,11 +493,7 @@ export class Timetable {
     const mArr: xmljs.Element[] = sNode.find(`${sNode.path()}//m`);
 
     if (!mArr) return;
-    const messages: {
-      [key: string]: {
-        [key: string]: any;
-      };
-    } = {
+    const messages: Record<string, Record<string, any>> = {
       delay: {},
       qos: {},
       him: {},
@@ -762,7 +752,7 @@ export class Timetable {
 
     const sArr = timetableXml.find<Element>('/timetable/s');
 
-    const timetables: { [key: string]: any } = {};
+    const timetables: Record<string, any> = {};
 
     if (sArr) {
       for (const s of sArr) {

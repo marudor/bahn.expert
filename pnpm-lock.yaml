@@ -335,8 +335,8 @@ devDependencies:
     specifier: ^8.46.0
     version: 8.46.0
   eslint-config-marudor:
-    specifier: 9.3.0
-    version: 9.3.0(@types/eslint@8.44.1)(eslint-import-resolver-typescript@3.5.5)(eslint-import-resolver-webpack@0.13.2)(eslint@8.46.0)(jest@29.6.2)(prettier@3.0.1)(typescript@5.1.6)
+    specifier: 9.3.1
+    version: 9.3.1(@types/eslint@8.44.1)(eslint-import-resolver-typescript@3.5.5)(eslint-import-resolver-webpack@0.13.2)(eslint@8.46.0)(jest@29.6.2)(prettier@3.0.1)(typescript@5.1.6)
   eslint-import-resolver-typescript:
     specifier: ^3.5.5
     version: 3.5.5(@typescript-eslint/parser@6.2.1)(eslint-import-resolver-webpack@0.13.2)(eslint-plugin-import@2.28.0)(eslint@8.46.0)
@@ -6146,8 +6146,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-marudor@9.3.0(@types/eslint@8.44.1)(eslint-import-resolver-typescript@3.5.5)(eslint-import-resolver-webpack@0.13.2)(eslint@8.46.0)(jest@29.6.2)(prettier@3.0.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-MZYMD4XzqFDy4FtuCpnAPnDVI2J1SYYrIfYgTJF6hxWyL3LOSHxzeO0SO/5q03zrttYgoHeVcQMNv0y2eUPQkw==}
+  /eslint-config-marudor@9.3.1(@types/eslint@8.44.1)(eslint-import-resolver-typescript@3.5.5)(eslint-import-resolver-webpack@0.13.2)(eslint@8.46.0)(jest@29.6.2)(prettier@3.0.1)(typescript@5.1.6):
+    resolution: {integrity: sha512-I6Gtm/wAFbten0Zt/oXilm66qLXJe+fPBlWxKVrWLj+YnexpmNT1LLzP61CnMDqv+3dxO+YuUhW3Oq9gkl9qQQ==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
       '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)

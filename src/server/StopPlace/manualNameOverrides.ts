@@ -1,4 +1,4 @@
-export const manualNameOverrides: Map<string, string> = new Map();
+export const manualNameOverrides = new Map<string, string>();
 
 // This should be fixed upstream, RIS::Stations
 manualNameOverrides.set(

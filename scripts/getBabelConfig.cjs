@@ -91,10 +91,10 @@ const getBabelConfig = (type) => {
         '@babel/preset-env',
         {
           ...presetEnvTargets,
-          useBuiltIns: 'usage',
+          useBuiltIns: 'entry',
           modules: isServer ? 'commonjs' : undefined,
-          corejs: '3.24',
-          exclude: ['web.dom-collections.iterator'],
+          corejs: '3.32',
+          exclude: ['web.dom-collections.iterator', 'web.structured-clone'],
         },
       ],
       [
