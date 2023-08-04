@@ -46,8 +46,8 @@ export interface OebbSector {
 }
 
 export interface OebbHaltepunkt {
-  haltepunktInMeters: unknown | null;
-  departureDirectionSectorA: unknown | null;
+  haltepunktInMeters?: unknown;
+  departureDirectionSectorA?: unknown;
 }
 
 export interface OebbPlatform {

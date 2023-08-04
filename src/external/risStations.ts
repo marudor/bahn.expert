@@ -14,7 +14,7 @@ import type {
   StopPlaceSearchResult,
 } from '@/external/types';
 
-const nonÖPNVTypes: Set<TransportType> = new Set([
+const nonÖPNVTypes = new Set<TransportType>([
   TransportType.HighSpeedTrain,
   TransportType.IntercityTrain,
   TransportType.InterRegionalTrain,

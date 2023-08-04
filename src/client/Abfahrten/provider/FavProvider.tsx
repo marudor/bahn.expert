@@ -4,9 +4,7 @@ import constate from 'constate';
 import type { ComponentType, FC, PropsWithChildren, ReactNode } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
-export interface Favs {
-  [key: string]: MinimalStopPlace;
-}
+export type Favs = Record<string, MinimalStopPlace>;
 
 interface FavStorageSetup {
   favs: Favs;

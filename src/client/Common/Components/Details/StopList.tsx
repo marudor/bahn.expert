@@ -44,7 +44,7 @@ export const StopList: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (details && details.currentStop) {
+    if (details?.currentStop) {
       setCurrentSequenceStop(details.currentStop.station.evaNumber);
       const scrollDom = document.getElementById(
         details.currentStop.station.evaNumber,

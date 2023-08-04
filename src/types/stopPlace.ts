@@ -32,9 +32,10 @@ export interface TrainOccupancy<out T> {
   train: TrainOccupancyList<T>;
 }
 
-export interface TrainOccupancyList<out T = Route$Auslastung> {
-  [trainNumber: string]: T | null;
-}
+export type TrainOccupancyList<out T = Route$Auslastung> = Record<
+  string,
+  T | null
+>;
 
 export interface VRRTrainOccupancy {
   /**

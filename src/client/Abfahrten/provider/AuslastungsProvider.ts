@@ -13,9 +13,9 @@ function getAuslastungKey(abfahrt: Abfahrt) {
 }
 
 function useAuslastungInner(_p: PropsWithChildren<unknown>) {
-  const [auslastungen, setAuslastungen] = useState<{
-    [key: string]: undefined | null | Route$Auslastung;
-  }>({});
+  const [auslastungen, setAuslastungen] = useState<
+    Record<string, undefined | null | Route$Auslastung>
+  >({});
   const fetchDBAuslastung = useCallback(async (abfahrt: Abfahrt) => {
     if (!abfahrt.departure) {
       return;
@@ -41,9 +41,9 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
     }));
   }, []);
 
-  const [vrrAuslastungen, setVRRAuslastungen] = useState<{
-    [evaNumber: string]: undefined | null | TrainOccupancyList;
-  }>({});
+  const [vrrAuslastungen, setVRRAuslastungen] = useState<
+    Record<string, undefined | null | TrainOccupancyList>
+  >({});
 
   const getAuslastung = useCallback(
     (abfahrt: Abfahrt) => {

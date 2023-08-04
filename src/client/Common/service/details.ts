@@ -52,7 +52,7 @@ export async function getAdditionalJourneyInformation(
   }
 }
 
-const journeyMatchCancelTokens: { [key: string]: Canceler } = {};
+const journeyMatchCancelTokens: Record<string, Canceler> = {};
 
 async function find(
   baseUrl: string,

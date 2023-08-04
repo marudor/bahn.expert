@@ -102,7 +102,7 @@ export const useRefreshCurrent = (visible = false) => {
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
 
   return useCallback(async () => {
-    if (currentStopPlace && currentStopPlace.evaNumber) {
+    if (currentStopPlace?.evaNumber) {
       if (visible) {
         setDepartures(undefined);
       }
@@ -129,16 +129,16 @@ export const useRefreshCurrent = (visible = false) => {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useWings = (abfahrt: Abfahrt) => {
   const departures = useAbfahrtenDepartures();
-  const wings = departures && departures.wings;
+  const wings = departures?.wings;
 
   return useMemo(() => {
     if (wings) {
-      const arrivalWings = abfahrt.arrival && abfahrt.arrival.wingIds;
+      const arrivalWings = abfahrt.arrival?.wingIds;
 
       if (arrivalWings) {
         return arrivalWings.map((w) => wings[w]).filter(Boolean);
       }
-      const departureWings = abfahrt.departure && abfahrt.departure.wingIds;
+      const departureWings = abfahrt.departure?.wingIds;
 
       if (departureWings) {
         return departureWings.map((w) => wings[w]).filter(Boolean);

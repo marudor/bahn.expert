@@ -36,8 +36,8 @@ export function reduceResults(
 export const timeByScheduled = (a: Abfahrt): string | Date | undefined => {
   const onlyDepartureCancelled =
     !a.cancelled && a.departure && a.departure.cancelled;
-  const arrivalScheduledTime = a.arrival && a.arrival.scheduledTime;
-  const departureScheduledTime = a.departure && a.departure.scheduledTime;
+  const arrivalScheduledTime = a.arrival?.scheduledTime;
+  const departureScheduledTime = a.departure?.scheduledTime;
 
   return onlyDepartureCancelled
     ? arrivalScheduledTime || departureScheduledTime
@@ -47,8 +47,8 @@ export const timeByScheduled = (a: Abfahrt): string | Date | undefined => {
 export const timeByReal = (a: Abfahrt): string | Date | undefined => {
   const onlyDepartureCancelled =
     !a.cancelled && a.departure && a.departure.cancelled;
-  const arrivalTime = a.arrival && a.arrival.time;
-  const departureTime = a.departure && a.departure.time;
+  const arrivalTime = a.arrival?.time;
+  const departureTime = a.departure?.time;
 
   return onlyDepartureCancelled
     ? arrivalTime || departureTime

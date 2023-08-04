@@ -121,7 +121,7 @@ const useAbfahrtenInner = ({
   );
 
   useEffect(() => {
-    if (!currentStopPlace || !currentStopPlace.evaNumber) {
+    if (!currentStopPlace?.evaNumber) {
       setDepartures(undefined);
 
       return;

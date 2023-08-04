@@ -120,7 +120,7 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
     let trainNumber = '';
     const destinationDB640 = wagons[0].destination;
     const train = info.train;
-    if (train && train.stations) {
+    if (train?.stations) {
       if (train.wagons.length === wagons.length) {
         trainNumber = info.timeTableInfo.trainNr.toString();
       } else {
@@ -185,7 +185,7 @@ const mapStop = (info: OEBBInfo): CoachSequenceStop => ({
 export const mapInformation = (
   info?: OEBBInfo,
 ): CoachSequenceInformation | undefined => {
-  if (!info || !info.train) return;
+  if (!info?.train) return;
   if (info.train.wagons.some((w) => !w.lengthOverBuffers)) return;
 
   const groups = mapGroups(info);

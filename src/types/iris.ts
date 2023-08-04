@@ -156,6 +156,4 @@ export interface TrainInfo extends CommonProductInfo {
 /**
  * Map of "mediumId" to Abfahrt.
  */
-export interface Wings {
-  [mediumId: string]: Abfahrt;
-}
+export type Wings = Record<string, Abfahrt>;

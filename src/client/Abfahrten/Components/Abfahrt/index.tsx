@@ -40,17 +40,16 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
         wings={wingTrains}
         wingStart={Boolean(wingTrains)}
       />
-      {wings &&
-        wings.map((w, index) => (
-          <BaseAbfahrt
-            detail={w.id === selectedDetail}
-            sameTrainWing={sameTrainWing}
-            abfahrt={w}
-            key={w.rawId}
-            wings={wingTrains}
-            wingEnd={wings.length === index + 1}
-          />
-        ))}
+      {wings?.map((w, index) => (
+        <BaseAbfahrt
+          detail={w.id === selectedDetail}
+          sameTrainWing={sameTrainWing}
+          abfahrt={w}
+          key={w.rawId}
+          wings={wingTrains}
+          wingEnd={wings.length === index + 1}
+        />
+      ))}
     </>
   );
 };

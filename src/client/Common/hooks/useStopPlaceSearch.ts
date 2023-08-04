@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import debounce from 'debounce-promise';
@@ -14,7 +15,6 @@ interface UseStationSearchOptions {
 
 const itemToString = (s: MinimalStopPlace | null) => (s ? s.name : '');
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useStopPlaceSearch = ({
   filterForIris,
   maxSuggestions,

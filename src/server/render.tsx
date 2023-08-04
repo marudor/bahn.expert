@@ -81,8 +81,10 @@ export default (ctx: Context): void => {
     rawBaseUrl: globalThis.RAW_BASE_URL,
     renderedTheme: globalThis.RENDERED_THEME,
   });
+  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
   ctx.body += app;
 
+  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
   ctx.body += footerTemplate({
     scriptTags: extractor.getScriptTags(),
   });

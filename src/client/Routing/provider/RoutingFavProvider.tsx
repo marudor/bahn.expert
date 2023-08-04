@@ -9,9 +9,7 @@ export interface RoutingFav {
   destination: MinimalStopPlace;
   via: MinimalStopPlace[];
 }
-export interface RoutingFavs {
-  [key: string]: RoutingFav;
-}
+export type RoutingFavs = Record<string, RoutingFav>;
 
 export function routingFavKey(fav: RoutingFav): string {
   return `${fav.start.evaNumber}${fav.via.map((s) => s.evaNumber)}${

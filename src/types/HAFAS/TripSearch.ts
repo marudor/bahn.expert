@@ -241,7 +241,7 @@ export interface TarifFareSet {
   fareL: TarifFare[];
 }
 export interface HafasTarifResponse {
-  statusCode: 'OK' | string;
+  statusCode: 'OK' | Omit<string, 'OK'>;
   fareSetL: TarifFareSet[];
 }
 

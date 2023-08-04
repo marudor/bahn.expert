@@ -196,12 +196,7 @@ export class HafasControllerV3 extends Controller {
 
     const mappedHafasArrivals =
       hafasArrivals?.reduce(
-        (
-          map: {
-            [key: string]: ArrivalStationBoardEntry;
-          },
-          arrival,
-        ) => {
+        (map: Record<string, ArrivalStationBoardEntry>, arrival) => {
           map[`${arrival.jid}${arrival.train.number}`] = arrival;
 
           return map;

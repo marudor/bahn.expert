@@ -30,7 +30,7 @@ function sanitizeFavs(
 }
 
 function isCurrentFormatFav(stop?: MinimalStopPlace): boolean {
-  return Boolean(stop && stop.evaNumber && stop.name);
+  return Boolean(stop?.evaNumber && stop.name);
 }
 
 export function sanitizeRoutingFavs(

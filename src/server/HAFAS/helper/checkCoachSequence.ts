@@ -11,5 +11,5 @@ export default (
   if (isBefore(addDays(new Date(), 1), scheduledTime)) return false;
   if (train?.type && allowdTypes.has(train.type)) return true;
 
-  if (trnCmpSX && trnCmpSX.tcM) return true;
+  if (trnCmpSX?.tcM) return true;
 };
