@@ -10,11 +10,11 @@ alternativeHostNames:
 replicaCount: 5
 
 disruption:
-  maxUnavailable: 4
+  maxUnavailable: 3
 
 resources:
   requests:
-    memory: '768Mi'
-    cpu: '400m'
+    memory: '1Gi'
+    cpu: '600m'
   limits:
-    memory: '768Mi'
+    memory: '1Gi'
