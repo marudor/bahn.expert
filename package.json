@@ -41,7 +41,7 @@
   },
   "browserslist": [
     ">2% in DE",
-    "not ie 9"
+    "not dead"
   ],
   "scripts": {
     "build:clean": "rimraf dist && mkdir dist && rimraf -g 'src/**/**/*.js'",

@@ -1,5 +1,4 @@
 /* eslint-disable unicorn/prefer-module */
-import 'core-js/stable';
 import { disconnectRedis } from '@/server/cache';
 import Nock from 'nock';
 
