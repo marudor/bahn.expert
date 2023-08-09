@@ -1,7 +1,7 @@
 import { Cache, parseCacheTTL } from '@/server/cache';
 
-const defineCacheTests = (createCache: () => Cache<string, unknown>) => {
-  const cache: Cache<string, unknown> = createCache();
+const defineCacheTests = (createCache: () => Cache<unknown>) => {
+  const cache: Cache<unknown> = createCache();
 
   afterAll(async () => {
     await cache.clearAll();

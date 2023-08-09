@@ -56,9 +56,7 @@ const HimSearch = (
   return makeRequest(req, raw ? undefined : parseHimSearch, profile);
 };
 
-const himMessageCache = new Cache<string, ParsedHimMessage>(
-  CacheDatabase.HIMMessage,
-);
+const himMessageCache = new Cache<ParsedHimMessage>(CacheDatabase.HIMMessage);
 
 const maxNum = Number.parseInt(process.env.HIM_MAX_FETCH || '5000', 10);
 

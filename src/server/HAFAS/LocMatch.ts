@@ -9,7 +9,7 @@ import type {
 } from '@/types/HAFAS';
 import type { LocMatchRequest, LocMatchResponse } from '@/types/HAFAS/LocMatch';
 
-const cache = new Cache<string, HafasStation[]>(CacheDatabase.LocMatch);
+const cache = new Cache<HafasStation[]>(CacheDatabase.LocMatch);
 
 function parseFn(
   d: HafasResponse<LocMatchResponse>,

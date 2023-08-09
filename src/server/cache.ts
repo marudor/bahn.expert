@@ -114,8 +114,8 @@ export function disconnectRedis(): void {
   }
 }
 
-export class Cache<K extends string, V> {
-  private lruCache?: LRUCache<K, Buffer>;
+export class Cache<V> {
+  private lruCache?: LRUCache<string, Buffer>;
   private redisCache?: Redis;
   private ttl: number;
   constructor(
@@ -156,10 +156,10 @@ export class Cache<K extends string, V> {
 
     return JSON.parse(raw, dateDeserialze);
   }
-  private memorySet(key: K, value: V) {
+  private memorySet(key: string, value: V) {
     this.lruCache?.set(key, v8.serialize(value));
   }
-  async get(key: K): Promise<V | undefined> {
+  async get(key: string): Promise<V | undefined> {
     if (this.lruCache?.has(key)) {
       const cached = this.lruCache?.get(key);
       if (cached) {
@@ -181,7 +181,7 @@ export class Cache<K extends string, V> {
       logger.error(e, 'Redis get failed');
     }
   }
-  async set(key: K, value: V): Promise<void> {
+  async set(key: string, value: V): Promise<void> {
     this.memorySet(key, value);
     try {
       await this.redisCache?.set(
@@ -194,7 +194,7 @@ export class Cache<K extends string, V> {
       logger.error(e, 'Redis set failed');
     }
   }
-  async exists(key: K): Promise<boolean> {
+  async exists(key: string): Promise<boolean> {
     if (this.lruCache?.has(key)) {
       return true;
     }
@@ -203,5 +203,19 @@ export class Cache<K extends string, V> {
   async clearAll(): Promise<void> {
     this.lruCache?.clear();
     await this.redisCache?.flushall();
+  }
+  async getAll(): Promise<[string, V][]> {
+    let keys: string[] = [];
+    if (this.lruCache) {
+      keys = [...this.lruCache.keys()];
+    }
+    if (this.redisCache) {
+      keys = await this.redisCache.keys('*');
+    }
+    // @ts-expect-error works
+    const entries: [string, V][] = (
+      await Promise.all(keys.map(async (k) => [k, await this.get(k)]))
+    ).filter(([_, value]) => Boolean(value));
+    return entries;
   }
 }

@@ -60,7 +60,7 @@ const formatDate = (date?: Date) =>
 const formatPlannedDate = (date?: Date) =>
   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 
-const coachSequenceCache = new Cache<string, [Wagenreihung, DBSourceType]>(
+const coachSequenceCache = new Cache<[Wagenreihung, DBSourceType]>(
   CacheDatabase.CoachSequenceFound,
 );
 
@@ -156,4 +156,15 @@ export async function DBCoachSequence(
     mapped.source = `DB-${sequence[1]}`;
   }
   return mapped;
+}
+
+export async function getCacheKeysForTZ(tzn: string): Promise<string[]> {
+  const allEntries = await coachSequenceCache.getAll();
+  const relevantEntries = allEntries.filter(([_, [sequence]]) =>
+    sequence.data.istformation.allFahrzeuggruppe.some((g) =>
+      g.fahrzeuggruppebezeichnung.includes(tzn),
+    ),
+  );
+
+  return relevantEntries.map(([key]) => key);
 }

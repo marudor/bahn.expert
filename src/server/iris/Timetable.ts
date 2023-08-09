@@ -65,13 +65,10 @@ type ParsedAr = ArDp & {
   plannedRoutePre?: string[];
 };
 
-const timetableCache = new Cache<
-  string,
-  {
-    timetable: Record<string, any>;
-    wingIds: Record<string, string>;
-  }
->(CacheDatabase.TimetableParsedWithWings);
+const timetableCache = new Cache<{
+  timetable: Record<string, any>;
+  wingIds: Record<string, string>;
+}>(CacheDatabase.TimetableParsedWithWings);
 
 interface Route {
   name: string;

@@ -17,13 +17,9 @@ import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { Route$Stop } from '@/types/routing';
 
-const journeyFindCache = new Cache<string, JourneyMatch[]>(
-  CacheDatabase.JourneyFind,
-);
+const journeyFindCache = new Cache<JourneyMatch[]>(CacheDatabase.JourneyFind);
 
-const journeyCache = new Cache<string, JourneyEventBased>(
-  CacheDatabase.Journey,
-);
+const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.Journey);
 
 logger.info(
   `using ${process.env.RIS_JOURNEYS_USER_AGENT} as RIS::Journeys UserAgent`,

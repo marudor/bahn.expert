@@ -6,7 +6,6 @@ import type { EvaNumber } from '@/types/common';
 import type { Route$Auslastung } from '@/types/routing';
 
 const additionalInformationCache = new Cache<
-  string,
   AdditionalJourneyInformation | undefined
 >(CacheDatabase.AdditionalJourneyInformation);
 

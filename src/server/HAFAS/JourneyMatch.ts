@@ -14,7 +14,7 @@ import type {
 } from '@/types/HAFAS/JourneyMatch';
 import type { HafasResponse, ParsedCommon } from '@/types/HAFAS';
 
-const journeyMatchCache = new Cache<string, ParsedJourneyMatchResponse[]>(
+const journeyMatchCache = new Cache<ParsedJourneyMatchResponse[]>(
   CacheDatabase.HAFASJourneyMatch,
 );
 

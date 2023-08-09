@@ -7,7 +7,7 @@ import { sbbAxios } from '@/server/sbb/sbbAxios';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { SBBTrip } from '@/server/sbb/types';
 
-const tripCache = new Cache<string, SBBTrip>(CacheDatabase.SBBTrip);
+const tripCache = new Cache<SBBTrip>(CacheDatabase.SBBTrip);
 
 function getTripRequest(
   startId: string,

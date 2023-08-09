@@ -47,7 +47,7 @@ async function getRelevantTrip(
   return relevantTrip;
 }
 
-const stopOccupancyCache = new Cache<string, Route$Auslastung | undefined>(
+const stopOccupancyCache = new Cache<Route$Auslastung | undefined>(
   CacheDatabase.HafasStopOccupancy,
 );
 

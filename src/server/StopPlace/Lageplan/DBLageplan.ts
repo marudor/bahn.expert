@@ -2,7 +2,7 @@ import { Cache, CacheDatabase } from '@/server/cache';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import Axios from 'axios';
 
-const cache = new Cache<string, string | null>(CacheDatabase.DBLageplan);
+const cache = new Cache<string | null>(CacheDatabase.DBLageplan);
 
 export async function getDBLageplan(
   evaNumber: string,

@@ -23,9 +23,7 @@ const coachSequenceClient = new TransportsApi(
   axiosWithTimeout,
 );
 
-const negativeHitCache = new Cache<string, boolean>(
-  CacheDatabase.NegativeNewSequence,
-);
+const negativeHitCache = new Cache<boolean>(CacheDatabase.NegativeNewSequence);
 
 export function isWithin20Hours(date: Date): boolean {
   const start = subHours(new Date(), 20);

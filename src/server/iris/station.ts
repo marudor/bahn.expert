@@ -6,7 +6,7 @@ import xmljs from 'libxmljs2';
 import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from '@/types/iris';
 
-const cache = new Cache<string, IrisStation | null>(CacheDatabase.Station);
+const cache = new Cache<IrisStation | null>(CacheDatabase.Station);
 
 export function parseStation(stationNode: xmljs.Element): IrisStation {
   const station: any = {};

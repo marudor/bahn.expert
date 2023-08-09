@@ -3,7 +3,7 @@ import { Cache, CacheDatabase } from '@/server/cache';
 import { locMatch } from '@/server/HAFAS/LocMatch';
 import Axios from 'axios';
 
-const cache = new Cache<string, string | null>(CacheDatabase.NAHSHLageplan);
+const cache = new Cache<string | null>(CacheDatabase.NAHSHLageplan);
 
 function normalizeStationName(stationName: string) {
   return stationName
