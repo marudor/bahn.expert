@@ -12,7 +12,10 @@ import { EventType, TimeType } from '@/external/generated/risJourneys';
 import { getAbfahrten } from '@/server/iris';
 import { getJourneyDetails } from '@/external/risJourneys';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
-import type { ArrivalDepartureEvent } from '@/external/generated/risJourneys';
+import type {
+  ArrivalDepartureEvent,
+  TransportPublicDestinationPortionWorking,
+} from '@/external/generated/risJourneys';
 import type { CommonStopInfo } from '@/types/HAFAS';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { Route$Stop } from '@/types/routing';
@@ -79,6 +82,7 @@ export function getCategoryAndNumberFromName(trainName: string):
 
 interface StopInfoWithAdditional extends CommonStopInfo {
   additional?: boolean;
+  travelsWith?: TransportPublicDestinationPortionWorking[];
 }
 
 function mapEventToCommonStopInfo(
@@ -101,6 +105,7 @@ function mapEventToCommonStopInfo(
     scheduledPlatform: e.platformSchedule,
     platform: e.platform,
     isRealTime: e.timeType === 'REAL' || undefined,
+    travelsWith: e.travelsWith,
   };
 }
 
@@ -168,6 +173,34 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
     ) {
       s.additional = true;
     }
+
+    // mapTravelsWith to split/join
+    if (s.arrival?.travelsWith) {
+      for (const travelsWith of s.arrival.travelsWith) {
+        if (
+          !s.departure?.travelsWith?.some(
+            (t) => t.journeyID === travelsWith.journeyID,
+          )
+        ) {
+          s.splitsWith = s.splitsWith || [];
+          s.splitsWith.push(travelsWith);
+        }
+      }
+    }
+    if (s.departure?.travelsWith) {
+      for (const travelsWith of s.departure.travelsWith) {
+        if (
+          !s.arrival?.travelsWith?.some(
+            (t) => t.journeyID === travelsWith.journeyID,
+          )
+        ) {
+          s.joinsWith = s.joinsWith || [];
+          s.joinsWith.push(travelsWith);
+        }
+      }
+    }
+    delete s.departure?.travelsWith;
+    delete s.arrival?.travelsWith;
   }
 
   return stops;

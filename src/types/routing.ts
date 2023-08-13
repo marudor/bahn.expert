@@ -8,6 +8,7 @@ import type {
 import type { Message } from './iris';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { SecL } from './HAFAS/TripSearch';
+import type { TransportPublicDestinationPortionWorking } from '@/external/generated/risJourneys';
 
 export interface Route$Stop {
   arrival?: CommonStopInfo;
@@ -18,6 +19,8 @@ export interface Route$Stop {
   additional?: boolean;
   cancelled?: boolean;
   irisMessages?: Message[];
+  joinsWith?: TransportPublicDestinationPortionWorking[];
+  splitsWith?: TransportPublicDestinationPortionWorking[];
 }
 export type Route$JourneySegment =
   | Route$JourneySegmentTrain

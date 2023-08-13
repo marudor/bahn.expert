@@ -5,6 +5,7 @@ import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
+import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
@@ -53,9 +54,16 @@ const CoachSequenceContainer = styled.div`
   overflow: hidden;
 `;
 
+const TravelsWithContainer = styled.div`
+  grid-area: tw;
+  padding-left: 1em;
+  display: flex;
+  flex-direction: column;
+`;
+
 const MessageContainer = styled.div`
   grid-area: m;
-  padding-left: 0.75em;
+  padding-left: 1em;
 `;
 
 const StyledTravelynxLink = styled(TravelynxLink)`
@@ -78,7 +86,7 @@ const Container = styled.div<{
     gridTemplateRows: '1fr',
     gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} c" "dp ${
       hasOccupancy ? 'o' : 't'
-    } depP c" "wr wr wr wr" "m m m m"`,
+    } depP c" "tw tw tw tw" "wr wr wr wr" "m m m m"`,
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.text.primary}`,
     position: 'relative',
@@ -185,6 +193,13 @@ export const Stop: FC<Props> = ({
       )}
       <DeparturePlatform {...platforms.departure} />
       {!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
+      <TravelsWithContainer>
+        <TravelsWith
+          stopEva={stop.station.evaNumber}
+          joinsWith={stop.joinsWith}
+          splitsWith={stop.splitsWith}
+        />
+      </TravelsWithContainer>
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
       <CoachSequenceContainer>
         {showWR?.number && depOrArrival && (

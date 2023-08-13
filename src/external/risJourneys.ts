@@ -10,7 +10,7 @@ import axios from 'axios';
 import type {
   JourneyEventBased,
   JourneyMatch,
-  StationShort,
+  StopPlaceEmbedded,
   TransportPublic,
 } from '@/external/generated/risJourneys';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
@@ -62,7 +62,9 @@ const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
   number: `${transport.number}`,
 });
 
-const mapStationShortToRouteStops = (station: StationShort): Route$Stop => ({
+const mapStationShortToRouteStops = (
+  station: StopPlaceEmbedded,
+): Route$Stop => ({
   station,
 });
 
@@ -160,9 +162,10 @@ export async function getJourneyDetails(
         return cached;
       }
     }
-    const r = await risJourneysClient.journeyEventbasedById({
+    const r = await risJourneysClient.journeyEventBasedById({
       journeyID: journeyId,
       includeJourneyReferences: true,
+      includeCanceled: true,
     });
 
     if (!process.env.RIS_JOURNEYS_CACHE_DISABLED) {

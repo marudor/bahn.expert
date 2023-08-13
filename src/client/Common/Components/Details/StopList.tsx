@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
 import { Stop } from '@/client/Common/Components/Details/Stop';
+import { TravelsWithSummary } from '@/client/Common/Components/Details/TravelsWithSummary';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
@@ -98,6 +99,7 @@ export const StopList: FC = () => {
 
   return (
     <Container>
+      <TravelsWithSummary stops={details.stops} />
       {/* <Messages messages={details.messages} /> */}
       {detailsStops}
     </Container>
