@@ -92,6 +92,10 @@
       },
       "CommonStopInfo": {
         "properties": {
+          "isPlan": {
+            "type": "boolean",
+            "description": "Quelle dieser info ist die Planwagenreihung"
+          },
           "scheduledPlatform": {
             "type": "string",
             "description": "Scheduled Platform"
@@ -3300,6 +3304,10 @@
       },
       "StopInfo": {
         "properties": {
+          "isPlan": {
+            "type": "boolean",
+            "description": "Quelle dieser info ist die Planwagenreihung"
+          },
           "scheduledPlatform": {
             "type": "string",
             "description": "Scheduled Platform"

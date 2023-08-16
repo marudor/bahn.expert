@@ -163,6 +163,7 @@ export const Stop: FC<Props> = ({
       <ScrollMarker id={stop.station.evaNumber} />
       {stop.arrival && (
         <ArrivalTime
+          isPlan={stop.arrival.isPlan}
           cancelled={stop.arrival.cancelled}
           real={stop.arrival.time}
           delay={stop.arrival.delay}
@@ -189,6 +190,7 @@ export const Stop: FC<Props> = ({
           real={stop.departure.time}
           delay={stop.departure.delay}
           isRealTime={stop.departure.isRealTime}
+          isPlan={stop.departure.isPlan}
         />
       )}
       <DeparturePlatform {...platforms.departure} />

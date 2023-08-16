@@ -66,6 +66,7 @@ const models: TsoaRoute.Models = {
     "CommonStopInfo": {
         "dataType": "refObject",
         "properties": {
+            "isPlan": {"dataType":"boolean"},
             "scheduledPlatform": {"dataType":"string"},
             "platform": {"dataType":"string"},
             "scheduledTime": {"dataType":"datetime","required":true},
@@ -1217,6 +1218,7 @@ const models: TsoaRoute.Models = {
     "StopInfo": {
         "dataType": "refObject",
         "properties": {
+            "isPlan": {"dataType":"boolean"},
             "scheduledPlatform": {"dataType":"string"},
             "platform": {"dataType":"string"},
             "scheduledTime": {"dataType":"datetime","required":true},

@@ -189,6 +189,10 @@ export interface CommonProductInfo {
 }
 export interface CommonStopInfo {
   /**
+   * Quelle dieser info ist die Planwagenreihung
+   */
+  isPlan?: boolean;
+  /**
    * Scheduled Platform
    */
   scheduledPlatform?: string;

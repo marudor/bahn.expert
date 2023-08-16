@@ -8,6 +8,24 @@ import type { AvailableBR, AvailableIdentifier } from '@/types/coachSequence';
 import type { EvaNumber } from '@/types/common';
 import type { TrainRun, TrainRunWithBR } from '@/types/trainRuns';
 
+export async function getSingleTrainRun(
+  initialDeparture: Date,
+  trainNumber: string,
+): Promise<TrainRun | undefined> {
+  try {
+    const runs = (
+      await planSequenceAxios.get<TrainRun[]>(
+        `/trains/${initialDeparture.toISOString()}/${trainNumber}`,
+      )
+    ).data;
+    if (runs?.length) {
+      return runs[0];
+    }
+  } catch {
+    // we just ignore this
+  }
+}
+
 export async function getTrainRunsByDate(
   date: Date,
   baureihen?: AvailableBR[],

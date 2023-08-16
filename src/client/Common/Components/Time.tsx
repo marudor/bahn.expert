@@ -26,12 +26,14 @@ const TimeContainer = styled.span<{
   early?: boolean;
   delayed?: boolean;
   multiLine?: boolean;
+  isPlan?: boolean;
 }>(
   ({ multiLine }) =>
     !multiLine && {
       marginRight: '.2em',
     },
   ({ isRealTime }) => isRealTime && { fontWeight: 'bold' },
+  ({ isPlan }) => isPlan && { fontStyle: 'italic' },
   ({ theme, early }) => early && theme.mixins.early,
   ({ theme, delayed }) => delayed && theme.mixins.delayed,
 );
@@ -44,6 +46,8 @@ interface Props {
   /** Not Schedule, not preview */
   isRealTime?: boolean;
   multiLine?: boolean;
+  // sourceo of Information is no realTime API but static
+  isPlan?: boolean;
 }
 
 function delayString(delay: number) {
@@ -61,6 +65,7 @@ export const Time: FC<Props> = ({
   cancelled,
   isRealTime,
   multiLine,
+  isPlan,
 }) => {
   const showDelayTime = useCommonConfig().delayTime;
   if (!real) return null;
@@ -84,6 +89,7 @@ export const Time: FC<Props> = ({
         data-testid="timeToDisplay"
         early={showDelayTime && hasDelay && delay <= 0}
         delayed={showDelayTime && hasDelay && delay > 0}
+        isPlan={isPlan}
       >
         {format(timeToDisplay, 'HH:mm')}
       </TimeContainer>

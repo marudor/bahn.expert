@@ -12,6 +12,7 @@ import { EventType, TimeType } from '@/external/generated/risJourneys';
 import { getAbfahrten } from '@/server/iris';
 import { getJourneyDetails } from '@/external/risJourneys';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
+import { getSingleTrainRun } from '@/server/coachSequence/DB/trainRuns';
 import type {
   ArrivalDepartureEvent,
   TransportPublicDestinationPortionWorking,
@@ -19,6 +20,7 @@ import type {
 import type { CommonStopInfo } from '@/types/HAFAS';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { Route$Stop } from '@/types/routing';
+import type { TrainRun } from '@/types/trainRuns';
 
 const trainNumberRegex = /(.*?)(\d+).*/;
 
@@ -133,7 +135,7 @@ function newStopInfoIsAfter(stop: JourneyStop, event: ArrivalDepartureEvent) {
   return true;
 }
 
-function stopsFromEvents(events: ArrivalDepartureEvent[]) {
+function stopsFromEvents(events: ArrivalDepartureEvent[], trainRun?: TrainRun) {
   const stops: JourneyStop[] = [];
   for (const e of events) {
     const stopInfo = mapEventToCommonStopInfo(e);
@@ -203,13 +205,45 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
     delete s.arrival?.travelsWith;
   }
 
+  if (trainRun && stops.length) {
+    const firstStop = stops[0];
+    const firstTrainRunStop = trainRun.via.find(
+      (stop) => stop.evaNumber === firstStop.station.evaNumber,
+    );
+    if (
+      firstTrainRunStop?.arrivalTime &&
+      !firstStop.arrival &&
+      firstStop.departure &&
+      isBefore(firstTrainRunStop.arrivalTime, firstStop.departure.scheduledTime)
+    ) {
+      firstStop.arrival = {
+        isPlan: true,
+        scheduledTime: firstTrainRunStop.arrivalTime,
+        time: firstTrainRunStop.arrivalTime,
+      };
+    }
+
+    // Abfahrt am Ziel zeigen wir erst mal nicht, das ist regelmässig vor PlanAnkunft
+    // const lastStop = stops.at(-1)!;
+    // const lastTrainRunStop = trainRun.via.findLast(
+    //   (stop) => stop.evaNumber === lastStop?.station.evaNumber,
+    // );
+    // if (lastTrainRunStop?.departureTime && !lastStop.departure) {
+    //   lastStop.departure = {
+    //     isPlan: true,
+    //     scheduledTime: lastTrainRunStop.departureTime,
+    //     time: lastTrainRunStop.departureTime,
+    //   };
+    // }
+  }
+
   return stops;
 }
 
 export async function journeyDetails(
-  jounreyId: string,
+  journeyId: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> {
-  const journey = await getJourneyDetails(jounreyId);
+  const journey = await getJourneyDetails(journeyId);
   if (!journey) {
     return undefined;
   }
@@ -217,7 +251,13 @@ export async function journeyDetails(
     return undefined;
   }
   const firstEvent = journey.events[0];
-  const stops = stopsFromEvents(journey.events);
+  const initialDeparture = new Date(firstEvent.timeSchedule);
+  const trainRun = await getSingleTrainRun(
+    initialDeparture,
+    firstEvent.transport.number.toString(),
+  );
+
+  const stops = stopsFromEvents(journey.events, trainRun);
   if (!stops.length) {
     return undefined;
   }
