@@ -59,12 +59,12 @@ describe('Abfahrten', () => {
     cy.findByTestId('loading').should('exist');
     cy.findByTestId('lookahead').should('exist');
   });
-  it('Zugausfall not strike through', () => {
+  it('cancelled not strike through', () => {
     cy.mockHamburg();
     cy.visit('/');
     cy.navigateToStation('Hamburg Hbf');
     cy.findByTestId('abfahrtRB81616').within(() => {
-      cy.findByTestId('zugausfall').should(
+      cy.findByTestId('cancelled').should(
         'not.have.css',
         'text-decoration-line',
         'line-through',
