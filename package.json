@@ -187,7 +187,7 @@
     "date-fns-tz": "^2.0.0",
     "debounce-promise": "^3.1.2",
     "diff": "^5.1.0",
-    "downshift": "^7.6.2",
+    "downshift": "^8.1.0",
     "ejs": "^3.1.9",
     "google-polyline": "^1.0.3",
     "husky": "^8.0.3",

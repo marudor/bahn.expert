@@ -6,7 +6,7 @@ import { useStopPlaceSearch } from '@/client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
 import styled from '@emotion/styled';
 import type { AllowedHafasProfile } from '@/types/HAFAS';
-import type { FC } from 'react';
+import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
 const PositionedLoading = styled(Loading)`
@@ -52,7 +52,7 @@ export const StopPlaceSearch: FC<Props> = ({
   filterForIris,
   groupedBySales,
 }) => {
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
   const { showRl100 } = useCommonConfig();
 
   const formatSuggestion = useCallback(
@@ -92,7 +92,7 @@ export const StopPlaceSearch: FC<Props> = ({
       <Downshift
         id={id}
         defaultHighlightedIndex={0}
-        // @ts-expect-error typing for ref wrong
+        // @ts-expect-error ???
         ref={selectRef}
         selectedItem={value || null}
         itemToString={itemToString}
@@ -111,27 +111,27 @@ export const StopPlaceSearch: FC<Props> = ({
           openMenu,
         }) => {
           const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
-            onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange: ((event) => {
               if (event.target.value === '') {
                 clearSelection();
               } else {
                 void loadOptions(event.target.value);
               }
-            },
-            onFocus: () => {
+            }) as ChangeEventHandler<HTMLInputElement>,
+            onFocus: (() => {
               if (value && value.name === inputValue) {
                 setState({ inputValue: '' });
               }
               if (suggestions.length) {
                 openMenu();
               }
-            },
-            onBlur: () => {
+            }) as FocusEventHandler<HTMLInputElement>,
+            onBlur: (() => {
               setSuggestions([]);
               if (value) {
                 setState({ inputValue: value.name });
               }
-            },
+            }) as FocusEventHandler<HTMLInputElement>,
             placeholder,
             autoFocus,
             ref: inputRef,

@@ -72,8 +72,8 @@ dependencies:
     specifier: ^5.1.0
     version: 5.1.0
   downshift:
-    specifier: ^7.6.2
-    version: 7.6.2(react@18.2.0)
+    specifier: ^8.1.0
+    version: 8.1.0(react@18.2.0)
   ejs:
     specifier: ^3.1.9
     version: 3.1.9
@@ -5874,8 +5874,8 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /downshift@7.6.2(react@18.2.0):
-    resolution: {integrity: sha512-iOv+E1Hyt3JDdL9yYcOgW7nZ7GQ2Uz6YbggwXvKUSleetYhU2nXD482Rz6CzvM4lvI1At34BYruKAL4swRGxaA==}
+  /downshift@8.1.0(react@18.2.0):
+    resolution: {integrity: sha512-e9EBBLZvB2G73qT272x3hExttGCH1q1usbjirm+1aMcFXuzSWhgBdbnAHPlFI2rEq61cU/kDrEIMrY+ozMhvmg==}
     peerDependencies:
       react: '>=16.12.0'
     dependencies:
@@ -10444,7 +10444,7 @@ packages:
   /rxjs@7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
     dev: true
 
   /rxjs@7.8.1:
