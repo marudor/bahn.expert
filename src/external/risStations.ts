@@ -81,7 +81,10 @@ export async function byRl100(rl100: string): Promise<StopPlace | undefined> {
   }
 }
 
-export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
+export async function byEva(
+  evaNumber: string,
+  forwardError?: boolean,
+): Promise<StopPlace | undefined> {
   try {
     const result = (
       await stopPlaceClient.getStopPlacesByEvaNumber({
@@ -90,7 +93,7 @@ export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
     ).data;
     return result.stopPlaces?.[0];
   } catch (e) {
-    if (axios.isAxiosError(e) && e.response?.status) {
+    if (forwardError && axios.isAxiosError(e) && e.response?.status) {
       throw e;
     }
     return undefined;

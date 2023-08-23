@@ -116,7 +116,7 @@ export async function getStopPlaceByEva(
     const cached = await stopPlaceByEvaCache.get(evaNumber);
     if (cached) return cached;
   }
-  const risResult = await byEva(evaNumber);
+  const risResult = await byEva(evaNumber, forceLive);
   if (risResult) {
     const groupedStopPlace = mapToGroupedStopPlace(risResult);
     await addIdentifiers([groupedStopPlace]);
