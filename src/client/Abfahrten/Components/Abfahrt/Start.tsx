@@ -16,7 +16,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Zugausfall = styled.span(({ theme }) => theme.mixins.changed);
+const Cancelled = styled.span(({ theme }) => theme.mixins.changed);
 
 const Links = styled.div`
   font-size: 0.6em;
@@ -53,7 +53,7 @@ export const Start: FC = () => {
         </Links>
       )}
       {abfahrt.cancelled && (
-        <Zugausfall data-testid="zugausfall">Zugausfall</Zugausfall>
+        <Cancelled data-testid="cancelled">Fällt aus</Cancelled>
       )}
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />
