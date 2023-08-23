@@ -14,13 +14,13 @@ export default (
   _common: ParsedCommon,
   train?: ParsedProduct,
 ): CommonStopInfo => {
-  const scheduledTime = parseTime(date, d.dTimeS);
+  const scheduledTime = parseTime(date, d.dTimeS, d.dTZOffset);
 
   let time = scheduledTime;
   let delay;
 
   if (d.dTimeR) {
-    time = parseTime(date, d.dTimeR);
+    time = parseTime(date, d.dTimeR, d.dTZOffset);
     delay = time && scheduledTime && differenceInMinutes(time, scheduledTime);
   }
 
