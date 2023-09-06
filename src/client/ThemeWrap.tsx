@@ -24,12 +24,14 @@ const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.default
     clearButtonLabel: 'Jetzt',
   };
 
+const defaultEmotionCache = createEmotionCache({
+  key: 'css',
+});
+
 export const ThemeWrap = ({
   children = <App />,
   // generateClassName,
-  emotionCache = createEmotionCache({
-    key: 'css',
-  }),
+  emotionCache = defaultEmotionCache,
 }: Props): ReactElement => {
   const { theme } = useTheme();
 

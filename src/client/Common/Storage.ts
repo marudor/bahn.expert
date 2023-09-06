@@ -1,6 +1,6 @@
 /* eslint-disable no-process-env */
 import Cookies from 'universal-cookie';
-import type { CookieSetOptions } from 'universal-cookie';
+import type { CookieGetOptions, CookieSetOptions } from 'universal-cookie';
 import type { WebConfigMap } from '@/client/useStorage';
 
 const setCookieOptions: CookieSetOptions = {
@@ -11,21 +11,22 @@ const setCookieOptions: CookieSetOptions = {
 };
 
 export interface StorageInterface {
-  get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined;
-  get<T>(name: string): T | undefined;
+  get<K extends keyof WebConfigMap>(
+    name: K,
+    options?: CookieGetOptions,
+  ): WebConfigMap[K] | undefined;
+  get<T>(name: string, options?: CookieGetOptions): T | undefined;
   set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]): void;
   set<T>(name: string, value: T): void;
   remove<K extends keyof WebConfigMap>(name: K): void;
 }
 
 export class ServerStorage extends Cookies implements StorageInterface {
-  get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined {
-    const raw = super.get(name);
-    // @ts-expect-error works
-    if (raw === 'false') return false;
-    // @ts-expect-error works
-    if (raw === 'true') return true;
-    return raw;
+  get<K extends keyof WebConfigMap>(
+    name: K,
+    options?: CookieGetOptions,
+  ): WebConfigMap[K] | undefined {
+    return super.get(name, options);
   }
   set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]): void {
     return super.set(name, value, setCookieOptions);
@@ -33,8 +34,11 @@ export class ServerStorage extends Cookies implements StorageInterface {
 }
 
 export class ClientStorage extends ServerStorage {
-  get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined {
-    const cookieGet = super.get(name);
+  get<K extends keyof WebConfigMap>(
+    name: K,
+    options?: CookieGetOptions,
+  ): WebConfigMap[K] | undefined {
+    const cookieGet = super.get(name, options);
     if (cookieGet != null) return cookieGet;
     return undefined;
   }

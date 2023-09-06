@@ -4,14 +4,12 @@
     "TEST": true
   },
   "testEnvironment": "jsdom",
+  "prettierPath": "",
   "moduleNameMapper": {
     "\\.(scss|css)$": "identity-obj-proxy"
   },
   "globalSetup": "./__tests__/setupGlobal.ts",
-  "setupFilesAfterEnv": [
-    "./__tests__/setup.ts",
-    "@testing-library/jest-dom/extend-expect"
-  ],
+  "setupFilesAfterEnv": ["./__tests__/setup.ts"],
   "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
   "snapshotSerializers": ["@emotion/jest/serializer"],
   "transform": {

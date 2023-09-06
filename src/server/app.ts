@@ -100,9 +100,9 @@ export function createApp(): Koa {
     app.use(hotHelper(() => seoController));
 
     if (process.env.NODE_ENV === 'production') {
-      const loadableStats = require(path.resolve(
-        `${distFolder}/client/loadable-stats.json`,
-      ));
+      const loadableStats = require(
+        path.resolve(`${distFolder}/client/loadable-stats.json`),
+      );
 
       app.use((ctx, next) => {
         ctx.loadableStats = loadableStats;
