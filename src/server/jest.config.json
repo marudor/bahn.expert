@@ -3,6 +3,7 @@
     "PROD": true,
     "TEST": true
   },
+  "prettierPath": "",
   "testEnvironment": "node",
   "moduleNameMapper": {
     "\\.(scss|css)$": "identity-obj-proxy"

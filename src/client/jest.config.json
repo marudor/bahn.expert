@@ -4,6 +4,7 @@
     "TEST": true
   },
   "testEnvironment": "jsdom",
+  "prettierPath": "",
   "moduleNameMapper": {
     "\\.(scss|css)$": "identity-obj-proxy"
   },

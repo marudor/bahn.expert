@@ -9,7 +9,6 @@ describe('Time', () => {
     const { container } = render(<Time />);
 
     expect(container).toBeNull();
-    expect(container).toMatchSnapshot();
   });
   it('only scheduled Data', () => {
     render(<Time real={sampleTime} />);
@@ -26,7 +25,42 @@ describe('Time', () => {
     expect(screen.queryByTestId('realTimeOrDelay')).toHaveStyle(
       `color: ${theme.colors.red}`,
     );
-    expect(container).toMatchSnapshot();
+    expect(container).toMatchInlineSnapshot(`
+      .emotion-0 {
+        font-size: 0.9em;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .emotion-1 {
+        margin-right: .2em;
+      }
+
+      .emotion-2 {
+        margin-right: .2em;
+        color: #ff1744;
+      }
+
+      <div
+        class="emotion-0"
+        data-testid="timeContainer"
+      >
+        <span
+          class="emotion-1"
+          data-testid="timeToDisplay"
+        >
+          13:45
+        </span>
+        <span
+          class="emotion-2"
+          data-testid="realTimeOrDelay"
+        >
+          13:55
+        </span>
+      </div>
+    `);
   });
 
   it('5 Minutes early', () => {
@@ -37,7 +71,42 @@ describe('Time', () => {
     expect(screen.queryByTestId('realTimeOrDelay')).toHaveStyle(
       `color: ${theme.colors.green}`,
     );
-    expect(container).toMatchSnapshot();
+    expect(container).toMatchInlineSnapshot(`
+      .emotion-0 {
+        font-size: 0.9em;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .emotion-1 {
+        margin-right: .2em;
+      }
+
+      .emotion-2 {
+        margin-right: .2em;
+        color: #7cb342;
+      }
+
+      <div
+        class="emotion-0"
+        data-testid="timeContainer"
+      >
+        <span
+          class="emotion-1"
+          data-testid="timeToDisplay"
+        >
+          14:00
+        </span>
+        <span
+          class="emotion-2"
+          data-testid="realTimeOrDelay"
+        >
+          13:55
+        </span>
+      </div>
+    `);
   });
 
   it('shows 0 delay number', () => {
@@ -48,6 +117,41 @@ describe('Time', () => {
     expect(screen.queryByTestId('realTimeOrDelay')).toHaveStyle(
       `color: ${theme.colors.green}`,
     );
-    expect(container).toMatchSnapshot();
+    expect(container).toMatchInlineSnapshot(`
+      .emotion-0 {
+        font-size: 0.9em;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .emotion-1 {
+        margin-right: .2em;
+      }
+
+      .emotion-2 {
+        margin-right: .2em;
+        color: #7cb342;
+      }
+
+      <div
+        class="emotion-0"
+        data-testid="timeContainer"
+      >
+        <span
+          class="emotion-1"
+          data-testid="timeToDisplay"
+        >
+          13:55
+        </span>
+        <span
+          class="emotion-2"
+          data-testid="realTimeOrDelay"
+        >
+          13:55
+        </span>
+      </div>
+    `);
   });
 });
