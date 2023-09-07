@@ -41,16 +41,17 @@ function dateDeserialze(_key: string, value: any): any {
 
 checkSecrets(process.env.REDIS_HOST);
 
-const redisSettings = process.env.REDIS_HOST
-  ? {
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT
-        ? Number.parseInt(process.env.REDIS_PORT, 10)
-        : 6379,
-      password: process.env.REDIS_PASSWORD,
-      // dropBufferSupport: true,
-    }
-  : undefined;
+const redisSettings =
+  process.env.REDIS_HOST && process.env.NODE_ENV !== 'test'
+    ? {
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT
+          ? Number.parseInt(process.env.REDIS_PORT, 10)
+          : 6379,
+        password: process.env.REDIS_PASSWORD,
+        // dropBufferSupport: true,
+      }
+    : undefined;
 
 export enum CacheDatabase {
   Station,

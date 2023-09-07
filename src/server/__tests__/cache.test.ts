@@ -36,14 +36,8 @@ const defineCacheTests = (createCache: () => Cache<unknown>) => {
 
 describe('Cache', () => {
   describe('memory', () => {
-    defineCacheTests(() => new Cache(0, undefined, { skipRedis: true }));
+    defineCacheTests(() => new Cache(0));
   });
-
-  if (process.env.REDIS_HOST) {
-    describe('redis', () => {
-      defineCacheTests(() => new Cache(1, undefined, { skipMemory: true }));
-    });
-  }
 });
 
 describe('parse Cache TTL', () => {

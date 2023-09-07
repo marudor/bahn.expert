@@ -1,9 +1,10 @@
 {
   "globals": {
     "PROD": true,
-    "TEST": true
+    "TEST": true,
+    "__REACT_DEVTOOLS_GLOBAL_HOOK__": { "isDisabled": true }
   },
-  "testEnvironment": "jsdom",
+  "testEnvironment": "@happy-dom/jest-environment",
   "prettierPath": "",
   "moduleNameMapper": {
     "\\.(scss|css)$": "identity-obj-proxy"
