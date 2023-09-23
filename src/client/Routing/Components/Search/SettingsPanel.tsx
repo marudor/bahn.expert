@@ -96,8 +96,7 @@ export const SettingsPanel: FC = () => {
     if (Number.isNaN(numberMaxChange) || numberMaxChange < 0) {
       return <AllInclusive fontSize="small" />;
     }
-    // This is needed because 0 will not be rendered. "0" will.
-    return settings.maxChanges;
+    return numberMaxChange.toString();
   }, [settings.maxChanges]);
 
   let filterLabel = 'Alle Zuege';

@@ -52,5 +52,20 @@ describe('Routing Settings', () => {
         '5m',
       );
     });
+
+    it('maxChanges handles 0', () => {
+      cy.findByTestId('routingSettingsPanel').click();
+      cy.findByTestId('routingSettingsPanel-maxChange').within(() => {
+        cy.get('span')
+          .as('maxChanges')
+          .should('not.have.text', '0')
+          .should('be.visible');
+      });
+      cy.findByTestId('routingMaxChanges').as('maxChangesInput').clear();
+      cy.get('@maxChangesInput').type('0');
+      cy.get('@maxChanges').should('have.text', '0').should('be.visible');
+      cy.visit('/routing');
+      cy.get('@maxChanges').should('have.text', '0').should('be.visible');
+    });
   });
 });
