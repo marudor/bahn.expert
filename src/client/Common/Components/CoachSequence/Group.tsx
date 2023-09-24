@@ -42,19 +42,25 @@ const ClickableTrainLink: FC<{
   const [foundJourney, setFoundJourney] =
     useState<ParsedJourneyMatchResponse>();
   useEffect(() => {
-    void journeyNumberFind(
-      Number.parseInt(number),
-      scheduledDeparture,
-      undefined,
-      undefined,
-      undefined,
-      3,
-    ).then((journeys) => {
-      const relevantJourney = journeys.filter((j) => j.train.type === type);
-      if (relevantJourney.length) {
-        setFoundJourney(relevantJourney[0]);
+    async function getJourney() {
+      try {
+        const journeys = await journeyNumberFind(
+          Number.parseInt(number),
+          scheduledDeparture,
+          undefined,
+          undefined,
+          undefined,
+          3,
+        );
+        const relevantJourney = journeys.filter((j) => j.train.type === type);
+        if (relevantJourney.length) {
+          setFoundJourney(relevantJourney[0]);
+        }
+      } catch {
+        // we just ignore errors
       }
-    });
+    }
+    void getJourney();
   }, [number, scheduledDeparture, type]);
 
   if (foundJourney) {
