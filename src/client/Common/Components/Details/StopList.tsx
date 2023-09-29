@@ -62,7 +62,10 @@ export const StopList: FC = () => {
     let hadCurrent = false;
 
     return details.stops.map((s) => {
-      if (details.currentStop?.station.evaNumber === s.station.evaNumber) {
+      if (
+        details.currentStop?.station.evaNumber === s.station.evaNumber ||
+        !details.currentStop
+      ) {
         hadCurrent = true;
       }
 

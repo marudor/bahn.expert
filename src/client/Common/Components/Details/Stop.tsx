@@ -130,11 +130,13 @@ export const Stop: FC<Props> = ({
       arrival: {
         real: stop.arrival?.platform,
         scheduled: stop.arrival?.scheduledPlatform,
+        cancelled: stop.arrival?.cancelled,
       },
       departure: {
         real: stop.departure?.platform || stop.arrival?.platform,
         scheduled:
           stop.departure?.scheduledPlatform || stop.arrival?.scheduledPlatform,
+        cancelled: stop.departure?.cancelled,
       },
     };
     return [
