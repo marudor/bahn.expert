@@ -93,7 +93,7 @@ export const Time: FC<Props> = ({
       >
         {format(timeToDisplay, 'HH:mm')}
       </TimeContainer>
-      {hasDelay && (
+      {hasDelay && !cancelled && (
         <TimeContainer
           multiLine={multiLine}
           data-testid="realTimeOrDelay"

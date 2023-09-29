@@ -25,7 +25,8 @@ export function calculateCurrentStopPlace(
 
   if (!currentStop) {
     currentStop = segment.stops.find((s) => {
-      const stopInfo = s.departure || s.arrival;
+      const stopInfo =
+        s.departure && !s.departure.cancelled ? s.departure : s.arrival;
 
       return (
         stopInfo && !stopInfo.cancelled && isAfter(stopInfo.time, currentDate)
