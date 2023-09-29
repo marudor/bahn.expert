@@ -182,8 +182,8 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
   const storage = useStorage();
 
   const savedRoutingSettings: RoutingSettings = {
-    maxChanges: storage.get('maxChanges') ?? '-1',
-    transferTime: storage.get('transferTime') ?? '0',
+    maxChanges: storage.get('maxChanges')?.toString() ?? '-1',
+    transferTime: storage.get('transferTime')?.toString() ?? '0',
     onlyRegional: storage.get('onlyRegional') ?? false,
     onlyNetzcard: storage.get('onlyNetzcard') ?? false,
     hafasProfile: storage.get('hafasProfile') ?? AllowedHafasProfile.DB,
