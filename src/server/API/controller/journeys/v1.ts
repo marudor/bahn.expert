@@ -169,16 +169,18 @@ export class JourneysV1Controller extends Controller {
     if (!isAllowed(req)) {
       return res(401, 'This is rate-limited upstream, please do not use it.');
     }
-    const hafasDetailsPromise = Detail(
-      trainName,
-      undefined,
-      evaNumberAlongRoute,
-      initialDepartureDate,
-      undefined,
-      undefined,
-      administration,
-      jid,
-    );
+    const hafasDetailsPromise = journeyId
+      ? Promise.reject()
+      : Detail(
+          trainName,
+          undefined,
+          evaNumberAlongRoute,
+          initialDepartureDate,
+          undefined,
+          undefined,
+          administration,
+          jid,
+        );
     const hafasFallback = async () => {
       const hafasResult = await hafasDetailsPromise;
       if (!hafasResult) {
