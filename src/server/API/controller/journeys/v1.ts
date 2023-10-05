@@ -170,7 +170,7 @@ export class JourneysV1Controller extends Controller {
       return res(401, 'This is rate-limited upstream, please do not use it.');
     }
     const hafasDetailsPromise = journeyId
-      ? Promise.reject()
+      ? Promise.resolve()
       : Detail(
           trainName,
           undefined,
