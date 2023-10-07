@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import loadable from '@loadable/component';
 import type { FC } from 'react';
+import { Fab } from '@mui/material';
+import { LocationOff, LocationOn } from '@mui/icons-material';
 
 const LazyMapDisplay = loadable(() => import('./MapDisplay'), {
   ssr: false,
@@ -14,8 +16,14 @@ const LazyMapDisplay = loadable(() => import('./MapDisplay'), {
 export const Details: FC = () => {
   const { updateTitle, updateDescription, updateKeywords } =
     useHeaderTagsActions();
-  const { initialDepartureDate, details, trainName, isMapDisplay } =
-    useDetails();
+  const {
+    initialDepartureDate,
+    details,
+    trainName,
+    isMapDisplay,
+    showMarkers,
+    toggleShowMarkers,
+  } = useDetails();
 
   useEffect(() => {
     if (details) {
@@ -47,7 +55,16 @@ export const Details: FC = () => {
   return (
     <>
       <Header />
-      {isMapDisplay ? <LazyMapDisplay /> : <StopList />}
+      {isMapDisplay ? (
+        <>
+          <LazyMapDisplay />
+          <Fab onClick={() => toggleShowMarkers()}>
+            {showMarkers ? <LocationOff /> : <LocationOn />}
+          </Fab>
+        </>
+      ) : (
+        <StopList />
+      )}
     </>
   );
 };

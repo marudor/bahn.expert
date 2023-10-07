@@ -31,7 +31,7 @@ const StyledMapContainer = styled(MapContainer)`
 `;
 
 const MapDisplay: FC = () => {
-  const { polyline } = useDetails();
+  const { polyline, showMarkers } = useDetails();
   if (!polyline) return null;
   return (
     <StyledMapContainer center={position} zoom={7}>
@@ -40,7 +40,7 @@ const MapDisplay: FC = () => {
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Polyline positions={polyline.points as [number, number][]} />
-      {polyline.locations.map((location, i) => (
+      {showMarkers && polyline.locations.map((location, i) => (
         <Marker position={location.coordinates} key={i}>
           <Tooltip direction="auto">
             {location.details?.station.name || location.name}

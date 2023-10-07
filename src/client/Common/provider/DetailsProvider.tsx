@@ -35,6 +35,7 @@ const useInnerDetails = ({
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
   const [isMapDisplay, setIsMapDisplay] = useState(false);
+  const [showMarkers, setShowMarkers] = useState(true);
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [additionalInformation, setAdditionalInformation] =
     useState<AdditionalJourneyInformation>();
@@ -153,6 +154,11 @@ const useInnerDetails = ({
     [],
   );
 
+  const toggleShowMarkers = useCallback(
+    () => setShowMarkers((old) => !old),
+    [],
+  );
+
   const matchedPolyline:
     | (Omit<ParsedPolyline, 'locations'> & {
         locations: (HafasStation & {
@@ -188,6 +194,8 @@ const useInnerDetails = ({
     polyline: matchedPolyline,
     isMapDisplay,
     toggleMapDisplay,
+    showMarkers,
+    toggleShowMarkers,
     sameTrainDaysInFuture,
   };
 };
