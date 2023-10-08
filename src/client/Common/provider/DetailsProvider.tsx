@@ -10,6 +10,7 @@ import constate from 'constate';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { AxiosError } from 'axios';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
+import type { MouseEvent } from 'react';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { Route$Auslastung, Route$Stop } from '@/types/routing';
 
@@ -35,6 +36,7 @@ const useInnerDetails = ({
 }: Props) => {
   const { autoUpdate } = useCommonConfig();
   const [isMapDisplay, setIsMapDisplay] = useState(false);
+  const [showMarkers, setShowMarkers] = useState(false);
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [additionalInformation, setAdditionalInformation] =
     useState<AdditionalJourneyInformation>();
@@ -153,6 +155,11 @@ const useInnerDetails = ({
     [],
   );
 
+  const toggleShowMarkers = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+    setShowMarkers((old) => !old);
+  }, []);
+
   const matchedPolyline:
     | (Omit<ParsedPolyline, 'locations'> & {
         locations: (HafasStation & {
@@ -188,6 +195,8 @@ const useInnerDetails = ({
     polyline: matchedPolyline,
     isMapDisplay,
     toggleMapDisplay,
+    showMarkers,
+    toggleShowMarkers,
     sameTrainDaysInFuture,
   };
 };
