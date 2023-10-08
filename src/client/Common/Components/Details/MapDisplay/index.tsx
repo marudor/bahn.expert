@@ -1,4 +1,7 @@
 import 'leaflet/dist/leaflet.css';
+import { Fab } from '@mui/material';
+import { type FC, useMemo } from 'react';
+import { LocationOff, LocationOn } from '@mui/icons-material';
 import {
   MapContainer,
   Marker,
@@ -7,13 +10,16 @@ import {
   Tooltip,
 } from 'react-leaflet';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-// @ts-expect-error TS doesn't know png
 import icon from 'leaflet/dist/images/marker-icon.png';
-// @ts-expect-error TS doesn't know png
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 import styled from '@emotion/styled';
-import type { FC } from 'react';
+
+const MarkerFab = styled(Fab)`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`;
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -31,7 +37,16 @@ const StyledMapContainer = styled(MapContainer)`
 `;
 
 const MapDisplay: FC = () => {
-  const { polyline, showMarkers } = useDetails();
+  const { polyline, showMarkers, toggleShowMarkers } = useDetails();
+  const polylineLocations = useMemo(() => {
+    if (!polyline) {
+      return undefined;
+    }
+    if (showMarkers) {
+      return polyline.locations;
+    }
+    return [polyline.locations[0], polyline.locations.at(-1)!];
+  }, [polyline, showMarkers]);
   if (!polyline) return null;
   return (
     <StyledMapContainer center={position} zoom={7}>
@@ -40,13 +55,16 @@ const MapDisplay: FC = () => {
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Polyline positions={polyline.points as [number, number][]} />
-      {showMarkers && polyline.locations.map((location, i) => (
+      {polylineLocations?.map((location, i) => (
         <Marker position={location.coordinates} key={i}>
           <Tooltip direction="auto">
             {location.details?.station.name || location.name}
           </Tooltip>
         </Marker>
       ))}
+      <MarkerFab size="small" onClick={toggleShowMarkers}>
+        {showMarkers ? <LocationOn /> : <LocationOff />}
+      </MarkerFab>
     </StyledMapContainer>
   );
 };
