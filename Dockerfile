@@ -2,7 +2,8 @@ FROM --platform=$BUILDPLATFORM node:20-alpine as base
 RUN corepack enable
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
-COPY package.json pnpm-lock.yaml patches/ ./
+COPY package.json pnpm-lock.yaml ./
+COPY patches/ ./patches/
 
 FROM base as build
 RUN pnpm i --frozen-lockfile
