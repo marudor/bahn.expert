@@ -40,17 +40,17 @@ describe('NormalVia', () => {
     expect(hbf).not.toHaveAttribute('href', 'hbf');
     expect(hbf).toHaveStyle('font-weight: bold');
     expect(hbf).toMatchInlineSnapshot(`
-      .emotion-0 {
-        color: #fff;
-        font-weight: bold;
-      }
+.emotion-0 {
+  color: #fff;
+  font-weight: bold;
+}
 
-      <span
-        class="emotion-0"
-        data-testid="via-hbf"
-      >
-        hbf
-      </span>
-    `);
+<span
+  class="emotion-0 emotion-1"
+  data-testid="via-hbf"
+>
+  hbf
+</span>
+`);
   });
 });

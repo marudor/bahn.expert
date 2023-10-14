@@ -6,12 +6,13 @@
   "prettierPath": "",
   "testEnvironment": "node",
   "moduleNameMapper": {
-    "\\.(scss|css)$": "identity-obj-proxy"
+    "\\.(scss|css)$": "identity-obj-proxy",
+    "^@/server/(.*)": "<rootDir>/$1"
   },
   "globalSetup": "./__tests__/setupGlobal.ts",
   "setupFilesAfterEnv": ["./__tests__/setup.ts"],
   "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
   "transform": {
-    "\\.[jt]sx?$": ["babel-jest", { "rootMode": "upward" }]
+    "\\.[jt]sx?$": "@swc/jest"
   }
 }

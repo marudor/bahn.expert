@@ -27,10 +27,7 @@ export default (on, config) => {
           exclude: [/node_modules/],
           use: [
             {
-              loader: 'babel-loader',
-              options: {
-                rootMode: 'upward',
-              },
+              loader: 'swc-loader',
             },
           ],
         },

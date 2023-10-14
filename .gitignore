@@ -74,3 +74,5 @@ packages/*/lib
 !packages/server/logger/logWriteThread.js
 !packages/null-package/index.js
 !packages/app/metro.config.js
+
+.swc

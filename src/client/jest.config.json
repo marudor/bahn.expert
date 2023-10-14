@@ -14,7 +14,7 @@
   "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
   "snapshotSerializers": ["@emotion/jest/serializer"],
   "transform": {
-    "\\.[jt]sx?$": ["babel-jest", { "rootMode": "upward" }]
+    "\\.[jt]sx?$": "@swc/jest"
   },
   "resolver": "./__tests__/resolver.cjs"
 }
