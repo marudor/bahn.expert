@@ -34,7 +34,6 @@ globalThis.parseJson = (json: string) => {
 
 Axios.defaults.baseURL = 'http://localhost';
 
-// eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);
 
 afterEach(() => {

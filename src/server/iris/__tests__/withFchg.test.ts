@@ -27,7 +27,6 @@ describe('withFchg', () => {
   );
 
   for (const file of fchgFixtures) {
-    // eslint-disable-next-line jest/valid-title
     it(file, async () => {
       const fchgXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, 'fchg', file),

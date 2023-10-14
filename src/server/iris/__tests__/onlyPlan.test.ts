@@ -25,7 +25,6 @@ describe('onlyPlan', () => {
   const fixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath));
 
   for (const file of fixtures) {
-    // eslint-disable-next-line jest/valid-title
     it(file, async () => {
       const inXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, file),

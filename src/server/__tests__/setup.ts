@@ -2,7 +2,6 @@
 import { disconnectRedis } from '@/server/cache';
 import Nock from 'nock';
 
-// eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);
 
 const isoDateRegex =

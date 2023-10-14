@@ -11,7 +11,6 @@ describe('parseTimetableS', () => {
   const fixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath));
 
   for (const file of fixtures) {
-    // eslint-disable-next-line jest/valid-title
     it(file, () => {
       const timetable = new Timetable('test', 'test', {
         lookahead: 0,
