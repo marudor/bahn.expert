@@ -109,7 +109,8 @@ jobs:
       - name: finalize percy
         run: |
           corepack enable
-          pnpm dlx @percy/cli@1.26.3 build:finalize
+          pnpm i --frozen-lockfile
+          pnpm percy build:finalize
         env:
           PERCY_TOKEN: web_63aaa4d04fb56e5bb41b4547417eac37310a4b8dd2ef6f2e6e444215eacb01b3
   docker:
