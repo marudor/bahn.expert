@@ -12,11 +12,13 @@ COPY scripts/ ./scripts/
 COPY webpack.config.cjs babel.config.cjs ./
 ENV NODE_ENV=production
 RUN pnpm build
-RUN pnpm dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
+# npx instead of
+RUN npx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 RUN node scripts/checkAssetFiles.js
 
 FROM base as cleanedDeps
 RUN pnpm i --production --frozen-lockfile
+RUN rm package.json
 RUN pnpm dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 
 FROM node:20-alpine
