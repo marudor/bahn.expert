@@ -7,7 +7,7 @@ module.exports = {
   rules: {
     // cypress has assertions without expect
     'jest/expect-expect': 0,
-    'testing-library/await-async-query': 0,
+    'testing-library/await-async-queries': 0,
     'testing-library/prefer-screen-queries': 0,
     'testing-library/await-async-utils': 0,
   },

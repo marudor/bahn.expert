@@ -1,0 +1,11 @@
+diff --git a/types/lodash/index.d.ts b/types/lodash/index.d.ts
+index 1fa09484625c1062a9f23708b52dcbbbdc808ee2..1e53dc20ab88e790b97b536e43b4b204f623685a 100644
+--- a/types/lodash/index.d.ts
++++ b/types/lodash/index.d.ts
+@@ -42,5 +42,5 @@ declare global {
+     // tslint:disable-next-line:no-empty-interface
+     interface WeakSet<T> { }
+     // tslint:disable-next-line:no-empty-interface
+-    interface WeakMap<K extends object, V> { }
++    interface WeakMap<K extends WeakKey, V> { }
+ }
