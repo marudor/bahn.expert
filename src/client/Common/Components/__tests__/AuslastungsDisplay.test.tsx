@@ -95,7 +95,7 @@ describe('AuslastungsDisplay', () => {
           <div
             data-testid="first"
           >
-            1.
+            1. 
             <span
               class="emotion-4 emotion-5"
             >
@@ -120,7 +120,7 @@ describe('AuslastungsDisplay', () => {
           <div
             data-testid="second"
           >
-            2.
+            2. 
             <span
               class="emotion-9 emotion-5"
             >
@@ -226,7 +226,7 @@ describe('AuslastungsDisplay', () => {
           <div
             data-testid="first"
           >
-            1.
+            1. 
             <span
               class="emotion-4 emotion-5"
             >
@@ -251,7 +251,7 @@ describe('AuslastungsDisplay', () => {
           <div
             data-testid="second"
           >
-            2.
+            2. 
             <span
               class="emotion-9 emotion-5"
             >
@@ -353,7 +353,7 @@ describe('AuslastungsDisplay', () => {
           <div
             data-testid="first"
           >
-            1.
+            1. 
             <span
               class="emotion-4 emotion-5"
             >
@@ -378,7 +378,7 @@ describe('AuslastungsDisplay', () => {
           <div
             data-testid="second"
           >
-            2.
+            2. 
             <span
               class="emotion-9 emotion-5"
             >

@@ -215,7 +215,7 @@ describe('Loading', () => {
         width: 35vmin;
         height: 35vmin;
         margin: auto;
-        position: absolute;s
+        position: absolute;
       }
 
       .emotion-0>div {
