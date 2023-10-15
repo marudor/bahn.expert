@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && !process.env.TEST_RUN) {
   const fs = require('node:fs');
   const json5 = require('json5');
   const path = require('node:path');

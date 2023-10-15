@@ -94,7 +94,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: localhost:9042
           NODE_ENV: production
-          BABEL_ENV: testProduction
           TEST_RUN: 1
   finalizeE2e:
     runs-on: ubuntu-latest
