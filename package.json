@@ -73,8 +73,8 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.2",
-    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
     "@cypress/webpack-preprocessor": "^6.0.0",
     "@emotion/jest": "^11.11.0",
     "@happy-dom/jest-environment": "^12.9.1",
@@ -157,7 +157,7 @@
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@js-temporal/polyfill": "^0.4.4",
-    "@koa/router": "^12.0.0",
+    "@koa/router": "^12.0.1",
     "@loadable/component": "^5.15.3",
     "@loadable/server": "^5.16.1",
     "@mui/icons-material": "^5.14.13",
