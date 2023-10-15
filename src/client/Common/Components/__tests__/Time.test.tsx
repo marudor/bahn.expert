@@ -34,27 +34,27 @@ describe('Time', () => {
         display: flex;
       }
 
-      .emotion-1 {
+      .emotion-2 {
         margin-right: .2em;
       }
 
-      .emotion-2 {
+      .emotion-4 {
         margin-right: .2em;
         color: #ff1744;
       }
 
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="timeContainer"
       >
         <span
-          class="emotion-1"
+          class="emotion-2 emotion-3"
           data-testid="timeToDisplay"
         >
           13:45
         </span>
         <span
-          class="emotion-2"
+          class="emotion-4 emotion-3"
           data-testid="realTimeOrDelay"
         >
           13:55
@@ -80,27 +80,27 @@ describe('Time', () => {
         display: flex;
       }
 
-      .emotion-1 {
+      .emotion-2 {
         margin-right: .2em;
       }
 
-      .emotion-2 {
+      .emotion-4 {
         margin-right: .2em;
         color: #7cb342;
       }
 
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="timeContainer"
       >
         <span
-          class="emotion-1"
+          class="emotion-2 emotion-3"
           data-testid="timeToDisplay"
         >
           14:00
         </span>
         <span
-          class="emotion-2"
+          class="emotion-4 emotion-3"
           data-testid="realTimeOrDelay"
         >
           13:55
@@ -126,27 +126,27 @@ describe('Time', () => {
         display: flex;
       }
 
-      .emotion-1 {
+      .emotion-2 {
         margin-right: .2em;
       }
 
-      .emotion-2 {
+      .emotion-4 {
         margin-right: .2em;
         color: #7cb342;
       }
 
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="timeContainer"
       >
         <span
-          class="emotion-1"
+          class="emotion-2 emotion-3"
           data-testid="timeToDisplay"
         >
           13:55
         </span>
         <span
-          class="emotion-2"
+          class="emotion-4 emotion-3"
           data-testid="realTimeOrDelay"
         >
           13:55

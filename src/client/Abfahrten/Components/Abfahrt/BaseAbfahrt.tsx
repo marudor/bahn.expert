@@ -20,7 +20,7 @@ import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/Co
 import type { FC } from 'react';
 
 const LazyCoachSequence = loadable(
-  () => import('@/client/Common/Components/CoachSequence/CoachSequence'),
+  () => import('../../../Common/Components/CoachSequence/CoachSequence'),
 );
 
 interface AbfahrtContextValues {

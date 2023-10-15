@@ -26,7 +26,7 @@ const footerTemplate = ejs.compile(footerEjs);
 
 export default (ctx: Context): void => {
   const emotionCache = createEmotionCache({
-    key: 'css',
+    key: 'c',
   });
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { extractCriticalToChunks, constructStyleTagsFromChunks } =

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "module": {
+    "type": "commonjs"
+  },
+  "jsc": {
+    "externalHelpers": true,
+    "loose": true,
+    "experimental": {
+      "plugins": [
+        ["@swc/plugin-emotion", {}],
+        [
+          "@swc/plugin-transform-imports",
+          {
+            "@mui/material": {
+              "transform": "@mui/material/{{member}}"
+            },
+            "@mui/icons-material": {
+              "transform": "@mui/icons-material/{{member}}"
+            }
+          }
+        ],
+        ["@swc/plugin-loadable-components", {}]
+      ]
+    },
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "decoratorMetadata": true,
+      "react": {
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
+    },
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}

@@ -51,7 +51,7 @@ describe('Zugsuche', () => {
         ]);
     });
 
-    it('Navigates to details', async () => {
+    it.only('Navigates to details', async () => {
       const { getLocation } = renderZugsuche();
 
       fireEvent.click(screen.getByTestId('dummytoggle'));

@@ -25,7 +25,7 @@ const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.default
   };
 
 const defaultEmotionCache = createEmotionCache({
-  key: 'css',
+  key: 'c',
 });
 
 export const ThemeWrap = ({

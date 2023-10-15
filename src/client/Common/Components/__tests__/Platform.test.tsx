@@ -9,7 +9,7 @@ describe('Platform', () => {
     expect(screen.queryByTestId('real')).toBeEmptyDOMElement();
     expect(container).toMatchInlineSnapshot(`
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="platform"
       >
         <span
@@ -25,7 +25,7 @@ describe('Platform', () => {
     expect(screen.queryByTestId('scheduled')).toBeNull();
     expect(container).toMatchInlineSnapshot(`
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="platform"
       >
         <span
@@ -49,7 +49,7 @@ describe('Platform', () => {
       }
 
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="platform"
       >
         <span
@@ -77,7 +77,7 @@ describe('Platform', () => {
         color: #ff1744!important;
       }
 
-      .emotion-1 {
+      .emotion-2 {
         -webkit-text-decoration: line-through;
         text-decoration: line-through;
         text-decoration-color: #fff;
@@ -85,7 +85,7 @@ describe('Platform', () => {
       }
 
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="platform"
       >
         <span
@@ -94,7 +94,7 @@ describe('Platform', () => {
           1
         </span>
         <span
-          class="emotion-1"
+          class="emotion-2 emotion-3"
           data-testid="scheduled"
         >
           (
@@ -119,7 +119,7 @@ describe('Platform', () => {
         color: #ff1744!important;
       }
 
-      .emotion-1 {
+      .emotion-2 {
         -webkit-text-decoration: line-through;
         text-decoration: line-through;
         text-decoration-color: #fff;
@@ -127,7 +127,7 @@ describe('Platform', () => {
       }
 
       <div
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="platform"
       >
         <span
@@ -136,7 +136,7 @@ describe('Platform', () => {
           1
         </span>
         <span
-          class="emotion-1"
+          class="emotion-2 emotion-3"
           data-testid="scheduled"
         >
           (

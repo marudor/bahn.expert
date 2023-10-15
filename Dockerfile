@@ -9,7 +9,7 @@ FROM base as build
 RUN pnpm i --frozen-lockfile
 COPY src/ ./src/
 COPY scripts/ ./scripts/
-COPY webpack.config.cjs babel.config.cjs ./
+COPY webpack.config.cjs .swcrc ./
 ENV NODE_ENV=production
 RUN pnpm build
 # npx instead of

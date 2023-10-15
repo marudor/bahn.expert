@@ -6,6 +6,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+require('./scripts/adjustSwcrc.cjs');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -28,10 +29,18 @@ const rules = [
     test: /\.(t|j)sx?$/,
     use: [
       {
-        loader: 'babel-loader',
+        loader: 'swc-loader',
         options: {
-          rootMode: 'upward',
-          plugins: isDev ? [require.resolve('react-refresh/babel')] : undefined,
+          parseMap: true,
+          module: {
+            type: 'es6',
+          },
+          env: {
+            mode: 'entry',
+            targets: require('browserslist').loadConfig({
+              path: __dirname,
+            }),
+          },
         },
       },
     ],

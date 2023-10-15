@@ -46,7 +46,7 @@ describe('NormalVia', () => {
       }
 
       <span
-        class="emotion-0"
+        class="emotion-0 emotion-1"
         data-testid="via-hbf"
       >
         hbf

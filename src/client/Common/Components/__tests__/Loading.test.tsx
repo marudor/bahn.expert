@@ -101,7 +101,7 @@ describe('Loading', () => {
         data-testid="loading"
       >
         <div
-          class="emotion-0"
+          class="emotion-0 emotion-1"
           data-testid="grid"
         >
           <div />
@@ -174,7 +174,7 @@ describe('Loading', () => {
         data-testid="loading"
       >
         <div
-          class="emotion-0"
+          class="emotion-0 emotion-1"
           data-testid="dots"
         >
           <div />
@@ -277,7 +277,7 @@ describe('Loading', () => {
         data-testid="loading"
       >
         <div
-          class="emotion-0"
+          class="emotion-0 emotion-1"
           data-testid="grid"
         >
           <div />
