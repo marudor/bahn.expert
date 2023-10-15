@@ -3,6 +3,11 @@
   "module": {
     "type": "commonjs"
   },
+  "env": {
+    "targets": {
+      "node": "20"
+    }
+  },
   "jsc": {
     "externalHelpers": true,
     "loose": true,
