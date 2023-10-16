@@ -13,6 +13,6 @@
   "setupFilesAfterEnv": ["./__tests__/setup.ts"],
   "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
   "transform": {
-    "\\.[jt]sx?$": "@swc/jest"
+    "\\.[jt]sx?$": ["@swc/jest"]
   }
 }
