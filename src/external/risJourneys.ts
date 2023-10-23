@@ -25,6 +25,10 @@ logger.info(
   `using ${process.env.RIS_JOURNEYS_USER_AGENT} as RIS::Journeys UserAgent`,
 );
 
+export const health = {
+  has401: false,
+};
+
 const axiosWithTimeout = axios.create({
   timeout: 6500,
 });
@@ -136,7 +140,10 @@ export async function findJourney(
     }
 
     return result.data.journeys;
-  } catch {
+  } catch (e) {
+    if (axios.isAxiosError(e) && e.response?.status === 401) {
+      health.has401 = true;
+    }
     return [];
   }
 }
@@ -173,7 +180,10 @@ export async function getJourneyDetails(
     }
 
     return r.data;
-  } catch {
+  } catch (e) {
+    if (axios.isAxiosError(e) && e.response?.status === 401) {
+      health.has401 = true;
+    }
     return undefined;
   }
 }

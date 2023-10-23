@@ -13,6 +13,7 @@ import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import {
   findJourney,
   findJourneyHafasCompatible,
+  health,
 } from '@/external/risJourneys';
 import {
   getCategoryAndNumberFromName,
@@ -36,6 +37,18 @@ export function isAllowed(req: KoaRequest): boolean {
 
 @Route('/journeys/v1')
 export class JourneysV1Controller extends Controller {
+  @Hidden()
+  @Get('/health')
+  health(
+    @Res() notFound: TsoaResponse<404, void>,
+    @Res() notAuthorized: TsoaResponse<401, void>,
+  ): void {
+    if (health.has401) {
+      return notAuthorized(401);
+    }
+    return notFound(404);
+  }
+
   @Hidden()
   @Get('/find/number/{trainNumber}')
   @Tags('Journeys')

@@ -1382,6 +1382,31 @@ export function RegisterRoutes(router: KoaRouter) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
+        router.get('/api/journeys/v1/health',
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.health)),
+
+            async function JourneysV1Controller_health(context: any, next: any) {
+            const args = {
+                    notFound: {"in":"res","name":"404","required":true,"dataType":"void"},
+                    notAuthorized: {"in":"res","name":"401","required":true,"dataType":"void"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new JourneysV1Controller();
+
+            const promise = controller.health.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/journeys/v1/find/number/:trainNumber',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.findNumber)),
