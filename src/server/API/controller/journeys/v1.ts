@@ -42,7 +42,7 @@ export class JourneysV1Controller extends Controller {
   health(
     @Res() notFound: TsoaResponse<404, void>,
     @Res() notAuthorized: TsoaResponse<401, void>,
-  ): void {
+  ): Promise<any> {
     if (health.has401) {
       return notAuthorized(401);
     }
