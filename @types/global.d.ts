@@ -8,10 +8,6 @@ declare global {
       street: string;
       town: string;
     };
-    declare var configOverride: {
-      abfahrten: any;
-      common: any;
-    };
     declare var BASE_URL: string;
     declare var RAW_BASE_URL: string;
     declare var RENDERED_THEME: string;

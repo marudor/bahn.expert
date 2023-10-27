@@ -182,18 +182,23 @@ export class JourneysV1Controller extends Controller {
     if (!isAllowed(req)) {
       return res(401, 'This is rate-limited upstream, please do not use it.');
     }
-    const hafasDetailsPromise = journeyId
-      ? Promise.resolve()
-      : Detail(
-          trainName,
-          undefined,
-          evaNumberAlongRoute,
-          initialDepartureDate,
-          undefined,
-          undefined,
-          administration,
-          jid,
-        );
+    if (journeyId) {
+      const journey = await journeyDetails(journeyId);
+      if (!journey) {
+        return res(404, undefined);
+      }
+      return journey;
+    }
+    const hafasDetailsPromise = Detail(
+      trainName,
+      undefined,
+      evaNumberAlongRoute,
+      initialDepartureDate,
+      undefined,
+      undefined,
+      administration,
+      jid,
+    );
     const hafasFallback = async () => {
       const hafasResult = await hafasDetailsPromise;
       if (!hafasResult) {
@@ -201,10 +206,6 @@ export class JourneysV1Controller extends Controller {
       }
       return hafasResult;
     };
-    if (journeyId) {
-      const journey = await journeyDetails(journeyId);
-      return journey || hafasFallback();
-    }
     const productDetails = getCategoryAndNumberFromName(trainName);
     if (!productDetails) {
       return hafasFallback();

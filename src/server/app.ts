@@ -63,7 +63,7 @@ export function createApp(): Koa {
   void devPromise.then(() => {
     app.use(hotHelper(() => errorHandler));
     app.use(hotHelper(() => normalizePathMiddleware()));
-    app.use(storageMiddleware());
+    app.use(storageMiddleware);
     for (const m of middlewares) app.use(m);
     app.use(KoaBodyparser());
 

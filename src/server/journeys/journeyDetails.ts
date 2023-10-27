@@ -210,10 +210,7 @@ export async function journeyDetails(
   journeyId: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> {
   const journey = await getJourneyDetails(journeyId);
-  if (!journey) {
-    return undefined;
-  }
-  if (!journey.events.length) {
+  if (!journey?.events?.length) {
     return undefined;
   }
   const firstEvent = journey.events[0];
