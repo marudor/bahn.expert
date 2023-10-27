@@ -1,8 +1,12 @@
 import { commonConfigSanitize } from '@/client/util';
 import { useCallback, useState } from 'react';
+import { useQuery } from '@/client/Common/hooks/useQuery';
 import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
-import type { CommonConfig } from '@/client/Common/config';
+import type {
+  CommonConfig,
+  CommonConfigSanitize,
+} from '@/client/Common/config';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 const useCommonConfigInternal = ({
@@ -49,6 +53,17 @@ export const [
 
 export const CommonConfigProvider: FC<Props> = ({ children }) => {
   const storage = useStorage();
+  const query = useQuery();
+
+  const commonConfigOverride: Record<string, any> = {};
+  for (const key of Object.keys(query)) {
+    if (commonConfigSanitize.hasOwnProperty(key)) {
+      commonConfigOverride[key] = commonConfigSanitize[
+        key as keyof CommonConfigSanitize
+        // @ts-expect-error query might be array, sanitize handles this
+      ](query[key]);
+    }
+  }
 
   const savedConfig: CommonConfig = {
     autoUpdate: commonConfigSanitize.autoUpdate(
@@ -67,7 +82,7 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     delayTime: storage.get('delayTime') ?? false,
     startTime: undefined,
     showRl100: storage.get('showRl100') ?? false,
-    ...(globalThis.configOverride.common as Record<string, never>),
+    ...commonConfigOverride,
   };
 
   return (

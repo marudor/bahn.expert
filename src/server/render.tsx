@@ -1,6 +1,5 @@
 /* eslint-disable unicorn/prefer-module */
 import { ChunkExtractor } from '@loadable/server';
-import { commonConfigSanitize } from '@/client/util';
 import { renderToString } from 'react-dom/server';
 import { sanitizeStorage } from '@/server/sanitizeStorage';
 import { ServerBaseComponent } from '@/client/ServerBaseComponent';
@@ -9,7 +8,6 @@ import createEmotionServer from '@emotion/server/create-instance';
 import ejs from 'ejs';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { CommonConfigSanitize } from '@/client/Common/config';
 import type { Context } from 'koa';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
@@ -40,21 +38,6 @@ export default (ctx: Context): void => {
 
   sanitizeStorage(ctx.request.storage);
 
-  globalThis.configOverride = {
-    common: {},
-    abfahrten: {},
-  };
-
-  for (const key of Object.keys(ctx.query)) {
-    if (commonConfigSanitize.hasOwnProperty(key)) {
-      const value = commonConfigSanitize[key as keyof CommonConfigSanitize](
-        ctx.query[key],
-      );
-
-      globalThis.configOverride.common[key] = value;
-    }
-  }
-
   const headTags: any = [];
   const App = extractor.collectChunks(
     <ServerBaseComponent
@@ -74,7 +57,6 @@ export default (ctx: Context): void => {
     header: renderToString(headTags),
     cssTags: extractor.getStyleTags(),
     linkTags: extractor.getLinkTags(),
-    configOverride: JSON.stringify(globalThis.configOverride),
     imprint: JSON.stringify(globalThis.IMPRINT),
     emotionCss,
     baseUrl: globalThis.BASE_URL,
