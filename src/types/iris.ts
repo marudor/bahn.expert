@@ -1,8 +1,4 @@
-import type {
-  CommonProductInfo,
-  CommonStopInfo,
-  HafasStation,
-} from '@/types/HAFAS';
+import type { CommonProductInfo, CommonStopInfo } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export interface IrisStationWithRelated {
@@ -105,7 +101,9 @@ export interface IrisMessage {
 
 export interface HimIrisMessage extends IrisMessage {
   head: string;
-  stopPlace?: HafasStation;
+  short?: string;
+  stopPlaceInfo?: string;
+  source?: string;
 }
 
 export type Message = IrisMessage | HimIrisMessage;

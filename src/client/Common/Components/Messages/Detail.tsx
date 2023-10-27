@@ -14,7 +14,9 @@ export const DetailMessages: FC<Props> = ({ messages }) => {
       {messages.map((m, i) => {
         const MessageComponent = 'head' in m ? HimIrisMessage : IrisMessage;
 
-        return <MessageComponent key={i} message={m as any} />;
+        return (
+          <MessageComponent key={i} message={m as any} withStopPlaceInfo />
+        );
       })}
     </MessageContainer>
   );

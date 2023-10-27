@@ -40,6 +40,7 @@ import { uniqBy } from '@/client/util';
 import xmljs from 'libxmljs2';
 import type {
   AbfahrtenResult,
+  HimIrisMessage,
   IrisMessage,
   Messages,
   Stop,
@@ -190,6 +191,7 @@ export class Timetable {
     this.sloppy = options.sloppy;
   }
   async computeExtra(timetable: any) {
+    delete timetable.rawRoute;
     if (this.sloppy) {
       return;
     }
@@ -375,7 +377,11 @@ export class Timetable {
       train,
     };
   }
-  async parseHafasMessage(mNode: xmljs.Element, _trainNumber: string) {
+  async parseHafasMessage(
+    mNode: xmljs.Element,
+    viaNames: string[],
+    seenHafasNotes: Set<string>,
+  ) {
     const id = getAttr(mNode, 'id');
 
     if (!id) return undefined;
@@ -395,17 +401,42 @@ export class Timetable {
       return undefined;
     }
 
-    const message = {
+    const message: HimIrisMessage = {
       timestamp: getTsOfNode(mNode),
-      priority: getAttr(mNode, 'pr'),
       head: himMessage.head,
       text: himMessage.text,
-      stopPlace:
-        himMessage.fromStopPlace && !himMessage.toStopPlace
-          ? himMessage.fromStopPlace
-          : undefined,
+      // short: himMessage.lead === himMessage.text ? undefined : himMessage.lead,
+      source: himMessage.comp,
+      // @ts-expect-error raw only in dev
       raw: process.env.NODE_ENV === 'production' ? undefined : himMessage,
     };
+
+    if (himMessage.fromStopPlace && himMessage.toStopPlace) {
+      const fromIndex = viaNames.indexOf(himMessage.fromStopPlace.name);
+      const toIndex = viaNames.indexOf(himMessage.toStopPlace.name);
+      if (fromIndex !== -1 && toIndex !== -1) {
+        const from =
+          fromIndex < toIndex
+            ? himMessage.fromStopPlace.name
+            : himMessage.toStopPlace.name;
+        const to =
+          fromIndex > toIndex
+            ? himMessage.fromStopPlace.name
+            : himMessage.toStopPlace.name;
+
+        let stopPlaceInfo = from;
+        if (from !== to) {
+          stopPlaceInfo += ` - ${to}`;
+        }
+        message.stopPlaceInfo = stopPlaceInfo;
+      }
+    }
+
+    const hafasMessageKey = message.text + message.stopPlaceInfo;
+    if (seenHafasNotes.has(hafasMessageKey)) {
+      return undefined;
+    }
+    seenHafasNotes.add(hafasMessageKey);
 
     return {
       type: 'him',
@@ -415,20 +446,20 @@ export class Timetable {
   }
   async parseMessage(
     mNode: xmljs.Element,
-    trainNumber: string,
-    seenHafasBodies: Set<string>,
+    viaNames: string[],
+    seenHafasNotes: Set<string>,
   ) {
     const value = getNumberAttr(mNode, 'c');
     const indexType = getAttr(mNode, 't');
 
     if (!indexType) return undefined;
     if (indexType === 'h') {
-      const message = await this.parseHafasMessage(mNode, trainNumber);
-      if (message && !seenHafasBodies.has(message.message.text)) {
-        seenHafasBodies.add(message.message.text);
-        return message;
-      }
-      return undefined;
+      const message = await this.parseHafasMessage(
+        mNode,
+        viaNames,
+        seenHafasNotes,
+      );
+      return message;
     }
     const type: undefined | string =
       messageTypeLookup[indexType as keyof typeof messageTypeLookup];
@@ -496,14 +527,10 @@ export class Timetable {
       him: {},
     };
 
-    const seenHafasBodies = new Set<string>();
+    const seenHafasNotes = new Set<string>();
     const parsedMessages = await Promise.all(
       mArr.map((m) =>
-        this.parseMessage(
-          m,
-          this.timetable[rawId].train.number,
-          seenHafasBodies,
-        ),
+        this.parseMessage(m, this.timetable[rawId].rawRoute, seenHafasNotes),
       ),
     );
 
@@ -731,6 +758,7 @@ export class Timetable {
       id,
       rawId,
       mediumId,
+      rawRoute: [...routePre, this.currentStopPlaceName, ...routePost],
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
       substitute: t === 'e',

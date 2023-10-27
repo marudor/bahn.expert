@@ -54,6 +54,8 @@ export async function addIrisMessagesToDetails(
             ...irisDeparture.messages.him,
           ].sort((m1, m2) => compareDesc(m1.timestamp!, m2.timestamp!));
           irisStop.irisMessages = irisMessages;
+
+          // details.himMessages = irisDeparture.messages.him;
         }
       } catch {
         // ignore
@@ -230,7 +232,7 @@ export async function journeyDetails(
     stops,
     segmentStart: firstStop.station,
     segmentDestination: lastStop.station,
-    jid: journey.journeyID,
+    journeyId: journey.journeyID,
     arrival: lastStop.arrival!,
     departure: firstStop.departure!,
     finalDestination: journey.destinationSchedule.name,
@@ -244,7 +246,6 @@ export async function journeyDetails(
       line: getLineFromNumber(firstEvent.transport.number.toString()),
       operator: {
         name: operatorNames,
-        icoX: 0,
       },
     },
     type: 'JNY',

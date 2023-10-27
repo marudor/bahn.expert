@@ -46,7 +46,10 @@ export interface Route$Journey {
   changeDuration?: number;
   duration?: number;
   finalDestination: string;
-  jid: string;
+  // HAFAS JourneyID
+  jid?: string;
+  // RIS JourneyID
+  journeyId?: string;
   product?: ProdL;
   raw?: SecL;
   segmentDestination: MinimalStopPlace;

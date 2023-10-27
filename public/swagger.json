@@ -17,8 +17,7 @@
           }
         },
         "required": [
-          "name",
-          "icoX"
+          "name"
         ],
         "type": "object",
         "additionalProperties": true
@@ -221,53 +220,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "HafasCoordinates": {
-        "properties": {
-          "lat": {
-            "type": "number",
-            "format": "double"
-          },
-          "lng": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "lat",
-          "lng"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "HafasStation": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "evaNumber": {
-            "type": "string"
-          },
-          "ril100": {
-            "type": "string"
-          },
-          "products": {
-            "items": {
-              "$ref": "#/components/schemas/ParsedProduct"
-            },
-            "type": "array"
-          },
-          "coordinates": {
-            "$ref": "#/components/schemas/HafasCoordinates"
-          }
-        },
-        "required": [
-          "name",
-          "evaNumber",
-          "coordinates"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
       "HimIrisMessage": {
         "properties": {
           "text": {
@@ -290,8 +242,14 @@
           "head": {
             "type": "string"
           },
-          "stopPlace": {
-            "$ref": "#/components/schemas/HafasStation"
+          "short": {
+            "type": "string"
+          },
+          "stopPlaceInfo": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
           }
         },
         "required": [
@@ -550,6 +508,53 @@
           "jid",
           "firstStop",
           "lastStop"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "HafasCoordinates": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "HafasStation": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaNumber": {
+            "type": "string"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedProduct"
+            },
+            "type": "array"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/HafasCoordinates"
+          }
+        },
+        "required": [
+          "name",
+          "evaNumber",
+          "coordinates"
         ],
         "type": "object",
         "additionalProperties": true
@@ -1357,6 +1362,9 @@
           "jid": {
             "type": "string"
           },
+          "journeyId": {
+            "type": "string"
+          },
           "product": {
             "$ref": "#/components/schemas/ProdL"
           },
@@ -1396,7 +1404,6 @@
         },
         "required": [
           "finalDestination",
-          "jid",
           "segmentDestination",
           "segmentStart",
           "stops",
@@ -1422,6 +1429,9 @@
             "type": "string"
           },
           "jid": {
+            "type": "string"
+          },
+          "journeyId": {
             "type": "string"
           },
           "product": {
@@ -1479,6 +1489,12 @@
             },
             "type": "array"
           },
+          "himMessages": {
+            "items": {
+              "$ref": "#/components/schemas/HimIrisMessage"
+            },
+            "type": "array"
+          },
           "currentStop": {
             "$ref": "#/components/schemas/Route$Stop"
           },
@@ -1488,7 +1504,6 @@
         },
         "required": [
           "finalDestination",
-          "jid",
           "segmentDestination",
           "segmentStart",
           "stops",
@@ -1986,6 +2001,9 @@
           "jid": {
             "type": "string"
           },
+          "journeyId": {
+            "type": "string"
+          },
           "product": {
             "$ref": "#/components/schemas/ProdL"
           },
@@ -2044,7 +2062,6 @@
         },
         "required": [
           "finalDestination",
-          "jid",
           "segmentDestination",
           "segmentStart",
           "stops",
@@ -2382,6 +2399,9 @@
       },
       "AdditionalJourneyInformation": {
         "properties": {
+          "jid": {
+            "type": "string"
+          },
           "operatorName": {
             "type": "string"
           },

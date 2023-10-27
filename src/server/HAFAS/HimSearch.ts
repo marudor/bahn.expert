@@ -18,8 +18,10 @@ import type {
 } from '@/types/HAFAS/HimSearch';
 
 const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
+  const head = himMessage.head.replaceAll(` (Quelle: ${himMessage.comp})`, '');
   return {
     ...himMessage,
+    head: head.endsWith('.') ? head.slice(0, -1) : head,
     affectedProducts:
       himMessage.affProdRefL?.map((prodRef) => common.prodL[prodRef]) ?? [],
     startTime: parseTime(
@@ -85,7 +87,7 @@ if (process.env.NODE_ENV !== 'test') {
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   setInterval(
     fetchTodaysHimMessages,
-    Temporal.Duration.from('PT30M').total('millisecond'),
+    Temporal.Duration.from('PT5M').total('millisecond'),
   );
 }
 

@@ -26,7 +26,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
-            "icoX": {"dataType":"double","required":true},
+            "icoX": {"dataType":"double"},
         },
         "additionalProperties": true,
     },
@@ -121,27 +121,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasCoordinates": {
-        "dataType": "refObject",
-        "properties": {
-            "lat": {"dataType":"double","required":true},
-            "lng": {"dataType":"double","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasStation": {
-        "dataType": "refObject",
-        "properties": {
-            "name": {"dataType":"string","required":true},
-            "evaNumber": {"dataType":"string","required":true},
-            "ril100": {"dataType":"string"},
-            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
-            "coordinates": {"ref":"HafasCoordinates","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "HimIrisMessage": {
         "dataType": "refObject",
         "properties": {
@@ -151,7 +130,9 @@ const models: TsoaRoute.Models = {
             "priority": {"ref":"MessagePrio"},
             "value": {"dataType":"double"},
             "head": {"dataType":"string","required":true},
-            "stopPlace": {"ref":"HafasStation"},
+            "short": {"dataType":"string"},
+            "stopPlaceInfo": {"dataType":"string"},
+            "source": {"dataType":"string"},
         },
         "additionalProperties": true,
     },
@@ -246,6 +227,27 @@ const models: TsoaRoute.Models = {
             "firstStop": {"ref":"Route%24Stop","required":true},
             "lastStop": {"ref":"Route%24Stop","required":true},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "HafasCoordinates": {
+        "dataType": "refObject",
+        "properties": {
+            "lat": {"dataType":"double","required":true},
+            "lng": {"dataType":"double","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "HafasStation": {
+        "dataType": "refObject",
+        "properties": {
+            "name": {"dataType":"string","required":true},
+            "evaNumber": {"dataType":"string","required":true},
+            "ril100": {"dataType":"string"},
+            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
+            "coordinates": {"ref":"HafasCoordinates","required":true},
         },
         "additionalProperties": true,
     },
@@ -536,7 +538,8 @@ const models: TsoaRoute.Models = {
             "changeDuration": {"dataType":"double"},
             "duration": {"dataType":"double"},
             "finalDestination": {"dataType":"string","required":true},
-            "jid": {"dataType":"string","required":true},
+            "jid": {"dataType":"string"},
+            "journeyId": {"dataType":"string"},
             "product": {"ref":"ProdL"},
             "raw": {"ref":"SecL"},
             "segmentDestination": {"ref":"MinimalStopPlace","required":true},
@@ -557,7 +560,8 @@ const models: TsoaRoute.Models = {
             "changeDuration": {"dataType":"double"},
             "duration": {"dataType":"double"},
             "finalDestination": {"dataType":"string","required":true},
-            "jid": {"dataType":"string","required":true},
+            "jid": {"dataType":"string"},
+            "journeyId": {"dataType":"string"},
             "product": {"ref":"ProdL"},
             "raw": {"ref":"SecL"},
             "segmentDestination": {"ref":"MinimalStopPlace","required":true},
@@ -571,6 +575,7 @@ const models: TsoaRoute.Models = {
             "arrival": {"ref":"CommonStopInfo","required":true},
             "departure": {"ref":"CommonStopInfo","required":true},
             "wings": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Journey"}},
+            "himMessages": {"dataType":"array","array":{"dataType":"refObject","ref":"HimIrisMessage"}},
             "currentStop": {"ref":"Route%24Stop"},
             "polyline": {"ref":"ParsedPolyline"},
         },
@@ -768,7 +773,8 @@ const models: TsoaRoute.Models = {
             "changeDuration": {"dataType":"double"},
             "duration": {"dataType":"double"},
             "finalDestination": {"dataType":"string","required":true},
-            "jid": {"dataType":"string","required":true},
+            "jid": {"dataType":"string"},
+            "journeyId": {"dataType":"string"},
             "product": {"ref":"ProdL"},
             "raw": {"ref":"SecL"},
             "segmentDestination": {"ref":"MinimalStopPlace","required":true},
@@ -915,6 +921,7 @@ const models: TsoaRoute.Models = {
     "AdditionalJourneyInformation": {
         "dataType": "refObject",
         "properties": {
+            "jid": {"dataType":"string"},
             "operatorName": {"dataType":"string"},
             "occupancy": {"ref":"Record_EvaNumber.Route%24Auslastung_","required":true},
             "polyline": {"ref":"ParsedPolyline"},

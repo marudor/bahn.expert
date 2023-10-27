@@ -1,6 +1,10 @@
 import { getIdentifiers } from '@/server/StopPlace/search';
 import type { Crd, HafasStation, LocL, ParsedProduct } from '@/types/HAFAS';
 
+function normalizeStopPlaceName(name: string) {
+  return name.replace('(', ' (').replace(')', ') ').trim();
+}
+
 export function parseCoordinates(crd: Crd): {
   lng: number;
   lat: number;
@@ -18,7 +22,7 @@ export const parseLocL = async (
   const identifiers = await getIdentifiers(locL.extId, true);
   return {
     evaNumber: locL.extId,
-    name: locL.name,
+    name: normalizeStopPlaceName(locL.name),
     coordinates: locL.crd && parseCoordinates(locL.crd),
     products: locL.pRefL?.map((p) => products[p]),
     ril100: identifiers?.ril100,
