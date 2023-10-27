@@ -94,12 +94,12 @@ const useInnerDetails = ({
         .then(async (details) => {
           setDetails(details);
           // its a RIS thing, lets get extra information
-          if (details.jid.includes('-')) {
+          if (details.journeyId) {
             try {
               setAdditionalInformation(
                 await getAdditionalJourneyInformation(
                   trainName,
-                  details.jid,
+                  details.journeyId,
                   initialDepartureDate,
                   evaNumberAlongRoute,
                 ),

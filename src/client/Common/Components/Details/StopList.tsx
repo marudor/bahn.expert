@@ -103,7 +103,6 @@ export const StopList: FC = () => {
   return (
     <Container>
       <TravelsWithSummary stops={details.stops} />
-      {/* <Messages messages={details.messages} /> */}
       {detailsStops}
     </Container>
   );

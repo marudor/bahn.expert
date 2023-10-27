@@ -416,7 +416,7 @@ export interface PolyL {
 
 export interface OpL {
   name: string;
-  icoX: number;
+  icoX?: number;
 }
 
 export interface TcocL {

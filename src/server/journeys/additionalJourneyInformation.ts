@@ -58,6 +58,7 @@ export async function additionalJourneyInformation(
   }
   if (journeyDetails.train.operator || Object.keys(occupancy).length) {
     const result: AdditionalJourneyInformation = {
+      jid: journeyDetails.jid,
       occupancy,
       operatorName: journeyDetails.train.operator?.name,
       polyline: journeyDetails.polyline,
