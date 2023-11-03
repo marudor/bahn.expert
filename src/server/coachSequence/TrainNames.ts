@@ -11,6 +11,7 @@ const naming: Record<number, string> = {
   107: 'Plattling',
   108: 'Lichtenfels',
   110: 'Gelsenkirchen',
+  111: 'Nürnberg',
   112: 'Memmingen',
   113: 'Frankenthal/Pfalz',
   114: 'Friedrichshafen',
