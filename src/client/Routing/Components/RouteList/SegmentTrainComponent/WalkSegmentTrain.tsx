@@ -1,10 +1,10 @@
 import { segmentStyles } from './style';
 import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { FC } from 'react';
-import type { Route$JourneySegmentWalk } from '@/types/routing';
+import type { RouteJourneySegmentWalk } from '@/types/routing';
 
 interface Props {
-  segment: Route$JourneySegmentWalk;
+  segment: RouteJourneySegmentWalk;
   className?: string;
 }
 

@@ -12,7 +12,7 @@ import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
 import type { ParsedProduct } from '@/types/HAFAS';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 const ArrivalTime = styled(Time)`
   grid-area: ar;
@@ -22,7 +22,7 @@ const DepartureTime = styled(Time)`
   grid-area: dp;
 `;
 
-const StopName = styled.span<{ stop: Route$Stop }>(
+const StopName = styled.span<{ stop: RouteStop }>(
   {
     gridArea: 't',
     overflow: 'hidden',
@@ -97,12 +97,12 @@ const Container = styled.div<{
 );
 
 interface Props {
-  stop: Route$Stop;
+  stop: RouteStop;
   train?: ParsedProduct;
   showWR?: ParsedProduct;
   isPast?: boolean;
   initialDepartureDate?: Date;
-  onStopClick?: (stop: Route$Stop) => void;
+  onStopClick?: (stop: RouteStop) => void;
   doNotRenderOccupancy?: boolean;
   lastArrivalEva?: string;
 }

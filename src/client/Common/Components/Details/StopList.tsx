@@ -8,7 +8,7 @@ import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { AxiosError } from 'axios';
 import type { FC } from 'react';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 function getErrorText(error: AxiosError) {
   if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
@@ -40,7 +40,7 @@ export const StopList: FC = () => {
     details?.currentStop?.station.evaNumber,
   );
 
-  const onStopClick = useCallback((stop: Route$Stop) => {
+  const onStopClick = useCallback((stop: RouteStop) => {
     setCurrentSequenceStop(stop.station.evaNumber);
   }, []);
 

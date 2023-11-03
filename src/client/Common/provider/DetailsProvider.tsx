@@ -12,7 +12,7 @@ import type { AxiosError } from 'axios';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
 import type { MouseEvent } from 'react';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
-import type { Route$Auslastung, Route$Stop } from '@/types/routing';
+import type { RouteAuslastung, RouteStop } from '@/types/routing';
 
 interface Props {
   trainName: string;
@@ -108,7 +108,7 @@ const useInnerDetails = ({
               // ignoring this
             }
           } else {
-            const occupancy: Record<string, Route$Auslastung> = {};
+            const occupancy: Record<string, RouteAuslastung> = {};
             for (const s of details.stops) {
               if (s.auslastung) {
                 occupancy[s.station.evaNumber] = s.auslastung;
@@ -163,7 +163,7 @@ const useInnerDetails = ({
   const matchedPolyline:
     | (Omit<ParsedPolyline, 'locations'> & {
         locations: (HafasStation & {
-          details?: Route$Stop;
+          details?: RouteStop;
         })[];
       })
     | undefined = useMemo(() => {

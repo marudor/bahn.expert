@@ -5,10 +5,10 @@ import { segmentStyles } from './style';
 import { StopList } from '@/client/Routing/Components/RouteList/StopList';
 import { Tooltip } from '@mui/material';
 import type { FC, HTMLProps, MouseEvent } from 'react';
-import type { Route$JourneySegmentTrain } from '@/types/routing';
+import type { RouteJourneySegmentTrain } from '@/types/routing';
 
 interface Props extends HTMLProps<HTMLDivElement> {
-  segment: Route$JourneySegmentTrain;
+  segment: RouteJourneySegmentTrain;
   detail?: boolean;
   onTrainClick?: (e: MouseEvent) => void;
 }

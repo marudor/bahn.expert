@@ -3,7 +3,7 @@ import { getJourneyDetails } from '@/server/sbb/journeyDetails';
 import { getSingleJourneyTrip } from '@/server/sbb/trip';
 import type { EvaNumber } from '@/types/common';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import type { Route$Auslastung } from '@/types/routing';
+import type { RouteAuslastung } from '@/types/routing';
 
 async function findJourneyId(
   start: Omit<MinimalStopPlace, 'ril100'>,
@@ -45,7 +45,7 @@ export async function getOccupancy(
   destination: Omit<MinimalStopPlace, 'ril100'>,
   trainNumber: string,
   departureTime: Date,
-): Promise<Record<EvaNumber, Route$Auslastung>> {
+): Promise<Record<EvaNumber, RouteAuslastung>> {
   try {
     const journeyId = await findJourneyId(
       start,
@@ -60,10 +60,10 @@ export async function getOccupancy(
 
     const details = await getJourneyDetails(journeyId);
 
-    const occupancyRecord: Record<EvaNumber, Route$Auslastung> = {};
+    const occupancyRecord: Record<EvaNumber, RouteAuslastung> = {};
 
     for (const stopPoint of details?.data.serviceJourneyById.stopPoints ?? []) {
-      const occupancy: Route$Auslastung = {
+      const occupancy: RouteAuslastung = {
         first: mapSBBOccupancy(stopPoint.occupancy.firstClass),
         second: mapSBBOccupancy(stopPoint.occupancy.secondClass),
       };

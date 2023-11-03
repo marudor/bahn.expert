@@ -1,7 +1,7 @@
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
-export async function addRL100(stops: Route$Stop[]): Promise<void> {
+export async function addRL100(stops: RouteStop[]): Promise<void> {
   await Promise.all(
     stops.map(async (stop) => {
       try {

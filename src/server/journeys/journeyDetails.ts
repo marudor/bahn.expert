@@ -18,7 +18,7 @@ import type {
 } from '@/external/generated/risJourneys';
 import type { CommonStopInfo } from '@/types/HAFAS';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 const trainNumberRegex = /(.*?)(\d+).*/;
 
@@ -111,7 +111,7 @@ function mapEventToCommonStopInfo(
   };
 }
 
-interface JourneyStop extends Route$Stop {
+interface JourneyStop extends RouteStop {
   arrival?: StopInfoWithAdditional;
   departure?: StopInfoWithAdditional;
 }

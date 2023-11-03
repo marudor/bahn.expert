@@ -1,7 +1,7 @@
 import type { Common, GenericHafasRequest, ParsedPolyline } from '.';
 import type { HimIrisMessage } from '@/types/iris';
 import type { OutConL, SotCtxt } from './TripSearch';
-import type { Route$JourneySegmentTrain, Route$Stop } from '@/types/routing';
+import type { RouteJourneySegmentTrain, RouteStop } from '@/types/routing';
 
 export interface SearchOnTripResponse {
   common: Common;
@@ -31,8 +31,8 @@ export interface SearchOnTripRequest
     SearchOnTripJIDRequest | SearchOnTripCTXRequest
   > {}
 
-export interface ParsedSearchOnTripResponse extends Route$JourneySegmentTrain {
+export interface ParsedSearchOnTripResponse extends RouteJourneySegmentTrain {
   himMessages?: HimIrisMessage[];
-  currentStop?: Route$Stop;
+  currentStop?: RouteStop;
   polyline?: ParsedPolyline;
 }
