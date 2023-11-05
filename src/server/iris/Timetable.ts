@@ -561,6 +561,7 @@ export class Timetable {
       messages: Object.keys(messages).reduce((agg, messageKey) => {
         const messageValues = Object.values(messages[messageKey]);
 
+        // @ts-expect-error ???
         agg[messageKey] = messageValues.sort((a, b) =>
           compareDesc(a.timestamp, b.timestamp),
         );

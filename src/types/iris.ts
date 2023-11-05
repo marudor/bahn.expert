@@ -114,7 +114,6 @@ export type Message = IrisMessage | HimIrisMessage;
 
 export type MessagePrio = '1' | '2' | '3' | '4';
 export interface Messages {
-  [name: string]: Message[];
   qos: IrisMessage[];
   delay: IrisMessage[];
   him: HimIrisMessage[];

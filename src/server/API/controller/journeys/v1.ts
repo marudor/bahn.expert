@@ -13,6 +13,7 @@ import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import {
   findJourney,
   findJourneyHafasCompatible,
+  getJourneyDetails,
   health,
 } from '@/external/risJourneys';
 import {
@@ -21,6 +22,7 @@ import {
 } from '@/server/journeys/journeyDetails';
 import Detail from '@/server/HAFAS/Detail';
 import type { EvaNumber } from '@/types/common';
+import type { JourneyEventBased } from '@/external/generated/risJourneys';
 import type { Request as KoaRequest } from 'koa';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
@@ -162,6 +164,24 @@ export class JourneysV1Controller extends Controller {
     }
 
     return result.slice(0, limit);
+  }
+
+  @Get('/details/id/{journeyId}')
+  @Response(404)
+  @Tags('Journeys')
+  async idDetails(
+    @Request() req: KoaRequest,
+    @Res() res: TsoaResponse<401 | 404, unknown>,
+    journeyId: string,
+  ): Promise<JourneyEventBased> {
+    if (!isAllowed(req)) {
+      return res(401, 'This is rate-limited upstream, please do not use it.');
+    }
+    const journey = await getJourneyDetails(journeyId);
+    if (!journey) {
+      return res(404, undefined);
+    }
+    return journey;
   }
 
   @Hidden()

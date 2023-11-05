@@ -231,6 +231,191 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportPublicDestination": {
+        "dataType": "refObject",
+        "properties": {
+            "category": {"dataType":"string","required":true},
+            "destination": {"ref":"StopAtStopPlace","required":true},
+            "differingDestination": {"ref":"StopAtStopPlace"},
+            "direction": {"ref":"DirectionInfo"},
+            "journeyID": {"dataType":"string","required":true},
+            "label": {"dataType":"string"},
+            "line": {"dataType":"string"},
+            "number": {"dataType":"double","required":true},
+            "replacementTransport": {"ref":"ReplacementTransport"},
+            "type": {"ref":"TransportType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportPublicOrigin": {
+        "dataType": "refObject",
+        "properties": {
+            "category": {"dataType":"string","required":true},
+            "differingOrigin": {"ref":"StopAtStopPlace"},
+            "direction": {"ref":"DirectionInfo"},
+            "journeyID": {"dataType":"string","required":true},
+            "label": {"dataType":"string"},
+            "line": {"dataType":"string"},
+            "number": {"dataType":"double","required":true},
+            "origin": {"ref":"StopAtStopPlace","required":true},
+            "replacementTransport": {"ref":"ReplacementTransport"},
+            "type": {"ref":"TransportType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "DisruptionCommunicationDescription": {
+        "dataType": "refObject",
+        "properties": {
+            "text": {"dataType":"string","required":true},
+            "textShort": {"dataType":"string"},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "DisruptionCommunicationEmbeddedLegacy": {
+        "dataType": "refObject",
+        "properties": {
+            "descriptions": {"dataType":"nestedObjectLiteral","nestedProperties":{},"additionalProperties":{"ref":"DisruptionCommunicationDescription"},"required":true},
+            "displayPriority": {"dataType":"double"},
+            "disruptionCommunicationID": {"dataType":"string"},
+            "disruptionID": {"dataType":"string","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Administration": {
+        "dataType": "refObject",
+        "properties": {
+            "administrationID": {"dataType":"string","required":true},
+            "operatorCode": {"dataType":"string","required":true},
+            "operatorName": {"dataType":"string","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "MessageAttribute": {
+        "dataType": "refObject",
+        "properties": {
+            "code": {"dataType":"string","required":true},
+            "displayPriority": {"dataType":"double"},
+            "displayPriorityDetail": {"dataType":"double"},
+            "text": {"dataType":"string","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "MessageType": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["CUSTOMER_TEXT"]},{"dataType":"enum","enums":["QUALITY_VARIATION"]},{"dataType":"enum","enums":["CUSTOMER_REASON"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "MessageLegacy": {
+        "dataType": "refObject",
+        "properties": {
+            "category": {"dataType":"string"},
+            "code": {"dataType":"string"},
+            "displayPriority": {"dataType":"double"},
+            "text": {"dataType":"string","required":true},
+            "textShort": {"dataType":"string"},
+            "type": {"ref":"MessageType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportPublicDestinationOriginJourney": {
+        "dataType": "refObject",
+        "properties": {
+            "category": {"dataType":"string","required":true},
+            "destination": {"ref":"StopAtStopPlace","required":true},
+            "differingDestination": {"ref":"StopAtStopPlace"},
+            "direction": {"ref":"DirectionInfo"},
+            "journeyID": {"dataType":"string","required":true},
+            "label": {"dataType":"string"},
+            "line": {"dataType":"string"},
+            "number": {"dataType":"double","required":true},
+            "origin": {"ref":"StopAtStopPlace","required":true},
+            "replacementTransport": {"ref":"ReplacementTransport"},
+            "type": {"ref":"TransportType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TimeType": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["SCHEDULE"]},{"dataType":"enum","enums":["PREVIEW"]},{"dataType":"enum","enums":["REAL"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportPublic": {
+        "dataType": "refObject",
+        "properties": {
+            "category": {"dataType":"string","required":true},
+            "direction": {"ref":"DirectionInfo"},
+            "label": {"dataType":"string"},
+            "line": {"dataType":"string"},
+            "number": {"dataType":"double","required":true},
+            "replacementTransport": {"ref":"ReplacementTransport"},
+            "type": {"ref":"TransportType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EventType": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["ARRIVAL"]},{"dataType":"enum","enums":["DEPARTURE"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ArrivalDepartureEvent": {
+        "dataType": "refObject",
+        "properties": {
+            "additional": {"dataType":"boolean","required":true},
+            "administration": {"ref":"Administration","required":true},
+            "arrivalOrDepartureID": {"dataType":"string","required":true},
+            "attributes": {"dataType":"array","array":{"dataType":"refObject","ref":"MessageAttribute"},"required":true},
+            "canceled": {"dataType":"boolean","required":true},
+            "disruptions": {"dataType":"array","array":{"dataType":"refObject","ref":"DisruptionCommunicationEmbeddedLegacy"}},
+            "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"MessageLegacy"},"required":true},
+            "onDemand": {"dataType":"boolean","required":true},
+            "passengerChange": {"dataType":"boolean","required":true},
+            "platform": {"dataType":"string","required":true},
+            "platformSchedule": {"dataType":"string"},
+            "reliefBy": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportPublicDestinationOriginJourney"},"required":true},
+            "reliefFor": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportPublicDestinationOriginJourney"},"required":true},
+            "replacedBy": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportPublicDestinationOriginJourney"},"required":true},
+            "replacementFor": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportPublicDestinationOriginJourney"},"required":true},
+            "station": {"ref":"StopPlaceEmbedded","required":true},
+            "time": {"dataType":"string","required":true},
+            "timeSchedule": {"dataType":"string","required":true},
+            "timeType": {"ref":"TimeType","required":true},
+            "transport": {"ref":"TransportPublic","required":true},
+            "travelsWith": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportPublicDestinationPortionWorking"},"required":true},
+            "type": {"ref":"EventType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "JourneyType": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["REGULAR"]},{"dataType":"enum","enums":["REPLACEMENT"]},{"dataType":"enum","enums":["RELIEF"]},{"dataType":"enum","enums":["EXTRA"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "JourneyEventBased": {
+        "dataType": "refObject",
+        "properties": {
+            "continuationBy": {"ref":"TransportPublicDestination"},
+            "continuationFor": {"ref":"TransportPublicOrigin"},
+            "destinationSchedule": {"ref":"StopPlaceEmbedded","required":true},
+            "disruptions": {"dataType":"array","array":{"dataType":"refObject","ref":"DisruptionCommunicationEmbeddedLegacy"}},
+            "events": {"dataType":"array","array":{"dataType":"refObject","ref":"ArrivalDepartureEvent"},"required":true},
+            "journeyCanceled": {"dataType":"boolean","required":true},
+            "journeyID": {"dataType":"string","required":true},
+            "originSchedule": {"ref":"StopPlaceEmbedded","required":true},
+            "type": {"ref":"JourneyType","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "HafasCoordinates": {
         "dataType": "refObject",
         "properties": {
@@ -652,7 +837,7 @@ const models: TsoaRoute.Models = {
             "delay": {"dataType":"array","array":{"dataType":"refObject","ref":"IrisMessage"},"required":true},
             "him": {"dataType":"array","array":{"dataType":"refObject","ref":"HimIrisMessage"},"required":true},
         },
-        "additionalProperties": {"dataType":"array","array":{"dataType":"refAlias","ref":"Message"}},
+        "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SubstituteRef": {
@@ -1461,6 +1646,32 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new JourneysV1Controller();
 
             const promise = controller.find.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/journeys/v1/details/id/:journeyId',
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.idDetails)),
+
+            async function JourneysV1Controller_idDetails(context: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    res: {"in":"res","name":"404","required":true,"dataType":"any"},
+                    journeyId: {"in":"path","name":"journeyId","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new JourneysV1Controller();
+
+            const promise = controller.idDetails.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
