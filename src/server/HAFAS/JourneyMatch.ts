@@ -2,7 +2,7 @@ import { AllowedHafasProfile } from '@/types/HAFAS';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { format, parse, subDays } from 'date-fns';
 import JourneyDetails from '@/server/HAFAS/JourneyDetails';
-import makeRequest from './Request';
+import makeRequest, { HafasError } from './Request';
 import parseMessages from './helper/parseMessages';
 import parseStop from './helper/parseStop';
 import type {
@@ -85,7 +85,19 @@ const JourneyMatch = async (
     }
 
     return result;
-  } catch {
+  } catch (e) {
+    if (e instanceof HafasError && e.errorCode === 'NO_MATCH' && onlyRT) {
+      return JourneyMatch(
+        {
+          trainName,
+          initialDepartureDate,
+          jnyFltrL,
+          onlyRT: false,
+        },
+        profile,
+        raw,
+      );
+    }
     // We just ignore errors and pretend nothing got returned.
     return [];
   }
