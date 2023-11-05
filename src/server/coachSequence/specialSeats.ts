@@ -35,6 +35,8 @@ export function getComfortSeats(
     case '408': {
       return klasse === 1 ? '61-76' : '11-44';
     }
+    case '411.S1':
+    case '411.S2':
     case '411': {
       return klasse === 1 ? '46, 52-56' : '92, 94, 96, 98, 101-118';
     }
@@ -112,6 +114,8 @@ export function getDisabledSeats(
       }
       return '11-14';
     }
+    case '411.S1':
+    case '411.S2':
     case '411': {
       return klasse === 1 ? '21, 22' : '15-18';
     }
@@ -182,6 +186,8 @@ export function getFamilySeats(
     case '408': {
       return '61-78';
     }
+    case '411.S1':
+    case '411.S2':
     case '411': {
       return '11-18, 31-38';
     }
@@ -191,6 +197,9 @@ export function getFamilySeats(
     case '412':
     case '412.13': {
       return '61-78';
+    }
+    case '415': {
+      return '21-28';
     }
     case 'MET': {
       return '11-26';
