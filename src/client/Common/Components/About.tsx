@@ -84,7 +84,8 @@ export const About: FC = () => {
         <span>
           Wer mich anderweitig kontaktieren möchte kann dies neben dem
           verlinkten Social Media Profil auch per mail an info (at) bahn (dot)
-          expert
+          expert. Bitte als Anrede nicht siezen. Im Idealfall einfach "marudor"
+          nutzen.
         </span>
         <Privacy />
       </Container>
