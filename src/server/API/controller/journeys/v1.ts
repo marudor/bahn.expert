@@ -51,7 +51,6 @@ export class JourneysV1Controller extends Controller {
     return notFound(404);
   }
 
-  @Hidden()
   @Get('/find/number/{trainNumber}')
   @Tags('Journeys')
   async findNumber(
