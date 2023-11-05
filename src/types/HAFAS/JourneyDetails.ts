@@ -9,13 +9,13 @@ import type {
   RemL,
 } from '.';
 import type { EvaNumber } from '@/types/common';
-import type { Route$Auslastung, Route$Stop } from '@/types/routing';
+import type { RouteAuslastung, RouteStop } from '@/types/routing';
 
 // Additional Information we can only get from HAFAS in case of RIS Details. (Occupancy & correct operator names)
 export interface AdditionalJourneyInformation {
   jid?: string;
   operatorName?: string;
-  occupancy: Record<EvaNumber, Route$Auslastung>;
+  occupancy: Record<EvaNumber, RouteAuslastung>;
   polyline?: ParsedPolyline;
 }
 
@@ -51,21 +51,21 @@ interface JourneyDetailsRequestReq {
 export interface JourneyDetailsRequest
   extends GenericHafasRequest<'JourneyDetails', JourneyDetailsRequestReq> {}
 
-export interface Route$ValidArrivalStop extends Route$Stop {
+export interface RouteValidArrivalStop extends RouteStop {
   arrival: CommonStopInfo;
 }
 
-export interface Route$ValidDepartureStop extends Route$Stop {
+export interface RouteValidDepartureStop extends RouteStop {
   departure: CommonStopInfo;
 }
 
 export interface ParsedJourneyDetails {
   train: ParsedProduct;
-  auslastung?: Route$Auslastung;
+  auslastung?: RouteAuslastung;
   jid: string;
-  firstStop: Route$ValidDepartureStop;
-  lastStop: Route$ValidArrivalStop;
-  stops: Route$Stop[];
+  firstStop: RouteValidDepartureStop;
+  lastStop: RouteValidArrivalStop;
+  stops: RouteStop[];
   messages?: RemL[];
   polylines?: ParsedPolyline[];
 }

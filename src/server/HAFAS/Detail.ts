@@ -8,12 +8,12 @@ import searchOnTrip from './SearchOnTrip';
 import type { JourneyFilter } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
-import type { Route$JourneySegmentTrain, Route$Stop } from '@/types/routing';
+import type { RouteJourneySegmentTrain, RouteStop } from '@/types/routing';
 
 export function calculateCurrentStopPlace(
   segment: ParsedSearchOnTripResponse,
   currentStopId?: string,
-): Route$Stop | undefined {
+): RouteStop | undefined {
   const currentDate = Date.now();
   let currentStop;
 
@@ -148,7 +148,7 @@ export default async (
 
     relevantSegment = route.segments.find(
       (s) => s.type === 'JNY',
-    ) as Route$JourneySegmentTrain;
+    ) as RouteJourneySegmentTrain;
   } catch {
     // we keep using the JourneyDetailsOne
   }

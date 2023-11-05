@@ -6,7 +6,7 @@ import type {
   ParsedProduct,
   RemL,
 } from '.';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 interface JounreyMatchRequestRes {
   jnyFltrL?: JourneyFilter[];
@@ -38,10 +38,10 @@ export interface JourneyMatchResponse {
 
 export interface ParsedJourneyMatchResponse {
   train: ParsedProduct;
-  stops: Route$Stop[];
+  stops: RouteStop[];
   jid: string;
-  firstStop: Route$Stop;
-  lastStop: Route$Stop;
+  firstStop: RouteStop;
+  lastStop: RouteStop;
   messages?: RemL[];
 }
 export interface JourneyMatchOptions {

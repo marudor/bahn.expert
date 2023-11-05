@@ -1,5 +1,5 @@
 import type { Coordinate2D, TransportType } from '@/external/types';
-import type { Route$Auslastung } from '@/types/routing';
+import type { RouteAuslastung } from '@/types/routing';
 
 export interface StopPlaceIdentifier {
   stationId?: string;
@@ -32,7 +32,7 @@ export interface TrainOccupancy<out T> {
   train: TrainOccupancyList<T>;
 }
 
-export type TrainOccupancyList<out T = Route$Auslastung> = Record<
+export type TrainOccupancyList<out T = RouteAuslastung> = Record<
   string,
   T | null
 >;

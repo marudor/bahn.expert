@@ -15,7 +15,7 @@ import type {
 } from '@/external/generated/risJourneys';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedProduct } from '@/types/HAFAS';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 const journeyFindCache = new Cache<JourneyMatch[]>(CacheDatabase.JourneyFind);
 
@@ -68,7 +68,7 @@ const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
 
 const mapStationShortToRouteStops = (
   station: StopPlaceEmbedded,
-): Route$Stop => ({
+): RouteStop => ({
   station,
 });
 

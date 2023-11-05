@@ -1,13 +1,13 @@
 import { format } from 'date-fns';
 import type { RemL } from '@/types/HAFAS';
 import type {
-  Route$ValidArrivalStop,
-  Route$ValidDepartureStop,
+  RouteValidArrivalStop,
+  RouteValidDepartureStop,
 } from '@/types/HAFAS/JourneyDetails';
 
 interface CreateCtxReconOptions {
-  firstStop: Route$ValidDepartureStop;
-  lastStop: Route$ValidArrivalStop;
+  firstStop: RouteValidDepartureStop;
+  lastStop: RouteValidArrivalStop;
   trainName: string;
   messages?: RemL[];
 }

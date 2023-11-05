@@ -29,7 +29,7 @@ import type {
 } from '@/types/stationBoard';
 import type { Request as KRequest } from 'koa';
 import type { LocMatchResponse } from '@/types/HAFAS/LocMatch';
-import type { Route$Auslastung, RoutingResult } from '@/types/routing';
+import type { RouteAuslastung, RoutingResult } from '@/types/routing';
 import type { StationBoardResponse } from '@/types/HAFAS/StationBoard';
 import type { TripSearchOptionsV3 } from '@/types/HAFAS/TripSearch';
 import type { TsoaResponse } from '@tsoa/runtime';
@@ -103,7 +103,7 @@ export class HafasControllerV3 extends Controller {
     plannedDepartureTime: Date,
     trainNumber: string,
     stopEva: string,
-  ): Promise<Route$Auslastung> {
+  ): Promise<RouteAuslastung> {
     const foundOccupancy = await stopOccupancy(
       start,
       destination,

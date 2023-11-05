@@ -4,20 +4,20 @@ import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
 } from '@/types/stationBoard';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 export type MappedHafasArrivals = Record<
   string,
   ArrivalStationBoardEntry | undefined
 >;
 
-const stationMap = (s: Route$Stop) => ({
+const stationMap = (s: RouteStop) => ({
   name: s.station.name,
   cancelled: s.cancelled,
   additional: s.additional,
 });
 
-const mapDepartureRoute = (departureRoute: Route$Stop[]) => {
+const mapDepartureRoute = (departureRoute: RouteStop[]) => {
   const mapped = departureRoute.map(stationMap);
 
   calculateVia(mapped.slice(1));

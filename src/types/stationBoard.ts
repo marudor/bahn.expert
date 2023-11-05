@@ -4,14 +4,14 @@ import type {
   ParsedProduct,
   RemL,
 } from './HAFAS';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 interface CommonStationBoardEntry {
   train: ParsedProduct;
   cancelled?: boolean;
   finalDestination: string;
   jid: string;
-  stops?: Route$Stop[];
+  stops?: RouteStop[];
   currentStation: HafasStation;
   messages?: RemL[];
 }

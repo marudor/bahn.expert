@@ -6,7 +6,7 @@ import { Time } from '@/client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
 import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
-import type { Route$JourneySegment } from '@/types/routing';
+import type { RouteJourneySegment } from '@/types/routing';
 
 const DepartureTime = styled(Time)`
   grid-area: dt;
@@ -55,7 +55,7 @@ const Container = styled.div(({ theme }) => ({
 }));
 
 interface Props {
-  segment: Route$JourneySegment;
+  segment: RouteJourneySegment;
   detail?: boolean;
   onTrainClick?: (e: MouseEvent) => void;
 }

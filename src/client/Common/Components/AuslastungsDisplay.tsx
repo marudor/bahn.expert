@@ -1,7 +1,7 @@
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import styled from '@emotion/styled';
 import type { ComponentProps, FC } from 'react';
-import type { Route$Auslastung } from '@/types/routing';
+import type { RouteAuslastung } from '@/types/routing';
 
 const Container = styled.div<{ oneLine?: boolean }>(
   {
@@ -24,7 +24,7 @@ const EntryContainer = styled.span`
 `;
 
 export interface Props extends ComponentProps<'div'> {
-  auslastung: Route$Auslastung;
+  auslastung: RouteAuslastung;
   oneLine?: boolean;
 }
 

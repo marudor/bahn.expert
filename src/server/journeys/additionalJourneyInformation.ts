@@ -3,7 +3,7 @@ import { getOccupancy } from '@/server/sbb/occupancy';
 import Detail from '@/server/HAFAS/Detail';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { EvaNumber } from '@/types/common';
-import type { Route$Auslastung } from '@/types/routing';
+import type { RouteAuslastung } from '@/types/routing';
 
 const additionalInformationCache = new Cache<
   AdditionalJourneyInformation | undefined
@@ -48,7 +48,7 @@ export async function additionalJourneyInformation(
     );
   }
 
-  const occupancy: Record<EvaNumber, Route$Auslastung> = {
+  const occupancy: Record<EvaNumber, RouteAuslastung> = {
     ...sbbOccupancy,
   };
   for (const stop of journeyDetails.stops) {

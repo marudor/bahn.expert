@@ -1,7 +1,7 @@
 import { Cache, CacheDatabase } from '@/server/cache';
 import { searchStopPlace } from '@/server/StopPlace/search';
 import { tripSearch } from './TripSearch/TripSearch';
-import type { Route$Auslastung, SingleRoute } from '@/types/routing';
+import type { RouteAuslastung, SingleRoute } from '@/types/routing';
 
 async function getRelevantTrip(
   start: string,
@@ -47,7 +47,7 @@ async function getRelevantTrip(
   return relevantTrip;
 }
 
-const stopOccupancyCache = new Cache<Route$Auslastung | undefined>(
+const stopOccupancyCache = new Cache<RouteAuslastung | undefined>(
   CacheDatabase.HafasStopOccupancy,
 );
 
@@ -57,7 +57,7 @@ export async function stopOccupancy(
   trainNumber: string,
   time: Date,
   stopEva: string,
-): Promise<Route$Auslastung | undefined> {
+): Promise<RouteAuslastung | undefined> {
   const keyWithouEva = `${start}-${destination}-${trainNumber}-${time}`;
   const key = `${keyWithouEva}-${stopEva}`;
   if (await stopOccupancyCache.exists(key)) {

@@ -1,7 +1,7 @@
 import { TransportName } from '@/client/Common/Components/Details/TransportName';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 const Container = styled.div(({ theme }) => ({
   display: 'flex',
@@ -12,7 +12,7 @@ const Container = styled.div(({ theme }) => ({
 }));
 
 interface Props {
-  stops: Route$Stop[];
+  stops: RouteStop[];
 }
 
 export const TravelsWithSummary: FC<Props> = ({ stops }) => {

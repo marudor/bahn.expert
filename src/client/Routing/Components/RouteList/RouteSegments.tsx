@@ -1,10 +1,10 @@
 import { RouteSegment } from './RouteSegment';
 import { useState } from 'react';
 import type { FC, MouseEvent } from 'react';
-import type { Route$JourneySegment } from '@/types/routing';
+import type { RouteJourneySegment } from '@/types/routing';
 
 interface Props {
-  segments: Route$JourneySegment[];
+  segments: RouteJourneySegment[];
   className?: string;
 }
 

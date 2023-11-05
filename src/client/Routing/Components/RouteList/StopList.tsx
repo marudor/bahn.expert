@@ -1,13 +1,13 @@
 import { Stop } from '@/client/Common/Components/Details/Stop';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
-import type { Route$Stop } from '@/types/routing';
+import type { RouteStop } from '@/types/routing';
 
 const Container = styled.div`
   padding-left: 0.2em;
 `;
 interface Props {
-  stops?: Route$Stop[];
+  stops?: RouteStop[];
 }
 
 export const StopList: FC<Props> = ({ stops }) => {

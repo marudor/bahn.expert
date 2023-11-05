@@ -10,11 +10,11 @@ import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { SecL } from './HAFAS/TripSearch';
 import type { TransportPublicDestinationPortionWorking } from '@/external/generated/risJourneys';
 
-export interface Route$Stop {
+export interface RouteStop {
   arrival?: CommonStopInfo;
   departure?: CommonStopInfo;
   station: MinimalStopPlace;
-  auslastung?: Route$Auslastung;
+  auslastung?: RouteAuslastung;
   messages?: RemL[];
   additional?: boolean;
   cancelled?: boolean;
@@ -22,9 +22,9 @@ export interface Route$Stop {
   joinsWith?: TransportPublicDestinationPortionWorking[];
   splitsWith?: TransportPublicDestinationPortionWorking[];
 }
-export type Route$JourneySegment =
-  | Route$JourneySegmentTrain
-  | Route$JourneySegmentWalk;
+export type RouteJourneySegment =
+  | RouteJourneySegmentTrain
+  | RouteJourneySegmentWalk;
 /**
  * 1: Gering
  * 2: Hoch
@@ -37,11 +37,11 @@ export enum AuslastungsValue {
   SehrHoch,
   Ausgebucht,
 }
-export interface Route$Auslastung {
+export interface RouteAuslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
 }
-export interface Route$Journey {
+export interface RouteJourney {
   cancelled?: boolean;
   changeDuration?: number;
   duration?: number;
@@ -54,17 +54,17 @@ export interface Route$Journey {
   raw?: SecL;
   segmentDestination: MinimalStopPlace;
   segmentStart: MinimalStopPlace;
-  stops: Route$Stop[];
+  stops: RouteStop[];
   train: ParsedProduct;
-  auslastung?: Route$Auslastung;
+  auslastung?: RouteAuslastung;
   messages?: RemL[];
-  tarifSet?: Route$TarifFareSet[];
+  tarifSet?: RouteTarifFareSet[];
 }
-export interface Route$JourneySegmentTrain extends Route$Journey {
+export interface RouteJourneySegmentTrain extends RouteJourney {
   type: 'JNY';
   arrival: CommonStopInfo;
   departure: CommonStopInfo;
-  wings?: Route$Journey[];
+  wings?: RouteJourney[];
 }
 
 export interface WalkStopInfo {
@@ -72,7 +72,7 @@ export interface WalkStopInfo {
   delay?: number;
 }
 
-export interface Route$JourneySegmentWalk {
+export interface RouteJourneySegmentWalk {
   type: 'WALK';
   train: ParsedProduct;
   arrival: WalkStopInfo;
@@ -85,7 +85,7 @@ export interface Route$JourneySegmentWalk {
   segmentDestination: HafasStation;
 }
 
-export interface Route$TarifFare {
+export interface RouteTarifFare {
   /**
    * @isInt in Cent
    */
@@ -98,8 +98,8 @@ export interface Route$TarifFare {
   targetContext: string;
 }
 
-export interface Route$TarifFareSet {
-  fares: Route$TarifFare[];
+export interface RouteTarifFareSet {
+  fares: RouteTarifFare[];
 }
 
 export interface SingleRoute {
@@ -117,9 +117,9 @@ export interface SingleRoute {
    * @isInt
    */
   changes: number;
-  segments: Route$JourneySegment[];
+  segments: RouteJourneySegment[];
   segmentTypes: string[];
-  tarifSet?: Route$TarifFareSet[];
+  tarifSet?: RouteTarifFareSet[];
 }
 
 export interface RoutingResult {

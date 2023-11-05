@@ -3,9 +3,9 @@ import type {
   TarifFare,
   TarifFareSet,
 } from '@/types/HAFAS/TripSearch';
-import type { Route$TarifFare, Route$TarifFareSet } from '@/types/routing';
+import type { RouteTarifFare, RouteTarifFareSet } from '@/types/routing';
 
-const parseFare = (fare: TarifFare): Route$TarifFare => {
+const parseFare = (fare: TarifFare): RouteTarifFare => {
   return {
     price: fare.prc,
     moreExpensiveAvailable: fare.isFromPrice,
@@ -15,7 +15,7 @@ const parseFare = (fare: TarifFare): Route$TarifFare => {
   };
 };
 
-const parseFareSet = (fareSet: TarifFareSet): Route$TarifFareSet => {
+const parseFareSet = (fareSet: TarifFareSet): RouteTarifFareSet => {
   return {
     fares: fareSet.fareL.map(parseFare),
   };
@@ -23,7 +23,7 @@ const parseFareSet = (fareSet: TarifFareSet): Route$TarifFareSet => {
 
 export default (
   tarifResponse?: HafasTarifResponse,
-): Route$TarifFareSet[] | undefined => {
+): RouteTarifFareSet[] | undefined => {
   if (tarifResponse?.statusCode !== 'OK') return;
 
   return tarifResponse.fareSetL.map(parseFareSet);
