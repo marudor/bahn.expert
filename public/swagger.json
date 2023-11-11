@@ -1,5 +1,4 @@
 {
-  "openapi": "3.0.0",
   "components": {
     "examples": {},
     "headers": {},
@@ -2075,398 +2074,467 @@
         "example": "8000105",
         "description": "Usually 7 digits, leading zeros can be omitted"
       },
-      "LageplanResponse": {
+      "CoachSequencePosition": {
         "properties": {
-          "lageplan": {
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
-      "Coordinate2D": {
-        "description": "2D coordinate within geo reference system.",
-        "properties": {
-          "latitude": {
+          "startPercent": {
             "type": "number",
-            "format": "double",
-            "description": "Latitude position in reference system."
+            "format": "double"
           },
-          "longitude": {
+          "endPercent": {
             "type": "number",
-            "format": "double",
-            "description": "Longitude position in reference system."
+            "format": "double"
           }
         },
         "required": [
-          "latitude",
-          "longitude"
+          "startPercent",
+          "endPercent"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "GroupedStopPlace": {
+      "CoachSequenceSector": {
         "properties": {
-          "evaNumber": {
-            "type": "string"
-          },
           "name": {
             "type": "string"
-          },
-          "availableTransports": {
-            "items": {
-              "$ref": "#/components/schemas/TransportType"
-            },
-            "type": "array"
           },
           "position": {
-            "$ref": "#/components/schemas/Coordinate2D"
-          },
-          "ifopt": {
-            "type": "string"
-          },
-          "ril100": {
-            "type": "string"
-          },
-          "alternativeRil100": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "stationId": {
-            "type": "string"
-          },
-          "uic": {
-            "type": "string"
+            "$ref": "#/components/schemas/CoachSequencePosition"
           }
         },
         "required": [
-          "evaNumber",
           "name",
-          "availableTransports"
+          "position"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "TrainOccupancyList": {
-        "properties": {},
-        "additionalProperties": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/RouteAuslastung"
-            }
-          ],
-          "nullable": true
-        },
-        "type": "object"
-      },
-      "StopInfo": {
+      "CoachSequenceStop": {
         "properties": {
-          "isPlan": {
-            "type": "boolean",
-            "description": "Quelle dieser info ist die Planwagenreihung"
+          "stopPlace": {
+            "$ref": "#/components/schemas/MinimalStopPlace"
           },
-          "scheduledPlatform": {
-            "type": "string",
-            "description": "Scheduled Platform"
-          },
-          "platform": {
-            "type": "string",
-            "description": "Best known platform, might be identical to scheduledPlatform"
-          },
-          "scheduledTime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "scheduled time for this stop"
-          },
-          "time": {
-            "type": "string",
-            "format": "date-time",
-            "description": "best known time for this stop, might be identical to scheduledTime"
-          },
-          "delay": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "reihung": {
-            "type": "boolean"
-          },
-          "messages": {
+          "sectors": {
             "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "isRealTime": {
-            "type": "boolean"
-          },
-          "wingIds": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "description": "MediumIds of journeys that are wings of this journey at this stop."
-          },
-          "hidden": {
-            "type": "boolean"
-          },
-          "transition": {
-            "type": "string",
-            "description": "Durchbindung? Zug wechselt die Kategorie, theoretisch aber sogar Zugnummer?"
-          }
-        },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "Messages": {
-        "properties": {
-          "qos": {
-            "items": {
-              "$ref": "#/components/schemas/IrisMessage"
-            },
-            "type": "array"
-          },
-          "delay": {
-            "items": {
-              "$ref": "#/components/schemas/IrisMessage"
-            },
-            "type": "array"
-          },
-          "him": {
-            "items": {
-              "$ref": "#/components/schemas/HimIrisMessage"
+              "$ref": "#/components/schemas/CoachSequenceSector"
             },
             "type": "array"
           }
         },
         "required": [
-          "qos",
-          "delay",
-          "him"
+          "stopPlace",
+          "sectors"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "SubstituteRef": {
+      "CoachSequenceProduct": {
         "properties": {
-          "trainNumber": {
+          "number": {
             "type": "string"
           },
-          "trainType": {
-            "type": "string"
-          },
-          "train": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "trainNumber",
-          "trainType",
-          "train"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "Stop": {
-        "properties": {
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "showVia": {
-            "type": "boolean"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "TrainInfo": {
-        "properties": {
-          "name": {
+          "type": {
             "type": "string"
           },
           "line": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "type"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "VehicleCategory": {
+        "type": "string",
+        "enum": [
+          "DOUBLEDECK_FIRST_ECONOMY_CLASS",
+          "DOUBLEDECK_FIRST_CLASS",
+          "DOUBLEDECK_ECONOMY_CLASS",
+          "DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS",
+          "DOUBLEDECK_CONTROLCAR_FIRST_CLASS",
+          "DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS",
+          "DOUBLEDECK_CARCARRIER_PASSENGERTRAIN",
+          "PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS",
+          "PASSENGERCARRIAGE_FIRST_CLASS",
+          "PASSENGERCARRIAGE_ECONOMY_CLASS",
+          "CONTROLCAR_FIRST_CLASS",
+          "CONTROLCAR_ECONOMY_CLASS",
+          "CONTROLCAR_FIRST_ECONOMY_CLASS",
+          "DOUBLECONTROLCAR_ECONOMY_CLASS",
+          "DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS",
+          "DININGCAR",
+          "HALFDININGCAR_FIRST_CLASS",
+          "HALFDININGCAR_ECONOMY_CLASS",
+          "SLEEPER_FIRST_CLASS",
+          "SLEEPER_FIRST_ECONOMY_CLASS",
+          "SLEEPER_ECONOMY_CLASS",
+          "COUCHETTE_FIRST_CLASS",
+          "COUCHETTE_ECONOMY_CLASS",
+          "BAGGAGECAR",
+          "HALFBAGGAGECAR",
+          "LOCOMOTIVE",
+          "POWERCAR",
+          "UNDEFINED"
+        ],
+        "description": "Category of vehicle [Fahrzeug] according to basic visual differentiation. - DOUBLEDECK_FIRST_ECONOMY_CLASS (Doppelstockwagen 1.& 2. Klasse) - DOUBLEDECK_FIRST_CLASS (Doppelstockwagen 1. Klasse) - DOUBLEDECK_ECONOMY_CLASS (Doppelstockwagen 2. Klasse) - DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS (Doppelstocksteuerwagen 1. & 2. Klasse) - DOUBLEDECK_CONTROLCAR_FIRST_CLASS (Doppelstocksteuerwagen 1. Klasse) - DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS (Doppelstocksteuerwagen 2. Klasse) - DOUBLEDECK_CARCARRIER_PASSENGERTRAIN (Doppelstock-Autotransportwagen der Reisezugwagen-Bauart) - PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS (Reisezugwagen 1.& 2. Klasse) - PASSENGERCARRIAGE_FIRST_CLASS (Reisezugwagen 1.Klasse) - PASSENGERCARRIAGE_ECONOMY_CLASS (Reisezugwagen 2.Klasse) - CONTROLCAR_FIRST_CLASS (Steuerwagen & 1.Klasse) - CONTROLCAR_ECONOMY_CLASS (Steuerwagen & 2.Klasse) - CONTROLCAR_FIRST_ECONOMY_CLASS (Steuerwagen 1.& 2.Klasse) - DOUBLECONTROLCAR_ECONOMY_CLASS (Beidseitiger Steuerwagen aka \\'Schienenbus\\' & 2.Klasse) - DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS (Beidseitiger Steuerwagen aka \\'Schienenbus\\' 1.& 2.Klasse) - DININGCAR (Speisewagen) - HALFDININGCAR_FIRST_CLASS (Halbspeisewagen & 1. Klasse) - HALFDININGCAR_ECONOMY_CLASS (Halbspeisewagen & 2. Klasse) - SLEEPER_FIRST_CLASS (Schlafwagen 1. Klasse) - SLEEPER_FIRST_ECONOMY_CLASS (Schlafwagen 1. & 2. Klasse) - SLEEPER_ECONOMY_CLASS (Schlafwagen 2. Klasse) - COUCHETTE_FIRST_CLASS (Liegewagen 1. Klasse) - COUCHETTE_ECONOMY_CLASS (Liegewagen 2. Klasse) - BAGGAGECAR (Gepaeckwagen) - LOCOMOTIVE (Lok) - POWERCAR (Triebkopf) - UNDEFINED (unbekannt)"
+      },
+      "CoachSequenceCoachFeatures": {
+        "properties": {
+          "dining": {
+            "type": "boolean"
+          },
+          "wheelchair": {
+            "type": "boolean"
+          },
+          "bike": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "quiet": {
+            "type": "boolean"
+          },
+          "info": {
+            "type": "boolean"
+          },
+          "family": {
+            "type": "boolean"
+          },
+          "toddler": {
+            "type": "boolean"
+          },
+          "wifi": {
+            "type": "boolean"
+          },
+          "comfort": {
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CoachSequenceCoachSeats": {
+        "properties": {
+          "comfort": {
+            "type": "string"
+          },
+          "disabled": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CoachSequenceCoach": {
+        "properties": {
+          "class": {
+            "type": "number",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
+          },
+          "vehicleCategory": {
+            "$ref": "#/components/schemas/VehicleCategory"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "uic": {
+            "type": "string",
+            "description": "only filled for real time information"
+          },
+          "type": {
+            "type": "string"
+          },
+          "identificationNumber": {
+            "type": "string",
+            "description": "Wagenordnungsnummer"
+          },
+          "position": {
+            "$ref": "#/components/schemas/CoachSequencePosition"
+          },
+          "features": {
+            "$ref": "#/components/schemas/CoachSequenceCoachFeatures"
+          },
+          "seats": {
+            "$ref": "#/components/schemas/CoachSequenceCoachSeats"
+          },
+          "occupancy": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          }
+        },
+        "required": [
+          "class",
+          "vehicleCategory",
+          "position",
+          "features"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "AvailableBR": {
+        "type": "string",
+        "enum": [
+          "401",
+          "402",
+          "403",
+          "406",
+          "407",
+          "408",
+          "411",
+          "412",
+          "415",
+          "4010",
+          "4110",
+          "410.1"
+        ]
+      },
+      "AvailableIdentifierOnly": {
+        "type": "string",
+        "enum": [
+          "401.LDV",
+          "401.9",
+          "411.S1",
+          "411.S2",
+          "412.7",
+          "412.13",
+          "403.R",
+          "403.S1",
+          "403.S2",
+          "406.R",
+          "IC2.TRE",
+          "MET",
+          "TGV"
+        ]
+      },
+      "AvailableIdentifier": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AvailableIdentifierOnly"
+          },
+          {
+            "$ref": "#/components/schemas/AvailableBR"
+          }
+        ]
+      },
+      "CoachSequenceBaureihe": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "baureihe": {
+            "$ref": "#/components/schemas/AvailableBR"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/AvailableIdentifier"
+          }
+        },
+        "required": [
+          "name",
+          "identifier"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CoachSequenceGroup": {
+        "properties": {
+          "coaches": {
+            "items": {
+              "$ref": "#/components/schemas/CoachSequenceCoach"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "originName": {
+            "type": "string"
+          },
+          "destinationName": {
+            "type": "string"
+          },
+          "trainName": {
             "type": "string"
           },
           "number": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "description": "This is actually category"
-          },
-          "operator": {
-            "$ref": "#/components/schemas/OpL"
-          },
-          "admin": {
-            "type": "string"
+          "baureihe": {
+            "$ref": "#/components/schemas/CoachSequenceBaureihe"
           }
         },
         "required": [
+          "coaches",
           "name",
-          "type",
+          "originName",
+          "destinationName",
           "number"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "Abfahrt": {
+      "CoachSequence": {
         "properties": {
-          "initialDeparture": {
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/CoachSequenceGroup"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "groups"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CoachSequenceInformation": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "OEBB",
+              "NEW",
+              "DB-apps",
+              "DB-noncd",
+              "DB-newApps",
+              "DB-plan",
+              "SBB"
+            ]
+          },
+          "stop": {
+            "$ref": "#/components/schemas/CoachSequenceStop"
+          },
+          "product": {
+            "$ref": "#/components/schemas/CoachSequenceProduct"
+          },
+          "sequence": {
+            "$ref": "#/components/schemas/CoachSequence"
+          },
+          "multipleTrainNumbers": {
+            "type": "boolean"
+          },
+          "multipleDestinations": {
+            "type": "boolean"
+          },
+          "isRealtime": {
+            "type": "boolean"
+          },
+          "direction": {
+            "type": "boolean",
+            "description": "true = in direction of first sector in array\nfalse = in direction of last sector in array\nundefined = we do not know"
+          },
+          "journeyId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "stop",
+          "product",
+          "sequence",
+          "isRealtime"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TrainRunStop": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaNumber": {
+            "type": "string"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "arrivalTime": {
             "type": "string",
             "format": "date-time"
           },
-          "initialStopPlace": {
+          "departureTime": {
             "type": "string",
-            "description": "evaNumber of first stopPlace in route"
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "evaNumber"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TrainRunWithBR": {
+        "properties": {
+          "product": {
+            "$ref": "#/components/schemas/CoachSequenceProduct"
           },
-          "arrival": {
-            "$ref": "#/components/schemas/StopInfo"
-          },
-          "currentStopPlace": {
-            "$ref": "#/components/schemas/MinimalStopPlace"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/StopInfo"
+          "origin": {
+            "$ref": "#/components/schemas/TrainRunStop"
           },
           "destination": {
-            "type": "string"
+            "$ref": "#/components/schemas/TrainRunStop"
           },
-          "id": {
-            "type": "string"
-          },
-          "additional": {
-            "type": "boolean",
-            "description": "Is this stop unplanned and additional?"
-          },
-          "cancelled": {
-            "type": "boolean",
-            "description": "Is this stop cancelled for this journey?"
-          },
-          "mediumId": {
-            "type": "string"
-          },
-          "messages": {
-            "$ref": "#/components/schemas/Messages"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "productClass": {
-            "type": "string",
-            "description": "Most likely D | N | S | F"
-          },
-          "rawId": {
-            "type": "string"
-          },
-          "ref": {
-            "$ref": "#/components/schemas/SubstituteRef"
-          },
-          "route": {
+          "via": {
             "items": {
-              "$ref": "#/components/schemas/Stop"
+              "$ref": "#/components/schemas/TrainRunStop"
             },
             "type": "array"
           },
-          "scheduledDestination": {
-            "type": "string"
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "type": "array"
           },
-          "scheduledPlatform": {
-            "type": "string"
-          },
-          "substitute": {
-            "type": "boolean"
-          },
-          "train": {
-            "$ref": "#/components/schemas/TrainInfo"
-          },
-          "previousTrain": {
-            "$ref": "#/components/schemas/TrainInfo",
-            "description": "Sofern Durchbindung passiert ist steht hier der vorherige Transport drin. Is fachlich ultra hacky."
+          "br": {
+            "$ref": "#/components/schemas/CoachSequenceBaureihe"
           }
         },
         "required": [
-          "initialDeparture",
-          "initialStopPlace",
-          "currentStopPlace",
+          "product",
+          "origin",
           "destination",
-          "id",
-          "mediumId",
-          "messages",
-          "platform",
-          "productClass",
-          "rawId",
-          "route",
-          "scheduledDestination",
-          "scheduledPlatform",
-          "train"
+          "via",
+          "dates"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "Wings": {
-        "properties": {},
-        "additionalProperties": {
-          "$ref": "#/components/schemas/Abfahrt"
-        },
-        "type": "object",
-        "description": "Map of \"mediumId\" to Abfahrt."
-      },
-      "AbfahrtenResult": {
-        "properties": {
-          "departures": {
-            "items": {
-              "$ref": "#/components/schemas/Abfahrt"
-            },
-            "type": "array",
-            "description": "Journeys that have not yet departed (or arrived if they end here)"
-          },
-          "lookbehind": {
-            "items": {
-              "$ref": "#/components/schemas/Abfahrt"
-            },
-            "type": "array",
-            "description": "Journeys that have already departed (or arrived if they end here)"
-          },
-          "wings": {
-            "$ref": "#/components/schemas/Wings"
-          },
-          "strike": {
-            "type": "number",
-            "format": "double",
-            "description": "amount of departures/arrivals that are affected by a strike [Streik]"
-          },
-          "stopPlaces": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "description": "Eva Numbers queried for this resultset"
-          }
-        },
-        "required": [
-          "departures",
-          "lookbehind",
-          "stopPlaces"
+      "AllowedHafasProfile": {
+        "enum": [
+          "db",
+          "oebb",
+          "bvg",
+          "hvv",
+          "rmv",
+          "sncb",
+          "avv",
+          "nahsh",
+          "insa",
+          "anachb",
+          "vao",
+          "sbb",
+          "dbnetz",
+          "pkp",
+          "dbregio",
+          "smartrbl",
+          "vbn"
         ],
-        "type": "object",
-        "additionalProperties": true
+        "type": "string"
       },
       "RouteJourneySegmentTrain": {
         "properties": {
@@ -2877,28 +2945,6 @@
         ],
         "type": "object",
         "additionalProperties": true
-      },
-      "AllowedHafasProfile": {
-        "enum": [
-          "db",
-          "oebb",
-          "bvg",
-          "hvv",
-          "rmv",
-          "sncb",
-          "avv",
-          "nahsh",
-          "insa",
-          "anachb",
-          "vao",
-          "sbb",
-          "dbnetz",
-          "pkp",
-          "dbregio",
-          "smartrbl",
-          "vbn"
-        ],
-        "type": "string"
       },
       "Record_EvaNumber.RouteAuslastung_": {
         "properties": {},
@@ -3830,445 +3876,395 @@
         "type": "object",
         "additionalProperties": true
       },
-      "CoachSequencePosition": {
+      "StopInfo": {
         "properties": {
-          "startPercent": {
-            "type": "number",
-            "format": "double"
+          "isPlan": {
+            "type": "boolean",
+            "description": "Quelle dieser info ist die Planwagenreihung"
           },
-          "endPercent": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "startPercent",
-          "endPercent"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "CoachSequenceSector": {
-        "properties": {
-          "name": {
-            "type": "string"
+          "scheduledPlatform": {
+            "type": "string",
+            "description": "Scheduled Platform"
           },
-          "position": {
-            "$ref": "#/components/schemas/CoachSequencePosition"
-          }
-        },
-        "required": [
-          "name",
-          "position"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "CoachSequenceStop": {
-        "properties": {
-          "stopPlace": {
-            "$ref": "#/components/schemas/MinimalStopPlace"
+          "platform": {
+            "type": "string",
+            "description": "Best known platform, might be identical to scheduledPlatform"
           },
-          "sectors": {
+          "scheduledTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "scheduled time for this stop"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "best known time for this stop, might be identical to scheduledTime"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reihung": {
+            "type": "boolean"
+          },
+          "messages": {
             "items": {
-              "$ref": "#/components/schemas/CoachSequenceSector"
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "isRealTime": {
+            "type": "boolean"
+          },
+          "wingIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "MediumIds of journeys that are wings of this journey at this stop."
+          },
+          "hidden": {
+            "type": "boolean"
+          },
+          "transition": {
+            "type": "string",
+            "description": "Durchbindung? Zug wechselt die Kategorie, theoretisch aber sogar Zugnummer?"
+          }
+        },
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Messages": {
+        "properties": {
+          "qos": {
+            "items": {
+              "$ref": "#/components/schemas/IrisMessage"
+            },
+            "type": "array"
+          },
+          "delay": {
+            "items": {
+              "$ref": "#/components/schemas/IrisMessage"
+            },
+            "type": "array"
+          },
+          "him": {
+            "items": {
+              "$ref": "#/components/schemas/HimIrisMessage"
             },
             "type": "array"
           }
         },
         "required": [
-          "stopPlace",
-          "sectors"
+          "qos",
+          "delay",
+          "him"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "CoachSequenceProduct": {
+      "SubstituteRef": {
         "properties": {
-          "number": {
+          "trainNumber": {
             "type": "string"
           },
-          "type": {
+          "trainType": {
+            "type": "string"
+          },
+          "train": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "trainNumber",
+          "trainType",
+          "train"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Stop": {
+        "properties": {
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "showVia": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TrainInfo": {
+        "properties": {
+          "name": {
             "type": "string"
           },
           "line": {
             "type": "string"
-          }
-        },
-        "required": [
-          "number",
-          "type"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "VehicleCategory": {
-        "type": "string",
-        "enum": [
-          "DOUBLEDECK_FIRST_ECONOMY_CLASS",
-          "DOUBLEDECK_FIRST_CLASS",
-          "DOUBLEDECK_ECONOMY_CLASS",
-          "DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS",
-          "DOUBLEDECK_CONTROLCAR_FIRST_CLASS",
-          "DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS",
-          "DOUBLEDECK_CARCARRIER_PASSENGERTRAIN",
-          "PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS",
-          "PASSENGERCARRIAGE_FIRST_CLASS",
-          "PASSENGERCARRIAGE_ECONOMY_CLASS",
-          "CONTROLCAR_FIRST_CLASS",
-          "CONTROLCAR_ECONOMY_CLASS",
-          "CONTROLCAR_FIRST_ECONOMY_CLASS",
-          "DOUBLECONTROLCAR_ECONOMY_CLASS",
-          "DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS",
-          "DININGCAR",
-          "HALFDININGCAR_FIRST_CLASS",
-          "HALFDININGCAR_ECONOMY_CLASS",
-          "SLEEPER_FIRST_CLASS",
-          "SLEEPER_FIRST_ECONOMY_CLASS",
-          "SLEEPER_ECONOMY_CLASS",
-          "COUCHETTE_FIRST_CLASS",
-          "COUCHETTE_ECONOMY_CLASS",
-          "BAGGAGECAR",
-          "HALFBAGGAGECAR",
-          "LOCOMOTIVE",
-          "POWERCAR",
-          "UNDEFINED"
-        ],
-        "description": "Category of vehicle [Fahrzeug] according to basic visual differentiation. - DOUBLEDECK_FIRST_ECONOMY_CLASS (Doppelstockwagen 1.& 2. Klasse) - DOUBLEDECK_FIRST_CLASS (Doppelstockwagen 1. Klasse) - DOUBLEDECK_ECONOMY_CLASS (Doppelstockwagen 2. Klasse) - DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS (Doppelstocksteuerwagen 1. & 2. Klasse) - DOUBLEDECK_CONTROLCAR_FIRST_CLASS (Doppelstocksteuerwagen 1. Klasse) - DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS (Doppelstocksteuerwagen 2. Klasse) - DOUBLEDECK_CARCARRIER_PASSENGERTRAIN (Doppelstock-Autotransportwagen der Reisezugwagen-Bauart) - PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS (Reisezugwagen 1.& 2. Klasse) - PASSENGERCARRIAGE_FIRST_CLASS (Reisezugwagen 1.Klasse) - PASSENGERCARRIAGE_ECONOMY_CLASS (Reisezugwagen 2.Klasse) - CONTROLCAR_FIRST_CLASS (Steuerwagen & 1.Klasse) - CONTROLCAR_ECONOMY_CLASS (Steuerwagen & 2.Klasse) - CONTROLCAR_FIRST_ECONOMY_CLASS (Steuerwagen 1.& 2.Klasse) - DOUBLECONTROLCAR_ECONOMY_CLASS (Beidseitiger Steuerwagen aka \\'Schienenbus\\' & 2.Klasse) - DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS (Beidseitiger Steuerwagen aka \\'Schienenbus\\' 1.& 2.Klasse) - DININGCAR (Speisewagen) - HALFDININGCAR_FIRST_CLASS (Halbspeisewagen & 1. Klasse) - HALFDININGCAR_ECONOMY_CLASS (Halbspeisewagen & 2. Klasse) - SLEEPER_FIRST_CLASS (Schlafwagen 1. Klasse) - SLEEPER_FIRST_ECONOMY_CLASS (Schlafwagen 1. & 2. Klasse) - SLEEPER_ECONOMY_CLASS (Schlafwagen 2. Klasse) - COUCHETTE_FIRST_CLASS (Liegewagen 1. Klasse) - COUCHETTE_ECONOMY_CLASS (Liegewagen 2. Klasse) - BAGGAGECAR (Gepaeckwagen) - LOCOMOTIVE (Lok) - POWERCAR (Triebkopf) - UNDEFINED (unbekannt)"
-      },
-      "CoachSequenceCoachFeatures": {
-        "properties": {
-          "dining": {
-            "type": "boolean"
-          },
-          "wheelchair": {
-            "type": "boolean"
-          },
-          "bike": {
-            "type": "boolean"
-          },
-          "disabled": {
-            "type": "boolean"
-          },
-          "quiet": {
-            "type": "boolean"
-          },
-          "info": {
-            "type": "boolean"
-          },
-          "family": {
-            "type": "boolean"
-          },
-          "toddler": {
-            "type": "boolean"
-          },
-          "wifi": {
-            "type": "boolean"
-          },
-          "comfort": {
-            "type": "boolean"
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
-      "CoachSequenceCoachSeats": {
-        "properties": {
-          "comfort": {
-            "type": "string"
-          },
-          "disabled": {
-            "type": "string"
-          },
-          "family": {
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
-      "CoachSequenceCoach": {
-        "properties": {
-          "class": {
-            "type": "number",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
-            "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
-          },
-          "vehicleCategory": {
-            "$ref": "#/components/schemas/VehicleCategory"
-          },
-          "closed": {
-            "type": "boolean"
-          },
-          "uic": {
-            "type": "string",
-            "description": "only filled for real time information"
-          },
-          "type": {
-            "type": "string"
-          },
-          "identificationNumber": {
-            "type": "string",
-            "description": "Wagenordnungsnummer"
-          },
-          "position": {
-            "$ref": "#/components/schemas/CoachSequencePosition"
-          },
-          "features": {
-            "$ref": "#/components/schemas/CoachSequenceCoachFeatures"
-          },
-          "seats": {
-            "$ref": "#/components/schemas/CoachSequenceCoachSeats"
-          },
-          "occupancy": {
-            "$ref": "#/components/schemas/AuslastungsValue"
-          }
-        },
-        "required": [
-          "class",
-          "vehicleCategory",
-          "position",
-          "features"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "AvailableBR": {
-        "type": "string",
-        "enum": [
-          "401",
-          "402",
-          "403",
-          "406",
-          "407",
-          "408",
-          "411",
-          "412",
-          "415",
-          "4010",
-          "4110",
-          "410.1"
-        ]
-      },
-      "AvailableIdentifierOnly": {
-        "type": "string",
-        "enum": [
-          "401.LDV",
-          "401.9",
-          "411.S1",
-          "411.S2",
-          "412.7",
-          "412.13",
-          "403.R",
-          "403.S1",
-          "403.S2",
-          "406.R",
-          "IC2.TRE",
-          "MET",
-          "TGV"
-        ]
-      },
-      "AvailableIdentifier": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/AvailableIdentifierOnly"
-          },
-          {
-            "$ref": "#/components/schemas/AvailableBR"
-          }
-        ]
-      },
-      "CoachSequenceBaureihe": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "baureihe": {
-            "$ref": "#/components/schemas/AvailableBR"
-          },
-          "identifier": {
-            "$ref": "#/components/schemas/AvailableIdentifier"
-          }
-        },
-        "required": [
-          "name",
-          "identifier"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "CoachSequenceGroup": {
-        "properties": {
-          "coaches": {
-            "items": {
-              "$ref": "#/components/schemas/CoachSequenceCoach"
-            },
-            "type": "array"
-          },
-          "name": {
-            "type": "string"
-          },
-          "originName": {
-            "type": "string"
-          },
-          "destinationName": {
-            "type": "string"
-          },
-          "trainName": {
-            "type": "string"
           },
           "number": {
             "type": "string"
           },
-          "baureihe": {
-            "$ref": "#/components/schemas/CoachSequenceBaureihe"
+          "type": {
+            "type": "string",
+            "description": "This is actually category"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/OpL"
+          },
+          "admin": {
+            "type": "string"
           }
         },
         "required": [
-          "coaches",
           "name",
-          "originName",
-          "destinationName",
+          "type",
           "number"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "CoachSequence": {
+      "Abfahrt": {
         "properties": {
-          "groups": {
+          "initialDeparture": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "initialStopPlace": {
+            "type": "string",
+            "description": "evaNumber of first stopPlace in route"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/StopInfo"
+          },
+          "currentStopPlace": {
+            "$ref": "#/components/schemas/MinimalStopPlace"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/StopInfo"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "additional": {
+            "type": "boolean",
+            "description": "Is this stop unplanned and additional?"
+          },
+          "cancelled": {
+            "type": "boolean",
+            "description": "Is this stop cancelled for this journey?"
+          },
+          "mediumId": {
+            "type": "string"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/Messages"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "productClass": {
+            "type": "string",
+            "description": "Most likely D | N | S | F"
+          },
+          "rawId": {
+            "type": "string"
+          },
+          "ref": {
+            "$ref": "#/components/schemas/SubstituteRef"
+          },
+          "route": {
             "items": {
-              "$ref": "#/components/schemas/CoachSequenceGroup"
+              "$ref": "#/components/schemas/Stop"
             },
             "type": "array"
+          },
+          "scheduledDestination": {
+            "type": "string"
+          },
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "substitute": {
+            "type": "boolean"
+          },
+          "train": {
+            "$ref": "#/components/schemas/TrainInfo"
+          },
+          "previousTrain": {
+            "$ref": "#/components/schemas/TrainInfo",
+            "description": "Sofern Durchbindung passiert ist steht hier der vorherige Transport drin. Is fachlich ultra hacky."
           }
         },
         "required": [
-          "groups"
+          "initialDeparture",
+          "initialStopPlace",
+          "currentStopPlace",
+          "destination",
+          "id",
+          "mediumId",
+          "messages",
+          "platform",
+          "productClass",
+          "rawId",
+          "route",
+          "scheduledDestination",
+          "scheduledPlatform",
+          "train"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "CoachSequenceInformation": {
+      "Record_string.Abfahrt_": {
+        "properties": {},
+        "type": "object",
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "Wings": {
+        "$ref": "#/components/schemas/Record_string.Abfahrt_",
+        "description": "Map of \"mediumId\" to Abfahrt."
+      },
+      "AbfahrtenResult": {
         "properties": {
-          "source": {
-            "type": "string",
-            "enum": [
-              "OEBB",
-              "NEW",
-              "DB-apps",
-              "DB-noncd",
-              "DB-newApps",
-              "DB-plan",
-              "SBB"
-            ]
+          "departures": {
+            "items": {
+              "$ref": "#/components/schemas/Abfahrt"
+            },
+            "type": "array",
+            "description": "Journeys that have not yet departed (or arrived if they end here)"
           },
-          "stop": {
-            "$ref": "#/components/schemas/CoachSequenceStop"
+          "lookbehind": {
+            "items": {
+              "$ref": "#/components/schemas/Abfahrt"
+            },
+            "type": "array",
+            "description": "Journeys that have already departed (or arrived if they end here)"
           },
-          "product": {
-            "$ref": "#/components/schemas/CoachSequenceProduct"
+          "wings": {
+            "$ref": "#/components/schemas/Wings"
           },
-          "sequence": {
-            "$ref": "#/components/schemas/CoachSequence"
+          "strike": {
+            "type": "number",
+            "format": "double",
+            "description": "amount of departures/arrivals that are affected by a strike [Streik]"
           },
-          "multipleTrainNumbers": {
-            "type": "boolean"
-          },
-          "multipleDestinations": {
-            "type": "boolean"
-          },
-          "isRealtime": {
-            "type": "boolean"
-          },
-          "direction": {
-            "type": "boolean",
-            "description": "true = in direction of first sector in array\nfalse = in direction of last sector in array\nundefined = we do not know"
-          },
-          "journeyId": {
+          "stopPlaces": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "Eva Numbers queried for this resultset"
+          }
+        },
+        "required": [
+          "departures",
+          "lookbehind",
+          "stopPlaces"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "LageplanResponse": {
+        "properties": {
+          "lageplan": {
             "type": "string"
           }
         },
+        "type": "object",
+        "additionalProperties": true
+      },
+      "Coordinate2D": {
+        "description": "2D coordinate within geo reference system.",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude position in reference system."
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude position in reference system."
+          }
+        },
         "required": [
-          "source",
-          "stop",
-          "product",
-          "sequence",
-          "isRealtime"
+          "latitude",
+          "longitude"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "TrainRunStop": {
+      "GroupedStopPlace": {
         "properties": {
+          "evaNumber": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
-          "evaNumber": {
+          "availableTransports": {
+            "items": {
+              "$ref": "#/components/schemas/TransportType"
+            },
+            "type": "array"
+          },
+          "position": {
+            "$ref": "#/components/schemas/Coordinate2D"
+          },
+          "ifopt": {
             "type": "string"
           },
           "ril100": {
             "type": "string"
           },
-          "arrivalTime": {
-            "type": "string",
-            "format": "date-time"
+          "alternativeRil100": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           },
-          "departureTime": {
-            "type": "string",
-            "format": "date-time"
+          "stationId": {
+            "type": "string"
+          },
+          "uic": {
+            "type": "string"
           }
         },
         "required": [
+          "evaNumber",
           "name",
-          "evaNumber"
+          "availableTransports"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "TrainRunWithBR": {
-        "properties": {
-          "product": {
-            "$ref": "#/components/schemas/CoachSequenceProduct"
-          },
-          "origin": {
-            "$ref": "#/components/schemas/TrainRunStop"
-          },
-          "destination": {
-            "$ref": "#/components/schemas/TrainRunStop"
-          },
-          "via": {
-            "items": {
-              "$ref": "#/components/schemas/TrainRunStop"
-            },
-            "type": "array"
-          },
-          "dates": {
-            "items": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "type": "array"
-          },
-          "br": {
-            "$ref": "#/components/schemas/CoachSequenceBaureihe"
-          }
-        },
-        "required": [
-          "product",
-          "origin",
-          "destination",
-          "via",
-          "dates"
-        ],
+      "Record_string.RouteAuslastung-or-null_": {
+        "properties": {},
         "type": "object",
-        "additionalProperties": true
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "TrainOccupancyList": {
+        "$ref": "#/components/schemas/Record_string.RouteAuslastung-or-null_"
       }
     },
     "securitySchemes": {}
@@ -4283,6 +4279,7 @@
       "name": "marudor"
     }
   },
+  "openapi": "3.0.0",
   "paths": {
     "/iris/v2/abfahrten/{evaNumber}": {
       "get": {
@@ -5129,48 +5126,6 @@
         ]
       }
     },
-    "/hafas/v3/stopPlaceSearch/{query}": {
-      "get": {
-        "operationId": "StopPlaceSearch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/HafasStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HAFAS"
-        ],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/stopPlace/v1/search/{searchTerm}": {
       "get": {
         "operationId": "StopPlaceSearch",
@@ -5229,6 +5184,48 @@
             "schema": {
               "default": false,
               "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v3/stopPlaceSearch/{query}": {
+      "get": {
+        "operationId": "StopPlaceSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/HafasStation"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
             }
           }
         ]

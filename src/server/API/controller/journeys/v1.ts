@@ -30,7 +30,6 @@ import type { TsoaResponse } from '@tsoa/runtime';
 
 const allowedReferer = ['https://bahn.expert', 'https://beta.bahn.expert'];
 export function isAllowed(req: KoaRequest): boolean {
-  // console.log(req);
   return (
     process.env.NODE_ENV !== 'production' ||
     allowedReferer.some((r) => req.headers.referer?.startsWith(r))

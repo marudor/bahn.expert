@@ -95,7 +95,23 @@ const normalizeRouteName = (name: string) =>
 const deNormalizeRouteName = (name: string) =>
   name.replace(' (', '(').replace(') ', ')');
 
-const UnbekannteBetriebsstelleRegex = /Betriebsstelle nicht bekannt (\d{7})/;
+const UnbekannteBetriebsstelleRegex = /Betriebsstelle nicht bekannt (\d{6,7})/;
+
+async function resolveUnknownStopPlace(rawStopPlaceName: string) {
+  try {
+    const regexResult = UnbekannteBetriebsstelleRegex.exec(rawStopPlaceName);
+    if (regexResult) {
+      const eva = regexResult[1];
+      const realStopPlace = await getStopPlaceByEva(eva);
+      if (realStopPlace) {
+        return realStopPlace.name;
+      }
+    }
+  } catch {
+    // we do nothing
+  }
+  return rawStopPlaceName;
+}
 
 export function parseRealtimeDp(
   dp: null | xmljs.Element,
@@ -219,21 +235,11 @@ export class Timetable {
 
     await Promise.all(
       timetable.route.map(async (routeStop: Stop) => {
-        try {
-          const regexResult = UnbekannteBetriebsstelleRegex.exec(
-            routeStop.name,
-          );
-          if (regexResult) {
-            const eva = regexResult[1];
-            const realStopPlace = await getStopPlaceByEva(eva);
-            if (realStopPlace) {
-              routeStop.name = realStopPlace.name;
-            }
-          }
-        } catch {
-          // we do nothing
-        }
+        routeStop.name = await resolveUnknownStopPlace(routeStop.name);
       }),
+    );
+    timetable.scheduledDestination = await resolveUnknownStopPlace(
+      timetable.scheduledDestination,
     );
 
     const nonCancelled = timetable.route.filter((r: any) => !r.cancelled);
