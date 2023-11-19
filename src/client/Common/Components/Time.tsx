@@ -74,8 +74,8 @@ export const Time: FC<Props> = ({
   const timeToDisplay = showDelayTime
     ? real
     : hasDelay
-    ? subMinutes(real, delay)
-    : real;
+      ? subMinutes(real, delay)
+      : real;
 
   return (
     <Container

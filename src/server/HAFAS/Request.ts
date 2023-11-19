@@ -107,18 +107,18 @@ type CommonHafasResponse<
 > = R extends TripSearchRequest
   ? TripSearchResponse
   : R extends StationBoardRequest
-  ? StationBoardResponse
-  : R extends HimSearchRequest
-  ? HimSearchResponse
-  : R extends JourneyMatchRequest
-  ? JourneyMatchResponse
-  : R extends LocMatchRequest
-  ? LocMatchResponse
-  : R extends JourneyDetailsRequest
-  ? JourneyDetailsResponse
-  : R extends SearchOnTripRequest
-  ? SearchOnTripResponse
-  : never;
+    ? StationBoardResponse
+    : R extends HimSearchRequest
+      ? HimSearchResponse
+      : R extends JourneyMatchRequest
+        ? JourneyMatchResponse
+        : R extends LocMatchRequest
+          ? LocMatchResponse
+          : R extends JourneyDetailsRequest
+            ? JourneyDetailsResponse
+            : R extends SearchOnTripRequest
+              ? SearchOnTripResponse
+              : never;
 async function makeRequest<
   R extends SingleHafasRequest,
   HR extends GenericRes = CommonHafasResponse<any, R>,

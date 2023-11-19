@@ -66,7 +66,9 @@ beforeAll(() => {
 
 const routeRegexp = /\/v(\d+|experimental)\//;
 afterEach(() => {
-  const allRoutes = routes.stack.filter((s) => routeRegexp.exec(s.path));
+  const allRoutes = routes.stack.filter((s) =>
+    routeRegexp.exec(s.path as string),
+  );
   // @ts-expect-error this exsits
   for (const i of globalThis.nock.interceptors) {
     if (!allRoutes.some((r) => r.match(i.path))) {
