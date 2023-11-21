@@ -1,7 +1,20 @@
 import { Controller, Get, Hidden, Route } from '@tsoa/runtime';
 import { getJourneyDetails } from '@/external/risJourneys';
+import { TransportType } from '@/external/generated/risJourneys';
 import { v4 } from 'uuid';
 import axios from 'axios';
+
+const transportTypeMap: Record<string, string> = {
+  [TransportType.CityTrain]: 'SBAHNEN',
+  [TransportType.Bus]: 'BUSSE',
+  [TransportType.HighSpeedTrain]: 'HOCHGESCHWINDIGKEITSZUEGE',
+  [TransportType.IntercityTrain]: 'INTERCITYUNDEUROCITYZUEGE',
+  [TransportType.InterRegionalTrain]: 'INTERREGIOUNDSCHNELLZUEGE',
+  [TransportType.RegionalTrain]: 'NAHVERKEHRSONSTIGEZUEGE',
+  [TransportType.Ferry]: 'SCHIFFE',
+  [TransportType.Subway]: 'UBAHN',
+  [TransportType.Tram]: 'STRASSENBAHN',
+};
 
 @Hidden()
 @Route('/hafas/v4')
@@ -20,6 +33,7 @@ export class HafasControllerV4 extends Controller {
       },
     );
 
+    details.zuglaufId = id;
     return details;
   }
 
@@ -30,12 +44,17 @@ export class HafasControllerV4 extends Controller {
       return null;
     }
 
+    const mappedTransportType =
+      transportTypeMap[journey.events[0].transport.type];
+
     const { data: trips } = await axios.post(
       'https://app.vendo.noncd.db.de/mob/angebote/fahrplan',
       {
         klasse: 'KLASSE_2',
         reiseHin: {
           wunsch: {
+            verkehrsmittel: mappedTransportType && [mappedTransportType],
+            maxUmstiege: 0,
             abgangsLocationId: `A=1@L=${journey.events[0].station.evaNumber}`,
             // 'A=1@O=Karlsruhe Hbf@X=8402181@Y=48993512@U=80@L=8000191@B=1@p=1692821240@',
             zeitWunsch: {
