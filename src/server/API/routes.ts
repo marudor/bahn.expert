@@ -9,6 +9,8 @@ import { StopPlaceController } from './controller/StopPlace/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { IrisControllerv2 } from './controller/Iris/v2';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { HafasControllerV4 } from './controller/Hafas/v4';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasControllerV3 } from './controller/Hafas/v3';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasControllerV2 } from './controller/Hafas/v2';
@@ -1859,6 +1861,54 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv2();
 
             const promise = controller.abfahrten.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/hafas/v4/idDetails/:id',
+            ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
+            ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.idDetails)),
+
+            async function HafasControllerV4_idDetails(context: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new HafasControllerV4();
+
+            const promise = controller.idDetails.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/hafas/v4/detailsByJourney/:journeyId',
+            ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
+            ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.details)),
+
+            async function HafasControllerV4_details(context: any, next: any) {
+            const args = {
+                    journeyId: {"in":"path","name":"journeyId","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new HafasControllerV4();
+
+            const promise = controller.details.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
