@@ -1,10 +1,14 @@
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
-import { addUseragent } from '@/external/randomUseragent';
+import {
+  addUseragent,
+  getRandomOfArray,
+  randomBahnhofLiveUseragent,
+} from '@/external/randomUseragent';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { differenceInHours, format } from 'date-fns';
+import { getRisJourneysConfiguration } from '@/external/config';
 import { JourneysApi, TransportType } from '@/external/generated/risJourneys';
 import { logger } from '@/server/logger';
-import { risJourneysConfiguration } from '@/external/config';
 import { upstreamApiCountInterceptor } from '@/server/admin';
 import axios from 'axios';
 import type {
@@ -29,26 +33,33 @@ export const health = {
   has401: false,
 };
 
-const axiosWithTimeout = axios.create({
-  timeout: 6500,
-});
-axiosWithTimeout.interceptors.request.use(
-  addUseragent.bind(
-    undefined,
-    process.env.RIS_JOURNEYS_USER_AGENT
-      ? () => process.env.RIS_JOURNEYS_USER_AGENT!
-      : undefined,
-  ),
-);
-axiosWithTimeout.interceptors.request.use(
-  upstreamApiCountInterceptor.bind(undefined, 'ris-journeys'),
+const keys: [string, string, number, string][] = JSON.parse(
+  process.env.RIS_JOURNEYS_KEYS!,
 );
 
-const risJourneysClient = new JourneysApi(
-  risJourneysConfiguration,
-  undefined,
-  axiosWithTimeout,
-);
+const clients: JourneysApi[] = [];
+
+for (const [clientId, clientSecret, weight, name] of keys) {
+  const axiosInstance = axios.create({
+    timeout: 6500,
+  });
+  if (name === 'live') {
+    axiosInstance.interceptors.request.use(
+      addUseragent.bind(undefined, randomBahnhofLiveUseragent),
+    );
+  }
+  axiosInstance.interceptors.request.use(
+    upstreamApiCountInterceptor.bind(undefined, `ris-journeys-${name}`),
+  );
+  const client = new JourneysApi(
+    getRisJourneysConfiguration(clientId, clientSecret),
+    undefined,
+    axiosInstance,
+  );
+  for (let i = 0; i <= weight; i += 1) {
+    clients.push(client);
+  }
+}
 
 const longDistanceTypes: TransportType[] = [
   TransportType.HighSpeedTrain,
@@ -107,7 +118,7 @@ export async function findJourney(
     if (cacheHit) {
       return cacheHit;
     }
-    const result = await risJourneysClient.find({
+    const result = await getRandomOfArray(clients).find({
       number: trainNumber,
       // Kategorie ist schwierig, wir filtern quasi optional
       // category,
@@ -169,7 +180,7 @@ export async function getJourneyDetails(
         return cached;
       }
     }
-    const r = await risJourneysClient.journeyEventBasedById({
+    const r = await getRandomOfArray(clients).journeyEventBasedById({
       journeyID: journeyId,
       includeJourneyReferences: true,
       includeCanceled: true,

@@ -20,15 +20,19 @@ checkSecrets(
   process.env.RIS_STATIONS_CLIENT_ID,
 );
 
-export const risJourneysConfiguration = new RisJourneysConfiguration({
-  basePath: process.env.RIS_JOURNEYS_URL,
-  baseOptions: {
-    headers: {
-      'DB-Api-Key': process.env.RIS_JOURNEYS_CLIENT_SECRET,
-      'DB-Client-Id': process.env.RIS_JOURNEYS_CLIENT_ID,
+export const getRisJourneysConfiguration = (
+  clientId: string,
+  clientSecret: string,
+): RisJourneysConfiguration =>
+  new RisJourneysConfiguration({
+    basePath: process.env.RIS_JOURNEYS_URL,
+    baseOptions: {
+      headers: {
+        'DB-Api-Key': clientSecret,
+        'DB-Client-Id': clientId,
+      },
     },
-  },
-});
+  });
 
 checkSecrets(
   process.env.RIS_JOURNEYS_URL,

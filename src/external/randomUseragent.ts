@@ -1,16 +1,15 @@
 import type { InternalAxiosRequestConfig } from 'axios';
 
 const possibleBahnhofLiveAppVersions = [
-  '3.20.1',
-  '3.20.2',
   '3.21.0',
   '3.22.0',
   '3.22.1',
+  '3.23.0',
+  '3.23.1',
 ];
 const possibleScales = ['2.00', '3.00'];
 const possibleTypes = ['iPhone', 'iPad'];
 const possibleOSVersions = [
-  '14.8.1',
   '15.5',
   '15.6',
   '15.6.1',
@@ -19,6 +18,9 @@ const possibleOSVersions = [
   '16.5.0',
   '16.5.1',
   '16.6',
+  '17.0',
+  '17.1',
+  '17.1.1',
 ];
 const possibleDBNavigatorVersions = ['23040000'];
 const possibleFullDeviceTypes = [
@@ -28,7 +30,7 @@ const possibleFullDeviceTypes = [
   'iPhone14,2',
 ];
 
-function getRandomOfArray<T>(values: T[]): T {
+export function getRandomOfArray<T>(values: T[]): T {
   const r = Math.round(Math.random() * (values.length - 1));
   return values[r];
 }
