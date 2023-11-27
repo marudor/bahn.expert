@@ -34,7 +34,7 @@ export const health = {
 };
 
 const keys: [string, string, number, string][] = JSON.parse(
-  process.env.RIS_JOURNEYS_KEYS!,
+  process.env.RIS_JOURNEYS_KEYS || '[]',
 );
 
 const clients: JourneysApi[] = [];
