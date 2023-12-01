@@ -216,6 +216,9 @@
   "contributors": [],
   "homepage": "https://bahn.expert",
   "pnpm": {
+    "overrides": {
+      "axios": "^1.6.2"
+    },
     "patchedDependencies": {
       "cypress@13.6.0": "patches/cypress@13.6.0.patch"
     }
