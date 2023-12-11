@@ -1531,31 +1531,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TrainRunStop": {
-        "dataType": "refObject",
-        "properties": {
-            "name": {"dataType":"string","required":true},
-            "evaNumber": {"dataType":"string","required":true},
-            "ril100": {"dataType":"string"},
-            "arrivalTime": {"dataType":"datetime"},
-            "departureTime": {"dataType":"datetime"},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TrainRunWithBR": {
-        "dataType": "refObject",
-        "properties": {
-            "product": {"ref":"CoachSequenceProduct","required":true},
-            "origin": {"ref":"TrainRunStop","required":true},
-            "destination": {"ref":"TrainRunStop","required":true},
-            "via": {"dataType":"array","array":{"dataType":"refObject","ref":"TrainRunStop"},"required":true},
-            "dates": {"dataType":"array","array":{"dataType":"datetime"},"required":true},
-            "br": {"ref":"CoachSequenceBaureihe"},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -2228,35 +2203,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new CoachSequenceControllerV4();
 
             const promise = controller.coachSequence.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/coachSequence/v4/runsPerDate/:date',
-            ...(fetchMiddlewares<Middleware>(CoachSequenceControllerV4)),
-            ...(fetchMiddlewares<Middleware>(CoachSequenceControllerV4.prototype.runsPerDate)),
-
-            async function CoachSequenceControllerV4_runsPerDate(context: any, next: any) {
-            const args = {
-                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    response: {"in":"res","name":"401","required":true,"dataType":"union","subSchemas":[{"dataType":"void"},{"dataType":"string"}]},
-                    date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
-                    baureihen: {"in":"query","name":"baureihen","dataType":"array","array":{"dataType":"refAlias","ref":"AvailableBR"}},
-                    identifier: {"in":"query","name":"identifier","dataType":"array","array":{"dataType":"refAlias","ref":"AvailableIdentifier"}},
-                    stopsAt: {"in":"query","name":"stopsAt","dataType":"array","array":{"dataType":"refAlias","ref":"EvaNumber"}},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new CoachSequenceControllerV4();
-
-            const promise = controller.runsPerDate.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
