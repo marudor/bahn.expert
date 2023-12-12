@@ -219,7 +219,8 @@
       "axios": "^1.6.2"
     },
     "patchedDependencies": {
-      "cypress@13.6.1": "patches/cypress@13.6.1.patch"
+      "cypress@13.6.1": "patches/cypress@13.6.1.patch",
+      "@cypress/webpack-preprocessor@6.0.0": "patches/@cypress__webpack-preprocessor@6.0.0.patch"
     }
   }
 }

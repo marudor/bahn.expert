@@ -8,6 +8,9 @@ overrides:
   axios: ^1.6.2
 
 patchedDependencies:
+  '@cypress/webpack-preprocessor@6.0.0':
+    hash: 32eh2aacotcyb2oq3brjo6c56a
+    path: patches/@cypress__webpack-preprocessor@6.0.0.patch
   cypress@13.6.1:
     hash: cv2r65pzj3ppp6otyb2cnlnlkq
     path: patches/cypress@13.6.1.patch
@@ -164,7 +167,7 @@ devDependencies:
     version: 18.4.3
   '@cypress/webpack-preprocessor':
     specifier: ^6.0.0
-    version: 6.0.0(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(webpack@5.89.0)
+    version: 6.0.0(patch_hash=32eh2aacotcyb2oq3brjo6c56a)(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(webpack@5.89.0)
   '@emotion/jest':
     specifier: ^11.11.0
     version: 11.11.0(@types/jest@29.5.11)
@@ -1803,7 +1806,7 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/webpack-preprocessor@6.0.0(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(webpack@5.89.0):
+  /@cypress/webpack-preprocessor@6.0.0(patch_hash=32eh2aacotcyb2oq3brjo6c56a)(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(babel-loader@9.1.3)(webpack@5.89.0):
     resolution: {integrity: sha512-1AS1Et5CNPJii0+DdBZBS8e0hlM2BkBNmYRdZO4/16A3KS3em1sjPZtFw7jJF00m6DYAdB9iy6QW/lLZ2bN0gg==}
     peerDependencies:
       '@babel/core': ^7.0.1
@@ -1821,6 +1824,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+    patched: true
 
   /@cypress/xvfb@1.2.4(supports-color@8.1.1):
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
