@@ -61,6 +61,8 @@ for (const [clientId, clientSecret, weight, name] of keys) {
   }
 }
 
+const getJourneyClient = () => getRandomOfArray(clients);
+
 const longDistanceTypes: TransportType[] = [
   TransportType.HighSpeedTrain,
   TransportType.IntercityTrain,
@@ -118,7 +120,7 @@ export async function findJourney(
     if (cacheHit) {
       return cacheHit;
     }
-    const result = await getRandomOfArray(clients).find({
+    const result = await getJourneyClient().find({
       number: trainNumber,
       // Kategorie ist schwierig, wir filtern quasi optional
       // category,
@@ -138,7 +140,12 @@ export async function findJourney(
     }
 
     if (isWithin20Hours) {
-      void journeyFindCache.set(cacheKey, result.data.journeys);
+      void journeyFindCache.set(
+        cacheKey,
+        result.data.journeys,
+        // empty resultsets are cached for one Hour. Sometimes journeys are found later
+        result.data.journeys.length === 0 ? 'PT1H' : undefined,
+      );
     }
 
     for (const j of result.data.journeys) {
@@ -180,7 +187,7 @@ export async function getJourneyDetails(
         return cached;
       }
     }
-    const r = await getRandomOfArray(clients).journeyEventBasedById({
+    const r = await getJourneyClient().journeyEventBasedById({
       journeyID: journeyId,
       includeJourneyReferences: true,
       includeCanceled: true,

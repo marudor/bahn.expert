@@ -94,7 +94,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
   [CacheDatabase.StopPlaceByRil]: 'PT24H',
   [CacheDatabase.StopPlaceGroups]: 'PT24H',
   [CacheDatabase.StopPlaceSalesSearch]: 'PT24H',
-  [CacheDatabase.JourneyFind]: 'PT36H',
+  [CacheDatabase.JourneyFind]: 'PT12H',
   [CacheDatabase.HAFASJourneyMatch]: 'PT6H',
   [CacheDatabase.NegativeNewSequence]: 'PT6H',
   [CacheDatabase.SBBStopPlaces]: 'P1D',
@@ -182,15 +182,18 @@ export class Cache<V> {
       logger.error(e, 'Redis get failed');
     }
   }
-  async set(key: string, value: V): Promise<void> {
+  async set(
+    key: string,
+    value: V,
+    rawTTL: number | string = this.ttl,
+  ): Promise<void> {
     this.memorySet(key, value);
+    const ttl =
+      typeof rawTTL === 'number'
+        ? rawTTL
+        : Temporal.Duration.from(rawTTL).total('second');
     try {
-      await this.redisCache?.set(
-        key,
-        this.redisSerialize(value),
-        'EX',
-        this.ttl,
-      );
+      await this.redisCache?.set(key, this.redisSerialize(value), 'EX', ttl);
     } catch (e) {
       logger.error(e, 'Redis set failed');
     }
