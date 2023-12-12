@@ -1,4 +1,3 @@
-/* eslint-disable babel/no-invalid-this */
 import { logger } from '@/server/logger';
 import { v4 } from 'uuid';
 import Axios from 'axios';
