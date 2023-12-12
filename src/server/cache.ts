@@ -24,9 +24,7 @@ export function parseCacheTTL(
 }
 
 function dateSerialize(this: any, key: string, value: any): any {
-  // eslint-disable-next-line babel/no-invalid-this
   if (this[key] instanceof Date) {
-    // eslint-disable-next-line babel/no-invalid-this
     return `DATE${this[key].toISOString()}`;
   }
   return value;

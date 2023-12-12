@@ -1,0 +1,33 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index adf4216bd4fc0de14f12a95695778f233b71b4f8..4ca47ecef0fbe4c2c25c45f1dfaf167f379f58fe 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,5 +1,4 @@
+ /// <reference types="node" />
+-import Bluebird from 'bluebird';
+ import * as events from 'events';
+ import webpack from 'webpack';
+ declare type FilePath = string;
+@@ -21,7 +20,7 @@ interface FileEvent extends events.EventEmitter {
+  * Cypress asks file preprocessor to bundle the given file
+  * and return the full path to produced bundle.
+  */
+-declare type FilePreprocessor = (file: FileEvent) => Bluebird<FilePath>;
++declare type FilePreprocessor = (file: FileEvent) => Promise<FilePath>;
+ declare type WebpackPreprocessorFn = (options: PreprocessorOptions) => FilePreprocessor;
+ /**
+  * Cypress file preprocessor that can bundle specs
+diff --git a/dist/lib/utils.d.ts b/dist/lib/utils.d.ts
+index f3fcfcbaf51199c9af5ac6db84410427c0aa03d1..1511e71f9de1869cee66deb19636eb75ac37434e 100644
+--- a/dist/lib/utils.d.ts
++++ b/dist/lib/utils.d.ts
+@@ -1,8 +1,7 @@
+-import Bluebird from 'bluebird';
+ declare function createDeferred<T>(): {
+     resolve: (thenableOrResult?: T | PromiseLike<T> | undefined) => void;
+     reject: any;
+-    promise: Bluebird<T>;
++    promise: Promise<T>;
+ };
+ declare const _default: {
+     createDeferred: typeof createDeferred;
