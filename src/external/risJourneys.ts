@@ -77,6 +77,7 @@ const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
   line: transport.line,
   type: transport.category,
   number: `${transport.number}`,
+  transportType: transport.type,
 });
 
 const mapStationShortToRouteStops = (

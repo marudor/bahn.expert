@@ -244,6 +244,7 @@ export async function journeyDetails(
       }`,
       admin: firstEvent.administration.administrationID,
       line: getLineFromNumber(firstEvent.transport.number.toString()),
+      transportType: firstEvent.transport.type,
       operator: {
         name: operatorNames,
       },

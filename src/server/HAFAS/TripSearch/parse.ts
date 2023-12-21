@@ -1,5 +1,6 @@
 import { adjustProductOperator } from '@/server/HAFAS/helper/adjustProductOperator';
 import { differenceInMilliseconds, parse } from 'date-fns';
+import { TransportType } from '@/external/types';
 import mergeSegments from '@/server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
@@ -191,6 +192,7 @@ export class Journey {
           train: {
             name: 'Fußweg',
             type: 'Fußweg',
+            transportType: TransportType.Walk,
           },
           arrival: parseCommonArrival(t.arr, this.date, this.common),
           departure: parseCommonDeparture(t.dep, this.date, this.common),
