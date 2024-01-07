@@ -808,9 +808,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Record_string.RouteAuslastung-or-null_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"additionalProperties":{"ref":"RouteAuslastung"},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TrainOccupancyList": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"additionalProperties":{"dataType":"union","subSchemas":[{"ref":"RouteAuslastung"},{"dataType":"enum","enums":[null]}]},"validators":{}},
+        "type": {"ref":"Record_string.RouteAuslastung-or-null_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "StopInfo": {
@@ -906,9 +911,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Wings": {
+    "Record_string.Abfahrt_": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"additionalProperties":{"ref":"Abfahrt"},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Wings": {
+        "dataType": "refAlias",
+        "type": {"ref":"Record_string.Abfahrt_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "AbfahrtenResult": {
@@ -1077,7 +1087,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Record_EvaNumber.RouteAuslastung_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{},"additionalProperties":{"ref":"RouteAuslastung"},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "AdditionalJourneyInformation": {
@@ -1558,8 +1568,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new JourneysV1Controller();
@@ -1588,8 +1599,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new JourneysV1Controller();
@@ -1618,8 +1630,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new JourneysV1Controller();
@@ -1644,8 +1657,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new JourneysV1Controller();
@@ -1675,8 +1689,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new JourneysV1Controller();
@@ -1700,8 +1715,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new StopPlaceController();
@@ -1727,8 +1743,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new StopPlaceController();
@@ -1752,8 +1769,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new StopPlaceController();
@@ -1778,8 +1796,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new StopPlaceController();
@@ -1803,8 +1822,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new StopPlaceController();
@@ -1831,8 +1851,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new IrisControllerv2();
@@ -1855,8 +1876,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV4();
@@ -1879,8 +1901,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV4();
@@ -1905,8 +1928,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -1933,8 +1957,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -1962,8 +1987,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -1987,8 +2013,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -2012,8 +2039,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -2037,8 +2065,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -2062,8 +2091,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -2087,8 +2117,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV3();
@@ -2116,8 +2147,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasControllerV2();
@@ -2141,8 +2173,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasController();
@@ -2166,8 +2199,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new HafasController();
@@ -2198,8 +2232,9 @@ export function RegisterRoutes(router: KoaRouter) {
               validatedArgs = getValidatedArgs(args, context, next);
             } catch (err) {
               const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
               context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+              context.throw(context.status, error.message, error);
             }
 
             const controller = new CoachSequenceControllerV4();

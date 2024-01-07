@@ -2153,17 +2153,16 @@
         "type": "object",
         "additionalProperties": true
       },
-      "TrainOccupancyList": {
+      "Record_string.RouteAuslastung-or-null_": {
         "properties": {},
         "additionalProperties": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/RouteAuslastung"
-            }
-          ],
-          "nullable": true
+          "$ref": "#/components/schemas/RouteAuslastung"
         },
-        "type": "object"
+        "type": "object",
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "TrainOccupancyList": {
+        "$ref": "#/components/schemas/Record_string.RouteAuslastung-or-null_"
       },
       "StopInfo": {
         "properties": {
@@ -2428,12 +2427,16 @@
         "type": "object",
         "additionalProperties": true
       },
-      "Wings": {
+      "Record_string.Abfahrt_": {
         "properties": {},
         "additionalProperties": {
           "$ref": "#/components/schemas/Abfahrt"
         },
         "type": "object",
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "Wings": {
+        "$ref": "#/components/schemas/Record_string.Abfahrt_",
         "description": "Map of \"mediumId\" to Abfahrt."
       },
       "AbfahrtenResult": {
@@ -2910,6 +2913,9 @@
       },
       "Record_EvaNumber.RouteAuslastung_": {
         "properties": {},
+        "additionalProperties": {
+          "$ref": "#/components/schemas/RouteAuslastung"
+        },
         "type": "object",
         "description": "Construct a type with a set of properties K of type T"
       },
