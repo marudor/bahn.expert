@@ -41,7 +41,9 @@ import {
   BaseAPI,
   RequiredError,
 } from './base';
+import { TransportType } from '@/external/generated/risStations/api';
 
+export { TransportType };
 /**
  * Information on the operator [Betreiber] and the administration [Verwaltung] of the journey.
  * @export
@@ -1444,28 +1446,6 @@ export interface TransportPublicOrigin {
  * @export
  * @enum {string}
  */
-
-export const TransportType = {
-  HighSpeedTrain: 'HIGH_SPEED_TRAIN',
-  IntercityTrain: 'INTERCITY_TRAIN',
-  InterRegionalTrain: 'INTER_REGIONAL_TRAIN',
-  RegionalTrain: 'REGIONAL_TRAIN',
-  CityTrain: 'CITY_TRAIN',
-  Subway: 'SUBWAY',
-  Tram: 'TRAM',
-  Bus: 'BUS',
-  Ferry: 'FERRY',
-  Flight: 'FLIGHT',
-  Car: 'CAR',
-  Taxi: 'TAXI',
-  Shuttle: 'SHUTTLE',
-  Bike: 'BIKE',
-  Scooter: 'SCOOTER',
-  Walk: 'WALK',
-  Unknown: 'UNKNOWN',
-} as const;
-
-export type TransportType = (typeof TransportType)[keyof typeof TransportType];
 
 /**
  * JourneysApi - axios parameter creator

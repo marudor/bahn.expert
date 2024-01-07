@@ -30,7 +30,6 @@ const defaultEmotionCache = createEmotionCache({
 
 export const ThemeWrap = ({
   children = <App />,
-  // generateClassName,
   emotionCache = defaultEmotionCache,
 }: Props): ReactElement => {
   const { theme } = useTheme();
