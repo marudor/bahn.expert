@@ -4,6 +4,7 @@ import {
   Info,
   Search,
   Settings,
+  Train,
 } from '@mui/icons-material';
 import {
   Drawer,
@@ -99,6 +100,14 @@ export const Navigation: FC<Props> = ({ children }) => {
                 </ListItemButton>
               )}
             </Zugsuche>
+            <Link to="/trainRuns">
+              <ListItemButton>
+                <ListItemIcon>
+                  <Train />
+                </ListItemIcon>
+                <ListItemText primary="Zugläufe" />
+              </ListItemButton>
+            </Link>
             <ListItemButton data-testid="openSettings" onClick={openSettingsCb}>
               <ListItemIcon>
                 <Settings />
