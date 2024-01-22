@@ -168,6 +168,24 @@
         "type": "object",
         "additionalProperties": true
       },
+      "HafasCoordinates": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_": {
         "properties": {
           "name": {
@@ -187,8 +205,34 @@
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
-      "MinimalStopPlace": {
-        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_"
+      "HafasStation": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaNumber": {
+            "type": "string"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedProduct"
+            },
+            "type": "array"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/HafasCoordinates"
+          }
+        },
+        "required": [
+          "name",
+          "evaNumber",
+          "coordinates"
+        ],
+        "type": "object",
+        "additionalProperties": true
       },
       "AuslastungsValue": {
         "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
@@ -438,7 +482,7 @@
             "$ref": "#/components/schemas/CommonStopInfo"
           },
           "station": {
-            "$ref": "#/components/schemas/MinimalStopPlace"
+            "$ref": "#/components/schemas/HafasStation"
           },
           "auslastung": {
             "$ref": "#/components/schemas/RouteAuslastung"
@@ -1067,53 +1111,6 @@
           "journeyID",
           "originSchedule",
           "type"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "HafasCoordinates": {
-        "properties": {
-          "lat": {
-            "type": "number",
-            "format": "double"
-          },
-          "lng": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "lat",
-          "lng"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "HafasStation": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "evaNumber": {
-            "type": "string"
-          },
-          "ril100": {
-            "type": "string"
-          },
-          "products": {
-            "items": {
-              "$ref": "#/components/schemas/ParsedProduct"
-            },
-            "type": "array"
-          },
-          "coordinates": {
-            "$ref": "#/components/schemas/HafasCoordinates"
-          }
-        },
-        "required": [
-          "name",
-          "evaNumber",
-          "coordinates"
         ],
         "type": "object",
         "additionalProperties": true
@@ -1855,6 +1852,9 @@
             "$ref": "#/components/schemas/SecLKISS"
           }
         ]
+      },
+      "MinimalStopPlace": {
+        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_"
       },
       "RouteTarifFare": {
         "properties": {

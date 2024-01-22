@@ -88,14 +88,30 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "HafasCoordinates": {
+        "dataType": "refObject",
+        "properties": {
+            "lat": {"dataType":"double","required":true},
+            "lng": {"dataType":"double","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string","required":true},"evaNumber":{"dataType":"string","required":true},"ril100":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "MinimalStopPlace": {
-        "dataType": "refAlias",
-        "type": {"ref":"Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_","validators":{}},
+    "HafasStation": {
+        "dataType": "refObject",
+        "properties": {
+            "name": {"dataType":"string","required":true},
+            "evaNumber": {"dataType":"string","required":true},
+            "ril100": {"dataType":"string"},
+            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
+            "coordinates": {"ref":"HafasCoordinates","required":true},
+        },
+        "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "AuslastungsValue": {
@@ -209,7 +225,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "arrival": {"ref":"CommonStopInfo"},
             "departure": {"ref":"CommonStopInfo"},
-            "station": {"ref":"MinimalStopPlace","required":true},
+            "station": {"ref":"HafasStation","required":true},
             "auslastung": {"ref":"RouteAuslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "additional": {"dataType":"boolean"},
@@ -415,27 +431,6 @@ const models: TsoaRoute.Models = {
             "journeyID": {"dataType":"string","required":true},
             "originSchedule": {"ref":"StopPlaceEmbedded","required":true},
             "type": {"ref":"JourneyType","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasCoordinates": {
-        "dataType": "refObject",
-        "properties": {
-            "lat": {"dataType":"double","required":true},
-            "lng": {"dataType":"double","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasStation": {
-        "dataType": "refObject",
-        "properties": {
-            "name": {"dataType":"string","required":true},
-            "evaNumber": {"dataType":"string","required":true},
-            "ril100": {"dataType":"string"},
-            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
-            "coordinates": {"ref":"HafasCoordinates","required":true},
         },
         "additionalProperties": true,
     },
@@ -697,6 +692,11 @@ const models: TsoaRoute.Models = {
     "SecL": {
         "dataType": "refAlias",
         "type": {"dataType":"union","subSchemas":[{"ref":"SecLJNY"},{"ref":"SecLWALK"},{"ref":"SecLKISS"}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "MinimalStopPlace": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "RouteTarifFare": {

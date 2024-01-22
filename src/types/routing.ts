@@ -13,7 +13,7 @@ import type { TransportPublicDestinationPortionWorking } from '@/external/genera
 export interface RouteStop {
   arrival?: CommonStopInfo;
   departure?: CommonStopInfo;
-  station: MinimalStopPlace;
+  station: HafasStation;
   auslastung?: RouteAuslastung;
   messages?: RemL[];
   additional?: boolean;
