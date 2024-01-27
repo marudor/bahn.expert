@@ -168,7 +168,7 @@
         "type": "object",
         "additionalProperties": true
       },
-      "Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_": {
+      "MinimalStopPlace": {
         "properties": {
           "name": {
             "type": "string"
@@ -185,10 +185,7 @@
           "evaNumber"
         ],
         "type": "object",
-        "description": "From T, pick a set of properties whose keys are in the union K"
-      },
-      "MinimalStopPlace": {
-        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber-or-ril100_"
+        "additionalProperties": true
       },
       "AuslastungsValue": {
         "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
