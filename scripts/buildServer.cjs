@@ -19,7 +19,7 @@ async function build() {
         `env.targets.node=${process.versions.node}`,
         folder,
         '--out-dir',
-        srcFolder,
+        '.',
       ],
       {
         env: {
