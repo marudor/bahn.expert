@@ -11,13 +11,13 @@
       "cypress",
       "@testing-library/cypress",
       "../cypress/support/index",
-      "@percy/cypress"
-    ]
+      "@percy/cypress",
+    ],
   },
   "include": [
     "**/*.ts",
     "support/index.ts",
     ".eslintrc.cjs",
-    "plugins/index.js"
-  ]
+    "plugins/index.js",
+  ],
 }
