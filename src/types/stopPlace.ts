@@ -23,10 +23,8 @@ export interface GroupedStopPlace {
   uic?: string;
 }
 
-export type MinimalStopPlace = Pick<
-  GroupedStopPlace,
-  'name' | 'evaNumber' | 'ril100'
->;
+export interface MinimalStopPlace
+  extends Pick<GroupedStopPlace, 'name' | 'evaNumber' | 'ril100'> {}
 
 export interface TrainOccupancy<out T> {
   train: TrainOccupancyList<T>;
