@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import nock from 'nock';
+import { FC, PropsWithChildren } from 'react';
 
 declare global {
   declare namespace globalThis {
@@ -28,4 +29,5 @@ declare global {
     ): Exclude<S, Falsy>[];
   }
   type E<T extends const> = T[keyof T];
+  type FCC<Props> = FC<PropsWithChildren<Props>>;
 }
