@@ -84,6 +84,7 @@ export interface Abfahrt {
   scheduledDestination: string;
   scheduledPlatform: string;
   substitute?: boolean;
+  substituted?: boolean;
   train: TrainInfo;
   /**
    * Sofern Durchbindung passiert ist steht hier der vorherige Transport drin. Is fachlich ultra hacky.
@@ -132,11 +133,8 @@ export interface StopInfo extends CommonStopInfo {
   transition?: string;
 }
 
-export interface SubstituteRef {
-  trainNumber: string;
-  trainType: string;
-  train: string;
-}
+export interface SubstituteRef
+  extends Pick<TrainInfo, 'number' | 'type' | 'name'> {}
 
 export interface Stop {
   additional?: boolean;

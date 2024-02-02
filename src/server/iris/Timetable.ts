@@ -44,6 +44,7 @@ import type {
   IrisMessage,
   Messages,
   Stop,
+  SubstituteRef,
 } from '@/types/iris';
 import type { Element } from 'libxmljs2';
 
@@ -144,7 +145,13 @@ export function parseRealtimeAr(
   };
 }
 
-function parseTl(tl: xmljs.Element) {
+function parseTl(tl: xmljs.Element): {
+  productClass?: string;
+  o?: string;
+  t?: string;
+  number: string;
+  category: string;
+} {
   return {
     // D = Irregular, like third party
     // N = Nahverkehr
@@ -153,8 +160,8 @@ function parseTl(tl: xmljs.Element) {
     productClass: getAttr(tl, 'f'),
     o: getAttr(tl, 'o'),
     t: getAttr(tl, 't'),
-    trainNumber: getAttr(tl, 'n') || '',
-    trainCategory: getAttr(tl, 'c') || '',
+    number: getAttr(tl, 'n') || '',
+    category: getAttr(tl, 'c') || '',
   };
 }
 
@@ -206,73 +213,88 @@ export class Timetable {
     this.currentStopPlaceName = normalizeRouteName(currentStopPlaceName);
     this.sloppy = options.sloppy;
   }
-  async computeExtra(timetable: any) {
-    delete timetable.rawRoute;
+  async computeExtra(abfahrt: any) {
+    delete abfahrt.rawRoute;
     if (this.sloppy) {
       return;
     }
 
-    timetable.cancelled =
-      (timetable.arrival?.cancelled &&
-        (!timetable.departure ||
-          timetable.departure.cancelled ||
-          !timetable.departure.scheduledTime)) ||
-      (timetable.departure?.cancelled && !timetable.arrival?.scheduledTime);
+    abfahrt.cancelled =
+      (abfahrt.arrival?.cancelled &&
+        (!abfahrt.departure ||
+          abfahrt.departure.cancelled ||
+          !abfahrt.departure.scheduledTime)) ||
+      (abfahrt.departure?.cancelled && !abfahrt.arrival?.scheduledTime);
 
-    timetable.messages.him = timetable.messages.him.filter((m: any) => m.text);
+    abfahrt.messages.him = abfahrt.messages.him.filter((m: any) => m.text);
 
     const currentRoutePart = {
-      name: timetable.currentStopPlace.name,
-      cancelled: timetable.cancelled,
-      additional: timetable.additional,
+      name: abfahrt.currentStopPlace.name,
+      cancelled: abfahrt.cancelled,
+      additional: abfahrt.additional,
     };
 
-    timetable.route = [
-      ...timetable.routePre,
+    abfahrt.route = [
+      ...abfahrt.routePre,
       currentRoutePart,
-      ...timetable.routePost,
+      ...abfahrt.routePost,
     ];
 
     await Promise.all(
-      timetable.route.map(async (routeStop: Stop) => {
+      abfahrt.route.map(async (routeStop: Stop) => {
         routeStop.name = await resolveUnknownStopPlace(routeStop.name);
       }),
     );
-    timetable.scheduledDestination = await resolveUnknownStopPlace(
-      timetable.scheduledDestination,
+    abfahrt.scheduledDestination = await resolveUnknownStopPlace(
+      abfahrt.scheduledDestination,
     );
 
-    const nonCancelled = timetable.route.filter((r: any) => !r.cancelled);
+    const nonCancelled = abfahrt.route.filter((r: any) => !r.cancelled);
     const last = nonCancelled.length ? nonCancelled.at(-1) : undefined;
 
-    timetable.destination = last?.name || timetable.scheduledDestination;
-    calculateVia(timetable.routePost);
+    abfahrt.destination = last?.name || abfahrt.scheduledDestination;
+    calculateVia(abfahrt.routePost);
 
-    if (timetable.departure) {
-      timetable.platform = timetable.departure.platform;
-      timetable.scheduledPlatform = timetable.departure.scheduledPlatform;
-    } else if (timetable.arrival) {
-      timetable.platform = timetable.arrival.platform;
-      timetable.scheduledPlatform = timetable.arrival.scheduledPlatform;
+    if (abfahrt.departure) {
+      abfahrt.platform = abfahrt.departure.platform;
+      abfahrt.scheduledPlatform = abfahrt.departure.scheduledPlatform;
+    } else if (abfahrt.arrival) {
+      abfahrt.platform = abfahrt.arrival.platform;
+      abfahrt.scheduledPlatform = abfahrt.arrival.scheduledPlatform;
     }
 
-    delete timetable.routePre;
-    delete timetable.routePost;
-    if (timetable.arrival) {
-      delete timetable.arrival.additional;
+    delete abfahrt.routePre;
+    delete abfahrt.routePost;
+    if (abfahrt.arrival) {
+      delete abfahrt.arrival.additional;
     }
-    if (timetable.departure) {
-      delete timetable.departure.additional;
+    if (abfahrt.departure) {
+      delete abfahrt.departure.additional;
     }
 
     try {
-      const firstStop = timetable.route[0];
+      const firstStop = abfahrt.route[0];
       const stopOfFirst = await getSingleStation(
         deNormalizeRouteName(firstStop.name),
       );
-      timetable.initialStopPlace = stopOfFirst.eva;
+      abfahrt.initialStopPlace = stopOfFirst.eva;
     } catch {
       // failed to fetch initialStopPlace we ignore that in that case
+    }
+
+    if (abfahrt.substitute && abfahrt.ref) {
+      const substitute = Object.values(this.timetable).find(
+        (a) => a.train.number === abfahrt.ref.number,
+      );
+
+      if (substitute) {
+        substitute.substituted = true;
+        substitute.ref = {
+          number: abfahrt.train.number,
+          type: abfahrt.train.type,
+          name: abfahrt.train.name,
+        };
+      }
     }
   }
   async start(): Promise<AbfahrtenResult> {
@@ -373,14 +395,14 @@ export class Timetable {
     }
     // TODO: Scheiß Ringbahn
   }
-  parseRef(tl: xmljs.Element) {
-    const { trainCategory, trainNumber } = parseTl(tl);
-    const train = `${trainCategory} ${trainNumber}`;
+  parseRef(tl: xmljs.Element): SubstituteRef {
+    const { category, number } = parseTl(tl);
+    const name = `${category} ${number}`;
 
     return {
-      trainType: trainCategory,
-      trainNumber,
-      train,
+      type: category,
+      number,
+      name,
     };
   }
   async parseHafasMessage(
@@ -719,12 +741,10 @@ export class Timetable {
 
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
-    const { trainNumber, trainCategory, t, o, productClass } = parseTl(tl);
+    const { number, category, t, o, productClass } = parseTl(tl);
     const timetableLineNumber = getAttr(dp || ar, 'l');
-    const customLineNumber = getLineFromNumber(trainNumber);
-    const fullTrainText = `${trainCategory} ${
-      timetableLineNumber || trainNumber
-    }`;
+    const customLineNumber = getLineFromNumber(number);
+    const fullTrainText = `${category} ${timetableLineNumber || number}`;
 
     function getNormalizedRoute(node: null | xmljs.Element) {
       const rawRoute = getAttr(node, 'ppth');
@@ -768,12 +788,12 @@ export class Timetable {
       rawRoute: [...routePre, this.currentStopPlaceName, ...routePost],
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
-      substitute: t === 'e',
+      substitute: t === 'e' || undefined,
       train: {
         name: fullTrainText,
-        number: trainNumber,
+        number: number,
         line: timetableLineNumber || customLineNumber,
-        type: trainCategory,
+        type: category,
         admin: o,
       },
       additional: undefined as undefined | boolean,

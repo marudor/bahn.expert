@@ -2257,20 +2257,21 @@
       },
       "SubstituteRef": {
         "properties": {
-          "trainNumber": {
+          "number": {
             "type": "string"
           },
-          "trainType": {
+          "name": {
             "type": "string"
           },
-          "train": {
-            "type": "string"
+          "type": {
+            "type": "string",
+            "description": "This is actually category"
           }
         },
         "required": [
-          "trainNumber",
-          "trainType",
-          "train"
+          "number",
+          "name",
+          "type"
         ],
         "type": "object",
         "additionalProperties": true
@@ -2395,6 +2396,9 @@
             "type": "string"
           },
           "substitute": {
+            "type": "boolean"
+          },
+          "substituted": {
             "type": "boolean"
           },
           "train": {
@@ -4387,14 +4391,6 @@
             "schema": {
               "format": "date-time",
               "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "allowBoards",
-            "required": false,
-            "schema": {
-              "type": "boolean"
             }
           }
         ]

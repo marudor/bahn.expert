@@ -187,7 +187,7 @@ exports[`parseTimetableS arrivalCancelled.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hagen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "800354",
     "line": "8",
@@ -291,7 +291,7 @@ exports[`parseTimetableS arrivalWing.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hamburg-Altona",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "80",
     "line": undefined,
@@ -381,7 +381,7 @@ exports[`parseTimetableS arrivalWing.xml 2`] = `
     },
   ],
   "scheduledDestination": "Bremen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "80",
     "line": undefined,
@@ -579,7 +579,7 @@ exports[`parseTimetableS cancelled.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hagen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "800354",
     "line": "8",
@@ -777,7 +777,7 @@ exports[`parseTimetableS departureCancelled.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hagen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "800354",
     "line": "8",
@@ -873,7 +873,7 @@ exports[`parseTimetableS departureWing.xml 1`] = `
     },
   ],
   "scheduledDestination": "München Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "80",
     "line": undefined,
@@ -955,7 +955,7 @@ exports[`parseTimetableS departureWing.xml 2`] = `
     },
   ],
   "scheduledDestination": "München Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "80",
     "line": undefined,
@@ -1153,7 +1153,7 @@ exports[`parseTimetableS filteredDueToTime.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hagen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "800354",
     "line": "8",
@@ -1235,7 +1235,7 @@ exports[`parseTimetableS lookbehind.xml 1`] = `
     },
   ],
   "scheduledDestination": "Frankfurt (Main) Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "84",
     "line": undefined,
@@ -1331,7 +1331,7 @@ exports[`parseTimetableS multipleWings.xml 1`] = `
   ],
   "routePre": [],
   "scheduledDestination": "Bayrischzell",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "T8",
     "line": undefined,
@@ -1408,7 +1408,7 @@ exports[`parseTimetableS multipleWings.xml 2`] = `
   ],
   "routePre": [],
   "scheduledDestination": "Tegernsee",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "T8",
     "line": undefined,
@@ -1489,7 +1489,7 @@ exports[`parseTimetableS multipleWings.xml 3`] = `
   ],
   "routePre": [],
   "scheduledDestination": "Lenggries",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "T8",
     "line": undefined,
@@ -1570,7 +1570,7 @@ exports[`parseTimetableS onlyArrival.xml 1`] = `
     },
   ],
   "scheduledDestination": "test",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "AR",
     "line": "RE11",
@@ -1663,7 +1663,7 @@ exports[`parseTimetableS onlyDeparture.xml 1`] = `
   ],
   "routePre": [],
   "scheduledDestination": "Paderborn Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "AR",
     "line": "RE11",
@@ -1861,7 +1861,7 @@ exports[`parseTimetableS simple1.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hagen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "800354",
     "line": "8",
@@ -1943,7 +1943,7 @@ exports[`parseTimetableS simple2.xml 1`] = `
     },
   ],
   "scheduledDestination": "Frankfurt (Main) Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "84",
     "line": undefined,
@@ -2141,7 +2141,7 @@ exports[`parseTimetableS visibleDueToDelay.xml 1`] = `
     },
   ],
   "scheduledDestination": "Hagen Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "800354",
     "line": "8",
@@ -2243,7 +2243,7 @@ exports[`parseTimetableS wings.xml 1`] = `
     },
   ],
   "scheduledDestination": "München Hbf",
-  "substitute": false,
+  "substitute": undefined,
   "train": {
     "admin": "80",
     "line": undefined,

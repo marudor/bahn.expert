@@ -851,9 +851,9 @@ const models: TsoaRoute.Models = {
     "SubstituteRef": {
         "dataType": "refObject",
         "properties": {
-            "trainNumber": {"dataType":"string","required":true},
-            "trainType": {"dataType":"string","required":true},
-            "train": {"dataType":"string","required":true},
+            "number": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "type": {"dataType":"string","required":true},
         },
         "additionalProperties": true,
     },
@@ -905,6 +905,7 @@ const models: TsoaRoute.Models = {
             "scheduledDestination": {"dataType":"string","required":true},
             "scheduledPlatform": {"dataType":"string","required":true},
             "substitute": {"dataType":"boolean"},
+            "substituted": {"dataType":"boolean"},
             "train": {"ref":"TrainInfo","required":true},
             "previousTrain": {"ref":"TrainInfo"},
         },
@@ -1873,7 +1874,6 @@ export function RegisterRoutes(router: KoaRouter) {
                     lookahead: {"default":150,"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
                     lookbehind: {"default":0,"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
                     startTime: {"in":"query","name":"startTime","dataType":"datetime"},
-                    allowBoards: {"in":"query","name":"allowBoards","dataType":"boolean"},
             };
 
             let validatedArgs: any[] = [];

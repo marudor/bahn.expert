@@ -11,6 +11,7 @@ interface Props {
   journeyId?: string;
   urlPrefix?: string;
   jid?: string;
+  className?: string;
 }
 export const DetailsLink: FC<PropsWithChildren<Props>> = ({
   train,
@@ -20,12 +21,14 @@ export const DetailsLink: FC<PropsWithChildren<Props>> = ({
   jid,
   urlPrefix = '/',
   children = 'Details',
+  className,
 }) => {
   if (!train.number || !train.type) {
     return null;
   }
   return (
     <Link
+      className={className}
       data-testid="detailsLink"
       onClick={stopPropagation}
       to={`${urlPrefix}details/${train.type} ${
