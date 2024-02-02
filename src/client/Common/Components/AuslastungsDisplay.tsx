@@ -35,7 +35,7 @@ export const AuslastungsDisplay: FC<Props> = ({
   return (
     <Container oneLine={oneLine} data-testid="auslastungDisplay" {...rest}>
       Auslastung
-      <Stack marginLeft=".2em" component="span">
+      <Stack direction="row" marginLeft=".2em" component="span">
         <div data-testid="first">
           1. <SingleAuslastungsDisplay auslastung={auslastung.first} />
         </div>

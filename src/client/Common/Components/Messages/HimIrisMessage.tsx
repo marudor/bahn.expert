@@ -62,7 +62,7 @@ export const HimIrisMessage: FC<Props> = ({
     <Container superseded={message.superseded}>
       <span onClick={toggleOpen}>{text}</span>
       <Dialog open={open} onClose={toggleOpen}>
-        <Stack component={DialogTitle} flexDirection="column">
+        <Stack component={DialogTitle}>
           <span>{dateWithText}</span>
           <SmallSpan>{message.stopPlaceInfo}</SmallSpan>
         </Stack>

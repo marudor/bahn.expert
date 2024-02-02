@@ -191,7 +191,7 @@ export const Stop: FC<Props> = ({
       )}
       <DeparturePlatform {...platforms.departure} />
       {!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
-      <Stack gridArea="tw" paddingLeft={1} direction="column">
+      <Stack gridArea="tw" paddingLeft={1}>
         <TravelsWith
           stopEva={stop.station.evaNumber}
           joinsWith={stop.joinsWith}

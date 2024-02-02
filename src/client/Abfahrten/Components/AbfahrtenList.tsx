@@ -142,7 +142,7 @@ const InnerAbfahrtenList = () => {
   return (
     <Loading check={unfilteredAbfahrten || error}>
       {() => (
-        <Stack component="main" direction="column">
+        <Stack component="main">
           {error ? (
             <Navigate to={urlPrefix} />
           ) : filteredAbfahrten &&

@@ -152,7 +152,7 @@ export const BaseAbfahrt: FC<Props> = ({
         <Entry
           data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
         >
-          <Stack>
+          <Stack direction="row">
             <Start />
             <Mid />
             <End />

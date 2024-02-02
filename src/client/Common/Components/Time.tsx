@@ -18,7 +18,7 @@ const Container = styled(DelayContainer.withComponent(Stack))<{
     fontSize: '0.9em',
   },
   ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
-  ({ multiLine }) => multiLine && { flexDirection: 'column' },
+  ({ multiLine }) => !multiLine && { flexDirection: 'row' },
 );
 
 const TimeContainer = styled.span<{

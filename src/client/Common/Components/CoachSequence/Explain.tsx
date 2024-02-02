@@ -14,6 +14,7 @@ const OpenLink = styled.div(({ theme }) => ({
 }));
 
 const IconWrap = styled(Stack)`
+  flex-direction: row;
   align-items: center;
   min-width: 16em;
   margin-bottom: 0.2em;
@@ -68,7 +69,7 @@ export const Explain: FC = () => {
       >
         <DialogContent>
           <h3>Legende Wagenreihung</h3>
-          <Stack flexWrap="wrap">
+          <Stack flexWrap="wrap" direction="row">
             {Object.keys(iconExplanation).map(
               // @ts-expect-error this is correct, it's exact!
               (iconName: keyof typeof icons) => {
@@ -90,7 +91,7 @@ export const Explain: FC = () => {
             </IconWrap>
           </Stack>
           <h3>Auslastung</h3>
-          <Stack flexWrap="wrap">
+          <Stack flexWrap="wrap" direction="row">
             <IconWrap>
               <SingleAuslastungsDisplay />
               Unbekannte Auslastung

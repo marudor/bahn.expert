@@ -25,6 +25,7 @@ import type { FC } from 'react';
 import type { SelectChangeEvent } from '@mui/material';
 
 const FilterContainer = styled(Stack)`
+  flex-direction: row;
   margin-top: 1em;
   justify-content: space-between;
   & > .MuiFormControl-root {
@@ -35,6 +36,7 @@ const FilterContainer = styled(Stack)`
 `;
 
 const ButtonContainer = styled(Stack)`
+  flex-direction: row;
   > button {
     margin-left: 0.5em;
   }

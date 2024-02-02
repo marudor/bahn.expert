@@ -69,7 +69,7 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
   }, []);
 
   return (
-    <Stack flex="1" direction="column">
+    <Stack flex="1">
       {children}
       <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}

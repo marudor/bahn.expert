@@ -43,7 +43,7 @@ export const About: FC = () => {
   return (
     <>
       <BaseHeader spacing={0.3}>About</BaseHeader>
-      <Stack direction="column" margin="0 10px 0">
+      <Stack margin="0 10px 0">
         <span>
           Entwickelt von{' '}
           <a

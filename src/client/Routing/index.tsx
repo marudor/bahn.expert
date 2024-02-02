@@ -8,7 +8,7 @@ import type { FC } from 'react';
 export const Routing: FC = () => (
   <RoutingConfigProvider>
     <RoutingFavProvider>
-      <Stack direction="column" padding="0 .5em">
+      <Stack padding="0 .5em">
         <Header />
         <RoutingRoutes />
       </Stack>

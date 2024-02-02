@@ -13,7 +13,6 @@ const Substituted = Cancelled.withComponent(Ref);
 
 const Links = styled(Stack)`
   font-size: 0.6em;
-  flex-direction: column;
   align-items: flex-start;
   > a:last-of-type {
     font-size: 1.5em;
@@ -24,13 +23,7 @@ export const Start: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
 
   return (
-    <Stack
-      data-testid="abfahrtStart"
-      flex="1"
-      fontSize="3em"
-      maxWidth="5em"
-      direction="column"
-    >
+    <Stack data-testid="abfahrtStart" flex="1" fontSize="3em" maxWidth="5em">
       <Name withLink={detail && abfahrt.train.number !== '0'} />
       {detail && abfahrt.train.number !== '0' && (
         <Links>

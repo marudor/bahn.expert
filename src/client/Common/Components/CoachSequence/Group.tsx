@@ -134,7 +134,6 @@ export const Group: FC<Props> = ({
       {fahrzeuge}
       {extraInfoLine && (
         <Stack
-          direction="column"
           alignItems="center"
           position="absolute"
           bottom="2.5em"

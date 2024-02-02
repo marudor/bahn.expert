@@ -41,6 +41,7 @@ const setStopPlaceById = async (
 };
 
 const DateTimeContainer = styled(Stack)`
+  flex-direction: row;
   align-items: center;
   & input {
     cursor: pointer;
@@ -155,7 +156,7 @@ export const Search: FC = () => {
   const mappedViaList = useMemo(
     () =>
       via.map((v, index) => (
-        <Stack key={index}>
+        <Stack direction="row" key={index}>
           <StopPlaceSearch
             groupedBySales
             id={`via${index}`}
@@ -191,7 +192,7 @@ export const Search: FC = () => {
           />
         )}
       </div>
-      <Stack>
+      <Stack direction="row">
         <StopPlaceSearch
           groupedBySales
           id="routingDestinationSearch"

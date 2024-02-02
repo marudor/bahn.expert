@@ -14,9 +14,5 @@ interface Props {
 }
 
 export const MainWrap: FC<Props> = ({ noHeader, children }) => {
-  return (
-    <Container direction="column" noHeader={noHeader}>
-      {children}
-    </Container>
-  );
+  return <Container noHeader={noHeader}>{children}</Container>;
 };

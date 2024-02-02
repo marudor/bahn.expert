@@ -10,6 +10,7 @@ const OpenText = styled.span(({ theme }) => ({
 }));
 
 const TextLine = styled(Stack)`
+  flex-direction: row;
   justify-content: space-between;
 `;
 

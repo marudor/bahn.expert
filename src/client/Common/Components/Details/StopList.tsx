@@ -85,7 +85,7 @@ export const StopList: FC = () => {
 
   if (error) {
     return (
-      <Stack direction="column" css={ErrorStyle}>
+      <Stack css={ErrorStyle}>
         <ErrorIcon data-testid="error" /> {getErrorText(error)}
       </Stack>
     );
@@ -96,7 +96,7 @@ export const StopList: FC = () => {
   }
 
   return (
-    <Stack direction="column">
+    <Stack>
       <TravelsWithSummary stops={details.stops} />
       {detailsStops}
     </Stack>

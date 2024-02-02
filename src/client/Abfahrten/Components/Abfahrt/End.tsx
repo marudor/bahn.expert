@@ -10,7 +10,6 @@ export const End: FC = () => {
     <Stack
       data-testid="abfahrtEnd"
       alignItems="flex-end"
-      direction="column"
       justifyContent="space-between"
       marginLeft={1}
       fontSize="2.5em"

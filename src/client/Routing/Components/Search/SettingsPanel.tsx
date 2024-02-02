@@ -135,7 +135,7 @@ export const SettingsPanel: FC = () => {
             icon={<Train />}
           />
         </StyledAccordionSummary>
-        <Stack direction="column" component={AccordionDetails}>
+        <Stack component={AccordionDetails}>
           <FormLabel
             labelPlacement="start"
             control={
