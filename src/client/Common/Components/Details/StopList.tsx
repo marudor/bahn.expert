@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
+import { Stack } from '@mui/material';
 import { Stop } from '@/client/Common/Components/Details/Stop';
 import { TravelsWithSummary } from '@/client/Common/Components/Details/TravelsWithSummary';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -19,11 +20,6 @@ function getErrorText(error: AxiosError) {
   return 'Unbekannter Fehler';
 }
 
-const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-`;
-
 const ErrorStyle = css`
   width: 80%;
   height: 80%;
@@ -31,7 +27,6 @@ const ErrorStyle = css`
   text-align: center;
 `;
 
-const ErrorContainer = styled(Container)(ErrorStyle);
 const ErrorIcon = styled(Error)(ErrorStyle);
 
 export const StopList: FC = () => {
@@ -90,9 +85,9 @@ export const StopList: FC = () => {
 
   if (error) {
     return (
-      <ErrorContainer>
+      <Stack direction="column" css={ErrorStyle}>
         <ErrorIcon data-testid="error" /> {getErrorText(error)}
-      </ErrorContainer>
+      </Stack>
     );
   }
 
@@ -101,9 +96,9 @@ export const StopList: FC = () => {
   }
 
   return (
-    <Container>
+    <Stack direction="column">
       <TravelsWithSummary stops={details.stops} />
       {detailsStops}
-    </Container>
+    </Stack>
   );
 };

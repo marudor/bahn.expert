@@ -4,20 +4,12 @@ import { Coach } from './Coach';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import { journeyNumberFind } from '@/client/Common/service/details';
 import { PrideStripe } from '@/client/Common/Components/CoachSequence/Stripes/PrideStripe';
+import { Stack } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
-import styled from '@emotion/styled';
 import type { CoachSequenceGroup } from '@/types/coachSequence';
 import type { FC } from 'react';
 import type { InheritedProps } from './Coach';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
-
-const Bezeichnung = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 2.5em;
-`;
 
 interface Props extends InheritedProps {
   gruppe: CoachSequenceGroup;
@@ -141,7 +133,13 @@ export const Group: FC<Props> = ({
     <>
       {fahrzeuge}
       {extraInfoLine && (
-        <Bezeichnung style={gruppenPos}>
+        <Stack
+          direction="column"
+          alignItems="center"
+          position="absolute"
+          bottom="2.5em"
+          style={gruppenPos}
+        >
           {gruppe.baureihe && <BRInfo br={gruppe.baureihe} />}
           {showGruppenZugnummer && gruppe.number && (
             <ClickableTrainLink
@@ -157,7 +155,7 @@ export const Group: FC<Props> = ({
               {gruppe.name.replace(RPFRegex, '$1 $2 $3')}
             </span>
           )}
-        </Bezeichnung>
+        </Stack>
       )}
     </>
   );

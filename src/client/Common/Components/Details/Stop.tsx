@@ -3,6 +3,7 @@ import { CoachSequence } from '../CoachSequence/CoachSequence';
 import { DetailMessages } from '../Messages/Detail';
 import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
+import { Stack } from '@mui/material';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
@@ -52,13 +53,6 @@ const CoachSequenceContainer = styled.div`
   grid-area: wr;
   font-size: 0.5em;
   overflow: hidden;
-`;
-
-const TravelsWithContainer = styled.div`
-  grid-area: tw;
-  padding-left: 1em;
-  display: flex;
-  flex-direction: column;
 `;
 
 const MessageContainer = styled.div`
@@ -197,13 +191,13 @@ export const Stop: FC<Props> = ({
       )}
       <DeparturePlatform {...platforms.departure} />
       {!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
-      <TravelsWithContainer>
+      <Stack gridArea="tw" paddingLeft={1} direction="column">
         <TravelsWith
           stopEva={stop.station.evaNumber}
           joinsWith={stop.joinsWith}
           splitsWith={stop.splitsWith}
         />
-      </TravelsWithContainer>
+      </Stack>
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
       <CoachSequenceContainer>
         {showWR?.number && depOrArrival && (

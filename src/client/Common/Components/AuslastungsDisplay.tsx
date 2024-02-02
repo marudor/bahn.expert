@@ -1,4 +1,5 @@
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
+import { Stack } from '@mui/material';
 import styled from '@emotion/styled';
 import type { ComponentProps, FC } from 'react';
 import type { RouteAuslastung } from '@/types/routing';
@@ -18,11 +19,6 @@ const Seperator = styled.span`
   margin: 0 0.25em;
 `;
 
-const EntryContainer = styled.span`
-  display: flex;
-  margin-left: 0.2em;
-`;
-
 export interface Props extends ComponentProps<'div'> {
   auslastung: RouteAuslastung;
   oneLine?: boolean;
@@ -39,7 +35,7 @@ export const AuslastungsDisplay: FC<Props> = ({
   return (
     <Container oneLine={oneLine} data-testid="auslastungDisplay" {...rest}>
       Auslastung
-      <EntryContainer>
+      <Stack marginLeft=".2em" component="span">
         <div data-testid="first">
           1. <SingleAuslastungsDisplay auslastung={auslastung.first} />
         </div>
@@ -47,7 +43,7 @@ export const AuslastungsDisplay: FC<Props> = ({
         <div data-testid="second">
           2. <SingleAuslastungsDisplay auslastung={auslastung.second} />
         </div>
-      </EntryContainer>
+      </Stack>
     </Container>
   );
 };

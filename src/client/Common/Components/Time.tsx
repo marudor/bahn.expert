@@ -1,5 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
+import { Stack } from '@mui/material';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
@@ -9,13 +10,12 @@ const DelayContainer = styled.span<{ early?: boolean; delayed?: boolean }>(
   ({ theme, delayed }) => delayed && theme.mixins.delayed,
 );
 
-const Container = styled(DelayContainer.withComponent('div'))<{
+const Container = styled(DelayContainer.withComponent(Stack))<{
   cancelled?: boolean;
   multiLine?: boolean;
 }>(
   {
     fontSize: '0.9em',
-    display: 'flex',
   },
   ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
   ({ multiLine }) => multiLine && { flexDirection: 'column' },

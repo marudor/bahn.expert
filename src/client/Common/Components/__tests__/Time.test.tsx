@@ -26,12 +26,15 @@ describe('Time', () => {
       `color: ${theme.colors.red}`,
     );
     expect(container).toMatchInlineSnapshot(`
-      .emotion-0 {
-        font-size: 0.9em;
+      .emotion-1 {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-size: 0.9em;
       }
 
       .emotion-2 {
@@ -44,7 +47,7 @@ describe('Time', () => {
       }
 
       <div
-        class="emotion-0 emotion-1"
+        class="MuiStack-root emotion-0 emotion-1"
         data-testid="timeContainer"
       >
         <span
@@ -72,12 +75,15 @@ describe('Time', () => {
       `color: ${theme.colors.green}`,
     );
     expect(container).toMatchInlineSnapshot(`
-      .emotion-0 {
-        font-size: 0.9em;
+      .emotion-1 {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-size: 0.9em;
       }
 
       .emotion-2 {
@@ -90,7 +96,7 @@ describe('Time', () => {
       }
 
       <div
-        class="emotion-0 emotion-1"
+        class="MuiStack-root emotion-0 emotion-1"
         data-testid="timeContainer"
       >
         <span
@@ -118,12 +124,15 @@ describe('Time', () => {
       `color: ${theme.colors.green}`,
     );
     expect(container).toMatchInlineSnapshot(`
-      .emotion-0 {
-        font-size: 0.9em;
+      .emotion-1 {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-size: 0.9em;
       }
 
       .emotion-2 {
@@ -136,7 +145,7 @@ describe('Time', () => {
       }
 
       <div
-        class="emotion-0 emotion-1"
+        class="MuiStack-root emotion-0 emotion-1"
         data-testid="timeContainer"
       >
         <span

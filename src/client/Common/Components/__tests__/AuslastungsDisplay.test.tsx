@@ -38,10 +38,13 @@ describe('AuslastungsDisplay', () => {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        margin-left: 0.2em;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-left: .2em;
       }
 
-      .emotion-4 {
+      .emotion-3 {
         font-size: .7em;
         display: inline-block;
         border-radius: 50%;
@@ -52,7 +55,7 @@ describe('AuslastungsDisplay', () => {
         color: rgba(0, 0, 0, 0.87);
       }
 
-      .emotion-6 {
+      .emotion-5 {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -69,11 +72,11 @@ describe('AuslastungsDisplay', () => {
         font-size: inherit;
       }
 
-      .emotion-7 {
+      .emotion-6 {
         margin: 0 0.25em;
       }
 
-      .emotion-9 {
+      .emotion-8 {
         font-size: .7em;
         display: inline-block;
         border-radius: 50%;
@@ -90,18 +93,18 @@ describe('AuslastungsDisplay', () => {
       >
         Auslastung
         <span
-          class="emotion-2 emotion-3"
+          class="MuiStack-root emotion-2"
         >
           <div
             data-testid="first"
           >
             1. 
             <span
-              class="emotion-4 emotion-5"
+              class="emotion-3 emotion-4"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-6"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-5"
                 data-testid="DoneIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -113,7 +116,7 @@ describe('AuslastungsDisplay', () => {
             </span>
           </div>
           <span
-            class="emotion-7 emotion-8"
+            class="emotion-6 emotion-7"
           >
             |
           </span>
@@ -122,11 +125,11 @@ describe('AuslastungsDisplay', () => {
           >
             2. 
             <span
-              class="emotion-9 emotion-5"
+              class="emotion-8 emotion-4"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-6"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-5"
                 data-testid="WarningIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -169,10 +172,13 @@ describe('AuslastungsDisplay', () => {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        margin-left: 0.2em;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-left: .2em;
       }
 
-      .emotion-4 {
+      .emotion-3 {
         font-size: .7em;
         display: inline-block;
         border-radius: 50%;
@@ -183,7 +189,7 @@ describe('AuslastungsDisplay', () => {
         color: rgba(0, 0, 0, 0.87);
       }
 
-      .emotion-6 {
+      .emotion-5 {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -200,11 +206,11 @@ describe('AuslastungsDisplay', () => {
         font-size: inherit;
       }
 
-      .emotion-7 {
+      .emotion-6 {
         margin: 0 0.25em;
       }
 
-      .emotion-9 {
+      .emotion-8 {
         font-size: .7em;
         display: inline-block;
         border-radius: 50%;
@@ -221,18 +227,18 @@ describe('AuslastungsDisplay', () => {
       >
         Auslastung
         <span
-          class="emotion-2 emotion-3"
+          class="MuiStack-root emotion-2"
         >
           <div
             data-testid="first"
           >
             1. 
             <span
-              class="emotion-4 emotion-5"
+              class="emotion-3 emotion-4"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-6"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-5"
                 data-testid="ErrorOutlineIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -244,7 +250,7 @@ describe('AuslastungsDisplay', () => {
             </span>
           </div>
           <span
-            class="emotion-7 emotion-8"
+            class="emotion-6 emotion-7"
           >
             |
           </span>
@@ -253,11 +259,11 @@ describe('AuslastungsDisplay', () => {
           >
             2. 
             <span
-              class="emotion-9 emotion-5"
+              class="emotion-8 emotion-4"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-6"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-5"
                 data-testid="CloseIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -298,10 +304,13 @@ describe('AuslastungsDisplay', () => {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        margin-left: 0.2em;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-left: .2em;
       }
 
-      .emotion-4 {
+      .emotion-3 {
         font-size: .7em;
         display: inline-block;
         border-radius: 50%;
@@ -310,7 +319,7 @@ describe('AuslastungsDisplay', () => {
         line-height: 0;
       }
 
-      .emotion-6 {
+      .emotion-5 {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -327,11 +336,11 @@ describe('AuslastungsDisplay', () => {
         font-size: inherit;
       }
 
-      .emotion-7 {
+      .emotion-6 {
         margin: 0 0.25em;
       }
 
-      .emotion-9 {
+      .emotion-8 {
         font-size: .7em;
         display: inline-block;
         border-radius: 50%;
@@ -348,18 +357,18 @@ describe('AuslastungsDisplay', () => {
       >
         Auslastung
         <span
-          class="emotion-2 emotion-3"
+          class="MuiStack-root emotion-2"
         >
           <div
             data-testid="first"
           >
             1. 
             <span
-              class="emotion-4 emotion-5"
+              class="emotion-3 emotion-4"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-6"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-5"
                 data-testid="HelpIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -371,7 +380,7 @@ describe('AuslastungsDisplay', () => {
             </span>
           </div>
           <span
-            class="emotion-7 emotion-8"
+            class="emotion-6 emotion-7"
           >
             |
           </span>
@@ -380,11 +389,11 @@ describe('AuslastungsDisplay', () => {
           >
             2. 
             <span
-              class="emotion-9 emotion-5"
+              class="emotion-8 emotion-4"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-6"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit emotion-5"
                 data-testid="WarningIcon"
                 focusable="false"
                 viewBox="0 0 24 24"

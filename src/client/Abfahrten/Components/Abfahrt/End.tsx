@@ -1,28 +1,26 @@
 import { Platform } from '@/client/Common/Components/Platform';
+import { Stack } from '@mui/material';
 import { Times } from './Times';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
-
-const Container = styled.div`
-  font-size: 2.5em;
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 1em;
-`;
 
 export const End: FC = () => {
   const { abfahrt } = useAbfahrt();
   return (
-    <Container data-testid="abfahrtEnd">
+    <Stack
+      data-testid="abfahrtEnd"
+      alignItems="flex-end"
+      direction="column"
+      justifyContent="space-between"
+      marginLeft={1}
+      fontSize="2.5em"
+    >
       <Times />
       <Platform
         real={abfahrt.platform}
         scheduled={abfahrt.scheduledPlatform}
         cancelled={abfahrt.cancelled}
       />
-    </Container>
+    </Stack>
   );
 };

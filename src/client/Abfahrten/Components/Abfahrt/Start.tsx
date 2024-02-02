@@ -1,26 +1,18 @@
 import { Auslastung } from '@/client/Abfahrten/Components/Abfahrt/Auslastung';
 import { Name } from '@/client/Abfahrten/Components/Abfahrt/Name';
 import { Ref } from './Ref';
+import { Stack } from '@mui/material';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Container = styled.div`
-  flex: 1;
-  font-size: 3em;
-  max-width: 5em;
-  display: flex;
-  flex-direction: column;
-`;
-
 const Cancelled = styled.span(({ theme }) => theme.mixins.changed);
 
 const Substituted = Cancelled.withComponent(Ref);
 
-const Links = styled.div`
+const Links = styled(Stack)`
   font-size: 0.6em;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   > a:last-of-type {
@@ -32,7 +24,13 @@ export const Start: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
 
   return (
-    <Container data-testid="abfahrtStart">
+    <Stack
+      data-testid="abfahrtStart"
+      flex="1"
+      fontSize="3em"
+      maxWidth="5em"
+      direction="column"
+    >
       <Name withLink={detail && abfahrt.train.number !== '0'} />
       {detail && abfahrt.train.number !== '0' && (
         <Links>
@@ -54,6 +52,6 @@ export const Start: FC = () => {
         <Substituted reference={abfahrt.ref}>Ersetzt durch</Substituted>
       )}
       {detail && <Auslastung />}
-    </Container>
+    </Stack>
   );
 };

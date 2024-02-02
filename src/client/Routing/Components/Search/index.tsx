@@ -4,6 +4,7 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  Stack,
   TextField,
 } from '@mui/material';
 import { css } from '@emotion/react';
@@ -39,11 +40,7 @@ const setStopPlaceById = async (
   }
 };
 
-const FlexContainer = styled.div`
-  display: flex;
-`;
-
-const DateTimeContainer = styled(FlexContainer)`
+const DateTimeContainer = styled(Stack)`
   align-items: center;
   & input {
     cursor: pointer;
@@ -158,7 +155,7 @@ export const Search: FC = () => {
   const mappedViaList = useMemo(
     () =>
       via.map((v, index) => (
-        <FlexContainer key={index}>
+        <Stack key={index}>
           <StopPlaceSearch
             groupedBySales
             id={`via${index}`}
@@ -169,7 +166,7 @@ export const Search: FC = () => {
             data-testid={`clearVia${index}`}
             onClick={() => updateVia(index)}
           />
-        </FlexContainer>
+        </Stack>
       )),
     [updateVia, via],
   );
@@ -194,7 +191,7 @@ export const Search: FC = () => {
           />
         )}
       </div>
-      <FlexContainer>
+      <Stack>
         <StopPlaceSearch
           groupedBySales
           id="routingDestinationSearch"
@@ -203,7 +200,7 @@ export const Search: FC = () => {
           placeholder="Destination"
         />
         <SwapOriginDest onClick={swapOriginDest} />
-      </FlexContainer>
+      </Stack>
       <DateTimeContainer>
         <StyledRadioGroup value={departureMode} onChange={updateDepartureMode}>
           <FormControlLabel

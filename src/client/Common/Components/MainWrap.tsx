@@ -1,11 +1,8 @@
+import { Stack } from '@mui/material';
 import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 
-const Container = styled.div<{ noHeader?: boolean }>(
-  {
-    display: 'flex',
-    flexDirection: 'column',
-  },
+const Container = styled(Stack)<{ noHeader?: boolean }>(
   ({ noHeader, theme }) =>
     noHeader && {
       marginTop: `-${theme.shape.headerSpacing}`,
@@ -17,5 +14,9 @@ interface Props {
 }
 
 export const MainWrap: FC<Props> = ({ noHeader, children }) => {
-  return <Container noHeader={noHeader}>{children}</Container>;
+  return (
+    <Container direction="column" noHeader={noHeader}>
+      {children}
+    </Container>
+  );
 };

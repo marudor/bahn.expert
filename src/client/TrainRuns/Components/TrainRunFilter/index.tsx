@@ -8,6 +8,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Stack,
   TextField,
 } from '@mui/material';
 import { Disclaimer } from '@/client/TrainRuns/Components/TrainRunFilter/Disclaimer';
@@ -23,9 +24,8 @@ import type {
 import type { FC } from 'react';
 import type { SelectChangeEvent } from '@mui/material';
 
-const FilterContainer = styled.div`
+const FilterContainer = styled(Stack)`
   margin-top: 1em;
-  display: flex;
   justify-content: space-between;
   & > .MuiFormControl-root {
     flex: 1;
@@ -34,8 +34,7 @@ const FilterContainer = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
+const ButtonContainer = styled(Stack)`
   > button {
     margin-left: 0.5em;
   }

@@ -2,6 +2,7 @@ import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { Link } from 'react-router-dom';
 import { MostUsed } from './MostUsed';
 import { Navigate } from 'react-router';
+import { Stack } from '@mui/material';
 import { useAbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useMemo, useState } from 'react';
 import {
@@ -10,17 +11,10 @@ import {
 } from '@/client/Abfahrten/provider/FavProvider';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
-import styled from '@emotion/styled';
 import type { AbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import type { FC, ReactNode } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { StaticRouterContext } from 'react-router';
-
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-`;
 
 function getErrorText(
   error: AbfahrtenError,
@@ -75,7 +69,7 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
   }, []);
 
   return (
-    <Main>
+    <Stack flex="1" direction="column">
       {children}
       <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}
@@ -117,6 +111,6 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
           <MostUsed />
         </>
       )}
-    </Main>
+    </Stack>
   );
 };
