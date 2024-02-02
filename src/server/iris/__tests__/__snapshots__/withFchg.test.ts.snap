@@ -167,7 +167,7 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "800354",
         "line": "8",
@@ -283,7 +283,7 @@ exports[`withFchg arrivalWing.xml 1`] = `
       ],
       "scheduledDestination": "Hamburg-Altona",
       "scheduledPlatform": "8 D-G",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "80",
         "line": undefined,
@@ -374,7 +374,7 @@ exports[`withFchg arrivalWing.xml 1`] = `
       ],
       "scheduledDestination": "Bremen Hbf",
       "scheduledPlatform": "8 A-D",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "80",
         "line": undefined,
@@ -583,7 +583,7 @@ exports[`withFchg cancelled.xml 1`] = `
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "800354",
         "line": "8",
@@ -790,7 +790,7 @@ exports[`withFchg departureCancelled.xml 1`] = `
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "800354",
         "line": "8",
@@ -901,7 +901,7 @@ exports[`withFchg departureWing.xml 1`] = `
       ],
       "scheduledDestination": "München Hbf",
       "scheduledPlatform": "4",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "80",
         "line": undefined,
@@ -995,7 +995,7 @@ exports[`withFchg departureWing.xml 1`] = `
       ],
       "scheduledDestination": "München Hbf",
       "scheduledPlatform": "4",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "80",
         "line": undefined,
@@ -1123,7 +1123,7 @@ exports[`withFchg lookbehind.xml 1`] = `
       ],
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "scheduledPlatform": "16",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "84",
         "line": undefined,
@@ -1262,7 +1262,7 @@ exports[`withFchg multipleWings.xml 1`] = `
       ],
       "scheduledDestination": "Bayrischzell",
       "scheduledPlatform": "34",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "T8",
         "line": undefined,
@@ -1372,7 +1372,7 @@ exports[`withFchg multipleWings.xml 1`] = `
       ],
       "scheduledDestination": "Tegernsee",
       "scheduledPlatform": "34",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "T8",
         "line": undefined,
@@ -1481,7 +1481,7 @@ exports[`withFchg multipleWings.xml 1`] = `
       ],
       "scheduledDestination": "Lenggries",
       "scheduledPlatform": "34",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "T8",
         "line": undefined,
@@ -1569,7 +1569,7 @@ exports[`withFchg onlyArrival.xml 1`] = `
       ],
       "scheduledDestination": "test",
       "scheduledPlatform": "10",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "AR",
         "line": "RE11",
@@ -1674,7 +1674,7 @@ exports[`withFchg onlyDeparture.xml 1`] = `
       ],
       "scheduledDestination": "Paderborn Hbf",
       "scheduledPlatform": "10",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "AR",
         "line": "RE11",
@@ -1856,7 +1856,7 @@ exports[`withFchg simple1.xml 1`] = `
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "800354",
         "line": "8",
@@ -1978,7 +1978,7 @@ exports[`withFchg simple2.xml 1`] = `
       ],
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "scheduledPlatform": "16",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "84",
         "line": undefined,
@@ -2165,7 +2165,7 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "800354",
         "line": "8",
@@ -2281,7 +2281,7 @@ exports[`withFchg wings.xml 1`] = `
       ],
       "scheduledDestination": "München Hbf",
       "scheduledPlatform": "4",
-      "substitute": false,
+      "substitute": undefined,
       "train": {
         "admin": "80",
         "line": undefined,
