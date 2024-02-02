@@ -16,7 +16,7 @@ const getPaletteType = (themeType: E<typeof ThemeType>) => {
 };
 
 // unit: em
-const headerSpacing = 3.3;
+const headerSpacing = 3.5;
 
 const primaryColor = {
   [ThemeType.dark]: blue[700],
