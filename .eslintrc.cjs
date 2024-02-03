@@ -43,6 +43,19 @@ module.exports = {
       },
     },
     {
+      files: [
+        '**/*.cy.tsx',
+        'cypress/fixtures/**/*',
+        'cypress/support/component.tsx',
+      ],
+      rules: {
+        'require-await': 0,
+        'testing-library/await-async-queries': 0,
+        'testing-library/prefer-screen-queries': 0,
+        'testing-library/await-async-utils': 0,
+      },
+    },
+    {
       files: ['**/__tests__/**'],
       globals: { nock: true },
       env: { jest: true },

@@ -161,7 +161,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
                         );
                       })
                     ) : (
-                      <StyledMenuItem>
+                      <StyledMenuItem key="loading">
                         {loading ? 'Loading...' : 'No Matching Trains'}
                       </StyledMenuItem>
                     )}

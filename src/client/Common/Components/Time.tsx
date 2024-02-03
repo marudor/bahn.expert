@@ -10,7 +10,9 @@ const DelayContainer = styled.span<{ early?: boolean; delayed?: boolean }>(
   ({ theme, delayed }) => delayed && theme.mixins.delayed,
 );
 
-const Container = styled(DelayContainer.withComponent(Stack))<{
+const Container = styled(DelayContainer.withComponent(Stack), {
+  shouldForwardProp: (n) => n !== 'cancelled' && n !== 'multiLine',
+})<{
   cancelled?: boolean;
   multiLine?: boolean;
 }>(

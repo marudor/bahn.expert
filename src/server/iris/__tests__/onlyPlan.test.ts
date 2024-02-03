@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint no-sync: 0 */
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import {
   mockFchg,
   mockLageplan,

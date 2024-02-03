@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { minBy } from '@/client/util';
 
 describe('minBy', () => {

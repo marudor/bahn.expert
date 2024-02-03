@@ -4,9 +4,7 @@
   "arrival": {
     "scheduledTime": "2019-07-22T14:39:00.000Z",
     "time": "2019-07-22T14:49:00.000Z",
-    "wingIds": [
-      "3763871362376381297-1907221626"
-    ],
+    "wingIds": ["3763871362376381297-1907221626"],
     "platform": "Fern 7",
     "scheduledPlatform": "Fern 7",
     "hidden": false,

@@ -18,6 +18,8 @@
     "**/*.ts",
     "support/index.ts",
     ".eslintrc.cjs",
-    "plugins/index.js"
-  ]
+    "plugins/index.js",
+    "support/component.tsx"
+  ],
+  "exclude": ["support/component.tsx"]
 }

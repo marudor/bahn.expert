@@ -189,109 +189,10 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "8",
-        "scheduledPlatform": "8",
-        "scheduledTime": 2019-03-17T12:32:00.000Z,
-        "time": 2019-03-17T12:32:00.000Z,
-        "transition": undefined,
-        "wingIds": [
-          "4550748245722881479-1903170818",
-        ],
-      },
-      "cancelled": undefined,
-      "currentStopPlace": {
-        "evaNumber": "test",
-        "name": "test",
-      },
-      "departure": {
-        "hidden": false,
-        "platform": "8 D-G",
-        "scheduledPlatform": "8 D-G",
-        "scheduledTime": 2019-03-17T12:36:00.000Z,
-        "time": 2019-03-17T12:36:00.000Z,
-        "transition": undefined,
-        "wingIds": undefined,
-      },
-      "destination": "Hamburg-Altona",
-      "id": "4771830392602697451",
-      "initialDeparture": 2019-03-17T08:18:00.000Z,
-      "mediumId": "4771830392602697451-1903170818",
-      "messages": {
-        "delay": [],
-        "him": [],
-        "qos": [],
-      },
-      "o": "80",
-      "platform": "8 D-G",
-      "productClass": "F",
-      "rawId": "4771830392602697451-1903170818-10",
-      "route": [
-        {
-          "name": "München Hbf",
-        },
-        {
-          "name": "München-Pasing",
-        },
-        {
-          "name": "Augsburg Hbf",
-        },
-        {
-          "name": "Donauwörth",
-        },
-        {
-          "name": "Nürnberg Hbf",
-        },
-        {
-          "name": "Würzburg Hbf",
-        },
-        {
-          "name": "Fulda",
-        },
-        {
-          "name": "Kassel-Wilhelmshöhe",
-        },
-        {
-          "name": "Göttingen",
-        },
-        {
-          "additional": undefined,
-          "cancelled": undefined,
-          "name": "test",
-        },
-        {
-          "name": "Hamburg-Harburg",
-          "showVia": true,
-        },
-        {
-          "name": "Hamburg Hbf",
-          "showVia": true,
-        },
-        {
-          "name": "Hamburg Dammtor",
-        },
-        {
-          "name": "Hamburg-Altona",
-        },
-      ],
-      "scheduledDestination": "Hamburg-Altona",
-      "scheduledPlatform": "8 D-G",
-      "substitute": undefined,
-      "train": {
-        "admin": "80",
-        "line": undefined,
-        "name": "ICE 1680",
-        "number": "1680",
-        "type": "ICE",
-      },
-    },
-    {
-      "additional": undefined,
-      "arrival": {
-        "hidden": false,
-        "platform": "8",
-        "scheduledPlatform": "8",
-        "scheduledTime": 2019-03-17T12:32:00.000Z,
-        "time": 2019-03-17T12:32:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
@@ -302,53 +203,62 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "8 A-D",
-        "scheduledPlatform": "8 A-D",
-        "scheduledTime": 2019-03-17T12:45:00.000Z,
-        "time": 2019-03-17T12:45:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
-      "destination": "Bremen Hbf",
-      "id": "4550748245722881479",
-      "initialDeparture": 2019-03-17T08:18:00.000Z,
-      "mediumId": "4550748245722881479-1903170818",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "80",
-      "platform": "8 A-D",
-      "productClass": "F",
-      "rawId": "-4550748245722881479-1903170818-10",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "München Hbf",
+          "name": "Mönchengladbach Hbf",
         },
         {
-          "name": "München-Pasing",
+          "name": "Mönchengladbach-Lürrip",
         },
         {
-          "name": "Augsburg Hbf",
+          "name": "Korschenbroich",
         },
         {
-          "name": "Donauwörth",
+          "name": "Kleinenbroich",
         },
         {
-          "name": "Nürnberg Hbf",
+          "name": "Büttgen",
         },
         {
-          "name": "Würzburg Hbf",
+          "name": "Neuss Hbf",
         },
         {
-          "name": "Fulda",
+          "name": "Neuss Am Kaiser",
         },
         {
-          "name": "Kassel-Wilhelmshöhe",
+          "name": "Neuss Rheinparkcenter",
         },
         {
-          "name": "Göttingen",
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
@@ -356,18 +266,93 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
           "name": "test",
         },
         {
-          "name": "Bremen Hbf",
+          "name": "Düsseldorf-Flingern",
+          "showVia": true,
+        },
+        {
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Gevelsberg-Knapp",
+        },
+        {
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "Bremen Hbf",
-      "scheduledPlatform": "8 A-D",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "80",
-        "line": undefined,
-        "name": "ICE 1580",
-        "number": "1580",
-        "type": "ICE",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -750,10 +735,10 @@ exports[`onlyPlan departureWing.xml 1`] = `
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "4 D-G",
-        "scheduledPlatform": "4 D-G",
-        "scheduledTime": 2019-03-17T13:22:00.000Z,
-        "time": 2019-03-17T13:22:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
@@ -764,40 +749,62 @@ exports[`onlyPlan departureWing.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "4",
-        "scheduledPlatform": "4",
-        "scheduledTime": 2019-03-17T13:26:00.000Z,
-        "time": 2019-03-17T13:26:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
-        "wingIds": [
-          "8086827825752200553-1903171315",
-        ],
+        "wingIds": undefined,
       },
-      "destination": "München Hbf",
-      "id": "6523045328284948841",
-      "initialDeparture": 2019-03-17T12:46:00.000Z,
-      "mediumId": "6523045328284948841-1903171246",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "80",
-      "platform": "4",
-      "productClass": "F",
-      "rawId": "6523045328284948841-1903171246-5",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "Hamburg-Altona",
+          "name": "Mönchengladbach Hbf",
         },
         {
-          "name": "Hamburg Dammtor",
+          "name": "Mönchengladbach-Lürrip",
         },
         {
-          "name": "Hamburg Hbf",
+          "name": "Korschenbroich",
         },
         {
-          "name": "Hamburg-Harburg",
+          "name": "Kleinenbroich",
+        },
+        {
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
@@ -805,39 +812,93 @@ exports[`onlyPlan departureWing.xml 1`] = `
           "name": "test",
         },
         {
-          "name": "Göttingen",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "Kassel-Wilhelmshöhe",
+          "name": "Düsseldorf-Gerresheim",
         },
         {
-          "name": "Fulda",
+          "name": "Erkrath",
         },
         {
-          "name": "Würzburg Hbf",
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Nürnberg Hbf",
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
           "showVia": true,
         },
         {
-          "name": "Ingolstadt Hbf",
+          "name": "Gevelsberg-Knapp",
         },
         {
-          "name": "München Hbf",
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "München Hbf",
-      "scheduledPlatform": "4",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "80",
-        "line": undefined,
-        "name": "ICE 1689",
-        "number": "1689",
-        "type": "ICE",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -845,15 +906,21 @@ exports[`onlyPlan departureWing.xml 1`] = `
   "stopPlaces": [
     "test",
   ],
-  "wings": {
-    "8086827825752200553-1903171315": {
+  "wings": {},
+}
+`;
+
+exports[`onlyPlan filteredDueToTime.xml 1`] = `
+{
+  "departures": [
+    {
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "4 A-C",
-        "scheduledPlatform": "4 A-C",
-        "scheduledTime": 2019-03-17T13:14:00.000Z,
-        "time": 2019-03-17T13:14:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
@@ -864,29 +931,62 @@ exports[`onlyPlan departureWing.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "4",
-        "scheduledPlatform": "4",
-        "scheduledTime": 2019-03-17T13:26:00.000Z,
-        "time": 2019-03-17T13:26:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
-      "destination": "München Hbf",
-      "id": "8086827825752200553",
-      "initialDeparture": 2019-03-17T13:15:00.000Z,
-      "mediumId": "8086827825752200553-1903171315",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "80",
-      "platform": "4",
-      "productClass": "F",
-      "rawId": "-8086827825752200553-1903171315-2",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "Bremen Hbf",
+          "name": "Mönchengladbach Hbf",
+        },
+        {
+          "name": "Mönchengladbach-Lürrip",
+        },
+        {
+          "name": "Korschenbroich",
+        },
+        {
+          "name": "Kleinenbroich",
+        },
+        {
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
@@ -894,48 +994,96 @@ exports[`onlyPlan departureWing.xml 1`] = `
           "name": "test",
         },
         {
-          "name": "Göttingen",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "Kassel-Wilhelmshöhe",
+          "name": "Düsseldorf-Gerresheim",
         },
         {
-          "name": "Fulda",
+          "name": "Erkrath",
         },
         {
-          "name": "Würzburg Hbf",
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Nürnberg Hbf",
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
           "showVia": true,
         },
         {
-          "name": "Ingolstadt Hbf",
+          "name": "Gevelsberg-Knapp",
         },
         {
-          "name": "München Hbf",
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "München Hbf",
-      "scheduledPlatform": "4",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "80",
-        "line": undefined,
-        "name": "ICE 1589",
-        "number": "1589",
-        "type": "ICE",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
-  },
-}
-`;
-
-exports[`onlyPlan filteredDueToTime.xml 1`] = `
-{
-  "departures": [],
+  ],
   "lookbehind": [],
   "stopPlaces": [
     "test",
@@ -951,10 +1099,10 @@ exports[`onlyPlan lookbehind.xml 1`] = `
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "16",
-        "scheduledPlatform": "16",
-        "scheduledTime": 2019-03-17T12:49:00.000Z,
-        "time": 2019-03-17T12:49:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
@@ -965,41 +1113,62 @@ exports[`onlyPlan lookbehind.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "16",
-        "scheduledPlatform": "16",
-        "scheduledTime": 2019-03-17T12:51:00.000Z,
-        "time": 2019-03-17T12:51:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
-      "destination": "Frankfurt (Main) Hbf",
-      "id": "1869793107893408377",
-      "initialDeparture": 2019-03-17T10:38:00.000Z,
-      "mediumId": "1869793107893408377-1903171038",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "84",
-      "platform": "16",
-      "productClass": "F",
-      "rawId": "1869793107893408377-1903171038-6",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "Amsterdam Centraal",
+          "name": "Mönchengladbach Hbf",
         },
         {
-          "name": "Utrecht Centraal",
+          "name": "Mönchengladbach-Lürrip",
         },
         {
-          "name": "Arnhem Centraal",
+          "name": "Korschenbroich",
         },
         {
-          "name": "Oberhausen Hbf",
+          "name": "Kleinenbroich",
         },
         {
-          "name": "Duisburg Hbf",
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
@@ -1007,26 +1176,93 @@ exports[`onlyPlan lookbehind.xml 1`] = `
           "name": "test",
         },
         {
-          "name": "Köln Hbf",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "Frankfurt (M)  Flughafen Fernbf",
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Frankfurt (Main) Hbf",
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Gevelsberg-Knapp",
+        },
+        {
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "Frankfurt (Main) Hbf",
-      "scheduledPlatform": "16",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "84",
-        "line": undefined,
-        "name": "ICE 123",
-        "number": "123",
-        "type": "ICE",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -1043,7 +1279,15 @@ exports[`onlyPlan multipleWings.xml 1`] = `
   "departures": [
     {
       "additional": undefined,
-      "arrival": undefined,
+      "arrival": {
+        "hidden": false,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
+        "transition": undefined,
+        "wingIds": undefined,
+      },
       "cancelled": undefined,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1051,87 +1295,156 @@ exports[`onlyPlan multipleWings.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "34",
-        "scheduledPlatform": "34",
-        "scheduledTime": 2019-03-17T12:04:00.000Z,
-        "time": 2019-03-17T12:04:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
-        "wingIds": [
-          "2583448959431566845-1903171304",
-          "7715731422484591852-1903171304",
-        ],
+        "wingIds": undefined,
       },
-      "destination": "Bayrischzell",
-      "id": "4645697665836328305",
-      "initialDeparture": 2019-03-17T13:04:00.000Z,
-      "mediumId": "4645697665836328305-1903171304",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "T8",
-      "platform": "34",
-      "productClass": "D",
-      "rawId": "4645697665836328305-1903171304-1",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
+        {
+          "name": "Mönchengladbach Hbf",
+        },
+        {
+          "name": "Mönchengladbach-Lürrip",
+        },
+        {
+          "name": "Korschenbroich",
+        },
+        {
+          "name": "Kleinenbroich",
+        },
+        {
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
+        },
         {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
         {
-          "name": "München Harras",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "München-Solln",
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Holzkirchen",
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
           "showVia": true,
         },
         {
-          "name": "Darching",
+          "name": "Gevelsberg-Knapp",
         },
         {
-          "name": "Miesbach",
+          "name": "Hagen-Westerbauer",
         },
         {
-          "name": "Agatharied",
+          "name": "Hagen-Heubing",
         },
         {
-          "name": "Hausham",
+          "name": "Hagen-Wehringhausen",
         },
         {
-          "name": "Schliersee",
-        },
-        {
-          "name": "Fischhausen-Neuhaus",
-        },
-        {
-          "name": "Fischbachau",
-        },
-        {
-          "name": "Geitau",
-        },
-        {
-          "name": "Osterhofen (Oberbay)",
-        },
-        {
-          "name": "Bayrischzell",
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "Bayrischzell",
-      "scheduledPlatform": "34",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "T8",
-        "line": undefined,
-        "name": "BOB 86871",
-        "number": "86871",
-        "type": "BOB",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -1139,167 +1452,7 @@ exports[`onlyPlan multipleWings.xml 1`] = `
   "stopPlaces": [
     "test",
   ],
-  "wings": {
-    "2583448959431566845-1903171304": {
-      "additional": undefined,
-      "arrival": undefined,
-      "cancelled": undefined,
-      "currentStopPlace": {
-        "evaNumber": "test",
-        "name": "test",
-      },
-      "departure": {
-        "hidden": false,
-        "platform": "34",
-        "scheduledPlatform": "34",
-        "scheduledTime": 2019-03-17T12:04:00.000Z,
-        "time": 2019-03-17T12:04:00.000Z,
-        "transition": undefined,
-        "wingIds": undefined,
-      },
-      "destination": "Tegernsee",
-      "id": "2583448959431566845",
-      "initialDeparture": 2019-03-17T13:04:00.000Z,
-      "mediumId": "2583448959431566845-1903171304",
-      "messages": {
-        "delay": [],
-        "him": [],
-        "qos": [],
-      },
-      "o": "T8",
-      "platform": "34",
-      "productClass": "D",
-      "rawId": "-2583448959431566845-1903171304-1",
-      "route": [
-        {
-          "additional": undefined,
-          "cancelled": undefined,
-          "name": "test",
-        },
-        {
-          "name": "München Harras",
-          "showVia": true,
-        },
-        {
-          "name": "München-Solln",
-          "showVia": true,
-        },
-        {
-          "name": "Holzkirchen",
-          "showVia": true,
-        },
-        {
-          "name": "Warngau",
-        },
-        {
-          "name": "Schaftlach",
-        },
-        {
-          "name": "Moosrain",
-        },
-        {
-          "name": "Finsterwald",
-        },
-        {
-          "name": "Gmund (Tegernsee)",
-        },
-        {
-          "name": "Tegernsee",
-        },
-      ],
-      "scheduledDestination": "Tegernsee",
-      "scheduledPlatform": "34",
-      "substitute": undefined,
-      "train": {
-        "admin": "T8",
-        "line": undefined,
-        "name": "BOB 86971",
-        "number": "86971",
-        "type": "BOB",
-      },
-    },
-    "7715731422484591852-1903171304": {
-      "additional": undefined,
-      "arrival": undefined,
-      "cancelled": undefined,
-      "currentStopPlace": {
-        "evaNumber": "test",
-        "name": "test",
-      },
-      "departure": {
-        "hidden": false,
-        "platform": "34",
-        "scheduledPlatform": "34",
-        "scheduledTime": 2019-03-17T12:04:00.000Z,
-        "time": 2019-03-17T12:04:00.000Z,
-        "transition": undefined,
-        "wingIds": undefined,
-      },
-      "destination": "Lenggries",
-      "id": "7715731422484591852",
-      "initialDeparture": 2019-03-17T13:04:00.000Z,
-      "mediumId": "7715731422484591852-1903171304",
-      "messages": {
-        "delay": [],
-        "him": [],
-        "qos": [],
-      },
-      "o": "T8",
-      "platform": "34",
-      "productClass": "D",
-      "rawId": "-7715731422484591852-1903171304-1",
-      "route": [
-        {
-          "additional": undefined,
-          "cancelled": undefined,
-          "name": "test",
-        },
-        {
-          "name": "München Harras",
-          "showVia": true,
-        },
-        {
-          "name": "München-Solln",
-          "showVia": true,
-        },
-        {
-          "name": "Holzkirchen",
-          "showVia": true,
-        },
-        {
-          "name": "Warngau",
-        },
-        {
-          "name": "Schaftlach",
-        },
-        {
-          "name": "Reichersbeuern",
-        },
-        {
-          "name": "Bad Tölz",
-        },
-        {
-          "name": "Gaißach",
-        },
-        {
-          "name": "Obergries",
-        },
-        {
-          "name": "Lenggries",
-        },
-      ],
-      "scheduledDestination": "Lenggries",
-      "scheduledPlatform": "34",
-      "substitute": undefined,
-      "train": {
-        "admin": "T8",
-        "line": undefined,
-        "name": "BOB 86921",
-        "number": "86921",
-        "type": "BOB",
-      },
-    },
-  },
+  "wings": {},
 }
 `;
 
@@ -1310,10 +1463,10 @@ exports[`onlyPlan onlyArrival.xml 1`] = `
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "10",
-        "scheduledPlatform": "10",
-        "scheduledTime": 2019-03-17T12:24:00.000Z,
-        "time": 2019-03-17T12:24:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
@@ -1322,66 +1475,158 @@ exports[`onlyPlan onlyArrival.xml 1`] = `
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": undefined,
-      "destination": "test",
-      "id": "425081070176277607",
-      "initialDeparture": 2019-03-17T11:00:00.000Z,
-      "mediumId": "425081070176277607-1903171100",
+      "departure": {
+        "hidden": false,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
+        "transition": undefined,
+        "wingIds": undefined,
+      },
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "AR",
-      "platform": "10",
-      "productClass": "D",
-      "rawId": "425081070176277607-1903171100-11",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "Hamm (Westf)",
+          "name": "Mönchengladbach Hbf",
         },
         {
-          "name": "Kamen",
+          "name": "Mönchengladbach-Lürrip",
         },
         {
-          "name": "Kamen-Methler",
+          "name": "Korschenbroich",
         },
         {
-          "name": "Dortmund Hbf",
+          "name": "Kleinenbroich",
         },
         {
-          "name": "Bochum Hbf",
+          "name": "Büttgen",
         },
         {
-          "name": "Wattenscheid",
+          "name": "Neuss Hbf",
         },
         {
-          "name": "Essen Hbf",
+          "name": "Neuss Am Kaiser",
         },
         {
-          "name": "Mülheim (Ruhr) Hbf",
+          "name": "Neuss Rheinparkcenter",
         },
         {
-          "name": "Duisburg Hbf",
+          "name": "Düsseldorf-Hamm",
         },
         {
-          "name": "Düsseldorf Flughafen",
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
+        {
+          "name": "Düsseldorf-Flingern",
+          "showVia": true,
+        },
+        {
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Gevelsberg-Knapp",
+        },
+        {
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
+        },
       ],
-      "scheduledDestination": "test",
-      "scheduledPlatform": "10",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "AR",
-        "line": "RE11",
-        "name": "ABR RE11",
-        "number": "26712",
-        "type": "ABR",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -1398,7 +1643,15 @@ exports[`onlyPlan onlyDeparture.xml 1`] = `
   "departures": [
     {
       "additional": undefined,
-      "arrival": undefined,
+      "arrival": {
+        "hidden": false,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
+        "transition": undefined,
+        "wingIds": undefined,
+      },
       "cancelled": undefined,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1406,84 +1659,156 @@ exports[`onlyPlan onlyDeparture.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "10",
-        "scheduledPlatform": "10",
-        "scheduledTime": 2019-03-17T12:36:00.000Z,
-        "time": 2019-03-17T12:36:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
-      "destination": "Paderborn Hbf",
-      "id": "1178432179369711067",
-      "initialDeparture": 2019-03-17T12:36:00.000Z,
-      "mediumId": "1178432179369711067-1903171236",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "AR",
-      "platform": "10",
-      "productClass": "D",
-      "rawId": "1178432179369711067-1903171236-1",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
+        {
+          "name": "Mönchengladbach Hbf",
+        },
+        {
+          "name": "Mönchengladbach-Lürrip",
+        },
+        {
+          "name": "Korschenbroich",
+        },
+        {
+          "name": "Kleinenbroich",
+        },
+        {
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
+        },
         {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
         {
-          "name": "Düsseldorf Flughafen",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "Duisburg Hbf",
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Mülheim (Ruhr) Hbf",
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
           "showVia": true,
         },
         {
-          "name": "Essen Hbf",
+          "name": "Gevelsberg-Knapp",
         },
         {
-          "name": "Wattenscheid",
+          "name": "Hagen-Westerbauer",
         },
         {
-          "name": "Bochum Hbf",
+          "name": "Hagen-Heubing",
         },
         {
-          "name": "Dortmund Hbf",
+          "name": "Hagen-Wehringhausen",
         },
         {
-          "name": "Kamen-Methler",
-        },
-        {
-          "name": "Kamen",
-        },
-        {
-          "name": "Hamm (Westf)",
-        },
-        {
-          "name": "Soest",
-        },
-        {
-          "name": "Lippstadt",
-        },
-        {
-          "name": "Paderborn Hbf",
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "Paderborn Hbf",
-      "scheduledPlatform": "10",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "AR",
-        "line": "RE11",
-        "name": "ABR RE11",
-        "number": "26719",
-        "type": "ABR",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -1684,10 +2009,10 @@ exports[`onlyPlan simple2.xml 1`] = `
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "16",
-        "scheduledPlatform": "16",
-        "scheduledTime": 2019-03-17T12:46:00.000Z,
-        "time": 2019-03-17T12:46:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
@@ -1698,41 +2023,62 @@ exports[`onlyPlan simple2.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "16",
-        "scheduledPlatform": "16",
-        "scheduledTime": 2019-03-17T12:48:00.000Z,
-        "time": 2019-03-17T12:48:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
         "wingIds": undefined,
       },
-      "destination": "Frankfurt (Main) Hbf",
-      "id": "1869793107893408377",
-      "initialDeparture": 2019-03-17T10:38:00.000Z,
-      "mediumId": "1869793107893408377-1903171038",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "84",
-      "platform": "16",
-      "productClass": "F",
-      "rawId": "1869793107893408377-1903171038-6",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "Amsterdam Centraal",
+          "name": "Mönchengladbach Hbf",
         },
         {
-          "name": "Utrecht Centraal",
+          "name": "Mönchengladbach-Lürrip",
         },
         {
-          "name": "Arnhem Centraal",
+          "name": "Korschenbroich",
         },
         {
-          "name": "Oberhausen Hbf",
+          "name": "Kleinenbroich",
         },
         {
-          "name": "Duisburg Hbf",
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
@@ -1740,26 +2086,93 @@ exports[`onlyPlan simple2.xml 1`] = `
           "name": "test",
         },
         {
-          "name": "Köln Hbf",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "Frankfurt (M)  Flughafen Fernbf",
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Frankfurt (Main) Hbf",
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Gevelsberg-Knapp",
+        },
+        {
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "Frankfurt (Main) Hbf",
-      "scheduledPlatform": "16",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "84",
-        "line": undefined,
-        "name": "ICE 123",
-        "number": "123",
-        "type": "ICE",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],
@@ -1773,7 +2186,178 @@ exports[`onlyPlan simple2.xml 1`] = `
 
 exports[`onlyPlan visibleDueToDelay.xml 1`] = `
 {
-  "departures": [],
+  "departures": [
+    {
+      "additional": undefined,
+      "arrival": {
+        "hidden": false,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
+        "transition": undefined,
+        "wingIds": undefined,
+      },
+      "cancelled": undefined,
+      "currentStopPlace": {
+        "evaNumber": "test",
+        "name": "test",
+      },
+      "departure": {
+        "hidden": false,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
+        "transition": undefined,
+        "wingIds": undefined,
+      },
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
+      },
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
+      "route": [
+        {
+          "name": "Mönchengladbach Hbf",
+        },
+        {
+          "name": "Mönchengladbach-Lürrip",
+        },
+        {
+          "name": "Korschenbroich",
+        },
+        {
+          "name": "Kleinenbroich",
+        },
+        {
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
+        },
+        {
+          "additional": undefined,
+          "cancelled": undefined,
+          "name": "test",
+        },
+        {
+          "name": "Düsseldorf-Flingern",
+          "showVia": true,
+        },
+        {
+          "name": "Düsseldorf-Gerresheim",
+        },
+        {
+          "name": "Erkrath",
+        },
+        {
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Wuppertal-Unterbarmen",
+        },
+        {
+          "name": "Wuppertal-Barmen",
+        },
+        {
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
+          "showVia": true,
+        },
+        {
+          "name": "Gevelsberg-Knapp",
+        },
+        {
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
+        },
+      ],
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
+      "substitute": undefined,
+      "train": {
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
+      },
+    },
+  ],
   "lookbehind": [],
   "stopPlaces": [
     "test",
@@ -1789,14 +2373,12 @@ exports[`onlyPlan wings.xml 1`] = `
       "additional": undefined,
       "arrival": {
         "hidden": false,
-        "platform": "4",
-        "scheduledPlatform": "4",
-        "scheduledTime": 2019-03-17T13:51:00.000Z,
-        "time": 2019-03-17T13:51:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T12:58:00.000Z,
+        "time": 2019-03-17T12:58:00.000Z,
         "transition": undefined,
-        "wingIds": [
-          "4249721926697031159-1903171328",
-        ],
+        "wingIds": undefined,
       },
       "cancelled": undefined,
       "currentStopPlace": {
@@ -1805,40 +2387,62 @@ exports[`onlyPlan wings.xml 1`] = `
       },
       "departure": {
         "hidden": false,
-        "platform": "4",
-        "scheduledPlatform": "4",
-        "scheduledTime": 2019-03-17T13:54:00.000Z,
-        "time": 2019-03-17T13:54:00.000Z,
+        "platform": "13",
+        "scheduledPlatform": "13",
+        "scheduledTime": 2019-03-17T13:00:00.000Z,
+        "time": 2019-03-17T13:00:00.000Z,
         "transition": undefined,
-        "wingIds": [
-          "4249721926697031159-1903171328",
-        ],
+        "wingIds": undefined,
       },
-      "destination": "München Hbf",
-      "id": "7616096009230090656",
-      "initialDeparture": 2019-03-17T13:28:00.000Z,
-      "mediumId": "7616096009230090656-1903171328",
+      "destination": "Hagen Hbf",
+      "id": "6062058741531589910",
+      "initialDeparture": 2019-03-16T14:24:00.000Z,
+      "mediumId": "6062058741531589910-1903161424",
       "messages": {
         "delay": [],
         "him": [],
         "qos": [],
       },
-      "o": "80",
-      "platform": "4",
-      "productClass": "F",
-      "rawId": "7616096009230090656-1903171328-5",
+      "o": "800354",
+      "platform": "13",
+      "productClass": "S",
+      "rawId": "-6062058741531589910-1903161424-13",
       "route": [
         {
-          "name": "Hamburg Hbf",
+          "name": "Mönchengladbach Hbf",
         },
         {
-          "name": "Hamburg-Harburg",
+          "name": "Mönchengladbach-Lürrip",
         },
         {
-          "name": "Lüneburg",
+          "name": "Korschenbroich",
         },
         {
-          "name": "Uelzen",
+          "name": "Kleinenbroich",
+        },
+        {
+          "name": "Büttgen",
+        },
+        {
+          "name": "Neuss Hbf",
+        },
+        {
+          "name": "Neuss Am Kaiser",
+        },
+        {
+          "name": "Neuss Rheinparkcenter",
+        },
+        {
+          "name": "Düsseldorf-Hamm",
+        },
+        {
+          "name": "Düsseldorf Völklinger Str.",
+        },
+        {
+          "name": "Düsseldorf-Bilk",
+        },
+        {
+          "name": "Düsseldorf Friedrichstadt",
         },
         {
           "additional": undefined,
@@ -1846,42 +2450,93 @@ exports[`onlyPlan wings.xml 1`] = `
           "name": "test",
         },
         {
-          "name": "Göttingen",
+          "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
         {
-          "name": "Kassel-Wilhelmshöhe",
+          "name": "Düsseldorf-Gerresheim",
         },
         {
-          "name": "Fulda",
+          "name": "Erkrath",
         },
         {
-          "name": "Würzburg Hbf",
+          "name": "Hochdahl",
+        },
+        {
+          "name": "Hochdahl-Millrath",
+        },
+        {
+          "name": "Haan-Gruiten",
+        },
+        {
+          "name": "Wuppertal-Vohwinkel",
+        },
+        {
+          "name": "Wuppertal-Sonnborn",
+        },
+        {
+          "name": "Wuppertal-Zoologischer Garten",
+        },
+        {
+          "name": "Wuppertal-Steinbeck",
+        },
+        {
+          "name": "Wuppertal Hbf",
           "showVia": true,
         },
         {
-          "name": "Treuchtlingen",
+          "name": "Wuppertal-Unterbarmen",
         },
         {
-          "name": "Donauwörth",
+          "name": "Wuppertal-Barmen",
         },
         {
-          "name": "Augsburg Hbf",
+          "name": "Wuppertal-Oberbarmen",
+        },
+        {
+          "name": "Wuppertal-Langerfeld",
+        },
+        {
+          "name": "Schwelm West",
+        },
+        {
+          "name": "Schwelm",
+        },
+        {
+          "name": "Gevelsberg West",
+        },
+        {
+          "name": "Gevelsberg-Kipp",
+        },
+        {
+          "name": "Gevelsberg Hbf",
           "showVia": true,
         },
         {
-          "name": "München Hbf",
+          "name": "Gevelsberg-Knapp",
+        },
+        {
+          "name": "Hagen-Westerbauer",
+        },
+        {
+          "name": "Hagen-Heubing",
+        },
+        {
+          "name": "Hagen-Wehringhausen",
+        },
+        {
+          "name": "Hagen Hbf",
         },
       ],
-      "scheduledDestination": "München Hbf",
-      "scheduledPlatform": "4",
+      "scheduledDestination": "Hagen Hbf",
+      "scheduledPlatform": "13",
       "substitute": undefined,
       "train": {
-        "admin": "80",
-        "line": undefined,
-        "name": "ICE 1587",
-        "number": "1587",
-        "type": "ICE",
+        "admin": "800354",
+        "line": "8",
+        "name": "S 8",
+        "number": "30889",
+        "type": "S",
       },
     },
   ],

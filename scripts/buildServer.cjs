@@ -4,6 +4,7 @@ const fs = require('node:fs/promises');
 require('./adjustSwcrc.cjs');
 
 const srcFolder = 'src';
+const distFolder = 'dist/server';
 async function build() {
   const srcPath = path.resolve(srcFolder);
   const folderToBuild = (await fs.readdir(srcPath)).map(
@@ -13,13 +14,15 @@ async function build() {
     const p = childProcess.spawn(
       'swc',
       [
+        '-D',
+        '--strip-leading-paths',
         '-C',
         'minify=true',
         '-C',
         `env.targets.node=${process.versions.node}`,
         folder,
         '--out-dir',
-        srcFolder,
+        distFolder,
       ],
       {
         env: {

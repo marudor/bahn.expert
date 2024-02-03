@@ -15,7 +15,6 @@ declare global {
 
     // test only
     declare var nock: nock.Scope;
-    declare var parseJson: <T = unknown>(json: string) => T;
   }
 
   interface Navigator {

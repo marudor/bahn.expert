@@ -30,6 +30,5 @@ COPY --from=cleanedDeps /app/node_modules/ ./node_modules/
 COPY package.json pnpm-lock.yaml /app/
 RUN corepack enable && npm_config_update_binary=true pnpm rb
 COPY --from=build /app/dist/ ./dist/
-COPY --from=build /app/src/ ./src/
 USER node
-CMD [ "node", "src/server/index.js" ]
+CMD [ "node", "dist/server/server/index.js" ]

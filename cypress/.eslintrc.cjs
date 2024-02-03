@@ -4,6 +4,7 @@ module.exports = {
     'cypress/globals': true,
   },
   plugins: ['cypress'],
+  ignorePatterns: ['support/component.tsx'],
   rules: {
     // cypress has assertions without expect
     'jest/expect-expect': 0,

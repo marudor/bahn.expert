@@ -2,22 +2,16 @@
 import { AbfahrtContext } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { Auslastung } from '@/client/Abfahrten/Components/Abfahrt/Auslastung';
 import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
-import { render } from '@/client/__tests__/testHelper';
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import fs from 'node:fs';
-import path from 'node:path';
+import rawMockAbfahrt from '@/fixtures/mockAbfahrtAuslastung.json';
 import type { Abfahrt } from '@/types/iris';
 
-const mockAbfahrt: Abfahrt = globalThis.parseJson(
-  fs.readFileSync(
-    path.resolve(__dirname, '__fixtures__/mockAbfahrt.json'),
-    'utf8',
-  ),
+const mockAbfahrt = globalThis.parseJson<Abfahrt>(
+  JSON.stringify(rawMockAbfahrt),
 );
 
 describe('Auslastung', () => {
-  const renderAuslastung = () =>
-    render(<Auslastung />, {
+  const renderAuslastung = () => {
+    cy.mount(<Auslastung />, {
       provider: [
         {
           Provider: AuslastungsProvider,
@@ -30,11 +24,13 @@ describe('Auslastung', () => {
         },
       ],
     });
+    return mockAbfahrt;
+  };
 
-  it('shows loading first, nothing on error', async () => {
-    nock
-      .get(
-        encodeURI(
+  it('shows loading first, nothing on error', () => {
+    cy.intercept(
+      {
+        url: encodeURI(
           `/api/hafas/v3/occupancy/${mockAbfahrt.currentStopPlace.name}/${
             mockAbfahrt.destination
           }/${
@@ -43,18 +39,23 @@ describe('Auslastung', () => {
             mockAbfahrt.currentStopPlace.evaNumber
           }`,
         ),
-      )
-      .reply(500);
+      },
+      {
+        statusCode: 500,
+        delay: 500,
+      },
+    );
     renderAuslastung();
-
-    await waitForElementToBeRemoved(() => screen.queryByTestId('loading'));
-    expect(screen.queryByTestId('auslastungDisplay')).toBeNull();
+    cy.findByTestId('auslastungDisplay').should('not.exist');
+    cy.findByTestId('loading').should('exist');
+    cy.findByTestId('loading').should('not.exist');
+    cy.findByTestId('auslastungDisplay').should('not.exist');
   });
 
-  it('shows auslastung after loading', async () => {
-    nock
-      .get(
-        encodeURI(
+  it('shows auslastung after loading', () => {
+    cy.intercept(
+      {
+        url: encodeURI(
           `/api/hafas/v3/occupancy/${mockAbfahrt.currentStopPlace.name}/${
             mockAbfahrt.destination
           }/${
@@ -63,15 +64,18 @@ describe('Auslastung', () => {
             mockAbfahrt.currentStopPlace.evaNumber
           }`,
         ),
-      )
-      .reply(200, {
-        first: 1,
-        second: 2,
-      });
+      },
+      {
+        statusCode: 200,
+        body: {
+          first: 1,
+          second: 2,
+        },
+      },
+    );
 
     renderAuslastung();
-
-    expect(screen.getByTestId('loading')).toBeInTheDocument();
-    await screen.findByTestId('auslastungDisplay');
+    cy.findByTestId('loading').should('exist');
+    cy.findByTestId('auslastungDisplay').should('exist');
   });
 });
