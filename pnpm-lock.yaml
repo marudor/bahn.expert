@@ -94,6 +94,9 @@ dependencies:
   google-polyline:
     specifier: ^1.0.3
     version: 1.0.3
+  husky:
+    specifier: ^9.0.10
+    version: 9.0.10
   ioredis:
     specifier: ^5.3.2
     version: 5.3.2
@@ -312,9 +315,6 @@ devDependencies:
   eslint-plugin-cypress:
     specifier: ^2.15.1
     version: 2.15.1(eslint@8.56.0)
-  husky:
-    specifier: ^9.0.10
-    version: 9.0.10
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.10.6)
@@ -8563,7 +8563,7 @@ packages:
     resolution: {integrity: sha512-TQGNknoiy6bURzIO77pPRu+XHi6zI7T93rX+QnJsoYFf3xdjKOur+IlfqzJGMHIK/wXrLg+GsvMs8Op7vI2jVA==}
     engines: {node: '>=18'}
     hasBin: true
-    dev: true
+    dev: false
 
   /hyperdyperid@1.2.0:
     resolution: {integrity: sha512-Y93lCzHYgGWdrJ66yIktxiaGULYc6oGiABxhcO5AufBeOyoIdZF7bIfLaOrbM0iGIOXQQgxxRrFEnb+Y6w1n4A==}
