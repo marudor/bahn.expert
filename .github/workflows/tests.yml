@@ -170,6 +170,7 @@ jobs:
       - docker
       - e2e
       - node
+      - ct
     steps:
       - name: 'Create Deployment'
         uses: avakar/create-deployment@v1.0.2
