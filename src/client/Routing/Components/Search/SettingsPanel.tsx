@@ -8,6 +8,7 @@ import {
   FormControlLabel,
   MenuItem,
   Select,
+  Stack,
   Switch,
   TextField,
 } from '@mui/material';
@@ -42,11 +43,6 @@ const StyledAccordionSummary = styled(AccordionSummary)`
     display: flex;
     justify-content: space-around;
   }
-`;
-
-const StyledAccordionDetails = styled(AccordionDetails)`
-  flex-direction: column;
-  display: flex;
 `;
 
 const FormLabel = styled(FormControlLabel)`
@@ -139,7 +135,7 @@ export const SettingsPanel: FC = () => {
             icon={<Train />}
           />
         </StyledAccordionSummary>
-        <StyledAccordionDetails>
+        <Stack component={AccordionDetails}>
           <FormLabel
             labelPlacement="start"
             control={
@@ -214,7 +210,7 @@ export const SettingsPanel: FC = () => {
             }
             label="Netzcard erlaubt"
           />
-        </StyledAccordionDetails>
+        </Stack>
       </StyledAccordion>
     </>
   );

@@ -5,6 +5,7 @@ import {
   SelectedDetailProvider,
   useSelectedDetail,
 } from '@/client/Abfahrten/provider/SelectedDetailProvider';
+import { Stack } from '@mui/material';
 import { Streik } from '@/client/Common/Components/Streik';
 import {
   useAbfahrten,
@@ -35,11 +36,6 @@ const Lookbehind = styled.div(({ theme }) => ({
   paddingTop: 10,
   backgroundColor: theme.colors.shadedBackground,
 }));
-
-const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-`;
 
 const InnerAbfahrtenList = () => {
   const { updateCurrentStopPlaceByString, setCurrentStopPlace, setError } =
@@ -146,7 +142,7 @@ const InnerAbfahrtenList = () => {
   return (
     <Loading check={unfilteredAbfahrten || error}>
       {() => (
-        <Container>
+        <Stack component="main">
           {error ? (
             <Navigate to={urlPrefix} />
           ) : filteredAbfahrten &&
@@ -173,7 +169,7 @@ const InnerAbfahrtenList = () => {
           ) : (
             <NothingFound unfilteredAbfahrten={unfilteredAbfahrten} />
           )}
-        </Container>
+        </Stack>
       )}
     </Loading>
   );

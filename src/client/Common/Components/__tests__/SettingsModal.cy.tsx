@@ -1,6 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
 import { InnerAbfahrtenConfigProvider } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { render } from '@/client/__tests__/testHelper';
 import { SettingsModal } from '@/client/Common/Components/SettingsModal';
 import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 
@@ -17,26 +15,24 @@ const OpenDummy = () => {
   );
 };
 
-const renderSetup = () =>
-  render(<OpenDummy />, {
-    provider: [
-      {
-        Provider: InnerAbfahrtenConfigProvider,
-        initialState: {
-          initialState: {
-            filter: {},
-            config: {},
-          },
-        },
-      },
-    ],
-  });
-
 describe('SettingsModal', () => {
   it('Opens if container set', () => {
-    renderSetup();
+    cy.mount(<OpenDummy />, {
+      provider: [
+        {
+          Provider: InnerAbfahrtenConfigProvider,
+          initialState: {
+            initialState: {
+              filter: {},
+              config: {},
+            },
+          },
+        },
+      ],
+    });
 
-    fireEvent.click(screen.getByTestId('open'));
-    expect(screen.getByTestId('settingsContent')).toBeInTheDocument();
+    cy.findByTestId('settingsContent').should('not.exist');
+    cy.findByTestId('open').click();
+    cy.findByTestId('settingsContent').should('be.visible');
   });
 });

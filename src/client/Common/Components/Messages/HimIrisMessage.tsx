@@ -3,6 +3,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Stack,
 } from '@mui/material';
 import { format, getDate } from 'date-fns';
 import { useCallback, useState } from 'react';
@@ -17,11 +18,6 @@ const Container = styled.div<{ superseded?: boolean }>(
   },
   ({ theme, superseded }) => superseded && theme.mixins.cancelled,
 );
-
-const StyledDialogTitle = styled(DialogTitle)`
-  display: flex;
-  flex-direction: column;
-`;
 
 const SmallSpan = styled.span`
   font-size: 75%;
@@ -66,10 +62,10 @@ export const HimIrisMessage: FC<Props> = ({
     <Container superseded={message.superseded}>
       <span onClick={toggleOpen}>{text}</span>
       <Dialog open={open} onClose={toggleOpen}>
-        <StyledDialogTitle>
+        <Stack component={DialogTitle}>
           <span>{dateWithText}</span>
           <SmallSpan>{message.stopPlaceInfo}</SmallSpan>
-        </StyledDialogTitle>
+        </Stack>
         <DialogContent
           dangerouslySetInnerHTML={{
             __html: message.text,

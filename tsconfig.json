@@ -19,9 +19,14 @@
     "target": "esnext",
     "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
-    "types": ["@jest/globals", "@testing-library/jest-dom"],
+    "types": ["cypress", "@testing-library/cypress"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/client/*": ["./src/client/*"],
+      "@/external/*": ["./src/external/*"],
+      "@/oebb/*": ["./src/oebb/*"],
+      "@/server/*": ["./src/server/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/fixtures/*": ["./cypress/fixtures/*"]
     },
     "plugins": [
       {
@@ -30,5 +35,11 @@
     ],
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["@types", "src", "cypress.config.ts"]
+  "include": [
+    "cypress/support/*.ts",
+    "@types",
+    "src",
+    "cypress.config.ts",
+    "cypress/support/component.tsx"
+  ]
 }

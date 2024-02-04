@@ -44,10 +44,12 @@ const globalStyles = (theme: Theme): any => ({
   },
 });
 
+export const GlobalCSS: FC = () => <GlobalStyles styles={globalStyles} />;
+
 export const App: FC = () => {
   return (
     <>
-      <GlobalStyles styles={globalStyles} />
+      <GlobalCSS />
       <HeaderTagProvider>
         <CommonConfigProvider>
           <Navigation>

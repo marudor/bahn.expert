@@ -1,3 +1,4 @@
+import { afterAll } from '@jest/globals';
 import { createApp } from '@/server/app';
 import type { Server } from 'node:http';
 

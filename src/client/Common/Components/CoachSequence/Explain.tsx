@@ -1,4 +1,4 @@
-import { Dialog, DialogContent } from '@mui/material';
+import { Dialog, DialogContent, Stack } from '@mui/material';
 import { icons } from './Coach';
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { useCallback, useState } from 'react';
@@ -13,13 +13,8 @@ const OpenLink = styled.div(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-const ContentContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const IconWrap = styled.div`
-  display: flex;
+const IconWrap = styled(Stack)`
+  flex-direction: row;
   align-items: center;
   min-width: 16em;
   margin-bottom: 0.2em;
@@ -74,7 +69,7 @@ export const Explain: FC = () => {
       >
         <DialogContent>
           <h3>Legende Wagenreihung</h3>
-          <ContentContainer>
+          <Stack flexWrap="wrap" direction="row">
             {Object.keys(iconExplanation).map(
               // @ts-expect-error this is correct, it's exact!
               (iconName: keyof typeof icons) => {
@@ -94,9 +89,9 @@ export const Explain: FC = () => {
               <ComfortIcon />
               BahnBonus Status Sitzplätze
             </IconWrap>
-          </ContentContainer>
+          </Stack>
           <h3>Auslastung</h3>
-          <ContentContainer>
+          <Stack flexWrap="wrap" direction="row">
             <IconWrap>
               <SingleAuslastungsDisplay />
               Unbekannte Auslastung
@@ -117,7 +112,7 @@ export const Explain: FC = () => {
               <SingleAuslastungsDisplay auslastung={4} />
               Zug ist ausgebucht
             </IconWrap>
-          </ContentContainer>
+          </Stack>
         </DialogContent>
       </Dialog>
     </>

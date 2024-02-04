@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { End } from './End';
 import { journeyNumberFind } from '@/client/Common/service/details';
 import { Mid } from './Mid';
-import { Paper } from '@mui/material';
+import { Paper, Stack } from '@mui/material';
 import { Start } from './Start';
 import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
 import loadable from '@loadable/component';
@@ -83,10 +83,6 @@ const Entry = styled.div(({ theme }) => ({
   },
 }));
 
-const MainWrap = styled.div`
-  display: flex;
-`;
-
 const ScrollMarker = styled.div`
   position: absolute;
   top: -64px;
@@ -156,11 +152,11 @@ export const BaseAbfahrt: FC<Props> = ({
         <Entry
           data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
         >
-          <MainWrap>
+          <Stack direction="row">
             <Start />
             <Mid />
             <End />
-          </MainWrap>
+          </Stack>
           {detail && abfahrt.departure && (
             <LazyCoachSequence
               trainNumber={abfahrt.train.number}

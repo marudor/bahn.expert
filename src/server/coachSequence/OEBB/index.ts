@@ -1,4 +1,4 @@
-import { info } from '@/oebb';
+import { info } from '@/oebb/index';
 import { mapInformation } from '@/server/coachSequence/OEBB/OEBBMapping';
 import { UpstreamApiRequestMetric } from '@/server/admin';
 import type { CoachSequenceInformation } from '@/types/coachSequence';

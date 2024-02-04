@@ -1,4 +1,4 @@
-import { Dialog, DialogContent } from '@mui/material';
+import { Dialog, DialogContent, Stack } from '@mui/material';
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import type { CoachSequenceCoachSeats } from '@/types/coachSequence';
@@ -9,8 +9,8 @@ const OpenText = styled.span(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-const TextLine = styled.div`
-  display: flex;
+const TextLine = styled(Stack)`
+  flex-direction: row;
   justify-content: space-between;
 `;
 

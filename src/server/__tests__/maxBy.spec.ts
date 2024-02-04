@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { maxBy } from '@/client/util';
 
 describe('maxBy', () => {
