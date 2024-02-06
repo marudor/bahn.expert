@@ -37,7 +37,7 @@ export const Name: FC<Props> = ({ withLink }) => {
 
   return (
     <>
-      <Stack>
+      <Stack width="max-content">
         {abfahrt.previousTrain && <span>{abfahrt.previousTrain.name}</span>}
         {trainName}
       </Stack>

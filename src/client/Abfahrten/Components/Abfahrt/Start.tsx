@@ -24,7 +24,7 @@ export const Start: FC = () => {
 
   return (
     <Stack data-testid="abfahrtStart" flex="1" fontSize="3em" maxWidth="5em">
-      <Name withLink={detail && abfahrt.train.number !== '0'} />
+      <Name withLink />
       {detail && abfahrt.train.number !== '0' && (
         <Links>
           <TravelynxLink
