@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import { Stack } from '@mui/material';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
@@ -10,6 +11,10 @@ const Extra = styled.span(({ theme }) => ({
   fontSize: '.8em',
   color: theme.palette.text.secondary,
 }));
+
+const widthCss = css`
+  width: fit-content;
+`;
 
 interface Props {
   withLink?: boolean;
@@ -24,6 +29,7 @@ export const Name: FC<Props> = ({ withLink }) => {
   if (withLink) {
     trainName = (
       <DetailsLink
+        css={widthCss}
         urlPrefix={urlPrefix}
         train={abfahrt.previousTrain || abfahrt.train}
         evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
@@ -37,7 +43,7 @@ export const Name: FC<Props> = ({ withLink }) => {
 
   return (
     <>
-      <Stack width="max-content">
+      <Stack>
         {abfahrt.previousTrain && <span>{abfahrt.previousTrain.name}</span>}
         {trainName}
       </Stack>
