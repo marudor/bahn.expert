@@ -10,7 +10,8 @@ import type {
   OptionalLocL,
   TrnCmpSX,
 } from '.';
-import type { CommonRoutingOptions } from '@/types/common';
+import type { Coordinate2D } from '@/external/types';
+import type { EvaNumber } from '@/types/common';
 import type { JnyCl, LoyalityCard, TravelerType } from '@/types/HAFAS/Tarif';
 
 export interface TripSearchTraveler {
@@ -26,9 +27,9 @@ export interface TripSearchTarifRequest {
   traveler: TripSearchTraveler[];
 }
 
-interface BaseTripSearchOptions
-  extends SharedTripSearchOptions,
-    CommonRoutingOptions {
+interface BaseTripSearchOptions extends SharedTripSearchOptions {
+  time?: Date;
+
   transferTime?: number;
   maxChanges?: number;
   searchForDeparture?: boolean;
@@ -38,17 +39,37 @@ interface BaseTripSearchOptions
   tarif?: TripSearchTarifRequest;
 }
 
-interface TripSearchVia {
+interface TripSearchViaV3 {
   evaId: string;
   minChangeTime?: number;
 }
 
-export interface TripSearchOptionsV2 extends BaseTripSearchOptions {
-  via?: TripSearchVia[];
+export interface TripSearchOptionsV3 extends BaseTripSearchOptions {
+  start: EvaNumber;
+  destination: EvaNumber;
+  via?: TripSearchViaV3[];
 }
 
-export interface TripSearchOptionsV3 extends BaseTripSearchOptions {
-  via?: TripSearchVia[];
+interface StopPlaceLocation {
+  type: 'stopPlace';
+  evaNumber: EvaNumber;
+}
+
+interface CoordinateLocation extends Coordinate2D {
+  type: 'coordinate';
+}
+
+interface TripSearchViaV4 {
+  evaNumber: string;
+  minChangeTime?: number;
+}
+
+type RoutingLocationInput = StopPlaceLocation | CoordinateLocation;
+
+export interface TripSearchOptionsV4 extends BaseTripSearchOptions {
+  start: RoutingLocationInput;
+  destination: RoutingLocationInput;
+  via?: TripSearchViaV4[];
 }
 
 interface SharedTripSearchOptions {

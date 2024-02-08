@@ -8,10 +8,10 @@ import type {
   JourneyFilter,
   OptionalLocL,
 } from '@/types/HAFAS';
-import type { Coordinate2D } from '@/external/types';
 import type { RoutingResult } from '@/types/routing';
 import type {
   TripSearchOptionsV3,
+  TripSearchOptionsV4,
   TripSearchRequest,
 } from '@/types/HAFAS/TripSearch';
 
@@ -45,18 +45,26 @@ function convertSingleCoordinate(singleCoordinate: number): number {
   return Number.parseInt(`${pre}${post}`);
 }
 
-function startDestinationMap(startDest: string | Coordinate2D): OptionalLocL {
+function startDestinationMap(
+  startDest: string | TripSearchOptionsV4['start'],
+): OptionalLocL {
+  let eva: string | undefined;
   if (typeof startDest === 'string') {
-    return {
-      lid: `A=1@L=${startDest}@B=1`,
-    };
+    eva = startDest;
+  } else {
+    if (startDest.type === 'coordinate') {
+      return {
+        crd: {
+          x: convertSingleCoordinate(startDest.longitude),
+          y: convertSingleCoordinate(startDest.latitude),
+        },
+      };
+    }
+    eva = startDest.evaNumber;
   }
 
   return {
-    crd: {
-      x: convertSingleCoordinate(startDest.longitude),
-      y: convertSingleCoordinate(startDest.latitude),
-    },
+    lid: `A=1@L=${eva}@B=1`,
   };
 }
 
@@ -79,7 +87,7 @@ export function tripSearch(
     onlyRegional,
     onlyNetzcard,
     tarif,
-  }: TripSearchOptionsV3,
+  }: TripSearchOptionsV3 | TripSearchOptionsV4,
   profile?: AllowedHafasProfile,
   raw?: boolean,
 ): Promise<RoutingResult> {
@@ -130,11 +138,11 @@ export function tripSearch(
       arrLocL: [arrLoc],
       depLocL: [depLoc],
       viaLocL: via?.length
-        ? via.map(({ evaId, minChangeTime }) => ({
+        ? via.map((via) => ({
             loc: {
-              lid: `A=1@L=${evaId}`,
+              lid: `A=1@L=${'evaNumber' in via ? via.evaNumber : via.evaId}`,
             },
-            min: minChangeTime,
+            min: via.minChangeTime,
           }))
         : undefined,
       trfReq: tarif
