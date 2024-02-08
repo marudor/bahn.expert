@@ -2847,10 +2847,24 @@
             "description": "Is a station nearby enough for routing?"
           },
           "start": {
-            "$ref": "#/components/schemas/EvaNumber"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EvaNumber"
+              },
+              {
+                "$ref": "#/components/schemas/Coordinate2D"
+              }
+            ]
           },
           "destination": {
-            "$ref": "#/components/schemas/EvaNumber"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EvaNumber"
+              },
+              {
+                "$ref": "#/components/schemas/Coordinate2D"
+              }
+            ]
           },
           "time": {
             "type": "string",

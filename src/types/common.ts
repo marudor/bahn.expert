@@ -1,6 +1,8 @@
+import type { Coordinate2D } from '@/external/types';
+
 export interface CommonRoutingOptions {
-  start: EvaNumber;
-  destination: EvaNumber;
+  start: EvaNumber | Coordinate2D;
+  destination: EvaNumber | Coordinate2D;
   time?: Date;
 }
 

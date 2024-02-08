@@ -3,7 +3,12 @@ import makeRequest from '../Request';
 import mapLoyalityCard from '@/server/HAFAS/TripSearch/mapLoyalityCard';
 import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';
-import type { AllowedHafasProfile, JourneyFilter } from '@/types/HAFAS';
+import type {
+  AllowedHafasProfile,
+  JourneyFilter,
+  OptionalLocL,
+} from '@/types/HAFAS';
+import type { Coordinate2D } from '@/external/types';
 import type { RoutingResult } from '@/types/routing';
 import type {
   TripSearchOptionsV3,
@@ -31,6 +36,29 @@ const profileConfig = {
     },
   },
 };
+
+function convertSingleCoordinate(singleCoordinate: number): number {
+  const splittedCoordinate = singleCoordinate.toString().split('.');
+  const pre = splittedCoordinate[0].padStart(2, '0');
+  const post = (splittedCoordinate[1] || '').padEnd(6, '0').slice(0, 6);
+
+  return Number.parseInt(`${pre}${post}`);
+}
+
+function startDestinationMap(startDest: string | Coordinate2D): OptionalLocL {
+  if (typeof startDest === 'string') {
+    return {
+      lid: `A=1@L=${startDest}@B=1`,
+    };
+  }
+
+  return {
+    crd: {
+      x: convertSingleCoordinate(startDest.longitude),
+      y: convertSingleCoordinate(startDest.latitude),
+    },
+  };
+}
 
 export function tripSearch(
   {
@@ -81,6 +109,8 @@ export function tripSearch(
   if (onlyNetzcard) {
     journeyFilter.push(...netzcardFilter);
   }
+  const arrLoc = startDestinationMap(destination);
+  const depLoc = startDestinationMap(start);
 
   const req: TripSearchRequest = {
     req: {
@@ -97,16 +127,8 @@ export function tripSearch(
       getIV,
       // arrival / departure
       outFrwd: searchForDeparture ? undefined : false,
-      arrLocL: [
-        {
-          lid: `A=1@L=${destination}@B=1`,
-        },
-      ],
-      depLocL: [
-        {
-          lid: `A=1@L=${start}@B=1`,
-        },
-      ],
+      arrLocL: [arrLoc],
+      depLocL: [depLoc],
       viaLocL: via?.length
         ? via.map(({ evaId, minChangeTime }) => ({
             loc: {
