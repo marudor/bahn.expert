@@ -1,8 +1,18 @@
 describe('Query Parameter', () => {
   it('noHeader on homepage', () => {
+    cy.visit('/');
+    cy.findByTestId('header').should('be.visible');
     cy.visit('/?noHeader=true');
 
     cy.findByTestId('abfahrtenHeader').should('not.exist');
+  });
+
+  it('noHeader on regional homepage', () => {
+    cy.visit('/regional');
+    cy.findByTestId('header').should('be.visible');
+    cy.visit('/regional?noHeader=true');
+
+    cy.findByTestId('header').should('not.exist');
   });
 
   it('theme Parameter', () => {
