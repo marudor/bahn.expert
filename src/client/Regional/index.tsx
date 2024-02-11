@@ -4,7 +4,6 @@ import { FavProvider } from '@/client/Abfahrten/provider/FavProvider';
 import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { MainWrap } from '@/client/Common/Components/MainWrap';
 import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
-import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
 const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(
@@ -15,8 +14,6 @@ const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(
 );
 
 export const Regional: FC = () => {
-  const noHeader = useQuery().noHeader;
-
   return (
     <AuslastungsProvider>
       <AbfahrtenProvider
@@ -25,7 +22,7 @@ export const Regional: FC = () => {
         stopPlaceApiFunction={regionalStopPlaceApiFunction}
       >
         <FavProvider storageKey="regionalFavs">
-          <MainWrap noHeader={Boolean(noHeader)}>
+          <MainWrap>
             <RegionalRoutes />
           </MainWrap>
         </FavProvider>

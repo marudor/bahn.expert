@@ -6,7 +6,6 @@ import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
 import { Header } from './Components/Header';
 import { MainWrap } from '@/client/Common/Components/MainWrap';
 import { MostUsed } from '@/client/Abfahrten/Components/MostUsed';
-import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
 const stopPlaceApiFunction = getStopPlacesFromAPI.bind(
@@ -17,8 +16,6 @@ const stopPlaceApiFunction = getStopPlacesFromAPI.bind(
 );
 
 export const Abfahrten: FC = () => {
-  const noHeader = useQuery().noHeader;
-
   return (
     <AuslastungsProvider>
       <AbfahrtenProvider
@@ -27,8 +24,8 @@ export const Abfahrten: FC = () => {
         stopPlaceApiFunction={stopPlaceApiFunction}
       >
         <FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
-          <MainWrap noHeader={Boolean(noHeader)}>
-            {!noHeader && <Header />}
+          <MainWrap>
+            <Header />
             <AbfahrtenRoutes />
           </MainWrap>
         </FavProvider>

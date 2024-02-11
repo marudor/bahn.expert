@@ -7,6 +7,7 @@ import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConf
 import { useCallback, useEffect, useState } from 'react';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { useNavigate } from 'react-router';
+import { useQuery } from '@/client/Common/hooks/useQuery';
 import { useRefreshCurrent } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import type { FC } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const Header: FC<Props> = ({ regional = false }: Props) => {
+  const noHeader = useQuery().noHeader;
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const refreshCurrentAbfahrten = useRefreshCurrent(true);
   const urlPrefix = useAbfahrtenUrlPrefix();
@@ -37,6 +39,10 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
     },
     [urlPrefix, navigate],
   );
+
+  if (noHeader) {
+    return null;
+  }
 
   return (
     <BaseHeader>
