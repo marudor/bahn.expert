@@ -12,6 +12,7 @@ import { EventType, TimeType } from '@/external/generated/risJourneys';
 import { getAbfahrten } from '@/server/iris';
 import { getJourneyDetails } from '@/external/risJourneys';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
+import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import type {
   ArrivalDepartureEvent,
   TransportPublicDestinationPortionWorking,
@@ -135,7 +136,9 @@ function newStopInfoIsAfter(stop: JourneyStop, event: ArrivalDepartureEvent) {
   return true;
 }
 
-function stopsFromEvents(events: ArrivalDepartureEvent[]) {
+async function stopsFromEvents(
+  events: ArrivalDepartureEvent[],
+): Promise<JourneyStop[]> {
   const stops: JourneyStop[] = [];
   for (const e of events) {
     const stopInfo = mapEventToCommonStopInfo(e);
@@ -161,6 +164,17 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
 
     stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
   }
+
+  const rl100Promise = Promise.all(
+    stops.map(async (s) => {
+      try {
+        const stopPlace = await getStopPlaceByEva(s.station.evaNumber);
+        s.station.ril100 = stopPlace?.ril100;
+      } catch {
+        // we just ignore errors
+      }
+    }),
+  );
 
   for (const s of stops) {
     if (
@@ -205,6 +219,8 @@ function stopsFromEvents(events: ArrivalDepartureEvent[]) {
     delete s.arrival?.travelsWith;
   }
 
+  await rl100Promise;
+
   return stops;
 }
 
@@ -217,7 +233,7 @@ export async function journeyDetails(
   }
   const firstEvent = journey.events[0];
 
-  const stops = stopsFromEvents(journey.events);
+  const stops = await stopsFromEvents(journey.events);
   if (!stops.length) {
     return undefined;
   }

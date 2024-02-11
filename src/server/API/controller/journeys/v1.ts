@@ -164,6 +164,7 @@ export class JourneysV1Controller extends Controller {
     return result.slice(0, limit);
   }
 
+  @Hidden()
   @Get('/details/id/{journeyId}')
   @Response(404)
   @Tags('Journeys')
