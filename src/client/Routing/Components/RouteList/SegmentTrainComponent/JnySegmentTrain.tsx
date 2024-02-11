@@ -31,18 +31,19 @@ export const JnySegmentTrain: FC<Props> = ({
         <span css={segmentStyles.margin}>
           <span>
             <Tooltip title={tooltipTitle ?? segment.train.name}>
-              <span>{segment.train.name}</span>
+              <DetailsLink
+                train={segment.train}
+                evaNumberAlongRoute={segment.segmentStart.evaNumber}
+                initialDeparture={segment.departure.scheduledTime}
+                jid={segment.jid}
+              >
+                {segment.train.name}
+              </DetailsLink>
             </Tooltip>
           </span>
         </span>
         <span css={[segmentStyles.margin, segmentStyles.destination]}>
           {segment.finalDestination}
-          <DetailsLink
-            train={segment.train}
-            evaNumberAlongRoute={segment.segmentStart.evaNumber}
-            initialDeparture={segment.departure.scheduledTime}
-            jid={segment.jid}
-          />
         </span>
         {segment.auslastung && (
           <AuslastungsDisplay auslastung={segment.auslastung} />

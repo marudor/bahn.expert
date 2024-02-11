@@ -4849,53 +4849,6 @@
         ]
       }
     },
-    "/journeys/v1/details/id/{journeyId}": {
-      "get": {
-        "operationId": "IdDetails",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyEventBased"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "tags": [
-          "Journeys"
-        ],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "journeyId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v3/irisCompatibleAbfahrten/{evaId}": {
       "get": {
         "operationId": "IrisCompatibleAbfahrten",
