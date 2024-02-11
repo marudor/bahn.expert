@@ -1,4 +1,8 @@
 describe('Abfahrten Settings', () => {
+  // For some reason Dates are rendered wrong without this (main branch show only time, branches show Date + time)
+  beforeEach(() => {
+    cy.clock(0, ['Date']);
+  });
   describe('on Abfahrten Page', () => {
     beforeEach(() => {
       cy.visit('/');

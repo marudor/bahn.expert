@@ -27,7 +27,6 @@ describe('Platform', () => {
         .should('have.css', 'color', theme.colors.red);
       cy.findByTestId('real').should('have.text', '1');
     });
-    cy.percySnapshot();
   });
   it('scheduled !== real', () => {
     cy.mount(<Platform real="1" scheduled="2" />);

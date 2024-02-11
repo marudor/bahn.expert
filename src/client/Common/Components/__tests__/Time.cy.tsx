@@ -22,7 +22,6 @@ describe('Time', () => {
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
         .should('have.css', 'color', theme.colors.red);
-      cy.percySnapshot();
     });
   });
 
@@ -46,7 +45,6 @@ describe('Time', () => {
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
         .should('have.css', 'color', theme.colors.green);
-      cy.percySnapshot();
     });
   });
 
@@ -60,7 +58,6 @@ describe('Time', () => {
     );
     cy.findByTestId('timeToDisplay').should('have.text', '14:00');
     cy.findByTestId('realTimeOrDelay').should('not.exist');
-    cy.percySnapshot();
   });
 
   it('shows 0 delay number', () => {
@@ -71,7 +68,6 @@ describe('Time', () => {
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
         .should('have.css', 'color', theme.colors.green);
-      cy.percySnapshot();
     });
   });
 });

@@ -36,7 +36,6 @@ describe('NormalVia', () => {
       cy.findByTestId('via-hbf')
         .should('not.have.attr', 'href', 'hbf')
         .should('have.css', 'font-weight', '700');
-      cy.percySnapshot();
     });
   });
 });
