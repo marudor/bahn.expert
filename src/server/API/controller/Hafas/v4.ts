@@ -1,8 +1,24 @@
-import { Controller, Get, Hidden, Route } from '@tsoa/runtime';
+import {
+  Body,
+  Controller,
+  Get,
+  Hidden,
+  OperationId,
+  Post,
+  Query,
+  Request,
+  Route,
+  Tags,
+} from '@tsoa/runtime';
 import { getJourneyDetails } from '@/external/risJourneys';
 import { TransportType } from '@/external/generated/risJourneys';
+import { tripSearch } from '@/server/HAFAS/TripSearch/TripSearch';
 import { v4 } from 'uuid';
 import axios from 'axios';
+import type { AllowedHafasProfile } from '@/types/HAFAS';
+import type { Request as KRequest } from 'koa';
+import type { RoutingResult } from '@/types/routing';
+import type { TripSearchOptionsV4 } from '@/types/HAFAS/TripSearch';
 
 const transportTypeMap: Record<string, string> = {
   [TransportType.CityTrain]: 'SBAHNEN',
@@ -16,9 +32,22 @@ const transportTypeMap: Record<string, string> = {
   [TransportType.Tram]: 'STRASSENBAHN',
 };
 
-@Hidden()
+// Complex Input Parameter need to be their own type to generate correctly
+type InputTripSearchOptionsV4 = TripSearchOptionsV4;
+
 @Route('/hafas/v4')
 export class HafasControllerV4 extends Controller {
+  @Post('/tripSearch')
+  @Tags('HAFAS')
+  @OperationId('TripSearch v4')
+  tripSearch(
+    @Request() req: KRequest,
+    @Body() body: InputTripSearchOptionsV4,
+    @Query() profile?: AllowedHafasProfile,
+  ): Promise<RoutingResult> {
+    return tripSearch(body, profile, Boolean(req.query.raw));
+  }
+  @Hidden()
   @Get('/idDetails/{id}')
   async idDetails(id: string): Promise<any> {
     const { data: details } = await axios.get(
@@ -37,6 +66,7 @@ export class HafasControllerV4 extends Controller {
     return details;
   }
 
+  @Hidden()
   @Get('/detailsByJourney/{journeyId}')
   async details(journeyId: string): Promise<any> {
     const journey = await getJourneyDetails(journeyId);

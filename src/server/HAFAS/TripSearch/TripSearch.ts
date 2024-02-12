@@ -3,10 +3,15 @@ import makeRequest from '../Request';
 import mapLoyalityCard from '@/server/HAFAS/TripSearch/mapLoyalityCard';
 import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';
-import type { AllowedHafasProfile, JourneyFilter } from '@/types/HAFAS';
+import type {
+  AllowedHafasProfile,
+  JourneyFilter,
+  OptionalLocL,
+} from '@/types/HAFAS';
 import type { RoutingResult } from '@/types/routing';
 import type {
   TripSearchOptionsV3,
+  TripSearchOptionsV4,
   TripSearchRequest,
 } from '@/types/HAFAS/TripSearch';
 
@@ -32,6 +37,37 @@ const profileConfig = {
   },
 };
 
+function convertSingleCoordinate(singleCoordinate: number): number {
+  const splittedCoordinate = singleCoordinate.toString().split('.');
+  const pre = splittedCoordinate[0].padStart(2, '0');
+  const post = (splittedCoordinate[1] || '').padEnd(6, '0').slice(0, 6);
+
+  return Number.parseInt(`${pre}${post}`);
+}
+
+function startDestinationMap(
+  startDest: string | TripSearchOptionsV4['start'],
+): OptionalLocL {
+  let eva: string | undefined;
+  if (typeof startDest === 'string') {
+    eva = startDest;
+  } else {
+    if (startDest.type === 'coordinate') {
+      return {
+        crd: {
+          x: convertSingleCoordinate(startDest.longitude),
+          y: convertSingleCoordinate(startDest.latitude),
+        },
+      };
+    }
+    eva = startDest.evaNumber;
+  }
+
+  return {
+    lid: `A=1@L=${eva}@B=1`,
+  };
+}
+
 export function tripSearch(
   {
     start,
@@ -51,7 +87,7 @@ export function tripSearch(
     onlyRegional,
     onlyNetzcard,
     tarif,
-  }: TripSearchOptionsV3,
+  }: TripSearchOptionsV3 | TripSearchOptionsV4,
   profile?: AllowedHafasProfile,
   raw?: boolean,
 ): Promise<RoutingResult> {
@@ -81,6 +117,8 @@ export function tripSearch(
   if (onlyNetzcard) {
     journeyFilter.push(...netzcardFilter);
   }
+  const arrLoc = startDestinationMap(destination);
+  const depLoc = startDestinationMap(start);
 
   const req: TripSearchRequest = {
     req: {
@@ -97,22 +135,14 @@ export function tripSearch(
       getIV,
       // arrival / departure
       outFrwd: searchForDeparture ? undefined : false,
-      arrLocL: [
-        {
-          lid: `A=1@L=${destination}@B=1`,
-        },
-      ],
-      depLocL: [
-        {
-          lid: `A=1@L=${start}@B=1`,
-        },
-      ],
+      arrLocL: [arrLoc],
+      depLocL: [depLoc],
       viaLocL: via?.length
-        ? via.map(({ evaId, minChangeTime }) => ({
+        ? via.map((via) => ({
             loc: {
-              lid: `A=1@L=${evaId}`,
+              lid: `A=1@L=${'evaNumber' in via ? via.evaNumber : via.evaId}`,
             },
-            min: minChangeTime,
+            min: via.minChangeTime,
           }))
         : undefined,
       trfReq: tarif

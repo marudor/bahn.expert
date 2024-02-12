@@ -1841,7 +1841,7 @@
         "additionalProperties": true
       },
       "SecL": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/SecLJNY"
           },
@@ -1851,7 +1851,16 @@
           {
             "$ref": "#/components/schemas/SecLKISS"
           }
-        ]
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "JNY": "#/components/schemas/SecLJNY",
+            "WALK": "#/components/schemas/SecLWALK",
+            "TRSF": "#/components/schemas/SecLWALK",
+            "KISS": "#/components/schemas/SecLKISS"
+          }
+        }
       },
       "RouteTarifFare": {
         "properties": {
@@ -2630,14 +2639,21 @@
         "additionalProperties": true
       },
       "RouteJourneySegment": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/RouteJourneySegmentTrain"
           },
           {
             "$ref": "#/components/schemas/RouteJourneySegmentWalk"
           }
-        ]
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "JNY": "#/components/schemas/RouteJourneySegmentTrain",
+            "WALK": "#/components/schemas/RouteJourneySegmentWalk"
+          }
+        }
       },
       "SingleRoute": {
         "properties": {
@@ -2733,9 +2749,74 @@
         "type": "object",
         "additionalProperties": true
       },
-      "TripSearchVia": {
+      "StopPlaceLocation": {
         "properties": {
-          "evaId": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "stopPlace"
+            ],
+            "nullable": false
+          },
+          "evaNumber": {
+            "$ref": "#/components/schemas/EvaNumber"
+          }
+        },
+        "required": [
+          "type",
+          "evaNumber"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CoordinateLocation": {
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude position in reference system."
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude position in reference system."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "coordinate"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "type"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "RoutingLocationInput": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/StopPlaceLocation"
+          },
+          {
+            "$ref": "#/components/schemas/CoordinateLocation"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "stopPlace": "#/components/schemas/StopPlaceLocation",
+            "coordinate": "#/components/schemas/CoordinateLocation"
+          }
+        }
+      },
+      "TripSearchViaV4": {
+        "properties": {
+          "evaNumber": {
             "type": "string"
           },
           "minChangeTime": {
@@ -2744,7 +2825,7 @@
           }
         },
         "required": [
-          "evaId"
+          "evaNumber"
         ],
         "type": "object",
         "additionalProperties": true
@@ -2817,6 +2898,120 @@
         "type": "object",
         "additionalProperties": true
       },
+      "TripSearchOptionsV4": {
+        "properties": {
+          "economic": {
+            "type": "boolean",
+            "description": "true = not only fastest route"
+          },
+          "getIV": {
+            "type": "boolean",
+            "description": "Unknown flag"
+          },
+          "getPasslist": {
+            "type": "boolean",
+            "description": "Get Stop inbetween"
+          },
+          "getPolyline": {
+            "type": "boolean",
+            "description": "Polylines - unknown format"
+          },
+          "numF": {
+            "type": "number",
+            "format": "double"
+          },
+          "ctxScr": {
+            "type": "string"
+          },
+          "ushrp": {
+            "type": "boolean",
+            "description": "Is a station nearby enough for routing?"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "transferTime": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxChanges": {
+            "type": "number",
+            "format": "double"
+          },
+          "searchForDeparture": {
+            "type": "boolean"
+          },
+          "onlyRegional": {
+            "type": "boolean"
+          },
+          "onlyNetzcard": {
+            "type": "boolean"
+          },
+          "tarif": {
+            "$ref": "#/components/schemas/TripSearchTarifRequest"
+          },
+          "start": {
+            "$ref": "#/components/schemas/RoutingLocationInput"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/RoutingLocationInput"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchViaV4"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "start",
+          "destination"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "InputTripSearchOptionsV4": {
+        "$ref": "#/components/schemas/TripSearchOptionsV4"
+      },
+      "AllowedHafasProfile": {
+        "enum": [
+          "db",
+          "oebb",
+          "bvg",
+          "hvv",
+          "rmv",
+          "sncb",
+          "avv",
+          "nahsh",
+          "insa",
+          "anachb",
+          "vao",
+          "sbb",
+          "dbnetz",
+          "pkp",
+          "dbregio",
+          "smartrbl",
+          "vbn"
+        ],
+        "type": "string"
+      },
+      "TripSearchViaV3": {
+        "properties": {
+          "evaId": {
+            "type": "string"
+          },
+          "minChangeTime": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "evaId"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "TripSearchOptionsV3": {
         "properties": {
           "economic": {
@@ -2846,12 +3041,6 @@
             "type": "boolean",
             "description": "Is a station nearby enough for routing?"
           },
-          "start": {
-            "$ref": "#/components/schemas/EvaNumber"
-          },
-          "destination": {
-            "$ref": "#/components/schemas/EvaNumber"
-          },
           "time": {
             "type": "string",
             "format": "date-time"
@@ -2876,9 +3065,15 @@
           "tarif": {
             "$ref": "#/components/schemas/TripSearchTarifRequest"
           },
+          "start": {
+            "$ref": "#/components/schemas/EvaNumber"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/EvaNumber"
+          },
           "via": {
             "items": {
-              "$ref": "#/components/schemas/TripSearchVia"
+              "$ref": "#/components/schemas/TripSearchViaV3"
             },
             "type": "array"
           }
@@ -2890,27 +3085,8 @@
         "type": "object",
         "additionalProperties": true
       },
-      "AllowedHafasProfile": {
-        "enum": [
-          "db",
-          "oebb",
-          "bvg",
-          "hvv",
-          "rmv",
-          "sncb",
-          "avv",
-          "nahsh",
-          "insa",
-          "anachb",
-          "vao",
-          "sbb",
-          "dbnetz",
-          "pkp",
-          "dbregio",
-          "smartrbl",
-          "vbn"
-        ],
-        "type": "string"
+      "InputTripSearchOptionsV3": {
+        "$ref": "#/components/schemas/TripSearchOptionsV3"
       },
       "Record_EvaNumber.RouteAuslastung_": {
         "properties": {},
@@ -4849,6 +5025,48 @@
         ]
       }
     },
+    "/hafas/v3/stopPlaceSearch/{query}": {
+      "get": {
+        "operationId": "HafasStopPlaceSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/HafasStation"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
     "/hafas/v3/irisCompatibleAbfahrten/{evaId}": {
       "get": {
         "operationId": "IrisCompatibleAbfahrten",
@@ -5124,48 +5342,6 @@
         ]
       }
     },
-    "/hafas/v3/stopPlaceSearch/{query}": {
-      "get": {
-        "operationId": "StopPlaceSearch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/HafasStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HAFAS"
-        ],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/stopPlace/v1/search/{searchTerm}": {
       "get": {
         "operationId": "StopPlaceSearch",
@@ -5338,7 +5514,48 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TripSearchOptionsV3"
+                "$ref": "#/components/schemas/InputTripSearchOptionsV3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v4/tripSearch": {
+      "post": {
+        "operationId": "TripSearch v4",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutingResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InputTripSearchOptionsV4"
               }
             }
           }

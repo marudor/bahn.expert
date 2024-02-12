@@ -34,6 +34,9 @@ import type { StationBoardResponse } from '@/types/HAFAS/StationBoard';
 import type { TripSearchOptionsV3 } from '@/types/HAFAS/TripSearch';
 import type { TsoaResponse } from '@tsoa/runtime';
 
+// Complex Input Parameter need to be their own type to generate correctly
+type InputTripSearchOptionsV3 = TripSearchOptionsV3;
+
 @Route('/hafas/v3')
 export class HafasControllerV3 extends Controller {
   /**
@@ -45,7 +48,7 @@ export class HafasControllerV3 extends Controller {
   @OperationId('TripSearch v3')
   tripSearch(
     @Request() req: KRequest,
-    @Body() body: TripSearchOptionsV3,
+    @Body() body: InputTripSearchOptionsV3,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<RoutingResult> {
     return tripSearch(body, profile, Boolean(req.query.raw));
@@ -152,6 +155,7 @@ export class HafasControllerV3 extends Controller {
 
   @Get('/stopPlaceSearch/{query}')
   @Tags('HAFAS')
+  @OperationId('HafasStopPlaceSearch')
   async stopPlaceSearch(
     query: string,
     @Query() profile?: AllowedHafasProfile,

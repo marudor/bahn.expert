@@ -1015,10 +1015,34 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TripSearchVia": {
+    "StopPlaceLocation": {
         "dataType": "refObject",
         "properties": {
-            "evaId": {"dataType":"string","required":true},
+            "type": {"dataType":"enum","enums":["stopPlace"],"required":true},
+            "evaNumber": {"ref":"EvaNumber","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CoordinateLocation": {
+        "dataType": "refObject",
+        "properties": {
+            "latitude": {"dataType":"double","required":true},
+            "longitude": {"dataType":"double","required":true},
+            "type": {"dataType":"enum","enums":["coordinate"],"required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RoutingLocationInput": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"ref":"StopPlaceLocation"},{"ref":"CoordinateLocation"}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TripSearchViaV4": {
+        "dataType": "refObject",
+        "properties": {
+            "evaNumber": {"dataType":"string","required":true},
             "minChangeTime": {"dataType":"double"},
         },
         "additionalProperties": true,
@@ -1057,6 +1081,49 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TripSearchOptionsV4": {
+        "dataType": "refObject",
+        "properties": {
+            "economic": {"dataType":"boolean"},
+            "getIV": {"dataType":"boolean"},
+            "getPasslist": {"dataType":"boolean"},
+            "getPolyline": {"dataType":"boolean"},
+            "numF": {"dataType":"double"},
+            "ctxScr": {"dataType":"string"},
+            "ushrp": {"dataType":"boolean"},
+            "time": {"dataType":"datetime"},
+            "transferTime": {"dataType":"double"},
+            "maxChanges": {"dataType":"double"},
+            "searchForDeparture": {"dataType":"boolean"},
+            "onlyRegional": {"dataType":"boolean"},
+            "onlyNetzcard": {"dataType":"boolean"},
+            "tarif": {"ref":"TripSearchTarifRequest"},
+            "start": {"ref":"RoutingLocationInput","required":true},
+            "destination": {"ref":"RoutingLocationInput","required":true},
+            "via": {"dataType":"array","array":{"dataType":"refObject","ref":"TripSearchViaV4"}},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "InputTripSearchOptionsV4": {
+        "dataType": "refAlias",
+        "type": {"ref":"TripSearchOptionsV4","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AllowedHafasProfile": {
+        "dataType": "refEnum",
+        "enums": ["db","oebb","bvg","hvv","rmv","sncb","avv","nahsh","insa","anachb","vao","sbb","dbnetz","pkp","dbregio","smartrbl","vbn"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TripSearchViaV3": {
+        "dataType": "refObject",
+        "properties": {
+            "evaId": {"dataType":"string","required":true},
+            "minChangeTime": {"dataType":"double"},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TripSearchOptionsV3": {
         "dataType": "refObject",
         "properties": {
@@ -1067,8 +1134,6 @@ const models: TsoaRoute.Models = {
             "numF": {"dataType":"double"},
             "ctxScr": {"dataType":"string"},
             "ushrp": {"dataType":"boolean"},
-            "start": {"ref":"EvaNumber","required":true},
-            "destination": {"ref":"EvaNumber","required":true},
             "time": {"dataType":"datetime"},
             "transferTime": {"dataType":"double"},
             "maxChanges": {"dataType":"double"},
@@ -1076,14 +1141,16 @@ const models: TsoaRoute.Models = {
             "onlyRegional": {"dataType":"boolean"},
             "onlyNetzcard": {"dataType":"boolean"},
             "tarif": {"ref":"TripSearchTarifRequest"},
-            "via": {"dataType":"array","array":{"dataType":"refObject","ref":"TripSearchVia"}},
+            "start": {"ref":"EvaNumber","required":true},
+            "destination": {"ref":"EvaNumber","required":true},
+            "via": {"dataType":"array","array":{"dataType":"refObject","ref":"TripSearchViaV3"}},
         },
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "AllowedHafasProfile": {
-        "dataType": "refEnum",
-        "enums": ["db","oebb","bvg","hvv","rmv","sncb","avv","nahsh","insa","anachb","vao","sbb","dbnetz","pkp","dbregio","smartrbl","vbn"],
+    "InputTripSearchOptionsV3": {
+        "dataType": "refAlias",
+        "type": {"ref":"TripSearchOptionsV3","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Record_EvaNumber.RouteAuslastung_": {
@@ -1892,6 +1959,33 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.post('/api/hafas/v4/tripSearch',
+            ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
+            ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.tripSearch)),
+
+            async function HafasControllerV4_tripSearch(context: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    body: {"in":"body","name":"body","required":true,"ref":"InputTripSearchOptionsV4"},
+                    profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              error.message ||= JSON.stringify({ fields: error.fields });
+              context.status = error.status;
+              context.throw(context.status, error.message, error);
+            }
+
+            const controller = new HafasControllerV4();
+
+            const promise = controller.tripSearch.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v4/idDetails/:id',
             ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.idDetails)),
@@ -1949,7 +2043,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function HafasControllerV3_tripSearch(context: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    body: {"in":"body","name":"body","required":true,"ref":"TripSearchOptionsV3"},
+                    body: {"in":"body","name":"body","required":true,"ref":"InputTripSearchOptionsV3"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
