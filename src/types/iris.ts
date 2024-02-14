@@ -53,6 +53,7 @@ export interface AbfahrtenResult {
 }
 
 export interface Abfahrt {
+  journeyId?: string;
   initialDeparture: Date;
   /**
    * evaNumber of first stopPlace in route
