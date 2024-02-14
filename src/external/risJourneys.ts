@@ -4,12 +4,12 @@ import {
   getRandomOfArray,
   randomBahnhofLiveUseragent,
 } from '@/external/randomUseragent';
+import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { differenceInHours, format } from 'date-fns';
-import { getRisJourneysConfiguration } from '@/external/config';
 import { JourneysApi, TransportType } from '@/external/generated/risJourneys';
 import { logger } from '@/server/logger';
-import { upstreamApiCountInterceptor } from '@/server/admin';
+import { Configuration as RisJourneysConfiguration } from '@/external/generated/risJourneys';
 import axios from 'axios';
 import type {
   JourneyEventBased,
@@ -20,6 +20,20 @@ import type {
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { RouteStop } from '@/types/routing';
+
+const getRisJourneysConfiguration = (
+  clientId: string,
+  clientSecret: string,
+): RisJourneysConfiguration =>
+  new RisJourneysConfiguration({
+    basePath: process.env.RIS_JOURNEYS_URL,
+    baseOptions: {
+      headers: {
+        'DB-Api-Key': clientSecret,
+        'DB-Client-Id': clientId,
+      },
+    },
+  });
 
 const journeyFindCache = new Cache<JourneyMatch[]>(CacheDatabase.JourneyFind);
 
@@ -48,9 +62,7 @@ for (const [clientId, clientSecret, weight, name] of keys) {
       addUseragent.bind(undefined, randomBahnhofLiveUseragent),
     );
   }
-  axiosInstance.interceptors.request.use(
-    upstreamApiCountInterceptor.bind(undefined, `ris-journeys-${name}`),
-  );
+  axiosUpstreamInterceptor(axiosInstance, `ris-journeys-${name}`);
   const client = new JourneysApi(
     getRisJourneysConfiguration(clientId, clientSecret),
     undefined,

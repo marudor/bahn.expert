@@ -886,6 +886,7 @@ const models: TsoaRoute.Models = {
     "Abfahrt": {
         "dataType": "refObject",
         "properties": {
+            "journeyId": {"dataType":"string"},
             "initialDeparture": {"dataType":"datetime","required":true},
             "initialStopPlace": {"dataType":"string","required":true},
             "arrival": {"ref":"StopInfo"},

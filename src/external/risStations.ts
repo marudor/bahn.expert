@@ -1,11 +1,11 @@
-import { risStationsConfiguration } from '@/external/config';
+import { axiosUpstreamInterceptor } from '@/server/admin';
+import { Configuration as RisStationsConfiguration } from '@/external/generated/risStations';
 import {
   StopPlaceKeyFilter,
   StopPlacesApi,
   StopPlaceSearchGroupByKey,
 } from '@/external/generated/risStations';
 import { TransportType } from '@/external/types';
-import { upstreamApiCountInterceptor } from '@/server/admin';
 import axios from 'axios';
 import type {
   ResolvedStopPlaceGroups,
@@ -13,6 +13,17 @@ import type {
   StopPlaceKey,
   StopPlaceSearchResult,
 } from '@/external/types';
+
+const risStationsConfiguration = new RisStationsConfiguration({
+  basePath: process.env.RIS_STATIONS_URL,
+  baseOptions: {
+    headers: {
+      'user-agent': process.env.USER_AGENT,
+      'DB-Api-Key': process.env.RIS_STATIONS_CLIENT_SECRET,
+      'DB-Client-Id': process.env.RIS_STATIONS_CLIENT_ID,
+    },
+  },
+});
 
 const nonÖPNVTypes = new Set<TransportType>([
   TransportType.HighSpeedTrain,
@@ -26,9 +37,7 @@ const axiosWithTimeout = axios.create({
   timeout: 15000,
 });
 
-axiosWithTimeout.interceptors.request.use(
-  upstreamApiCountInterceptor.bind(undefined, 'ris-stations'),
-);
+axiosUpstreamInterceptor(axiosWithTimeout, 'ris-stations');
 
 const stopPlaceClient = new StopPlacesApi(
   risStationsConfiguration,
