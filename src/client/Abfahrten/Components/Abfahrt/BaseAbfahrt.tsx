@@ -1,14 +1,6 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { createContext, useCallback, useContext, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { End } from './End';
-import { journeyNumberFind } from '@/client/Common/service/details';
 import { Mid } from './Mid';
 import { Paper, Stack } from '@mui/material';
 import { Start } from './Start';
@@ -26,7 +18,6 @@ const LazyCoachSequence = loadable(
 interface AbfahrtContextValues {
   abfahrt: Abfahrt;
   detail: boolean;
-  journeyId?: string;
 }
 
 // @ts-expect-error default context not needed
@@ -112,38 +103,13 @@ export const BaseAbfahrt: FC<Props> = ({
   const handleClick = useCallback(() => {
     setSelectedDetail(abfahrt.id);
   }, [abfahrt.id, setSelectedDetail]);
-  const [journeyId, setJourneyId] = useState<string>();
   const contextValue = useMemo(
     () => ({
       detail,
       abfahrt,
-      journeyId,
     }),
-    [detail, abfahrt, journeyId],
+    [detail, abfahrt],
   );
-
-  useEffect(() => {
-    async function getJourney() {
-      if (!journeyId && detail) {
-        try {
-          const foundJourney = await journeyNumberFind(
-            abfahrt.train.number,
-            abfahrt.initialDeparture,
-            abfahrt.initialStopPlace,
-            false,
-            `detailsClick${abfahrt.train.number}`,
-            2,
-          );
-          if (foundJourney.length === 1) {
-            setJourneyId(foundJourney[0].jid);
-          }
-        } catch {
-          // we just ignore errors
-        }
-      }
-    }
-    void getJourney();
-  }, [detail, abfahrt, journeyId]);
 
   return (
     <AbfahrtContext.Provider value={contextValue}>

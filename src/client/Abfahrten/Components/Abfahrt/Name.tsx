@@ -22,7 +22,7 @@ interface Props {
 export const Name: FC<Props> = ({ withLink }) => {
   const urlPrefix = useAbfahrtenUrlPrefix();
   const { lineAndNumber } = useCommonConfig();
-  const { abfahrt, journeyId } = useAbfahrt();
+  const { abfahrt } = useAbfahrt();
   const longDistance = abfahrt.train.name.endsWith(abfahrt.train.number);
 
   let trainName = <span>{abfahrt.train.name}</span>;
@@ -34,7 +34,7 @@ export const Name: FC<Props> = ({ withLink }) => {
         train={abfahrt.previousTrain || abfahrt.train}
         evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
         initialDeparture={abfahrt.initialDeparture}
-        journeyId={abfahrt.journeyId || journeyId}
+        journeyId={abfahrt.journeyId}
       >
         {trainName}
       </DetailsLink>
