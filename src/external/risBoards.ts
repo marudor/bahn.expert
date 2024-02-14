@@ -25,7 +25,7 @@ const axiosWithTimeout = axios.create({
   timeout: 10000,
   headers: {
     'User-Agent':
-      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.8 Chrome/87.0.4280.144 Safari/537.36',
   },
 });
 
@@ -49,61 +49,66 @@ export async function departureAndArrivals(
   timeStart: Date,
   timeEnd: Date,
 ): Promise<CombinedArrivalDeparture[]> {
-  const departurePromise = boardsClient
-    .boardDeparture({
-      evaNumbers: [evaNumber],
-      includeStationGroup: true,
-      timeStart: timeStart.toISOString(),
-      timeEnd: timeEnd.toISOString(),
-      filterTransports: [
-        'HIGH_SPEED_TRAIN',
-        'INTERCITY_TRAIN',
-        'INTER_REGIONAL_TRAIN',
-        'REGIONAL_TRAIN',
-      ],
-    })
-    .then((r) => r.data.departures);
-  const arrivalPromise = boardsClient
-    .boardArrival({
-      evaNumbers: [evaNumber],
-      includeStationGroup: true,
-      timeStart: timeStart.toISOString(),
-      timeEnd: timeEnd.toISOString(),
-      filterTransports: [
-        'HIGH_SPEED_TRAIN',
-        'INTERCITY_TRAIN',
-        'INTER_REGIONAL_TRAIN',
-        'REGIONAL_TRAIN',
-      ],
-    })
-    .then((r) => r.data.arrivals);
-  const [departures, arrivals] = await Promise.all([
-    departurePromise,
-    arrivalPromise,
-  ]);
+  try {
+    const departurePromise = boardsClient
+      .boardDeparture({
+        evaNumbers: [evaNumber],
+        includeStationGroup: true,
+        timeStart: timeStart.toISOString(),
+        timeEnd: timeEnd.toISOString(),
+        filterTransports: [
+          'HIGH_SPEED_TRAIN',
+          'INTERCITY_TRAIN',
+          'INTER_REGIONAL_TRAIN',
+          'REGIONAL_TRAIN',
+        ],
+      })
+      .then((r) => r.data.departures);
+    const arrivalPromise = boardsClient
+      .boardArrival({
+        evaNumbers: [evaNumber],
+        includeStationGroup: true,
+        timeStart: timeStart.toISOString(),
+        timeEnd: timeEnd.toISOString(),
+        filterTransports: [
+          'HIGH_SPEED_TRAIN',
+          'INTERCITY_TRAIN',
+          'INTER_REGIONAL_TRAIN',
+          'REGIONAL_TRAIN',
+        ],
+      })
+      .then((r) => r.data.arrivals);
+    const [departures, arrivals] = await Promise.all([
+      departurePromise,
+      arrivalPromise,
+    ]);
 
-  const combinedByJourneyId: Record<string, CombinedArrivalDeparture> = {};
+    const combinedByJourneyId: Record<string, CombinedArrivalDeparture> = {};
 
-  for (const dep of departures) {
-    if (combinedByJourneyId[dep.journeyID]) {
-      // ??? Problem for later
+    for (const dep of departures) {
+      if (combinedByJourneyId[dep.journeyID]) {
+        // ??? Problem for later
+      }
+      combinedByJourneyId[dep.journeyID] = {
+        transport: dep.transport,
+        departure: dep,
+      };
+      combinedByJourneyId;
     }
-    combinedByJourneyId[dep.journeyID] = {
-      transport: dep.transport,
-      departure: dep,
-    };
-    combinedByJourneyId;
-  }
 
-  for (const arr of arrivals) {
-    const combined = combinedByJourneyId[arr.journeyID] || {
-      transport: arr.transport,
-    };
-    if (combined.arrival) {
-      // ?? Problem for later
+    for (const arr of arrivals) {
+      const combined = combinedByJourneyId[arr.journeyID] || {
+        transport: arr.transport,
+      };
+      if (combined.arrival) {
+        // ?? Problem for later
+      }
+      combined.arrival = arr;
     }
-    combined.arrival = arr;
-  }
 
-  return Object.values(combinedByJourneyId);
+    return Object.values(combinedByJourneyId);
+  } catch {
+    // just for enrichement, ignore if it doesn't work
+    return [];
+  }
 }
