@@ -39,7 +39,7 @@ export class IrisControllerv2 extends Controller {
     });
     const boardsPromise = departureAndArrivals(
       evaNumber,
-      subMinutes(defaultedStartTime, 20),
+      subMinutes(defaultedStartTime, Math.min(60, lookbehind)),
       addMinutes(defaultedStartTime, Math.min(120, lookahead)),
     );
 
