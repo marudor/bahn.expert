@@ -66,7 +66,10 @@ export class IrisControllerv2 extends Controller {
         if (
           abfahrt?.arrival &&
           b.arrival &&
-          abfahrt.arrival.scheduledTime.toISOString() === b.arrival.timeSchedule
+          isEqual(
+            abfahrt.arrival.scheduledTime,
+            new Date(b.arrival.timeSchedule),
+          )
         ) {
           abfahrt.journeyId = b.arrival.journeyID;
           abfahrt.arrival.isRealTime =
