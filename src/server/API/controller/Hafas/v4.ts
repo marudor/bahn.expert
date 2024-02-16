@@ -116,9 +116,8 @@ export class HafasControllerV4 extends Controller {
     );
 
     const matchingTrip = trips.verbindungen.find((v: any) =>
-      v.verbindung.verbindungsAbschnitte.some(
-        (a: any) =>
-          a.risZuglaufId?.endsWith(journey.events[0].transport.number),
+      v.verbindung.verbindungsAbschnitte.some((a: any) =>
+        a.risZuglaufId?.endsWith(journey.events[0].transport.number),
       ),
     );
 
