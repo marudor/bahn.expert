@@ -140,6 +140,7 @@ async function makeRequest<
   UpstreamApiRequestMetric.inc({
     api: `hafas-${hafasRequest.meth}`,
   });
+
   const r = (
     await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
       params: extraParam,

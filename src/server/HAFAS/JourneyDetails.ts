@@ -18,7 +18,7 @@ import type {
 export const parseJourneyDetails = (
   d: HafasResponse<JourneyDetailsResponse>,
   common: ParsedCommon,
-): Promise<ParsedJourneyDetails> => {
+): Promise<ParsedJourneyDetails | undefined> => {
   const journey = d.svcResL[0].res.journey;
   const mainProduct = common.prodL[journey.prodX];
   adjustProductOperator(mainProduct, common, journey.stopL);
@@ -30,6 +30,10 @@ export const parseJourneyDetails = (
   const stops = journey.stopL.map((stop) =>
     parseStop(stop, common, date, mainProduct),
   );
+  if (!stops.length) {
+    return Promise.resolve(undefined);
+  }
+
   const parsedJourney = {
     train: mainProduct,
     auslastung: parseAuslastung(journey.dTrnCmpSX, common.tcocL),
