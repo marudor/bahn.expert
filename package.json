@@ -198,6 +198,7 @@
   },
   "browserslist": [
     ">2% in DE",
+    "ios 10",
     "not dead"
   ],
   "repository": {
