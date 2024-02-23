@@ -271,6 +271,7 @@ const naming: Record<number, string> = {
   9046: 'Female ICE',
   9050: 'Metropole Ruhr',
   9202: 'Schleswig-Holstein',
+  9237: '#137 The final One',
   9457: 'Bundesrepublik Deutschland',
   9481: 'Rheinland-Pfalz',
 };
