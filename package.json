@@ -55,7 +55,7 @@
     "test:ts:cypress": "tsc -p cypress",
     "cypress:local": "TZ=Etc/UTC cypress open",
     "cypress:local:e2e": "CI=1 TZ=Etc/UTC percy exec -- cypress run",
-    "cypress:local:ct": "pnpm cypress:local:e2e --component",
+    "cypress:local:ct": "SKIP_OLD_BROWSER=1 pnpm cypress:local:e2e --component",
     "doc:start": "./startDocServer.sh",
     "doc:build": "tsoa spec-and-routes && node ./scripts/adjustSpecJson.cjs",
     "doc:build:gitadd": "pnpm doc:build && git add public/swagger.json && git add src/server/API/routes.ts",

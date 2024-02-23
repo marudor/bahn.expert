@@ -20,6 +20,15 @@ const plugins = [
 ];
 const entry = ['./src/client/entry.ts'];
 
+const targets = [
+  ...require('browserslist').loadConfig({
+    path: __dirname,
+  }),
+];
+if (!process.env.SKIP_OLD_BROWSER) {
+  targets.push('ios 10');
+}
+
 const rules = [
   {
     test: /\.css$/,
@@ -37,12 +46,7 @@ const rules = [
           },
           env: {
             mode: 'entry',
-            targets: [
-              ...require('browserslist').loadConfig({
-                path: __dirname,
-              }),
-              'ios 10',
-            ],
+            targets,
           },
         },
       },
