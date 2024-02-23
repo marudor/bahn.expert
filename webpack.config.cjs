@@ -37,9 +37,12 @@ const rules = [
           },
           env: {
             mode: 'entry',
-            targets: require('browserslist').loadConfig({
-              path: __dirname,
-            }),
+            targets: [
+              ...require('browserslist').loadConfig({
+                path: __dirname,
+              }),
+              'ios 10',
+            ],
           },
         },
       },
