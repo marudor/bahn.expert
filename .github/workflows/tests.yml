@@ -60,10 +60,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
-      - name: browser versions
-        run: |
-          firefox --version
-          google-chrome --version
       - name: Install Deps
         run: |
           corepack enable
@@ -84,6 +80,7 @@ jobs:
           PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SKIP_OLD_BROWSER: 1
   e2e:
     runs-on: ubuntu-latest
     container:
