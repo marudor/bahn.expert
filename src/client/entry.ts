@@ -17,4 +17,10 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   });
 }
 
+if (typeof globalThis === 'undefined') {
+  // @ts-expect-error polyfill
+  // eslint-disable-next-line no-global-assign
+  globalThis = global;
+}
+
 require('./index');

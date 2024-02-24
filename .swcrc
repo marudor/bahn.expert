@@ -13,10 +13,7 @@
     "loose": true,
     "experimental": {
       "plugins": [
-        [
-          "@swc/plugin-emotion",
-          {}
-        ],
+        ["@swc/plugin-emotion", {}],
         [
           "@swc/plugin-transform-imports",
           {
@@ -28,10 +25,7 @@
             }
           }
         ],
-        [
-          "@swc/plugin-loadable-components",
-          {}
-        ]
+        ["@swc/plugin-loadable-components", {}]
       ]
     },
     "parser": {
@@ -49,24 +43,12 @@
     },
     "baseUrl": ".",
     "paths": {
-      "@/client/*": [
-        "src/client/*"
-      ],
-      "@/external/*": [
-        "src/external/*"
-      ],
-      "@/oebb/*": [
-        "src/oebb/*"
-      ],
-      "@/server/*": [
-        "src/server/*"
-      ],
-      "@/types/*": [
-        "src/types/*"
-      ],
-      "@/fixtures/*": [
-        "cypress/fixtures/*"
-      ]
+      "@/client/*": ["src/client/*"],
+      "@/external/*": ["src/external/*"],
+      "@/oebb/*": ["src/oebb/*"],
+      "@/server/*": ["src/server/*"],
+      "@/types/*": ["src/types/*"],
+      "@/fixtures/*": ["cypress/fixtures/*"]
     }
   }
 }

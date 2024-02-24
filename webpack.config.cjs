@@ -20,13 +20,19 @@ const plugins = [
 ];
 const entry = ['./src/client/entry.ts'];
 
-const targets = [
-  ...require('browserslist').loadConfig({
+const targets = require('browserslist').loadConfig({
+  path: __dirname,
+});
+const env = {
+  mode: 'entry',
+  targets: require('browserslist').loadConfig({
     path: __dirname,
   }),
-];
+  coreJs: '3.36',
+};
+
 if (!process.env.SKIP_OLD_BROWSER) {
-  targets.push('ios 10');
+  env.targets.push('ios 10');
 }
 
 const rules = [
@@ -44,10 +50,7 @@ const rules = [
           module: {
             type: 'es6',
           },
-          env: {
-            mode: 'entry',
-            targets,
-          },
+          env,
         },
       },
     ],
