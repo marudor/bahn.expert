@@ -74,10 +74,8 @@ jobs:
           group: ${{ matrix.browser }}-ct
           ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
           browser: ${{ matrix.browser}}
-          command-prefix: 'percy exec --parallel -- pnpm'
+          command-prefix: 'pnpm'
         env:
-          PERCY_TOKEN: web_63aaa4d04fb56e5bb41b4547417eac37310a4b8dd2ef6f2e6e444215eacb01b3
-          PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_OLD_BROWSER: 1
@@ -130,7 +128,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - e2e
-      - ct
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 21
