@@ -5,9 +5,10 @@
   },
   "env": {
     "targets": {
-      "node": "20"
+      "node": "21"
     }
   },
+  "sourceMaps": true,
   "jsc": {
     "externalHelpers": true,
     "loose": true,

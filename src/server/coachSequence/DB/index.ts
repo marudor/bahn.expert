@@ -14,12 +14,11 @@ import type { CoachSequenceInformation } from '@/types/coachSequence';
 import type { Wagenreihung } from '@/types/reihung';
 
 const dbCoachSequenceUrls = {
-  apps: 'https://www.apps-bahn.de/wr/wagenreihung/1.0',
   noncd: 'https://ist-wr.noncd.db.de/wagenreihung/1.0',
   newApps: 'https://www.apps-bahn.de/wgr/wr',
 };
 
-type DBSourceType = 'apps' | 'noncd' | 'newApps';
+type DBSourceType = keyof typeof dbCoachSequenceUrls;
 
 const dbCoachSequenceTimeout =
   process.env.NODE_ENV === 'production' ? 4500 : 10000;

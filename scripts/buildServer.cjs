@@ -14,6 +14,8 @@ async function build() {
     const p = childProcess.spawn(
       'swc',
       [
+        '-s',
+        'false',
         '-D',
         '--strip-leading-paths',
         '-C',
