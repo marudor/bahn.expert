@@ -1,4 +1,7 @@
 describe('Details', () => {
+  beforeEach(() => {
+    cy.visit('/');
+  });
   it('Can Render (with error)', () => {
     cy.intercept(
       {
