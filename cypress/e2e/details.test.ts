@@ -60,7 +60,7 @@ describe('Details', () => {
     cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
   });
 
-  it.only('goes to next & sets administration', () => {
+  it('goes to next & sets administration', () => {
     cy.intercept(
       {
         pathname: '/api/journeys/v1/details/S30665',
