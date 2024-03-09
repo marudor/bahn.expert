@@ -1,6 +1,5 @@
-import { Stack } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 import { useQuery } from '@/client/Common/hooks/useQuery';
-import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 
 const Container = styled(Stack, {

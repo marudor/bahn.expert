@@ -1,6 +1,6 @@
 import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import { IconButton, styled } from '@mui/material';
 import {
   routingFavKey,
   useRoutingFavActions,
@@ -8,7 +8,6 @@ import {
 } from '@/client/Routing/provider/RoutingFavProvider';
 import { useCallback, useMemo } from 'react';
 import { useRoutingConfig } from '@/client/Routing/provider/RoutingConfigProvider';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
@@ -27,7 +26,7 @@ function stripToMinimalStopPlace(
   };
 }
 
-const Container = styled.div`
+const Container = styled('div')`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr max-content;
@@ -36,11 +35,11 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const StartName = styled.span(({ theme }) => theme.mixins.singleLineText, {
+const StartName = styled('span')(({ theme }) => theme.mixins.singleLineText, {
   gridArea: 's',
 });
 
-const DestinationName = styled.span(
+const DestinationName = styled('span')(
   ({ theme }) => theme.mixins.singleLineText,
   {
     gridArea: 'd',

@@ -5,7 +5,7 @@ import {
   SelectedDetailProvider,
   useSelectedDetail,
 } from '@/client/Abfahrten/provider/SelectedDetailProvider';
-import { Stack } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 import { Streik } from '@/client/Common/Components/Streik';
 import {
   useAbfahrten,
@@ -21,17 +21,16 @@ import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import { useSequencesActions } from '@/client/Common/provider/CoachSequenceProvider';
-import styled from '@emotion/styled';
 import type { AbfahrtenResult } from '@/types/iris';
 import type { FC } from 'react';
 
-const LookaheadMarker = styled.div`
+const LookaheadMarker = styled('div')`
   height: 154px;
   position: absolute;
   bottom: 0;
 `;
 
-const Lookbehind = styled.div(({ theme }) => ({
+const Lookbehind = styled('div')(({ theme }) => ({
   position: 'relative',
   paddingTop: 10,
   backgroundColor: theme.colors.shadedBackground,

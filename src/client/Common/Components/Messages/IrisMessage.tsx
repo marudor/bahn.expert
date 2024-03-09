@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import type { FC } from 'react';
 import type { IrisMessage as IrisMessageType } from '@/types/iris';
 
-const Container = styled.div<{ superseded?: boolean }>(
+const Container = styled('div')<{ superseded?: boolean }>(
   ({ theme, superseded }) => superseded && theme.mixins.cancelled,
 );
 

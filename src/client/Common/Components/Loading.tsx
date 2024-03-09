@@ -1,5 +1,4 @@
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
+import { keyframes, styled } from '@mui/material';
 import type { ReactElement } from 'react';
 
 const dotsKeyframes = keyframes`
@@ -22,7 +21,7 @@ const gridKeyframes = keyframes`
   }
 `;
 
-const Grid = styled.div<{ absolute?: boolean }>(
+const Grid = styled('div')<{ absolute?: boolean }>(
   ({ theme }) => ({
     top: 0,
     left: 0,
@@ -54,7 +53,7 @@ const Grid = styled.div<{ absolute?: boolean }>(
     },
 );
 
-const Dots = styled.div(({ theme }) => ({
+const Dots = styled('div')(({ theme }) => ({
   display: 'inline-block',
   position: 'relative',
   width: 64,

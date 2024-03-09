@@ -3,12 +3,12 @@ import { DetailMessages } from '@/client/Common/Components/Messages/Detail';
 import { DetailVia } from './Via/Detail';
 import { NormalMessages } from '@/client/Common/Components/Messages/Normal';
 import { NormalVia } from './Via/Normal';
+import { styled } from '@mui/material';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useMemo } from 'react';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Container = styled.div`
+const Container = styled('div')`
   font-size: 2.1em;
   overflow: hidden;
   text-overflow: ellipsis;

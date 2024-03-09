@@ -1,10 +1,9 @@
 import { Loading, LoadingType } from './Loading';
-import { MenuItem, Paper, TextField } from '@mui/material';
+import { MenuItem, Paper, styled, TextField } from '@mui/material';
 import { useCallback, useRef } from 'react';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useStopPlaceSearch } from '@/client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
-import styled from '@emotion/styled';
 import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
@@ -16,7 +15,7 @@ const PositionedLoading = styled(Loading)`
   transform: scale(0.5);
 `;
 
-const Container = styled.div`
+const Container = styled('div')`
   flex: 1;
   position: relative;
 `;

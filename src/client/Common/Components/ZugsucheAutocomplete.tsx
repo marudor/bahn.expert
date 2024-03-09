@@ -1,17 +1,16 @@
 import { journeyNumberFind } from '@/client/Common/service/details';
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
-import { MenuItem, Paper, TextField } from '@mui/material';
+import { MenuItem, Paper, styled, TextField } from '@mui/material';
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
-import styled from '@emotion/styled';
 import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
 const debouncedJourneyNumberFind = debounce(journeyNumberFind, 200);
 
-const Container = styled.div`
+const Container = styled('div')`
   position: relative;
   margin: 20px;
 

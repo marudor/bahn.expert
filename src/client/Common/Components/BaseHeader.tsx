@@ -1,12 +1,11 @@
-import { AppBar, IconButton, Toolbar } from '@mui/material';
+import { AppBar, IconButton, styled, Toolbar } from '@mui/material';
 import { HeaderTags } from './HeaderTags';
 import { Menu } from '@mui/icons-material';
 import { NavigationContext } from '@/client/Common/Components/Navigation/NavigationContext';
 import { useContext } from 'react';
-import styled from '@emotion/styled';
 import type { FC, PropsWithChildren } from 'react';
 
-const NotchFix = styled.div(({ theme }) => ({
+const NotchFix = styled('div')(({ theme }) => ({
   top: '-5em',
   height: '5em',
   width: '100%',
@@ -15,9 +14,11 @@ const NotchFix = styled.div(({ theme }) => ({
   background: theme.palette.background.default,
 }));
 
-const Offset = styled.div<{ spacing?: number }>(({ theme, spacing = 0 }) => ({
-  minHeight: `${theme.shape.headerSpacing + spacing}em`,
-}));
+const Offset = styled('div')<{ spacing?: number }>(
+  ({ theme, spacing = 0 }) => ({
+    minHeight: `${theme.shape.headerSpacing + spacing}em`,
+  }),
+);
 
 interface Props {
   /** Unit: em */

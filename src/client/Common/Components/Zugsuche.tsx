@@ -4,6 +4,7 @@ import {
   DialogTitle,
   FormControl,
   FormControlLabel,
+  styled,
   Switch,
   TextField,
 } from '@mui/material';
@@ -17,7 +18,6 @@ import { useNavigate } from 'react-router';
 import { useStorage } from '@/client/useStorage';
 import { ZugsucheAutocomplete } from '@/client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
-import styled from '@emotion/styled';
 import type { FC, ReactElement, SyntheticEvent } from 'react';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
@@ -46,7 +46,7 @@ const TrainIcon = styled(Train)`
 `;
 const TodayIcon = TrainIcon.withComponent(Today);
 
-const InputContainer = styled.div`
+const InputContainer = styled('div')`
   position: relative;
   display: flex;
   justify-content: space-between;

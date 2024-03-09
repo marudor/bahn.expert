@@ -1,6 +1,5 @@
-import { Chip, Paper } from '@mui/material';
+import { Chip, Paper, styled } from '@mui/material';
 import { format } from 'date-fns';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const Container = styled(Paper)`
@@ -12,7 +11,7 @@ const Container = styled(Paper)`
   font-size: 0.8em;
 `;
 
-const DateContainer = styled.span`
+const DateContainer = styled('span')`
   grid-area: 1 / 1 /2 / 5;
   text-align: center;
   margin-bottom: 10px;

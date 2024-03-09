@@ -1,10 +1,9 @@
 import { Delete } from '@mui/icons-material';
-import { IconButton, Paper } from '@mui/material';
+import { IconButton, Paper, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
 import { useFavActions } from '@/client/Abfahrten/provider/FavProvider';
-import styled from '@emotion/styled';
 import type { FC, MouseEvent, ReactNode } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 

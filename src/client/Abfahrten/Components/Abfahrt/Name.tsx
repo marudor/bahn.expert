@@ -1,13 +1,11 @@
-import { css } from '@emotion/react';
+import { css, Stack, styled } from '@mui/material';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import { Stack } from '@mui/material';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Extra = styled.span(({ theme }) => ({
+const Extra = styled('span')(({ theme }) => ({
   fontSize: '.8em',
   color: theme.palette.text.secondary,
 }));

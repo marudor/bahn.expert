@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import type { FC } from 'react';
 
-const Container = styled.div<{ cancelled?: boolean; changed?: boolean }>(
+const Container = styled('div')<{ cancelled?: boolean; changed?: boolean }>(
   ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
   ({ theme, changed }) => changed && theme.mixins.changed,
 );
 
-const ChangedContainer = styled.span(({ theme }) => theme.mixins.cancelled, {
+const ChangedContainer = styled('span')(({ theme }) => theme.mixins.cancelled, {
   paddingLeft: '.3em',
 });
 

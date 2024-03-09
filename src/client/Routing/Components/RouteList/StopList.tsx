@@ -1,9 +1,9 @@
 import { Stop } from '@/client/Common/Components/Details/Stop';
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import type { FC } from 'react';
 import type { RouteStop } from '@/types/routing';
 
-const Container = styled.div`
+const Container = styled('div')`
   padding-left: 0.2em;
 `;
 interface Props {

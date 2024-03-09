@@ -1,10 +1,9 @@
-import { Dialog, DialogContent, Stack } from '@mui/material';
+import { Dialog, DialogContent, Stack, styled } from '@mui/material';
 import { useCallback, useState } from 'react';
-import styled from '@emotion/styled';
 import type { CoachSequenceCoachSeats } from '@/types/coachSequence';
 import type { FC, SyntheticEvent } from 'react';
 
-const OpenText = styled.span(({ theme }) => ({
+const OpenText = styled('span')(({ theme }) => ({
   color: theme.colors.blue,
   cursor: 'pointer',
 }));

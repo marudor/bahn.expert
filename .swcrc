@@ -49,7 +49,11 @@
       "@/oebb/*": ["src/oebb/*"],
       "@/server/*": ["src/server/*"],
       "@/types/*": ["src/types/*"],
-      "@/fixtures/*": ["cypress/fixtures/*"]
+      "@/fixtures/*": ["cypress/fixtures/*"],
+      "@mui/material/css": ["src/swcWorkarounds/css"],
+      "@mui/material/styled": ["src/swcWorkarounds/styled"],
+      "@mui/material/keyframes": ["src/swcWorkarounds/keyframes"],
+      "@mui/material/useTheme": ["src/swcWorkarounds/useTheme"]
     }
   }
 }

@@ -3,14 +3,13 @@ import { CoachSequence } from '../CoachSequence/CoachSequence';
 import { DetailMessages } from '../Messages/Detail';
 import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
-import { Stack } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { RouteStop } from '@/types/routing';
@@ -23,7 +22,7 @@ const DepartureTime = styled(Time)`
   grid-area: dp;
 `;
 
-const StopName = styled.span<{ stop: RouteStop }>(
+const StopName = styled('span')<{ stop: RouteStop }>(
   {
     gridArea: 't',
     overflow: 'hidden',
@@ -36,7 +35,7 @@ const StopName = styled.span<{ stop: RouteStop }>(
   ({ theme, stop: { cancelled } }) => cancelled && theme.mixins.cancelled,
 );
 
-const ScrollMarker = styled.div`
+const ScrollMarker = styled('div')`
   position: absolute;
   top: -64px;
 `;
@@ -49,13 +48,13 @@ const DeparturePlatform = styled(Platform)`
   grid-area: depP;
 `;
 
-const CoachSequenceContainer = styled.div`
+const CoachSequenceContainer = styled('div')`
   grid-area: wr;
   font-size: 0.5em;
   overflow: hidden;
 `;
 
-const MessageContainer = styled.div`
+const MessageContainer = styled('div')`
   grid-area: m;
   padding-left: 1em;
 `;
@@ -68,7 +67,7 @@ const StyledOccupancy = styled(AuslastungsDisplay)`
   grid-area: o;
 `;
 
-const Container = styled.div<{
+const Container = styled('div')<{
   past?: boolean;
   hasOccupancy: boolean;
   samePlatform: boolean;

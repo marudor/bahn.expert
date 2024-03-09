@@ -1,10 +1,10 @@
 /* eslint no-nested-ternary: 0 */
+import { styled } from '@mui/material';
 import { Time } from '@/client/Common/Components/Time';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const TimeContainer = styled.div<{ cancelled?: boolean }>(
+const TimeContainer = styled('div')<{ cancelled?: boolean }>(
   ({ theme }) => ({
     display: 'flex',
     justifyContent: 'flex-end',

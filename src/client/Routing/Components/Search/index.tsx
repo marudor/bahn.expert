@@ -1,13 +1,14 @@
 import {
   Button,
+  css,
   Divider,
   FormControlLabel,
   Radio,
   RadioGroup,
   Stack,
+  styled,
   TextField,
 } from '@mui/material';
-import { css } from '@emotion/react';
 import { Delete } from '@mui/icons-material';
 import {
   FavoriteBorder,
@@ -26,7 +27,6 @@ import {
   useRoutingConfig,
   useRoutingConfigActions,
 } from '@/client/Routing/provider/RoutingConfigProvider';
-import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
@@ -72,7 +72,7 @@ const SwapOriginDest = styled(SwapVert)`
 
 const ClearIcon = SwapOriginDest.withComponent(Delete);
 
-const Buttons = styled.div(({ theme }) => ({
+const Buttons = styled('div')(({ theme }) => ({
   display: 'flex',
   margin: '15px 0 1em',
   '& > button:nth-of-type(1)': {

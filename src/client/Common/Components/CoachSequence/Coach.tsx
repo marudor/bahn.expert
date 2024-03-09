@@ -11,9 +11,9 @@ import {
 } from '@mui/icons-material';
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { SitzplatzInfo } from './SitzplatzInfo';
+import { styled } from '@mui/material';
 import { UIC } from './UIC';
 import { WagenLink } from './WagenLink';
-import styled from '@emotion/styled';
 import type {
   AvailableIdentifier,
   CoachSequenceCoach,
@@ -21,7 +21,7 @@ import type {
 } from '@/types/coachSequence';
 import type { ComponentType, FC } from 'react';
 
-const DummyIcon = styled.span(({ theme }) => ({
+const DummyIcon = styled('span')(({ theme }) => ({
   width: '.6em',
   height: '.6em',
   [theme.breakpoints.down('md')]: {
@@ -44,7 +44,7 @@ export const icons: {
   comfort: null,
 };
 
-const Container = styled.div<{
+const Container = styled('div')<{
   wrongWing?: boolean;
   closed?: boolean;
 }>(
@@ -74,7 +74,7 @@ const Container = styled.div<{
     },
 );
 
-const DoppelstockIndicator = styled.span(({ theme }) => ({
+const DoppelstockIndicator = styled('span')(({ theme }) => ({
   position: 'absolute',
   height: '1px',
   top: '45%',
@@ -85,7 +85,7 @@ const DoppelstockIndicator = styled.span(({ theme }) => ({
   backgroundRepeat: 'repeat-x',
 }));
 
-const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
+const Fahrzeugklasse = styled('span')<{ coach: CoachSequenceCoach }>(
   {
     bottom: 0,
     right: 0,
@@ -139,7 +139,7 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
   },
 );
 
-const IdentificationNumber = styled.span`
+const IdentificationNumber = styled('span')`
   position: absolute;
   z-index: 1;
   left: 50%;
@@ -147,7 +147,7 @@ const IdentificationNumber = styled.span`
   bottom: 0;
 `;
 
-const ComfortIcon = styled.span(({ theme }) => ({
+const ComfortIcon = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: '.2em',
   right: '.3em',
@@ -157,7 +157,7 @@ const ComfortIcon = styled.span(({ theme }) => ({
   borderRadius: '50%',
 }));
 
-const ExtraInfoContainer = styled.span<{ showCoachType: boolean }>(
+const ExtraInfoContainer = styled('span')<{ showCoachType: boolean }>(
   {
     position: 'absolute',
     display: 'flex',

@@ -1,9 +1,9 @@
 import { Info } from './Info';
+import { styled } from '@mui/material';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Wrapper = styled.div<{ detail: boolean }>(({ detail }) => ({
+const Wrapper = styled('div')<{ detail: boolean }>(({ detail }) => ({
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
@@ -12,7 +12,7 @@ const Wrapper = styled.div<{ detail: boolean }>(({ detail }) => ({
   whiteSpace: detail ? undefined : 'nowrap',
 }));
 
-const Destination = styled.div<{
+const Destination = styled('div')<{
   cancelled?: boolean;
   different?: boolean;
 }>(

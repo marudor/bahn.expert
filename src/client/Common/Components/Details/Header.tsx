@@ -6,28 +6,29 @@ import {
 } from '@mui/icons-material';
 import { BaseHeader } from '../BaseHeader';
 import { format } from 'date-fns';
-import { IconButton } from '@mui/material';
+import { IconButton, styled } from '@mui/material';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import styled from '@emotion/styled';
 import type { CommonProductInfo } from '@/types/HAFAS';
 import type { FC } from 'react';
 
-const SingleLineSpan = styled.span(({ theme }) => theme.mixins.singleLineText);
+const SingleLineSpan = styled('span')(
+  ({ theme }) => theme.mixins.singleLineText,
+);
 
 const Operator = styled(SingleLineSpan)`
   grid-area: o;
 `;
 
-const Destination = styled.span`
+const Destination = styled('span')`
   grid-area: g;
   max-height: 2rem;
   overflow: hidden;
   word-break: break-word;
 `;
 
-const Container = styled.div`
+const Container = styled('div')`
   font-size: 90%;
   width: 100%;
   display: grid;
@@ -44,7 +45,7 @@ const DateDisplay = styled(SingleLineSpan)`
   grid-area: d;
 `;
 
-const Arrow = styled.span`
+const Arrow = styled('span')`
   grid-area: a;
   margin-right: 0.2em;
 `;

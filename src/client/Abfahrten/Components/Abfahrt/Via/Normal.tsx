@@ -1,7 +1,6 @@
-import { css } from '@emotion/react';
+import { css, styled } from '@mui/material';
 import { isHbf } from './index';
 import { useMemo } from 'react';
-import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 import type { Stop } from '@/types/iris';
 

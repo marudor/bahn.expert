@@ -1,9 +1,9 @@
+import { styled } from '@mui/material';
 import { useMemo } from 'react';
-import styled from '@emotion/styled';
 import type { Abfahrt, Message } from '@/types/iris';
 import type { FC } from 'react';
 
-export const MessageContainer = styled.div(({ theme }) => ({
+export const MessageContainer = styled('div')(({ theme }) => ({
   color: theme.colors.red,
   overflow: 'hidden',
   textOverflow: 'ellipsis',

@@ -1,5 +1,5 @@
 import { Meta } from 'react-head';
-import { useTheme } from '@mui/system';
+import { useTheme } from '@mui/material';
 import type { FC } from 'react';
 
 export const ThemeHeaderTags: FC = () => {

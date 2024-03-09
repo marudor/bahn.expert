@@ -5,13 +5,13 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  styled,
   Typography,
 } from '@mui/material';
 import { ExpandLess, ExpandMore, Palette } from '@mui/icons-material';
 import { ThemeType } from '@/client/Themes/type';
 import { useCallback, useState } from 'react';
 import { useTheme } from '@/client/Common/provider/ThemeProvider';
-import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 
 const ThemeList = styled(List)(({ theme }) => ({

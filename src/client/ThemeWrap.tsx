@@ -1,5 +1,6 @@
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { App } from './App';
+// eslint-disable-next-line no-restricted-imports
 import { CacheProvider } from '@emotion/react';
 import { deDE } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -9,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from '@/client/Common/provider/ThemeProvider';
 import createEmotionCache from '@emotion/cache';
 import deLocale from 'date-fns/locale/de';
+// eslint-disable-next-line no-restricted-imports
 import type { EmotionCache } from '@emotion/react';
 import type { ReactElement, ReactNode } from 'react';
 

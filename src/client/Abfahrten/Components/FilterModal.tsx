@@ -4,12 +4,12 @@ import {
   DialogActions,
   DialogContent,
   FormControlLabel,
+  styled,
   Switch,
 } from '@mui/material';
 import { useAbfahrtenFilter } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useAllTrainTypes } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import { useCallback } from 'react';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const Label = styled(FormControlLabel)`

@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
-export const PrideStripe = styled.div(
+export const PrideStripe = styled('div')(
   ({ theme }) => ({
     background: theme.colors.pride,
   }),

@@ -1,11 +1,10 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
-import { Stack } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const DelayContainer = styled.span<{ early?: boolean; delayed?: boolean }>(
+const DelayContainer = styled('span')<{ early?: boolean; delayed?: boolean }>(
   ({ theme, early }) => early && theme.mixins.early,
   ({ theme, delayed }) => delayed && theme.mixins.delayed,
 );
@@ -23,7 +22,7 @@ const Container = styled(DelayContainer.withComponent(Stack), {
   ({ multiLine }) => !multiLine && { flexDirection: 'row' },
 );
 
-const TimeContainer = styled.span<{
+const TimeContainer = styled('span')<{
   isRealTime?: boolean;
   early?: boolean;
   delayed?: boolean;

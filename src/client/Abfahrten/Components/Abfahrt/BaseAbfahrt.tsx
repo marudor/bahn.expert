@@ -1,12 +1,10 @@
 import { createContext, useCallback, useContext, useMemo } from 'react';
-import { css } from '@emotion/react';
+import { css, Paper, Stack, styled } from '@mui/material';
 import { End } from './End';
 import { Mid } from './Mid';
-import { Paper, Stack } from '@mui/material';
 import { Start } from './Start';
 import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
 import loadable from '@loadable/component';
-import styled from '@emotion/styled';
 import type { Abfahrt } from '@/types/iris';
 import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
 import type { FC } from 'react';
@@ -42,27 +40,26 @@ const Container = styled(Paper)`
   position: relative;
 `;
 
-const WingIndicator = styled.span<{ wingEnd?: boolean; wingStart?: boolean }>(
-  ({ wingEnd, wingStart, theme }) => ({
-    position: 'absolute',
-    borderLeft: `1px solid ${theme.palette.text.primary}`,
-    content: '" "',
-    left: '.3em',
-    top: wingStart ? 0 : '-1em',
-    bottom: wingEnd ? '.3em' : 0,
-    '&::before': wingStart
-      ? wingStartEnd(theme.palette.text.primary)
-      : undefined,
-    '&::after': wingEnd
-      ? css`
-          ${wingStartEnd(theme.palette.text.primary)};
-          bottom: 0;
-        `
-      : undefined,
-  }),
-);
+const WingIndicator = styled('span')<{
+  wingEnd?: boolean;
+  wingStart?: boolean;
+}>(({ wingEnd, wingStart, theme }) => ({
+  position: 'absolute',
+  borderLeft: `1px solid ${theme.palette.text.primary}`,
+  content: '" "',
+  left: '.3em',
+  top: wingStart ? 0 : '-1em',
+  bottom: wingEnd ? '.3em' : 0,
+  '&::before': wingStart ? wingStartEnd(theme.palette.text.primary) : undefined,
+  '&::after': wingEnd
+    ? css`
+        ${wingStartEnd(theme.palette.text.primary)};
+        bottom: 0;
+      `
+    : undefined,
+}));
 
-const Entry = styled.div(({ theme }) => ({
+const Entry = styled('div')(({ theme }) => ({
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
@@ -74,7 +71,7 @@ const Entry = styled.div(({ theme }) => ({
   },
 }));
 
-const ScrollMarker = styled.div`
+const ScrollMarker = styled('div')`
   position: absolute;
   top: -64px;
 `;
