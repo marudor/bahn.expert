@@ -47,8 +47,8 @@ describe('Abfahrten', () => {
     });
   });
   it('going back & showing different station should reload', () => {
-    cy.mockFrankfurt({ delay: 2000 });
-    cy.mockHamburg({ delay: 2000 });
+    cy.mockFrankfurt({ delay: 500 });
+    cy.mockHamburg({ delay: 500 });
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.findByTestId('loading').should('exist');

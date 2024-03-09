@@ -6,6 +6,7 @@ export default defineConfig({
   numTestsKeptInMemory: 0,
   video: false,
   requestTimeout: 10000,
+  defaultCommandTimeout: 10000,
 
   retries: {
     runMode: 2,

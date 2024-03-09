@@ -53,7 +53,7 @@ export default (ctx: Context): void => {
   const emotionChunks = extractCriticalToChunks(app);
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);
   ctx.body = headerTemplate({
-    withStats: process.env.NODE_ENV === 'production',
+    withStats: process.env.NODE_ENV === 'production' && !process.env.TEST_RUN,
     header: renderToString(headTags),
     cssTags: extractor.getStyleTags(),
     linkTags: extractor.getLinkTags(),

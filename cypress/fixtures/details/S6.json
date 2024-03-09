@@ -22,18 +22,18 @@
     }
   },
   "segmentStart": {
-    "title": "Köln-Nippes",
-    "id": "8003372"
+    "name": "Köln-Nippes",
+    "evaNumber": "8003372"
   },
   "segmentDestination": {
-    "title": "Essen Hbf",
-    "id": "8000098"
+    "name": "Essen Hbf",
+    "evaNumber": "8000098"
   },
   "stops": [
     {
       "station": {
-        "id": "8003372",
-        "title": "Köln-Nippes",
+        "evaNumber": "8003372",
+        "name": "Köln-Nippes",
         "coordinates": {
           "lng": 6.921829,
           "lat": 50.98447
@@ -63,8 +63,8 @@
     },
     {
       "station": {
-        "id": "8003392",
-        "title": "Köln Hansaring",
+        "evaNumber": "8003392",
+        "name": "Köln Hansaring",
         "coordinates": {
           "lng": 6.952698,
           "lat": 50.949124
@@ -83,8 +83,8 @@
     },
     {
       "station": {
-        "id": "8000207",
-        "title": "Köln Hbf",
+        "evaNumber": "8000207",
+        "name": "Köln Hbf",
         "coordinates": {
           "lng": 6.959197,
           "lat": 50.942823
@@ -103,8 +103,8 @@
     },
     {
       "station": {
-        "id": "8083368",
-        "title": "Köln Messe/Deutz Gl. 9-10",
+        "evaNumber": "8083368",
+        "name": "Köln Messe/Deutz Gl. 9-10",
         "coordinates": {
           "lng": 6.974658,
           "lat": 50.941285
@@ -123,8 +123,8 @@
     },
     {
       "station": {
-        "id": "8003364",
-        "title": "Köln-Buchforst",
+        "evaNumber": "8003364",
+        "name": "Köln-Buchforst",
         "coordinates": {
           "lng": 7.004359,
           "lat": 50.953484
@@ -143,8 +143,8 @@
     },
     {
       "station": {
-        "id": "8000209",
-        "title": "Köln-Mülheim",
+        "evaNumber": "8000209",
+        "name": "Köln-Mülheim",
         "coordinates": {
           "lng": 7.013069,
           "lat": 50.957637
@@ -163,8 +163,8 @@
     },
     {
       "station": {
-        "id": "8003310",
-        "title": "Köln-Stammheim",
+        "evaNumber": "8003310",
+        "name": "Köln-Stammheim",
         "coordinates": {
           "lng": 7.001986,
           "lat": 50.990025
@@ -183,8 +183,8 @@
     },
     {
       "station": {
-        "id": "8000832",
-        "title": "Leverkusen Chempark",
+        "evaNumber": "8000832",
+        "name": "Leverkusen Chempark",
         "coordinates": {
           "lng": 6.996655,
           "lat": 51.011401
@@ -203,8 +203,8 @@
     },
     {
       "station": {
-        "id": "8006713",
-        "title": "Leverkusen Mitte",
+        "evaNumber": "8006713",
+        "name": "Leverkusen Mitte",
         "coordinates": {
           "lng": 6.991504,
           "lat": 51.031456
@@ -223,8 +223,8 @@
     },
     {
       "station": {
-        "id": "8003668",
-        "title": "Leverkusen-Küppersteg",
+        "evaNumber": "8003668",
+        "name": "Leverkusen-Küppersteg",
         "coordinates": {
           "lng": 6.988412,
           "lat": 51.045021
@@ -243,8 +243,8 @@
     },
     {
       "station": {
-        "id": "8003672",
-        "title": "Leverkusen-Rheindorf",
+        "evaNumber": "8003672",
+        "name": "Leverkusen-Rheindorf",
         "coordinates": {
           "lng": 6.96353,
           "lat": 51.064258
@@ -263,8 +263,8 @@
     },
     {
       "station": {
-        "id": "8003540",
-        "title": "Langenfeld(Rhld)",
+        "evaNumber": "8003540",
+        "name": "Langenfeld(Rhld)",
         "coordinates": {
           "lng": 6.940922,
           "lat": 51.098633
@@ -283,8 +283,8 @@
     },
     {
       "station": {
-        "id": "8003539",
-        "title": "Langenfeld(Rhld)-Berghausen",
+        "evaNumber": "8003539",
+        "name": "Langenfeld(Rhld)-Berghausen",
         "coordinates": {
           "lng": 6.923752,
           "lat": 51.117537
@@ -303,8 +303,8 @@
     },
     {
       "station": {
-        "id": "8004920",
-        "title": "Düsseldorf-Hellerhof",
+        "evaNumber": "8004920",
+        "name": "Düsseldorf-Hellerhof",
         "coordinates": {
           "lng": 6.908075,
           "lat": 51.133223
@@ -323,8 +323,8 @@
     },
     {
       "station": {
-        "id": "8001589",
-        "title": "Düsseldorf-Garath",
+        "evaNumber": "8001589",
+        "name": "Düsseldorf-Garath",
         "coordinates": {
           "lng": 6.898205,
           "lat": 51.143147
@@ -343,8 +343,8 @@
     },
     {
       "station": {
-        "id": "8001584",
-        "title": "Düsseldorf-Benrath",
+        "evaNumber": "8001584",
+        "name": "Düsseldorf-Benrath",
         "coordinates": {
           "lng": 6.878905,
           "lat": 51.162339
@@ -363,8 +363,8 @@
     },
     {
       "station": {
-        "id": "8001594",
-        "title": "Düsseldorf-Reisholz",
+        "evaNumber": "8001594",
+        "name": "Düsseldorf-Reisholz",
         "coordinates": {
           "lng": 6.860495,
           "lat": 51.181279
@@ -383,8 +383,8 @@
     },
     {
       "station": {
-        "id": "8001588",
-        "title": "Düsseldorf-Eller Süd",
+        "evaNumber": "8001588",
+        "name": "Düsseldorf-Eller Süd",
         "coordinates": {
           "lng": 6.836296,
           "lat": 51.197981
@@ -403,8 +403,8 @@
     },
     {
       "station": {
-        "id": "8001591",
-        "title": "Düsseldorf-Oberbilk",
+        "evaNumber": "8001591",
+        "name": "Düsseldorf-Oberbilk",
         "coordinates": {
           "lng": 6.808969,
           "lat": 51.208067
@@ -423,8 +423,8 @@
     },
     {
       "station": {
-        "id": "8001581",
-        "title": "Düsseldorf Volksgarten",
+        "evaNumber": "8001581",
+        "name": "Düsseldorf Volksgarten",
         "coordinates": {
           "lng": 6.791935,
           "lat": 51.210117
@@ -443,8 +443,8 @@
     },
     {
       "station": {
-        "id": "8000085",
-        "title": "Düsseldorf Hbf",
+        "evaNumber": "8000085",
+        "name": "Düsseldorf Hbf",
         "coordinates": {
           "lng": 6.794011,
           "lat": 51.219708
@@ -464,8 +464,8 @@
     },
     {
       "station": {
-        "id": "8001582",
-        "title": "Düsseldorf Wehrhahn",
+        "evaNumber": "8001582",
+        "name": "Düsseldorf Wehrhahn",
         "coordinates": {
           "lng": 6.7982,
           "lat": 51.228491
@@ -487,8 +487,8 @@
     },
     {
       "station": {
-        "id": "8001583",
-        "title": "Düsseldorf-Zoo",
+        "evaNumber": "8001583",
+        "name": "Düsseldorf-Zoo",
         "coordinates": {
           "lng": 6.797005,
           "lat": 51.23748
@@ -509,8 +509,8 @@
     },
     {
       "station": {
-        "id": "8001586",
-        "title": "Düsseldorf-Derendorf",
+        "evaNumber": "8001586",
+        "name": "Düsseldorf-Derendorf",
         "coordinates": {
           "lng": 6.794398,
           "lat": 51.246874
@@ -531,8 +531,8 @@
     },
     {
       "station": {
-        "id": "8001593",
-        "title": "Düsseldorf-Rath Mitte",
+        "evaNumber": "8001593",
+        "name": "Düsseldorf-Rath Mitte",
         "coordinates": {
           "lng": 6.808214,
           "lat": 51.261167
@@ -553,8 +553,8 @@
     },
     {
       "station": {
-        "id": "8001592",
-        "title": "Düsseldorf-Rath",
+        "evaNumber": "8001592",
+        "name": "Düsseldorf-Rath",
         "coordinates": {
           "lng": 6.821213,
           "lat": 51.264187
@@ -575,8 +575,8 @@
     },
     {
       "station": {
-        "id": "8004948",
-        "title": "Ratingen Ost",
+        "evaNumber": "8004948",
+        "name": "Ratingen Ost",
         "coordinates": {
           "lng": 6.863794,
           "lat": 51.295469
@@ -597,8 +597,8 @@
     },
     {
       "station": {
-        "id": "8002919",
-        "title": "Hösel",
+        "evaNumber": "8002919",
+        "name": "Hösel",
         "coordinates": {
           "lng": 6.893252,
           "lat": 51.34153
@@ -619,8 +619,8 @@
     },
     {
       "station": {
-        "id": "8003245",
-        "title": "Kettwig Stausee",
+        "evaNumber": "8003245",
+        "name": "Kettwig Stausee",
         "coordinates": {
           "lng": 6.938836,
           "lat": 51.356506
@@ -641,8 +641,8 @@
     },
     {
       "station": {
-        "id": "8000198",
-        "title": "Kettwig",
+        "evaNumber": "8000198",
+        "name": "Kettwig",
         "coordinates": {
           "lng": 6.953633,
           "lat": 51.363284
@@ -663,8 +663,8 @@
     },
     {
       "station": {
-        "id": "8001915",
-        "title": "Essen-Werden",
+        "evaNumber": "8001915",
+        "name": "Essen-Werden",
         "coordinates": {
           "lng": 6.997851,
           "lat": 51.386917
@@ -685,8 +685,8 @@
     },
     {
       "station": {
-        "id": "8001908",
-        "title": "Essen-Hügel",
+        "evaNumber": "8001908",
+        "name": "Essen-Hügel",
         "coordinates": {
           "lng": 7.008512,
           "lat": 51.404473
@@ -707,8 +707,8 @@
     },
     {
       "station": {
-        "id": "8001896",
-        "title": "Essen Stadtwald",
+        "evaNumber": "8001896",
+        "name": "Essen Stadtwald",
         "coordinates": {
           "lng": 7.023308,
           "lat": 51.422388
@@ -729,8 +729,8 @@
     },
     {
       "station": {
-        "id": "8001897",
-        "title": "Essen Süd",
+        "evaNumber": "8001897",
+        "name": "Essen Süd",
         "coordinates": {
           "lng": 7.023092,
           "lat": 51.440169
@@ -751,8 +751,8 @@
     },
     {
       "station": {
-        "id": "8000098",
-        "title": "Essen Hbf",
+        "evaNumber": "8000098",
+        "name": "Essen Hbf",
         "coordinates": {
           "lng": 7.01386,
           "lat": 51.451378
@@ -794,8 +794,8 @@
   "type": "JNY",
   "currentStop": {
     "station": {
-      "id": "8001582",
-      "title": "Düsseldorf Wehrhahn",
+      "evaNumber": "8001582",
+      "name": "Düsseldorf Wehrhahn",
       "coordinates": {
         "lng": 6.7982,
         "lat": 51.228491
