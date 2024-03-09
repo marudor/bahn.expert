@@ -80,7 +80,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_OLD_BROWSER: 1
   e2e:
-    runs-on: marudor-runner
+    runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node-20.11.0-chrome-121.0.6167.184-1-ff-123.0-edge-121.0.2277.128-1
       options: --user 1001
