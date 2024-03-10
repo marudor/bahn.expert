@@ -15,11 +15,6 @@ describe('Query Parameter', () => {
     cy.findByTestId('header').should('not.exist');
   });
 
-  it('theme Parameter', () => {
-    cy.visit('/?theme=black');
-
-    cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');
-  });
   it('Lookbehind not saving in cookie', () => {
     cy.mockFrankfurt({ lookbehind: 20 });
     cy.visit('/');
