@@ -22,6 +22,7 @@ const hexToRgb = (hex: string) => {
   return `rgb(${rValue}, ${gValue}, ${bValue})`;
 };
 
+const cssVarRegex = /var\((--[^),]*),?[^)]*\)/;
 chai.use((chai, utils) => {
   utils.overwriteMethod(
     chai.Assertion.prototype,
@@ -29,12 +30,25 @@ chai.use((chai, utils) => {
     // eslint-disable-next-line @typescript-eslint/ban-types
     function (_super: Function) {
       return function (this: any, propertyName: string, value: string) {
-        if (propertyName === 'color' && value.startsWith('#')) {
-          Reflect.apply(_super, this, [propertyName, hexToRgb(value)]);
-        } else {
-          // eslint-disable-next-line prefer-rest-params
-          Reflect.apply(_super, this, arguments);
+        if (propertyName === 'color') {
+          if (value.startsWith('var(--')) {
+            const variableName = value.match(cssVarRegex)?.at(1);
+            if (variableName) {
+              const resolvedVariable = window
+                .getComputedStyle(this._obj[0])
+                .getPropertyValue(variableName);
+              if (resolvedVariable) {
+                value = resolvedVariable;
+              }
+            }
+          }
+          if (value.startsWith('#')) {
+            Reflect.apply(_super, this, [propertyName, hexToRgb(value)]);
+            return;
+          }
         }
+        // eslint-disable-next-line prefer-rest-params
+        Reflect.apply(_super, this, arguments);
       };
     },
   );
