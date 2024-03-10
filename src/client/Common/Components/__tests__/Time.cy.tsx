@@ -5,7 +5,7 @@ const sampleTime = new Date('2019-06-12T13:55:37.648Z');
 describe('Time', () => {
   it('no time', () => {
     cy.mount(<Time />);
-    cy.get('div').should('be.empty');
+    cy.findByTestId('timeContainer').should('not.exist');
   });
   it('only scheduled Data', () => {
     cy.mount(<Time real={sampleTime} />);
