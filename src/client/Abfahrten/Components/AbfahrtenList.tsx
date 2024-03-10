@@ -33,7 +33,7 @@ const LookaheadMarker = styled('div')`
 const Lookbehind = styled('div')(({ theme }) => ({
   position: 'relative',
   paddingTop: 10,
-  backgroundColor: theme.colors.shadedBackground,
+  backgroundColor: theme.vars.palette.common.shadedBackground,
 }));
 
 const InnerAbfahrtenList = () => {

@@ -45,15 +45,17 @@ const WingIndicator = styled('span')<{
   wingStart?: boolean;
 }>(({ wingEnd, wingStart, theme }) => ({
   position: 'absolute',
-  borderLeft: `1px solid ${theme.palette.text.primary}`,
+  borderLeft: `1px solid ${theme.vars.palette.text.primary}`,
   content: '" "',
   left: '.3em',
   top: wingStart ? 0 : '-1em',
   bottom: wingEnd ? '.3em' : 0,
-  '&::before': wingStart ? wingStartEnd(theme.palette.text.primary) : undefined,
+  '&::before': wingStart
+    ? wingStartEnd(theme.vars.palette.text.primary)
+    : undefined,
   '&::after': wingEnd
     ? css`
-        ${wingStartEnd(theme.palette.text.primary)};
+        ${wingStartEnd(theme.vars.palette.text.primary)};
         bottom: 0;
       `
     : undefined,

@@ -53,6 +53,7 @@
       "@mui/material/css": ["src/swcWorkarounds/css"],
       "@mui/material/styled": ["src/swcWorkarounds/styled"],
       "@mui/material/keyframes": ["src/swcWorkarounds/keyframes"],
+      "@mui/material/useColorScheme": ["src/swcWorkarounds/useColorScheme"],
       "@mui/material/useTheme": ["src/swcWorkarounds/useTheme"]
     }
   }

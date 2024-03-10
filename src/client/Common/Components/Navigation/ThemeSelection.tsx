@@ -7,11 +7,11 @@ import {
   ListItemText,
   styled,
   Typography,
+  useColorScheme,
 } from '@mui/material';
 import { ExpandLess, ExpandMore, Palette } from '@mui/icons-material';
 import { ThemeType } from '@/client/Themes/type';
 import { useCallback, useState } from 'react';
-import { useTheme } from '@/client/Common/provider/ThemeProvider';
 import type { FC, SyntheticEvent } from 'react';
 
 const ThemeList = styled(List)(({ theme }) => ({
@@ -19,19 +19,19 @@ const ThemeList = styled(List)(({ theme }) => ({
 }));
 
 export const ThemeSelection: FC = () => {
-  const { themeType, setThemeType } = useTheme();
+  const { mode, setMode } = useColorScheme();
   const [open, setOpen] = useState(false);
   const selectTheme = useCallback(
     (e: SyntheticEvent<HTMLElement>) => {
-      const newThemeType = e.currentTarget.dataset.value as
+      const newMode = e.currentTarget.dataset.value as
         | undefined
         | E<typeof ThemeType>;
 
-      if (newThemeType) {
-        setThemeType(newThemeType);
+      if (newMode) {
+        setMode(newMode);
       }
     },
-    [setThemeType],
+    [setMode],
   );
   const toggle = useCallback(
     (e: SyntheticEvent) => {
@@ -61,7 +61,7 @@ export const ThemeSelection: FC = () => {
                 onClick={selectTheme}
                 data-value={themeOption}
               >
-                {themeOption === themeType ? (
+                {themeOption === mode ? (
                   <Badge color="primary" variant="dot">
                     <Typography>{name}</Typography>
                   </Badge>

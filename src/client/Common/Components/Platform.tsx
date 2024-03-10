@@ -1,14 +1,18 @@
 import { styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import type { FC } from 'react';
 
 const Container = styled('div')<{ cancelled?: boolean; changed?: boolean }>(
-  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
-  ({ theme, changed }) => changed && theme.mixins.changed,
+  ({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
+  ({ theme, changed }) => changed && themeMixins.changed(theme),
 );
 
-const ChangedContainer = styled('span')(({ theme }) => theme.mixins.cancelled, {
-  paddingLeft: '.3em',
-});
+const ChangedContainer = styled('span')(
+  ({ theme }) => themeMixins.cancelled(theme),
+  {
+    paddingLeft: '.3em',
+  },
+);
 
 interface Props {
   cancelled?: boolean;

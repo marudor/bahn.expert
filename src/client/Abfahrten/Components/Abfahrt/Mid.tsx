@@ -1,5 +1,6 @@
 import { Info } from './Info';
 import { styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import type { FC } from 'react';
 
@@ -21,8 +22,8 @@ const Destination = styled('div')<{
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
-  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
-  ({ theme, different }) => different && theme.mixins.changed,
+  ({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
+  ({ theme, different }) => different && themeMixins.changed(theme),
 );
 
 export const Mid: FC = () => {

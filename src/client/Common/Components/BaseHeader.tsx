@@ -11,12 +11,12 @@ const NotchFix = styled('div')(({ theme }) => ({
   width: '100%',
   position: 'fixed',
   zIndex: 99999,
-  background: theme.palette.background.default,
+  background: theme.vars.palette.background.default,
 }));
 
 const Offset = styled('div')<{ spacing?: number }>(
   ({ theme, spacing = 0 }) => ({
-    minHeight: `${theme.shape.headerSpacing + spacing}em`,
+    minHeight: `calc(${theme.vars.shape.headerSpacing} + ${spacing}em)`,
   }),
 );
 

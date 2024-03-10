@@ -7,7 +7,7 @@ import type { FC } from 'react';
 
 const Extra = styled('span')(({ theme }) => ({
   fontSize: '.8em',
-  color: theme.palette.text.secondary,
+  color: theme.vars.palette.text.secondary,
 }));
 
 const widthCss = css`

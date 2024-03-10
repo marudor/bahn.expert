@@ -41,16 +41,16 @@ const Container = styled('span')<{ auslastung?: AuslastungsValue }>(
   ({ theme, auslastung }) => {
     switch (auslastung) {
       case AuslastungsValue.Gering: {
-        return getColors(theme.colors.green, theme);
+        return getColors(theme.palette.common.green, theme);
       }
       case AuslastungsValue.Hoch: {
-        return getColors(theme.colors.yellow, theme);
+        return getColors(theme.palette.common.yellow, theme);
       }
       case AuslastungsValue.SehrHoch: {
-        return getColors(theme.colors.orange, theme);
+        return getColors(theme.palette.common.orange, theme);
       }
       case AuslastungsValue.Ausgebucht: {
-        return getColors(theme.colors.red, theme);
+        return getColors(theme.palette.common.red, theme);
       }
       default: {
         return {};

@@ -1,12 +1,13 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
 import { Stack, styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { FC } from 'react';
 
 const DelayContainer = styled('span')<{ early?: boolean; delayed?: boolean }>(
-  ({ theme, early }) => early && theme.mixins.early,
-  ({ theme, delayed }) => delayed && theme.mixins.delayed,
+  ({ theme, early }) => early && themeMixins.early(theme),
+  ({ theme, delayed }) => delayed && themeMixins.delayed(theme),
 );
 
 const Container = styled(DelayContainer.withComponent(Stack), {
@@ -18,7 +19,7 @@ const Container = styled(DelayContainer.withComponent(Stack), {
   {
     fontSize: '0.9em',
   },
-  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+  ({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
   ({ multiLine }) => !multiLine && { flexDirection: 'row' },
 );
 
@@ -35,8 +36,8 @@ const TimeContainer = styled('span')<{
     },
   ({ isRealTime }) => isRealTime && { fontWeight: 'bold' },
   ({ isPlan }) => isPlan && { fontStyle: 'italic' },
-  ({ theme, early }) => early && theme.mixins.early,
-  ({ theme, delayed }) => delayed && theme.mixins.delayed,
+  ({ theme, early }) => early && themeMixins.early(theme),
+  ({ theme, delayed }) => delayed && themeMixins.delayed(theme),
 );
 
 interface Props {

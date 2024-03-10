@@ -39,7 +39,7 @@ const ContainerPaper = styled(Paper)(({ theme }) => ({
   flex: 1,
   cursor: 'pointer',
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.vars.palette.action.hover,
   },
 }));
 

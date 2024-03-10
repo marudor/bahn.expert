@@ -21,7 +21,7 @@ const Container = styled('div')`
 `;
 
 const SuggestionContainer = styled(Paper)(({ theme }) => ({
-  background: theme.palette.background.default,
+  background: theme.vars.palette.background.default,
   marginTop: theme.spacing(1),
   position: 'absolute',
   left: 0,

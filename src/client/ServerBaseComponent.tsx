@@ -1,7 +1,7 @@
 import { HeadProvider } from 'react-head';
 import { StaticRouter } from 'react-router-dom/server';
 import { StorageContext } from '@/client/useStorage';
-import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
+import { ThemeProvider } from '@/client/Themes/Provider';
 import { ThemeWrap } from '@/client/ThemeWrap';
 // eslint-disable-next-line no-restricted-imports
 import type { EmotionCache } from '@emotion/react';
@@ -21,14 +21,14 @@ export function ServerBaseComponent({
   emotionCache,
 }: Props): ReactElement {
   return (
-    <HeadProvider headTags={headTags}>
-      <StaticRouter location={url}>
-        <StorageContext.Provider value={storage}>
-          <ThemeProvider>
+    <ThemeProvider>
+      <HeadProvider headTags={headTags}>
+        <StaticRouter location={url}>
+          <StorageContext.Provider value={storage}>
             <ThemeWrap emotionCache={emotionCache} />
-          </ThemeProvider>
-        </StorageContext.Provider>
-      </StaticRouter>
-    </HeadProvider>
+          </StorageContext.Provider>
+        </StaticRouter>
+      </HeadProvider>
+    </ThemeProvider>
   );
 }

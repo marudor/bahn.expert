@@ -8,14 +8,13 @@ import { BaseHeader } from '../BaseHeader';
 import { format } from 'date-fns';
 import { IconButton, styled } from '@mui/material';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import type { CommonProductInfo } from '@/types/HAFAS';
 import type { FC } from 'react';
 
-const SingleLineSpan = styled('span')(
-  ({ theme }) => theme.mixins.singleLineText,
-);
+const SingleLineSpan = styled('span')(themeMixins.singleLineText);
 
 const Operator = styled(SingleLineSpan)`
   grid-area: o;

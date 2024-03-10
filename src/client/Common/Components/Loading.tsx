@@ -33,7 +33,7 @@ const Grid = styled('div')<{ absolute?: boolean }>(
     '& > div': {
       width: '33%',
       height: '33%',
-      backgroundColor: theme.palette.text.primary,
+      backgroundColor: theme.vars.palette.text.primary,
       float: 'left',
       animation: `${gridKeyframes} 1.3s infinite ease-in-out`,
     },
@@ -63,7 +63,7 @@ const Dots = styled('div')(({ theme }) => ({
     position: 'absolute',
     left: 6,
     width: 13,
-    background: theme.palette.text.primary,
+    background: theme.vars.palette.text.primary,
     animation: `${dotsKeyframes} 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite`,
   },
   '& > div:nth-of-type(1)': {

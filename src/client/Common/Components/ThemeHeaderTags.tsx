@@ -7,7 +7,10 @@ export const ThemeHeaderTags: FC = () => {
 
   return (
     <>
-      <Meta name="theme-color" content={theme.palette.background.default} />
+      <Meta
+        name="theme-color"
+        content={theme.vars.palette.background.default}
+      />
       <Meta
         name="apple-mobile-web-app-status-bar-style"
         content="black-translucent"

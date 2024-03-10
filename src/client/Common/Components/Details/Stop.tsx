@@ -5,6 +5,7 @@ import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
 import { Stack, styled } from '@mui/material';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
+import { themeMixins } from '@/client/Themes/mixins';
 import { Time } from '@/client/Common/Components/Time';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
@@ -31,8 +32,9 @@ const StopName = styled('span')<{ stop: RouteStop }>(
       color: 'inherit',
     },
   },
-  ({ theme, stop: { additional } }) => additional && theme.mixins.additional,
-  ({ theme, stop: { cancelled } }) => cancelled && theme.mixins.cancelled,
+  ({ theme, stop: { additional } }) =>
+    additional && themeMixins.additional(theme),
+  ({ theme, stop: { cancelled } }) => cancelled && themeMixins.cancelled(theme),
 );
 
 const ScrollMarker = styled('div')`
@@ -81,12 +83,12 @@ const Container = styled('div')<{
       hasOccupancy ? 'o' : 't'
     } depP c" "tw tw tw tw" "wr wr wr wr" "m m m m"`,
     alignItems: 'center',
-    borderBottom: `1px solid ${theme.palette.text.primary}`,
+    borderBottom: `1px solid ${theme.vars.palette.text.primary}`,
     position: 'relative',
     gridTemplateColumns: `4.8em 1fr max-content`,
   }),
   ({ theme, past }) =>
-    past && { backgroundColor: theme.colors.shadedBackground },
+    past && { backgroundColor: theme.vars.palette.common.shadedBackground },
 );
 
 interface Props {

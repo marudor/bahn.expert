@@ -4,7 +4,7 @@ import type { CoachSequenceCoachSeats } from '@/types/coachSequence';
 import type { FC, SyntheticEvent } from 'react';
 
 const OpenText = styled('span')(({ theme }) => ({
-  color: theme.colors.blue,
+  color: theme.vars.palette.common.blue,
   cursor: 'pointer',
 }));
 

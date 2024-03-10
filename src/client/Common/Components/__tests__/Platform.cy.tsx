@@ -24,7 +24,7 @@ describe('Platform', () => {
     cy.getTheme().then((theme) => {
       cy.findByTestId('platform')
         .should('have.css', 'text-decoration-line', 'line-through')
-        .should('have.css', 'color', theme.colors.red);
+        .should('have.css', 'color', theme.vars.palette.common.red);
       cy.findByTestId('real').should('have.text', '1');
     });
   });
@@ -35,10 +35,10 @@ describe('Platform', () => {
       cy.findByTestId('scheduled')
         .should('have.text', '(2)')
         .should('have.css', 'text-decoration-line', 'line-through')
-        .should('have.css', 'color', theme.colors.red);
+        .should('have.css', 'color', theme.vars.palette.common.red);
       cy.findByTestId('platform')
         .should('not.have.css', 'text-decoration-line', 'line-through')
-        .should('have.css', 'color', theme.colors.red);
+        .should('have.css', 'color', theme.vars.palette.common.red);
     });
   });
 });

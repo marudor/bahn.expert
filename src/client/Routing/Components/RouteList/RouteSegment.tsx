@@ -44,7 +44,7 @@ const JourneySegment = styled(JnySegmentTrain)(segmentCss);
 const WalkSegment = styled(WalkSegmentTrain)(segmentCss);
 
 const Container = styled('div')(({ theme }) => ({
-  backgroundColor: theme.colors.shadedBackground,
+  backgroundColor: theme.vars.palette.common.shadedBackground,
   padding: '.4em',
   display: 'grid',
   gridTemplateColumns: '2fr 7fr 1fr',

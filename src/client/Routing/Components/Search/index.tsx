@@ -88,7 +88,7 @@ const Buttons = styled('div')(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '5px 20px',
-    color: theme.palette.text.primary,
+    color: theme.vars.palette.text.primary,
   },
 }));
 

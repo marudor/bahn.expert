@@ -51,16 +51,16 @@ const Container = styled('div')<{
   ({ theme }) => ({
     position: 'absolute',
     height: '2.5em',
-    border: `${theme.palette.text.primary} 1px solid`,
+    border: `${theme.vars.palette.text.primary} 1px solid`,
     boxSizing: 'border-box',
   }),
   ({ theme, closed }) =>
     closed && {
-      background: `repeating-linear-gradient(135deg, ${theme.colors.shadedBackground}, ${theme.colors.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
+      background: `repeating-linear-gradient(135deg, ${theme.vars.palette.common.shadedBackground}, ${theme.vars.palette.common.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
     },
   ({ theme, wrongWing }) =>
     wrongWing && {
-      background: theme.colors.shadedBackground,
+      background: theme.vars.palette.common.shadedBackground,
       '&::after': {
         content: '""',
         top: -1,
@@ -69,7 +69,7 @@ const Container = styled('div')<{
         bottom: '-3.7em',
         pointerEvents: 'none',
         zIndex: 5,
-        background: theme.colors.transparentBackground,
+        background: theme.vars.palette.common.transparentBackground,
       },
     },
 );
@@ -80,7 +80,7 @@ const DoppelstockIndicator = styled('span')(({ theme }) => ({
   top: '45%',
   left: 0,
   right: 0,
-  backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary} 33%, transparent 0%)`,
+  backgroundImage: `linear-gradient(to right, ${theme.vars.palette.text.primary} 33%, transparent 0%)`,
   backgroundSize: '8px 1px',
   backgroundRepeat: 'repeat-x',
 }));
@@ -102,8 +102,8 @@ const Fahrzeugklasse = styled('span')<{ coach: CoachSequenceCoach }>(
       }
       case 1: {
         return {
-          backgroundColor: theme.colors.yellow,
-          color: theme.palette.getContrastText(theme.colors.yellow),
+          backgroundColor: theme.vars.palette.common.yellow,
+          color: theme.palette.getContrastText(theme.palette.common.yellow),
           '&::after': {
             content: '"1"',
           },
@@ -111,8 +111,8 @@ const Fahrzeugklasse = styled('span')<{ coach: CoachSequenceCoach }>(
       }
       case 2: {
         return {
-          backgroundColor: theme.colors.red,
-          color: theme.palette.getContrastText(theme.colors.red),
+          backgroundColor: theme.vars.palette.common.red,
+          color: theme.palette.getContrastText(theme.palette.common.red),
           '&::after': {
             content: '"2"',
           },
@@ -120,7 +120,7 @@ const Fahrzeugklasse = styled('span')<{ coach: CoachSequenceCoach }>(
       }
       case 3: {
         return {
-          background: `linear-gradient(to right, ${theme.colors.yellow}, ${theme.colors.red})`,
+          background: `linear-gradient(to right, ${theme.vars.palette.common.yellow}, ${theme.vars.palette.common.red})`,
           '&::after': {
             content: '"1/2"',
           },
@@ -153,7 +153,7 @@ const ComfortIcon = styled('span')(({ theme }) => ({
   right: '.3em',
   width: '.7em',
   height: '.7em',
-  backgroundColor: theme.colors.red,
+  backgroundColor: theme.vars.palette.common.red,
   borderRadius: '50%',
 }));
 

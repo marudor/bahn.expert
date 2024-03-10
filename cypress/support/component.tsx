@@ -8,12 +8,12 @@ import { Navigation } from '@/client/Common/Components/Navigation';
 import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeadProvider } from 'react-head';
 import { StorageContext } from '@/client/useStorage';
-import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
 import { ThemeWrap } from '@/client/ThemeWrap';
-import { createTheme } from '@/client/Themes';
-import { Theme } from '@mui/material';
+import { theme } from '@/client/Themes';
+import { CssVarsTheme } from '@mui/material';
 import '@percy/cypress';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@/client/Themes/Provider';
 
 const hexToRgb = (hex: string) => {
   const rValue = Number.parseInt(hex.slice(1, 3), 16);
@@ -64,7 +64,7 @@ declare global {
         component: ReactElement,
         options?: Options,
       ) => ReturnType<typeof mount>;
-      getTheme: () => Chainable<Theme>;
+      getTheme: () => Chainable<CssVarsTheme>;
     }
   }
 
@@ -90,9 +90,7 @@ globalThis.parseJson = (json: string) => {
   }
 };
 
-Cypress.Commands.add('getTheme', () =>
-  cy.window().then((w) => createTheme(w.RENDERED_THEME as any)),
-);
+Cypress.Commands.add('getTheme', () => cy.window().then(() => theme));
 
 Cypress.Commands.add(
   'mount',

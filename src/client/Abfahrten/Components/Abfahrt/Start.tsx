@@ -2,11 +2,12 @@ import { Auslastung } from '@/client/Abfahrten/Components/Abfahrt/Auslastung';
 import { Name } from '@/client/Abfahrten/Components/Abfahrt/Name';
 import { Ref } from './Ref';
 import { Stack, styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import type { FC } from 'react';
 
-const Cancelled = styled('span')(({ theme }) => theme.mixins.changed);
+const Cancelled = styled('span')(({ theme }) => themeMixins.changed(theme));
 
 const Substituted = Cancelled.withComponent(Ref);
 

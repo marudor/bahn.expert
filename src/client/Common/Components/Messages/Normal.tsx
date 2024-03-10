@@ -4,7 +4,7 @@ import type { Abfahrt, Message } from '@/types/iris';
 import type { FC } from 'react';
 
 export const MessageContainer = styled('div')(({ theme }) => ({
-  color: theme.colors.red,
+  color: theme.vars.palette.common.red,
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }));

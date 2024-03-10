@@ -1,5 +1,6 @@
-import { css, styled } from '@mui/material';
 import { isHbf } from './index';
+import { styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
 import type { Stop } from '@/types/iris';
@@ -11,12 +12,11 @@ export const StyledViaStop = styled('span', {
   ...(isHbf(stop) && {
     fontWeight: 'bold',
   }),
-  ...(stop.cancelled &&
-    css`
-      ${theme.mixins.cancelled};
-      ${theme.mixins.changed};
-    `),
-  ...(stop.additional && theme.mixins.additional),
+  ...(stop.cancelled && {
+    ...themeMixins.cancelled(theme),
+    ...themeMixins.changed(theme),
+  }),
+  ...(stop.additional && themeMixins.additional(theme)),
 }));
 
 interface Props {

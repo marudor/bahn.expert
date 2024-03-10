@@ -21,7 +21,7 @@ describe('Time', () => {
       cy.findByTestId('timeToDisplay').should('have.text', '13:45');
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
-        .should('have.css', 'color', theme.colors.red);
+        .should('have.css', 'color', theme.vars.palette.common.red);
     });
   });
 
@@ -44,7 +44,7 @@ describe('Time', () => {
       cy.findByTestId('timeToDisplay').should('have.text', '14:00');
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
-        .should('have.css', 'color', theme.colors.green);
+        .should('have.css', 'color', theme.vars.palette.common.green);
     });
   });
 
@@ -67,7 +67,7 @@ describe('Time', () => {
       cy.findByTestId('timeToDisplay').should('have.text', '13:55');
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
-        .should('have.css', 'color', theme.colors.green);
+        .should('have.css', 'color', theme.vars.palette.common.green);
     });
   });
 });

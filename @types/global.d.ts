@@ -11,7 +11,6 @@ declare global {
     };
     declare var BASE_URL: string;
     declare var RAW_BASE_URL: string;
-    declare var RENDERED_THEME: string;
 
     // test only
     declare var nock: nock.Scope;
@@ -28,5 +27,5 @@ declare global {
     ): Exclude<S, Falsy>[];
   }
   type E<T extends const> = T[keyof T];
-  type FCC<Props> = FC<PropsWithChildren<Props>>;
+  type FCC<Props = {}> = FC<PropsWithChildren<Props>>;
 }

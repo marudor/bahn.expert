@@ -8,7 +8,7 @@ const Container = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   margin: '0.65em',
   padding: '0.65em',
-  border: `1px ${theme.palette.text.primary} solid`,
+  border: `1px ${theme.vars.palette.text.primary} solid`,
 }));
 
 interface Props {

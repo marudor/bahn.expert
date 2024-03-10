@@ -44,7 +44,7 @@ const PlannedOnlyIndicator = styled('span')`
 
 const DirectionOfTravel = styled('span')<{ reversed?: boolean }>(
   ({ theme, reversed }) => ({
-    backgroundColor: theme.palette.text.primary,
+    backgroundColor: theme.vars.palette.text.primary,
     width: '50%',
     height: 2,
     position: 'absolute',
@@ -53,7 +53,7 @@ const DirectionOfTravel = styled('span')<{ reversed?: boolean }>(
     zIndex: 10,
     transform: reversed ? 'rotate(180deg) translateX(50%)' : 'translateX(-50%)',
     '&::after': {
-      border: `solid ${theme.palette.text.primary}`,
+      border: `solid ${theme.vars.palette.text.primary}`,
       borderWidth: '0 2px 2px 0',
       display: 'inline-block',
       padding: 3,

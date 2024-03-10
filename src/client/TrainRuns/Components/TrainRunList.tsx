@@ -29,7 +29,7 @@ const EntryContainer = styled(Paper, {
   BaseEntryCss,
   ({ alternate, theme }) =>
     alternate && {
-      backgroundColor: theme.colors.shadedBackground,
+      backgroundColor: theme.vars.palette.common.shadedBackground,
     },
 );
 

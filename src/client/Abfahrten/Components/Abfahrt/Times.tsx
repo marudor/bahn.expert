@@ -1,5 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import { styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { Time } from '@/client/Common/Components/Time';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import type { FC } from 'react';
@@ -9,11 +10,11 @@ const TimeContainer = styled('div')<{ cancelled?: boolean }>(
     display: 'flex',
     justifyContent: 'flex-end',
     '& > span': {
-      color: theme.palette.text.primary,
+      color: theme.vars.palette.text.primary,
       whiteSpace: 'pre-wrap',
     },
   }),
-  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+  ({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
 );
 
 export const Times: FC = () => {

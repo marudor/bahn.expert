@@ -7,6 +7,7 @@ import {
   styled,
 } from '@mui/material';
 import { format, getDate } from 'date-fns';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 import type { HimIrisMessage as HimIrisMessageType } from '@/types/iris';
@@ -16,7 +17,7 @@ const Container = styled('div')<{ superseded?: boolean }>(
     textDecoration: 'underline',
     cursor: 'pointer',
   },
-  ({ theme, superseded }) => superseded && theme.mixins.cancelled,
+  ({ theme, superseded }) => superseded && themeMixins.cancelled(theme),
 );
 
 const SmallSpan = styled('span')`

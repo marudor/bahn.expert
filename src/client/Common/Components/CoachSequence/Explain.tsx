@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 
 const OpenLink = styled('div')(({ theme }) => ({
-  color: theme.colors.blue,
+  color: theme.vars.palette.common.blue,
   position: 'absolute',
   bottom: '.5em',
   left: 0,
@@ -31,7 +31,7 @@ const ComfortIcon = styled('div')(({ theme }) => ({
   height: '1em',
   fontSize: '1.5rem',
   borderRadius: '50%',
-  backgroundColor: theme.colors.red,
+  backgroundColor: theme.vars.palette.common.red,
 }));
 
 // Exported for tests
