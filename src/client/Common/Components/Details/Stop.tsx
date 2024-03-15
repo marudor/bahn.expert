@@ -3,6 +3,8 @@ import { CoachSequence } from '../CoachSequence/CoachSequence';
 import { DetailMessages } from '../Messages/Detail';
 import { Messages } from './Messages';
 import { Platform } from '@/client/Common/Components/Platform';
+import { ReplacedBy } from './ReplacedBy';
+import { ReplacementFor } from './ReplacementFor';
 import { Stack, styled } from '@mui/material';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { themeMixins } from '@/client/Themes/mixins';
@@ -81,7 +83,7 @@ const Container = styled('div')<{
     gridTemplateRows: '1fr',
     gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} c" "dp ${
       hasOccupancy ? 'o' : 't'
-    } depP c" "tw tw tw tw" "wr wr wr wr" "m m m m"`,
+    } depP c" "tw tw tw tw" "rf rf rf rf" "rb rb rb rb" "wr wr wr wr" "m m m m"`,
     alignItems: 'center',
     borderBottom: `1px solid ${theme.vars.palette.text.primary}`,
     position: 'relative',
@@ -192,6 +194,20 @@ export const Stop: FC<Props> = ({
       )}
       <DeparturePlatform {...platforms.departure} />
       {!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
+      <Stack gridArea="rf" paddingLeft={1}>
+        <ReplacementFor
+          stopEva={stop.station.evaNumber}
+          startsReplacing={stop.startsReplacing}
+          stopsReplacing={stop.stopsReplacing}
+        />
+      </Stack>
+      <Stack gridArea="rb" paddingLeft={1}>
+        <ReplacedBy
+          stopEva={stop.station.evaNumber}
+          startsBeingReplacedBy={stop.startsBeingReplacedBy}
+          stopsBeingReplacedBy={stop.stopsBeingReplacedBy}
+        />
+      </Stack>
       <Stack gridArea="tw" paddingLeft={1}>
         <TravelsWith
           stopEva={stop.station.evaNumber}
