@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
+import { ReplacedBySummary } from './ReplacedBySummary';
+import { ReplacementForSummary } from './ReplacementForSummary';
 import { Stack } from '@mui/material';
 import { Stop } from '@/client/Common/Components/Details/Stop';
 import { TravelsWithSummary } from '@/client/Common/Components/Details/TravelsWithSummary';
@@ -98,6 +100,8 @@ export const StopList: FC = () => {
   return (
     <Stack>
       <TravelsWithSummary stops={details.stops} />
+      <ReplacementForSummary stops={details.stops} />
+      <ReplacedBySummary stops={details.stops} />
       {detailsStops}
     </Stack>
   );
