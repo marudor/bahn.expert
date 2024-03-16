@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+import { DirectionOfTravel } from '@/client/Common/Components/CoachSequence/DirectionOfTravel';
 import { Explain } from './Explain';
 import { Group } from './Group';
 import { Loading } from '@/client/Common/Components/Loading';
@@ -41,29 +42,6 @@ const PlannedOnlyIndicator = styled('span')`
   position: absolute;
   bottom: 1.5em;
 `;
-
-const DirectionOfTravel = styled('span', {
-  shouldForwardProp: (p) => p !== 'reversed',
-})<{ reversed?: boolean }>(({ theme, reversed }) => ({
-  backgroundColor: theme.vars.palette.text.primary,
-  width: '50%',
-  height: 2,
-  position: 'absolute',
-  left: '50%',
-  bottom: '.5em',
-  zIndex: 10,
-  transform: reversed ? 'rotate(180deg) translateX(50%)' : 'translateX(-50%)',
-  '&::after': {
-    border: `solid ${theme.vars.palette.text.primary}`,
-    borderWidth: '0 2px 2px 0',
-    display: 'inline-block',
-    padding: 3,
-    content: '""',
-    transform: 'rotate(135deg)',
-    position: 'absolute',
-    top: -3,
-  },
-}));
 
 interface Props {
   className?: string;
