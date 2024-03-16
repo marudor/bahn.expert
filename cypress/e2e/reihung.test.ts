@@ -20,7 +20,15 @@ describe('CoachSequence', () => {
     });
 
     it('loads coachSequence', () => {
-      cy.findByTestId('coachSequence').should('exist');
+      cy.findByTestId('coachSequence')
+        .should('exist')
+        .within(() => {
+          cy.findByTestId('direction')
+            .should('exist')
+            .within(() => {
+              cy.findByTestId('left').should('exist');
+            });
+        });
     });
 
     it('Legend useable', () => {
@@ -77,6 +85,9 @@ describe('CoachSequence', () => {
     it('only loads coachSequence of selected train if available', () => {
       cy.findByTestId('abfahrtICE537').click();
       cy.wait('@537');
+      cy.findByTestId('direction').within(() => {
+        cy.findByTestId('right').should('exist');
+      });
     });
 
     it('fallback to wing number', () => {

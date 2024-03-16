@@ -39,5 +39,13 @@ interface Props {
 }
 
 export const DirectionOfTravel: FC<Props> = ({ reversed }) => {
-  return <Container>{reversed ? <RightArrow /> : <LeftArrow />}</Container>;
+  return (
+    <Container data-testid="direction">
+      {reversed ? (
+        <RightArrow data-testid="right" />
+      ) : (
+        <LeftArrow data-testid="left" />
+      )}
+    </Container>
+  );
 };
