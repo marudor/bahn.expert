@@ -1,12 +1,11 @@
-import { Dialog, DialogContent, Stack } from '@mui/material';
+import { Dialog, DialogContent, Stack, styled } from '@mui/material';
 import { icons } from './Coach';
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { useCallback, useState } from 'react';
-import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 
-const OpenLink = styled.div(({ theme }) => ({
-  color: theme.colors.blue,
+const OpenLink = styled('div')(({ theme }) => ({
+  color: theme.vars.palette.common.blue,
   position: 'absolute',
   bottom: '.5em',
   left: 0,
@@ -27,12 +26,12 @@ const IconWrap = styled(Stack)`
   }
 `;
 
-const ComfortIcon = styled.div(({ theme }) => ({
+const ComfortIcon = styled('div')(({ theme }) => ({
   width: '1em',
   height: '1em',
   fontSize: '1.5rem',
   borderRadius: '50%',
-  backgroundColor: theme.colors.red,
+  backgroundColor: theme.vars.palette.common.red,
 }));
 
 // Exported for tests

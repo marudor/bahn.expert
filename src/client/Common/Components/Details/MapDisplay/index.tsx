@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css';
-import { Fab } from '@mui/material';
+import { Fab, styled } from '@mui/material';
 import { type FC, useMemo } from 'react';
 import { LocationOff, LocationOn } from '@mui/icons-material';
 import {
@@ -13,7 +13,6 @@ import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
-import styled from '@emotion/styled';
 
 const MarkerFab = styled(Fab)`
   position: absolute;

@@ -12,6 +12,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  styled,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { NavigationContext } from './NavigationContext';
@@ -20,10 +21,9 @@ import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
 import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
-import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 
-const Headline = styled.h3`
+const Headline = styled('h3')`
   text-align: center;
 `;
 

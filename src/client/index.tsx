@@ -5,7 +5,7 @@ import { HeadProvider } from 'react-head';
 import { hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from '@/client/useStorage';
-import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
+import { ThemeProvider } from '@/client/Themes/Provider';
 import { ThemeWrap } from './ThemeWrap';
 import Axios from 'axios';
 import qs from 'qs';

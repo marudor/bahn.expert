@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, styled } from '@mui/material';
 import { Fragment, useCallback, useState } from 'react';
 import { isSameDay } from 'date-fns';
 import { Loading } from '@/client/Common/Components/Loading';
@@ -7,7 +7,6 @@ import { RouteFavList } from '@/client/Routing/Components/RouteFavList';
 import { RouteHeader } from './RouteHeader';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const translateError = (e: any) => {
@@ -25,7 +24,7 @@ const translateError = (e: any) => {
   return String(e);
 };
 
-const Container = styled.div`
+const Container = styled('div')`
   display: flex;
   flex-direction: column;
   & > div {

@@ -27,12 +27,12 @@ const globalStyles = (theme: Theme): any => ({
   body: {
     margin: 0,
     fontFamily: 'Roboto, sans-serif',
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
+    backgroundColor: theme.vars.palette.background.default,
+    color: theme.vars.palette.text.primary,
   },
   a: {
     textDecoration: 'none',
-    color: theme.colors.blue,
+    color: theme.vars.palette.common.blue,
   },
   'html, body': {
     height: '100%',

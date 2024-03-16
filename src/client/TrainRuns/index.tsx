@@ -1,10 +1,10 @@
 import { Header } from '@/client/TrainRuns/Components/Header';
+import { styled } from '@mui/material';
 import { TrainRunProvider } from '@/client/TrainRuns/provider/TrainRunProvider';
 import { TrainRunRoutes } from '@/client/TrainRuns/TrainRunRoutes';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Container = styled.main`
+const Container = styled('main')`
   height: 100%;
 `;
 

@@ -42,7 +42,7 @@ describe('Auslastung', () => {
       },
       {
         statusCode: 500,
-        delay: 500,
+        delay: 700,
       },
     );
     renderAuslastung();

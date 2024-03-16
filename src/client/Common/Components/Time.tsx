@@ -1,29 +1,29 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
-import { Stack } from '@mui/material';
+import { Stack, styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const DelayContainer = styled.span<{ early?: boolean; delayed?: boolean }>(
-  ({ theme, early }) => early && theme.mixins.early,
-  ({ theme, delayed }) => delayed && theme.mixins.delayed,
-);
-
-const Container = styled(DelayContainer.withComponent(Stack), {
-  shouldForwardProp: (n) => n !== 'cancelled' && n !== 'multiLine',
+const Container = styled(Stack, {
+  shouldForwardProp: (p) =>
+    p !== 'early' && p !== 'delayed' && p !== 'cancelled' && p !== 'multiLine',
 })<{
+  early?: boolean;
+  delayed?: boolean;
   cancelled?: boolean;
   multiLine?: boolean;
 }>(
   {
     fontSize: '0.9em',
   },
-  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+  ({ theme, early }) => early && themeMixins.early(theme),
+  ({ theme, delayed }) => delayed && themeMixins.delayed(theme),
+  ({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
   ({ multiLine }) => !multiLine && { flexDirection: 'row' },
 );
 
-const TimeContainer = styled.span<{
+const TimeContainer = styled('span')<{
   isRealTime?: boolean;
   early?: boolean;
   delayed?: boolean;
@@ -36,8 +36,8 @@ const TimeContainer = styled.span<{
     },
   ({ isRealTime }) => isRealTime && { fontWeight: 'bold' },
   ({ isPlan }) => isPlan && { fontStyle: 'italic' },
-  ({ theme, early }) => early && theme.mixins.early,
-  ({ theme, delayed }) => delayed && theme.mixins.delayed,
+  ({ theme, early }) => early && themeMixins.early(theme),
+  ({ theme, delayed }) => delayed && themeMixins.delayed(theme),
 );
 
 interface Props {

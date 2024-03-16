@@ -1,9 +1,10 @@
 import { Info } from './Info';
+import { styled } from '@mui/material';
+import { themeMixins } from '@/client/Themes/mixins';
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Wrapper = styled.div<{ detail: boolean }>(({ detail }) => ({
+const Wrapper = styled('div')<{ detail: boolean }>(({ detail }) => ({
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
@@ -12,7 +13,7 @@ const Wrapper = styled.div<{ detail: boolean }>(({ detail }) => ({
   whiteSpace: detail ? undefined : 'nowrap',
 }));
 
-const Destination = styled.div<{
+const Destination = styled('div')<{
   cancelled?: boolean;
   different?: boolean;
 }>(
@@ -21,8 +22,8 @@ const Destination = styled.div<{
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
-  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
-  ({ theme, different }) => different && theme.mixins.changed,
+  ({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
+  ({ theme, different }) => different && themeMixins.changed(theme),
 );
 
 export const Mid: FC = () => {

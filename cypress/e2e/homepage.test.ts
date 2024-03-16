@@ -12,21 +12,12 @@ describe('Homepage', () => {
   describe('Themes', () => {
     it('dark', () => {
       cy.theme('dark');
-      cy.getCookie('theme').should('have.property', 'value', 'dark');
       cy.get('body').should('have.css', 'background-color', 'rgb(48, 48, 48)');
       cy.percySnapshot('dark theme');
     });
 
-    it('black', () => {
-      cy.theme('black');
-      cy.getCookie('theme').should('have.property', 'value', 'black');
-      cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');
-      cy.percySnapshot('black theme');
-    });
-
     it('light', () => {
       cy.theme('light');
-      cy.getCookie('theme').should('have.property', 'value', 'light');
       cy.get('body').should(
         'have.css',
         'background-color',

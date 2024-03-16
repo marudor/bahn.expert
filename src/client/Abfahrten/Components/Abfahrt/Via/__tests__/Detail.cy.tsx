@@ -55,11 +55,11 @@ describe('DetailVia', () => {
 
         cy.findByTestId('via-additional')
           .should('have.attr', 'href', '/additional')
-          .should('have.css', 'color', theme.colors.green);
+          .should('have.css', 'color', theme.vars.palette.common.green);
 
         cy.findByTestId('via-cancelled')
           .should('have.attr', 'href', '/cancelled')
-          .should('have.css', 'color', theme.colors.red);
+          .should('have.css', 'color', theme.vars.palette.common.red);
 
         cy.findByTestId('via-hbf')
           .should('have.attr', 'href', '/hbf')

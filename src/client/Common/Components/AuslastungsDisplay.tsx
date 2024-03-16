@@ -1,10 +1,9 @@
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
-import { Stack } from '@mui/material';
-import styled from '@emotion/styled';
+import { Stack, styled } from '@mui/material';
 import type { ComponentProps, FC } from 'react';
 import type { RouteAuslastung } from '@/types/routing';
 
-const Container = styled.div<{ oneLine?: boolean }>(
+const Container = styled('div')<{ oneLine?: boolean }>(
   {
     fontSize: '.75em',
     display: 'flex',
@@ -15,7 +14,7 @@ const Container = styled.div<{ oneLine?: boolean }>(
     },
 );
 
-const Seperator = styled.span`
+const Seperator = styled('span')`
   margin: 0 0.25em;
 `;
 

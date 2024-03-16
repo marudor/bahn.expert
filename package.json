@@ -80,7 +80,7 @@
     "@jest/globals": "^29.7.0",
     "@loadable/webpack-plugin": "^5.15.2",
     "@openapitools/openapi-generator-cli": "^2.11.0",
-    "@percy/cli": "1.28.1",
+    "@percy/cli": "1.28.2",
     "@percy/cypress": "^3.1.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@swc-node/register": "^1.9.0",
@@ -120,7 +120,7 @@
     "chokidar": "^3.6.0",
     "compression-webpack-plugin": "^11.1.0",
     "css-loader": "^6.10.0",
-    "cypress": "13.6.6",
+    "cypress": "13.7.0",
     "eslint": "^8.57.0",
     "eslint-config-marudor": "9.4.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -217,7 +217,7 @@
     },
     "patchedDependencies": {
       "@cypress/webpack-preprocessor@6.0.1": "patches/@cypress__webpack-preprocessor@6.0.1.patch",
-      "cypress@13.6.6": "patches/cypress@13.6.6.patch"
+      "cypress@13.7.0": "patches/cypress@13.6.6.patch"
     }
   }
 }

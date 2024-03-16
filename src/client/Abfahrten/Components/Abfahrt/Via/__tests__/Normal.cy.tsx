@@ -29,7 +29,7 @@ describe('NormalVia', () => {
     cy.getTheme().then((theme) => {
       cy.findByTestId('via-additional')
         .should('not.have.attr', 'href', 'additional')
-        .should('have.css', 'color', theme.colors.green);
+        .should('have.css', 'color', theme.vars.palette.common.green);
 
       cy.findByTestId('via-cancelled').should('not.exist');
 

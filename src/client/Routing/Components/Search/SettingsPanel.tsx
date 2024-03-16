@@ -4,11 +4,13 @@ import {
   AccordionSummary,
   Badge,
   Chip,
+  css,
   FormControl,
   FormControlLabel,
   MenuItem,
   Select,
   Stack,
+  styled,
   Switch,
   TextField,
 } from '@mui/material';
@@ -20,14 +22,12 @@ import {
   Train,
 } from '@mui/icons-material';
 import { AllowedHafasProfile } from '@/types/HAFAS';
-import { css } from '@emotion/react';
 import { NetzcardDisclaimer } from '@/client/Routing/Components/Search/NetzcardDisclaimer';
 import { useCallback, useMemo, useState } from 'react';
 import {
   useRoutingConfigActions,
   useRoutingSettings,
 } from '@/client/Routing/provider/RoutingConfigProvider';
-import styled from '@emotion/styled';
 import type { ChangeEvent, FC } from 'react';
 import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
 import type { SelectChangeEvent } from '@mui/material';

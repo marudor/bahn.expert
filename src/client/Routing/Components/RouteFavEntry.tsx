@@ -1,12 +1,11 @@
 import { Delete } from '@mui/icons-material';
-import { Paper } from '@mui/material';
+import { Paper, styled } from '@mui/material';
 import {
   routingFavKey,
   useRoutingFavActions,
 } from '@/client/Routing/provider/RoutingFavProvider';
 import { useCallback } from 'react';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
-import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
 
@@ -14,15 +13,15 @@ const RemoveIcon = styled(Delete)`
   grid-area: r;
 `;
 
-const StartName = styled.span`
+const StartName = styled('span')`
   grid-area: s;
 `;
 
-const DestinationName = styled.span`
+const DestinationName = styled('span')`
   grid-area: d;
 `;
 
-const Arrow = styled.span`
+const Arrow = styled('span')`
   grid-area: a;
   justify-self: center;
   margin-right: 1em;
@@ -40,7 +39,7 @@ const ContainerPaper = styled(Paper)(({ theme }) => ({
   flex: 1,
   cursor: 'pointer',
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.vars.palette.action.hover,
   },
 }));
 

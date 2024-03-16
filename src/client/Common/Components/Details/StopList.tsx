@@ -1,12 +1,10 @@
-import { css } from '@emotion/react';
+import { css, Stack, styled } from '@mui/material';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
-import { Stack } from '@mui/material';
 import { Stop } from '@/client/Common/Components/Details/Stop';
 import { TravelsWithSummary } from '@/client/Common/Components/Details/TravelsWithSummary';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import styled from '@emotion/styled';
 import type { AxiosError } from 'axios';
 import type { FC } from 'react';
 import type { RouteStop } from '@/types/routing';

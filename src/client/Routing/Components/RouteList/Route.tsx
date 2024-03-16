@@ -1,9 +1,8 @@
 import { formatDuration } from '@/client/Routing/util';
-import { Paper } from '@mui/material';
+import { Paper, styled } from '@mui/material';
 import { RouteSegments } from './RouteSegments';
 import { Time } from '@/client/Common/Components/Time';
 import { useMemo } from 'react';
-import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { SingleRoute } from '@/types/routing';
 
@@ -34,7 +33,7 @@ const StyledRouteSegments = styled(RouteSegments)`
   grid-area: 3 / 1 / 4 / 5;
 `;
 
-const Product = styled.span`
+const Product = styled('span')`
   font-size: 0.9em;
   grid-area: 2 / 1 / 3 / 5;
 `;

@@ -8,12 +8,12 @@ import { Navigation } from '@/client/Common/Components/Navigation';
 import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeadProvider } from 'react-head';
 import { StorageContext } from '@/client/useStorage';
-import { ThemeProvider } from '@/client/Common/provider/ThemeProvider';
 import { ThemeWrap } from '@/client/ThemeWrap';
-import { createTheme } from '@/client/Themes';
-import { Theme } from '@mui/material';
+import { theme } from '@/client/Themes';
+import { CssVarsTheme } from '@mui/material';
 import '@percy/cypress';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@/client/Themes/Provider';
 
 const hexToRgb = (hex: string) => {
   const rValue = Number.parseInt(hex.slice(1, 3), 16);
@@ -22,6 +22,7 @@ const hexToRgb = (hex: string) => {
   return `rgb(${rValue}, ${gValue}, ${bValue})`;
 };
 
+const cssVarRegex = /var\((--[^),]*),?[^)]*\)/;
 chai.use((chai, utils) => {
   utils.overwriteMethod(
     chai.Assertion.prototype,
@@ -29,12 +30,25 @@ chai.use((chai, utils) => {
     // eslint-disable-next-line @typescript-eslint/ban-types
     function (_super: Function) {
       return function (this: any, propertyName: string, value: string) {
-        if (propertyName === 'color' && value.startsWith('#')) {
-          Reflect.apply(_super, this, [propertyName, hexToRgb(value)]);
-        } else {
-          // eslint-disable-next-line prefer-rest-params
-          Reflect.apply(_super, this, arguments);
+        if (propertyName === 'color') {
+          if (value.startsWith('var(--')) {
+            const variableName = value.match(cssVarRegex)?.at(1);
+            if (variableName) {
+              const resolvedVariable = window
+                .getComputedStyle(this._obj[0])
+                .getPropertyValue(variableName);
+              if (resolvedVariable) {
+                value = resolvedVariable;
+              }
+            }
+          }
+          if (value.startsWith('#')) {
+            Reflect.apply(_super, this, [propertyName, hexToRgb(value)]);
+            return;
+          }
         }
+        // eslint-disable-next-line prefer-rest-params
+        Reflect.apply(_super, this, arguments);
       };
     },
   );
@@ -64,7 +78,7 @@ declare global {
         component: ReactElement,
         options?: Options,
       ) => ReturnType<typeof mount>;
-      getTheme: () => Chainable<Theme>;
+      getTheme: () => Chainable<CssVarsTheme>;
     }
   }
 
@@ -90,9 +104,7 @@ globalThis.parseJson = (json: string) => {
   }
 };
 
-Cypress.Commands.add('getTheme', () =>
-  cy.window().then((w) => createTheme(w.RENDERED_THEME as any)),
-);
+Cypress.Commands.add('getTheme', () => cy.window().then(() => theme));
 
 Cypress.Commands.add(
   'mount',

@@ -5,7 +5,7 @@ const sampleTime = new Date('2019-06-12T13:55:37.648Z');
 describe('Time', () => {
   it('no time', () => {
     cy.mount(<Time />);
-    cy.get('div').should('be.empty');
+    cy.findByTestId('timeContainer').should('not.exist');
   });
   it('only scheduled Data', () => {
     cy.mount(<Time real={sampleTime} />);
@@ -21,7 +21,7 @@ describe('Time', () => {
       cy.findByTestId('timeToDisplay').should('have.text', '13:45');
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
-        .should('have.css', 'color', theme.colors.red);
+        .should('have.css', 'color', theme.vars.palette.common.red);
     });
   });
 
@@ -44,7 +44,7 @@ describe('Time', () => {
       cy.findByTestId('timeToDisplay').should('have.text', '14:00');
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
-        .should('have.css', 'color', theme.colors.green);
+        .should('have.css', 'color', theme.vars.palette.common.green);
     });
   });
 
@@ -67,7 +67,7 @@ describe('Time', () => {
       cy.findByTestId('timeToDisplay').should('have.text', '13:55');
       cy.findByTestId('realTimeOrDelay')
         .should('have.text', '13:55')
-        .should('have.css', 'color', theme.colors.green);
+        .should('have.css', 'color', theme.vars.palette.common.green);
     });
   });
 });

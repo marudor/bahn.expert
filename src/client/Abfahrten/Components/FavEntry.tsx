@@ -1,10 +1,9 @@
 import { Delete } from '@mui/icons-material';
-import { IconButton, Paper } from '@mui/material';
+import { IconButton, Paper, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
 import { useFavActions } from '@/client/Abfahrten/provider/FavProvider';
-import styled from '@emotion/styled';
 import type { FC, MouseEvent, ReactNode } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
@@ -14,21 +13,21 @@ const BasePaper = styled(Paper)(({ theme }) => ({
   flexShrink: 0,
   fontSize: '1.6em',
   padding: '0 .5em',
-  color: theme.palette.text.primary,
+  color: theme.vars.palette.text.primary,
   display: 'flex',
   alignItems: 'center',
   [theme.breakpoints.up('sm')]: {
     fontSize: '2rem',
   },
   '&>a': {
-    color: theme.palette.text.primary,
+    color: theme.vars.palette.text.primary,
   },
   wordBreak: 'break-word',
 }));
 
 const ClickablePaper = styled(BasePaper)(({ theme }) => ({
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.vars.palette.action.hover,
   },
   justifyContent: 'space-between',
 }));

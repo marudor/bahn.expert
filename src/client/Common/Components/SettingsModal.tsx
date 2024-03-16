@@ -4,6 +4,7 @@ import {
   DialogTitle,
   FormControlLabel,
   NativeSelect,
+  styled,
   Switch,
   TextField,
 } from '@mui/material';
@@ -15,7 +16,6 @@ import {
   useSetCommonConfig,
   useSetCommonConfigOpen,
 } from '@/client/Common/provider/CommonConfigProvider';
-import styled from '@emotion/styled';
 import type { ChangeEvent, FC } from 'react';
 import type { CommonConfig } from '@/client/Common/config';
 

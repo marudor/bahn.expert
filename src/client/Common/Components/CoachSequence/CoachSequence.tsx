@@ -1,24 +1,25 @@
 /* eslint-disable no-process-env */
+import { DirectionOfTravel } from '@/client/Common/Components/CoachSequence/DirectionOfTravel';
 import { Explain } from './Explain';
 import { Group } from './Group';
 import { Loading } from '@/client/Common/Components/Loading';
 import { Sektor } from './Sektor';
 import { sequenceId } from '@/client/Common/provider/CoachSequenceProvider';
+import { styled } from '@mui/material';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useEffect, useMemo } from 'react';
 import {
   useSequences,
   useSequencesActions,
 } from '@/client/Common/provider/CoachSequenceProvider';
-import styled from '@emotion/styled';
 import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
 import type { FC } from 'react';
 
-const ContainerWrap = styled.div`
+const ContainerWrap = styled('div')`
   overflow-x: auto;
 `;
 
-const Container = styled.div`
+const Container = styled('div')`
   min-width: 80em;
   overflow: hidden;
   position: relative;
@@ -27,43 +28,20 @@ const Container = styled.div`
   margin-right: 0.3em;
 `;
 
-const Sectors = styled.div`
+const Sectors = styled('div')`
   position: relative;
 `;
 
-const Sequence = styled.div`
+const Sequence = styled('div')`
   position: relative;
   margin-top: 1.3em;
   height: 100%;
 `;
 
-const PlannedOnlyIndicator = styled.span`
+const PlannedOnlyIndicator = styled('span')`
   position: absolute;
   bottom: 1.5em;
 `;
-
-const DirectionOfTravel = styled.span<{ reversed?: boolean }>(
-  ({ theme, reversed }) => ({
-    backgroundColor: theme.palette.text.primary,
-    width: '50%',
-    height: 2,
-    position: 'absolute',
-    left: '50%',
-    bottom: '.5em',
-    zIndex: 10,
-    transform: reversed ? 'rotate(180deg) translateX(50%)' : 'translateX(-50%)',
-    '&::after': {
-      border: `solid ${theme.palette.text.primary}`,
-      borderWidth: '0 2px 2px 0',
-      display: 'inline-block',
-      padding: 3,
-      content: '""',
-      transform: 'rotate(135deg)',
-      position: 'absolute',
-      top: -3,
-    },
-  }),
-);
 
 interface Props {
   className?: string;

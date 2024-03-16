@@ -11,9 +11,9 @@ import {
 } from '@mui/icons-material';
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import { SitzplatzInfo } from './SitzplatzInfo';
+import { styled } from '@mui/material';
 import { UIC } from './UIC';
 import { WagenLink } from './WagenLink';
-import styled from '@emotion/styled';
 import type {
   AvailableIdentifier,
   CoachSequenceCoach,
@@ -21,7 +21,7 @@ import type {
 } from '@/types/coachSequence';
 import type { ComponentType, FC } from 'react';
 
-const DummyIcon = styled.span(({ theme }) => ({
+const DummyIcon = styled('span')(({ theme }) => ({
   width: '.6em',
   height: '.6em',
   [theme.breakpoints.down('md')]: {
@@ -44,23 +44,23 @@ export const icons: {
   comfort: null,
 };
 
-const Container = styled.div<{
+const Container = styled('div')<{
   wrongWing?: boolean;
   closed?: boolean;
 }>(
   ({ theme }) => ({
     position: 'absolute',
     height: '2.5em',
-    border: `${theme.palette.text.primary} 1px solid`,
+    border: `${theme.vars.palette.text.primary} 1px solid`,
     boxSizing: 'border-box',
   }),
   ({ theme, closed }) =>
     closed && {
-      background: `repeating-linear-gradient(135deg, ${theme.colors.shadedBackground}, ${theme.colors.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
+      background: `repeating-linear-gradient(135deg, ${theme.vars.palette.common.shadedBackground}, ${theme.vars.palette.common.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
     },
   ({ theme, wrongWing }) =>
     wrongWing && {
-      background: theme.colors.shadedBackground,
+      background: theme.vars.palette.common.shadedBackground,
       '&::after': {
         content: '""',
         top: -1,
@@ -69,23 +69,23 @@ const Container = styled.div<{
         bottom: '-3.7em',
         pointerEvents: 'none',
         zIndex: 5,
-        background: theme.colors.transparentBackground,
+        background: theme.vars.palette.common.transparentBackground,
       },
     },
 );
 
-const DoppelstockIndicator = styled.span(({ theme }) => ({
+const DoppelstockIndicator = styled('span')(({ theme }) => ({
   position: 'absolute',
   height: '1px',
   top: '45%',
   left: 0,
   right: 0,
-  backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary} 33%, transparent 0%)`,
+  backgroundImage: `linear-gradient(to right, ${theme.vars.palette.text.primary} 33%, transparent 0%)`,
   backgroundSize: '8px 1px',
   backgroundRepeat: 'repeat-x',
 }));
 
-const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
+const Fahrzeugklasse = styled('span')<{ coach: CoachSequenceCoach }>(
   {
     bottom: 0,
     right: 0,
@@ -102,8 +102,8 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
       }
       case 1: {
         return {
-          backgroundColor: theme.colors.yellow,
-          color: theme.palette.getContrastText(theme.colors.yellow),
+          backgroundColor: theme.vars.palette.common.yellow,
+          color: theme.palette.getContrastText(theme.palette.common.yellow),
           '&::after': {
             content: '"1"',
           },
@@ -111,8 +111,8 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
       }
       case 2: {
         return {
-          backgroundColor: theme.colors.red,
-          color: theme.palette.getContrastText(theme.colors.red),
+          backgroundColor: theme.vars.palette.common.red,
+          color: theme.palette.getContrastText(theme.palette.common.red),
           '&::after': {
             content: '"2"',
           },
@@ -120,7 +120,7 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
       }
       case 3: {
         return {
-          background: `linear-gradient(to right, ${theme.colors.yellow}, ${theme.colors.red})`,
+          background: `linear-gradient(to right, ${theme.vars.palette.common.yellow}, ${theme.vars.palette.common.red})`,
           '&::after': {
             content: '"1/2"',
           },
@@ -139,7 +139,7 @@ const Fahrzeugklasse = styled.span<{ coach: CoachSequenceCoach }>(
   },
 );
 
-const IdentificationNumber = styled.span`
+const IdentificationNumber = styled('span')`
   position: absolute;
   z-index: 1;
   left: 50%;
@@ -147,17 +147,17 @@ const IdentificationNumber = styled.span`
   bottom: 0;
 `;
 
-const ComfortIcon = styled.span(({ theme }) => ({
+const ComfortIcon = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: '.2em',
   right: '.3em',
   width: '.7em',
   height: '.7em',
-  backgroundColor: theme.colors.red,
+  backgroundColor: theme.vars.palette.common.red,
   borderRadius: '50%',
 }));
 
-const ExtraInfoContainer = styled.span<{ showCoachType: boolean }>(
+const ExtraInfoContainer = styled('span')<{ showCoachType: boolean }>(
   {
     position: 'absolute',
     display: 'flex',

@@ -72,6 +72,20 @@ module.exports = {
           'error',
           {
             patterns: ['@/server/*'],
+            paths: [
+              {
+                name: '@emotion/react',
+                message: 'use @mui/material',
+              },
+              {
+                name: '@mui/system',
+                message: 'use @mui/material',
+              },
+              {
+                name: '@emotion/styled',
+                message: 'use @mui/material',
+              },
+            ],
           },
         ],
         'no-process-env': 2,

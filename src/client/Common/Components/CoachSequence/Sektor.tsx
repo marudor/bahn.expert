@@ -1,9 +1,9 @@
+import { styled } from '@mui/material';
 import { useMemo } from 'react';
-import styled from '@emotion/styled';
 import type { CoachSequenceSector } from '@/types/coachSequence';
 import type { FC } from 'react';
 
-const Container = styled.div`
+const Container = styled('div')`
   position: absolute;
   font-weight: bolder;
   text-align: center;

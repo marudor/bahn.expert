@@ -1,5 +1,5 @@
 import { Meta } from 'react-head';
-import { useTheme } from '@mui/system';
+import { useTheme } from '@mui/material';
 import type { FC } from 'react';
 
 export const ThemeHeaderTags: FC = () => {
@@ -7,7 +7,10 @@ export const ThemeHeaderTags: FC = () => {
 
   return (
     <>
-      <Meta name="theme-color" content={theme.palette.background.default} />
+      <Meta
+        name="theme-color"
+        content={theme.vars.palette.background.default}
+      />
       <Meta
         name="apple-mobile-web-app-status-bar-style"
         content="black-translucent"

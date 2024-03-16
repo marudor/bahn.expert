@@ -1,10 +1,9 @@
-import { css } from '@emotion/react';
+import { css, styled } from '@mui/material';
 import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
 import { Platform } from '@/client/Common/Components/Platform';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { Time } from '@/client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
-import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
 import type { RouteJourneySegment } from '@/types/routing';
 
@@ -12,7 +11,7 @@ const DepartureTime = styled(Time)`
   grid-area: dt;
 `;
 
-const DepartureName = styled.span`
+const DepartureName = styled('span')`
   grid-area: dn;
 `;
 
@@ -24,7 +23,7 @@ const ArrivalTime = styled(Time)`
   grid-area: at;
 `;
 
-const ArrivalName = styled.span`
+const ArrivalName = styled('span')`
   grid-area: an;
 `;
 
@@ -44,8 +43,8 @@ const JourneySegment = styled(JnySegmentTrain)(segmentCss);
 
 const WalkSegment = styled(WalkSegmentTrain)(segmentCss);
 
-const Container = styled.div(({ theme }) => ({
-  backgroundColor: theme.colors.shadedBackground,
+const Container = styled('div')(({ theme }) => ({
+  backgroundColor: theme.vars.palette.common.shadedBackground,
   padding: '.4em',
   display: 'grid',
   gridTemplateColumns: '2fr 7fr 1fr',
