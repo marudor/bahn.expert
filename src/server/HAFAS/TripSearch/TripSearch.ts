@@ -92,6 +92,9 @@ export function tripSearch(
   raw?: boolean,
 ): Promise<RoutingResult> {
   let requestTypeSpecific;
+  if (!time && !ctxScr) {
+    time = new Date();
+  }
 
   if (time) {
     requestTypeSpecific = {
