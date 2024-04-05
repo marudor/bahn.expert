@@ -22,7 +22,7 @@ if (process.env.IRIS_FALLBACK_URL) {
     headers: {
       'user-agent': '',
     },
-    timeout: 3000,
+    timeout: 8000,
   });
   axiosUpstreamInterceptor(fallbackRequest, 'iris-fallback');
 }
@@ -38,6 +38,7 @@ export async function irisGetRequest<T>(url: string): Promise<T> {
       fallbackRequest &&
       Axios.isAxiosError(error) &&
       error.response?.status !== 404 &&
+      error.response?.status !== 400 &&
       error.response?.status !== 410
     ) {
       const fallbackResult = (await fallbackRequest.get<T>(url)).data;

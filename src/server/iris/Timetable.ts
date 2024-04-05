@@ -37,6 +37,7 @@ import {
   supersededMessages,
 } from './messageLookup';
 import { uniqBy } from '@/client/util';
+import Axios from 'axios';
 import xmljs from 'libxmljs2';
 import type {
   AbfahrtenResult,
@@ -672,16 +673,27 @@ export class Timetable {
   async fetchRealtime() {
     const url = `/fchg/${this.evaNumber}`;
 
-    const result = await irisGetRequest<string>(url);
+    try {
+      const result = await irisGetRequest<string>(url);
 
-    if (result.includes('<soapenv:Reason')) {
-      throw result;
+      if (result.includes('<soapenv:Reason')) {
+        throw result;
+      }
+
+      return result;
+    } catch (error) {
+      // FCHG sometimes returns 400 instead of 404 if nothing is found?
+      if (Axios.isAxiosError(error) && error.response?.status === 400) {
+        return null;
+      }
+      throw error;
     }
-
-    return result;
   }
   async getRealtime() {
     const rawXml = await this.fetchRealtime();
+    if (!rawXml) {
+      return null;
+    }
     const realtimeXml = xmljs.parseXml(rawXml);
     const sArr = realtimeXml.find<Element>('/timetable/s');
 
