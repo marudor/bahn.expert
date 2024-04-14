@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
+import { TsoaRoute, fetchMiddlewares, KoaTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { JourneysV1Controller } from './controller/journeys/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -18,8 +18,9 @@ import { HafasControllerV2 } from './controller/Hafas/v2';
 import { HafasController } from './controller/Hafas/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CoachSequenceControllerV4 } from './controller/CoachSequence/v4';
-import type { Middleware } from 'koa';
+import type { Context, Next, Middleware, Request as KRequest, Response as KResponse } from 'koa';
 import type * as KoaRouter from '@koa/router';
+
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
@@ -1643,7 +1644,7 @@ const models: TsoaRoute.Models = {
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
-const validationService = new ValidationService(models);
+const templateService = new KoaTemplateService(models, {"noImplicitAdditionalProperties":"ignore","bodyCoercion":true});
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
@@ -1656,15 +1657,15 @@ export function RegisterRoutes(router: KoaRouter) {
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.health)),
 
-            async function JourneysV1Controller_health(context: any, next: any) {
-            const args = {
+            async function JourneysV1Controller_health(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     notFound: {"in":"res","name":"404","required":true,"dataType":"void"},
                     notAuthorized: {"in":"res","name":"401","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1674,16 +1675,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new JourneysV1Controller();
 
-            const promise = controller.health.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'health',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/journeys/v1/find/number/:trainNumber',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.findNumber)),
 
-            async function JourneysV1Controller_findNumber(context: any, next: any) {
-            const args = {
+            async function JourneysV1Controller_findNumber(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     response: {"in":"res","name":"401","required":true,"dataType":"string"},
                     trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"double"},
@@ -1695,7 +1701,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1705,16 +1711,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new JourneysV1Controller();
 
-            const promise = controller.findNumber.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'findNumber',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/journeys/v1/find/:trainName',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.find)),
 
-            async function JourneysV1Controller_find(context: any, next: any) {
-            const args = {
+            async function JourneysV1Controller_find(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     response: {"in":"res","name":"401","required":true,"dataType":"string"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
@@ -1726,7 +1737,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1736,16 +1747,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new JourneysV1Controller();
 
-            const promise = controller.find.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'find',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/journeys/v1/details/id/:journeyId',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.idDetails)),
 
-            async function JourneysV1Controller_idDetails(context: any, next: any) {
-            const args = {
+            async function JourneysV1Controller_idDetails(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     res: {"in":"res","name":"404","required":true,"dataType":"any"},
                     journeyId: {"in":"path","name":"journeyId","required":true,"dataType":"string"},
@@ -1753,7 +1769,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1763,16 +1779,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new JourneysV1Controller();
 
-            const promise = controller.idDetails.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'idDetails',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/journeys/v1/details/:trainName',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.details)),
 
-            async function JourneysV1Controller_details(context: any, next: any) {
-            const args = {
+            async function JourneysV1Controller_details(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     res: {"in":"res","name":"404","required":true,"dataType":"any"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
@@ -1785,7 +1806,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1795,23 +1816,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new JourneysV1Controller();
 
-            const promise = controller.details.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'details',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/lageplan/:stopPlaceName/:evaNumber',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.lageplan)),
 
-            async function StopPlaceController_lageplan(context: any, next: any) {
-            const args = {
+            async function StopPlaceController_lageplan(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     stopPlaceName: {"in":"path","name":"stopPlaceName","required":true,"dataType":"string"},
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1821,16 +1847,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new StopPlaceController();
 
-            const promise = controller.lageplan.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'lageplan',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/search/:searchTerm',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceSearch)),
 
-            async function StopPlaceController_stopPlaceSearch(context: any, next: any) {
-            const args = {
+            async function StopPlaceController_stopPlaceSearch(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
                     max: {"in":"query","name":"max","dataType":"integer","validators":{"isInt":{"errorMsg":"max"}}},
                     filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
@@ -1839,7 +1870,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1849,23 +1880,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new StopPlaceController();
 
-            const promise = controller.stopPlaceSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'stopPlaceSearch',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/:evaNumberOrRl100',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceByEvaOrRl100)),
 
-            async function StopPlaceController_stopPlaceByEvaOrRl100(context: any, next: any) {
-            const args = {
+            async function StopPlaceController_stopPlaceByEvaOrRl100(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaNumberOrRl100: {"in":"path","name":"evaNumberOrRl100","required":true,"dataType":"string"},
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1875,16 +1911,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new StopPlaceController();
 
-            const promise = controller.stopPlaceByEvaOrRl100.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'stopPlaceByEvaOrRl100',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/:evaNumber/live',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceByEvaLive)),
 
-            async function StopPlaceController_stopPlaceByEvaLive(context: any, next: any) {
-            const args = {
+            async function StopPlaceController_stopPlaceByEvaLive(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
                     notAuthorized: {"in":"res","name":"401","required":true,"dataType":"void"},
@@ -1892,7 +1933,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1902,23 +1943,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new StopPlaceController();
 
-            const promise = controller.stopPlaceByEvaLive.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'stopPlaceByEvaLive',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/:evaNumber/trainOccupancy',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.trainOccupancy)),
 
-            async function StopPlaceController_trainOccupancy(context: any, next: any) {
-            const args = {
+            async function StopPlaceController_trainOccupancy(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1928,16 +1974,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new StopPlaceController();
 
-            const promise = controller.trainOccupancy.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'trainOccupancy',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/iris/v2/abfahrten/:evaNumber',
             ...(fetchMiddlewares<Middleware>(IrisControllerv2)),
             ...(fetchMiddlewares<Middleware>(IrisControllerv2.prototype.abfahrten)),
 
-            async function IrisControllerv2_abfahrten(context: any, next: any) {
-            const args = {
+            async function IrisControllerv2_abfahrten(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     lookahead: {"default":150,"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
                     lookbehind: {"default":0,"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
@@ -1946,7 +1997,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1956,16 +2007,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new IrisControllerv2();
 
-            const promise = controller.abfahrten.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'abfahrten',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v4/tripSearch',
             ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.tripSearch)),
 
-            async function HafasControllerV4_tripSearch(context: any, next: any) {
-            const args = {
+            async function HafasControllerV4_tripSearch(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     body: {"in":"body","name":"body","required":true,"ref":"InputTripSearchOptionsV4"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
@@ -1973,7 +2029,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -1983,22 +2039,27 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV4();
 
-            const promise = controller.tripSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'tripSearch',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v4/idDetails/:id',
             ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.idDetails)),
 
-            async function HafasControllerV4_idDetails(context: any, next: any) {
-            const args = {
+            async function HafasControllerV4_idDetails(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2008,22 +2069,27 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV4();
 
-            const promise = controller.idDetails.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'idDetails',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v4/detailsByJourney/:journeyId',
             ...(fetchMiddlewares<Middleware>(HafasControllerV4)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV4.prototype.details)),
 
-            async function HafasControllerV4_details(context: any, next: any) {
-            const args = {
+            async function HafasControllerV4_details(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     journeyId: {"in":"path","name":"journeyId","required":true,"dataType":"string"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2033,16 +2099,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV4();
 
-            const promise = controller.details.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'details',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v3/tripSearch',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.tripSearch)),
 
-            async function HafasControllerV3_tripSearch(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_tripSearch(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     body: {"in":"body","name":"body","required":true,"ref":"InputTripSearchOptionsV3"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
@@ -2050,7 +2121,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2060,16 +2131,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.tripSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'tripSearch',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/additionalInformation/:trainName/:journeyId',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.additionalInformation)),
 
-            async function HafasControllerV3_additionalInformation(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_additionalInformation(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     journeyId: {"in":"path","name":"journeyId","required":true,"dataType":"string"},
@@ -2079,7 +2155,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2089,16 +2165,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.additionalInformation.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'additionalInformation',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/occupancy/:start/:destination/:trainNumber/:plannedDepartureTime/:stopEva',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.occupancy)),
 
-            async function HafasControllerV3_occupancy(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_occupancy(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
                     start: {"in":"path","name":"start","required":true,"dataType":"string"},
                     destination: {"in":"path","name":"destination","required":true,"dataType":"string"},
@@ -2109,7 +2190,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2119,23 +2200,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.occupancy.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'occupancy',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/departures/:evaNumber',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.departures)),
 
-            async function HafasControllerV3_departures(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_departures(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"dataType":"string"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2145,23 +2231,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.departures.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'departures',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/departures/:evaNumber/raw',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.departuresRaw)),
 
-            async function HafasControllerV3_departuresRaw(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_departuresRaw(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"dataType":"string"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2171,23 +2262,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.departuresRaw.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'departuresRaw',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/stopPlaceSearch/:query',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.stopPlaceSearch)),
 
-            async function HafasControllerV3_stopPlaceSearch(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_stopPlaceSearch(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     query: {"in":"path","name":"query","required":true,"dataType":"string"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2197,23 +2293,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.stopPlaceSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'stopPlaceSearch',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/stopPlaceSearch/:query/raw',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.stopPlaceSearchRaw)),
 
-            async function HafasControllerV3_stopPlaceSearchRaw(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_stopPlaceSearchRaw(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     query: {"in":"path","name":"query","required":true,"dataType":"string"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2223,23 +2324,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.stopPlaceSearchRaw.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'stopPlaceSearchRaw',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v3/irisCompatibleAbfahrten/:evaId',
             ...(fetchMiddlewares<Middleware>(HafasControllerV3)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV3.prototype.irisCompatibleAbfahrten)),
 
-            async function HafasControllerV3_irisCompatibleAbfahrten(context: any, next: any) {
-            const args = {
+            async function HafasControllerV3_irisCompatibleAbfahrten(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2249,16 +2355,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV3();
 
-            const promise = controller.irisCompatibleAbfahrten.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'irisCompatibleAbfahrten',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v2/details/:trainName',
             ...(fetchMiddlewares<Middleware>(HafasControllerV2)),
             ...(fetchMiddlewares<Middleware>(HafasControllerV2.prototype.details)),
 
-            async function HafasControllerV2_details(context: any, next: any) {
-            const args = {
+            async function HafasControllerV2_details(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     stop: {"in":"query","name":"stop","dataType":"string"},
@@ -2269,7 +2380,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2279,23 +2390,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasControllerV2();
 
-            const promise = controller.details.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'details',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/detailsRedirect/:tripId',
             ...(fetchMiddlewares<Middleware>(HafasController)),
             ...(fetchMiddlewares<Middleware>(HafasController.prototype.detailsRedirect)),
 
-            async function HafasController_detailsRedirect(context: any, next: any) {
-            const args = {
+            async function HafasController_detailsRedirect(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     tripId: {"in":"path","name":"tripId","required":true,"dataType":"string"},
                     res: {"in":"res","name":"302","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2305,23 +2421,28 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasController();
 
-            const promise = controller.detailsRedirect.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, 302, undefined);
+            return templateService.apiHandler({
+              methodName: 'detailsRedirect',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: 302,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/rawHafas',
             ...(fetchMiddlewares<Middleware>(HafasController)),
             ...(fetchMiddlewares<Middleware>(HafasController.prototype.rawHafas)),
 
-            async function HafasController_rawHafas(context: any, next: any) {
-            const args = {
+            async function HafasController_rawHafas(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     body: {"in":"body","name":"body","required":true,"dataType":"any"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2331,16 +2452,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasController();
 
-            const promise = controller.rawHafas.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'rawHafas',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/coachSequence/v4/wagen/:trainNumber',
             ...(fetchMiddlewares<Middleware>(CoachSequenceControllerV4)),
             ...(fetchMiddlewares<Middleware>(CoachSequenceControllerV4.prototype.coachSequence)),
 
-            async function CoachSequenceControllerV4_coachSequence(context: any, next: any) {
-            const args = {
+            async function CoachSequenceControllerV4_coachSequence(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     response: {"in":"res","name":"404","required":true,"dataType":"union","subSchemas":[{"dataType":"void"},{"dataType":"string"}]},
                     trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"trainNumber"}}},
@@ -2354,7 +2480,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2364,16 +2490,21 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new CoachSequenceControllerV4();
 
-            const promise = controller.coachSequence.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'coachSequence',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/coachSequence/v4/runsPerDate/:date',
             ...(fetchMiddlewares<Middleware>(CoachSequenceControllerV4)),
             ...(fetchMiddlewares<Middleware>(CoachSequenceControllerV4.prototype.runsPerDate)),
 
-            async function CoachSequenceControllerV4_runsPerDate(context: any, next: any) {
-            const args = {
+            async function CoachSequenceControllerV4_runsPerDate(context: Context, next: Next) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     response: {"in":"res","name":"401","required":true,"dataType":"union","subSchemas":[{"dataType":"void"},{"dataType":"string"}]},
                     date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
@@ -2384,7 +2515,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             let validatedArgs: any[] = [];
             try {
-              validatedArgs = getValidatedArgs(args, context, next);
+              validatedArgs = templateService.getValidatedArgs({ args, context, next });
             } catch (err) {
               const error = err as any;
               error.message ||= JSON.stringify({ fields: error.fields });
@@ -2394,107 +2525,16 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new CoachSequenceControllerV4();
 
-            const promise = controller.runsPerDate.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
+            return templateService.apiHandler({
+              methodName: 'runsPerDate',
+              controller,
+              context,
+              validatedArgs,
+              successStatus: undefined,
+            });
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
-
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-  function isController(object: any): object is Controller {
-      return 'getHeaders' in object && 'getStatus' in object && 'setStatus' in object;
-  }
-
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-  function promiseHandler(controllerObj: any, promise: Promise<any>, context: any, successStatus: any, next?: () => Promise<any>) {
-      return Promise.resolve(promise)
-        .then((data: any) => {
-            let statusCode = successStatus;
-            let headers;
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            if (isController(controllerObj)) {
-                headers = controllerObj.getHeaders();
-                statusCode = controllerObj.getStatus() || statusCode;
-            }
-            return returnHandler(context, next, statusCode, data, headers);
-        })
-        .catch((error: any) => {
-            context.status = error.status || 500;
-            context.throw(context.status, error.message, error);
-        });
-    }
-
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-    function returnHandler(context: any, next?: () => any, statusCode?: number, data?: any, headers: any={}) {
-        if (!context.headerSent && !context.response.__tsoaResponded) {
-            if (data !== null && data !== undefined) {
-                context.body = data;
-                context.status = 200;
-            } else {
-                context.status = 204;
-            }
-
-            if (statusCode) {
-                context.status = statusCode;
-            }
-
-            context.set(headers);
-            context.response.__tsoaResponded = true;
-            return next ? next() : context;
-        }
-    }
-
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-    function getValidatedArgs(args: any, context: any, next: () => any): any[] {
-        const errorFields: FieldErrors = {};
-        const values = Object.keys(args).map(key => {
-            const name = args[key].name;
-            switch (args[key].in) {
-            case 'request':
-                return context.request;
-            case 'query':
-                return validationService.ValidateParam(args[key], context.request.query[name], name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-            case 'queries':
-                return validationService.ValidateParam(args[key], context.request.query, name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-            case 'path':
-                return validationService.ValidateParam(args[key], context.params[name], name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-            case 'header':
-                return validationService.ValidateParam(args[key], context.request.headers[name], name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-            case 'body':
-                return validationService.ValidateParam(args[key], context.request.body, name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-            case 'body-prop':
-                return validationService.ValidateParam(args[key], context.request.body[name], name, errorFields, 'body.', {"noImplicitAdditionalProperties":"ignore"});
-            case 'formData':
-                if (args[key].dataType === 'file') {
-                  return validationService.ValidateParam(args[key], context.request.file, name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-                } else if (args[key].dataType === 'array' && args[key].array.dataType === 'file') {
-                  return validationService.ValidateParam(args[key], context.request.files, name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-                } else {
-                  return validationService.ValidateParam(args[key], context.request.body[name], name, errorFields, undefined, {"noImplicitAdditionalProperties":"ignore"});
-                }
-            case 'res':
-                return responder(context, next);
-            }
-        });
-        if (Object.keys(errorFields).length > 0) {
-            throw new ValidateError(errorFields, '');
-        }
-        return values;
-    }
-
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-    function responder(context: any, next: () => any): TsoaResponse<HttpStatusCodeLiteral, unknown>  {
-        return function(status, data, headers) {
-           returnHandler(context, next, status, data, headers);
-        };
-    };
 
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 }
