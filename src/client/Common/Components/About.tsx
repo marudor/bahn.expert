@@ -55,7 +55,7 @@ export const About: FC = () => {
           </a>
         </span>
         <span>
-          Featurewünsche und Bugreports sind mir am liebsten über Github. Dafür
+          Featurewünsche und Bugreports sind mir am Liebsten über Github. Dafür
           gibt es jeweils ein eigenes Formular.{' '}
         </span>
         <span>
@@ -77,7 +77,7 @@ export const About: FC = () => {
         </span>
         <span>
           Wer mich anderweitig kontaktieren möchte kann dies neben dem
-          verlinkten Social Media Profil auch per mail an info (at) bahn (dot)
+          verlinkten Social Media Profil auch per Mail an info (at) bahn (dot)
           expert. Bitte als Anrede nicht siezen. Im Idealfall einfach "marudor"
           nutzen.
         </span>
