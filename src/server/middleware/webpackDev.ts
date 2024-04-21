@@ -53,7 +53,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
   });
 
   return new Promise<void>((resolve) => {
-    const middleware = webpackMiddleware(compiler, {
+    const middleware = webpackMiddleware.koaWrapper(compiler, {
       serverSideRender: true,
       publicPath: '/',
     });
@@ -67,32 +67,8 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
         });
       });
     });
+    koa.use(middleware);
 
-    koa.use((ctx, next) => {
-      return new Promise<void>((resolve, reject) => {
-        void middleware(
-          ctx.req,
-          {
-            // @ts-expect-error ???
-            send: (content: any) => {
-              ctx.body = content;
-              resolve();
-            },
-            get: ctx.res.getHeader.bind(ctx.res),
-            getHeader: ctx.res.getHeader.bind(ctx.res),
-            set: ctx.res.setHeader.bind(ctx.res),
-            setHeader: ctx.res.setHeader.bind(ctx.res),
-            locals: ctx.state,
-          },
-          (err) => {
-            if (err) reject(err);
-            else {
-              resolve(next());
-            }
-          },
-        );
-      });
-    });
     resolve();
   });
 }

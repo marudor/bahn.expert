@@ -125,14 +125,17 @@ export async function findJourney(
       return [];
     }
 
-    const cacheKey = `${trainNumber}|${category}|${
+    const cacheKey = `${trainNumber}|${category?.toUpperCase()}|${
       date && format(date, 'yyyy-MM-dd')
     }|${onlyFv ?? false}|${originEvaNumber}`;
 
-    const cacheHit = await journeyFindCache.get(cacheKey);
-    if (cacheHit) {
-      return cacheHit;
+    if (trainNumber < 2900 || trainNumber > 3000) {
+      const cacheHit = await journeyFindCache.get(cacheKey);
+      if (cacheHit) {
+        return cacheHit;
+      }
     }
+
     const result = await getJourneyClient().find({
       number: trainNumber,
       // Kategorie ist schwierig, wir filtern quasi optional
@@ -206,7 +209,7 @@ export async function getJourneyDetails(
       includeCanceled: true,
     });
 
-    if (!process.env.RIS_JOURNEYS_CACHE_DISABLED) {
+    if (!process.env.RIS_JOURNEYS_CACHE_DISABLED && r.data) {
       void journeyCache.set(journeyId, r.data);
     }
 
