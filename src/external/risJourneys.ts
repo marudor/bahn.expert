@@ -129,11 +129,9 @@ export async function findJourney(
       date && format(date, 'yyyy-MM-dd')
     }|${onlyFv ?? false}|${originEvaNumber}`;
 
-    if (trainNumber < 2900 || trainNumber > 3000) {
-      const cacheHit = await journeyFindCache.get(cacheKey);
-      if (cacheHit) {
-        return cacheHit;
-      }
+    const cacheHit = await journeyFindCache.get(cacheKey);
+    if (cacheHit) {
+      return cacheHit;
     }
 
     const result = await getJourneyClient().find({
