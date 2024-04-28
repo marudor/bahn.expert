@@ -70,7 +70,6 @@ export async function getDepartureSequence(
       date: format(initialDepartureDate, 'yyyy-MM-dd'),
       time: formatISO(plannedDepartureDate),
       includeAmenities: true,
-      // includeOccupancy: 'DETAIL',
       includePosition: true,
     });
     return r.data;

@@ -4096,40 +4096,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "VehicleCategory": {
-        "type": "string",
-        "enum": [
-          "DOUBLEDECK_FIRST_ECONOMY_CLASS",
-          "DOUBLEDECK_FIRST_CLASS",
-          "DOUBLEDECK_ECONOMY_CLASS",
-          "DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS",
-          "DOUBLEDECK_CONTROLCAR_FIRST_CLASS",
-          "DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS",
-          "DOUBLEDECK_CARCARRIER_PASSENGERTRAIN",
-          "PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS",
-          "PASSENGERCARRIAGE_FIRST_CLASS",
-          "PASSENGERCARRIAGE_ECONOMY_CLASS",
-          "CONTROLCAR_FIRST_CLASS",
-          "CONTROLCAR_ECONOMY_CLASS",
-          "CONTROLCAR_FIRST_ECONOMY_CLASS",
-          "DOUBLECONTROLCAR_ECONOMY_CLASS",
-          "DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS",
-          "DININGCAR",
-          "HALFDININGCAR_FIRST_CLASS",
-          "HALFDININGCAR_ECONOMY_CLASS",
-          "SLEEPER_FIRST_CLASS",
-          "SLEEPER_FIRST_ECONOMY_CLASS",
-          "SLEEPER_ECONOMY_CLASS",
-          "COUCHETTE_FIRST_CLASS",
-          "COUCHETTE_ECONOMY_CLASS",
-          "BAGGAGECAR",
-          "HALFBAGGAGECAR",
-          "LOCOMOTIVE",
-          "POWERCAR",
-          "UNDEFINED"
-        ],
-        "description": "Category of vehicle [Fahrzeug] according to basic visual differentiation. - DOUBLEDECK_FIRST_ECONOMY_CLASS (Doppelstockwagen 1.& 2. Klasse) - DOUBLEDECK_FIRST_CLASS (Doppelstockwagen 1. Klasse) - DOUBLEDECK_ECONOMY_CLASS (Doppelstockwagen 2. Klasse) - DOUBLEDECK_CONTROLCAR_FIRST_ECONOMOY_CLASS (Doppelstocksteuerwagen 1. & 2. Klasse) - DOUBLEDECK_CONTROLCAR_FIRST_CLASS (Doppelstocksteuerwagen 1. Klasse) - DOUBLEDECK_CONTROLCAR_ECONOMY_CLASS (Doppelstocksteuerwagen 2. Klasse) - DOUBLEDECK_CARCARRIER_PASSENGERTRAIN (Doppelstock-Autotransportwagen der Reisezugwagen-Bauart) - PASSENGERCARRIAGE_FIRST_ECONOMY_CLASS (Reisezugwagen 1.& 2. Klasse) - PASSENGERCARRIAGE_FIRST_CLASS (Reisezugwagen 1.Klasse) - PASSENGERCARRIAGE_ECONOMY_CLASS (Reisezugwagen 2.Klasse) - CONTROLCAR_FIRST_CLASS (Steuerwagen & 1.Klasse) - CONTROLCAR_ECONOMY_CLASS (Steuerwagen & 2.Klasse) - CONTROLCAR_FIRST_ECONOMY_CLASS (Steuerwagen 1.& 2.Klasse) - DOUBLECONTROLCAR_ECONOMY_CLASS (Beidseitiger Steuerwagen aka \\'Schienenbus\\' & 2.Klasse) - DOUBLECONTROLCAR_FIRST_ECONOMY_CLASS (Beidseitiger Steuerwagen aka \\'Schienenbus\\' 1.& 2.Klasse) - DININGCAR (Speisewagen) - HALFDININGCAR_FIRST_CLASS (Halbspeisewagen & 1. Klasse) - HALFDININGCAR_ECONOMY_CLASS (Halbspeisewagen & 2. Klasse) - SLEEPER_FIRST_CLASS (Schlafwagen 1. Klasse) - SLEEPER_FIRST_ECONOMY_CLASS (Schlafwagen 1. & 2. Klasse) - SLEEPER_ECONOMY_CLASS (Schlafwagen 2. Klasse) - COUCHETTE_FIRST_CLASS (Liegewagen 1. Klasse) - COUCHETTE_ECONOMY_CLASS (Liegewagen 2. Klasse) - BAGGAGECAR (Gepaeckwagen) - LOCOMOTIVE (Lok) - POWERCAR (Triebkopf) - UNDEFINED (unbekannt)"
-      },
       "CoachSequenceCoachFeatures": {
         "properties": {
           "dining": {
@@ -4195,7 +4161,7 @@
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "vehicleCategory": {
-            "$ref": "#/components/schemas/VehicleCategory"
+            "type": "string"
           },
           "closed": {
             "type": "boolean"
@@ -4355,11 +4321,9 @@
             "type": "string",
             "enum": [
               "OEBB",
-              "NEW",
-              "DB-apps",
               "DB-noncd",
-              "DB-newApps",
               "DB-plan",
+              "DB-bahnde",
               "SBB"
             ]
           },
@@ -4741,15 +4705,6 @@
             "description": "needed for new DB coachSequence",
             "in": "query",
             "name": "category",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "needed for new DB Navigator coachSequence",
-            "in": "query",
-            "name": "administration",
             "required": false,
             "schema": {
               "type": "string"

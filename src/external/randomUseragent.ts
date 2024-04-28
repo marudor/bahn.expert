@@ -22,28 +22,10 @@ const possibleOSVersions = [
   '17.1',
   '17.1.1',
 ];
-const possibleDBNavigatorVersions = ['23040000'];
-const possibleFullDeviceTypes = [
-  'iPhone13,2',
-  'iPhone13,1',
-  'iPhone14,1',
-  'iPhone14,2',
-];
 
 export function getRandomOfArray<T>(values: T[]): T {
   const r = Math.round(Math.random() * (values.length - 1));
   return values[r];
-}
-
-export function randomDBNavigatorUseragent(): string {
-  const appVersion = getRandomOfArray(possibleDBNavigatorVersions);
-  const fullDeviceType = getRandomOfArray(possibleFullDeviceTypes);
-  const osVersion = getRandomOfArray(possibleOSVersions);
-
-  return `Mozilla/5.0 (iPhone; CPU iPhone OS ${osVersion.replaceAll(
-    '.',
-    '_',
-  )} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;DBNavigator/${appVersion}/iOS_${osVersion}/${fullDeviceType}/C:b`;
 }
 
 export function randomBahnhofLiveUseragent(): string {

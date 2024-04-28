@@ -1,5 +1,5 @@
 import { format } from 'date-fns-tz';
-import makeRequest from '../Request';
+import makeRequest from '@/server/HAFAS/Request';
 import mapLoyalityCard from '@/server/HAFAS/TripSearch/mapLoyalityCard';
 import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';

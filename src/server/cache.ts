@@ -73,6 +73,7 @@ export enum CacheDatabase {
   HAFASJourneyMatch,
   Journey = 19,
   SBBTrip,
+  ParsedCoachSequenceFound,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
@@ -84,6 +85,10 @@ const CacheTTLs: Record<CacheDatabase, string> = {
   [CacheDatabase.NAHSHLageplan]: 'PT48H',
   [CacheDatabase.StopPlaceSearch]: 'PT24H',
   [CacheDatabase.CoachSequenceFound]: parseCacheTTL(
+    'PT15M',
+    process.env.COACH_SEQUENCE_CACHE_TTL,
+  ),
+  [CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
     'PT15M',
     process.env.COACH_SEQUENCE_CACHE_TTL,
   ),

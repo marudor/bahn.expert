@@ -1,8 +1,8 @@
 import { parse } from 'date-fns';
-import parseCommonArrival from '../helper/parseCommonArrival';
-import parseCommonDeparture from '../helper/parseCommonDeparture';
-import parseMessages from '../helper/parseMessages';
-import parseStop from '../helper/parseStop';
+import parseCommonArrival from '@/server/HAFAS/helper/parseCommonArrival';
+import parseCommonDeparture from '@/server/HAFAS/helper/parseCommonDeparture';
+import parseMessages from '@/server/HAFAS/helper/parseMessages';
+import parseStop from '@/server/HAFAS/helper/parseStop';
 import type {
   CommonArrival,
   CommonDeparture,
