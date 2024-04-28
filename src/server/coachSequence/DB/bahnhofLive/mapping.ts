@@ -326,7 +326,7 @@ export const mapInformation = (
   const allCoaches = sequence.groups.flatMap((g) => g.coaches);
 
   const information: CoachSequenceInformation = {
-    source: 'DB-newApps',
+    source: 'DB-noncd',
     journeyId: wr.journeyID,
     sequence,
     product: mapProduct(formation),

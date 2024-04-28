@@ -1,5 +1,5 @@
 import { format } from 'date-fns-tz';
-import makeRequest from '../Request';
+import makeRequest from '@/server/HAFAS/Request';
 import parse from './parse';
 import type { AllowedHafasProfile, JourneyFilter } from '@/types/HAFAS';
 import type {

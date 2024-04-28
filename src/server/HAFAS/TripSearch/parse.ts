@@ -2,12 +2,12 @@ import { adjustProductOperator } from '@/server/HAFAS/helper/adjustProductOperat
 import { differenceInMilliseconds, parse } from 'date-fns';
 import { TransportType } from '@/external/types';
 import mergeSegments from '@/server/HAFAS/TripSearch/mergeSegments';
-import parseAuslastung from '../helper/parseAuslastung';
-import parseCommonArrival from '../helper/parseCommonArrival';
-import parseCommonDeparture from '../helper/parseCommonDeparture';
-import parseDuration from '../helper/parseDuration';
-import parseMessages from '../helper/parseMessages';
-import parseStop from '../helper/parseStop';
+import parseAuslastung from '@/server/HAFAS/helper/parseAuslastung';
+import parseCommonArrival from '@/server/HAFAS/helper/parseCommonArrival';
+import parseCommonDeparture from '@/server/HAFAS/helper/parseCommonDeparture';
+import parseDuration from '@/server/HAFAS/helper/parseDuration';
+import parseMessages from '@/server/HAFAS/helper/parseMessages';
+import parseStop from '@/server/HAFAS/helper/parseStop';
 import parseTarif from '@/server/HAFAS/helper/parseTarif';
 import type {
   CommonStop,

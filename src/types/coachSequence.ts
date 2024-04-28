@@ -1,6 +1,5 @@
 import type { AuslastungsValue } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import type { VehicleCategory } from '@/external/generated/coachSequence';
 
 export interface CoachSequencePosition {
   startPercent: number;
@@ -47,7 +46,7 @@ export interface CoachSequenceCoach {
    * 0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers
    */
   class: 0 | 1 | 2 | 3 | 4;
-  vehicleCategory: VehicleCategory;
+  vehicleCategory: string;
   closed?: boolean;
   /**
    * only filled for real time information
@@ -120,14 +119,7 @@ export interface CoachSequence {
 }
 
 export interface CoachSequenceInformation {
-  source:
-    | 'OEBB'
-    | 'NEW'
-    | 'DB-apps'
-    | 'DB-noncd'
-    | 'DB-newApps'
-    | 'DB-plan'
-    | 'SBB';
+  source: 'OEBB' | 'DB-noncd' | 'DB-plan' | 'DB-bahnde' | 'SBB';
   stop: CoachSequenceStop;
   product: CoachSequenceProduct;
   sequence: CoachSequence;

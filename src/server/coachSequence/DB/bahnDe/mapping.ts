@@ -188,23 +188,25 @@ function mapDirection(coaches: CoachSequenceCoach[]) {
   return last.position.startPercent > first.position.startPercent;
 }
 
-function mapSequence(
+async function mapSequence(
   sequence: VehicleSequenceDeparture,
   basePercent: number,
-): CoachSequence | undefined {
-  const groups = sequence.groups.map((g) => mapGroup(g, basePercent));
+): Promise<CoachSequence | undefined> {
+  const groups = await Promise.all(
+    sequence.groups.map((g) => mapGroup(g, basePercent)),
+  );
   if (groups.includes(undefined)) return undefined;
   return {
     groups: groups as CoachSequenceGroup[],
   };
 }
 
-export const mapInformation = (
+export const mapInformation = async (
   upstreamSequence: VehicleSequenceDeparture | undefined,
   trainCategory: string,
-  trainNumber: number,
+  trainNumber: string,
   evaNumber: string,
-): CoachSequenceInformation | undefined => {
+): Promise<CoachSequenceInformation | undefined> => {
   if (!upstreamSequence) {
     return undefined;
   }
@@ -212,18 +214,18 @@ export const mapInformation = (
   if (!stop) {
     return undefined;
   }
-  const sequence = mapSequence(upstreamSequence, basePercent);
+  const sequence = await mapSequence(upstreamSequence, basePercent);
   if (!sequence) {
     return undefined;
   }
   const allCoaches = sequence.groups.flatMap((g) => g.coaches);
 
   const information: CoachSequenceInformation = {
-    source: 'NEW',
+    source: 'DB-bahnde',
     product: {
-      number: trainNumber.toString(),
+      number: trainNumber,
       type: trainCategory,
-      line: getLineFromNumber(trainNumber.toString()),
+      line: getLineFromNumber(trainNumber),
     },
     isRealtime: allCoaches.every(
       (c) => c.uic || c.vehicleCategory === 'LOCOMOTIVE',
