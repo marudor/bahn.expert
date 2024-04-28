@@ -74,6 +74,8 @@ export enum CacheDatabase {
   Journey = 19,
   SBBTrip,
   ParsedCoachSequenceFound,
+  JourneyFindV2,
+  JourneyV2,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
@@ -97,13 +99,18 @@ const CacheTTLs: Record<CacheDatabase, string> = {
   [CacheDatabase.StopPlaceByRil]: 'PT24H',
   [CacheDatabase.StopPlaceGroups]: 'PT24H',
   [CacheDatabase.StopPlaceSalesSearch]: 'PT24H',
-  [CacheDatabase.JourneyFind]: 'PT12H',
   [CacheDatabase.HAFASJourneyMatch]: 'PT6H',
   [CacheDatabase.NegativeNewSequence]: 'PT6H',
   [CacheDatabase.SBBStopPlaces]: 'P1D',
   [CacheDatabase.HafasStopOccupancy]: 'PT30M',
   [CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
+  [CacheDatabase.JourneyFind]: 'PT12H',
+  [CacheDatabase.JourneyFindV2]: 'PT12H',
   [CacheDatabase.Journey]: parseCacheTTL(
+    'PT5M',
+    process.env.RIS_JOURNEYS_CACHE_TTL,
+  ),
+  [CacheDatabase.JourneyV2]: parseCacheTTL(
     'PT5M',
     process.env.RIS_JOURNEYS_CACHE_TTL,
   ),
