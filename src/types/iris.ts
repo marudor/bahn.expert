@@ -73,7 +73,7 @@ export interface Abfahrt {
    */
   cancelled?: boolean;
   mediumId: string;
-  messages: Messages;
+  messages: IrisMessages;
   platform: string;
   /**
    * Most likely D | N | S | F
@@ -115,7 +115,7 @@ export type Message = IrisMessage | HimIrisMessage;
  */
 
 export type MessagePrio = '1' | '2' | '3' | '4';
-export interface Messages {
+export interface IrisMessages {
   qos: IrisMessage[];
   delay: IrisMessage[];
   him: HimIrisMessage[];

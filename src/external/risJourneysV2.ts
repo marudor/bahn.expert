@@ -1,63 +1,61 @@
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
-import { differenceInHours, format } from 'date-fns';
-import { JourneysApi, TransportType } from '@/external/generated/risJourneys';
-import { logger } from '@/server/logger';
-import { Configuration as RisJourneysConfiguration } from '@/external/generated/risJourneys';
+import { differenceInHours, format, isSameDay } from 'date-fns';
+import {
+  JourneysApi,
+  Configuration as RisJourneysConfiguration,
+} from '@/external/generated/risJourneysV2';
 import axios from 'axios';
 import type {
   JourneyEventBased,
-  JourneyMatch,
-  TransportPublic,
-} from '@/external/generated/risJourneys';
+  JourneyFindResult,
+  StopPlaceEmbedded,
+  Transport,
+} from '@/external/generated/risJourneysV2';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { RouteStop } from '@/types/routing';
-import type { StopPlaceEmbedded } from '@/external/generated/risJourneysV2';
 
-const risJourneysConfiguration = new RisJourneysConfiguration({
-  basePath: process.env.RIS_JOURNEYS_URL,
+const risJourneysV2Configuration = new RisJourneysConfiguration({
+  basePath: process.env.RIS_JOURNEYS_V2_URL,
   baseOptions: {
     headers: {
-      'DB-Api-Key': process.env.RIS_JOURNEYS_CLIENT_SECRET,
-      'DB-Client-Id': process.env.RIS_JOURNEYS_CLIENT_ID,
+      'DB-Api-Key': process.env.RIS_JOURNEYS_V2_CLIENT_SECRET,
+      'DB-Client-Id': process.env.RIS_JOURNEYS_V2_CLIENT_ID,
     },
   },
 });
 
-const journeyFindCache = new Cache<JourneyMatch[]>(CacheDatabase.JourneyFind);
-
-const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.Journey);
-
-logger.info(
-  `using ${process.env.RIS_JOURNEYS_USER_AGENT} as RIS::Journeys UserAgent`,
+const axiosWithTimeout = axios.create({
+  timeout: 6500,
+});
+axiosUpstreamInterceptor(axiosWithTimeout, 'ris-journeys-v2');
+const client = new JourneysApi(
+  risJourneysV2Configuration,
+  undefined,
+  axiosWithTimeout,
 );
+
+const journeyFindCache = new Cache<JourneyFindResult[]>(CacheDatabase.Journey);
+
+const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.JourneyV2);
 
 export const health = {
   has401: false,
 };
 
-const axiosWithTimeout = axios.create({
-  timeout: 6500,
-});
-axiosUpstreamInterceptor(axiosWithTimeout, 'ris-journeys');
-const client = new JourneysApi(risJourneysConfiguration);
+const longDistanceTypes: string[] = ['HIGH_SPEED_TRAIN', 'INTERCITY_TRAIN'];
 
-const longDistanceTypes: TransportType[] = [
-  TransportType.HighSpeedTrain,
-  TransportType.IntercityTrain,
-];
-
-const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
+const mapTransportToTrain = (transport: Transport): ParsedProduct => ({
   name: `${transport.category} ${
     longDistanceTypes.includes(transport.type)
-      ? transport.number
-      : transport.line || transport.number
+      ? transport.journeyNumber
+      : transport.line || transport.journeyNumber
   }`,
   line: transport.line,
   type: transport.category,
-  number: `${transport.number}`,
+  number: `${transport.journeyNumber}`,
   transportType: transport.type,
 });
 
@@ -68,15 +66,15 @@ const mapStationShortToRouteStops = (
 });
 
 function mapToParsedJourneyMatchResponse(
-  journeyMatch: JourneyMatch,
+  journeyFindResult: JourneyFindResult,
 ): ParsedJourneyMatchResponse {
   return {
     // Technically wrong!
-    jid: journeyMatch.journeyID,
-    train: mapTransportToTrain(journeyMatch.transport),
+    jid: journeyFindResult.journeyID,
+    train: mapTransportToTrain(journeyFindResult.info.transportAtStart),
     stops: [],
-    firstStop: mapStationShortToRouteStops(journeyMatch.originSchedule),
-    lastStop: mapStationShortToRouteStops(journeyMatch.destinationSchedule),
+    firstStop: mapStationShortToRouteStops(journeyFindResult.info.origin),
+    lastStop: mapStationShortToRouteStops(journeyFindResult.info.destination),
   };
 }
 export async function findJourney(
@@ -86,7 +84,7 @@ export async function findJourney(
   onlyFv?: boolean,
   originEvaNumber?: string,
   administration?: string,
-): Promise<JourneyMatch[]> {
+): Promise<JourneyFindResult[]> {
   try {
     const isWithin20Hours = date && differenceInHours(date, Date.now()) <= 20;
     // some EVUs (Looking at you DB FV) might not be available for >20h, others are.
@@ -104,39 +102,34 @@ export async function findJourney(
     }
 
     const result = await client.find({
-      number: trainNumber,
-      // Kategorie ist schwierig, wir filtern quasi optional
-      // category,
+      journeyNumber: trainNumber,
+      category,
       date: date && format(date, 'yyyy-MM-dd'),
-      transports: onlyFv ? longDistanceTypes : undefined,
-      originEvaNumber,
+      transportTypes: onlyFv ? longDistanceTypes : undefined,
       administrationID: administration,
     });
 
-    if (category) {
-      const categoryFiltered = result.data.journeys.filter(
-        (j) => j.transport.category.toLowerCase() === category.toLowerCase(),
+    if (date) {
+      result.data.journeys = result.data.journeys.filter((j) =>
+        isSameDay(new Date(j.journeyRelation.startTime), date),
       );
-      if (categoryFiltered.length) {
-        result.data.journeys = categoryFiltered;
-      }
     }
 
     if (isWithin20Hours) {
       void journeyFindCache.set(
         cacheKey,
         result.data.journeys,
-        // empty resultsets are cached for one Hour. Sometimes journeys are found later
+        // empty resultsets are cached for one Hour. Sometimes journeys are found later, cache will also be live cleared
         result.data.journeys.length === 0 ? 'PT1H' : undefined,
       );
     }
 
     for (const j of result.data.journeys) {
       void additionalJourneyInformation(
-        `${j.transport.category} ${j.transport.number}`,
+        `${j.journeyRelation.startCategory} ${j.journeyRelation.startJourneyNumber}`,
         j.journeyID,
-        j.originSchedule.evaNumber,
-        new Date(j.date),
+        j.journeyRelation.startEvaNumber,
+        new Date(j.journeyRelation.startTime),
       );
     }
 
@@ -172,8 +165,7 @@ export async function getJourneyDetails(
     }
     const r = await client.journeyEventBasedById({
       journeyID: journeyId,
-      includeJourneyReferences: true,
-      includeCanceled: true,
+      includeReferences: true,
     });
 
     if (!process.env.RIS_JOURNEYS_CACHE_DISABLED && r.data) {

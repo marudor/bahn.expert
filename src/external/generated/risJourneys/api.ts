@@ -42,6 +42,11 @@ import {
   RequiredError,
 } from './base';
 import { TransportType } from '@/external/generated/risStations/api';
+import type {
+  StopPlaceEmbedded,
+  ReplacementTransport,
+  DirectionInfo,
+} from '@/external/generated/risJourneysV2';
 
 export { TransportType };
 /**
@@ -445,25 +450,6 @@ export interface DepartureMatches {
    * @memberof DepartureMatches
    */
   departures: Array<DepartureMatch>;
-}
-/**
- * Optional direction information [Richtungstext] for a particular transport that may differ from the destination [Zielhalt] on some parts of the journey. Take care that a text and / or a particular stop-place [Haltestelle] may be provided.
- * @export
- * @interface DirectionInfo
- */
-export interface DirectionInfo {
-  /**
-   * Optional list of stop-places [Haltestellen] the direction text refers to. May be more than one stop-place for cases like for instance \'Richtung Messe & Hauptbahnhof\'.
-   * @type {Array<StopPlaceEmbedded>}
-   * @memberof DirectionInfo
-   */
-  stopPlaces: Array<StopPlaceEmbedded>;
-  /**
-   * Direction text [Richtungstext]. Must not necessarly be the name of a real stop-place [Haltestelle] (for instance \'Richtung Automobilmesse\'). For instance before the stop \'fare\' the transport has direction \'fare\', after \'fare\' has been reached maybe \'central station\' or \'airport\'.
-   * @type {string}
-   * @memberof DirectionInfo
-   */
-  text: string;
 }
 /**
  * Disruption communication information [Stoerungskommunikation] descriptions.
@@ -894,14 +880,6 @@ export type MessageType = (typeof MessageType)[keyof typeof MessageType];
  * @export
  * @interface ReplacementTransport
  */
-export interface ReplacementTransport {
-  /**
-   * Real type of replacement transport that may differ from sales perspective (for instance a \'REGIONAL_TRAIN\' is usuallay replaced by a \'BUS\'). Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof ReplacementTransport
-   */
-  realType: string;
-}
 /**
  * Journey segment information on departure and arrival [Fahrtabschnitt].
  * @export
@@ -1076,25 +1054,6 @@ export interface StopAtStopPlace {
    * Name for stop-place [Haltestelle] in fixed language \'DE\'.
    * @type {string}
    * @memberof StopAtStopPlace
-   */
-  name: string;
-}
-/**
- * Comprehensive stop-place [Haltestelle] information.
- * @export
- * @interface StopPlaceEmbedded
- */
-export interface StopPlaceEmbedded {
-  /**
-   * Eva number of stop-place [Haltestelle].
-   * @type {string}
-   * @memberof StopPlaceEmbedded
-   */
-  evaNumber: string;
-  /**
-   * Name for stop-place [Haltestelle] in fixed language \'DE\'.
-   * @type {string}
-   * @memberof StopPlaceEmbedded
    */
   name: string;
 }
@@ -1287,7 +1246,7 @@ export interface TransportPublicDestinationOriginJourney {
    * @type {StopAtStopPlace}
    * @memberof TransportPublicDestinationOriginJourney
    */
-  origin: StopAtStopPlace;
+  // origin: StopAtStopPlace;
   /**
    *
    * @type {ReplacementTransport}

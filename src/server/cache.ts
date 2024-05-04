@@ -59,7 +59,7 @@ export enum CacheDatabase {
   HIMMessage,
   NAHSHLageplan,
   StopPlaceSearch = 6,
-  CoachSequenceFound,
+  // CoachSequenceFound,
   StopPlaceIdentifier = 8,
   StopPlaceByEva,
   StopPlaceByRil,
@@ -86,10 +86,6 @@ const CacheTTLs: Record<CacheDatabase, string> = {
   [CacheDatabase.HIMMessage]: 'PT24H',
   [CacheDatabase.NAHSHLageplan]: 'PT48H',
   [CacheDatabase.StopPlaceSearch]: 'PT24H',
-  [CacheDatabase.CoachSequenceFound]: parseCacheTTL(
-    'PT15M',
-    process.env.COACH_SEQUENCE_CACHE_TTL,
-  ),
   [CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
     'PT15M',
     process.env.COACH_SEQUENCE_CACHE_TTL,
