@@ -15,14 +15,14 @@ import {
   findJourneyHafasCompatible,
   getJourneyDetails,
   health,
-} from '@/external/risJourneys';
+} from '@/external/risJourneysV2';
 import {
   getCategoryAndNumberFromName,
   journeyDetails,
 } from '@/server/journeys/journeyDetails';
 import Detail from '@/server/HAFAS/Detail';
 import type { EvaNumber } from '@/types/common';
-import type { JourneyEventBased } from '@/external/generated/risJourneys';
+import type { JourneyEventBased } from '@/external/generated/risJourneysV2';
 import type { Request as KoaRequest } from 'koa';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
@@ -244,7 +244,7 @@ export class JourneysV1Controller extends Controller {
     if (
       (possibleJourneys.length > 1 ||
         (productDetails.category &&
-          possibleJourneys[0].transport.category !==
+          possibleJourneys[0].info.transportAtStart.category !==
             productDetails.category)) &&
       evaNumberAlongRoute
     ) {

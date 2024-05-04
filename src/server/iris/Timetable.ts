@@ -43,7 +43,7 @@ import type {
   AbfahrtenResult,
   HimIrisMessage,
   IrisMessage,
-  Messages,
+  IrisMessages,
   Stop,
   SubstituteRef,
 } from '@/types/iris';
@@ -596,7 +596,7 @@ export class Timetable {
         );
 
         return agg;
-      }, {} as Messages),
+      }, {} as IrisMessages),
       arrival: parseRealtimeAr(ar),
       departure: parseRealtimeDp(dp),
       ref: ref ? this.parseRef(ref) : undefined,
