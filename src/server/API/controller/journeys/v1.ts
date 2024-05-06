@@ -13,16 +13,14 @@ import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import {
   findJourney,
   findJourneyHafasCompatible,
-  getJourneyDetails,
   health,
 } from '@/external/risJourneys';
-import {
-  getCategoryAndNumberFromName,
-  journeyDetails,
-} from '@/server/journeys/journeyDetails';
+import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
+import { getJourneyDetails } from '@/external/risJourneysV2';
+import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import Detail from '@/server/HAFAS/Detail';
 import type { EvaNumber } from '@/types/common';
-import type { JourneyEventBased } from '@/external/generated/risJourneys';
+import type { JourneyEventBased } from '@/external/generated/risJourneysV2';
 import type { Request as KoaRequest } from 'koa';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
