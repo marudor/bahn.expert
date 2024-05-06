@@ -509,102 +509,167 @@
         "type": "object",
         "additionalProperties": true
       },
-      "TransportPublicDestination": {
-        "description": "Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination in case the final stop of the journey changed [Haltausfall, Laufwegverlängerung, ...].",
+      "Administration": {
+        "description": "Information on the operator [Betreiber] and the administration [Verwaltung] of the journey.",
         "properties": {
-          "category": {
+          "administrationID": {
             "type": "string",
-            "description": "Code of the transport [Fahrtgattung]."
+            "description": "Unique id of the administration [Verwaltung]. - 8 (S - S-Bahn Berlin) - 19 (EST - EUROSTAR) - 51 (PKP - PKP Intercity) - 53 (DPN - Nahreisezug) - 54 (CD - Ceske Drahy) - 55 (MAV - MAV) - 56 (ZSS - ZSSK) - 71 (REN - RENFE) - 74 (SJ - SJ) - 78 (HZ - HZPP) - 79 (SZ - Slovenske zeleznice) - 80 (DB - DB Fernverkehr AG) - 81 (ÖBB - Österreichische Bundesbahnen) - 82 (CFL - CFL) - 83 (TI - Trenitalia) - 84 (NS - Nederlandse Spoorwegen) - 85 (SBB - SBB) - 86 (DSB - Dänische Staatsbahnen) - 87 (SCF - SNCF) - 88 (SCB - SNCB) - 3018 (THA - THALYS) - 3189 (ARV - ARRIVA vlaky) - 3230 (VBG - vogtlandbahn - Die Länderbahn GmbH DLB) - 3236 (WB - WESTbahn) - 3246 (IC - RegioJet) - 3270 (TN - TRENORD) - 3288 (GW - GW Train Regio) - 3332 (KZC - KZC Doprava s.r.o.) - 3393 (TGV - SNCF Voyages Deutschland) - 3613 (StB - Steiermarkbahn und Bus GmbH) - 80001 (S - S-Bahn Berlin) - 550043 (GyS - GySEV) - 743051 (ST - Snälltåget) - 800151 (DB - DB Regio AG Nordost) - 800153 (DB - DB Regio AG Nordost) - 800154 (DB - DB Regio AG Nordost) - 800155 (DB - DB Regio AG Nordost) - 800156 (DB - DB Regio AG Nordost) - 800157 (DB - DB Regio AG Nordost) - 800158 (DB - DB Regio AG Nordost) - 800159 (DB - DB Regio AG Nordost) - 800160 (DB - DB Regio AG Nordost) - 800161 (DB - DB Regio AG Nordost) - 800163 (DB - DB Regio AG Nordost) - 800165 (DB - DB Regio AG Nordost) - 800166 (DB - DB Regio AG Nordost) - 800201 (DB - DB Regio AG Nord) - 800271 (DB - DB Regio AG Nord) - 800279 (DB - DB Regio AG Nord) - 800292 (DB - DB Regio AG Nord) - 800293 (DB - DB Regio AG Nord) - 800295 (DB - DB Regio AG Nord) - 800310 (DB - DB Regio AG NRW) - 800318 (DB - DB Arriva) - 800333 (DB - DB Regio AG NRW) - 800337 (DB - DB Regio AG NRW) - 800338 (DB - DB Regio AG NRW) - 800348 (DB - DB Regio AG NRW) - 800349 (DB - DB Regio AG NRW) - 800351 (DB - DB Regio AG NRW) - 800352 (DB - DB Regio AG NRW) - 800354 (DB - DB Regio AG NRW) - 800363 (DB - DB Regio AG NRW) - 800413 (DB - DB Regio AG Südost) - 800417 (DB - DB Regio AG Südost) - 800430 (EGB - DB RegioNetz Verkehrs GmbH Erzgebirgsbahn) - 800445 (DB - DB Regio AG Südost) - 800456 (DB - DB Regio AG Südost) - 800469 (DB - DB Regio AG Südost) - 800478 (DB - DB Regio AG Südost) - 800486 (DB - DB Regio AG Südost) - 800487 (DB - DB Regio AG Südost) - 800489 (DB - DB Regio AG Südost) - 800523 (KHB - DB RegioNetz Verkehrs GmbH Kurhessenbahn) - 800528 (S - DB Regio AG S-Bahn Rhein-Main) - 800535 (DB - DB Regio AG Mitte) - 800553 (DB - DB Regio AG Mitte) - 800571 (DB - DB Regio AG Mitte) - 800572 (DB - DB Regio AG Mitte) - 800574 (DB - DB Regio AG Mitte) - 800603 (WFB - DB RegioNetz Verkehrs GmbH Westfrankenbahn) - 800622 (DB - DB Regio AG Baden-Württemberg) - 800631 (DB - DB Regio AG Baden-Württemberg) - 800632 (DB - DB Regio AG Baden-Württemberg) - 800640 (SWX - DB Regio AG Mitte SÜWEX) - 800643 (S - DB Regio AG S-Bahn Stuttgart) - 800647 (DB - DB Regio AG Baden-Württemberg) - 800659 (DB - DB Regio AG Baden-Württemberg) - 800693 (DB - DB Regio AG Baden-Württemberg) - 800694 (DB - DB Regio AG Baden-Württemberg) - 800714 (DB - DB Regio AG Bayern) - 800720 (DB - DB Regio AG Bayern) - 800721 (DB - DB Regio AG Bayern) - 800725 (S - DB Regio AG S-Bahn München) - 800734 (DB - DB Regio AG Bayern) - 800742 (DB - DB Regio AG Bayern) - 800746 (DB - DB Regio AG Bayern) - 800755 (DB - DB Regio AG Bayern) - 800759 (DB - DB Regio AG Bayern) - 800765 (DB - DB Regio AG Bayern) - 800767 (DB - DB Regio AG Bayern) - 800772 (DB - DB Regio AG Bayern) - 800785 (DB - DB Regio AG Bayern) - 800790 (DB - DB Regio AG Bayern) - 801512 (DB - DB Regio AG Mitte) - 801513 (DB - DB Regio AG Mitte) - 801518 (DB - DB Regio AG Mitte) - 801526 (DB - DB Regio AG Mitte) - 801539 (DB - DB Regio AG Mitte) - 801566 (DB - DB Regio AG Mitte) - 801591 (DB - DB Regio AG Mitte) - 801599 (DB - DB Regio AG Mitte) - 810003 (mbs - Montafoner Bahn) - 810005 (ZB - Zillertalbahn) - 810007 (SLB - Salzburger Lokalbahnen) - 810008 (STH - Stern & Hafferl Verkehrs-GmbH) - 810009 (WiL - Wiener Linien) - 810011 (R - Schneebergbahn) - 810017 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810021 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810023 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810024 (P - Waldviertler Schmalspurbahn) - 810025 (SLB - Salzburger Lokalbahnen) - 810028 (GyS - GySEV) - 810031 (STR - Linz Linien AG (Straßenbahn Stadt Linz)) - 810043 (ÖPO - ÖBB-Postbus) - 840037 (Rnt - R-net) - 840052 (Brg - Breng) - 840054 (Vll - Valleilijn) - 840055 (BN - Blauwnet) - 840100 (NS - Nederlandse Spoorwegen) - 840500 (ARR - Arriva Nederland) - 850022 (AB - Appenzeller Bahnen) - 850023 (TPC - Transports Publics du Chablais) - 850029 (MBC - Transports de la région Morges-Bière-Cossonay) - 850031 (BDW - BDWM Transport) - 850032 (BLM - Lauterbrunnen-Mürren) - 850033 (BLS - BLS AG) - 850035 (BOB - Berner Oberland-Bahnen) - 850038 (ASM - Aare Seeland mobil) - 850042 (MVR - Montreux-Vevey-Riviera) - 850043 (CJ - Chemins de fer du Jura) - 850044 (TRN - Transports Publics Neuchâtelois SA) - 850046 (FB - Forchbahn) - 850047 (FLP - Lugano-Ponte Tresa) - 850048 (MGB - Matterhorn Gotthard Bahn (fo)) - 850049 (FAR - Ferrovie Autolinee Regionali Ticinesi) - 850051 (FW - Frauenfeld-Wil) - 850053 (TPF - Transports publics fribourgeois) - 850055 (LEB - Lausanne-Echallens-Bercher) - 850056 (ASM - Aare Seeland mobil) - 850061 (TMR - Transports de Martigny et Régions (mc)) - 850064 (MOB - Montreux-Oberland Bernois) - 850065 (THU - THURBO) - 850066 (NSt - Nyon-St-Cergue-Morez) - 850072 (RhB - Rhätische Bahn) - 850073 (TRN - Transports Publics Neuchâtelois SA) - 850074 (RA - Regionalps) - 850078 (SZU - Sihltal-Zürich-Uetliberg-Bahn) - 850081 (ASM - Aare Seeland mobil) - 850082 (SOB - Schweizerische Südostbahn (sob)) - 850086 (ZB - Zentralbahn) - 850088 (RBS - Regionalverkehr Bern-Solothurn) - 850093 (MGB - Matterhorn Gotthard Bahn (bvz)) - 850096 (WSB - Wynental-und Suhrental-Bahn) - 850097 (TRA - Transports Vallée de Joux-Yverdon-Ste-Croix) - 850193 (URh - Untersee und Rhein) - 850195 (SBS - Schweizerische Bodensee-Schiffahrtsgesellschaft) - 850360 (BSB - Bodensee-Schiffsbetriebe) - 850371 (BC - Société coopérative du Chemin de fer - Musée Blonay-Chamby) - 850801 (PAG - PostAuto Schweiz) - 850846 (RVS - Regionale Verkehrsbetriebe Schaffhausen) - 853186 (SZR - Schiff Eglisau-Tössegg) - 853271 (ANA - Association neuchâteloise des Amis du Tramway ANAT) - 857200 (SBB - SBB) - 857206 (SBB - SBB) - 857210 (SBB - SBB) - 857221 (THU - THURBO) - 857231 (SBB - SBB) - 859014 (VDB - Verein Dampfbahn Bern) - 859999 (SBB - SBB) - 860087 (ARR - Arriva Danmark) - 861002 (DSB - Dänische Staatsbahnen) - 8006000 (DB - DB Regio AG Baden-Württemberg) - 0S (S - S-Bahn Hamburg) - 51KD (KD - Koleje Dolnoslaskie) - 51PR (PR - Polregio) - 51PR-Q (PR - Polregio) - 51PR-R (PR - Polregio) - 51PR-S (PR - Polregio) - 8002A3 (DB - DB Regio AG Nord) - 8002B5 (DB - DB Regio AG Nord) - 8003A5 (DB - DB Regio AG NRW) - 8003G1 (DB - DB Regio AG NRW) - 8003G2 (DB - DB Regio AG NRW) - 8003H5 (DB - DB Regio AG NRW) - 8003L1 (DB - DB Regio AG NRW) - 8003L2 (DB - DB Regio AG NRW) - 8003RL (DB - DB Regio AG NRW) - 8003S (DB - DB Regio AG NRW) - 8004A9 (DB - DB Regio AG Südost) - 8004L1 (DB - DB Regio AG Südost) - 8004NT (DB - DB Regio AG Südost) - 8004OB (OBS - DB RegioNetz Verkehrs GmbH Oberweißbacher Berg+Schwarzatalbahn) - 8005A4 (DB - DB Regio AG Mitte) - 8005KG (DB - DB Regio AG Mitte) - 8005MW (DB - DB Regio AG Mitte) - 8005ND (DB - DB Regio AG Mitte) - 8005SV (DB - Rhein-Mosel-Bus Ahrweiler) - 8006A7 (WFB - DB RegioNetz Verkehrs GmbH Westfrankenbahn) - 8006C4 (DB - DB Regio AG Baden-Württemberg) - 8006C5 (DB - DB Regio AG Baden-Württemberg) - 8006C6 (DB - DB Regio AG Baden-Württemberg) - 8006D1 (DB - DB Regio AG Baden-Württemberg) - 8006D2 (DB - DB Regio AG Baden-Württemberg) - 8006D6 (DB - DB Regio AG Baden-Württemberg) - 8006D8 (DB - DB Regio AG Baden-Württemberg) - 8006SH (DB - DB Regio AG Baden-Württemberg) - 8007D4 (DB - DB Regio AG Bayern) - 8007D5 (DB - DB Regio AG Bayern) - 8007DU (DB - DB Regio AG Bayern) - 8007H1 (DB - DB Regio AG Bayern) - 8007H2 (DB - DB Regio AG Bayern) - 8013D (SOB - DB RegioNetz Verkehrs GmbH Südostbayernbahn) - 8013E (SOB - DB RegioNetz Verkehrs GmbH Südostbayernbahn) - 8015A1 (DB - DB Regio AG Mitte) - 8015A6 (DB - DB Regio AG Mitte) - 8015FR (DB - DB Regio AG Mitte) - 8015H9 (DB - DB Regio AG Mitte) - 80SEV (DB - DB Fernverkehr AG) - 80SSP (D - Sylt Shuttle Plus) - 80TRI (EC - DB/SBB/TI) - 81GE43 (DPN - Nahreisezug) - 857LEX (LEX - LEX) - 85DBSH (SBB - SBB) - A0 (AKN - AKN Eisenbahn GmbH) - A5 (VEN - Rhenus Veniro) - A6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6FEX (DPN - Nahreisezug) - A6S1 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S11 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S12 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S31 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S32 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S34 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S4 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S41 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S42 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S5 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S51 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S52 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S7 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S71 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S8 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S81 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A8N (ALX - alex - Die Länderbahn GmbH DLB) - A9 (ag - agilis) - aav006 (DPN - Nahreisezug) - aavARN (DPN - Nahreisezug) - aavARR (DPN - Nahreisezug) - aavASE (DPN - Nahreisezug) - aavDKB (DPN - Nahreisezug) - aavNET (DPN - Nahreisezug) - aavTEC (DPN - Nahreisezug) - AB (ABR - SWEG Bahn Stuttgart GmbH) - ABIRE (IRE - SWEG Bahn Stuttgart GmbH) - ABRB (RB - SWEG Bahn Stuttgart GmbH) - ABRE (RE - SWEG Bahn Stuttgart GmbH) - ak_AK (AK - Autokraft) - ak_DRN (DIB - Dithmarschenbus (DB Regio Bus Nord GmbH)) - ak_SVG (SVG - Sylter Verkehrsgesellschaft) - ak_SVL (DPN - Nahreisezug) - ak_SWN (DPN - Nahreisezug) - ak_VIN (DPN - Nahreisezug) - ak_VKP (DPN - Nahreisezug) - ak_VSF (DPN - Nahreisezug) - akAK_A (DPN - Nahreisezug) - akAKTI (DPN - Nahreisezug) - akDRNA (DPN - Nahreisezug) - akECKE (DPN - Nahreisezug) - akKVGK (DPN - Nahreisezug) - akROH (DPN - Nahreisezug) - akSFKK (DPN - Nahreisezug) - akTRAN (DPN - Nahreisezug) - akVINA (DPN - Nahreisezug) - akWDR (DPN - Nahreisezug) - AL (DWE - Dessau-Wörlitzer Eisenbahn) - ald012 (DPN - Nahreisezug) - ald020 (DPN - Nahreisezug) - ald021 (DPN - Nahreisezug) - ald022 (DPN - Nahreisezug) - ald023 (DPN - Nahreisezug) - ald024 (DPN - Nahreisezug) - ald025 (DPN - Nahreisezug) - ald030 (DPN - Nahreisezug) - ald044 (DPN - Nahreisezug) - ald046 (DPN - Nahreisezug) - ald065 (DPN - Nahreisezug) - ald067 (DPN - Nahreisezug) - ald069 (DPN - Nahreisezug) - ald072 (DPN - Nahreisezug) - ald073 (DPN - Nahreisezug) - ald075 (DPN - Nahreisezug) - ald077 (DPN - Nahreisezug) - ald083 (DPN - Nahreisezug) - ald084 (DPN - Nahreisezug) - ald087 (DPN - Nahreisezug) - ald091 (DPN - Nahreisezug) - ald093 (DPN - Nahreisezug) - ald094 (DPN - Nahreisezug) - ald095 (DPN - Nahreisezug) - ald096 (DPN - Nahreisezug) - ald099 (DPN - Nahreisezug) - AM (ABR - Abellio Rail Mitteldeutschland GmbH) - AMHBX (HBX - Abellio Rail Mitteldeutschland GmbH) - AMRB (RB - Abellio Rail Mitteldeutschland GmbH) - AMRE (RE - Abellio Rail Mitteldeutschland GmbH) - AMS (S - Abellio Rail Mitteldeutschland GmbH) - aoeBus (DPN - Nahreisezug) - apg__1 (DPN - Nahreisezug) - avv009 (DPN - Nahreisezug) - avvBus (DPN - Nahreisezug) - B1 (DB - DB Regio AG Nord) - B1EDZ (DPN - Nahreisezug) - B2 (DB - DB Regio AG NRW) - B3 (P - Brohltalbahn) - B4 (S - DB Regio AG S-Bahn Rhein-Main) - B5 (DB - DB Regio AG Mitte) - B6 (DB - DB Regio AG Baden-Württemberg) - B7 (DPN - Nahreisezug) - bacBus (DPN - Nahreisezug) - bambus (DPN - Nahreisezug) - bayaut (DPN - Nahreisezug) - BB (DB - DB Regio AG Nordost) - bcl001 (DPN - Nahreisezug) - BD (SDG - SDG Sächsische Dampfeisenbahngesellschaft mbH) - BE (BE - Bentheimer Eisenbahn) - bod000 (DPN - Nahreisezug) - bod001 (DPN - Nahreisezug) - bod002 (DPN - Nahreisezug) - bod003 (DPN - Nahreisezug) - bod004 (DPN - Nahreisezug) - bod005 (DPN - Nahreisezug) - bod006 (DPN - Nahreisezug) - bod008 (DPN - Nahreisezug) - bod012 (DPN - Nahreisezug) - bod013 (DPN - Nahreisezug) - bod014 (DPN - Nahreisezug) - bod015 (DPN - Nahreisezug) - bod018 (DPN - Nahreisezug) - bod019 (DPN - Nahreisezug) - bod020 (DPN - Nahreisezug) - bod031 (DPN - Nahreisezug) - BurBus (DPN - Nahreisezug) - BW (DB - DB Regio AG Nordost) - byr001 (DPN - Nahreisezug) - C6 (KTB - Kandertalbahn) - C8 (LEO - Chiemgauer Lokalbahn) - CD (CB - City-Bahn Chemnitz) - cha016 (DPN - Nahreisezug) - cobBus (DPN - Nahreisezug) - css002 (P - Chiemseebahn) - csscss (DPN - Nahreisezug) - cw001 (DPN - Nahreisezug) - cw010 (DPN - Nahreisezug) - CX (MRB - Mitteldeutsche Regiobahn) - CXRB (RB - Mitteldeutsche Regiobahn) - CXRE (RE - Mitteldeutsche Regiobahn) - D3 (RTB - Rurtalbahn) - daf005 (DPN - Nahreisezug) - dgfBus (DPN - Nahreisezug) - drbBUS (DPN - Nahreisezug) - E0 (EVB - EVB ELBE-WESER GmbH) - E3 (P - Kasbachtalbahn) - EB (RB - Erfurter Bahn GmbH) - ED (FEG - Freiberger Eisenbahngesellschaft) - estbus (DPN - Nahreisezug) - etgBus (DPN - Nahreisezug) - EX (RE - Erfurter Bahn GmbH) - F1 (DPN - Nahreisezug) - F7 (RB - Bodensee-Oberschwaben-Bahn) - fds002 (DPN - Nahreisezug) - fdsBus (DPN - Nahreisezug) - FisBus (DPN - Nahreisezug) - FLX10 (FLX - FlixTrain) - FLX11 (FLX - FlixTrain) - FLX15 (FLX - FlixTrain) - FLX20 (FLX - FlixTrain) - FLX30 (FLX - FlixTrain) - FLX35 (FLX - FlixTrain) - frg001 (DPN - Nahreisezug) - fuebus (DPN - Nahreisezug) - fwzBus (DPN - Nahreisezug) - GA (GA - Go-Ahead Baden-Württemberg GmbH) - GAIRE (IRE - Go-Ahead Baden-Württemberg GmbH) - GAMEX (MEX - Go-Ahead Baden-Württemberg GmbH) - GARB (RB - Go-Ahead Baden-Württemberg GmbH) - GARE (RE - Go-Ahead Baden-Württemberg GmbH) - ge2GEV (DPN - Nahreisezug) - ge3GEV (DPN - Nahreisezug) - geiBus (DPN - Nahreisezug) - gf2001 (DPN - Nahreisezug) - gfn011 (DPN - Nahreisezug) - gfn012 (DPN - Nahreisezug) - gfn015 (DPN - Nahreisezug) - gfn020 (DPN - Nahreisezug) - ghuBus (DPN - Nahreisezug) - grhBus (DPN - Nahreisezug) - GY (GA - Go-Ahead Bayern GmbH) - GYRB (RB - Go-Ahead Bayern GmbH) - GYRE (RE - Go-Ahead Bayern GmbH) - H4 (RT - RegioTram) - H6 (HzL - Hohenzollerische Landesbahn (SWEG)) - H7 (HzL - Hohenzollerische Landesbahn (SWEG)) - hggBus (DPN - Nahreisezug) - HL (HSB - Harzer Schmalspurbahn) - hnv030 (DPN - Nahreisezug) - hnv031 (DPN - Nahreisezug) - hnv034 (DPN - Nahreisezug) - hnv050 (DPN - Nahreisezug) - hof004 (DPN - Nahreisezug) - hvv001 (DPN - Nahreisezug) - hvvDAH (DPN - Nahreisezug) - hvvHAD (DPN - Nahreisezug) - hvvHHA (DPN - Nahreisezug) - hvvHOX (DPN - Nahreisezug) - hvvKVI (DPN - Nahreisezug) - hvvLIZ (DPN - Nahreisezug) - hvvRAO (DPN - Nahreisezug) - hvvRMV (DPN - Nahreisezug) - hvvVHH (DPN - Nahreisezug) - hvvVLP (DPN - Nahreisezug) - invBus (DPN - Nahreisezug) - K4 (HLB - HLB Hessenbahn GmbH) - K4RB (HLB - HLB Hessenbahn GmbH) - K4RE (HLB - HLB Hessenbahn GmbH) - K6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - KD (KD - Köln-Düsseldorfer Deutsche Rheinschifffahrt GmbH) - kis001 (DPN - Nahreisezug) - kolbus (DPN - Nahreisezug) - kraBus (DPN - Nahreisezug) - krgBus (DPN - Nahreisezug) - kulBus (DPN - Nahreisezug) - kvg001 (DPN - Nahreisezug) - kvv002 (DPN - Nahreisezug) - kvv003 (DPN - Nahreisezug) - kvv004 (DPN - Nahreisezug) - kvv006 (DPN - Nahreisezug) - kvv010 (DPN - Nahreisezug) - kvv011 (DPN - Nahreisezug) - kvv012 (DPN - Nahreisezug) - kvv015 (DPN - Nahreisezug) - kvv017 (DPN - Nahreisezug) - kvv021 (DPN - Nahreisezug) - kvv023 (DPN - Nahreisezug) - kvv024 (DPN - Nahreisezug) - kvv025 (DPN - Nahreisezug) - kvv027 (DPN - Nahreisezug) - kvv028 (DPN - Nahreisezug) - kvv030 (DPN - Nahreisezug) - kvv041 (DPN - Nahreisezug) - kvv22E (DPN - Nahreisezug) - kvvFEX (DPN - Nahreisezug) - L7 (SBB - SBB GmbH) - L8 (BRB - Bayerische Regiobahn) - lamBus (DPN - Nahreisezug) - lanGEV (DPN - Nahreisezug) - LD (TL - trilex  - Die Länderbahn GmbH DLB) - LDTLX (TLX - trilex-express - Die Länderbahn GmbH DLB) - lklGEV (DPN - Nahreisezug) - M1 (P - Museumsbahn) - M2 (S - REGIOBAHN) - M2RE (R - REGIOBAHN) - M4 (VSE - Verein Sächsischer Eisenbahnfreunde) - M8 (BRB - Bayerische Regiobahn) - M9 (MSB - Mainschleifenbahn) - marmar (DPN - Nahreisezug) - marovf (DPN - Nahreisezug) - marrbk (DPN - Nahreisezug) - mvgb10 (DPN - Nahreisezug) - mvgb14 (DPN - Nahreisezug) - mvgb15 (DPN - Nahreisezug) - mvgb16 (DPN - Nahreisezug) - mvv099 (DPN - Nahreisezug) - mvvEBU (DPN - Nahreisezug) - mvvRBU (DPN - Nahreisezug) - mvvRFB (DPN - Nahreisezug) - MW (MBB - Mecklenburgische Bäderbahn Molli) - mzbBUS (DPN - Nahreisezug) - N0 (neg - Norddeutsche Eisenbahn Gesellschaft) - N1 (NWB - NordWestBahn) - N2 (NWB - NordWestBahn) - N4 (RB - cantus Verkehrsgesellschaft) - N4RE (RE - cantus Verkehrsgesellschaft) - N6 (SWE - Südwestdeutsche Landesverkehrs-GmbH) - N8 (P - BayernBahn GmbH) - nas001 (DPN - Nahreisezug) - nas003 (DPN - Nahreisezug) - nasBLK (DPN - Nahreisezug) - nasBOE (DPN - Nahreisezug) - nasDVG (DPN - Nahreisezug) - nasFWL (DPN - Nahreisezug) - nasHAB (DPN - Nahreisezug) - nasHAT (DPN - Nahreisezug) - nasHVB (DPN - Nahreisezug) - nasHVG (DPN - Nahreisezug) - nasKSB (DPN - Nahreisezug) - nasLVB (DPN - Nahreisezug) - nasLVT (DPN - Nahreisezug) - nasMBB (DPN - Nahreisezug) - nasMBT (DPN - Nahreisezug) - nasMQ (DPN - Nahreisezug) - nasNJL (DPN - Nahreisezug) - nasNTB (DPN - Nahreisezug) - nasOBS (DPN - Nahreisezug) - nasOVH (DPN - Nahreisezug) - nasRBM (DPN - Nahreisezug) - nasRL (DPN - Nahreisezug) - nasSAW (DPN - Nahreisezug) - nasSDL (DPN - Nahreisezug) - nasTHU (DPN - Nahreisezug) - nasVET (DPN - Nahreisezug) - nasVGS (DPN - Nahreisezug) - nasZel (DPN - Nahreisezug) - NB (RB - NEB Niederbarnimer Eisenbahn) - NBRB12 (RB - NEB Niederbarnimer Eisenbahn) - NBRB25 (RB - NEB Niederbarnimer Eisenbahn) - NBRB26 (RB - NEB Niederbarnimer Eisenbahn) - NBRB27 (RB - NEB Niederbarnimer Eisenbahn) - NBRB35 (RB - NEB Niederbarnimer Eisenbahn) - NBRB36 (RB - NEB Niederbarnimer Eisenbahn) - NBRB54 (RB - NEB Niederbarnimer Eisenbahn) - NBRB60 (RB - NEB Niederbarnimer Eisenbahn) - NBRB61 (RB - NEB Niederbarnimer Eisenbahn) - NBRB62 (RB - NEB Niederbarnimer Eisenbahn) - NBRB63 (RB - NEB Niederbarnimer Eisenbahn) - nvpBUS (DPN - Nahreisezug) - NWBus (NWB - NordWestBahn) - NX (NX - National Express) - NXRB (RB - National Express) - NXRE (RE - National Express) - NY (MSM - MSM Partyzug) - NYUEX (UEX - Urlaubs-Express) - NZ (RE - DB Fernverkehr AG) - O0 (NBE - Nordbahn Eisenbahngesellschaft) - O7 (ÖBA - Öchsle-Bahn-Betriebsgesellschaft mbH) - O9 (OPB - oberpfalzbahn - Die Länderbahn GmbH DLB) - O9X (OPX - oberpfalz-express - Die Länderbahn GmbH DLB) - OD (SOE - Sächsisch-Oberlausitzer Eisenbahngesellschaft) - omp001 (DPN - Nahreisezug) - omp003 (DPN - Nahreisezug) - omp007 (DPN - Nahreisezug) - omp014 (DPN - Nahreisezug) - omp022 (DPN - Nahreisezug) - omp024 (DPN - Nahreisezug) - omp033 (DPN - Nahreisezug) - omp035 (DPN - Nahreisezug) - omp043 (DPN - Nahreisezug) - omp047 (DPN - Nahreisezug) - omp048 (DPN - Nahreisezug) - omp050 (DPN - Nahreisezug) - omp051 (DPN - Nahreisezug) - omp052 (DPN - Nahreisezug) - omp053 (DPN - Nahreisezug) - omp054 (DPN - Nahreisezug) - omp055 (DPN - Nahreisezug) - omp056 (DPN - Nahreisezug) - omp057 (DPN - Nahreisezug) - omp058 (DPN - Nahreisezug) - omp059 (DPN - Nahreisezug) - omp062 (DPN - Nahreisezug) - omp063 (DPN - Nahreisezug) - omp065 (DPN - Nahreisezug) - omp066 (DPN - Nahreisezug) - omp067 (DPN - Nahreisezug) - omp069 (DPN - Nahreisezug) - omp070 (DPN - Nahreisezug) - omp071 (DPN - Nahreisezug) - omp072 (DPN - Nahreisezug) - omp073 (DPN - Nahreisezug) - omp074 (DPN - Nahreisezug) - omp075 (DPN - Nahreisezug) - omp077 (DPN - Nahreisezug) - omp079 (DPN - Nahreisezug) - omp085 (DPN - Nahreisezug) - omp086 (DPN - Nahreisezug) - omp088 (DPN - Nahreisezug) - omp092 (DPN - Nahreisezug) - omp093 (DPN - Nahreisezug) - omp094 (DPN - Nahreisezug) - omp095 (DPN - Nahreisezug) - omp096 (DPN - Nahreisezug) - omp098 (DPN - Nahreisezug) - omp099 (DPN - Nahreisezug) - omsBus (DPN - Nahreisezug) - ova002 (DPN - Nahreisezug) - ova035 (DPN - Nahreisezug) - ovaOVA (DPN - Nahreisezug) - ovfOVF (DPN - Nahreisezug) - OWBus (OE - Ostdeutsche Eisenbahn GmbH) - owl020 (DPN - Nahreisezug) - owl021 (DPN - Nahreisezug) - owl022 (DPN - Nahreisezug) - owl023 (DPN - Nahreisezug) - owl024 (DPN - Nahreisezug) - owl025 (DPN - Nahreisezug) - owl026 (DPN - Nahreisezug) - owl027 (DPN - Nahreisezug) - owl028 (DPN - Nahreisezug) - owl029 (DPN - Nahreisezug) - owl031 (STB - moBiel GmbH) - owl032 (DPN - Nahreisezug) - owl038 (DPN - Nahreisezug) - owl039 (DPN - Nahreisezug) - owl040 (DPN - Nahreisezug) - owl041 (DPN - Nahreisezug) - owl042 (DPN - Nahreisezug) - owl043 (DPN - Nahreisezug) - owl044 (DPN - Nahreisezug) - owl045 (DPN - Nahreisezug) - owl049 (DPN - Nahreisezug) - owl050 (DPN - Nahreisezug) - owl051 (DPN - Nahreisezug) - owl052 (DPN - Nahreisezug) - owl053 (DPN - Nahreisezug) - owl054 (DPN - Nahreisezug) - owl059 (DPN - Nahreisezug) - OWRB (RB - Ostdeutsche Eisenbahn GmbH) - OWRB13 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB14 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB15 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB19 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB33 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB46 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB51 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB64 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB65 (RB - Ostdeutsche Eisenbahn GmbH) - OWRE (RE - Ostdeutsche Eisenbahn GmbH) - OWRE2 (RE - Ostdeutsche Eisenbahn GmbH) - OWRE4 (RE - Ostdeutsche Eisenbahn GmbH) - pafBus (DPN - Nahreisezug) - PB (RB - Hanseatische Eisenbahn GmbH) - pbaATT (DPN - Nahreisezug) - pbaitr (DPN - Nahreisezug) - pbaKB (ÖPO - ÖBB-Postbus) - pbaVVT (DPN - Nahreisezug) - pbaW3 (DPN - Nahreisezug) - pbaWR (ÖPO - ÖBB-Postbus) - prg091 (DPN - Nahreisezug) - R0 (ENO - enno) - R1 (ME - metronom) - R2 (ERB - eurobahn) - R2RB (RB - eurobahn) - R2RE (RE - eurobahn) - R4 (VIA - VIAS Rail GmbH) - R4NRN (VIA - VIAS Rail GmbH) - R4RB35 (VIA - VIAS Rail GmbH) - R4RH (VIA - VIAS GmbH) - R4S7 (VIA - VIAS Rail GmbH) - R4WEST (VIA - VIAS Rail GmbH) - R7 (HzL - Hohenzollerische Landesbahn (SWEG)) - rabRAB (RAB - Regionalverkehr Alb-Bodensee) - rbgAST (SBG - Südbadenbus) - rbgBBO (DPN - Nahreisezug) - rbgBER (DPN - Nahreisezug) - rbgBRN (BRN - Busverkehr Rhein-Neckar) - rbgBVH (DPN - Nahreisezug) - rbgFAB (DPN - Nahreisezug) - rbgFMO (FMO - Friedrich Müller Omnibusunternehmen GmbH) - rbgHMO (DPN - Nahreisezug) - rbgKNU (DPN - Nahreisezug) - rbgOVZ (DPN - Nahreisezug) - rbgRBG (DPN - Nahreisezug) - rbgRBS (RBS - Regiobus Stuttgart) - rbgRVS (RVS - Südwestbus) - rbgRVs (RVS - Südwestbus) - rbgSBG (SBG - Südbadenbus) - rbgWMR (DPN - Nahreisezug) - rboMB (DPN - Nahreisezug) - rbpORN (ORN - ORN Omnibusverkehr Rhein-Nahe GmbH (Rhein-Nahe-Bus)) - rbpRMA (DB - Rhein-Mosel-Bus Ahrweiler) - rbpRMB (DB - RMB Rhein-Mosel-Bus) - rbpRPB (RPB - Rheinpfalzbus) - rbpRU1 (DPN - Nahreisezug) - rbpRU2 (DPN - Nahreisezug) - rbpSAA (DPN - Nahreisezug) - rbpSWM (DB - DB Regio Bus Mitte) - rbr002 (DPN - Nahreisezug) - rbr003 (DPN - Nahreisezug) - rbr004 (DPN - Nahreisezug) - rbrBOS (DPN - Nahreisezug) - rbrOST (DPN - Nahreisezug) - rbrSBE (DPN - Nahreisezug) - rbrSEV (DPN - Nahreisezug) - rbrSNB (DPN - Nahreisezug) - RC (AZS - AUTOZUG Sylt) - RD (VBG - vogtlandbahn - Die Länderbahn GmbH DLB) - rmbwug (DPN - Nahreisezug) - rmpREB (DPN - Nahreisezug) - rmpRSG (DPN - Nahreisezug) - rmpUBB (DPN - Nahreisezug) - rmtEVA (DPN - Nahreisezug) - rmtEWB (DPN - Nahreisezug) - rmtFiS (DPN - Nahreisezug) - rmtGVB (DPN - Nahreisezug) - rmtIOV (DPN - Nahreisezug) - rmtJES (DPN - Nahreisezug) - rmtJNV (DPN - Nahreisezug) - rmtKOM (DPN - Nahreisezug) - rmtLWW (DPN - Nahreisezug) - rmtMBB (DPN - Nahreisezug) - rmtMKI (DPN - Nahreisezug) - rmtNDH (DPN - Nahreisezug) - rmtOVG (DPN - Nahreisezug) - rmtPVG (DPN - Nahreisezug) - rmtRBM (DPN - Nahreisezug) - rmtSal (DPN - Nahreisezug) - rmtSNG (DPN - Nahreisezug) - rmtSWG (DPN - Nahreisezug) - rmtTWS (DPN - Nahreisezug) - rmtVHO (DPN - Nahreisezug) - rmtVLG (DPN - Nahreisezug) - rmtVLO (DPN - Nahreisezug) - rmtVUS (DPN - Nahreisezug) - rmtVUW (DPN - Nahreisezug) - rmtVWG (DPN - Nahreisezug) - rmtVWO (DPN - Nahreisezug) - rmtWER (DPN - Nahreisezug) - rmtWGT (DPN - Nahreisezug) - rmv001 (DPN - Nahreisezug) - rmv007 (DPN - Nahreisezug) - rmv019 (DPN - Nahreisezug) - rmv020 (DPN - Nahreisezug) - rmv031 (DPN - Nahreisezug) - rmv045 (DPN - Nahreisezug) - rmv053 (DPN - Nahreisezug) - rmv061 (DPN - Nahreisezug) - rmv087 (DPN - Nahreisezug) - rmv099 (DPN - Nahreisezug) - rmv106 (DPN - Nahreisezug) - rmv117 (DPN - Nahreisezug) - rmv156 (DPN - Nahreisezug) - rmv158 (DPN - Nahreisezug) - rmv162 (DPN - Nahreisezug) - rmv163 (DPN - Nahreisezug) - rmv165 (DPN - Nahreisezug) - rmv168 (DPN - Nahreisezug) - rmv196 (DPN - Nahreisezug) - rmv211 (DPN - Nahreisezug) - rmv218 (DPN - Nahreisezug) - rmv222 (DPN - Nahreisezug) - rmv223 (DPN - Nahreisezug) - rmv224 (DPN - Nahreisezug) - rmv234 (DPN - Nahreisezug) - rmv238 (DPN - Nahreisezug) - rmv242 (DPN - Nahreisezug) - rmv243 (DPN - Nahreisezug) - rmv251 (DPN - Nahreisezug) - rmv254 (DPN - Nahreisezug) - rmv255 (DPN - Nahreisezug) - rmv257 (DPN - Nahreisezug) - rmv258 (DPN - Nahreisezug) - rmv260 (DPN - Nahreisezug) - rmv264 (DPN - Nahreisezug) - rmv265 (DPN - Nahreisezug) - rmv269 (DPN - Nahreisezug) - rmv272 (DPN - Nahreisezug) - rmv275 (DPN - Nahreisezug) - rmv277 (DPN - Nahreisezug) - rmv278 (DPN - Nahreisezug) - rmv282 (DPN - Nahreisezug) - rmv283 (DPN - Nahreisezug) - rmv284 (DPN - Nahreisezug) - rmv289 (DPN - Nahreisezug) - rmv290 (DPN - Nahreisezug) - rmv293 (DPN - Nahreisezug) - rmv294 (DPN - Nahreisezug) - rmv295 (DPN - Nahreisezug) - rmv297 (DPN - Nahreisezug) - rmv301 (DPN - Nahreisezug) - rmv304 (DPN - Nahreisezug) - rmv305 (DPN - Nahreisezug) - rmv306 (DPN - Nahreisezug) - rmv307 (DPN - Nahreisezug) - rmv308 (DPN - Nahreisezug) - rmv309 (DPN - Nahreisezug) - rmv316 (DPN - Nahreisezug) - rmv317 (DPN - Nahreisezug) - rmv319 (DPN - Nahreisezug) - rmv322 (DPN - Nahreisezug) - rmv323 (DPN - Nahreisezug) - rmv333 (DPN - Nahreisezug) - rmv392 (DPN - Nahreisezug) - rmv394 (DPN - Nahreisezug) - rmv395 (DPN - Nahreisezug) - rmv396 (DPN - Nahreisezug) - rmv397 (DPN - Nahreisezug) - rmv398 (DPN - Nahreisezug) - rmv399 (DPN - Nahreisezug) - rmv400 (DPN - Nahreisezug) - rmv401 (DPN - Nahreisezug) - rmv403 (DPN - Nahreisezug) - rmv404 (DPN - Nahreisezug) - rmv405 (DPN - Nahreisezug) - rmv406 (DPN - Nahreisezug) - rmv408 (DPN - Nahreisezug) - rmv412 (DPN - Nahreisezug) - rmv413 (DPN - Nahreisezug) - rmvALV (DPN - Nahreisezug) - rmvARG (DPN - Nahreisezug) - rmvBBW (DPN - Nahreisezug) - rmvBEC (DPN - Nahreisezug) - rmvCBU (DPN - Nahreisezug) - rmvDBR (DPN - Nahreisezug) - rmvERL (DPN - Nahreisezug) - rmvESE (DPN - Nahreisezug) - rmvFBB (DPN - Nahreisezug) - rmvFGR (DPN - Nahreisezug) - rmvFRI (DPN - Nahreisezug) - rmvFro (DPN - Nahreisezug) - rmvFSB (DPN - Nahreisezug) - rmvFUL (DPN - Nahreisezug) - rmvGBG (DPN - Nahreisezug) - rmvGIB (DPN - Nahreisezug) - rmvHEB (DPN - Nahreisezug) - rmvHGS (DPN - Nahreisezug) - rmvHLB (DPN - Nahreisezug) - rmvHTR (DPN - Nahreisezug) - rmvJUN (DPN - Nahreisezug) - rmvKAE (DPN - Nahreisezug) - rmvKOF (DPN - Nahreisezug) - rmvKRT (DPN - Nahreisezug) - rmvLGG (DPN - Nahreisezug) - rmvMUL (DPN - Nahreisezug) - rmvNVG (DPN - Nahreisezug) - rmvPoh (DPN - Nahreisezug) - rmvRAC (DPN - Nahreisezug) - rmvREV (DPN - Nahreisezug) - rmvRIN (DPN - Nahreisezug) - rmvRTO (DPN - Nahreisezug) - rmvRTV (DPN - Nahreisezug) - rmvSBB (DPN - Nahreisezug) - rmvSBO (DPN - Nahreisezug) - rmvSFB (DPN - Nahreisezug) - rmvSIL (DPN - Nahreisezug) - rmvSLM (DPN - Nahreisezug) - rmvSWF (DPN - Nahreisezug) - rmvSWK (DPN - Nahreisezug) - rmvSWN (DPN - Nahreisezug) - rmvSWR (DPN - Nahreisezug) - rmvTRD (DPN - Nahreisezug) - rmvVBB (DPN - Nahreisezug) - rmvVES (DPN - Nahreisezug) - rmvVIL (DPN - Nahreisezug) - rmvVLD (DPN - Nahreisezug) - rmvVUW (DPN - Nahreisezug) - rmvWB (DPN - Nahreisezug) - rmvWIN (DPN - Nahreisezug) - rmvWIR (DPN - Nahreisezug) - rmvWIS (DPN - Nahreisezug) - rmvWZV (DPN - Nahreisezug) - rohBus (DPN - Nahreisezug) - RS (RE - Regionalverkehre Start Deutschland GmbH) - RSNM (RB - Regionalverkehre Start Deutschland GmbH (Start Niedersachsen-Mitte)) - RSTN (STN - Regionalverkehre Start Deutschland GmbH (Start Taunus)) - RSUE (RE - Regionalverkehre Start Deutschland GmbH (Start Unterelbe)) - rvgRVG (DPN - Nahreisezug) - rvoRVO (RVO - Regionalverkehr Oberbayern) - rvvRVV (DPN - Nahreisezug) - RW (PRE - Pressnitztalbahn) - S0 (DPN - Nahreisezug) - S1 (DPN - Nahreisezug) - S3 (SWB - Stadtwerke Bonn) - S6 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - S7 (DPN - Nahreisezug) - S9 (ag - agilis) - SAB (SAB - Schwäbische Alb-Bahn) - SAD003 (SAD - Vinschgaubahn) - sadBUS (DPN - Nahreisezug) - SB (RB - Süd-Thüringen-Bahn GmbH) - sbpMU (DPN - Nahreisezug) - sbpRW (DPN - Nahreisezug) - sbpSK (DPN - Nahreisezug) - SBSBUS (DPN - Nahreisezug) - sbsbus (DPN - Nahreisezug) - SBSIRE (IRE - SWEG Bahn Stuttgart GmbH) - SBSMEX (MEX - SWEG Bahn Stuttgart GmbH) - SBSRB (RB - SWEG Bahn Stuttgart GmbH) - SBSRE (RE - SWEG Bahn Stuttgart GmbH) - SBX (RE - Süd-Thüringen-Bahn GmbH) - SD (DB - DB Regio AG Südost) - smrBus (DPN - Nahreisezug) - smrRfb (DPN - Nahreisezug) - snp001 (DPN - Nahreisezug) - snp002 (DPN - Nahreisezug) - spaBus (DPN - Nahreisezug) - srlBus (DPN - Nahreisezug) - sswssw (DPN - Nahreisezug) - sva006 (DPN - Nahreisezug) - svaBUS (DPN - Nahreisezug) - svaSTR (DPN - Nahreisezug) - svr001 (DPN - Nahreisezug) - SW (DPN - Nahreisezug) - swg099 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - swgSWB (DPN - Nahreisezug) - swlbus (DPN - Nahreisezug) - swm001 (DPN - Nahreisezug) - swm002 (DPN - Nahreisezug) - swm003 (DPN - Nahreisezug) - swpVBP (DPN - Nahreisezug) - swt_31 (DPN - Nahreisezug) - swt_32 (DPN - Nahreisezug) - swt_33 (DPN - Nahreisezug) - swt_35 (DPN - Nahreisezug) - swt_36 (DPN - Nahreisezug) - swt_37 (DPN - Nahreisezug) - swt_38 (DPN - Nahreisezug) - swt_39 (DPN - Nahreisezug) - swt001 (DPN - Nahreisezug) - swt007 (DPN - Nahreisezug) - swt009 (DPN - Nahreisezug) - swt014 (DPN - Nahreisezug) - swt021 (DPN - Nahreisezug) - swt022 (DPN - Nahreisezug) - swt023 (DPN - Nahreisezug) - swt024 (DPN - Nahreisezug) - swt025 (DPN - Nahreisezug) - swt026 (DPN - Nahreisezug) - swt028 (DPN - Nahreisezug) - swt030 (DPN - Nahreisezug) - swt031 (DPN - Nahreisezug) - swt032 (DPN - Nahreisezug) - swt033 (DPN - Nahreisezug) - swtb00 (DPN - Nahreisezug) - swtb01 (DPN - Nahreisezug) - swtb03 (DPN - Nahreisezug) - swtb12 (DPN - Nahreisezug) - swtb16 (DPN - Nahreisezug) - swtb19 (DPN - Nahreisezug) - swtb20 (DPN - Nahreisezug) - swtb21 (DPN - Nahreisezug) - swtb22 (DPN - Nahreisezug) - swtb24 (DPN - Nahreisezug) - swtb25 (DPN - Nahreisezug) - swtb27 (DPN - Nahreisezug) - swtb29 (DPN - Nahreisezug) - T8 (BRB - Bayerische Regiobahn) - TDHS (S - S-Bahn Hannover (Transdev)) - TDRR (RRB - RheinRuhrBahn (Transdev)) - tgo099 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - TR (RB - MittelrheinBahn (Trans Regio)) - TRI (TRI - TRI Train Rental GmbH) - tub001 (DPN - Nahreisezug) - tub003 (DPN - Nahreisezug) - tub004 (DPN - Nahreisezug) - tub007 (DPN - Nahreisezug) - tub008 (DPN - Nahreisezug) - tub009 (DPN - Nahreisezug) - tub010 (DPN - Nahreisezug) - tub015 (DPN - Nahreisezug) - tub022 (DPN - Nahreisezug) - tub030 (DPN - Nahreisezug) - tub031 (DPN - Nahreisezug) - tub033 (DPN - Nahreisezug) - tub034 (DPN - Nahreisezug) - tub035 (DPN - Nahreisezug) - tub036 (DPN - Nahreisezug) - tub038 (DPN - Nahreisezug) - tub041 (DPN - Nahreisezug) - tub042 (DPN - Nahreisezug) - tub044 (DPN - Nahreisezug) - tub048 (DPN - Nahreisezug) - tub049 (DPN - Nahreisezug) - tub051 (DPN - Nahreisezug) - tub053 (DPN - Nahreisezug) - tub054 (DPN - Nahreisezug) - tub061 (DPN - Nahreisezug) - tub068 (DPN - Nahreisezug) - tub069 (DPN - Nahreisezug) - tub071 (DPN - Nahreisezug) - tub072 (DPN - Nahreisezug) - tub079 (DPN - Nahreisezug) - tub090 (DPN - Nahreisezug) - tub093 (DPN - Nahreisezug) - tub094 (DPN - Nahreisezug) - tub095 (DPN - Nahreisezug) - tut001 (DPN - Nahreisezug) - UW (UBB - Usedomer Bäderbahn) - V6 (vlx - vlexx) - V6RB (RB - vlexx) - V6RE (RE - vlexx) - V7 (SVG - SVG Schienenverkehrsgesellschaft Stuttgart) - V9 (P - Wanderbahn im Regental) - vabsta (DPN - Nahreisezug) - vag010 (DPN - Nahreisezug) - vag011 (DPN - Nahreisezug) - vag013 (DPN - Nahreisezug) - vag014 (DPN - Nahreisezug) - vag060 (DPN - Nahreisezug) - vanbus (DPN - Nahreisezug) - vanstr (DPN - Nahreisezug) - vanuba (DPN - Nahreisezug) - vbb070 (DPN - Nahreisezug) - vbb071 (DPN - Nahreisezug) - vbb072 (DPN - Nahreisezug) - vbbBBG (DPN - Nahreisezug) - vbbBRB (DPN - Nahreisezug) - vbbBRT (DPN - Nahreisezug) - vbbBVB (DPN - Nahreisezug) - vbbBVF (DPN - Nahreisezug) - vbbBVT (DPN - Nahreisezug) - vbbBVU (DPN - Nahreisezug) - vbbCNB (DPN - Nahreisezug) - vbbCNT (DPN - Nahreisezug) - vbbFFB (DPN - Nahreisezug) - vbbFFT (DPN - Nahreisezug) - vbbGLA (DPN - Nahreisezug) - vbbHVG (DPN - Nahreisezug) - vbbMOB (DPN - Nahreisezug) - vbbORP (DPN - Nahreisezug) - vbbOSL (DPN - Nahreisezug) - vbbOVG (DPN - Nahreisezug) - vbbREI (DPN - Nahreisezug) - vbbRPM (DPN - Nahreisezug) - vbbRVS (DPN - Nahreisezug) - vbbSCH (DPN - Nahreisezug) - vbbSRS (DPN - Nahreisezug) - vbbSTE (DPN - Nahreisezug) - vbbSTF (DPN - Nahreisezug) - vbbSTG (DPN - Nahreisezug) - vbbUVG (DPN - Nahreisezug) - vbbVEE (DPN - Nahreisezug) - vbbVIB (DPN - Nahreisezug) - vbbVIF (DPN - Nahreisezug) - vbbVIT (DPN - Nahreisezug) - vbbVTF (DPN - Nahreisezug) - vgb00 (DPN - Nahreisezug) - vgm013 (DPN - Nahreisezug) - vgm020 (DPN - Nahreisezug) - vgm022 (DPN - Nahreisezug) - vgm023 (DPN - Nahreisezug) - vgm024 (DPN - Nahreisezug) - vgm025 (DPN - Nahreisezug) - vgm026 (DPN - Nahreisezug) - vgm028 (DPN - Nahreisezug) - vgm029 (DPN - Nahreisezug) - vgm030 (DPN - Nahreisezug) - vgm031 (DPN - Nahreisezug) - vgm032 (DPN - Nahreisezug) - vgm033 (DPN - Nahreisezug) - vgm034 (DPN - Nahreisezug) - vgm035 (DPN - Nahreisezug) - vgm036 (DPN - Nahreisezug) - vgm037 (DPN - Nahreisezug) - vgm038 (DPN - Nahreisezug) - vgm039 (DPN - Nahreisezug) - vgm040 (DPN - Nahreisezug) - vgm041 (DPN - Nahreisezug) - vgm042 (DPN - Nahreisezug) - vgm044 (DPN - Nahreisezug) - vgm045 (DPN - Nahreisezug) - vgm046 (DPN - Nahreisezug) - vgm047 (DPN - Nahreisezug) - vgm050 (DPN - Nahreisezug) - vgm051 (DPN - Nahreisezug) - vgm053 (DPN - Nahreisezug) - vgm060 (DPN - Nahreisezug) - vgm079 (DPN - Nahreisezug) - vgm092 (DPN - Nahreisezug) - vgm093 (WB - Westfalenbus) - vgm094 (DPN - Nahreisezug) - vgmb93 (WB - Westfalenbus) - vgn_16 (DPN - Nahreisezug) - vgn043 (DPN - Nahreisezug) - vgn061 (DPN - Nahreisezug) - vgn063 (DPN - Nahreisezug) - vgn065 (DPN - Nahreisezug) - vgn068 (DPN - Nahreisezug) - vgn083 (DPN - Nahreisezug) - vgsARG (DPN - Nahreisezug) - vgsBar (DPN - Nahreisezug) - vgsBTV (DPN - Nahreisezug) - vgsKIR (DPN - Nahreisezug) - vgsKVS (DPN - Nahreisezug) - vgsLay (DPN - Nahreisezug) - vgsMLB (DPN - Nahreisezug) - vgsNVG (DPN - Nahreisezug) - vgsSAM (DPN - Nahreisezug) - vgsSBB (DPN - Nahreisezug) - vgsSBS (S - Saarbahn) - vgsVVB (DPN - Nahreisezug) - vgsZar (DPN - Nahreisezug) - vhb000 (DPN - Nahreisezug) - vhb002 (DPN - Nahreisezug) - vhb003 (DPN - Nahreisezug) - vmo004 (DPN - Nahreisezug) - vmo008 (DPN - Nahreisezug) - vmo010 (DPN - Nahreisezug) - vmo012 (DPN - Nahreisezug) - vmo050 (DPN - Nahreisezug) - vmo099 (DPN - Nahreisezug) - vms001 (DPN - Nahreisezug) - vms002 (DPN - Nahreisezug) - vms010 (DPN - Nahreisezug) - vms011 (DPN - Nahreisezug) - vms012 (DPN - Nahreisezug) - vms014 (DPN - Nahreisezug) - vms020 (DPN - Nahreisezug) - vms022 (DPN - Nahreisezug) - vms023 (DPN - Nahreisezug) - vms024 (DPN - Nahreisezug) - vms025 (DPN - Nahreisezug) - vms031 (DPN - Nahreisezug) - vms032 (DPN - Nahreisezug) - vms040 (DPN - Nahreisezug) - vms041 (DPN - Nahreisezug) - vms042 (DPN - Nahreisezug) - vms043 (DPN - Nahreisezug) - vms044 (DPN - Nahreisezug) - vms046 (DPN - Nahreisezug) - vms047 (DPN - Nahreisezug) - vms051 (DPN - Nahreisezug) - vms056 (DPN - Nahreisezug) - vms060 (DPN - Nahreisezug) - vms061 (DPN - Nahreisezug) - vms062 (DPN - Nahreisezug) - vms063 (DPN - Nahreisezug) - vms064 (DPN - Nahreisezug) - vms070 (DPN - Nahreisezug) - vms076 (DPN - Nahreisezug) - vms077 (DPN - Nahreisezug) - vms080 (DPN - Nahreisezug) - vms081 (DPN - Nahreisezug) - vms099 (DPN - Nahreisezug) - voe_12 (DPN - Nahreisezug) - voe_SB (DPN - Nahreisezug) - voe002 (DPN - Nahreisezug) - voe011 (DPN - Nahreisezug) - voe012 (DPN - Nahreisezug) - voe013 (DPN - Nahreisezug) - voe015 (DPN - Nahreisezug) - voe021 (DPN - Nahreisezug) - voe022 (DPN - Nahreisezug) - voe023 (DPN - Nahreisezug) - voe024 (DPN - Nahreisezug) - voe027 (DPN - Nahreisezug) - voe028 (DPN - Nahreisezug) - voe029 (DPN - Nahreisezug) - voe081 (DPN - Nahreisezug) - voe091 (DPN - Nahreisezug) - voeALT (DPN - Nahreisezug) - voeBU3 (DPN - Nahreisezug) - voeBU4 (DPN - Nahreisezug) - voeFAE (DPN - Nahreisezug) - voeSTR (DPN - Nahreisezug) - voeSWB (DPN - Nahreisezug) - vogBus (DPN - Nahreisezug) - von026 (DPN - Nahreisezug) - von027 (DPN - Nahreisezug) - von030 (DPN - Nahreisezug) - von031 (DPN - Nahreisezug) - von032 (DPN - Nahreisezug) - von042 (DPN - Nahreisezug) - von044 (DPN - Nahreisezug) - von052 (DPN - Nahreisezug) - von062 (DPN - Nahreisezug) - von064 (DPN - Nahreisezug) - von065 (DPN - Nahreisezug) - von069 (DPN - Nahreisezug) - vpeAST (DPN - Nahreisezug) - vpeBus (DPN - Nahreisezug) - vph063 (DPN - Nahreisezug) - vph071 (DPN - Nahreisezug) - vph072 (DPN - Nahreisezug) - vph073 (DPN - Nahreisezug) - vph074 (DPN - Nahreisezug) - vph075 (DPN - Nahreisezug) - vph076 (DPN - Nahreisezug) - vph077 (DPN - Nahreisezug) - vph078 (DPN - Nahreisezug) - vph079 (DPN - Nahreisezug) - vph080 (DPN - Nahreisezug) - vph081 (DPN - Nahreisezug) - vph082 (DPN - Nahreisezug) - vpo099 (DPN - Nahreisezug) - vrm002 (DPN - Nahreisezug) - vrm005 (DPN - Nahreisezug) - vrm006 (DPN - Nahreisezug) - vrm007 (DPN - Nahreisezug) - vrm008 (DPN - Nahreisezug) - vrm009 (DPN - Nahreisezug) - vrm011 (DPN - Nahreisezug) - vrm014 (DPN - Nahreisezug) - vrm015 (DPN - Nahreisezug) - vrm016 (DPN - Nahreisezug) - vrm017 (DPN - Nahreisezug) - vrm019 (DPN - Nahreisezug) - vrm020 (DPN - Nahreisezug) - vrm025 (DPN - Nahreisezug) - vrm031 (DPN - Nahreisezug) - vrm032 (DPN - Nahreisezug) - vrm036 (DPN - Nahreisezug) - vrm061 (DPN - Nahreisezug) - vrm066 (DPN - Nahreisezug) - vrm067 (DPN - Nahreisezug) - vrm068 (DPN - Nahreisezug) - vrm069 (DPN - Nahreisezug) - vrm070 (DPN - Nahreisezug) - vrm072 (DPN - Nahreisezug) - vrm073 (DPN - Nahreisezug) - vrm074 (DPN - Nahreisezug) - vrm077 (DPN - Nahreisezug) - vrm078 (DPN - Nahreisezug) - vrm083 (DPN - Nahreisezug) - vrm084 (DPN - Nahreisezug) - vrm085 (DPN - Nahreisezug) - vrn008 (STR - Rhein-Neckar-Verkehr GmbH) - vrn011 (STR - Rhein-Neckar-Verkehr GmbH) - vrn016 (DPN - Nahreisezug) - vrn017 (DPN - Nahreisezug) - vrn018 (DPN - Nahreisezug) - vrn019 (DPN - Nahreisezug) - vrn020 (DPN - Nahreisezug) - vrn022 (MNV - MNV Mittelhaardt Nahverkehrsgesellschaft) - vrn023 (DPN - Nahreisezug) - vrn025 (DPN - Nahreisezug) - vrn026 (DPN - Nahreisezug) - vrn027 (DPN - Nahreisezug) - vrn028 (H&P - Hetzler & Pfadt) - vrn029 (DPN - Nahreisezug) - vrn030 (DPN - Nahreisezug) - vrn032 (PAL - PalatinaBus) - vrn033 (DPN - Nahreisezug) - vrn040 (DPN - Nahreisezug) - vrn041 (DPN - Nahreisezug) - vrn043 (DPN - Nahreisezug) - vrn047 (DPN - Nahreisezug) - vrn049 (DPN - Nahreisezug) - vrn050 (QNV - QNV Queichtal Nahverkehr) - vrn051 (DPN - Nahreisezug) - vrn053 (DPN - Nahreisezug) - vrn057 (DPN - Nahreisezug) - vrn058 (DPN - Nahreisezug) - vrn059 (DPN - Nahreisezug) - vrn062 (DPN - Nahreisezug) - vrn068 (DPN - Nahreisezug) - vrn073 (DPN - Nahreisezug) - vrn074 (DPN - Nahreisezug) - vrn076 (DPN - Nahreisezug) - vrn078 (DPN - Nahreisezug) - vrn079 (DPN - Nahreisezug) - vrn080 (DPN - Nahreisezug) - vrn081 (DPN - Nahreisezug) - vrn082 (DPN - Nahreisezug) - vrn083 (DPN - Nahreisezug) - vrn095 (DPN - Nahreisezug) - vrnOEG (RNV - Rhein-Neckar-Verkehr GmbH (Oberrheinische Eisenbahn)) - vrnRHB (RNV - Rhein-Neckar-Verkehr GmbH (Rhein-Haardtbahn)) - vrr001 (DPN - Nahreisezug) - vrr002 (DPN - Nahreisezug) - vrr010 (DPN - Nahreisezug) - vrr011 (DPN - Nahreisezug) - vrr012 (DPN - Nahreisezug) - vrr013 (DPN - Nahreisezug) - vrr015 (DPN - Nahreisezug) - vrr016 (DPN - Nahreisezug) - vrr018 (DPN - Nahreisezug) - vrr020 (DPN - Nahreisezug) - vrr021 (DPN - Nahreisezug) - vrr023 (DPN - Nahreisezug) - vrr025 (DPN - Nahreisezug) - vrr029 (DPN - Nahreisezug) - vrr030 (DPN - Nahreisezug) - vrr031 (DPN - Nahreisezug) - vrr032 (DPN - Nahreisezug) - vrr033 (DPN - Nahreisezug) - vrr034 (DPN - Nahreisezug) - vrr035 (DPN - Nahreisezug) - vrr036 (DPN - Nahreisezug) - vrr037 (DPN - Nahreisezug) - vrr038 (DPN - Nahreisezug) - vrr039 (DPN - Nahreisezug) - vrr040 (DPN - Nahreisezug) - vrr045 (DPN - Nahreisezug) - vrr050 (DPN - Nahreisezug) - vrr060 (DPN - Nahreisezug) - vrr064 (DPN - Nahreisezug) - vrr065 (DPN - Nahreisezug) - vrr066 (DPN - Nahreisezug) - vrr070 (DPN - Nahreisezug) - vrr071 (DPN - Nahreisezug) - vrr072 (DPN - Nahreisezug) - vrr073 (DPN - Nahreisezug) - vrr075 (DPN - Nahreisezug) - vrr076 (DPN - Nahreisezug) - vrr077 (DPN - Nahreisezug) - vrr080 (DPN - Nahreisezug) - vrr088 (BVR - Busverkehr Rheinland) - vrs001 (DPN - Nahreisezug) - vrs003 (DPN - Nahreisezug) - vrs006 (DPN - Nahreisezug) - vrs008 (DPN - Nahreisezug) - vrs011 (DPN - Nahreisezug) - vrs012 (DPN - Nahreisezug) - vrs013 (DPN - Nahreisezug) - vrs014 (DPN - Nahreisezug) - vrs016 (DPN - Nahreisezug) - vrs017 (DPN - Nahreisezug) - vrs021 (DPN - Nahreisezug) - vrs022 (DPN - Nahreisezug) - vrs023 (DPN - Nahreisezug) - vrs024 (DPN - Nahreisezug) - vrs025 (DPN - Nahreisezug) - vrs028 (DPN - Nahreisezug) - vrs029 (DPN - Nahreisezug) - vrs060 (DPN - Nahreisezug) - vrs063 (DPN - Nahreisezug) - vsh001 (DPN - Nahreisezug) - vsh010 (DPN - Nahreisezug) - vsh020 (DPN - Nahreisezug) - vuvab (VU - Verkehrsgesellschaft mbH Untermain) - vvs012 (WEG - Württembergische Eisenbahn-Gesellschaft mbH) - vvs020 (DPN - Nahreisezug) - vvs021 (DPN - Nahreisezug) - vvs030 (DPN - Nahreisezug) - vvs031 (DPN - Nahreisezug) - vvs033 (DPN - Nahreisezug) - vvs034 (DPN - Nahreisezug) - vvs035 (DPN - Nahreisezug) - vvs041 (DPN - Nahreisezug) - vvs050 (DPN - Nahreisezug) - vvs051 (DPN - Nahreisezug) - vvs052 (DPN - Nahreisezug) - vvs055 (DPN - Nahreisezug) - vvs077 (DPN - Nahreisezug) - vvs078 (DPN - Nahreisezug) - vwmBuS (DPN - Nahreisezug) - vwmNAH (DPN - Nahreisezug) - vwmStr (DPN - Nahreisezug) - vwmVLP (DPN - Nahreisezug) - vws003 (DPN - Nahreisezug) - vws005 (DPN - Nahreisezug) - vws007 (DPN - Nahreisezug) - W0 (WDR - Wyker Dampfschiffs-Reederei Föhr-Amrum GmbH) - W2 (Dab - Daadetalbahn) - W3 (WFB - WestfalenBahn) - W6 (WTB - Wutachtalbahn) - W9 (WBA - waldbahn - Die Länderbahn GmbH DLB) - wabBus (DPN - Nahreisezug) - web_AN (DPN - Nahreisezug) - web_HB (DPN - Nahreisezug) - web_OF (DPN - Nahreisezug) - web_OS (DPN - Nahreisezug) - web002 (DPN - Nahreisezug) - web005 (DPN - Nahreisezug) - web006 (DPN - Nahreisezug) - web018 (DPN - Nahreisezug) - web019 (DPN - Nahreisezug) - webALL (DPN - Nahreisezug) - webAND (DPN - Nahreisezug) - webARE (DPN - Nahreisezug) - webAST (DPN - Nahreisezug) - webBBU (DPN - Nahreisezug) - webBEC (DPN - Nahreisezug) - webBPU (DPN - Nahreisezug) - webBRU (DPN - Nahreisezug) - webBTR (STR - Bremer Straßenbahn AG) - webBVB (DPN - Nahreisezug) - webBVS (DPN - Nahreisezug) - webDEL (DPN - Nahreisezug) - webDHE (DPN - Nahreisezug) - webEDZ (DPN - Nahreisezug) - webEMS (DPN - Nahreisezug) - webEVB (DPN - Nahreisezug) - webFAS (DPN - Nahreisezug) - webFIS (DPN - Nahreisezug) - webFLX (DPN - Nahreisezug) - webGEB (DPN - Nahreisezug) - webGER (DPN - Nahreisezug) - webGIE (DPN - Nahreisezug) - webGOE (DPN - Nahreisezug) - webGOS (DPN - Nahreisezug) - webHAR (DPN - Nahreisezug) - webHDK (DPN - Nahreisezug) - webHKR (DPN - Nahreisezug) - webHM (DPN - Nahreisezug) - webHUT (DPN - Nahreisezug) - webHVG (DPN - Nahreisezug) - webJAC (DPN - Nahreisezug) - webjan (DPN - Nahreisezug) - webKAR (DPN - Nahreisezug) - webKBA (DPN - Nahreisezug) - webKRR (DPN - Nahreisezug) - webKVG (DPN - Nahreisezug) - webLSE (DPN - Nahreisezug) - webMEY (DPN - Nahreisezug) - webNIE (DPN - Nahreisezug) - webNOH (DPN - Nahreisezug) - webNOR (DPN - Nahreisezug) - webONS (DPN - Nahreisezug) - webOS1 (DPN - Nahreisezug) - webOSV (DPN - Nahreisezug) - webRA1 (DPN - Nahreisezug) - webRBG (DPN - Nahreisezug) - webRVH (DPN - Nahreisezug) - webSAL (DPN - Nahreisezug) - webSTO (DPN - Nahreisezug) - webSVG (DPN - Nahreisezug) - webSWE (DPN - Nahreisezug) - webSWH (DPN - Nahreisezug) - webSZG (DPN - Nahreisezug) - webTMW (DPN - Nahreisezug) - webUEB (DPN - Nahreisezug) - webUET (STB - üstra Hannoversche Verkehrsbetriebe AG) - webUFF (DPN - Nahreisezug) - webVBB (DPN - Nahreisezug) - webVBN (DPN - Nahreisezug) - webVBW (DPN - Nahreisezug) - webVGE (DPN - Nahreisezug) - webVGH (DPN - Nahreisezug) - webVGP (DPN - Nahreisezug) - webVGV (DPN - Nahreisezug) - webVGW (DPN - Nahreisezug) - webVL1 (DPN - Nahreisezug) - webVLG (DPN - Nahreisezug) - webVO8 (DPN - Nahreisezug) - webVOH (DPN - Nahreisezug) - webVOL (DPN - Nahreisezug) - webVOS (DPN - Nahreisezug) - webVSN (DPN - Nahreisezug) - webVWG (DPN - Nahreisezug) - webWHV (DPN - Nahreisezug) - webWIN (DPN - Nahreisezug) - webWIS (DPN - Nahreisezug) - webWOB (DPN - Nahreisezug) - webWSF (DPN - Nahreisezug) - webXOS (WEB - Weser-Ems-Bus) - webYGO (RBB - Regionalbus Braunschweig GmbH) - webYUE (RBB - Regionalbus Braunschweig GmbH) - webYUZ (DPN - Nahreisezug) - wenBUS (DPN - Nahreisezug) - WL (RB - Kreisbahn Mansfelder Land) - wstwst (DPN - Nahreisezug) - wvvBUS (DPN - Nahreisezug) - wvvSTR (DPN - Nahreisezug) - wzlBus (DPN - Nahreisezug) - X1 (erx - erixx) - X2 (erx - erixx) - Y0 (SCH - Adler-Schiffe) - Y8 (BRB - Bayerische Regiobahn) - Z8 (BZB - Bayerische Zugspitzbahn) - Z9 (P - Rhön-Zügle) - zsbteg (DPN - Nahreisezug) - zvv008 (DPN - Nahreisezug) - zvv018 (DPN - Nahreisezug) - zvv019 (DPN - Nahreisezug) - zvv041 (DPN - Nahreisezug) note: list is not exhausting and more undocumented values may be returned"
           },
-          "destination": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
-          },
-          "differingDestination": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
-          },
-          "direction": {
-            "$ref": "#/components/schemas/DirectionInfo"
-          },
-          "journeyID": {
+          "operatorCode": {
             "type": "string",
-            "description": "ID of journey [FahrtID]."
+            "description": "Unique code of the operator [Betreiber]."
           },
-          "label": {
+          "operatorName": {
             "type": "string",
-            "description": "Marketing - or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
-          },
-          "line": {
-            "type": "string",
-            "description": "Line of the transport [Linie]."
-          },
-          "number": {
-            "type": "number",
-            "format": "double",
-            "description": "Number of the transport [Fahrtnummer]."
-          },
-          "replacementTransport": {
-            "$ref": "#/components/schemas/ReplacementTransport"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransportType"
+            "description": "Name of the operator [Betreiber]."
           }
         },
         "required": [
-          "category",
-          "destination",
-          "journeyID",
-          "number",
-          "type"
+          "administrationID",
+          "operatorCode",
+          "operatorName"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "TransportPublicOrigin": {
-        "description": "Public transport [Oeffentlicher Transport] with origin [Herkunft].",
+      "Transport": {
+        "description": "Transport [Verkehrsart / Verkehrsmittel] information.",
         "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          },
           "category": {
             "type": "string",
-            "description": "Code of the transport [Fahrtgattung]."
+            "description": "Category of the transport [externe Fahrtgattung]."
           },
-          "differingOrigin": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
-          },
-          "direction": {
-            "$ref": "#/components/schemas/DirectionInfo"
-          },
-          "journeyID": {
-            "type": "string",
-            "description": "ID of journey [FahrtID]."
-          },
-          "label": {
-            "type": "string",
-            "description": "Marketing - or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+          "journeyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of the transport [Fahrtnummer]."
           },
           "line": {
             "type": "string",
             "description": "Line of the transport [Linie]."
           },
-          "number": {
-            "type": "number",
-            "format": "double",
-            "description": "Number of the transport [Fahrtnummer]."
+          "label": {
+            "type": "string",
+            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
           },
-          "origin": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
-          },
-          "replacementTransport": {
-            "$ref": "#/components/schemas/ReplacementTransport"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransportType"
+          "administration": {
+            "$ref": "#/components/schemas/Administration"
           }
         },
         "required": [
+          "type",
           "category",
-          "journeyID",
-          "number",
+          "journeyNumber",
+          "administration"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "StopPlaceEmbeddedWithCancel": {
+        "description": "Comprehensive stop-place [Haltestelle] information.",
+        "properties": {
+          "evaNumber": {
+            "type": "string",
+            "description": "Eva number of stop-place [Haltestelle]."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for stop-place [Haltestelle] in fixed language \\'DE\\'."
+          },
+          "cancelled": {
+            "type": "boolean",
+            "description": "Indicates whether the stop ie departure / arrival has been cancelled [Haltausfall]."
+          }
+        },
+        "required": [
+          "evaNumber",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "JourneyInfo": {
+        "description": "Comprehensive journey information.",
+        "properties": {
+          "transportAtStart": {
+            "$ref": "#/components/schemas/Transport"
+          },
+          "type": {
+            "type": "string",
+            "description": "Defines whether journey [Fahrt] is regular or some kind of special. - REGULAR (Regular scheduled journey) - REPLACEMENT (Journey that replaces another journey) - RELIEF (Journey that reliefs another journey) - EXTRA (Journey that is somehow extra)"
+          },
+          "journeyCancelled": {
+            "type": "boolean",
+            "description": "Indicates whether whole journey has been cancelled."
+          },
+          "origin": {
+            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+          },
+          "differingOrigin": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+          },
+          "differingDestination": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
+          },
+          "headerAdministration": {
+            "$ref": "#/components/schemas/Administration"
+          },
+          "headerJourneyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Header number of journey [Kopf-Fahrtnummer], may differ from number of journey."
+          }
+        },
+        "required": [
+          "transportAtStart",
+          "type",
           "origin",
-          "type"
+          "destination",
+          "headerAdministration",
+          "headerJourneyNumber"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "MessageAttribute": {
+        "description": "Journey-attribute [Fahrtmerkmale / Sollmerkmale] message.",
+        "properties": {
+          "messageID": {
+            "type": "number",
+            "format": "double",
+            "description": "ID of message that is unique within all message collections."
+          },
+          "displayPriority": {
+            "type": "number",
+            "format": "double",
+            "description": "Display priority [Anzeigereihenfolge aka \\'Priorität*] for message. Order is ascending."
+          },
+          "displayPriorityDetail": {
+            "type": "number",
+            "format": "double",
+            "description": "Detailed display priority [detaillierte Anzeigereihenfolge aka \\'Feinsortierung\\'] for message. Order is ascending."
+          },
+          "code": {
+            "type": "string",
+            "description": "- FR (Fahrradmitnahme reservierungspflichtig) - RP (Reservierungspflicht) - RR (1. Kl. Reservierungspflicht) - RT (Teilreservierungspflicht) - OC (rollstuhltaugliches WC) - 3D (Schlafwagen 2. Klasse T3 mit Dusche und WC) - S1 (Schlafwagen 1. Klasse Single mit Dusche und WC) - S2 (Schlafwagen 1. Klasse Double mit Dusche und WC) - NG (Tarifliche Vereinigung (DB-Nahverkehrsfahrkarten gelten mit Ausnahme von Sonderangeboten) - NJ (Tarifliche Vereinigung (Alle Nahverkehrsfahrkarten werden anerkannt) - N+ (Tarifliche Vereinigung (Nahverkehrskooperation DB FV: fiktiver Zug) - CK (Komfort Check-in möglich) - HS (Zugang fuer Rollstuhlfahrer) - OA (Rollstuhlstellplatz - Voranmeldung unter +43 5 1717) - OG (bedingt rollstuhltaugliches WC) - RO (Rollstuhlstellplatz) - FB (Fahrradmitnahme begrenzt moeglich) - FF (Fahrradmitnahme reservierungpflichtig -nur grenzueberschreitend moeglich) - FK (Fahrradmitnahme begrenzt moeglich) - FO (Fahrradreservierung unter 030 2970 oder in Reisezentren + DB Agenturen) - FR (Fahrradmitnahme reservierungspflichtig) - G  (Fahrradmitnahme begrenzt moeglich) - NF (keine Fahrradbefoerderung moeglich) - DC (keine behindertengerechte Toilette) - EH (Fahrzeuggebundene Einstiegshilfe: Anmeldung 01806-512512 *) - EF (Fahrzeuggebundene Einstiegshilfe) - RG (Behindertengerechtes Fahrzeug) - SM (Info www.bahn.de/sh-barrierefrei) - SI (Barrierefreier Zustieg an geeigneten Stationen moeglich) - AB (Bus mit Fahrradanhaenger) - FJ (Keine Mitnahme von Fahrradgruppen moeglich) - FS (Bei Fahrradmitnahme Sperrzeiten beachten) - FT (Radexpress und Ausflugszug) - KF (Kostenlose Fahrradbefoerderung) - RF (Fahrradbus: Fuer Reisende mit Fahrrad) - TF (Bus mit Fahrradtraeger)"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text for attribute."
+          }
+        },
+        "required": [
+          "messageID",
+          "code",
+          "text"
         ],
         "type": "object",
         "additionalProperties": true
@@ -627,229 +692,162 @@
         "type": "object",
         "additionalProperties": true
       },
-      "DisruptionCommunicationEmbeddedLegacy": {
-        "description": "Embedded disruption communication information [Stoerungskommunikation].",
+      "MessageDisruptionCommunication": {
+        "description": "Disruption-communication [Störungskommunikationen] message.",
         "properties": {
-          "descriptions": {
-            "properties": {},
-            "additionalProperties": {
-              "$ref": "#/components/schemas/DisruptionCommunicationDescription"
-            },
-            "type": "object",
-            "description": "Textual short description of disruption by language identifier."
-          },
-          "displayPriority": {
+          "messageID": {
             "type": "number",
             "format": "double",
-            "description": "Display priority [Anzeigereihenfolge] for disruption. Order is by display priority asc. May be empty."
+            "description": "ID of message that is unique within all message collections."
+          },
+          "disruptionID": {
+            "type": "string",
+            "description": "ID of disruption [StoerungsID]."
           },
           "disruptionCommunicationID": {
             "type": "string",
             "description": "ID of disruption communication [StoerungskommunikationsID]."
           },
-          "disruptionID": {
-            "type": "string",
-            "description": "ID of disruption [StoerungsID]."
-          }
-        },
-        "required": [
-          "descriptions",
-          "disruptionID"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "Administration": {
-        "description": "Information on the operator [Betreiber] and the administration [Verwaltung] of the journey.",
-        "properties": {
-          "administrationID": {
-            "type": "string",
-            "description": "Unique id of the administration [Verwaltung]."
-          },
-          "operatorCode": {
-            "type": "string",
-            "description": "Unique code of the operator [Betreiber]."
-          },
-          "operatorName": {
-            "type": "string",
-            "description": "Name of the operator [Betreiber]."
-          }
-        },
-        "required": [
-          "administrationID",
-          "operatorCode",
-          "operatorName"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "MessageAttribute": {
-        "description": "Journey-attribute [Fahrtmerkmale / Sollmerkmale] message.",
-        "properties": {
-          "code": {
-            "type": "string",
-            "description": "Journey-attribute [Fahrtmerkmale / Sollmerkmale]. - ~~ (Tel. 09141-99351, Anmeldung mind. 60 Min. vor Abfahrt (Mo-Fr 8-17 Uhr)) - ~| (Tel. 08122-1800383, Anmeldung bis 30 Min. vor Abfahrt) - ~{ (Tel. 08122-1800383, Anmeldung bis 45 min. vor Abfahrt) - ~} (Tel. 09141-99350, Anmeldung mind. 60 Min. vor Abfahrt (Mo-Fr 8-17 Uhr)) - |~ (Anschluss kann nicht gewährleistet werden) - || (Rufbus bitte bis 18 Uhr am Vortag unter Tel. 0621 1077077 anmelden) - |{ (Tel.: 08282-9902100, Anmeldung mind. 90 Min. vor Abfahrt (7-18 Uhr)) - |} (Vorbestellung bis 60 Min. vor Fahrtantritt unter Tel.: 0176 27467288) - _ (nur nach Voranmeldung, Tel.: 0365 7390 777 bis 22:00 Uhr am Vortag) - __ (Bedarfshalt Tel.0661-95270400 Anmeld. bis 40Min vor Abf. Mo-Fr 6-18Uhr) - , (Bus mit Fahrradanhänger, Gruppen bitte anmelden unter 05254-6408499) - !< (Alt: verk.nur bei Anm. bis 30 Min vor Abf. u. Tel. 0421 650005) - != (Anm. 60 Min. vor Abf. Tel. 07044 944034) - !_ (AST; Tel. 06172-101310 Anm. bis 60Min vor Abf. So-Do6-22, Fr-Sa6-24Uhr) - !- (Tel.: 02681 951795, bis 22h am Vortag, Gruppen 2 Tage vorher anmelden) - !, (Zustieg am Vortag bis 19 Uhr anmelden unter Tel. (08282) 828700) - !; (Rufbus; Tel. 04161-644670 Anmeldung bis 60 Min. vor Abfahrt) - !: (Anm. 20 Min. vor Abf. Tel. 07025-912663-9) - !. (Tel.: 02681 951795, bis 60 Min, Gruppen 2 Werktage vorher anmelden) - !* (Anm. 1 Stunde vor Abfahrt, Tel. (07331) 7242, Mo-Fr: 7-19 Uhr) - !+ (Anmeldung spätestens 1 Stunde vor Abfahrt, Tel. (07340) 96300) - {~ (Rufbus: Voranmeldung bis 19:30 Uhr unter 06181-6681357) - {} (VBB-Tarif zzgl. des Komfortzuschlages 1,00 EUR je Fahrgast und Strecke) - }~ (Taxi-Anschluss, Voranmeldung 30 Min. vor Abfahrt , Tel. 0731 166-2850) - }| (TaxiBus; Tel. 0291-6111 Anmeldung mind. 30 Min. vor Abfahrt) - }{ (Anmeldung bis 2 Std. vor Abfahrt unter Tel. 06391 1824) - }} (Anmeldung bis 30 Min. vor Abfahrt, Tel. 0731 166-2850) - += (Verstärkungsfahrt; wird nicht im Kursbuch oder Aushang veröffentlicht) - +- (Fahrteneditierattribut) - 0^ (Kleinbus, Gruppenf. anmelden unter 05351-3071) - 0* (HAFAS-Steuerung [Text wird nicht ausgegeben]) - ,0 (AnrufLinienTaxi; Tel. (0241)4013999 ; Anm. bis 30 Min. vor der Abfahrt) - *0 (Verkehrt in den Pfingst- und Sommerferien als Fahrradbus) - 00 (vsl. stark ausgelastet!) - 01 (voraussichtlich starke Nachfrage) - 03 (Rufbus! Anmeldung bis Freitag, 17 Uhr, unter 034295 7420) - 08 (Bedarfshalt Tel.03435-906061 Zustieg nach Anmeldung bis 1h vor Abfahrt) - 09 (Bedarfshalt Tel.03435-906083 Zustieg nach Anmeldung bis 1h vor Abfahrt) - 0b (Bitte dem Fahrer bei Einstieg die Zielhaltestelle mitteilen.) - 0d (Rufbus, Anmeldung mind. 1 Std. vor Abfahrt unter 09161/2935) - 0e (Bedarfshalt, Anmeldung mind. 1 Std. vor Abfahrt unter 09161/2935) - 0g (AST; Tel. 0800-0584584 Fahrt mind. 60 Min. vor Fahrtantritt anmelden) - 0h (Anmeldung mind.30 Min. unter Tel. 07720 / 99780) - 0j (Anm. für Gruppen ab 4 Pers. bis Fr. 14:00; Tel. 06531/9680-0) - 0k (Anmeldung bis 20 Min. vor Abfahrt unter Tel. 07021 2656) - 0l (Bedarfshalt: Tel. (03391)400618 Anmeldung 90 Min vor Fahrtbeginn) - 0m (Bedarfshalt, Anmeldung unter 03531-650010 bis 90 Min vor Fahrtbeginn) - 0n (Gruppenanm. ab 5 Pers. am Vortag, 09381 803656, keine Fahrradmitnahme) - 0o (Bedarfshalt, Anmeldung bis 60 Min. vor Abfahrt, Tel. 0800-6065600) - 0p (Kleinfahrzeug - Gruppen sind anzumelden Tel. 03733 151245) - 0q (Ruftaxi, Tel.: 06332 16363, Anmeldung mind. 30 Min vor Abfahrt) - 0r (TaxiBus; Tel. (0251)6945000 Anmeldung mind. 30 Min. vor Abfahrt) - 0s (AST mind. 30 Min. vor Fahrtbeginn anmelden unter Tel. 07351-30250250) - 0S (Kleinbus, Gruppen ab 4 Personen am Vortag anmelden, Tel.: 0261 9846140) - 0t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 0T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 0v (Bedarfshalt Anmeldung bis 12 Uhr einen Tag vorher: Tel 09171/9676-0) - 0w (AST, mind. 1 Stunde vorher anmelden unter Tel. 0981/48228880) - 0x (Bedarfshalt; Tel. 035365-2102 Anmeldung 1Tag vor Abfahrt Mo-Fr 9-13:30) - 0y (ALT: tel. Anm.04121-906666 erf. Büro Mo-Do8-16,Fr 8-14 Uhr bes. Preis) - 0z (Anmeldung 60 Min. vor Abfahrt: Tel. 0176-80449280) - 1 (nur 1. Kl.) - 1- (AnrufSammelTaxi; Tel. 01801-334433* Anmeldung mind. 45 Min vor Abfahrt) - 1: (TaxiBus; Tel. 0201-8264949 bitte mind. 30 Min. vor Abfahrt anmelden) - =1 (Sammeltaxi: Anmeldung 30 Min. vorher; Tel: 05121/66666) - *1 (Fahrradbus-Verkehrt von Karfreitag bis einschl. 03.10. als Radlbus) - 10 (vsl. stark ausgelastet! (Regio)) - 11 (vsl. starke Nachfrage!) - 12 (Verkehrt nur bei Anmeldung bis 2 Tage vor Fahrt unter Tel. 04841 1888) - 14 (Anrufhst., b. Fahrer od. 30 Min. vor Abfahrt unter 09672-2231 anmelden) - 15 (Rufbus, bis 1 Stunde vor Fahrtbeginn unter 09674-921210 anmelden) - 16 (Anmeldung bis 60 Min. vor Fahrtbeginn, Tel. 09221-66222  oder -75570) - 17 (Bedarfshalt: Zustieg nur nach Anmeldung 1h vor Fahrt Tel: 03941/566166) - 19 (Voranmeldung bis spätestens 60 Min. vor Fahrtbeginn, Tel.: 09273-6857) - 1a (Anmeldung 30 Minuten vor Abfahrt: Tel. (07125) 40 72 40, Sondertarif) - 1A (Expressbus) - 1b (Ruftaxi, Tel.: 06251/5095, Anmeldung mind. 60 Min vor Abfahrt) - 1B (Linie B) - 1c (Anmeldung mind. 30 Min. vor Abfahrt: Tel. 07472/988 966, Sondertarif) - 1C (Linie C) - 1d (Anmeldung bis 2 Stunden vor Abfahrt: Tel. 0160-93981867) - 1D (Linie D) - 1E (Linie E) - 1f (Bedarfshalt: Tel. 0906-706050 Anmelung spätestens 1 Std. vor Abfahrt) - 1F (Linie F) - 1g (Anm. bis 30 Min vor Abfahrt Tel.(0711)356666; besonderer Tarif) - 1h (Ruftaxi; Tel.(07153)22293 Anm. bis 30Min vor Abfahrt; besonderer Tarif) - 1k (Anm. bis 10:00 Uhr unter Tel. 07644 91500) - 1K (Fährzeiten sind Richtzeiten, www.rheinfaehre-linz-remagen.de) - 1l (Anm. 60 Min. vor Abf.; Tel. 07721/9927948, Gruppe 5 Werktage vorher) - 1m (Anm. 18:30 - 22:00; Tel. 07721/9927948, Gruppe 5 Werktage vorher) - 1n (AST; Tel.06192-2002626 Anmeldung bis 30Min vor Abfahrt von 6 bis 1 Uhr) - 1o (AST, (06691)9272929-01/-02/-03 Anm.bis 30Min vor Abf. Zuschlag, 1,-EUR) - 1p (AST, Tel. 0800-0584584 Anmeld. mind. 60Min vor Abfahrt, Mo-So 9-20 Uhr) - 1r (AnrufLinienTaxi;Tel.0160-3116683 Anmeld. 60Min vor Abf. Mo-Fr 5-20 Uhr) - 1s (Kleinbus, Gruppen >8 Pers. Anmeldung am Vortag: Tel. 05544-95030) - 1S (Rufbus, Zuschlag, Anmeldung 7.30 - 17.30 Uhr, 0591-8042050) - 1t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 1T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 1u (Rufbus: Tel. 0180-1726934 Anmeldung 1 Tag vorher (Mo-Fr 7- 19 Uhr)) - 1v (Voranmeldung am Vortag bis 15:30, Tel. 0800-6065600) - 1x (Anmeldung bis 15:50 Uhr: Tel. 07571/74747474) - 1y (Voranmeldung bitte bis 1 Stunde vor Abfahrt, Tel. 09103-462) - 1z (Voranmeldung bitte bis 1 Stunde vor Abfahrt, Tel. 09171-979090) - 1Z (Linie A) - 2^ (Tel. Voranmeldung 30 Min. vor Abfahrt 07524/97380) - 2 (nur 2. Kl.) - 2+ (SECOND PLUS) - _2 (RufBus mit Voranmeldung Mo-Fr bis 16.00 Uhr Tel.:03605-515253) - ,2 (Rufbus; Tel. (02421) 2000 ; Anmeldung bis 30 Min. vor der Abfahrt) - 20 (Tel. 0541-3382214, Fahrradmitnahme nur bei Anmeldung) - 22 (Bis 22Uhr am Vortag anmelden: 02747-91276101 Gruppen 2 Werktage vorher) - 23 (TaxiBus) - 24 (Rfb: verk nur bei Anm bis 10 Min vor Abfahrt unter Tel. 0152 04535502.) - 26 (Tel. 0171-7998484, Anmeldung bis 15 Uhr des vorigen Werktages (Mo-Fr)) - 27 (AST: Anmeldung bis 30 Minuten vor Abfahrt unter Tel. 07732 8008777) - 29 (nur bei Anmeldung bis 30 Minuten vor Abfahrt unter Tel. 04932 927910) - 2a (Rufbus: Tel. 08282-828700 Anmeldung vor 16 Uhr) - 2A (RVV-Nachtschwärmer N28) - 2b (Rufbus: Tel. 08282-828700 Anmeldung vor 19 Uhr) - 2d (Bedarfshalt: Tel. 08282-828700 Anmeldung bis 15 Uhr am Vortag) - 2e (Anmeldung bis 60 Min. vor Abfahrt Tel. 08282-828700) - 2f (Rufbus: Tel. 08282-828700 Anmeldung bis 19 Uhr am Vortag) - 2H (Bedarfsfahrt; Tel. 0176-43643754 Anmeldung bis spätestens 11:45 Uhr) - 2i (Rufbus Tel.07333/5228 oder 0170/9269403, bitte 1 Stunde vorher anrufen) - 2k (Anm. bis 1Std. vor Abfahrt unter Tel. 07335/96270) - 2l (Bedarfshalt: Tel. 08282-828700 Anmeldung mind. 15 Min. vor Abfahrt) - 2m (Rufbus: Anm. mindestens 60 Min vor Abf. Tel. (03521) 741663) - 2n (Rufbus, bitte unter Tel. 08463/605079 am Vortag bis 16 Uhr anmelden.) - 2o (Bedarfshalt am Vortag bis 16 Uhr unter Tel. 08463-605079 anmelden) - 2q (AST: Tel.: (0661) 73919 Anmeldung bis 15 Min vor Abfahrt) - 2r (Rufbus; Tel. (07382) 93740 Anmeldung spätestens Freitag 19 Uhr) - 2t ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 2T ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 2v (Rufbus: Anmeld. bis 1 Std. vor Abfahrt, Tel. (07391) 707060) - 2w (ALT, mind. 30 Min. vor Abfahrt unter Tel. 0921/20208 anmelden) - 2x (Rufbus: Anmeldung am Vortag, Tel. (07353) 984840) - 2y (AnrufSammelTaxi (05651)3565 Anmeld.bis 30Min vor Abfahrt,1EUR Zuschlag) - 2z (Rufbus; Tel. 05032-809300 Anmeld bis 95Min vor Ankunft am ZOB Neustadt) - 3 (1. und 2. Kl.) - 3; (Anruf-Linientaxi, 1 Std. v. Abfahrt. Tel: 05331-77777 od. 0171/1700801) - 31 (Reservierungspflicht für Reisegruppen) - 34 (Leinetal Taxi: verkehrt nur bei Anruf unter 07131 904040) - 35 (Anmeldung bis 1 Std. vor der Fahrt unter Tel. (07262) 912020) - 36 (Rufbus, Tel. 05121-76420 Anmeldung bis spät. 60 Min. vor Abfahrt) - 37 (Fahrradbeförderung bitte voranmelden 07945 91010) - 39 (ALF, Tel.:0261 9846140, Anm. bis 22Uhr am Vortag, Gruppen 2Tage vorher) - 3b (Tel. 08341-809529 Anmeldung mind. 60 Min. vorher (Anm. 10 bis 19 Uhr)) - 3B (Ruftaxi, Tel.: 06762 4019344, Anm. 90Min vorher, Gruppen 2 Tage vorher) - 3c (TaxiBus; Tel. 05231-977681 Anmeldung am Vortag bis 18 Uhr) - 3D (Schlafwagen 2.Klasse T3 mit Dusche und WC) - 3e (Anmeldung bis 30 Minuten vor Abfahrt, Tel. 09733-9447 oder 09721-16060) - 3g (Rufbus: Tel. 01802-908070* Anmeldung bis 16 Uhr am Vortag) - 3G (Im Zug gilt bundesweit 3G-Regel: ein gültiger Nachweis ist mitzuführen) - 3h (Kleinbus: Gruppen bitte anmelden, Tel. 04671-3003) - 3i (AnrufLinienTaxi; Tel. 04342-4646 Anmeldung bis 60 Min. vor Abfahrt) - 3I (bis 22Uhr am Vortag anmelden: 02633 2009600 Gruppen 2 Werktage vorher) - 3j (Bitte mindestens 45 Min. vor Abfahrt anmelden. Tel. (05341-31311)) - 3k (Anm. mind. 2 Std. vor Fahrtantritt unter Tel. 07524/9738-0) - 3n (Ruftaxi: Tel. 08136-4343999 Anmeldung spätestens 30 Min. vor Abfahrt) - 3N (bis 60Min. vorher anm. 02633 2009600(6-22Uhr), Gruppen 2 Werktg vorher) - 3o (Ruftaxi: Tel. 08131-33749991 Anmeldung spätestens 30 Min. vor Abfahrt) - 3p (Ruftaxi: Tel. 08131-33749992 Anmeldung spätestens 30 Min. vor Abfahrt) - 3P (ALF, Tel.:067624019344, Anm. bis 22Uhr am Vortag, Gruppen 2Tage vorher) - 3q (Ruftaxi: Anmeld. mind. 30 Min. vor Abfahrt, Tel. 07231/392163) - 3r (Anmeld. mind. 30 Min.vor Fahrt Tel.07232/372148, spez. Tarif) - 3s (Ruftaxi: Tel. 08258-928440 Anmeldung spätestens 30 Min. vor Abfahrt) - 3t ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 3T ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 3u (Bedarfshalt: Tel. 0906-99989491 Anmeldung mind. 2 Std. vor Abfahrt) - 3v (Rufbus, Tel.: 06282 6014, Anmeldung mind. 60 Min vor Abfahrt) - 3w (Rufbus: Tel. +436474-2213, Fahrtanmeldung mind. 60 Min. vor Abfahrt) - 4= (Anruf-Linientaxi; Tel. (09221)66222 Anmeldung bis 2 Std. vor Abfahrt) - 4- (TaxiBus Anmeldung nur beim Fahrer im S10 zw. Westerk. u. Mettingen) - 4. (RFB verk nur bei Anm b30 Min. vor Abf u Tel: 0800/7007887 + bes.Tarif!) - _4 (Bitte 30 Min. vor Fahrt anmelden unter Tel.: 04551-898989) - $4 (mit Fahrradtransportanhänger) - 41 (Rufbus, nur nach tel. Voranmeldung: 03677 888 952 (1h vor Fahrtbeginn)) - 43 (Rufbus für max. 6 Pers; Tel. 03371-628182 Anmeldezeit Mo - Fr 5-17 Uhr) - 45 (Anmeldung 30 Min vor Abfahrt  unter 07651/9899602) - 46 (Fahrradmitn. f. 9 Räder, Anm. unter 03671-5251999, am Vort. bis 15:00) - 47 (Museums-Dampfzug) - 48 (Achtung: Fahrt kann von Streik-Aktionen betroffen sein) - 4a (Ohne Bedarfsbedienung verkehrt der Bus an dieser Haltestelle 8Min eher) - 4b (Bedarfshalt: mind. 1 Std. vorher anmelden unter Tel. 0731 97744233) - 4c (Ruf mich-Bus, bitte am Vortag bis 17h bestellen: 04463/1046) - 4d (Bedarfshalt: Zustieg am Vortag bis 17 Uhr anmelden, Tel. 07346 96200) - 4e (Vorbestellung bitte bis zum Vortag zwischen 9-19 Uhr) - 4f (Nur nach Vorbestellung Mo.-Fr. 14h, Tel. 08652-94480) - 4i (Ruftaxi, Tel.: 06331/228899, Anmeldung mind. 60 Min vor Abfahrt) - 4j (bis 4:00 Uhr morgens Nachtlinienzuschlag erforderlich) - 4k (Ruftaxi, Tel.: 06337/6637, Anmeldung mind. 60 Min vor Abfahrt) - 4l (Rufbus: Tel. 09181-48800 Anmeldung mind. 60 Min. vor Abfahrt) - 4m (Voranmeldung bitte bis 60 Min. vor Abfahrt, Tel. 0151-54419545) - 4n (AST, Anmeldung mindestens 30 min vor Fahrtbeginn unter Tel. 06806 3434) - 4p (Taxibus; Tel. (02567) 778 Anmeldung mind. 30 Min. vor Abfahrt) - 4q (Gruppen ab 10 Pers. und Fahrradmitnahme anmelden: Tel. 04421-84360) - 4r (Bedarfshalt; Anmeldung bis 1h vor Abfahrt, Tel. 034901-82599 (5-20Uhr)) - 4s (Fahrradzuladung in Lahr West am Betriebshof) - 4t ((*bis 12,6ct/Min. aus d.Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 4T ((*bis 12,6ct/Min. aus d.Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 4u (Anmeldung bis 16.30 Uhr unter Tel. 02631/ 352532) - 4y (TaxiBus; Tel.: 0800-3504031* Anmeldung bis spätestens 18:30 Uhr) - 4z (Rufbus! Tel. 03933-823431 Anmeldung bis 22.11.2019, 12:00 Uhr) - 5, (bitte 1 Stunde vorher anmelden, 01803-229292* (bis 20 Uhr)) - 5+ (TaxiBus-Bestellung beim Einstieg in den NachtBus N1) - _5 (Bitte 60 Min. vor Fahrt anmelden unter Tel.: 04823-920866) - 54 (Anmeldung bis spätestens einen Tag vor Abf. unter Tel. 07522/912222) - 55 (Nichtraucherzug) - 56 (Dampfzug) - 57 (Dampfschiff) - 59 (Tel. 04634 8888, Anmeldung bis 60 Min vor Abfahrt, www.dorfschuttle.de) - 5a (Gruppenbeförderung bitte mit Voranmeldung 03531-650010) - 5b (Verkehrt nur bei Anm. bis 15 Min. vor Abfahrt unter Tel. 0152-2603642) - 5c (Nur nach Voranmeldung bis 22:00 des Vortages, 0173-3951473) - 5d (Bürgerbus, verk. nur nach Anm. b.45Min. vor Abf. u. Tel.: 0162 6192290) - 5D (Tel. 0971-730310, Anm. bis 60 Min. vor Abfahrt Mo-Do 9-15, Fr 9-13 Uhr) - 5e (Bedarfsfahrt: Tel: 09461-941850) - 5f (Rufbus,Tel.0261-29670388 Anmeld. 90Min vorher Mo-Fr6-21,Sa7-20,So7-22*) - 5g (nur an Schultagen) - 5h (Anm. bis 30 Min vor Abfahrt unter 06341-86506) - 5H (Nur nach Voranmeldung bis 90 vor Abfahrt, Tel. 0911-65005) - 5i (Bedarfshalt; Tel: (0800) 2992299 Anmeldung mind. 90 Min vor Abfarhrt.) - 5j (Rufbus; Tel. (0800) 2992299 Anmeldung mind. 90 Min vor Abfahrt.) - 5k (Kleinbus, Gruppen 24 Std. vor Abfahrt anmelden, Tel. (030)396011344*) - 5l (Voranmeldung am Vortag (Mo-Fr bis 20Uhr), Tel. 09221-66222) - 5L (Bedarfshalt; Tel. 09771-9178094 Anmeld. bis 15Uhr am Vortag Mo-So 7-21) - 5m (TaxiBus; Tel. (02052)9258505 Anmeldung mind. 30 Min. vor Abfahrt) - 5p (Gruppen bitte 30 Min. vor Abfahrt unter Tel.: 0511 8484 anmelden.) - 5q (Anmeldung bitte 30 Min. vor der Abfahrt unter Tel.: 0511/8484) - 5Q (Anruf-Fahrt 06543-501924 Anmeld.bis 22Uhr am Vortag(Gruppen 2Werktage)) - 5R (Einstieg nur mit Reservierung: siehe www.postauto.ch) - 5S (Anruf-Linien-Fahrt, 60Min vor Abfahrt anmelden 06543-501924 (6-22 Uhr)) - 5t ((*3,9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 5T ((*3,9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 5w (Rufbus Tel.03372-424848 Anmeldung Mo-Fr von 5-14Uhr bis 60Min.vor Abf.) - 5x (AST; Tel. (06455) 7558133 - Anmeldung bis 30 Min. vor Abfahrt*) - 5y (Rufbus: Tel. 09661-812910 Anmeldung bis spätestens Freitag) - 5z (Anmeldung unter Tel.08000-366910, 1 Std vor Abfahrt (Mo-Sa 7-20Uhr)) - 6: (Anmeldung 2 Std. vor Abfahrt. Tel.: 07122 / 82477; Sondertarif) - 6$ (Bedienung nur zum Ausstieg) - ,6 (AnrufLinienTaxi; Tel. (0241) 182000; Anm. bis 30 Min vor der Abfahrt) - 60 (Rufbus: Fahrtanmeldung nach Bedarf unter Tel. 0711 93383798) - 62 (Anmeldung bitte bis spät. 60 Min. vor Fahrt unter Tel.: 04441-93110) - 63 (AnrufLinienFahrt, Tel.02686-1799 Anmeld. 60Min vor Abfahrt von 6-22Uhr) - 65 (Anm. Mo-Fr 8-16 Uhr unter Tel. 04122-909844 (mind. 60 Min. vor Fahrt)) - 66 (AST: Anm. bis 60 Min. vor Fahrtantritt unter Tel. 04231 922766) - 67 (Komfortzuschlag erforderlich) - 68 (Rufbus, bitte anm. Mo-Fr, 07-16Uhr, bis 60 Min. vor Abf.: 05461 93390) - 6d (Anmeldung bis 11:00 Uhr unter Tel. 02603/ 2727) - 6t ((*6 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 6T ((*6 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7 (Midi-Bus (22 Personen)) - 73 (Anruflinienfahrt, Tel. 06765-9493725 bitte bis spät.16 Uhr anmelden) - 75 (Anmeldung 60 Min vor Abfahrt, Tel. (07162) 6367.) - 78 (Nur nach Voranmeldung bis 60 Minuten vor Abfahrt, Tel:  08751-709888) - 7a (Anmeldung 20 Minuten vor Abfahrt Tel. 0711 5510000) - 7b (Voranmeldung bis spätestens 60 Minuten vor Abfahrt, Tel. 09241-2697) - 7B (Nur nach Voranmeldung bis 14 Uhr, Tel. 02603-8022) - 7c (Anmeld. bis spätestens 60 Min. vor Fahrtbeginn Tel. 09270/91222) - 7C (ALF, Tel.: 06765 9493767, Anmeldung mind. 30 Min vor Abfahrt) - 7d (Anm. am Vortag bis 15 Uhr unter 07520/ 9203-0) - 7f (AnrufLinienTaxi; Tel. 06035-6575 Anmeld. 60Min vor Abf. Mo-Fr 8-17 Uhr) - 7h (Anm. bis 18.00 Uhr des Vortages: Tel. (07381) 93 45 30, Sondertarif) - 7H (für Gruppen u. Bayernticket besteht Anmeldepflicht, Tel. 09771-9178094) - 7i (Rufbus bis spätestens 21 Uhr anmelden: 07333/5228 oder 0170/9269403) - 7j (Anm. bis 30 Min. vor Abfahrt unter Tel. 07633 92620) - 7k (Anm. mind. 30 Min. vor Abfahrt, Tel.: 07431 / 5 51 15; Sondertarif) - 7l (Ruftaxi; Tel. 089-84005811, Anmeldung mind. 45 Min. vor Abfahrt) - 7o (Kleinbus. Gruppen bitte 2 Werktage vorher unter 0581-976280 anmelden) - 7p (Kleinbus. Gruppen bitte 2 Werktage vorher unter 03901-304030 anmelden) - 7q (Rufbus; Tel. (033931)34940 Anmeldung mind. 120 Min vor Fahrtbeginn) - 7s (Anruf-Linien-Taxi, bitte bis 1h vorher anmelden: 04231/69001) - 7t ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7T ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7u (Rufbus; Anmeldung spätestens 2h vor Fahrtbeginn; Tel. 0361-19449) - 7x (Ast: verk. nur bei Anm. bis 30 Min. vor Abf. u. Tel. 04231 922760) - 7y (Ruftaxi, Tel.: 06381 324, Anmeldug bis 60 Minuten vor Abfahrt) - 8: (Anruf-Linientaxi Bitte 60 Min. vor Abfahrt anmelden. (05531) 930711) - 8$ (nur nach Anmeldung 60 Min. vorher 06826/6666) - 8+ (AST; Tel. 06409-2922; Anm. bis 60Min vor Abfahrt*; 1,50 Euro Zuschlag) - 80 (Ausfall bei ungünstigen Wintersportbedingungen) - 81 (ÖBB-Verkehr) - 82 (Anm. 2 Std zuvor (0791/9501012) oder durch Mitteilung an den Fahrer) - 83 (Kleinbus; Gruppenfahrten bitte anmelden! Tel.: 05151 788988) - 87 (AST; Tel. 04542-3340 Anm. 30Min. vor Abfahrt Gruppen ab 5 Pers. 1Tag) - 8a (AST: verk. nur bei Anm. bis 60 Min vor Abf. u. Tel. 0581 828384) - 8b (TaxiBus; Tel.0800-3504031 Anm. 60Min vor Abf. Mo-Fr6-19,Sa7-15,So10-18) - 8d (Ruftaxi, tel. vorbestellen unter 06381-924660) - 8e (Ruftaxi, tel. vorbestellen unter 06381-924666) - 8f (TaxiBus; Tel. (01803)504031* Anmeldung bis spätestens 20 Uhr) - 8g (Ruftaxi, Tel.: 06383-1460, Anmeldung mind. 60 Min vor Abfahrt) - 8h (TaxiBus; Tel. (01803) 504031* Anmeldung bis 19 Uhr am Vortag.) - 8i (Ruftaxi, Tel.: 06382-1551, Anmeldung mind. 60 Min vor Abfahrt) - 8j (Ast: verk. nur bei Anm. bis 60 Min vor Abf. u Tel. 05531 930711) - 8k (Anmeldung mind. 60 Min vor Abfahrt unter Tel.: 06382-993050) - 8l (Anmeldung mind. 60 Min vor Abfahrt unter Tel.: 06382-993600) - 8m (Ruftaxi, Tel.: 06381-2518, Anmeldung mind. 60 Min vor Abfahrt) - 8M (Anmeldung am Vortag bis 16.00; Tel.  06392/995717) - 8n (Anmeldung am Vortag unter Tel. 07567/ 234) - 8p (AST; Tel. (02961) 970297 Anmeldung mind. 30 Min. vor der Abfahrt.) - 8q (Ruftaxi, Tel.: 06331/228080) - 8r (Ruftaxi, Tel.: 06381/2324, Anmeldung mind. 60 Min vor Abfahrt) - 8s (Rufbus; Tel. (01802)783287* Anmeldung bis Freitag 18 Uhr erforderlich) - 8t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Min.)) - 8T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 8u (Anmeld. am Vortag 9:00-12:00 (Mo-Fr) Tel. 09733/81060) - 8w (Voranmeldung bis spätestens 60 Minuten vor Abfahrt, Tel. 09241-1448) - 8x (Anmeldung bis 17:00 Uhr am Vortag unter Tel. 07661/ 9019200) - 8y (Rufbus, Tel. (06131) 4948455, Anmeldung mind. 2 Std. vor Abfahrt) - 8z (Keine unentgeltliche Beförderung Schwerbehinderter) - 90 (ALF- Bestellung am Vortag u. Tel.: 05722 1515 - Anw des VLS Tarifes) - 91 (Anmeldung bis spät. 30 Minuten vor Abfahrt unter Tel. 0531 28639588) - 93 (Rufbus (Kleinbus, max 8 Pers.), bis 19Uhr am Vortag anm.: 06421 205811) - 97 (Schwerbehindertenabteil) - 9a (Rufbus, Tel. (06131)4948455, Anmeldung bis 22 Uhr des Vortages) - 9b (Anrufbürgerbus; Tel. 0175-8977507 Anmeldung bis 30 Min. vor Abfahrt) - 9c (Anmeldung bis 60 Minuten vor Abfahrt unter Tel. 07661/ 9019200) - 9f (Bedarfshalt, Tel. 0391-5363180 Bitte bis 2 Std. vor Abfahrt anmelden) - 9F (Großraumabteil) - 9G (9-Euro-Ticket gültig) - 9i (ALT: verk. nur bei Anmeldung am Vortag bis 16:00 Uhr u. Tel. 05556 374) - 9k (SEV Fahrradbus; Mitnahme von Fahrrädern) - 9l (ALT: verk. nur bei Anmeldung bis 60 Min. vor Abfahrt u. Tel. 05556 374) - 9L (Nachtzug-Rezeption) - 9m (AST: Tel. 04542-9009132 Anm. 30 Min vor Abfahrt (Gruppe 1 Tag vorher)) - 9n (TaxiBus; Tel. (02333)3388 Anmeldung mind. 30 Min. vor Abfahrt) - 9N (9-Euro-Ticket nicht gültig) - 9o (Anm. 1 Std. v.Fahrt,Tel.07721 9132020;Gruppen mind.5 Werktage v.Fahrt) - 9p (Bedarfshalt, nur auf Anfrage. Bitte anm. unter 037755/2222) - 9q (AST; Tel.(06431)203456 Anmeld. 60Min vor Abfahrt zwischen 15 und 24Uhr) - 9r (Anm. am Vorabend bis 24 Uhr; Tel.-Nr.: 07721 9132020) - 9s (TaxiBus; Tel. 02441-99454545 Anm.30Min bis22Uhr; Gruppen 3Tage vorher) - 9S (Steuerwagen) - 9t ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 9T ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 9v (Kleinbus, Gruppen bitte anmelden, Tel. 09729-91010) - 9w (Anm. mind. 1h vor Abf., www.ding.eu oder 0731/1550- 505, 8-18Uhr) - 9x (Anm. mind. 1 Std. vor Abfahrt; Tel. (07392) 973717-225, Mo-Fr: 8-17Uhr) - 9y (Anm. mind. 1 Std. vor Abfahrt; (07392) 973717-226, Mo-Fr: 8-17Uhr) - 9z (Ruftaxi; Tel. 0800-3605200 (bitte Anmeldeverfahren beachten)) - a~ (Bedarfshalt/Zustieg tel. Anmeldung 90 min vor Abfahrt 038326-600-800) - a> (Bedarfshalt; Tel. (0800)6065600 Anmeldung bis 15Uhr am vorigen Werktag) - a| (Rufbus! Anmeldung bis 1 h vor Abfahrt unter 034607/202 94) - a (Rufbus: Tel. 06841 4312, Anmeldug bis 60 Minuten vor Abfahrt) - a_ (Tel. 03531-650010 Anmeldg. bis 90 Min vor Fahrtbeginn Mo-Fr 5:30-18:30) - a- (Bus kann wg. Ferienbeginn/Zeugnisausgabe früher abfahren bzw ausfallen) - a, (TaxiBus; Tel. 0700 / 88839839* Anmeldung 30 Min. vor Abfahrt) - a; (AnrufSammelTaxi; Tel. 0551-38444843 Anmeldung mind. 30 Min vor Abfahrt) - a: (Anmeldung bis 2 Stunden vor Fahrtbeginn unter Tel. 07542 / 7552) - a? (Bedarfshalt, Einstieg anm. bis 1h vor Abfahrt,03921-935945 (bis 18:00)) - a. (TaxiBus; Tel. 02831 / 398765 bis spätestens 30 Min. vor der Abfahrt) - a{ (Bedarfsfahrt bitte 60 Min. vor Abfahrt anmelden, Tel.: 06245 99834) - a} (Es gilt ausschließlich der Sondertarif Nachtschwärmer.) - a$ (Rufbus;Tel.(01802)892892* Bestellung mind 2Std vor Abfahrt von 7-20Uhr) - a* (TaxiBus-Anschlussfahrt, Fahrtwunsch beim Bus-Fahrer anmelden.) - a+ (Rufbus, Tel. (06131)8921652 Anmeldung am vorherigen Werktag bis 17Uhr) - A` (Tel. 09245-983267420, Anmeldung mind. 45 Min. vor Abfahrt) - A^ (Tel. 0951-96869734, Anmeldung bis spätestens am Vortag 12 Uhr) - A< (Rufbus: Anmeldung 60 min vor Abfahrt Tel:(07161) 41070) - A= (Rufbus verk. nach tel. Voranm. 03834/532424 mind. 60 Min.) - A> (Bitte bei Nutzung der Fähre Reservezeit einplanen! Fährt ohne Fahrplan) - A| (Anmeldung spätestens Freitag 18 Uhr, Tel.: 07128 / 687) - A (Schienenersatzverkehr Bus A) - A_ (Tel. 09245-983267419, Anmeldung mind. 45 Min. vor Abfahrt) - A- (Kein Zustieg mit Abo-Ticket: Bus-Bahn) - A, (Shuttle-Bus, Eintrittskarte = Fahrkarte, verkehrt nur bei Bedarf) - A; (Anmeldung bis 60 Min. vor Abfahrt unter Tel. 07331 8888) - A: (freies Attribut) - A! (Anmeldung spätestens am Vortag bis 17:00 Uhr, Tel. 09141-99350) - A? (Für GTF gesperrt) - A/ (Anm. bis 60 Min. vor Abfahrt unter Tel. 0751/3 61 41 52) - A. (Anm. 60 Min. vor Abfahrt, Tel. 0981-9714925 (Mo-Fr 8-17 Uhr)) - A\\' (verkehrt vom 01.05. bis 31.10. als RadBus) - A\\\" (Tel. 09521-953530, Anmeldung spätestens am Vortag bis 17 Uhr (Mo-Fr)) - A( (RFB: verkehrt nur bei Anmeldung bis 11:30 Uhr unter Tel. 04465 9496-0) - A) (Anmeldung bis 45 Minuten vor Abfahrt unter Tel. 07223 3319) - A[ (Rufbus; Tel. 09171-8392395, Anmeldung spätestens 60 Min. vor Abfahrt) - A] (Tel. 09171-8392396 Anmeldung mind. 90 Min. vor Abfahrt (Mo-Fr 7-20Uhr)) - A{ (Zustieg nur nach Voranmeldung, Tel.: 0981-971490 (Mo-Fr 8-17 Uhr)) - A} (Nur bei VFL-Wolfsburg Bundesligaheimspiel, Anpfiff um 18:00 Uhr) - A@ (Anmeldung bis 18 Uhr des Vortags, Tel. 07371/7407, Sondertarif) - A$ (Tel. 0800-0005645, Anmeldung bis 2 Std. vor Abfahrt) - A* (ALT, Anmeldung mindestens 30 min. vorher, Tel.: 07851 884848) - A\\\\ (Tel. 09171-8392395 Anmeldung mind. 90 Min. vor Abfahrt (Mo-Sa 7-20Uhr)) - A& (Tel. 09933-324, Anmeldung bis spätestens 17 Uhr am Vortag) - A# (Tel. 0800-0005645, Anmeldung spätestens am Vortag (Mo-Fr von 8-15 Uhr)) - A% (Nur nach Voranmeldung am Vortag der Fahrt, Tel. 0871-34994) - ^a (RFB: Anmeldung bis 16:00 Uhr am Vortag unter Tel. 04465 / 94960) - ~a (Anmeldung mind. 30 Min. vor Abf. unter Tel. 07152 335959) - <a (Voranmeldung bitte bis 30 Minuten vor Abfahrt, Tel. 0170-9419849) - =a (BahnCard der DB AG wird nicht anerkannt) - >a (Anmeldung bis spätestens 21:00 Uhr unter (07161) 41070) - |a (Anmeldung unter 0711/666 07 -783 oder -100.) - _a (Anm. am Vortag (Mo-Fr) bis 17:00, Tel. 07579/ 9211729) - ,a (Bedarfshaltestelle, Tel. 0173 / 2521021 Anm. bis 30 Min vor Abfahrt) - ;a (Tel. 0851-21370606, Anmeldung Mo - So von 06:30 Uhr - 21:00 Uhr) - :a (Bedarfshalt; Tel.034202-309980 Zustieg nach Anmeldg bis 1h vor Abfahrt) - .a (Kleinbus, Gruppen bitte unter 03741/4480 anmelden.) - {a (Rufbus, Anmeldung bitte am Vortag bis 15 Uhr, Tel.: 09523-95300) - }a (Anmeldung bis 1 Std. vor Abfahrt Mo-Fr -18 Uhr, Tel. 0800 5842870) - *a (Anmeld. bis spätestens 2 Std. vor Abfahrt unter 06781 219121) - +a (kostenlose Fahrradbeförderung (max. 3 Räder)) - ~A (Anruf-Linien-Taxi-Bitte anm. unter 0162 9097264 spät. 30 Min. vor Abf.) - |A (Rufbus: Voranmeldung bis 2 Stunden vor Fahrtbeginn unter 06181-6681357) - {A (Verkehrt nur bei Anmeldung bis 60 Min. vor Abfahrt unter: 0160 3133383) - }A (Tel. 09351-975797, BUS fährt nur nach Anmeldung bei Mobilitätszentrale) - a0 (Anm. ab 5 P. bis Fr. 12:00 o. am Vortag von Feiertagen;Tel.0731-15500) - A0 (AKN-Eisenbahn-AG) - a1 (TaxiBus; Tel. 02853 / 91910 Anmeldung mind. 30 Min. vor Abfahrt.) - A1 (Arriva) - a3 (Kleinbus; Gruppen bitte 3 Tage unter Tel. 05231-977681 anmelden) - a4 (AST; Tel. 01802 / 552000* Anmeldung mind. 45 Min. vor Abfahrt) - a5 (keine Fahrradmitnahme möglich) - A6 (Albtal-Verkehrs-Gesellschaft) - a8 (Anruf-Linientaxi, Tel. (0921)64422 Anmeldung bis 60 Min. vor Abfahrt.) - aa (RufBus: Tel. 04461 / 912298 Anmeldung bis spätestens 18:00 Uhr) - aA (RufBus, Tel. 03941-566166 Anmeldung mind. 60 Min. vor Fahrtbeginn) - Aa (Barrierefreies Fahrzeug 60Min vor Abf. unter Tel.0331-6614694 anmelden) - ab (AST, Tel. 07641 / 1212 Anmeldung 30 Min. vor gewünschter Fahrt) - aB (Zusatzbus v. Kues, Schulzentr - Kröv, Weisbrunnenhalle 5 Min vor Fahrt) - Ab (AST-Verkehr: Tel. (05541) 12848 Anmeldung bis 30 Minuten vor Abfahrt) - AB (Bus mit Fahrradanhänger) - aC (TaxiBus; Tel. 02831 / 398765 bitte bis 20 Uhr am Vortag bestellen) - Ac (Anruflinientaxi: Tel. 0441 / 9259292 Anmeldung am Werktag vor Abfahrt) - ad (Waldseebus nur bei Badewetter, Info: 06074-696609065 oder www.kvgOF.de) - aD (Rufbus, Tel. 07471 935050, Anmeldung mind. 60 Min. vor Abfahrt) - Ad (Taxibus; Tel. 0800/3504031 Anm. 30 Min vor Abfahrt, Gruppen am Vortag) - AD (Damenabteil) - ae (Mitnahme von max. 5 Fahrrädern 01.04. - 01.11. Infos: www.radbusse.de) - aE (Schülerverkehr-kann kurzfr entfallen. - Infos unter Tel. 03774 18020) - Ae (Tel. 08092-256518, Anmeldung bitte bis 1 Std. vor Abfahrt) - af (Kleinbus: Gruppen ab 10 Personen unter Tel. (03941)566161 anmelden) - aF (Beckenhof nur nach Anmeldung; Tel. 09189/7958 mind. 60 Min vor Abfahrt) - Af (Verkehrt nur nach Voranmeldung bis 70 Min. vor Abfahrt Tel. 08121/3141) - AF (Autofähre) - aG (Rufbus, Tel. 09524 / 850905 Anmeldung bis 15 Uhr am Vortag (Mo-Fr)) - Ag (Nur nach Voranmeld.bis 40 Min.vor Abfahrt, Tel.08084/94500 (tgl.6-22h)) - AG (VVO-Anschlussgarantie: Info unter 0800/3111888 oder www.vvo-online.de) - ah (Anmeldung mind. 30 Min. vor Fahrt Tel. 07041 / 2400 spez.Tarif) - aH (Voranmeldg. bis 1 Std. v. Abfahrt, Tel. 09245-983267422 (Mo-Fr 8-17)) - Ah (Nur nach Voranmeldung 45 Min vor Fahrt Tel. 0170/9419849 (tgl.6-22h)) - ai (Anm. bis 22 Uhr am Vortag unter Tel. (07245) 2323 oder 2635) - aI (Tel. 09723/91190 Anmeldung bis spät. 15 Uhr am Vortag (Mo-Fr)) - Ai (TaxiBus; Tel.0151-58036697 Anmeldung bis 60Min vor Abfahrt von 6-20Uhr) - AI (mit Anschluss Inselbahn) - aj (AST; Tel. 0202 / 750030 Anmeldung mind. 30 Minuten vor Abfahrt) - aJ (Anmeld. bis 1 Std. vor Abf., 09191-862511 (17-22h; Sa+So auch 9-11h)) - Aj (Taxibus; Tel. 05246-6600 Anmeldung 30 Min. vor Abfahrt von 10-18 Uhr) - AJ (ab Inselbahnhof mit Schiffsanschluss) - ak (Kleinbus; Gruppen bitte vorher anmelden) - aK (Rufbus; Tel. (0391)5481212 Anmeldung bis 30 Minuten vor Abfahrt) - Ak (Kleinfahrzeug-Gruppen sind anzumelden, Tel. 03733 / 151240) - al (Kleinbus - Gruppenfahrten bitte unter 0365 824 560 anmelden) - aL (Rufbus; Tel. 02381-9503313 Bestellung am Vortag (Mo-Fr) bis 15:30 Uhr) - Al (Kleinbus; Gruppen bitte am Vortag anmelden 0171 / 5057200) - AL (Anhaltische Bahngesellschaft) - am (Vornehmlich für den Schülerverkehr, Änderungen sind möglich) - aM (Anmeldung bis 1 Stunde vor Abfahrt: Tel. 07121-485588, Sondertarif) - Am (Ruftaxi, Tel. 06326 / 980144 Anmeldung mind. 60 Min vor Abfahrt) - an (Verkehrt nur nach Voranmeldung unter Tel. 09467/224) - aN (Rufbushst.: Hält nur nach Voranmeldung) - An (Anmeldung über www.moBiel.de/Anton oder Tel. 0521-511514,) - ao (Bedarfshalt, Tel. 03431-670815 Anmeldung 60 Min. vor Abfahrt) - aO (Anm. mind. 30 Min vor Abf. Tel. 07051/9689-0; letzte Anm. bis 17.00) - Ao (Rufbushaltestelle; bis 30 Min. vor Abfahrt unter 08122/92323 anmelden) - AO (Konsum alkoholischer Getränke im Zug verboten) - ap (Bedarfsfahrt, Tel.: 09733/81060, Anmeldung bis 15:00 Uhr des Vortages) - Ap (Rufbus: Tel. 06371 459174, Anmeldug bis 60 Minuten vor Abfahrt) - AP (Globalpreis oder Fahrkarte zzgl. Aufpreis möglich) - aq (Tel. 08341-809529 Anmeldung 60 Min. vor Abfahrt (Anm. 10-19 Uhr)) - aQ (verkehrt nur bei Anm. bis 30 Minuten vor Abfahrt Tel. 0175 / 6000148) - Aq (Anmeldeverkehr unter 07443 / 247131 bis 1 Std. vor Abfahrt) - AQ (Buchung: bte-autoreisezug.de; autoreisezug@bahntouristikexpress.de) - ar (Anm. bis 60Min vor Abfahrt, Tel. 09631-7929899, Mo-Fr 7-18:30, Sa 7-12) - aR (ALT: Fahrt bitte mindestens 30 Min vorher anmelden unter 05207/2357) - Ar (AST: Tel. 05656 / 334932 Anmeldung bis 30 Minuten vor Abfahrt) - as (Erw. Fahrradbeförderung vom 15.04. bis 01.10.2023, max. 20 Fahrräder) - aS (Anmeldungszeiten 8:00 - 12:00 Uhr, sonst am Vortag) - As (Tel. 0159-04267760, Anmeldung bis 60 Min. vor Abfahrt, Sa-So 07-22 Uhr) - AS (nur für Reisende mit Kraftfahrzeug) - at (AST=Anruf-Sammel-Taxi) - aT (TaxiBus; Tel. 0208 / 4511122 mind. 30 Min. vor Abfahrt bestellen) - At (Anmeldung bis 18.00 Uhr des Vortages: Tel. 07373 / 1539) - AT (Zug führt Autotransportwagen) - au (Bedarfsabhängige Bedienung:Fahrtverlauf abhängig vom Fahrgastaufkommen) - aU (Rufbus; bitte anmelden unter Tel. 03643 / 86410) - Au (Taxibus; Tel. 02851-1263 Anmeldung mind. 30 Min. vor Abfahrt) - av (Fahrt kann schulbedingt geändert werden) - aV (Kleinbus; Gruppen > 4 Pers. 4 Werktage vorher anm., Tel 06631-963333*) - Av (Rufbus: Tel. 06783 99500, Anmeldug bis 60 Minuten vor Abfahrt) - AV (Tickets: arriva.express@panturist.hr oder 0800 1828530 (kostenlos)) - aw (Diese Fahrt wird mit einem Kleinbus mit max 8 Sitzplätzen durchgeführt) - aW (Voranmldung bitte bis 2 Stunden vor Abfahrt, Tel. 08651-62593) - Aw (Anruf-LinienTaxi; Tel. 06669 / 960230 Anmeldung bis 60 Min vor Abfahrt) - ax (Mit Fahrradanhänger. Reservierung unter 0241 912890 bis Fr. 12 Uhr.) - Ax (Ab Sachsenwaldau nur bei Bedarf: 30 Min. vor Abfahrt: Tel 040-72594830) - AX (Buchung: www.nachtexpress.de; Tel 04661-7368744; info@nachtexpress.de) - ay (Fahrräder müssen 5 Minuten vor Abfahrt zum Verladen bereitstehen)"
-          },
           "displayPriority": {
             "type": "number",
             "format": "double",
-            "description": "Display priority [Anzeigereihenfolge aka \\'Priorität*] for message. Order is ascending."
+            "description": "Display priority [Anzeigereihenfolge] for disruption-communication. Order is ascending."
           },
-          "displayPriorityDetail": {
-            "type": "number",
-            "format": "double",
-            "description": "Detailed display priority [detaillierte Anzeigereihenfolge aka \\'Feinsortierung\\'] for message. Order is ascending."
+          "langDe": {
+            "$ref": "#/components/schemas/DisruptionCommunicationDescription"
           },
-          "text": {
-            "type": "string",
-            "description": "Text for attribute."
+          "langEn": {
+            "$ref": "#/components/schemas/DisruptionCommunicationDescription"
           }
         },
         "required": [
+          "messageID",
+          "langDe"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "MessageNote": {
+        "description": "Note [Hinweistext] message.",
+        "properties": {
+          "messageID": {
+            "type": "number",
+            "format": "double",
+            "description": "ID of message that is unique within all message collections."
+          },
+          "code": {
+            "type": "string",
+            "description": "Optional code of note."
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional category of message, like for instance \\'Bauarbeiten\\' or \\'Informationen\\'."
+          },
+          "text": {
+            "type": "string",
+            "description": "Freetext of note."
+          },
+          "textShort": {
+            "type": "string",
+            "description": "Short freetext of note, may be empty."
+          }
+        },
+        "required": [
+          "messageID",
+          "text"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "MessageRisCauseCode": {
+        "description": "Ris cause code [RIS Kundengrund] message.",
+        "properties": {
+          "messageID": {
+            "type": "number",
+            "format": "double",
+            "description": "ID of message that is unique within all message collections."
+          },
+          "code": {
+            "type": "string",
+            "description": "RIS cause code [Code für RIS Kundengrund]. - 00 (entspricht \\'keine Verspätungsbegründung\\') - 01 (entspricht \\'nähere Informationen in Kürze\\') - 02 (entspricht \\'Polizeieinsatz\\') - 03 (entspricht \\'Feuerwehreinsatz auf der Strecke\\') - 04 (aktuell nicht belegt) - 05 (entspricht \\'ärztliche Versorgung eines Fahrgastes\\') - 06 (entspricht \\'unbefugtes Ziehen der Notbremse\\') - 07 (entspricht \\'unbefugte Personen auf der Strecke\\') - 08 (entspricht \\'Notarzteinsatz auf der Strecke\\') - 09 (entspricht \\'Streikauswirkungen\\') - 10 (entspricht \\'Tiere auf der Strecke\\') - 11 (entspricht \\'Unwetter\\') - 12 (entspricht \\'Warten auf ein verspätetes Schiff\\') - 13 (entspricht \\'Pass- und Zollkontrolle\\') - 14 (aktuell nicht belegt) - 15 (entspricht \\'Beeinträchtigung durch Vandalismus\\') - 16 (entspricht \\'Entschärfung einer Fliegerbombe\\') - 17 (entspricht \\'Beschädigung einer Brücke\\') - 18 (entspricht \\'umgestürzter Baum auf der Strecke\\') - 19 (entspricht \\'Unfall an einem Bahnübergang\\') - 20 (aktuell nicht belegt) - 21 (entspricht \\'Warten auf Anschlussreisende\\') - 22 (entspricht \\'Witterungsbedingte Beeinträchtigungen\\') - 23 (aktuell nicht belegt) - 24 (entspricht \\'Verspätung im Ausland\\') - 25 (entspricht \\'Bereitstellung weiterer Wagen\\') - 26 (aktuell nicht belegt) - 27 (aktuell nicht belegt) - 28 (entspricht \\'Gegenstände auf der Strecke\\') - 29 (entspricht \\'Ersatzverkehr mit Bus ist eingerichtet\\') - 30 (aktuell nicht belegt) - 31 (entspricht \\'Bauarbeiten\\') - 32 (entspricht \\'Unterstützung beim Ein- und Ausstieg\\') - 33 (entspricht \\'Reparatur an der Oberleitung\\') - 34 (entspricht \\'Reparatur an einem Signal\\') - 35 (entspricht \\'Streckensperrung \\') - 36 (entspricht \\'Reparatur am Zug\\') - 37 (aktuell nicht belegt) - 38 (entspricht \\'Reparatur an der Strecke\\') - 39 (entspricht \\'\\') - 40 (entspricht \\'defektes Stellwerk\\') - 41 (aktuell nicht belegt) - 42 (entspricht \\'vorübergehend verminderte Geschwindigkeit auf der Strecke\\') - 43 (entspricht \\'Verspätung eines vorausfahrenden Zuges\\') - 44 (entspricht \\'Warten auf einen entgegenkommenden Zug\\') - 45 (entspricht \\'Vorfahrt eines anderen Zuges\\') - 46 (entspricht \\'Vorfahrt eines anderen Zuges\\') - 47 (entspricht \\'verspätete Bereitstellung des Zuges\\') - 48 (entspricht \\'Verspätung aus vorheriger Fahrt\\') - 49 (entspricht \\'kurzfristiger Personalausfall\\') - 50 (entspricht \\'kurzfristige Erkrankung von Personal\\') - 51 (entspricht \\'verspätetes Personal aus vorheriger Fahrt\\') - 52 (entspricht \\'Streik\\') - 53 (entspricht \\'Unwetterauswirkungen\\') - 54 (entspricht \\'Verfügbarkeit der Gleise derzeit eingeschränkt\\') - 55 (aktuell nicht belegt) - 56 (entspricht \\'Warten auf Anschlussreisende\\') - 57 (entspricht \\'zusätzlicher Halt zum Ein- und Ausstieg\\') - 58 (entspricht \\'Umleitung des Zuges\\') - 59 (entspricht \\'Schnee und Eis\\') - 60 (entspricht \\'witterungsbedingt verminderte Geschwindigkeit\\') - 61 (entspricht \\'defekte Tür\\') - 62 (aktuell nicht belegt) - 63 (aktuell nicht belegt) - 64 (entspricht \\'Reparatur an der Weiche\\') - 65 (entspricht \\'Erdrutsch\\') - 66 (entspricht \\'Hochwasser\\') - 67 (entspricht \\'behördliche Maßnahme\\') - 68 (entspricht \\'hohes Fahrgastaufkommen verlängert Ein- und Ausstieg\\') - 69 (entspricht \\'Zug verkehrt mit verminderter Geschwindigkeit\\') - 99 (entspricht \\'sonstige Gründe\\')  note: list is not exhausting and more undocumented values may be returned"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text for code."
+          }
+        },
+        "required": [
+          "messageID",
           "code",
           "text"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "MessageType": {
-        "type": "string",
-        "enum": [
-          "CUSTOMER_TEXT",
-          "QUALITY_VARIATION",
-          "CUSTOMER_REASON"
-        ],
-        "description": "Classification of message. - CUSTOMER_TEXT (unstructured free text [unstrukturierter Kundenfreitext], may be based on HIM messages (no disruptions!) (for instance \\'Bitte beachten Sie die Maskenpflicht\\') - QUALITY_VARIATION (structured quality variations [struckturierte Qualitätsabweichung] (for instance \\'Geänderte Wagenreihung\\' or \\'Fahrradmitnahme nicht möglich\\') - CUSTOMER_REASON (structured customer reasons [struckturierte Kundenbegründungen] (for instance \\'Umgestürzter Baum auf Strecke\\' or \\'Verspätung aufgrund vorausfahrendem Zug\\')"
-      },
-      "MessageLegacy": {
-        "description": "Message for customers.",
+      "MessageRisQualityDeviation": {
+        "description": "Ris quality deviation [RIS Qualitätsabweichungen] message.",
         "properties": {
-          "category": {
-            "type": "string",
-            "description": "Optional category of message, like for instance \\'Bauarbeiten\\' or \\'Informationen\\'"
+          "messageID": {
+            "type": "number",
+            "format": "double",
+            "description": "ID of message that is unique within all message collections."
           },
           "code": {
             "type": "string",
-            "description": "Unique code of message may be empty in case of HIM based messages."
-          },
-          "displayPriority": {
-            "type": "number",
-            "format": "double",
-            "description": "Display priority [Anzeigereihenfolge] for message. Order is by display priority asc. May be empty."
+            "description": "RIS quality deviation [Code für RIS Qualitätsabweichung]. - 70 (WLAN nicht verfügbar) - 71 (WLAN in einem/mehreren Wagen nicht verfügbar) - 72 (Info-/Entertainment nicht verfügbar) - 73 (Heute: Mehrzweckabteil vorne) - 74 (Heute: Mehrzweckabteil hinten) - 75 (Heute: 1. Klasse vorne) - 76 (Heute: 1. Klasse hinten) - 77 (1. Klasse fehlt) - 78 (aktuell nicht belegt) - 79 (Mehrzweckabteil fehlt) - 80 (andere Reihenfolge der Wagen) - 81 (aktuell nicht belegt) - 82 (mehrere Wagen fehlen) - 83 (defekte fahrzeuggebundene Einstiegshilfe) - 84 (Zug verkehrt richtig gereiht) - 85 (ein Wagen fehlt) - 86 (gesamter Zug ohne Reservierung) - 87 (einzelne Wagen ohne Reservierung) - 88 (keine Qualitätsmängel) - 89 (Reservierungen sind wieder vorhanden) - 90 (kein gastronomisches Angebot) - 91 (Fahrradmitnahme nicht möglich) - 92 (Eingeschränkte Fahrradbeförderung ) - 93 (behindertengerechte Einrichtung fehlt) - 94 (Ersatzbewirtschaftung) - 95 (Universal-WC fehlt) - 96 (Überbesetzung mit Kulanzleistungen) - 97 (Überbesetzung ohne Kulanzleistungen) - 98 (sonstige Qualitätsmängel)  note: list is not exhausting and more undocumented values may be returned"
           },
           "text": {
             "type": "string",
-            "description": "Freetext of message."
-          },
-          "textShort": {
-            "type": "string",
-            "description": "Short freetext of message, may be empty."
-          },
-          "type": {
-            "$ref": "#/components/schemas/MessageType"
+            "description": "Text for code."
           }
         },
         "required": [
-          "text",
-          "type"
+          "messageID",
+          "code",
+          "text"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "TransportPublicDestinationOriginJourney": {
-        "description": "Public transport reference [Oeffentlicher Verkehr Referenz] with origin [Herkunft] and destination [Ziel] information and journey id [FahrtID].",
+      "Messages": {
+        "description": "Container to deduplicate messages [Störungskommunikationen, Fahrtmerkmale, Hinweise, RIS Kundengründe oder RIS Qualitätsabweichungen] in order to assign them to journeys [Fahrten], journey-events [Fahrtereignisse wie Abfahrt und Ankunft] and stop-places [Haltestellen]. - messages are provided once and may be referenced multiple times [z.B. ein Fahrtmerkmal für alle Fahrtereignisse oder eine Störungskommunikation für alle Abfahrten] - ids are not stable and only valid within the provided context (ie first journey request may have different message ids than second request for the same journey) - ids are unique over all buckets",
         "properties": {
-          "category": {
-            "type": "string",
-            "description": "Code of the transport [Fahrtgattung]."
+          "attributes": {
+            "items": {
+              "$ref": "#/components/schemas/MessageAttribute"
+            },
+            "type": "array",
+            "description": "List of journey-attributes [Fahrtmerkmale / Sollmerkmale]."
           },
-          "destination": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
+          "disruptions": {
+            "items": {
+              "$ref": "#/components/schemas/MessageDisruptionCommunication"
+            },
+            "type": "array",
+            "description": "List of disruption-communications [Störungskommunikationen]."
           },
-          "differingDestination": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
+          "notes": {
+            "items": {
+              "$ref": "#/components/schemas/MessageNote"
+            },
+            "type": "array",
+            "description": "List of notes [Freitexte / Hinweistexte]."
           },
-          "direction": {
-            "$ref": "#/components/schemas/DirectionInfo"
+          "risCauseCodes": {
+            "items": {
+              "$ref": "#/components/schemas/MessageRisCauseCode"
+            },
+            "type": "array",
+            "description": "List of ris cause codes [RIS Kundengründe]."
           },
-          "journeyID": {
-            "type": "string",
-            "description": "ID of journey [FahrtID]."
-          },
-          "label": {
-            "type": "string",
-            "description": "Marketing - or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
-          },
-          "line": {
-            "type": "string",
-            "description": "Line of the transport [Linie]."
-          },
-          "number": {
-            "type": "number",
-            "format": "double",
-            "description": "Number of the transport [Fahrtnummer]."
-          },
-          "replacementTransport": {
-            "$ref": "#/components/schemas/ReplacementTransport"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransportType"
+          "risQualityDeviations": {
+            "items": {
+              "$ref": "#/components/schemas/MessageRisQualityDeviation"
+            },
+            "type": "array",
+            "description": "List of ris quality deviations [RIS Qualitätsabweichungen]."
           }
         },
-        "required": [
-          "category",
-          "destination",
-          "journeyID",
-          "number",
-          "type"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "TimeType": {
-        "type": "string",
-        "enum": [
-          "SCHEDULE",
-          "PREVIEW",
-          "REAL"
-        ],
-        "description": "Specifies whether \\'time\\' is based on schedule or preview. - SCHEDULE (Time source is schedule) - PREVIEW (Time source is preview / forecast) - REAL (Time source is real)"
-      },
-      "TransportPublic": {
-        "description": "Public transport description for all types of trains, buses, subways, trams etc.",
-        "properties": {
-          "category": {
-            "type": "string",
-            "description": "Code of the transport [Fahrtgattung]."
-          },
-          "direction": {
-            "$ref": "#/components/schemas/DirectionInfo"
-          },
-          "label": {
-            "type": "string",
-            "description": "Marketing - or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
-          },
-          "line": {
-            "type": "string",
-            "description": "Line of the transport [Linie]."
-          },
-          "number": {
-            "type": "number",
-            "format": "double",
-            "description": "Number of the transport [Fahrtnummer]."
-          },
-          "replacementTransport": {
-            "$ref": "#/components/schemas/ReplacementTransport"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransportType"
-          }
-        },
-        "required": [
-          "category",
-          "number",
-          "type"
-        ],
         "type": "object",
         "additionalProperties": true
       },
@@ -859,202 +857,410 @@
           "ARRIVAL",
           "DEPARTURE"
         ],
-        "description": "Type of event. Can be arrival or departure. - ARRIVAL (Ankunft) - DEPARTURE (Abfahrt)"
+        "description": "Type of event. - ARRIVAL (Ankunft) - DEPARTURE (Abfahrt)"
       },
-      "ArrivalDepartureEvent": {
-        "description": "Journey event [Fahrtereignis].",
+      "StopPlaceDifferingInJourney": {
+        "description": "Differing stop-place [Haltestelle] in case a platform change [Gleiswechsel] within a station [Bahnhof], the stop-place belongs to, occurs and stop-place ids are changed (for instance a platform change in \\'Frankfurt Main Hbf\\' from platform \\'12\\' to \\'103\\' will result in a change of the stop-place id from \\'8000105\\' to \\'8098105\\' hence stopPlace.evaNumber = \\'8000105\\' and stopPlace.differingStopPlace.evaNumber = \\'8098105\\').",
         "properties": {
-          "additional": {
-            "type": "boolean",
-            "description": "Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that an event of an additional journey [Zusatzfahrt] is only considered as additional in case the event has been added to the journeys after the additional journey has been scheduled."
+          "evaNumber": {
+            "type": "string",
+            "description": "Eva number of stop-place [Haltestelle]."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for stop-place [Haltestelle] in fixed language \\'DE\\'."
+          }
+        },
+        "required": [
+          "evaNumber",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "StopPlaceInJourney": {
+        "description": "Stop-place [Haltestelle] information for a stop-place a transport [Verkehrsart / Verkehrsmittel] departs / arrives at.",
+        "properties": {
+          "evaNumber": {
+            "type": "string",
+            "description": "Eva number of stop-place [Haltestelle]."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for stop-place [Haltestelle] in fixed language \\'DE\\'."
+          },
+          "differingStopPlace": {
+            "$ref": "#/components/schemas/StopPlaceDifferingInJourney"
+          }
+        },
+        "required": [
+          "evaNumber",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TransportWithDirection": {
+        "description": "Transport [Verkehrsart / Verkehrsmittel] information.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the transport [externe Fahrtgattung]."
+          },
+          "journeyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of the transport [Fahrtnummer]."
+          },
+          "line": {
+            "type": "string",
+            "description": "Line of the transport [Linie]."
+          },
+          "label": {
+            "type": "string",
+            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+          },
+          "replacementTransport": {
+            "$ref": "#/components/schemas/ReplacementTransport"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/DirectionInfo"
           },
           "administration": {
             "$ref": "#/components/schemas/Administration"
+          }
+        },
+        "required": [
+          "type",
+          "category",
+          "journeyNumber",
+          "administration"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "CodeShare": {
+        "description": "Codeshare [Code-Teilungen mit Flügen verschiedener Fluggesellschaften] information for a particular journey event.",
+        "properties": {
+          "airlineCode": {
+            "type": "string",
+            "description": "Code of cooperating airline [IATA-Code der Fluggesellschaft]."
+          },
+          "flightnumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Flightnumber of cooperating airline journey [Flugnummer des Fluges der kooperierenden Fluggesellschaft]."
+          }
+        },
+        "required": [
+          "airlineCode",
+          "flightnumber"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TransportDestinationRef": {
+        "description": "Transport [Verkehrsart / Verkehrsmittel] information for journey references with destination.",
+        "properties": {
+          "journeyID": {
+            "type": "string",
+            "description": "ID of journey [FahrtID]."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the transport [externe Fahrtgattung]."
+          },
+          "journeyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of the transport [Fahrtnummer]."
+          },
+          "line": {
+            "type": "string",
+            "description": "Line of the transport [Linie]."
+          },
+          "label": {
+            "type": "string",
+            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+          },
+          "destination": {
+            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+          },
+          "differingDestination": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
+          }
+        },
+        "required": [
+          "journeyID",
+          "type",
+          "category",
+          "journeyNumber",
+          "destination"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TransportDestinationPortionWorkingRef": {
+        "description": "Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination [abweichender Zielhalt] for coupled transports [vereinigte Züge].",
+        "properties": {
+          "journeyID": {
+            "type": "string",
+            "description": "ID of journey [FahrtID]."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the transport [externe Fahrtgattung]."
+          },
+          "journeyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of the transport [Fahrtnummer]."
+          },
+          "line": {
+            "type": "string",
+            "description": "Line of the transport [Linie]."
+          },
+          "label": {
+            "type": "string",
+            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+          },
+          "destination": {
+            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+          },
+          "differingDestination": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
+          },
+          "separationAt": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
+          }
+        },
+        "required": [
+          "journeyID",
+          "type",
+          "category",
+          "journeyNumber",
+          "destination"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "JourneyEvent": {
+        "description": "Journey event [Fahrtereignis].",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/EventType"
           },
           "arrivalOrDepartureID": {
             "type": "string",
             "description": "ID of arrival or departure, depends on event type."
           },
-          "attributes": {
-            "items": {
-              "$ref": "#/components/schemas/MessageAttribute"
-            },
-            "type": "array",
-            "description": "List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop."
+          "stopPlace": {
+            "$ref": "#/components/schemas/StopPlaceInJourney"
           },
-          "canceled": {
-            "type": "boolean",
-            "description": "Indicates whether this event has been canceled."
+          "transport": {
+            "$ref": "#/components/schemas/TransportWithDirection"
           },
-          "disruptions": {
-            "items": {
-              "$ref": "#/components/schemas/DisruptionCommunicationEmbeddedLegacy"
-            },
-            "type": "array",
-            "description": "List of disruptions [Stoerungsinformationen] for journey at this particular stop."
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/MessageLegacy"
-            },
-            "type": "array",
-            "description": "List of messages [Freitexte] for journey at this particular stop [Freitexte]."
-          },
-          "onDemand": {
-            "type": "boolean",
-            "description": "Indicates whether arrival or departure is an on demand stop [Bedarfshalt]."
-          },
-          "passengerChange": {
-            "type": "boolean",
-            "description": "Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel]."
-          },
-          "platform": {
+          "timeSchedule": {
             "type": "string",
-            "description": "Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at."
+            "description": "Scheduled time [Soll] of stop as fully-qualified-date (ISO-8601 with time-zone or offset)."
+          },
+          "timeType": {
+            "type": "string",
+            "description": "Specifies on which information \\'time\\' is based. - SCHEDULE (Time source is schedule [Plan / Soll]) - PREVIEW (Time source is preview / forecast [Vorschau / Disposition / Prognose]) - REAL (Time source is real [Echt = passiert (kann nur in die Vergangenheit gesetzt werden)"
+          },
+          "time": {
+            "type": "string",
+            "description": "Best known time information of stop as fully-qualified-date (ISO-8601 with time-zone or offset)."
           },
           "platformSchedule": {
             "type": "string",
             "description": "Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at."
           },
-          "reliefBy": {
+          "platform": {
+            "type": "string",
+            "description": "Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at, may be empty."
+          },
+          "cancelled": {
+            "type": "boolean",
+            "description": "Indicates whether event is cancelled [Haltausfall]. Note: In case an event is cancelled and additional, it\\'s considered as an cancelled additional stop [zurückgenommener Zusatzhalt]."
+          },
+          "additional": {
+            "type": "boolean",
+            "description": "Indicates whether event is additional, meaning not be part of the regular schedule [Zusatzhalt]. Note: In case an event is cancelled and additional, it\\'s considered as an cancelled additional stop [zurückgenommener Zusatzhalt]."
+          },
+          "noPassengerChange": {
+            "type": "boolean",
+            "description": "Indicates whether passengers are not allowed to enter / leave [kein Fahrgastwechsel]."
+          },
+          "onDemand": {
+            "type": "boolean",
+            "description": "Indicates whether arrival / departure is an on demand stop [Bedarfshalt]."
+          },
+          "messages": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationOriginJourney"
+              "type": "number",
+              "format": "double"
             },
             "type": "array",
-            "description": "List of transports this journey at this particular event is reliefed by [Entlastungszug]."
+            "description": "List of message-ids [Nachrichten IDs] for this particular event. IDs are pointing to the global \\'messages\\' structure, containing disruption-communications [Störungskommunikationen], attributes [Fahrtmerkmale], notes [Hinweise], ris cause codes [RIS Kundengründe] and ris quality deviations [RIS Qualitätsabweichungen]."
+          },
+          "codeshares": {
+            "items": {
+              "$ref": "#/components/schemas/CodeShare"
+            },
+            "type": "array",
+            "description": "List of codeshares [Code-Teilungen mit Flügen verschiedener Fluggesellschaften] for this particular journey at this arrival / departure."
           },
           "reliefFor": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationOriginJourney"
+              "$ref": "#/components/schemas/TransportDestinationRef"
             },
             "type": "array",
             "description": "List of transports this journey at this particular event reliefs for [Entlastungszug]."
           },
-          "replacedBy": {
+          "reliefBy": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationOriginJourney"
+              "$ref": "#/components/schemas/TransportDestinationRef"
             },
             "type": "array",
-            "description": "List of transports this journey at this particular event is replaced by [Ersatzzug]."
+            "description": "List of transports this journey at this particular event is reliefed by [Entlastungszug]."
           },
           "replacementFor": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationOriginJourney"
+              "$ref": "#/components/schemas/TransportDestinationRef"
             },
             "type": "array",
             "description": "List of transports this journey at this particular event replaces [Ersatzzug]."
           },
-          "station": {
-            "$ref": "#/components/schemas/StopPlaceEmbedded"
-          },
-          "time": {
-            "type": "string",
-            "description": "Best known time information of stop as fully qualified date (for instance \\'2019-08-19T12:56:14+02:00\\' or \\'2019-08-19T10:56:14Z\\')."
-          },
-          "timeSchedule": {
-            "type": "string",
-            "description": "Scheduled time [Soll] of stop as fully qualified date (for instance \\'2019-08-19T12:56:14+02:00\\' or \\'2019-08-19T10:56:14Z\\')."
-          },
-          "timeType": {
-            "$ref": "#/components/schemas/TimeType"
-          },
-          "transport": {
-            "$ref": "#/components/schemas/TransportPublic"
+          "replacedBy": {
+            "items": {
+              "$ref": "#/components/schemas/TransportDestinationRef"
+            },
+            "type": "array",
+            "description": "List of transports this journey at this particular event is replaced by [Ersatzzug]."
           },
           "travelsWith": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationPortionWorking"
+              "$ref": "#/components/schemas/TransportDestinationPortionWorkingRef"
             },
             "type": "array",
             "description": "List of journeys this journey at this particular event travels with [Vereinigung]."
-          },
-          "type": {
-            "$ref": "#/components/schemas/EventType"
           }
         },
         "required": [
-          "additional",
-          "administration",
+          "type",
           "arrivalOrDepartureID",
-          "attributes",
-          "canceled",
-          "messages",
-          "onDemand",
-          "passengerChange",
-          "platform",
-          "reliefBy",
-          "reliefFor",
-          "replacedBy",
-          "replacementFor",
-          "station",
-          "time",
+          "stopPlace",
+          "transport",
           "timeSchedule",
           "timeType",
-          "transport",
-          "travelsWith",
-          "type"
+          "time"
         ],
         "type": "object",
         "additionalProperties": true
       },
-      "JourneyType": {
-        "type": "string",
-        "enum": [
-          "REGULAR",
-          "REPLACEMENT",
-          "RELIEF",
-          "EXTRA"
-        ],
-        "description": "Defines whether journey [Fahrt] is regular or some kind of special. - REGULAR (Regular scheduled journey) - REPLACEMENT (Journey that replaces another journey) - RELIEF (Journey that reliefs another journey) - EXTRA (Journey that is somehow extra"
-      },
-      "JourneyEventBased": {
-        "description": "Event based [Fahrtereignisbasiert] information for a particular journey [Fahrtverlauf].",
+      "TransportOriginRef": {
+        "description": "Transport [Verkehrsart / Verkehrsmittel] information for journey references with origin.",
         "properties": {
-          "continuationBy": {
-            "$ref": "#/components/schemas/TransportPublicDestination"
-          },
-          "continuationFor": {
-            "$ref": "#/components/schemas/TransportPublicOrigin"
-          },
-          "destinationSchedule": {
-            "$ref": "#/components/schemas/StopPlaceEmbedded"
-          },
-          "disruptions": {
-            "items": {
-              "$ref": "#/components/schemas/DisruptionCommunicationEmbeddedLegacy"
-            },
-            "type": "array",
-            "description": "List of disruptions [Stoerungsinformationen] for whole journey."
-          },
-          "events": {
-            "items": {
-              "$ref": "#/components/schemas/ArrivalDepartureEvent"
-            },
-            "type": "array",
-            "description": "List of events [Fahrtereignisse]. Order is based on 1 - scheduled time and 2 - arrival before departure."
-          },
-          "journeyCanceled": {
-            "type": "boolean",
-            "description": "Flag that indicates whether whole journey has been canceled."
-          },
           "journeyID": {
             "type": "string",
             "description": "ID of journey [FahrtID]."
           },
-          "originSchedule": {
-            "$ref": "#/components/schemas/StopPlaceEmbedded"
-          },
           "type": {
-            "$ref": "#/components/schemas/JourneyType"
+            "type": "string",
+            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the transport [externe Fahrtgattung]."
+          },
+          "journeyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of the transport [Fahrtnummer]."
+          },
+          "line": {
+            "type": "string",
+            "description": "Line of the transport [Linie]."
+          },
+          "label": {
+            "type": "string",
+            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+          },
+          "origin": {
+            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+          },
+          "differingOrigin": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
           }
         },
         "required": [
-          "destinationSchedule",
-          "events",
-          "journeyCanceled",
           "journeyID",
-          "originSchedule",
-          "type"
+          "type",
+          "category",
+          "journeyNumber",
+          "origin"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "JourneyEventBased": {
+        "description": "Event based [Fahrtereignisbasiert] information for a particular journey [Fahrtverlauf].",
+        "properties": {
+          "journeyID": {
+            "type": "string",
+            "description": "ID of journey [FahrtID]."
+          },
+          "info": {
+            "$ref": "#/components/schemas/JourneyInfo"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/Messages"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyEvent"
+            },
+            "type": "array",
+            "description": "List of events [Fahrtereignisse (Abfahrten und Ankünfte)]."
+          },
+          "eventsCancelled": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyEvent"
+            },
+            "type": "array",
+            "description": "List of cancelled events [ausgefallene Fahrtereignisse (Abfahrten und Ankünfte)]. Only filled in case separation of cancelled events has been requested."
+          },
+          "continuationFor": {
+            "items": {
+              "$ref": "#/components/schemas/TransportOriginRef"
+            },
+            "type": "array",
+            "description": "Continuation by predecessor journey, if available [Durchbindung am Start]."
+          },
+          "continuationBy": {
+            "items": {
+              "$ref": "#/components/schemas/TransportDestinationRef"
+            },
+            "type": "array",
+            "description": "Continuation by successor journey, if available [Durchbindung am Ziel]."
+          }
+        },
+        "required": [
+          "journeyID",
+          "info"
         ],
         "type": "object",
         "additionalProperties": true
