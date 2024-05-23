@@ -87,7 +87,9 @@ export async function searchStopPlaceRisStations(
 ): Promise<GroupedStopPlace[]> {
   if (!searchTerm) return [];
 
-  searchTerm = manualNameOverrides.get(searchTerm.toLowerCase()) || searchTerm;
+  searchTerm =
+    manualNameOverrides.get(searchTerm.toLowerCase()) ||
+    searchTerm.toLowerCase();
 
   const searchCache = groupBySales
     ? stopPlaceSalesSearchCache
