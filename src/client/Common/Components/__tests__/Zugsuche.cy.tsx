@@ -1,6 +1,9 @@
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 
 describe('Zugsuche', () => {
+  beforeEach(() => {
+    cy.setCookie('politicSeen', 'true');
+  });
   const dummyTrigger = (toggleModal: any) => (
     <div onClick={toggleModal} data-testid="dummytoggle">
       toggle
