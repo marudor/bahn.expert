@@ -4,7 +4,7 @@ import type { FC } from 'react';
 
 const Privacy = () => (
   <div data-testid="Privacy">
-    <h2>Impressum</h2>
+    {/* <h2>Impressum</h2>
     <p>Verantwortlich für diese Seite ist:</p>
     <p>
       <span>
@@ -14,7 +14,7 @@ const Privacy = () => (
         <br />
         {globalThis.IMPRINT.town}
       </span>
-    </p>
+    </p> */}
     <h2>Datenschutzerklärung</h2>
     <h3>Logdaten des Webservers</h3>
     <p>
