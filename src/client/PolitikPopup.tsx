@@ -1,11 +1,28 @@
-import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  styled,
+} from '@mui/material';
 import { useCallback, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useStorage } from '@/client/useStorage';
 import type { FC } from 'react';
 
+const CloseButton = styled(IconButton)`
+  position: absolute;
+  right: 8px;
+  top: 8px;
+`;
+
 export const PolitikPopup: FC = () => {
   const storage = useStorage();
-  const [open, setOpen] = useState(!storage.get('politicSeen'));
+  const [searchParam] = useSearchParams();
+  const [open, setOpen] = useState(
+    !(searchParam.get('politic') || storage.get('politicSeen')),
+  );
   const close = useCallback(() => {
     storage.set('politicSeen', true);
     setOpen(false);
@@ -17,8 +34,13 @@ export const PolitikPopup: FC = () => {
 
   return (
     <Dialog open={open} onClose={close}>
-      <DialogTitle>Ich bin sauer (Politik)</DialogTitle>
-      <DialogContent>
+      <DialogTitle>
+        Ich bin sauer (Politik)
+        <CloseButton onClick={close}>
+          <CloseIcon />
+        </CloseButton>
+      </DialogTitle>
+      <DialogContent dividers>
         Wir haben einen Tag nach der Europawahl und ich bin sauer und traurig...
         <br />
         Hiermit an alle AFD Wählenden: <strong>FICKT EUCH!</strong>
