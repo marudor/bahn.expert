@@ -12,11 +12,12 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  NoSsr,
   styled,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { NavigationContext } from './NavigationContext';
-import { PolitikPopup } from '@/client/PolitikPopup';
+import { PolitikBanner } from '@/client/PolitikBanner';
 import { SettingsModal } from '@/client/Common/Components/SettingsModal';
 import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
@@ -62,7 +63,9 @@ export const Navigation: FC<Props> = ({ children }) => {
 
   return (
     <>
-      <PolitikPopup />
+      <NoSsr>
+        <PolitikBanner />
+      </NoSsr>
       <SettingsModal />
       <NavigationContext.Provider value={navigationContext}>
         <Drawer open={open} onClose={toggleDrawer}>
