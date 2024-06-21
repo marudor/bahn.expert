@@ -14,6 +14,8 @@ const possibleTexts = [
   'Kein Mensch ist illegal',
   '"Nie wieder" ist immer, nicht nur alle 4 Jahre beim Kreuzchen machen',
   'Kein Platz für Rassismus',
+  'Trans rights are human rights',
+  'Trans rights or riot nights',
 ];
 
 const anchorOrigin: SnackbarOrigin = {
