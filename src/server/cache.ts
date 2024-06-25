@@ -85,16 +85,16 @@ const CacheTTLs: Record<CacheDatabase, string> = {
   [CacheDatabase.LocMatch]: 'PT24H',
   [CacheDatabase.HIMMessage]: 'PT24H',
   [CacheDatabase.NAHSHLageplan]: 'PT48H',
-  [CacheDatabase.StopPlaceSearch]: 'PT24H',
+  [CacheDatabase.StopPlaceSearch]: 'P2D',
   [CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
     'PT15M',
     process.env.COACH_SEQUENCE_CACHE_TTL,
   ),
-  [CacheDatabase.StopPlaceIdentifier]: 'PT24H',
-  [CacheDatabase.StopPlaceByEva]: 'PT24H',
-  [CacheDatabase.StopPlaceByRil]: 'PT24H',
-  [CacheDatabase.StopPlaceGroups]: 'PT24H',
-  [CacheDatabase.StopPlaceSalesSearch]: 'PT4H',
+  [CacheDatabase.StopPlaceIdentifier]: 'P2D',
+  [CacheDatabase.StopPlaceByEva]: 'P2D',
+  [CacheDatabase.StopPlaceByRil]: 'P2D',
+  [CacheDatabase.StopPlaceGroups]: 'P2D',
+  [CacheDatabase.StopPlaceSalesSearch]: 'P2D',
   [CacheDatabase.HAFASJourneyMatch]: 'PT6H',
   [CacheDatabase.NegativeNewSequence]: 'PT6H',
   [CacheDatabase.SBBStopPlaces]: 'P1D',
@@ -203,6 +203,10 @@ export class Cache<V> {
     } catch (e) {
       logger.error(e, 'Redis set failed');
     }
+  }
+  async delete(key: string): Promise<number> {
+    this.lruCache?.delete(key);
+    return this.redisCache?.del(key) ?? Promise.resolve(0);
   }
   async exists(key: string): Promise<boolean> {
     if (this.lruCache?.has(key)) {

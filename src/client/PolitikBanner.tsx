@@ -16,6 +16,7 @@ const possibleTexts = [
   'Kein Platz für Rassismus',
   'Trans rights are human rights',
   'Trans rights or riot nights',
+  'Die Brandmauer ist überall. Auch auf der Drehscheibe!',
 ];
 
 const anchorOrigin: SnackbarOrigin = {
@@ -25,19 +26,19 @@ const anchorOrigin: SnackbarOrigin = {
 
 export const PolitikBanner: FC = () => {
   const storage = useStorage();
-  const timesSeen = storage.get('timesPoliticSeen') ?? 0;
+  const timesSeen = storage.get('timesPoliticSeenNew') ?? 0;
   const [open, setOpen] = useState(timesSeen < 14);
   useEffect(() => {
     if (Math.random() * 100 < 0.75) {
-      storage.remove('timesPoliticSeen');
+      storage.remove('timesPoliticSeenNew');
     }
   }, [storage]);
   const setClose = useCallback(() => {
-    let timesSeen = storage.get('timesPoliticSeen') ?? 0;
+    let timesSeen = storage.get('timesPoliticSeenNew') ?? 0;
     if (typeof timesSeen !== 'number') {
       timesSeen = 0;
     }
-    storage.set('timesPoliticSeen', timesSeen + 1);
+    storage.set('timesPoliticSeenNew', timesSeen + 1);
     setOpen(false);
   }, [storage]);
   const selectedText = useMemo(
