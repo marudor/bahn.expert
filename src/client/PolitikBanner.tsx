@@ -17,6 +17,7 @@ const possibleTexts = [
   'Trans rights are human rights',
   'Trans rights or riot nights',
   'Die Brandmauer ist überall. Auch auf der Drehscheibe!',
+  '#EisenbahnerAntifa',
 ];
 
 const anchorOrigin: SnackbarOrigin = {
