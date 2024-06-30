@@ -1,9 +1,14 @@
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import type { FC } from 'react';
-import type { TransportPublicDestinationPortionWorking } from '@/external/generated/risJourneys';
+import type {
+  TransportPublicDestinationOriginJourney,
+  TransportPublicDestinationPortionWorking,
+} from '@/external/generated/risJourneys';
 
 interface Props {
-  transport: TransportPublicDestinationPortionWorking;
+  transport:
+    | TransportPublicDestinationPortionWorking
+    | TransportPublicDestinationOriginJourney;
 }
 
 export const TransportName: FC<Props> = ({ transport }) => {

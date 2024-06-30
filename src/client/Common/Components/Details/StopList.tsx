@@ -1,6 +1,8 @@
 import { css, Stack, styled } from '@mui/material';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
+import { ReplacedBySummary } from './ReplacedBySummary';
+import { ReplacementForSummary } from './ReplacementForSummary';
 import { Stop } from '@/client/Common/Components/Details/Stop';
 import { TravelsWithSummary } from '@/client/Common/Components/Details/TravelsWithSummary';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -96,6 +98,8 @@ export const StopList: FC = () => {
   return (
     <Stack>
       <TravelsWithSummary stops={details.stops} />
+      <ReplacementForSummary stops={details.stops} />
+      <ReplacedBySummary stops={details.stops} />
       {detailsStops}
     </Stack>
   );

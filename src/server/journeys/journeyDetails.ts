@@ -15,6 +15,7 @@ import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import type {
   ArrivalDepartureEvent,
+  TransportPublicDestinationOriginJourney,
   TransportPublicDestinationPortionWorking,
 } from '@/external/generated/risJourneys';
 import type { CommonStopInfo } from '@/types/HAFAS';
@@ -86,6 +87,8 @@ export function getCategoryAndNumberFromName(trainName: string):
 interface StopInfoWithAdditional extends CommonStopInfo {
   additional?: boolean;
   travelsWith?: TransportPublicDestinationPortionWorking[];
+  replacedBy?: TransportPublicDestinationOriginJourney[];
+  replacementFor?: TransportPublicDestinationOriginJourney[];
 }
 
 function mapEventToCommonStopInfo(
@@ -109,6 +112,8 @@ function mapEventToCommonStopInfo(
     platform: e.platform,
     isRealTime: e.timeType === 'REAL' || undefined,
     travelsWith: e.travelsWith,
+    replacedBy: e.replacedBy,
+    replacementFor: e.replacementFor,
   };
 }
 
@@ -134,6 +139,73 @@ function newStopInfoIsAfter(stop: JourneyStop, event: ArrivalDepartureEvent) {
     return false;
   }
   return true;
+}
+
+interface Reference {
+  journeyID: string;
+}
+
+type ReferenceKeys<T> = {
+  [K in keyof T]: T[K] extends Reference[] | undefined ? K : never;
+}[keyof T];
+
+function aggregatePerStopJourneyReferences<
+  Key extends ReferenceKeys<StopInfoWithAdditional>,
+  StartAggregateKey extends ReferenceKeys<JourneyStop>,
+  StopAggregateKey extends ReferenceKeys<JourneyStop>,
+>(
+  stop: JourneyStop,
+  referenceKey: Key,
+  startAggregateKey: StartAggregateKey,
+  stopAggregateKey: StopAggregateKey,
+) {
+  // NOTE: TypeScript isn't smart enough to understand that "Key" is entirely contained in "keyof StopInfoWithAdditional".
+  const arrivalReferences = stop.arrival?.[
+    referenceKey as keyof StopInfoWithAdditional
+  ] as Reference[] | undefined;
+
+  const departureReferences = stop.departure?.[
+    referenceKey as keyof StopInfoWithAdditional
+  ] as Reference[] | undefined;
+
+  if (arrivalReferences) {
+    for (const reference of arrivalReferences) {
+      if (
+        !departureReferences?.some(
+          (transport) => transport.journeyID === reference.journeyID,
+        )
+      ) {
+        const stopAggregations =
+          (stop[stopAggregateKey as keyof JourneyStop] as
+            | Reference[]
+            | undefined) ?? [];
+        stopAggregations.push(reference);
+        (stop[stopAggregateKey as keyof JourneyStop] as Reference[]) =
+          stopAggregations;
+      }
+    }
+  }
+
+  if (departureReferences) {
+    for (const reference of departureReferences) {
+      if (
+        !arrivalReferences?.some(
+          (transport) => transport.journeyID === reference.journeyID,
+        )
+      ) {
+        const startAggregations =
+          (stop[startAggregateKey as keyof JourneyStop] as
+            | Reference[]
+            | undefined) ?? [];
+        startAggregations.push(reference);
+        (stop[startAggregateKey as keyof JourneyStop] as Reference[]) =
+          startAggregations;
+      }
+    }
+  }
+
+  delete stop.departure?.[referenceKey as keyof StopInfoWithAdditional];
+  delete stop.arrival?.[referenceKey as keyof StopInfoWithAdditional];
 }
 
 async function stopsFromEvents(
@@ -191,32 +263,26 @@ async function stopsFromEvents(
     }
 
     // mapTravelsWith to split/join
-    if (s.arrival?.travelsWith) {
-      for (const travelsWith of s.arrival.travelsWith) {
-        if (
-          !s.departure?.travelsWith?.some(
-            (t) => t.journeyID === travelsWith.journeyID,
-          )
-        ) {
-          s.splitsWith = s.splitsWith || [];
-          s.splitsWith.push(travelsWith);
-        }
-      }
-    }
-    if (s.departure?.travelsWith) {
-      for (const travelsWith of s.departure.travelsWith) {
-        if (
-          !s.arrival?.travelsWith?.some(
-            (t) => t.journeyID === travelsWith.journeyID,
-          )
-        ) {
-          s.joinsWith = s.joinsWith || [];
-          s.joinsWith.push(travelsWith);
-        }
-      }
-    }
-    delete s.departure?.travelsWith;
-    delete s.arrival?.travelsWith;
+    aggregatePerStopJourneyReferences(
+      s,
+      'travelsWith',
+      'joinsWith',
+      'splitsWith',
+    );
+
+    aggregatePerStopJourneyReferences(
+      s,
+      'replacedBy',
+      'startsBeingReplacedBy',
+      'stopsBeingReplacedBy',
+    );
+
+    aggregatePerStopJourneyReferences(
+      s,
+      'replacementFor',
+      'startsReplacing',
+      'stopsReplacing',
+    );
   }
 
   await rl100Promise;
