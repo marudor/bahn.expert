@@ -97,14 +97,16 @@ function mapEventToCommonStopInfo(
   const delay =
     e.timeType === TimeType.Schedule
       ? undefined
-      : differenceInMinutes(time, scheduledTime);
+      : differenceInMinutes(time, scheduledTime, {
+          roundingMethod: 'floor',
+        });
 
   return {
     scheduledTime,
     time,
+    delay,
     cancelled: e.canceled,
     additional: e.additional,
-    delay,
     scheduledPlatform: e.platformSchedule,
     platform: e.platform,
     isRealTime: e.timeType === 'REAL' || undefined,

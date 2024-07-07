@@ -21,7 +21,12 @@ export default (
 
   if (d.dTimeR) {
     time = parseTime(date, d.dTimeR, d.dTZOffset);
-    delay = time && scheduledTime && differenceInMinutes(time, scheduledTime);
+    delay =
+      time &&
+      scheduledTime &&
+      differenceInMinutes(time, scheduledTime, {
+        roundingMethod: 'floor',
+      });
   }
 
   return {

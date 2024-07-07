@@ -32,7 +32,9 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
   const delay =
     e.timeType === 'SCHEDULE'
       ? undefined
-      : differenceInMinutes(time, scheduledTime);
+      : differenceInMinutes(time, scheduledTime, {
+          roundingMethod: 'floor',
+        });
 
   return {
     scheduledTime,
