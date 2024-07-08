@@ -21,6 +21,9 @@ const stopPlaceIdentifierCache = new Cache<StopPlaceIdentifier | undefined>(
   CacheDatabase.StopPlaceIdentifier,
 );
 const stopPlaceByRilCache = new Cache<StopPlace>(CacheDatabase.StopPlaceByRil);
+const stopPlaceByRilGroupedCache = new Cache<GroupedStopPlace>(
+  CacheDatabase.StopPlaceByRilGrouped,
+);
 const stopPlaceByEvaCache = new Cache<GroupedStopPlace>(
   CacheDatabase.StopPlaceByEva,
 );
@@ -122,12 +125,7 @@ export async function getStopPlaceByEva(
   if (risResult) {
     const groupedStopPlace = mapToGroupedStopPlace(risResult);
     await addIdentifiers([groupedStopPlace]);
-    if (!forceLive) {
-      void stopPlaceByEvaCache.set(
-        groupedStopPlace.evaNumber,
-        groupedStopPlace,
-      );
-    }
+    void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
     return groupedStopPlace;
   } else if (!forceLive) {
     const hafasResults = await searchWithHafas(evaNumber, 1, false);
@@ -175,6 +173,10 @@ export async function getStopPlaceByRl100(
   }
   const grouped = mapToGroupedStopPlace(stopPlace);
   await addIdentifiers([grouped]);
+  if (grouped.ril100) {
+    void stopPlaceByRilGroupedCache.set(grouped.ril100, grouped);
+  }
+  void stopPlaceByEvaCache.set(grouped.evaNumber, grouped);
   return grouped;
 }
 
@@ -196,6 +198,13 @@ async function searchStopPlaceRemote(
     }
   }
   await addIdentifiers(groupedStopPlaces);
+
+  for (const s of groupedStopPlaces) {
+    void stopPlaceByEvaCache.set(s.evaNumber, s);
+    if (s.ril100) {
+      void stopPlaceByRilGroupedCache.set(s.ril100, s);
+    }
+  }
 
   const searchCache = groupBySales
     ? stopPlaceSalesSearchCache
