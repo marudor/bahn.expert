@@ -10,8 +10,8 @@ const formatDate = (date?: Date) =>
   date
     ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm')
     : undefined;
-const formatPlannedDate = (date?: Date) =>
-  date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
+// const formatPlannedDate = (date?: Date) =>
+//   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 
 const coachSequenceCache = new Cache<CoachSequenceInformation>(
   CacheDatabase.ParsedCoachSequenceFound,
@@ -35,9 +35,7 @@ export async function DBCoachSequence(
 
   const formattedDate = formatDate(date);
 
-  const cacheKey = `${trainNumber}-${formattedDate}-${formatPlannedDate(
-    plannedStartDate,
-  )}-${trainCategory}-${stopEva}`;
+  const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${stopEva}`;
   const cached = await coachSequenceCache.get(cacheKey);
   if (cached) {
     return cached;
