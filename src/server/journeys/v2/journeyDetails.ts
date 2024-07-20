@@ -51,8 +51,8 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
         ...tw.destination,
         canceled: Boolean(tw.destination.cancelled),
       },
-      differingDestination: tw.differingDestination && {
-        ...tw.differingDestination,
+      differingDestination: tw.separationAt && {
+        ...tw.separationAt,
         canceled: Boolean(e.cancelled),
       },
       direction: undefined,
