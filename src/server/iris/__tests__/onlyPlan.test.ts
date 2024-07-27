@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint no-sync: 0 */
-import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   mockFchg,
   mockLageplan,
@@ -10,17 +10,16 @@ import { Timetable } from '@/server/iris/Timetable';
 import fs from 'node:fs';
 import path from 'node:path';
 
-jest.mock('@/server/cache');
+vi.mock('@/server/cache');
 
 describe('onlyPlan', () => {
   beforeAll(() => {
-    jest.useFakeTimers({
-      advanceTimers: true,
+    vi.useFakeTimers({
       now: 1552824000000,
     });
   });
   afterAll(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
   const baseFixturePath = '__fixtures__/plan';
   const fixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath));

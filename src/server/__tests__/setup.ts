@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/prefer-module */
-import { afterAll, beforeAll, expect } from '@jest/globals';
+import { afterAll, beforeAll, expect } from 'vitest';
 import { disconnectRedis } from '@/server/cache';
 import Nock from 'nock';
 

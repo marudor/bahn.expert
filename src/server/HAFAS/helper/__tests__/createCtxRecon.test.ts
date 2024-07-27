@@ -1,5 +1,5 @@
 import { addSeconds, parse } from 'date-fns';
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import createCtxRecon from '@/server/HAFAS/helper/createCtxRecon';
 import type {
   RouteValidArrivalStop,

@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-module */
 /* eslint no-sync: 0 */
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import { Timetable } from '@/server/iris/Timetable';
 import fs from 'node:fs';
 import path from 'node:path';

@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it } from '@jest/globals';
+import { afterAll, describe, expect, it } from 'vitest';
 import { Cache, parseCacheTTL } from '@/server/cache';
 
 const defineCacheTests = (createCache: () => Cache<unknown>) => {
