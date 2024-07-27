@@ -35,9 +35,9 @@ jobs:
           pnpm i --frozen-lockfile
         env:
           CYPRESS_INSTALL_BINARY: 0
-      - name: jest
+      - name: unit test
         run: |
-          pnpm test:jest
+          pnpm test:unit
       - name: lint
         run: |
           pnpm lint

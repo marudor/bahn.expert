@@ -62,7 +62,6 @@ cypress/videos/
 cypress/screenshots/
 junit.xml
 cypress-coverage/
-jest-coverage/
 
 .yarn/*
 !.yarn/cache

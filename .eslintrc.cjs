@@ -58,7 +58,6 @@ module.exports = {
     {
       files: ['**/__tests__/**'],
       globals: { nock: true },
-      env: { jest: true },
     },
     {
       files: ['src/client/**'],

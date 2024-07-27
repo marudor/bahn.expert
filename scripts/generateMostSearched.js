@@ -12,15 +12,17 @@ const mostUsedNames = [
   'Frankfurt (Main) Hbf',
   'Karlsruhe Hbf',
   'Dortmund Hbf',
+  'Regensburg Hbf',
   'Köln Hbf',
-  'Hannover Hbf',
   'Hamburg Hbf',
-  'Düsseldorf Hbf',
   'Berlin Hbf',
-  'Stuttgart Hbf',
+  'Hannover Hbf',
   'München Hbf',
-  'Mannheim Hbf',
+  'Düsseldorf Hbf',
+  'Stuttgart Hbf',
   'Nürnberg Hbf',
+  'Mannheim Hbf',
+  'Dresden Hbf',
 ].map((n) => n.toLowerCase());
 
 Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
