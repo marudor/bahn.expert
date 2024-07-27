@@ -179,7 +179,7 @@
     "koa-static": "^5.0.0",
     "leaflet": "^1.9.4",
     "lefthook": "^1.7.9",
-    "libxmljs2": "^0.33.0",
+    "libxmljs2": "^0.35.0",
     "lru-cache": "^10.2.2",
     "pino": "^8.20.0",
     "pino-pretty": "^10.3.1",
