@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "engines": {
-    "node": "^21"
+    "node": "^22"
   },
   "private": true,
   "engineStrict": true,

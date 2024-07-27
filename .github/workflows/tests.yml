@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 21
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 22
       - name: install
         run: |
           corepack enable
@@ -47,7 +47,7 @@ jobs:
   ct:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-20.11.0-chrome-121.0.6167.184-1-ff-123.0-edge-121.0.2277.128-1
+      image: cypress/browsers:node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
       options: --user 1001
     strategy:
       matrix:
@@ -56,10 +56,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 21
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 22
       - name: Install Deps
         run: |
           corepack enable
@@ -82,7 +82,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-20.11.0-chrome-121.0.6167.184-1-ff-123.0-edge-121.0.2277.128-1
+      image: cypress/browsers:node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
       options: --user 1001
     strategy:
       matrix:
@@ -91,10 +91,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 21
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 22
       - name: Install Deps
         run: |
           corepack enable
@@ -126,10 +126,10 @@ jobs:
       - e2e
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 21
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 22
       - name: finalize percy
         run: |
           corepack enable

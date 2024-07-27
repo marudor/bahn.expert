@@ -5,7 +5,7 @@
   },
   "env": {
     "targets": {
-      "node": "21"
+      "node": "22"
     }
   },
   "sourceMaps": true,
