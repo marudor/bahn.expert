@@ -2,7 +2,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { App } from './App';
 // eslint-disable-next-line no-restricted-imports
 import { CacheProvider } from '@emotion/react';
-import { deDE } from '@mui/x-date-pickers';
+import { deDE } from '@mui/x-date-pickers/locales/deDE';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StyledEngineProvider } from '@mui/material';
 import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';

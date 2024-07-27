@@ -158,7 +158,7 @@
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.5",
     "@mui/system": "^5.16.5",
-    "@mui/x-date-pickers": "6.19.6",
+    "@mui/x-date-pickers": "7.11.1",
     "@styled/typescript-styled-plugin": "^1.0.1",
     "@swc/helpers": "^0.5.12",
     "@tsoa/runtime": "6.4.0",
