@@ -1,6 +1,6 @@
 import { axiosUpstreamInterceptor } from '@/server/admin';
+import { fromZonedTime } from 'date-fns-tz';
 import { isValid, parse } from 'date-fns';
-import { zonedTimeToUtc } from 'date-fns-tz';
 import Axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import type { Element } from 'libxmljs2';
@@ -96,7 +96,7 @@ export function parseTs(ts?: string): undefined | Date {
     const format = ts.includes('-') ? 'yy-MM-dd HH:mm:ss.SSS' : 'yyMMddHHmm';
     const parsedDate = parse(ts, format, Date.now());
     if (isValid(parsedDate)) {
-      return zonedTimeToUtc(parsedDate, 'Europe/Berlin');
+      return fromZonedTime(parsedDate, 'Europe/Berlin');
     }
   }
 }

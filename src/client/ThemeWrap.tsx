@@ -1,14 +1,15 @@
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { App } from './App';
 // eslint-disable-next-line no-restricted-imports
 import { CacheProvider } from '@emotion/react';
-import { deDE } from '@mui/x-date-pickers/locales/deDE';
+// @ts-expect-error ESM fuckup
+import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
+import { de as deLocale } from 'date-fns/locale/de';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StyledEngineProvider } from '@mui/material';
 import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
 import { ThemeProvider } from '@/client/Themes/Provider';
 import createEmotionCache from '@emotion/cache';
-import deLocale from 'date-fns/locale/de';
 // eslint-disable-next-line no-restricted-imports
 import type { EmotionCache } from '@emotion/react';
 import type { ReactElement, ReactNode } from 'react';

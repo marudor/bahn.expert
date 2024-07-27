@@ -3,13 +3,11 @@ import { format } from 'date-fns';
 import { getBahnhofLiveSequence } from '@/server/coachSequence/DB/bahnhofLive';
 import { getNewDBCoachSequence } from '@/server/coachSequence/DB/bahnDe';
 import { isWithin20Hours } from '@/external/coachSequence';
-import { utcToZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 
 const formatDate = (date?: Date) =>
-  date
-    ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm')
-    : undefined;
+  date ? format(toZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm') : undefined;
 // const formatPlannedDate = (date?: Date) =>
 //   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 

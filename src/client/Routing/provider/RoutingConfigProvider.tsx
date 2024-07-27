@@ -9,10 +9,11 @@ import {
   subDays,
 } from 'date-fns';
 import { AllowedHafasProfile } from '@/types/HAFAS';
+import { de as deLocale } from 'date-fns/locale/de';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
-import deLocale from 'date-fns/locale/de';
+import type { Day } from 'date-fns';
 import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
@@ -54,11 +55,11 @@ const useRoutingConfigInternal = ({
       if (isSameDay(date, today)) relativeDayString = 'Heute';
       else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
       else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
-      relativeDayString += `, ${deLocale.localize?.day(date.getDay(), {
+      relativeDayString += `, ${deLocale.localize?.day(date.getDay() as Day, {
         width: 'short',
       })}`;
     } else {
-      relativeDayString = deLocale.localize?.day(date.getDay());
+      relativeDayString = deLocale.localize?.day(date.getDay() as Day);
     }
     relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
     if (!isSameYear(date, today)) {
