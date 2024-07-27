@@ -1,5 +1,5 @@
 diff --git a/dist/index.d.ts b/dist/index.d.ts
-index adf4216bd4fc0de14f12a95695778f233b71b4f8..4ca47ecef0fbe4c2c25c45f1dfaf167f379f58fe 100644
+index c46b4ca85a24c07c86015ac14b80a3ee1dc3c346..8550e86dd5e541477378ed0065bbd23885b94fb1 100644
 --- a/dist/index.d.ts
 +++ b/dist/index.d.ts
 @@ -1,5 +1,4 @@
@@ -7,14 +7,14 @@ index adf4216bd4fc0de14f12a95695778f233b71b4f8..4ca47ecef0fbe4c2c25c45f1dfaf167f
 -import Bluebird from 'bluebird';
  import * as events from 'events';
  import webpack from 'webpack';
- declare type FilePath = string;
+ type FilePath = string;
 @@ -21,7 +20,7 @@ interface FileEvent extends events.EventEmitter {
   * Cypress asks file preprocessor to bundle the given file
   * and return the full path to produced bundle.
   */
--declare type FilePreprocessor = (file: FileEvent) => Bluebird<FilePath>;
-+declare type FilePreprocessor = (file: FileEvent) => Promise<FilePath>;
- declare type WebpackPreprocessorFn = (options: PreprocessorOptions) => FilePreprocessor;
+-type FilePreprocessor = (file: FileEvent) => Bluebird<FilePath>;
++type FilePreprocessor = (file: FileEvent) => Promise<FilePath>;
+ type WebpackPreprocessorFn = (options: PreprocessorOptions) => FilePreprocessor;
  /**
   * Cypress file preprocessor that can bundle specs
 diff --git a/dist/lib/utils.d.ts b/dist/lib/utils.d.ts
