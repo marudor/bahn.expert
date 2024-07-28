@@ -192,7 +192,7 @@ export const Stop: FC<Props> = ({
 			)}
 			<DeparturePlatform {...platforms.departure} />
 			{!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
-			<Stack gridArea="tw" paddingLeft={1}>
+			<Stack gridArea="tw" paddingLeft={1} width="fit-content">
 				<TravelsWith
 					stopEva={stop.station.evaNumber}
 					joinsWith={stop.joinsWith}
@@ -237,9 +237,9 @@ const AllowEntry: FC<AllowEntryProps> = ({ arrival, departure }) => {
 		);
 	}
 	if (arrival?.noPassengerChange) {
-		return 'Kein Ausstieg';
+		return <span>Kein Ausstieg</span>;
 	}
 	if (departure?.noPassengerChange) {
-		return 'Kein Einstieg';
+		return <span>Kein Einstieg</span>;
 	}
 };
