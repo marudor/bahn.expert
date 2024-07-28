@@ -218,6 +218,7 @@ export interface CommonStopInfo {
 	messages?: RemL[];
 	cancelled?: boolean;
 	isRealTime?: boolean;
+	noPassengerChange?: boolean;
 }
 
 export interface RemL {

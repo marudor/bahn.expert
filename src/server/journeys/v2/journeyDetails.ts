@@ -45,6 +45,7 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
 		scheduledPlatform: e.platformSchedule,
 		platform: e.platform,
 		isRealTime: e.timeType === 'REAL' || undefined,
+		noPassengerChange: e.noPassengerChange,
 		travelsWith: e.travelsWith,
 	};
 }

@@ -136,6 +136,9 @@
           },
           "isRealTime": {
             "type": "boolean"
+          },
+          "noPassengerChange": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -2331,6 +2334,9 @@
             "type": "boolean"
           },
           "isRealTime": {
+            "type": "boolean"
+          },
+          "noPassengerChange": {
             "type": "boolean"
           },
           "wingIds": {

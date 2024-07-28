@@ -8,7 +8,7 @@ import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import { themeMixins } from '@/client/Themes/mixins';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { RouteStop } from '@/types/routing';
-import { Stack, styled } from '@mui/material';
+import { Stack, Tooltip, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import type { FC, MouseEvent } from 'react';
 import { CoachSequence } from '../CoachSequence/CoachSequence';
@@ -198,6 +198,7 @@ export const Stop: FC<Props> = ({
 					joinsWith={stop.joinsWith}
 					splitsWith={stop.splitsWith}
 				/>
+				<AllowEntry arrival={stop.arrival} departure={stop.departure} />
 			</Stack>
 			{/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
 			<CoachSequenceContainer>
@@ -220,4 +221,25 @@ export const Stop: FC<Props> = ({
 			</MessageContainer>
 		</Container>
 	);
+};
+
+interface AllowEntryProps {
+	arrival?: RouteStop['arrival'];
+	departure?: RouteStop['departure'];
+}
+
+const AllowEntry: FC<AllowEntryProps> = ({ arrival, departure }) => {
+	if (arrival?.noPassengerChange && departure?.noPassengerChange) {
+		return (
+			<Tooltip title="Kein Einstieg & Kein Ausstieg garantiert">
+				<span>Betriebshalt</span>
+			</Tooltip>
+		);
+	}
+	if (arrival?.noPassengerChange) {
+		return 'Kein Ausstieg';
+	}
+	if (departure?.noPassengerChange) {
+		return 'Kein Einstieg';
+	}
 };
