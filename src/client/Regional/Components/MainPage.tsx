@@ -4,13 +4,13 @@ import type { FC } from 'react';
 import type { StaticRouterContext } from 'react-router';
 
 interface Props {
-  staticContext?: StaticRouterContext;
+	staticContext?: StaticRouterContext;
 }
 
 export const RegionalMainPage: FC<Props> = ({ staticContext }) => (
-  <>
-    <FavList staticContext={staticContext}>
-      <FavEntryDisplay nonClickable text="Nahverkehr Abfahrten" />
-    </FavList>
-  </>
+	<>
+		<FavList staticContext={staticContext}>
+			<FavEntryDisplay nonClickable text="Nahverkehr Abfahrten" />
+		</FavList>
+	</>
 );

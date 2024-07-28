@@ -1720,11 +1720,15 @@ const templateService = new KoaTemplateService(models, {"noImplicitAdditionalPro
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
+
 export function RegisterRoutes(router: KoaRouter) {
+
     // ###########################################################################################################
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
+
+
         router.get('/api/journeys/v1/health',
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
             ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.health)),
@@ -2577,7 +2581,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function CoachSequenceControllerV4_runsPerDate(context: Context, next: Next) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    response: {"in":"res","name":"401","required":true,"dataType":"union","subSchemas":[{"dataType":"void"},{"dataType":"string"}]},
+                    response: {"in":"res","name":"401","required":true,"dataType":"union","subSchemas":[{"dataType":"undefined"},{"dataType":"string"}]},
                     date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
                     baureihen: {"in":"query","name":"baureihen","dataType":"array","array":{"dataType":"refAlias","ref":"AvailableBR"}},
                     identifier: {"in":"query","name":"identifier","dataType":"array","array":{"dataType":"refAlias","ref":"AvailableIdentifier"}},

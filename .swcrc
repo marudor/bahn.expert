@@ -1,60 +1,60 @@
 {
-  "$schema": "https://json.schemastore.org/swcrc",
-  "module": {
-    "type": "commonjs"
-  },
-  "env": {
-    "targets": {
-      "node": "22"
-    }
-  },
-  "sourceMaps": true,
-  "jsc": {
-    "externalHelpers": true,
-    "loose": true,
-    "experimental": {
-      "plugins": [
-        ["@swc/plugin-emotion", {}],
-        [
-          "@swc/plugin-transform-imports",
-          {
-            "@mui/material": {
-              "transform": "@mui/material/{{member}}"
-            },
-            "@mui/icons-material": {
-              "transform": "@mui/icons-material/{{member}}"
-            }
-          }
-        ],
-        ["@swc/plugin-loadable-components", {}]
-      ]
-    },
-    "parser": {
-      "syntax": "typescript",
-      "tsx": true,
-      "decorators": true,
-      "dynamicImport": true
-    },
-    "transform": {
-      "decoratorMetadata": true,
-      "react": {
-        "runtime": "automatic",
-        "importSource": "@emotion/react"
-      }
-    },
-    "baseUrl": ".",
-    "paths": {
-      "@/client/*": ["src/client/*"],
-      "@/external/*": ["src/external/*"],
-      "@/oebb/*": ["src/oebb/*"],
-      "@/server/*": ["src/server/*"],
-      "@/types/*": ["src/types/*"],
-      "@/fixtures/*": ["cypress/fixtures/*"],
-      "@mui/material/css": ["src/swcWorkarounds/css"],
-      "@mui/material/styled": ["src/swcWorkarounds/styled"],
-      "@mui/material/keyframes": ["src/swcWorkarounds/keyframes"],
-      "@mui/material/useColorScheme": ["src/swcWorkarounds/useColorScheme"],
-      "@mui/material/useTheme": ["src/swcWorkarounds/useTheme"]
-    }
-  }
+	"$schema": "https://json.schemastore.org/swcrc",
+	"module": {
+		"type": "commonjs"
+	},
+	"env": {
+		"targets": {
+			"node": "22"
+		}
+	},
+	"sourceMaps": true,
+	"jsc": {
+		"externalHelpers": true,
+		"loose": true,
+		"experimental": {
+			"plugins": [
+				["@swc/plugin-emotion", {}],
+				[
+					"@swc/plugin-transform-imports",
+					{
+						"@mui/material": {
+							"transform": "@mui/material/{{member}}"
+						},
+						"@mui/icons-material": {
+							"transform": "@mui/icons-material/{{member}}"
+						}
+					}
+				],
+				["@swc/plugin-loadable-components", {}]
+			]
+		},
+		"parser": {
+			"syntax": "typescript",
+			"tsx": true,
+			"decorators": true,
+			"dynamicImport": true
+		},
+		"transform": {
+			"decoratorMetadata": true,
+			"react": {
+				"runtime": "automatic",
+				"importSource": "@emotion/react"
+			}
+		},
+		"baseUrl": ".",
+		"paths": {
+			"@/client/*": ["src/client/*"],
+			"@/external/*": ["src/external/*"],
+			"@/oebb/*": ["src/oebb/*"],
+			"@/server/*": ["src/server/*"],
+			"@/types/*": ["src/types/*"],
+			"@/fixtures/*": ["cypress/fixtures/*"],
+			"@mui/material/css": ["src/swcWorkarounds/css"],
+			"@mui/material/styled": ["src/swcWorkarounds/styled"],
+			"@mui/material/keyframes": ["src/swcWorkarounds/keyframes"],
+			"@mui/material/useColorScheme": ["src/swcWorkarounds/useColorScheme"],
+			"@mui/material/useTheme": ["src/swcWorkarounds/useTheme"]
+		}
+	}
 }

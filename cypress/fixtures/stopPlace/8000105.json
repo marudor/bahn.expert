@@ -1,12 +1,12 @@
 {
-  "evaNumber": "8000105",
-  "name": "Frankfurt(Main)Hbf",
-  "availableTransports": [
-    "INTERCITY_TRAIN",
-    "INTER_REGIONAL_TRAIN",
-    "HIGH_SPEED_TRAIN",
-    "REGIONAL_TRAIN",
-    "CITY_TRAIN"
-  ],
-  "position": { "longitude": 8.663789, "latitude": 50.107145 }
+	"evaNumber": "8000105",
+	"name": "Frankfurt(Main)Hbf",
+	"availableTransports": [
+		"INTERCITY_TRAIN",
+		"INTER_REGIONAL_TRAIN",
+		"HIGH_SPEED_TRAIN",
+		"REGIONAL_TRAIN",
+		"CITY_TRAIN"
+	],
+	"position": { "longitude": 8.663789, "latitude": 50.107145 }
 }

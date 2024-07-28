@@ -1,258 +1,258 @@
 {
-  "sequence": {
-    "groups": [
-      {
-        "coaches": [
-          {
-            "class": 4,
-            "category": "TRIEBKOPF",
-            "vehicleCategory": "POWERCAR",
-            "closed": true,
-            "position": { "endPercent": 100, "startPercent": 95 },
-            "identificationNumber": "",
-            "type": "I4015",
-            "uic": "938054015566",
-            "features": {}
-          },
-          {
-            "class": 1,
-            "category": "REISEZUGWAGENERSTEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
-            "position": { "endPercent": 95, "startPercent": 89 },
-            "identificationNumber": "12",
-            "type": "Avmz",
-            "uic": "938058018558",
-            "features": { "quiet": true, "disabled": true }
-          },
-          {
-            "class": 1,
-            "category": "REISEZUGWAGENERSTEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
-            "position": { "endPercent": 89, "startPercent": 82 },
-            "identificationNumber": "11",
-            "type": "Avmz",
-            "uic": "938058010852",
-            "features": { "comfort": true }
-          },
-          {
-            "class": 2,
-            "category": "SPEISEWAGEN",
-            "vehicleCategory": "DININGCAR",
-            "position": { "endPercent": 82, "startPercent": 76 },
-            "identificationNumber": "7",
-            "type": "WRmz",
-            "uic": "938058040081",
-            "features": { "dining": true }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 76, "startPercent": 69 },
-            "identificationNumber": "6",
-            "type": "Bpmbsz",
-            "uic": "938058031403",
-            "features": {
-              "info": true,
-              "toddler": true,
-              "wheelchair": true,
-              "comfort": true,
-              "disabled": true
-            }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 69, "startPercent": 63 },
-            "identificationNumber": "5",
-            "type": "Bvmz",
-            "uic": "938058023020",
-            "features": { "family": true }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 63, "startPercent": 56 },
-            "identificationNumber": "4",
-            "type": "Bvmz",
-            "uic": "938058020885",
-            "features": { "disabled": true }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 56, "startPercent": 50 },
-            "identificationNumber": "3",
-            "type": "Bvmz",
-            "uic": "938058023673",
-            "features": {}
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 50, "startPercent": 43 },
-            "identificationNumber": "2",
-            "type": "Bvmz",
-            "uic": "938058026528",
-            "features": { "quiet": true }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 43, "startPercent": 37 },
-            "identificationNumber": "1",
-            "type": "Bvmz",
-            "uic": "938058028268",
-            "features": {}
-          },
-          {
-            "class": 4,
-            "category": "TRIEBKOPF",
-            "closed": true,
-            "vehicleCategory": "POWERCAR",
-            "position": { "endPercent": 37, "startPercent": 32 },
-            "identificationNumber": "",
-            "type": "I4010",
-            "uic": "938054010567",
-            "features": {}
-          }
-        ],
-        "destinationName": "Nürnberg Hbf",
-        "originName": "Hamburg-Altona",
-        "name": "ICE0156",
-        "number": "587",
-        "trainName": "Heppenheim/Bergstraße",
-        "baureihe": {
-          "identifier": "401.LDV",
-          "baureihe": "401",
-          "name": "ICE 1 LDV (BR401)"
-        }
-      },
-      {
-        "coaches": [
-          {
-            "class": 4,
-            "category": "TRIEBKOPF",
-            "vehicleCategory": "POWERCAR",
-            "closed": true,
-            "position": { "endPercent": 32, "startPercent": 27 },
-            "identificationNumber": "",
-            "type": "I4020",
-            "uic": "938054020095",
-            "features": {}
-          },
-          {
-            "class": 1,
-            "category": "REISEZUGWAGENERSTEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
-            "position": { "endPercent": 27, "startPercent": 21 },
-            "identificationNumber": "37",
-            "type": "Apmz",
-            "uic": "938058053134",
-            "features": { "quiet": true, "disabled": true },
-            "seats": { "disabled": "12, 21" }
-          },
-          {
-            "class": 1,
-            "category": "REISEZUGWAGENERSTEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
-            "position": { "endPercent": 21, "startPercent": 14 },
-            "identificationNumber": "36",
-            "type": "Apmz",
-            "uic": "938058050130",
-            "features": { "comfort": true },
-            "seats": { "comfort": "11-16, 21, 22" }
-          },
-          {
-            "class": 2,
-            "category": "SPEISEWAGEN",
-            "vehicleCategory": "DININGCAR",
-            "position": { "endPercent": 14, "startPercent": 8 },
-            "identificationNumber": "35",
-            "type": "WRmbsz",
-            "uic": "938058070310",
-            "features": { "dining": true, "info": true, "wheelchair": true }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 8, "startPercent": 1 },
-            "identificationNumber": "34",
-            "type": "Bpmbz",
-            "uic": "938058060170",
-            "features": {
-              "family": true,
-              "toddler": true,
-              "wheelchair": true,
-              "disabled": true
-            },
-            "seats": { "disabled": "81, 85-88", "family": "61-78" }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": 1, "startPercent": -5 },
-            "identificationNumber": "33",
-            "type": "Bpmz",
-            "uic": "938058063141",
-            "features": { "comfort": true },
-            "seats": { "comfort": "81-108" }
-          },
-          {
-            "class": 2,
-            "category": "REISEZUGWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": -5, "startPercent": -12 },
-            "identificationNumber": "32",
-            "type": "Bpmz",
-            "uic": "938058066037",
-            "features": { "quiet": true }
-          },
-          {
-            "class": 2,
-            "category": "STEUERWAGENZWEITEKLASSE",
-            "vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
-            "position": { "endPercent": -12, "startPercent": -18 },
-            "identificationNumber": "31",
-            "type": "Bpmzf",
-            "uic": "938058080095",
-            "features": {}
-          }
-        ],
-        "destinationName": "Nürnberg Hbf",
-        "originName": "Bremen Hbf",
-        "name": "ICE0209",
-        "number": "537",
-        "trainName": "Riesa",
-        "baureihe": {
-          "baureihe": "402",
-          "identifier": "402",
-          "name": "ICE 2 (BR402)"
-        }
-      }
-    ]
-  },
-  "product": { "number": "587", "type": "ICE" },
-  "stop": {
-    "stopPlace": { "evaNumber": "8000152", "name": "Hannover Hbf" },
-    "sectors": [
-      { "name": "G", "position": { "endPercent": 10, "startPercent": 0 } },
-      { "name": "F", "position": { "endPercent": 23, "startPercent": 10 } },
-      { "name": "E", "position": { "endPercent": 35, "startPercent": 23 } },
-      { "name": "D", "position": { "endPercent": 48, "startPercent": 35 } },
-      { "name": "C", "position": { "endPercent": 61, "startPercent": 48 } },
-      { "name": "B", "position": { "endPercent": 74, "startPercent": 61 } },
-      { "name": "A", "position": { "endPercent": 100, "startPercent": 74 } }
-    ]
-  },
-  "direction": false,
-  "isRealtime": true,
-  "multipleTrainNumbers": true
+	"sequence": {
+		"groups": [
+			{
+				"coaches": [
+					{
+						"class": 4,
+						"category": "TRIEBKOPF",
+						"vehicleCategory": "POWERCAR",
+						"closed": true,
+						"position": { "endPercent": 100, "startPercent": 95 },
+						"identificationNumber": "",
+						"type": "I4015",
+						"uic": "938054015566",
+						"features": {}
+					},
+					{
+						"class": 1,
+						"category": "REISEZUGWAGENERSTEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
+						"position": { "endPercent": 95, "startPercent": 89 },
+						"identificationNumber": "12",
+						"type": "Avmz",
+						"uic": "938058018558",
+						"features": { "quiet": true, "disabled": true }
+					},
+					{
+						"class": 1,
+						"category": "REISEZUGWAGENERSTEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
+						"position": { "endPercent": 89, "startPercent": 82 },
+						"identificationNumber": "11",
+						"type": "Avmz",
+						"uic": "938058010852",
+						"features": { "comfort": true }
+					},
+					{
+						"class": 2,
+						"category": "SPEISEWAGEN",
+						"vehicleCategory": "DININGCAR",
+						"position": { "endPercent": 82, "startPercent": 76 },
+						"identificationNumber": "7",
+						"type": "WRmz",
+						"uic": "938058040081",
+						"features": { "dining": true }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 76, "startPercent": 69 },
+						"identificationNumber": "6",
+						"type": "Bpmbsz",
+						"uic": "938058031403",
+						"features": {
+							"info": true,
+							"toddler": true,
+							"wheelchair": true,
+							"comfort": true,
+							"disabled": true
+						}
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 69, "startPercent": 63 },
+						"identificationNumber": "5",
+						"type": "Bvmz",
+						"uic": "938058023020",
+						"features": { "family": true }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 63, "startPercent": 56 },
+						"identificationNumber": "4",
+						"type": "Bvmz",
+						"uic": "938058020885",
+						"features": { "disabled": true }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 56, "startPercent": 50 },
+						"identificationNumber": "3",
+						"type": "Bvmz",
+						"uic": "938058023673",
+						"features": {}
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 50, "startPercent": 43 },
+						"identificationNumber": "2",
+						"type": "Bvmz",
+						"uic": "938058026528",
+						"features": { "quiet": true }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 43, "startPercent": 37 },
+						"identificationNumber": "1",
+						"type": "Bvmz",
+						"uic": "938058028268",
+						"features": {}
+					},
+					{
+						"class": 4,
+						"category": "TRIEBKOPF",
+						"closed": true,
+						"vehicleCategory": "POWERCAR",
+						"position": { "endPercent": 37, "startPercent": 32 },
+						"identificationNumber": "",
+						"type": "I4010",
+						"uic": "938054010567",
+						"features": {}
+					}
+				],
+				"destinationName": "Nürnberg Hbf",
+				"originName": "Hamburg-Altona",
+				"name": "ICE0156",
+				"number": "587",
+				"trainName": "Heppenheim/Bergstraße",
+				"baureihe": {
+					"identifier": "401.LDV",
+					"baureihe": "401",
+					"name": "ICE 1 LDV (BR401)"
+				}
+			},
+			{
+				"coaches": [
+					{
+						"class": 4,
+						"category": "TRIEBKOPF",
+						"vehicleCategory": "POWERCAR",
+						"closed": true,
+						"position": { "endPercent": 32, "startPercent": 27 },
+						"identificationNumber": "",
+						"type": "I4020",
+						"uic": "938054020095",
+						"features": {}
+					},
+					{
+						"class": 1,
+						"category": "REISEZUGWAGENERSTEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
+						"position": { "endPercent": 27, "startPercent": 21 },
+						"identificationNumber": "37",
+						"type": "Apmz",
+						"uic": "938058053134",
+						"features": { "quiet": true, "disabled": true },
+						"seats": { "disabled": "12, 21" }
+					},
+					{
+						"class": 1,
+						"category": "REISEZUGWAGENERSTEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
+						"position": { "endPercent": 21, "startPercent": 14 },
+						"identificationNumber": "36",
+						"type": "Apmz",
+						"uic": "938058050130",
+						"features": { "comfort": true },
+						"seats": { "comfort": "11-16, 21, 22" }
+					},
+					{
+						"class": 2,
+						"category": "SPEISEWAGEN",
+						"vehicleCategory": "DININGCAR",
+						"position": { "endPercent": 14, "startPercent": 8 },
+						"identificationNumber": "35",
+						"type": "WRmbsz",
+						"uic": "938058070310",
+						"features": { "dining": true, "info": true, "wheelchair": true }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 8, "startPercent": 1 },
+						"identificationNumber": "34",
+						"type": "Bpmbz",
+						"uic": "938058060170",
+						"features": {
+							"family": true,
+							"toddler": true,
+							"wheelchair": true,
+							"disabled": true
+						},
+						"seats": { "disabled": "81, 85-88", "family": "61-78" }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": 1, "startPercent": -5 },
+						"identificationNumber": "33",
+						"type": "Bpmz",
+						"uic": "938058063141",
+						"features": { "comfort": true },
+						"seats": { "comfort": "81-108" }
+					},
+					{
+						"class": 2,
+						"category": "REISEZUGWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": -5, "startPercent": -12 },
+						"identificationNumber": "32",
+						"type": "Bpmz",
+						"uic": "938058066037",
+						"features": { "quiet": true }
+					},
+					{
+						"class": 2,
+						"category": "STEUERWAGENZWEITEKLASSE",
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"position": { "endPercent": -12, "startPercent": -18 },
+						"identificationNumber": "31",
+						"type": "Bpmzf",
+						"uic": "938058080095",
+						"features": {}
+					}
+				],
+				"destinationName": "Nürnberg Hbf",
+				"originName": "Bremen Hbf",
+				"name": "ICE0209",
+				"number": "537",
+				"trainName": "Riesa",
+				"baureihe": {
+					"baureihe": "402",
+					"identifier": "402",
+					"name": "ICE 2 (BR402)"
+				}
+			}
+		]
+	},
+	"product": { "number": "587", "type": "ICE" },
+	"stop": {
+		"stopPlace": { "evaNumber": "8000152", "name": "Hannover Hbf" },
+		"sectors": [
+			{ "name": "G", "position": { "endPercent": 10, "startPercent": 0 } },
+			{ "name": "F", "position": { "endPercent": 23, "startPercent": 10 } },
+			{ "name": "E", "position": { "endPercent": 35, "startPercent": 23 } },
+			{ "name": "D", "position": { "endPercent": 48, "startPercent": 35 } },
+			{ "name": "C", "position": { "endPercent": 61, "startPercent": 48 } },
+			{ "name": "B", "position": { "endPercent": 74, "startPercent": 61 } },
+			{ "name": "A", "position": { "endPercent": 100, "startPercent": 74 } }
+		]
+	},
+	"direction": false,
+	"isRealtime": true,
+	"multipleTrainNumbers": true
 }

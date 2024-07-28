@@ -1,18 +1,18 @@
-import {
-  ArrowBackIos,
-  ArrowForwardIos,
-  Map,
-  Refresh,
-} from '@mui/icons-material';
-import { BaseHeader } from '../BaseHeader';
-import { format } from 'date-fns';
-import { IconButton, styled } from '@mui/material';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
-import { themeMixins } from '@/client/Themes/mixins';
-import { useCallback, useMemo } from 'react';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
+import { themeMixins } from '@/client/Themes/mixins';
 import type { CommonProductInfo } from '@/types/HAFAS';
+import {
+	ArrowBackIos,
+	ArrowForwardIos,
+	Map,
+	Refresh,
+} from '@mui/icons-material';
+import { IconButton, styled } from '@mui/material';
+import { format } from 'date-fns';
+import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
+import { BaseHeader } from '../BaseHeader';
 
 const SingleLineSpan = styled('span')(themeMixins.singleLineText);
 
@@ -60,92 +60,92 @@ const ArrowForward = styled(ArrowBack.withComponent(ArrowForwardIos))`
 `;
 
 interface FTNProps {
-  train?: CommonProductInfo;
-  fallback: string;
+	train?: CommonProductInfo;
+	fallback: string;
 }
 
 const FullTrainName: FC<FTNProps> = ({ train, fallback }) => {
-  if (!train) {
-    return <span>{fallback}</span>;
-  }
-  const usesNumberAsIdentification =
-    train?.number && train.name.endsWith(train.number);
-  return (
-    <span data-testid="detailsTrainName">
-      {train.name}
-      {!usesNumberAsIdentification && ` (${train.number})`}
-    </span>
-  );
+	if (!train) {
+		return <span>{fallback}</span>;
+	}
+	const usesNumberAsIdentification =
+		train?.number && train.name.endsWith(train.number);
+	return (
+		<span data-testid="detailsTrainName">
+			{train.name}
+			{!usesNumberAsIdentification && ` (${train.number})`}
+		</span>
+	);
 };
 
 export const Header: FC = () => {
-  const {
-    details,
-    additionalInformation,
-    refreshDetails,
-    trainName,
-    polyline,
-    toggleMapDisplay,
-    initialDepartureDate,
-    sameTrainDaysInFuture,
-  } = useDetails();
-  const refresh = useCallback(() => refreshDetails(), [refreshDetails]);
-  const dateForward = useCallback(() => {
-    sameTrainDaysInFuture(1);
-  }, [sameTrainDaysInFuture]);
+	const {
+		details,
+		additionalInformation,
+		refreshDetails,
+		trainName,
+		polyline,
+		toggleMapDisplay,
+		initialDepartureDate,
+		sameTrainDaysInFuture,
+	} = useDetails();
+	const refresh = useCallback(() => refreshDetails(), [refreshDetails]);
+	const dateForward = useCallback(() => {
+		sameTrainDaysInFuture(1);
+	}, [sameTrainDaysInFuture]);
 
-  const dateBack = useCallback(() => {
-    sameTrainDaysInFuture(-1);
-  }, [sameTrainDaysInFuture]);
+	const dateBack = useCallback(() => {
+		sameTrainDaysInFuture(-1);
+	}, [sameTrainDaysInFuture]);
 
-  const operatorName = useMemo(
-    () => additionalInformation?.operatorName || details?.train.operator?.name,
-    [additionalInformation, details],
-  );
+	const operatorName = useMemo(
+		() => additionalInformation?.operatorName || details?.train.operator?.name,
+		[additionalInformation, details],
+	);
 
-  return (
-    <BaseHeader>
-      <Container data-testid="detailsHeader">
-        <SingleLineSpan>
-          <FullTrainName train={details?.train} fallback={trainName} />
-        </SingleLineSpan>
-        <>
-          {operatorName && <Operator>{operatorName}</Operator>}
-          <DateDisplay>
-            <ArrowBack data-testid="previous" onClick={dateBack} />
-            {format(
-              details?.departure.time || initialDepartureDate,
-              'dd.MM.yyyy',
-            )}
-            <ArrowForward data-testid="next" onClick={dateForward} />
-          </DateDisplay>
-          {/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
-          <Arrow> → </Arrow>
-          {details && (
-            <Destination>
-              <StopPlaceNameWithRl100 stopPlace={details.segmentDestination} />
-            </Destination>
-          )}
-        </>
-      </Container>
-      {polyline && (
-        <IconButton
-          size="small"
-          onClick={toggleMapDisplay}
-          aria-label="map"
-          color="inherit"
-        >
-          <Map />
-        </IconButton>
-      )}
-      <IconButton
-        size="small"
-        onClick={refresh}
-        aria-label="refresh"
-        color="inherit"
-      >
-        <Refresh />
-      </IconButton>
-    </BaseHeader>
-  );
+	return (
+		<BaseHeader>
+			<Container data-testid="detailsHeader">
+				<SingleLineSpan>
+					<FullTrainName train={details?.train} fallback={trainName} />
+				</SingleLineSpan>
+				<>
+					{operatorName && <Operator>{operatorName}</Operator>}
+					<DateDisplay>
+						<ArrowBack data-testid="previous" onClick={dateBack} />
+						{format(
+							details?.departure.time || initialDepartureDate,
+							'dd.MM.yyyy',
+						)}
+						<ArrowForward data-testid="next" onClick={dateForward} />
+					</DateDisplay>
+					{/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
+					<Arrow> → </Arrow>
+					{details && (
+						<Destination>
+							<StopPlaceNameWithRl100 stopPlace={details.segmentDestination} />
+						</Destination>
+					)}
+				</>
+			</Container>
+			{polyline && (
+				<IconButton
+					size="small"
+					onClick={toggleMapDisplay}
+					aria-label="map"
+					color="inherit"
+				>
+					<Map />
+				</IconButton>
+			)}
+			<IconButton
+				size="small"
+				onClick={refresh}
+				aria-label="refresh"
+				color="inherit"
+			>
+				<Refresh />
+			</IconButton>
+		</BaseHeader>
+	);
 };

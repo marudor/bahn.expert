@@ -1,204 +1,204 @@
-import { addDays } from 'date-fns';
-import {
-  getAdditionalJourneyInformation,
-  getDetails,
-} from '@/client/Common/service/details';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import { useNavigate } from 'react-router';
-import constate from 'constate';
-import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
-import type { AxiosError } from 'axios';
+import {
+	getAdditionalJourneyInformation,
+	getDetails,
+} from '@/client/Common/service/details';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
-import type { MouseEvent } from 'react';
+import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteAuslastung, RouteStop } from '@/types/routing';
+import type { AxiosError } from 'axios';
+import constate from 'constate';
+import { addDays } from 'date-fns';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import type { MouseEvent } from 'react';
+import { useNavigate } from 'react-router';
 
 interface Props {
-  trainName: string;
-  initialDepartureDateString?: string;
-  evaNumberAlongRoute?: string;
-  urlPrefix?: string;
-  journeyId?: string;
-  // HAFAS
-  jid?: string;
-  administration?: string;
+	trainName: string;
+	initialDepartureDateString?: string;
+	evaNumberAlongRoute?: string;
+	urlPrefix?: string;
+	journeyId?: string;
+	// HAFAS
+	jid?: string;
+	administration?: string;
 }
 
 const useInnerDetails = ({
-  initialDepartureDateString,
-  evaNumberAlongRoute,
-  trainName,
-  urlPrefix,
-  journeyId,
-  jid,
-  administration,
+	initialDepartureDateString,
+	evaNumberAlongRoute,
+	trainName,
+	urlPrefix,
+	journeyId,
+	jid,
+	administration,
 }: Props) => {
-  const { autoUpdate } = useCommonConfig();
-  const [isMapDisplay, setIsMapDisplay] = useState(false);
-  const [showMarkers, setShowMarkers] = useState(false);
-  const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
-  const [additionalInformation, setAdditionalInformation] =
-    useState<AdditionalJourneyInformation>();
-  const [error, setError] = useState<AxiosError>();
-  const navigate = useNavigate();
+	const { autoUpdate } = useCommonConfig();
+	const [isMapDisplay, setIsMapDisplay] = useState(false);
+	const [showMarkers, setShowMarkers] = useState(false);
+	const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
+	const [additionalInformation, setAdditionalInformation] =
+		useState<AdditionalJourneyInformation>();
+	const [error, setError] = useState<AxiosError>();
+	const navigate = useNavigate();
 
-  const initialDepartureDate = useMemo(() => {
-    if (!initialDepartureDateString) return new Date();
-    const initialDepartureNumber = +initialDepartureDateString;
-    return new Date(
-      Number.isNaN(initialDepartureNumber)
-        ? initialDepartureDateString
-        : initialDepartureNumber,
-    );
-  }, [initialDepartureDateString]);
+	const initialDepartureDate = useMemo(() => {
+		if (!initialDepartureDateString) return new Date();
+		const initialDepartureNumber = +initialDepartureDateString;
+		return new Date(
+			Number.isNaN(initialDepartureNumber)
+				? initialDepartureDateString
+				: initialDepartureNumber,
+		);
+	}, [initialDepartureDateString]);
 
-  const sameTrainDaysInFuture = useCallback(
-    (daysForward: number) => {
-      const oldDate = details?.departure.scheduledTime || initialDepartureDate;
-      const newDate = addDays(oldDate, daysForward);
-      const newAdministration = administration || details?.train.admin;
-      navigate(
-        `${
-          urlPrefix || '/'
-        }details/${trainName}/${newDate.toISOString()}?administration=${newAdministration}`,
-      );
-      setDetails(undefined);
-      setAdditionalInformation(undefined);
-      setError(undefined);
-    },
-    [
-      initialDepartureDate,
-      details,
-      administration,
-      navigate,
-      urlPrefix,
-      trainName,
-    ],
-  );
+	const sameTrainDaysInFuture = useCallback(
+		(daysForward: number) => {
+			const oldDate = details?.departure.scheduledTime || initialDepartureDate;
+			const newDate = addDays(oldDate, daysForward);
+			const newAdministration = administration || details?.train.admin;
+			navigate(
+				`${
+					urlPrefix || '/'
+				}details/${trainName}/${newDate.toISOString()}?administration=${newAdministration}`,
+			);
+			setDetails(undefined);
+			setAdditionalInformation(undefined);
+			setError(undefined);
+		},
+		[
+			initialDepartureDate,
+			details,
+			administration,
+			navigate,
+			urlPrefix,
+			trainName,
+		],
+	);
 
-  const refreshDetails = useCallback(
-    (isAutorefresh?: boolean) => {
-      if (!isAutorefresh) {
-        setDetails(undefined);
-        setAdditionalInformation(undefined);
-      }
-      getDetails(
-        trainName,
-        initialDepartureDate,
-        evaNumberAlongRoute,
-        journeyId,
-        administration,
-        jid,
-      )
-        .then(async (details) => {
-          setDetails(details);
-          // its a RIS thing, lets get extra information
-          if (details.journeyId) {
-            try {
-              setAdditionalInformation(
-                await getAdditionalJourneyInformation(
-                  trainName,
-                  details.journeyId,
-                  initialDepartureDate,
-                  evaNumberAlongRoute,
-                ),
-              );
-            } catch {
-              // ignoring this
-            }
-          } else {
-            const occupancy: Record<string, RouteAuslastung> = {};
-            for (const s of details.stops) {
-              if (s.auslastung) {
-                occupancy[s.station.evaNumber] = s.auslastung;
-              }
-            }
-            setAdditionalInformation({
-              occupancy,
-            });
-          }
-          setError(undefined);
-        })
-        .catch((e) => {
-          if (!isAutorefresh) {
-            setError(e);
-          }
-        });
-    },
-    [
-      trainName,
-      initialDepartureDate,
-      evaNumberAlongRoute,
-      journeyId,
-      administration,
-      jid,
-    ],
-  );
+	const refreshDetails = useCallback(
+		(isAutorefresh?: boolean) => {
+			if (!isAutorefresh) {
+				setDetails(undefined);
+				setAdditionalInformation(undefined);
+			}
+			getDetails(
+				trainName,
+				initialDepartureDate,
+				evaNumberAlongRoute,
+				journeyId,
+				administration,
+				jid,
+			)
+				.then(async (details) => {
+					setDetails(details);
+					// its a RIS thing, lets get extra information
+					if (details.journeyId) {
+						try {
+							setAdditionalInformation(
+								await getAdditionalJourneyInformation(
+									trainName,
+									details.journeyId,
+									initialDepartureDate,
+									evaNumberAlongRoute,
+								),
+							);
+						} catch {
+							// ignoring this
+						}
+					} else {
+						const occupancy: Record<string, RouteAuslastung> = {};
+						for (const s of details.stops) {
+							if (s.auslastung) {
+								occupancy[s.station.evaNumber] = s.auslastung;
+							}
+						}
+						setAdditionalInformation({
+							occupancy,
+						});
+					}
+					setError(undefined);
+				})
+				.catch((e) => {
+					if (!isAutorefresh) {
+						setError(e);
+					}
+				});
+		},
+		[
+			trainName,
+			initialDepartureDate,
+			evaNumberAlongRoute,
+			journeyId,
+			administration,
+			jid,
+		],
+	);
 
-  useEffect(() => {
-    refreshDetails();
-    let intervalId: NodeJS.Timeout;
-    const cleanup = () => clearInterval(intervalId);
-    if (autoUpdate) {
-      intervalId = setInterval(() => {
-        refreshDetails(true);
-      }, autoUpdate * 1000);
-    } else {
-      cleanup();
-    }
-    return cleanup;
-  }, [autoUpdate, refreshDetails]);
+	useEffect(() => {
+		refreshDetails();
+		let intervalId: NodeJS.Timeout;
+		const cleanup = () => clearInterval(intervalId);
+		if (autoUpdate) {
+			intervalId = setInterval(() => {
+				refreshDetails(true);
+			}, autoUpdate * 1000);
+		} else {
+			cleanup();
+		}
+		return cleanup;
+	}, [autoUpdate, refreshDetails]);
 
-  const toggleMapDisplay = useCallback(
-    () => setIsMapDisplay((old) => !old),
-    [],
-  );
+	const toggleMapDisplay = useCallback(
+		() => setIsMapDisplay((old) => !old),
+		[],
+	);
 
-  const toggleShowMarkers = useCallback((e: MouseEvent) => {
-    e.preventDefault();
-    setShowMarkers((old) => !old);
-  }, []);
+	const toggleShowMarkers = useCallback((e: MouseEvent) => {
+		e.preventDefault();
+		setShowMarkers((old) => !old);
+	}, []);
 
-  const matchedPolyline:
-    | (Omit<ParsedPolyline, 'locations'> & {
-        locations: (HafasStation & {
-          details?: RouteStop;
-        })[];
-      })
-    | undefined = useMemo(() => {
-    const polyline = additionalInformation?.polyline || details?.polyline;
-    if (!polyline) return undefined;
-    if (!details) return undefined;
+	const matchedPolyline:
+		| (Omit<ParsedPolyline, 'locations'> & {
+				locations: (HafasStation & {
+					details?: RouteStop;
+				})[];
+		  })
+		| undefined = useMemo(() => {
+		const polyline = additionalInformation?.polyline || details?.polyline;
+		if (!polyline) return undefined;
+		if (!details) return undefined;
 
-    for (const loc of polyline.locations) {
-      const detailsLoc = details.stops.find(
-        (s) => s.station.evaNumber === loc.evaNumber,
-      );
-      if (detailsLoc) {
-        // @ts-expect-error adding information
-        loc.details = detailsLoc;
-      }
-    }
+		for (const loc of polyline.locations) {
+			const detailsLoc = details.stops.find(
+				(s) => s.station.evaNumber === loc.evaNumber,
+			);
+			if (detailsLoc) {
+				// @ts-expect-error adding information
+				loc.details = detailsLoc;
+			}
+		}
 
-    return polyline;
-  }, [details, additionalInformation]);
+		return polyline;
+	}, [details, additionalInformation]);
 
-  return {
-    initialDepartureDate,
-    trainName,
-    details,
-    additionalInformation,
-    error,
-    urlPrefix,
-    refreshDetails,
-    polyline: matchedPolyline,
-    isMapDisplay,
-    toggleMapDisplay,
-    showMarkers,
-    toggleShowMarkers,
-    sameTrainDaysInFuture,
-  };
+	return {
+		initialDepartureDate,
+		trainName,
+		details,
+		additionalInformation,
+		error,
+		urlPrefix,
+		refreshDetails,
+		polyline: matchedPolyline,
+		isMapDisplay,
+		toggleMapDisplay,
+		showMarkers,
+		toggleShowMarkers,
+		sameTrainDaysInFuture,
+	};
 };
 
 export const [DetailsProvider, useDetails] = constate(useInnerDetails);

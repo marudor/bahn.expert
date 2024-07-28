@@ -1,15 +1,15 @@
-import { formatDuration } from '@/client/Routing/util';
-import { Paper, styled } from '@mui/material';
-import { RouteSegments } from './RouteSegments';
 import { Time } from '@/client/Common/Components/Time';
+import { formatDuration } from '@/client/Routing/util';
+import type { SingleRoute } from '@/types/routing';
+import { Paper, styled } from '@mui/material';
 import { useMemo } from 'react';
 import type { FC, SyntheticEvent } from 'react';
-import type { SingleRoute } from '@/types/routing';
+import { RouteSegments } from './RouteSegments';
 
 interface Props {
-  route: SingleRoute;
-  detail: boolean;
-  onClick: (e: SyntheticEvent) => void;
+	route: SingleRoute;
+	detail: boolean;
+	onClick: (e: SyntheticEvent) => void;
 }
 
 const Container = styled(Paper)`
@@ -39,35 +39,35 @@ const Product = styled('span')`
 `;
 
 export const Route: FC<Props> = ({ route, detail, onClick }) => {
-  const segmentTypes = useMemo(() => {
-    if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
+	const segmentTypes = useMemo(() => {
+		if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
-    const firstSegment = route.segments[0];
+		const firstSegment = route.segments[0];
 
-    if (!firstSegment) return null;
+		if (!firstSegment) return null;
 
-    return <span>{firstSegment.train.name}</span>;
-  }, [route]);
+		return <span>{firstSegment.train.name}</span>;
+	}, [route]);
 
-  return (
-    <Container data-testid={`Route-${route.cid}`} onClick={onClick} square>
-      <StyledTime
-        multiLine
-        real={route.departure.time}
-        delay={route.departure.delay}
-      />
-      <StyledTime
-        multiLine
-        real={route.arrival.time}
-        delay={route.arrival.delay}
-      />
-      <span>{formatDuration(route.duration)}</span>
-      <span>{route.changes}</span>
-      {detail ? (
-        <StyledRouteSegments segments={route.segments} />
-      ) : (
-        <Product>{segmentTypes}</Product>
-      )}
-    </Container>
-  );
+	return (
+		<Container data-testid={`Route-${route.cid}`} onClick={onClick} square>
+			<StyledTime
+				multiLine
+				real={route.departure.time}
+				delay={route.departure.delay}
+			/>
+			<StyledTime
+				multiLine
+				real={route.arrival.time}
+				delay={route.arrival.delay}
+			/>
+			<span>{formatDuration(route.duration)}</span>
+			<span>{route.changes}</span>
+			{detail ? (
+				<StyledRouteSegments segments={route.segments} />
+			) : (
+				<Product>{segmentTypes}</Product>
+			)}
+		</Container>
+	);
 };

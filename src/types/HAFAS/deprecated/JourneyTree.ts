@@ -1,25 +1,25 @@
 import type {
-  GenericHafasRequest,
-  GeoRect,
-  GeoRing,
-  HimFilter,
-  JourneyFilter,
+	GenericHafasRequest,
+	GeoRect,
+	GeoRing,
+	HimFilter,
+	JourneyFilter,
 } from '@/types/HAFAS';
 
 export interface JourneyTreeRequestOptions {
-  getChilds?: number;
-  getHIM?: boolean;
-  getParent?: boolean;
-  getStatus?: boolean;
-  himFltrL?: HimFilter[];
-  jnyFltrL?: JourneyFilter[];
-  pid?: string;
-  rect?: GeoRect;
-  ring?: GeoRing;
+	getChilds?: number;
+	getHIM?: boolean;
+	getParent?: boolean;
+	getStatus?: boolean;
+	himFltrL?: HimFilter[];
+	jnyFltrL?: JourneyFilter[];
+	pid?: string;
+	rect?: GeoRect;
+	ring?: GeoRing;
 }
 
 export interface JourneyTreeRequest extends GenericHafasRequest<'JourneyTree'> {
-  req: JourneyTreeRequestOptions;
+	req: JourneyTreeRequestOptions;
 }
 
-export type JourneyTreeResponse = any;
+export type JourneyTreeResponse = unknown;

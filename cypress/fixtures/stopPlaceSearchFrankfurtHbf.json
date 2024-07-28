@@ -1,33 +1,33 @@
 [
-  {
-    "evaNumber": "8000105",
-    "name": "Frankfurt (Main) Hbf",
-    "availableTransports": [
-      "CITY_TRAIN",
-      "REGIONAL_TRAIN",
-      "BUS",
-      "HIGH_SPEED_TRAIN",
-      "INTERCITY_TRAIN"
-    ],
-    "position": { "longitude": 8.663789, "latitude": 50.107145 },
-    "identifier": {
-      "ifopt": "de:06412:10",
-      "ril100": "FF",
-      "stationId": "1866"
-    }
-  },
-  {
-    "evaNumber": "8089211",
-    "name": "Frankfurt(M)Hbf Stuttgarter Str.",
-    "availableTransports": [],
-    "position": { "longitude": 8.663781, "latitude": 50.105744 },
-    "identifier": { "ril100": "FF  M" }
-  },
-  {
-    "evaNumber": "8089505",
-    "name": "Frankfurt(Main) ZOB (Hbf/Pforzheimer Str)",
-    "availableTransports": [],
-    "position": { "longitude": 8.66258, "latitude": 50.104387 },
-    "identifier": { "ril100": "FF  P" }
-  }
+	{
+		"evaNumber": "8000105",
+		"name": "Frankfurt (Main) Hbf",
+		"availableTransports": [
+			"CITY_TRAIN",
+			"REGIONAL_TRAIN",
+			"BUS",
+			"HIGH_SPEED_TRAIN",
+			"INTERCITY_TRAIN"
+		],
+		"position": { "longitude": 8.663789, "latitude": 50.107145 },
+		"identifier": {
+			"ifopt": "de:06412:10",
+			"ril100": "FF",
+			"stationId": "1866"
+		}
+	},
+	{
+		"evaNumber": "8089211",
+		"name": "Frankfurt(M)Hbf Stuttgarter Str.",
+		"availableTransports": [],
+		"position": { "longitude": 8.663781, "latitude": 50.105744 },
+		"identifier": { "ril100": "FF  M" }
+	},
+	{
+		"evaNumber": "8089505",
+		"name": "Frankfurt(Main) ZOB (Hbf/Pforzheimer Str)",
+		"availableTransports": [],
+		"position": { "longitude": 8.66258, "latitude": 50.104387 },
+		"identifier": { "ril100": "FF  P" }
+	}
 ]

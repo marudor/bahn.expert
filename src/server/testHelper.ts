@@ -1,14 +1,14 @@
-import { afterAll } from 'vitest';
-import { createApp } from '@/server/app';
 import type { Server } from 'node:http';
+import { createApp } from '@/server/app';
+import { afterAll } from 'vitest';
 
 export function createTestServer(): Server {
-  const app = createApp();
-  const server = app.listen();
+	const app = createApp();
+	const server = app.listen();
 
-  afterAll(() => {
-    server.close();
-  });
+	afterAll(() => {
+		server.close();
+	});
 
-  return server;
+	return server;
 }

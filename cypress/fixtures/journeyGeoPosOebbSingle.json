@@ -1,95 +1,95 @@
 [
-  {
-    "jid": "testjid",
-    "date": "2020-02-06T23:00:00.000Z",
-    "train": {
-      "name": "test train",
-      "line": "93"
-    },
-    "dirTxt": "Potsdam, Glienicker Brücke",
-    "dirGeo": 13,
-    "dist": 242846,
-    "proc": 32,
-    "isBase": false,
-    "position": {
-      "lng": 13.065201,
-      "lat": 52.390985
-    },
-    "stops": [
-      {
-        "station": {
-          "id": "900220008",
-          "title": "Potsdam, Rehbrücke Bhf",
-          "coordinates": {
-            "lng": 13.098011,
-            "lat": 52.358821
-          }
-        },
-        "departure": {
-          "scheduledTime": "2020-02-07T14:17:00.000Z",
-          "time": "2020-02-07T14:17:00.000Z",
-          "delay": 0
-        }
-      },
-      {
-        "station": {
-          "id": "900230999",
-          "title": "S Potsdam Hauptbahnhof",
-          "coordinates": {
-            "lng": 13.067187,
-            "lat": 52.390931
-          }
-        },
-        "arrival": {
-          "scheduledPlatform": "2",
-          "platform": "2",
-          "scheduledTime": "2020-02-07T14:28:00.000Z",
-          "time": "2020-02-07T14:29:00.000Z",
-          "delay": 1
-        },
-        "departure": {
-          "scheduledPlatform": "2",
-          "platform": "2",
-          "scheduledTime": "2020-02-07T14:28:00.000Z",
-          "time": "2020-02-07T14:29:00.000Z",
-          "delay": 1
-        }
-      },
-      {
-        "station": {
-          "id": "900230097",
-          "title": "Potsdam, Lange Brücke",
-          "coordinates": {
-            "lng": 13.063619,
-            "lat": 52.392171
-          }
-        },
-        "arrival": {
-          "scheduledTime": "2020-02-07T14:29:00.000Z",
-          "time": "2020-02-07T14:30:00.000Z",
-          "delay": 1
-        },
-        "departure": {
-          "scheduledTime": "2020-02-07T14:29:00.000Z",
-          "time": "2020-02-07T14:30:00.000Z",
-          "delay": 1
-        }
-      },
-      {
-        "station": {
-          "id": "900230025",
-          "title": "Potsdam, Glienicker Brücke",
-          "coordinates": {
-            "lng": 13.08611,
-            "lat": 52.412613
-          }
-        },
-        "arrival": {
-          "scheduledTime": "2020-02-07T14:40:00.000Z",
-          "time": "2020-02-07T14:41:00.000Z",
-          "delay": 1
-        }
-      }
-    ]
-  }
+	{
+		"jid": "testjid",
+		"date": "2020-02-06T23:00:00.000Z",
+		"train": {
+			"name": "test train",
+			"line": "93"
+		},
+		"dirTxt": "Potsdam, Glienicker Brücke",
+		"dirGeo": 13,
+		"dist": 242846,
+		"proc": 32,
+		"isBase": false,
+		"position": {
+			"lng": 13.065201,
+			"lat": 52.390985
+		},
+		"stops": [
+			{
+				"station": {
+					"id": "900220008",
+					"title": "Potsdam, Rehbrücke Bhf",
+					"coordinates": {
+						"lng": 13.098011,
+						"lat": 52.358821
+					}
+				},
+				"departure": {
+					"scheduledTime": "2020-02-07T14:17:00.000Z",
+					"time": "2020-02-07T14:17:00.000Z",
+					"delay": 0
+				}
+			},
+			{
+				"station": {
+					"id": "900230999",
+					"title": "S Potsdam Hauptbahnhof",
+					"coordinates": {
+						"lng": 13.067187,
+						"lat": 52.390931
+					}
+				},
+				"arrival": {
+					"scheduledPlatform": "2",
+					"platform": "2",
+					"scheduledTime": "2020-02-07T14:28:00.000Z",
+					"time": "2020-02-07T14:29:00.000Z",
+					"delay": 1
+				},
+				"departure": {
+					"scheduledPlatform": "2",
+					"platform": "2",
+					"scheduledTime": "2020-02-07T14:28:00.000Z",
+					"time": "2020-02-07T14:29:00.000Z",
+					"delay": 1
+				}
+			},
+			{
+				"station": {
+					"id": "900230097",
+					"title": "Potsdam, Lange Brücke",
+					"coordinates": {
+						"lng": 13.063619,
+						"lat": 52.392171
+					}
+				},
+				"arrival": {
+					"scheduledTime": "2020-02-07T14:29:00.000Z",
+					"time": "2020-02-07T14:30:00.000Z",
+					"delay": 1
+				},
+				"departure": {
+					"scheduledTime": "2020-02-07T14:29:00.000Z",
+					"time": "2020-02-07T14:30:00.000Z",
+					"delay": 1
+				}
+			},
+			{
+				"station": {
+					"id": "900230025",
+					"title": "Potsdam, Glienicker Brücke",
+					"coordinates": {
+						"lng": 13.08611,
+						"lat": 52.412613
+					}
+				},
+				"arrival": {
+					"scheduledTime": "2020-02-07T14:40:00.000Z",
+					"time": "2020-02-07T14:41:00.000Z",
+					"delay": 1
+				}
+			}
+		]
+	}
 ]

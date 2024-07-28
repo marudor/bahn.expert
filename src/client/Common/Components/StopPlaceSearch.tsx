@@ -1,12 +1,12 @@
-import { Loading, LoadingType } from './Loading';
-import { MenuItem, Paper, styled, TextField } from '@mui/material';
-import { useCallback, useRef } from 'react';
-import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useStopPlaceSearch } from '@/client/Common/hooks/useStopPlaceSearch';
-import Downshift from 'downshift';
+import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { AllowedHafasProfile } from '@/types/HAFAS';
-import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import type { MinimalStopPlace } from '@/types/stopPlace';
+import { MenuItem, Paper, TextField, styled } from '@mui/material';
+import Downshift from 'downshift';
+import { useCallback, useRef } from 'react';
+import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
+import { Loading, LoadingType } from './Loading';
 
 const PositionedLoading = styled(Loading)`
   right: 0.5em;
@@ -21,172 +21,172 @@ const Container = styled('div')`
 `;
 
 const SuggestionContainer = styled(Paper)(({ theme }) => ({
-  background: theme.vars.palette.background.default,
-  marginTop: theme.spacing(1),
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  zIndex: 2,
+	background: theme.vars.palette.background.default,
+	marginTop: theme.spacing(1),
+	position: 'absolute',
+	left: 0,
+	right: 0,
+	zIndex: 2,
 }));
 
 export interface Props {
-  id: string;
-  value?: MinimalStopPlace;
-  onChange: (s?: MinimalStopPlace) => any;
-  autoFocus?: boolean;
-  placeholder?: string;
-  profile?: AllowedHafasProfile;
-  maxSuggestions?: number;
-  filterForIris?: boolean;
-  groupedBySales?: boolean;
+	id: string;
+	value?: MinimalStopPlace;
+	onChange: (s?: MinimalStopPlace) => any;
+	autoFocus?: boolean;
+	placeholder?: string;
+	profile?: AllowedHafasProfile;
+	maxSuggestions?: number;
+	filterForIris?: boolean;
+	groupedBySales?: boolean;
 }
 
 export const StopPlaceSearch: FC<Props> = ({
-  id,
-  onChange,
-  value,
-  autoFocus,
-  placeholder,
-  maxSuggestions = 7,
-  filterForIris,
-  groupedBySales,
+	id,
+	onChange,
+	value,
+	autoFocus,
+	placeholder,
+	maxSuggestions = 7,
+	filterForIris,
+	groupedBySales,
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { showRl100 } = useCommonConfig();
+	const inputRef = useRef<HTMLInputElement>(null);
+	const { showRl100 } = useCommonConfig();
 
-  const formatSuggestion = useCallback(
-    (suggestion: MinimalStopPlace) => {
-      let r = suggestion.name;
-      if (showRl100 && suggestion?.ril100) {
-        r += ` [${suggestion.ril100}]`;
-      }
-      return r;
-    },
-    [showRl100],
-  );
+	const formatSuggestion = useCallback(
+		(suggestion: MinimalStopPlace) => {
+			let r = suggestion.name;
+			if (showRl100 && suggestion?.ril100) {
+				r += ` [${suggestion.ril100}]`;
+			}
+			return r;
+		},
+		[showRl100],
+	);
 
-  const {
-    suggestions,
-    setSuggestions,
-    loading,
-    loadOptions,
-    itemToString,
-    selectRef,
-  } = useStopPlaceSearch({
-    filterForIris,
-    maxSuggestions,
-    groupedBySales,
-  });
+	const {
+		suggestions,
+		setSuggestions,
+		loading,
+		loadOptions,
+		itemToString,
+		selectRef,
+	} = useStopPlaceSearch({
+		filterForIris,
+		maxSuggestions,
+		groupedBySales,
+	});
 
-  const downshiftOnChange = useCallback(
-    (stopPlace: MinimalStopPlace | null) => {
-      inputRef.current?.blur();
-      onChange(stopPlace || undefined);
-    },
-    [onChange],
-  );
+	const downshiftOnChange = useCallback(
+		(stopPlace: MinimalStopPlace | null) => {
+			inputRef.current?.blur();
+			onChange(stopPlace || undefined);
+		},
+		[onChange],
+	);
 
-  return (
-    <Container>
-      <Downshift
-        id={id}
-        defaultHighlightedIndex={0}
-        // @ts-expect-error ???
-        ref={selectRef}
-        selectedItem={value || null}
-        itemToString={itemToString}
-        onChange={downshiftOnChange}
-      >
-        {({
-          clearSelection,
-          getInputProps,
-          getItemProps,
-          getLabelProps,
-          getMenuProps,
-          highlightedIndex,
-          inputValue,
-          isOpen,
-          setState,
-          openMenu,
-        }) => {
-          const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
-            onChange: ((event) => {
-              if (event.target.value === '') {
-                clearSelection();
-              } else {
-                void loadOptions(event.target.value);
-              }
-            }) as ChangeEventHandler<HTMLInputElement>,
-            onFocus: (() => {
-              if (value && value.name === inputValue) {
-                setState({ inputValue: '' });
-              }
-              if (suggestions.length) {
-                openMenu();
-              }
-            }) as FocusEventHandler<HTMLInputElement>,
-            onBlur: (() => {
-              setSuggestions([]);
-              if (value) {
-                setState({ inputValue: value.name });
-              }
-            }) as FocusEventHandler<HTMLInputElement>,
-            placeholder,
-            autoFocus,
-            ref: inputRef,
-          });
+	return (
+		<Container>
+			<Downshift
+				id={id}
+				defaultHighlightedIndex={0}
+				// @ts-expect-error ???
+				ref={selectRef}
+				selectedItem={value || null}
+				itemToString={itemToString}
+				onChange={downshiftOnChange}
+			>
+				{({
+					clearSelection,
+					getInputProps,
+					getItemProps,
+					getLabelProps,
+					getMenuProps,
+					highlightedIndex,
+					inputValue,
+					isOpen,
+					setState,
+					openMenu,
+				}) => {
+					const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+						onChange: ((event) => {
+							if (event.target.value === '') {
+								clearSelection();
+							} else {
+								void loadOptions(event.target.value);
+							}
+						}) as ChangeEventHandler<HTMLInputElement>,
+						onFocus: (() => {
+							if (value && value.name === inputValue) {
+								setState({ inputValue: '' });
+							}
+							if (suggestions.length) {
+								openMenu();
+							}
+						}) as FocusEventHandler<HTMLInputElement>,
+						onBlur: (() => {
+							setSuggestions([]);
+							if (value) {
+								setState({ inputValue: value.name });
+							}
+						}) as FocusEventHandler<HTMLInputElement>,
+						placeholder,
+						autoFocus,
+						ref: inputRef,
+					});
 
-          return (
-            <div data-testid={id}>
-              <TextField
-                fullWidth
-                InputLabelProps={getLabelProps({ shrink: true } as any)}
-                InputProps={{
-                  onBlur,
-                  onChange,
-                  onFocus,
-                }}
-                inputProps={{
-                  ...inputProps,
-                  'data-testid': 'stopPlaceSearchInput',
-                }}
-              />
-              <div {...getMenuProps()}>
-                {isOpen && (
-                  <SuggestionContainer square>
-                    {suggestions.length ? (
-                      suggestions.map((suggestion, index) => {
-                        const itemProps = getItemProps({
-                          item: suggestion,
-                          index,
-                        });
-                        const highlighted = highlightedIndex === index;
+					return (
+						<div data-testid={id}>
+							<TextField
+								fullWidth
+								InputLabelProps={getLabelProps({ shrink: true } as any)}
+								InputProps={{
+									onBlur,
+									onChange,
+									onFocus,
+								}}
+								inputProps={{
+									...inputProps,
+									'data-testid': 'stopPlaceSearchInput',
+								}}
+							/>
+							<div {...getMenuProps()}>
+								{isOpen && (
+									<SuggestionContainer square>
+										{suggestions.length ? (
+											suggestions.map((suggestion, index) => {
+												const itemProps = getItemProps({
+													item: suggestion,
+													index,
+												});
+												const highlighted = highlightedIndex === index;
 
-                        return (
-                          <MenuItem
-                            data-testid="stopPlaceSearchMenuItem"
-                            {...itemProps}
-                            key={suggestion.evaNumber}
-                            selected={highlighted}
-                            component="div"
-                          >
-                            {formatSuggestion(suggestion)}
-                          </MenuItem>
-                        );
-                      })
-                    ) : (
-                      <MenuItem>
-                        {loading ? 'Loading...' : 'No options'}
-                      </MenuItem>
-                    )}
-                  </SuggestionContainer>
-                )}
-              </div>
-            </div>
-          );
-        }}
-      </Downshift>
-      {loading && <PositionedLoading type={LoadingType.dots} />}
-    </Container>
-  );
+												return (
+													<MenuItem
+														data-testid="stopPlaceSearchMenuItem"
+														{...itemProps}
+														key={suggestion.evaNumber}
+														selected={highlighted}
+														component="div"
+													>
+														{formatSuggestion(suggestion)}
+													</MenuItem>
+												);
+											})
+										) : (
+											<MenuItem>
+												{loading ? 'Loading...' : 'No options'}
+											</MenuItem>
+										)}
+									</SuggestionContainer>
+								)}
+							</div>
+						</div>
+					);
+				}}
+			</Downshift>
+			{loading && <PositionedLoading type={LoadingType.dots} />}
+		</Container>
+	);
 };

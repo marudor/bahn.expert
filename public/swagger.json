@@ -4805,12 +4805,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/CoachSequenceInformation"
-                    },
-                    {}
-                  ]
+                  "$ref": "#/components/schemas/CoachSequenceInformation"
                 }
               }
             }
@@ -5397,12 +5392,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {},
-                    {
-                      "type": "string"
-                    }
-                  ]
+                  "type": "string"
                 }
               }
             }

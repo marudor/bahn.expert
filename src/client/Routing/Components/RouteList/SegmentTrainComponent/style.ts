@@ -1,21 +1,21 @@
 import { css } from '@mui/material';
 
 export const segmentStyles = {
-  info: css`
+	info: css`
     display: flex;
     align-items: center;
   `,
-  margin: css`
+	margin: css`
     flex: 0.7;
     margin-right: 0.5em;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   `,
-  destination: css`
+	destination: css`
     flex: 1;
   `,
-  sequence: css`
+	sequence: css`
     font-size: 0.5em;
   `,
 };

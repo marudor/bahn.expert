@@ -22,24 +22,24 @@ const StyledChip = styled(Chip)`
 `;
 
 interface Props {
-  date: Date;
+	date: Date;
 }
 
 export const RouteHeader: FC<Props> = ({ date }) => {
-  return (
-    <Container square>
-      <DateContainer data-testid="headerDate">
-        <StyledChip
-          size="medium"
-          variant="outlined"
-          color="secondary"
-          label={format(date, 'dd.MM.yyyy')}
-        />
-      </DateContainer>
-      <span>Ab</span>
-      <span>An</span>
-      <span>Dauer</span>
-      <span>Umstiege</span>
-    </Container>
-  );
+	return (
+		<Container square>
+			<DateContainer data-testid="headerDate">
+				<StyledChip
+					size="medium"
+					variant="outlined"
+					color="secondary"
+					label={format(date, 'dd.MM.yyyy')}
+				/>
+			</DateContainer>
+			<span>Ab</span>
+			<span>An</span>
+			<span>Dauer</span>
+			<span>Umstiege</span>
+		</Container>
+	);
 };

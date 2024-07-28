@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 interface NavigationContext {
-  toggleDrawer: () => void;
+	toggleDrawer: () => void;
 }
 
 // @ts-expect-error default context unneccesary

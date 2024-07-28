@@ -2,7 +2,7 @@ import { css, styled } from '@mui/material';
 import type { FC } from 'react';
 
 const Container = styled('span')(
-  ({ theme }) => css`
+	({ theme }) => css`
     background-color: ${theme.vars.palette.text.primary};
     width: 50%;
     height: 2px;
@@ -15,7 +15,7 @@ const Container = styled('span')(
 );
 
 const Arrow = styled('span')(
-  ({ theme }) => css`
+	({ theme }) => css`
     border: solid ${theme.vars.palette.text.primary};
     border-width: 0 2px 2px 0;
     display: inline-block;
@@ -35,17 +35,17 @@ const RightArrow = styled(Arrow)`
 `;
 
 interface Props {
-  reversed?: boolean;
+	reversed?: boolean;
 }
 
 export const DirectionOfTravel: FC<Props> = ({ reversed }) => {
-  return (
-    <Container data-testid="direction">
-      {reversed ? (
-        <RightArrow data-testid="right" />
-      ) : (
-        <LeftArrow data-testid="left" />
-      )}
-    </Container>
-  );
+	return (
+		<Container data-testid="direction">
+			{reversed ? (
+				<RightArrow data-testid="right" />
+			) : (
+				<LeftArrow data-testid="left" />
+			)}
+		</Container>
+	);
 };

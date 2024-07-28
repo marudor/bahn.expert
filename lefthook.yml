@@ -1,8 +1,11 @@
 pre-commit:
   commands:
-    eslint:
-      glob: '*.{js,ts,jsx,tsx}'
-      run: pnpm eslint --cache --fix {staged_files} && git add {staged_files}
-    prettier:
-      glob: '*.{js,ts,jsx,tsx,css,md,json}'
-      run: pnpm prettier --write {staged_files} && git add {staged_files}
+    buildDoc:
+      run: pnpm doc:build:gitadd
+    biome:
+      glob: '*.{js,ts,jsx,tsx,.json}'
+      run: pnpm biome check --fix {staged_files} && git add {staged_files}
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: pnpm commitlint --edit

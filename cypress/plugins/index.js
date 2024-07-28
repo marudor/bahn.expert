@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-module */
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -14,49 +13,48 @@
 
 const webpack = require('@cypress/webpack-preprocessor');
 
-// eslint-disable-next-line no-unused-vars
 export default (on, config) => {
-  const webpackOptions = {
-    resolve: {
-      extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(j|t)s$/,
-          exclude: [/node_modules/],
-          use: [
-            {
-              loader: 'swc-loader',
-            },
-          ],
-        },
-      ],
-    },
-  };
+	const webpackOptions = {
+		resolve: {
+			extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
+		},
+		module: {
+			rules: [
+				{
+					test: /\.(j|t)s$/,
+					exclude: [/node_modules/],
+					use: [
+						{
+							loader: 'swc-loader',
+						},
+					],
+				},
+			],
+		},
+	};
 
-  /**
-   * Workaround for the "Automatic publicPath is not supported in this browser" fail
-   *
-   * See https://github.com/cypress-io/cypress/issues/18435 for more
-   * details. Should be removed when cypress switches to webpack 5.
-   */
-  const publicPath = ' ';
-  let outputOptions;
-  Object.defineProperty(webpackOptions, 'output', {
-    get: () => {
-      return { ...outputOptions, publicPath };
-    },
-    set: function (x) {
-      outputOptions = x;
-    },
-  });
+	/**
+	 * Workaround for the "Automatic publicPath is not supported in this browser" fail
+	 *
+	 * See https://github.com/cypress-io/cypress/issues/18435 for more
+	 * details. Should be removed when cypress switches to webpack 5.
+	 */
+	const publicPath = ' ';
+	let outputOptions;
+	Object.defineProperty(webpackOptions, 'output', {
+		get: () => {
+			return { ...outputOptions, publicPath };
+		},
+		set: (x) => {
+			outputOptions = x;
+		},
+	});
 
-  on(
-    'file:preprocessor',
-    webpack({
-      webpackOptions,
-      typescript: require.resolve('typescript'),
-    }),
-  );
+	on(
+		'file:preprocessor',
+		webpack({
+			webpackOptions,
+			typescript: require.resolve('typescript'),
+		}),
+	);
 };

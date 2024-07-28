@@ -1,55 +1,55 @@
-import { AppBar, IconButton, styled, Toolbar } from '@mui/material';
-import { HeaderTags } from './HeaderTags';
-import { Menu } from '@mui/icons-material';
 import { NavigationContext } from '@/client/Common/Components/Navigation/NavigationContext';
+import { Menu } from '@mui/icons-material';
+import { AppBar, IconButton, Toolbar, styled } from '@mui/material';
 import { useContext } from 'react';
 import type { FC, PropsWithChildren } from 'react';
+import { HeaderTags } from './HeaderTags';
 
 const NotchFix = styled('div')(({ theme }) => ({
-  top: '-5em',
-  height: '5em',
-  width: '100%',
-  position: 'fixed',
-  zIndex: 99999,
-  background: theme.vars.palette.background.default,
+	top: '-5em',
+	height: '5em',
+	width: '100%',
+	position: 'fixed',
+	zIndex: 99999,
+	background: theme.vars.palette.background.default,
 }));
 
 const Offset = styled('div')<{ spacing?: number }>(
-  ({ theme, spacing = 0 }) => ({
-    minHeight: `calc(${theme.vars.shape.headerSpacing} + ${spacing}em)`,
-  }),
+	({ theme, spacing = 0 }) => ({
+		minHeight: `calc(${theme.vars.shape.headerSpacing} + ${spacing}em)`,
+	}),
 );
 
 interface Props {
-  /** Unit: em */
-  spacing?: number;
+	/** Unit: em */
+	spacing?: number;
 }
 
 export const BaseHeader: FC<PropsWithChildren<Props>> = ({
-  children,
-  spacing,
+	children,
+	spacing,
 }) => {
-  const { toggleDrawer } = useContext(NavigationContext);
+	const { toggleDrawer } = useContext(NavigationContext);
 
-  return (
-    <>
-      <NotchFix />
-      <AppBar enableColorOnDark position="fixed" data-testid="header">
-        <HeaderTags />
-        <Toolbar disableGutters>
-          <IconButton
-            size="small"
-            data-testid="navToggle"
-            aria-label="Menu"
-            onClick={toggleDrawer}
-            color="inherit"
-          >
-            <Menu color="inherit" />
-          </IconButton>
-          {children}
-        </Toolbar>
-      </AppBar>
-      <Offset spacing={spacing} />
-    </>
-  );
+	return (
+		<>
+			<NotchFix />
+			<AppBar enableColorOnDark position="fixed" data-testid="header">
+				<HeaderTags />
+				<Toolbar disableGutters>
+					<IconButton
+						size="small"
+						data-testid="navToggle"
+						aria-label="Menu"
+						onClick={toggleDrawer}
+						color="inherit"
+					>
+						<Menu color="inherit" />
+					</IconButton>
+					{children}
+				</Toolbar>
+			</AppBar>
+			<Offset spacing={spacing} />
+		</>
+	);
 };

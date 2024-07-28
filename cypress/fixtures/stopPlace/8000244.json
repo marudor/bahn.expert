@@ -1,18 +1,18 @@
 {
-  "evaNumber": "8000244",
-  "name": "Mannheim Hbf",
-  "availableTransports": [
-    "INTERCITY_TRAIN",
-    "CITY_TRAIN",
-    "INTER_REGIONAL_TRAIN",
-    "HIGH_SPEED_TRAIN",
-    "REGIONAL_TRAIN"
-  ],
-  "position": { "longitude": 8.468921, "latitude": 49.479354 },
-  "identifier": {
-    "evaNumber": "8000244",
-    "ifopt": "de:08222:2417",
-    "ril100": "RM",
-    "stationId": "3925"
-  }
+	"evaNumber": "8000244",
+	"name": "Mannheim Hbf",
+	"availableTransports": [
+		"INTERCITY_TRAIN",
+		"CITY_TRAIN",
+		"INTER_REGIONAL_TRAIN",
+		"HIGH_SPEED_TRAIN",
+		"REGIONAL_TRAIN"
+	],
+	"position": { "longitude": 8.468921, "latitude": 49.479354 },
+	"identifier": {
+		"evaNumber": "8000244",
+		"ifopt": "de:08222:2417",
+		"ril100": "RM",
+		"stationId": "3925"
+	}
 }
