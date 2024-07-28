@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const cp = require('node:child_process');
 
 const filePath = path.resolve(__dirname, '../public/swagger.json');
 
@@ -57,3 +58,4 @@ convertAnyOfSchemaToDisctriminatedOneOf('SecL', 'type');
 convertAnyOfSchemaToDisctriminatedOneOf('RoutingLocationInput', 'type');
 
 fs.writeFileSync(filePath, JSON.stringify(parsed, undefined, 2));
+cp.execSync(`pnpm biome check --write ${filePath}`);
