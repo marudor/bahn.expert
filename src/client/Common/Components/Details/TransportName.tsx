@@ -1,16 +1,20 @@
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import type { TransportPublicDestinationPortionWorking } from '@/external/generated/risJourneys';
+import type { TransportDestinationPortionWorkingRef } from '@/external/generated/risJourneysV2';
 import type { FC } from 'react';
 
 interface Props {
-	transport: TransportPublicDestinationPortionWorking;
+	transport: Pick<
+		TransportDestinationPortionWorkingRef,
+		'journeyNumber' | 'category' | 'journeyID' | 'line'
+	>;
 }
 
 export const TransportName: FC<Props> = ({ transport }) => {
 	return (
 		<DetailsLink
 			train={{
-				number: transport.number.toString(),
+				number: transport.journeyNumber.toString(),
 				type: transport.category,
 			}}
 			initialDeparture={new Date()}
@@ -18,8 +22,8 @@ export const TransportName: FC<Props> = ({ transport }) => {
 		>
 			{transport.category}{' '}
 			{transport.line
-				? `${transport.line} (${transport.number})`
-				: transport.number}
+				? `${transport.line} (${transport.journeyNumber})`
+				: transport.journeyNumber}
 		</DetailsLink>
 	);
 };

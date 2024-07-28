@@ -1,8 +1,6 @@
 import { EventType, TimeType } from '@/external/generated/risJourneys';
-import type {
-	ArrivalDepartureEvent,
-	TransportPublicDestinationPortionWorking,
-} from '@/external/generated/risJourneys';
+import type { ArrivalDepartureEvent } from '@/external/generated/risJourneys';
+import type { TransportDestinationPortionWorkingRef } from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneys';
 import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
@@ -85,7 +83,7 @@ export function getCategoryAndNumberFromName(trainName: string):
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
-	travelsWith?: TransportPublicDestinationPortionWorking[];
+	travelsWith?: TransportDestinationPortionWorkingRef[];
 }
 
 function mapEventToCommonStopInfo(
@@ -110,7 +108,7 @@ function mapEventToCommonStopInfo(
 		scheduledPlatform: e.platformSchedule,
 		platform: e.platform,
 		isRealTime: e.timeType === 'REAL' || undefined,
-		travelsWith: e.travelsWith,
+		// travelsWith: e.travelsWith,
 	};
 }
 

@@ -271,13 +271,9 @@
           }
         ]
       },
-      "StopAtStopPlace": {
-        "description": "Stop at a particular stop-place [Haltestelle] for arrival / departure boards.",
+      "StopPlaceEmbeddedWithCancel": {
+        "description": "Comprehensive stop-place [Haltestelle] information.",
         "properties": {
-          "canceled": {
-            "type": "boolean",
-            "description": "Indicates whether the stop ie departure / arrival has been canceled [Haltausfall]."
-          },
           "evaNumber": {
             "type": "string",
             "description": "Eva number of stop-place [Haltestelle]."
@@ -285,10 +281,13 @@
           "name": {
             "type": "string",
             "description": "Name for stop-place [Haltestelle] in fixed language \\'DE\\'."
+          },
+          "cancelled": {
+            "type": "boolean",
+            "description": "Indicates whether the stop ie departure / arrival has been cancelled [Haltausfall]."
           }
         },
         "required": [
-          "canceled",
           "evaNumber",
           "name"
         ],
@@ -313,110 +312,50 @@
         "type": "object",
         "additionalProperties": true
       },
-      "DirectionInfo": {
-        "description": "Optional direction information [Richtungstext] for a particular transport that may differ from the destination [Zielhalt] on some parts of the journey. Take care that a text and / or a particular stop-place [Haltestelle] may be provided.",
-        "properties": {
-          "text": {
-            "type": "string",
-            "description": "Direction text [Richtungstext]. Must not necessarly be the name of a real stop-place [Haltestelle] (for instance \\'Richtung Automobilmesse\\'). For instance before the stop \\'fare\\' the transport has direction \\'fare\\', after \\'fare\\' has been reached maybe \\'central station\\' or \\'airport\\'."
-          },
-          "stopPlaces": {
-            "items": {
-              "$ref": "#/components/schemas/StopPlaceEmbedded"
-            },
-            "type": "array",
-            "description": "Optional list of stop-places [Haltestellen] the direction text refers to. May be more than one stop-place for cases like for instance \\'Richtung Messe & Hauptbahnhof\\'."
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
-      "ReplacementTransport": {
-        "description": "Replacement transport [Ersatzverkehr] information, in case transport is a rail replacement transport [Schienenersatzverkehr (SEV)] or emergency bus service [Busnotverkehr]. Indicates that this transport is a replacement transport.",
-        "properties": {
-          "realType": {
-            "type": "string",
-            "description": "Real type of replacement transport that may differ from sales perspective (for instance a \\'REGIONAL_TRAIN\\' is usuallay replaced by a \\'BUS\\'). Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
-          }
-        },
-        "required": [
-          "realType"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "TransportType": {
-        "type": "string",
-        "enum": [
-          "HIGH_SPEED_TRAIN",
-          "INTERCITY_TRAIN",
-          "INTER_REGIONAL_TRAIN",
-          "REGIONAL_TRAIN",
-          "CITY_TRAIN",
-          "SUBWAY",
-          "TRAM",
-          "BUS",
-          "FERRY",
-          "FLIGHT",
-          "CAR",
-          "TAXI",
-          "SHUTTLE",
-          "BIKE",
-          "SCOOTER",
-          "WALK",
-          "UNKNOWN"
-        ],
-        "description": "Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)"
-      },
-      "TransportPublicDestinationPortionWorking": {
+      "TransportDestinationPortionWorkingRef": {
         "description": "Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination [abweichender Zielhalt] for coupled transports [vereinigte Züge].",
         "properties": {
-          "category": {
-            "type": "string",
-            "description": "Code of the transport [Fahrtgattung]."
-          },
-          "destination": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
-          },
-          "differingDestination": {
-            "$ref": "#/components/schemas/StopAtStopPlace"
-          },
-          "direction": {
-            "$ref": "#/components/schemas/DirectionInfo"
-          },
           "journeyID": {
             "type": "string",
             "description": "ID of journey [FahrtID]."
           },
-          "label": {
+          "type": {
             "type": "string",
-            "description": "Marketing - or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the transport [externe Fahrtgattung]."
+          },
+          "journeyNumber": {
+            "type": "number",
+            "format": "double",
+            "description": "Number of the transport [Fahrtnummer]."
           },
           "line": {
             "type": "string",
             "description": "Line of the transport [Linie]."
           },
-          "number": {
-            "type": "number",
-            "format": "double",
-            "description": "Number of the transport [Fahrtnummer]."
+          "label": {
+            "type": "string",
+            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
           },
-          "replacementTransport": {
-            "$ref": "#/components/schemas/ReplacementTransport"
+          "destination": {
+            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+          },
+          "differingDestination": {
+            "$ref": "#/components/schemas/StopPlaceEmbedded"
           },
           "separationAt": {
             "$ref": "#/components/schemas/StopPlaceEmbedded"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransportType"
           }
         },
         "required": [
-          "category",
-          "destination",
           "journeyID",
-          "number",
-          "type"
+          "type",
+          "category",
+          "journeyNumber",
+          "destination"
         ],
         "type": "object",
         "additionalProperties": true
@@ -455,13 +394,13 @@
           },
           "joinsWith": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationPortionWorking"
+              "$ref": "#/components/schemas/TransportDestinationPortionWorkingRef"
             },
             "type": "array"
           },
           "splitsWith": {
             "items": {
-              "$ref": "#/components/schemas/TransportPublicDestinationPortionWorking"
+              "$ref": "#/components/schemas/TransportDestinationPortionWorkingRef"
             },
             "type": "array"
           }
@@ -566,29 +505,6 @@
           "category",
           "journeyNumber",
           "administration"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "StopPlaceEmbeddedWithCancel": {
-        "description": "Comprehensive stop-place [Haltestelle] information.",
-        "properties": {
-          "evaNumber": {
-            "type": "string",
-            "description": "Eva number of stop-place [Haltestelle]."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name for stop-place [Haltestelle] in fixed language \\'DE\\'."
-          },
-          "cancelled": {
-            "type": "boolean",
-            "description": "Indicates whether the stop ie departure / arrival has been cancelled [Haltausfall]."
-          }
-        },
-        "required": [
-          "evaNumber",
-          "name"
         ],
         "type": "object",
         "additionalProperties": true
@@ -900,6 +816,38 @@
         "type": "object",
         "additionalProperties": true
       },
+      "ReplacementTransport": {
+        "description": "Replacement transport [Ersatzverkehr] information, in case transport is a rail replacement transport [Schienenersatzverkehr (SEV)] or emergency bus service [Busnotverkehr]. Indicates that this transport is a replacement transport.",
+        "properties": {
+          "realType": {
+            "type": "string",
+            "description": "Real type of replacement transport that may differ from sales perspective (for instance a \\'REGIONAL_TRAIN\\' is usuallay replaced by a \\'BUS\\'). Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+          }
+        },
+        "required": [
+          "realType"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "DirectionInfo": {
+        "description": "Optional direction information [Richtungstext] for a particular transport that may differ from the destination [Zielhalt] on some parts of the journey. Take care that a text and / or a particular stop-place [Haltestelle] may be provided.",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Direction text [Richtungstext]. Must not necessarly be the name of a real stop-place [Haltestelle] (for instance \\'Richtung Automobilmesse\\'). For instance before the stop \\'fare\\' the transport has direction \\'fare\\', after \\'fare\\' has been reached maybe \\'central station\\' or \\'airport\\'."
+          },
+          "stopPlaces": {
+            "items": {
+              "$ref": "#/components/schemas/StopPlaceEmbedded"
+            },
+            "type": "array",
+            "description": "Optional list of stop-places [Haltestellen] the direction text refers to. May be more than one stop-place for cases like for instance \\'Richtung Messe & Hauptbahnhof\\'."
+          }
+        },
+        "type": "object",
+        "additionalProperties": true
+      },
       "TransportWithDirection": {
         "description": "Transport [Verkehrsart / Verkehrsmittel] information.",
         "properties": {
@@ -995,54 +943,6 @@
             "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
           },
           "differingDestination": {
-            "$ref": "#/components/schemas/StopPlaceEmbedded"
-          }
-        },
-        "required": [
-          "journeyID",
-          "type",
-          "category",
-          "journeyNumber",
-          "destination"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "TransportDestinationPortionWorkingRef": {
-        "description": "Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination [abweichender Zielhalt] for coupled transports [vereinigte Züge].",
-        "properties": {
-          "journeyID": {
-            "type": "string",
-            "description": "ID of journey [FahrtID]."
-          },
-          "type": {
-            "type": "string",
-            "description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
-          },
-          "category": {
-            "type": "string",
-            "description": "Category of the transport [externe Fahrtgattung]."
-          },
-          "journeyNumber": {
-            "type": "number",
-            "format": "double",
-            "description": "Number of the transport [Fahrtnummer]."
-          },
-          "line": {
-            "type": "string",
-            "description": "Line of the transport [Linie]."
-          },
-          "label": {
-            "type": "string",
-            "description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
-          },
-          "destination": {
-            "$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
-          },
-          "differingDestination": {
-            "$ref": "#/components/schemas/StopPlaceEmbedded"
-          },
-          "separationAt": {
             "$ref": "#/components/schemas/StopPlaceEmbedded"
           }
         },
@@ -2290,6 +2190,29 @@
         },
         "type": "object",
         "additionalProperties": true
+      },
+      "TransportType": {
+        "type": "string",
+        "enum": [
+          "HIGH_SPEED_TRAIN",
+          "INTERCITY_TRAIN",
+          "INTER_REGIONAL_TRAIN",
+          "REGIONAL_TRAIN",
+          "CITY_TRAIN",
+          "SUBWAY",
+          "TRAM",
+          "BUS",
+          "FERRY",
+          "FLIGHT",
+          "CAR",
+          "TAXI",
+          "SHUTTLE",
+          "BIKE",
+          "SCOOTER",
+          "WALK",
+          "UNKNOWN"
+        ],
+        "description": "Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)"
       },
       "Coordinate2D": {
         "description": "2D coordinate within geo reference system.",

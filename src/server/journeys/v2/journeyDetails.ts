@@ -1,9 +1,9 @@
-import {
-	type TransportPublicDestinationPortionWorking,
-	TransportType,
-} from '@/external/generated/risJourneys';
+import { TransportType } from '@/external/generated/risJourneys';
 import { EventType } from '@/external/generated/risJourneysV2';
-import type { JourneyEvent } from '@/external/generated/risJourneysV2';
+import type {
+	JourneyEvent,
+	TransportDestinationPortionWorkingRef,
+} from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneysV2';
 import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
@@ -22,7 +22,7 @@ import {
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
-	travelsWith?: TransportPublicDestinationPortionWorking[];
+	travelsWith?: TransportDestinationPortionWorkingRef[];
 }
 
 function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
@@ -45,23 +45,7 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
 		scheduledPlatform: e.platformSchedule,
 		platform: e.platform,
 		isRealTime: e.timeType === 'REAL' || undefined,
-		travelsWith: e.travelsWith?.map((tw) => ({
-			category: tw.category,
-			destination: {
-				...tw.destination,
-				canceled: Boolean(tw.destination.cancelled),
-			},
-			differingDestination: tw.separationAt && {
-				...tw.separationAt,
-				canceled: Boolean(e.cancelled),
-			},
-			direction: undefined,
-			journeyID: tw.journeyID,
-			label: tw.label,
-			line: tw.line,
-			number: tw.journeyNumber,
-			type: Object.values(TransportType).find((t) => t === tw.type)!,
-		})),
+		travelsWith: e.travelsWith,
 	};
 }
 

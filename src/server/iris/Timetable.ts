@@ -213,7 +213,7 @@ export class Timetable {
 		this.sloppy = options.sloppy;
 	}
 	async computeExtra(abfahrt: any) {
-		abfahrt.rawRoute = undefined;
+		delete abfahrt.rawRoute;
 		if (this.sloppy) {
 			return;
 		}
@@ -262,13 +262,13 @@ export class Timetable {
 			abfahrt.scheduledPlatform = abfahrt.arrival.scheduledPlatform;
 		}
 
-		abfahrt.routePre = undefined;
-		abfahrt.routePost = undefined;
+		delete abfahrt.routePre;
+		delete abfahrt.routePost;
 		if (abfahrt.arrival) {
-			abfahrt.arrival.additional = undefined;
+			delete abfahrt.arrival.additional;
 		}
 		if (abfahrt.departure) {
-			abfahrt.departure.additional = undefined;
+			delete abfahrt.departure.additional;
 		}
 
 		try {

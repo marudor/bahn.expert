@@ -1,10 +1,10 @@
 import { TransportName } from '@/client/Common/Components/Details/TransportName';
-import type { TransportPublicDestinationPortionWorking } from '@/external/generated/risJourneys';
+import type { TransportDestinationPortionWorkingRef } from '@/external/generated/risJourneysV2';
 import type { FC } from 'react';
 
 interface Props {
-	joinsWith?: TransportPublicDestinationPortionWorking[];
-	splitsWith?: TransportPublicDestinationPortionWorking[];
+	joinsWith?: TransportDestinationPortionWorkingRef[];
+	splitsWith?: TransportDestinationPortionWorkingRef[];
 	stopEva: string;
 }
 
