@@ -1,12 +1,12 @@
-import { journeyNumberFind } from '@/client/Common/service/details';
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
-import { MenuItem, Paper, styled, TextField } from '@mui/material';
-import { useCallback, useState } from 'react';
+import { journeyNumberFind } from '@/client/Common/service/details';
+import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import { MenuItem, Paper, TextField, styled } from '@mui/material';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
+import { useCallback, useState } from 'react';
 import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 
 const debouncedJourneyNumberFind = debounce(journeyNumberFind, 200);
 
@@ -35,143 +35,143 @@ const StyledMenuItem = styled(MenuItem)`
 `;
 
 interface Props {
-  initialDeparture?: Date;
-  filtered?: boolean;
-  onChange: (match: ParsedJourneyMatchResponse | null) => any;
+	initialDeparture?: Date;
+	filtered?: boolean;
+	onChange: (match: ParsedJourneyMatchResponse | null) => any;
 }
 const itemToString = (j: ParsedJourneyMatchResponse | null) =>
-  j?.train.name || '';
+	j?.train.name || '';
 export const ZugsucheAutocomplete: FC<Props> = ({
-  initialDeparture = new Date(),
-  onChange,
-  filtered,
+	initialDeparture = new Date(),
+	onChange,
+	filtered,
 }) => {
-  const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
-    [],
-  );
-  const [loading, setLoading] = useState(0);
-  const loadOptions = useCallback(
-    async (value: string) => {
-      const enteredNumber = Number.parseInt(value);
-      if (Number.isNaN(enteredNumber)) {
-        return;
-      }
-      setLoading((old) => old + 1);
-      try {
-        const suggestions = await debouncedJourneyNumberFind(
-          enteredNumber,
-          initialDeparture,
-          undefined,
-          filtered,
-          'zugsuche',
-        );
+	const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
+		[],
+	);
+	const [loading, setLoading] = useState(0);
+	const loadOptions = useCallback(
+		async (value: string) => {
+			const enteredNumber = Number.parseInt(value);
+			if (Number.isNaN(enteredNumber)) {
+				return;
+			}
+			setLoading((old) => old + 1);
+			try {
+				const suggestions = await debouncedJourneyNumberFind(
+					enteredNumber,
+					initialDeparture,
+					undefined,
+					filtered,
+					'zugsuche',
+				);
 
-        setSuggestions(suggestions);
-      } catch (e) {
-        if (!Axios.isCancel(e)) {
-          setSuggestions([]);
-        }
-      }
-      setLoading((old) => old - 1);
-    },
-    [initialDeparture, filtered],
-  );
+				setSuggestions(suggestions);
+			} catch (e) {
+				if (!Axios.isCancel(e)) {
+					setSuggestions([]);
+				}
+			}
+			setLoading((old) => old - 1);
+		},
+		[initialDeparture, filtered],
+	);
 
-  return (
-    <Container>
-      <Downshift
-        onChange={onChange}
-        itemToString={itemToString}
-        defaultHighlightedIndex={0}
-      >
-        {({
-          clearSelection,
-          getInputProps,
-          getItemProps,
-          getLabelProps,
-          getMenuProps,
-          highlightedIndex,
-          isOpen,
-          openMenu,
-        }) => {
-          const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
-            onChange: ((event) => {
-              if (event.target.value === '') {
-                clearSelection();
-              } else {
-                void loadOptions(event.target.value);
-              }
-            }) as ChangeEventHandler<HTMLInputElement>,
-            onFocus: (() => {
-              if (suggestions.length) {
-                openMenu();
-              }
-            }) as FocusEventHandler<HTMLInputElement>,
-            onBlur: (() => {
-              openMenu();
-              setSuggestions([]);
-            }) as FocusEventHandler<HTMLInputElement>,
-          });
+	return (
+		<Container>
+			<Downshift
+				onChange={onChange}
+				itemToString={itemToString}
+				defaultHighlightedIndex={0}
+			>
+				{({
+					clearSelection,
+					getInputProps,
+					getItemProps,
+					getLabelProps,
+					getMenuProps,
+					highlightedIndex,
+					isOpen,
+					openMenu,
+				}) => {
+					const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+						onChange: ((event) => {
+							if (event.target.value === '') {
+								clearSelection();
+							} else {
+								void loadOptions(event.target.value);
+							}
+						}) as ChangeEventHandler<HTMLInputElement>,
+						onFocus: (() => {
+							if (suggestions.length) {
+								openMenu();
+							}
+						}) as FocusEventHandler<HTMLInputElement>,
+						onBlur: (() => {
+							openMenu();
+							setSuggestions([]);
+						}) as FocusEventHandler<HTMLInputElement>,
+					});
 
-          return (
-            <div>
-              <TextField
-                fullWidth
-                label="Zugnummer"
-                placeholder="z.B. 71"
-                InputLabelProps={getLabelProps({ shrink: true } as any)}
-                InputProps={{
-                  onBlur,
-                  onChange,
-                  onFocus,
-                  type: 'number',
-                  autoFocus: true,
-                }}
-                inputProps={{
-                  ...inputProps,
-                  'data-testid': 'zugsucheAutocompleteInput',
-                  inputMode: 'numeric',
-                }}
-              />
+					return (
+						<div>
+							<TextField
+								fullWidth
+								label="Zugnummer"
+								placeholder="z.B. 71"
+								InputLabelProps={getLabelProps({ shrink: true } as any)}
+								InputProps={{
+									onBlur,
+									onChange,
+									onFocus,
+									type: 'number',
+									autoFocus: true,
+								}}
+								inputProps={{
+									...inputProps,
+									'data-testid': 'zugsucheAutocompleteInput',
+									inputMode: 'numeric',
+								}}
+							/>
 
-              <div {...getMenuProps()}>
-                {isOpen && (
-                  <Paper square>
-                    {suggestions.length ? (
-                      suggestions.map((suggestion, index) => {
-                        const itemProps = getItemProps({
-                          item: suggestion,
-                        });
-                        const highlighted = highlightedIndex === index;
+							<div {...getMenuProps()}>
+								{isOpen && (
+									<Paper square>
+										{suggestions.length ? (
+											suggestions.map((suggestion, index) => {
+												const itemProps = getItemProps({
+													item: suggestion,
+												});
+												const highlighted = highlightedIndex === index;
 
-                        return (
-                          <StyledMenuItem
-                            data-testid="zugsucheAutocompleteItem"
-                            {...itemProps}
-                            key={suggestion.jid}
-                            selected={highlighted}
-                            // @ts-expect-error ???
-                            component="div"
-                          >
-                            {suggestion.train.name} -&gt;
-                            <br />
-                            {suggestion.lastStop.station.name}
-                          </StyledMenuItem>
-                        );
-                      })
-                    ) : (
-                      <StyledMenuItem key="loading">
-                        {loading ? 'Loading...' : 'No Matching Trains'}
-                      </StyledMenuItem>
-                    )}
-                  </Paper>
-                )}
-              </div>
-            </div>
-          );
-        }}
-      </Downshift>
-      {Boolean(loading) && <PositionedLoading type={LoadingType.dots} />}
-    </Container>
-  );
+												return (
+													<StyledMenuItem
+														data-testid="zugsucheAutocompleteItem"
+														{...itemProps}
+														key={suggestion.jid}
+														selected={highlighted}
+														// @ts-expect-error ???
+														component="div"
+													>
+														{suggestion.train.name} -&gt;
+														<br />
+														{suggestion.lastStop.station.name}
+													</StyledMenuItem>
+												);
+											})
+										) : (
+											<StyledMenuItem key="loading">
+												{loading ? 'Loading...' : 'No Matching Trains'}
+											</StyledMenuItem>
+										)}
+									</Paper>
+								)}
+							</div>
+						</div>
+					);
+				}}
+			</Downshift>
+			{Boolean(loading) && <PositionedLoading type={LoadingType.dots} />}
+		</Container>
+	);
 };

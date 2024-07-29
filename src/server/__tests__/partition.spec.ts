@@ -1,12 +1,12 @@
-import { describe, expect, it } from '@jest/globals';
 import { partition } from '@/client/util';
+import { describe, expect, it } from 'vitest';
 
 describe('partition', () => {
-  it('smaller than partitionSize', () => {
-    const array = [1, 2, 3, 4, 5, 6, 7];
-    const partitioned = partition(array, 10);
+	it('smaller than partitionSize', () => {
+		const array = [1, 2, 3, 4, 5, 6, 7];
+		const partitioned = partition(array, 10);
 
-    expect(array).toEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(partitioned).toEqual([array]);
-  });
+		expect(array).toEqual([1, 2, 3, 4, 5, 6, 7]);
+		expect(partitioned).toEqual([array]);
+	});
 });

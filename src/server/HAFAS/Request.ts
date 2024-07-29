@@ -1,164 +1,162 @@
-import * as HafasProfiles from './profiles';
-import { AllowedHafasProfile } from '@/types/HAFAS';
-import { parseLocL } from './helper/parseLocL';
-import { UpstreamApiRequestMetric } from '@/server/admin';
-import Axios from 'axios';
 import parsePolyline from '@/server/HAFAS/helper/parsePolyline';
-import parseProduct from './helper/parseProduct';
+import { UpstreamApiRequestMetric } from '@/server/admin';
+import { AllowedHafasProfile } from '@/types/HAFAS';
 import type {
-  Common,
-  GenericHafasRequest,
-  GenericRes,
-  HafasResponse,
-  ParsedCommon,
-  SingleHafasRequest,
+	Common,
+	GenericHafasRequest,
+	GenericRes,
+	HafasResponse,
+	ParsedCommon,
+	SingleHafasRequest,
 } from '@/types/HAFAS';
 import type {
-  HimSearchRequest,
-  HimSearchResponse,
+	HimSearchRequest,
+	HimSearchResponse,
 } from '@/types/HAFAS/HimSearch';
 import type {
-  JourneyDetailsRequest,
-  JourneyDetailsResponse,
+	JourneyDetailsRequest,
+	JourneyDetailsResponse,
 } from '@/types/HAFAS/JourneyDetails';
 import type {
-  JourneyMatchRequest,
-  JourneyMatchResponse,
+	JourneyMatchRequest,
+	JourneyMatchResponse,
 } from '@/types/HAFAS/JourneyMatch';
 import type { LocMatchRequest, LocMatchResponse } from '@/types/HAFAS/LocMatch';
 import type {
-  SearchOnTripRequest,
-  SearchOnTripResponse,
+	SearchOnTripRequest,
+	SearchOnTripResponse,
 } from '@/types/HAFAS/SearchOnTrip';
 import type {
-  StationBoardRequest,
-  StationBoardResponse,
+	StationBoardRequest,
+	StationBoardResponse,
 } from '@/types/HAFAS/StationBoard';
 import type {
-  TripSearchRequest,
-  TripSearchResponse,
+	TripSearchRequest,
+	TripSearchResponse,
 } from '@/types/HAFAS/TripSearch';
+import Axios from 'axios';
+import { parseLocL } from './helper/parseLocL';
+import parseProduct from './helper/parseProduct';
+import * as HafasProfiles from './profiles';
 
 function createRequest(
-  req: SingleHafasRequest,
-  profileType: AllowedHafasProfile,
+	req: SingleHafasRequest,
+	profileType: AllowedHafasProfile,
 ) {
-  const profile = HafasProfiles[profileType];
-  const data: any = profile.config;
+	const profile = HafasProfiles[profileType];
+	const data: any = profile.config;
 
-  const auth = data.auth;
+	const auth = data.auth;
 
-  delete data.auth;
+	data.auth = undefined;
 
-  data.svcReqL = [req];
+	data.svcReqL = [req];
 
-  data.auth = auth;
+	data.auth = auth;
 
-  const extraParam = 'secret' in profile ? profile.secret(data) : undefined;
+	const extraParam = 'secret' in profile ? profile.secret(data) : undefined;
 
-  return {
-    data,
-    extraParam,
-  };
+	return {
+		data,
+		extraParam,
+	};
 }
 
 async function parseCommon(common: Common): Promise<ParsedCommon> {
-  const prodL = common.prodL.map((p) => parseProduct(p, common));
-  const locL = await Promise.all(common.locL.map((l) => parseLocL(l, prodL)));
-  const polyL = common.polyL?.map((p) => parsePolyline(p, locL));
+	const prodL = common.prodL.map((p) => parseProduct(p, common));
+	const locL = await Promise.all(common.locL.map((l) => parseLocL(l, prodL)));
+	const polyL = common.polyL?.map((p) => parsePolyline(p, locL));
 
-  return {
-    ...common,
-    locL,
-    prodL,
-    polyL,
-  };
+	return {
+		...common,
+		locL,
+		prodL,
+		polyL,
+	};
 }
 
 export class HafasError extends Error {
-  customError = true;
-  data: {
-    request: SingleHafasRequest;
-    response: HafasResponse<any>;
-    profile: AllowedHafasProfile;
-  };
-  errorCode: string | undefined;
-  constructor(
-    request: SingleHafasRequest,
-    response: HafasResponse<any>,
-    profile: AllowedHafasProfile,
-  ) {
-    super(`${request.meth} HAFAS Error`);
-    Error.captureStackTrace(this, HafasError);
-    if (response?.svcResL?.length) {
-      this.errorCode = response.svcResL[0].err;
-    }
-    this.data = {
-      request,
-      response,
-      profile,
-    };
-  }
+	customError = true;
+	data: {
+		request: SingleHafasRequest;
+		response: HafasResponse<any>;
+		profile: AllowedHafasProfile;
+	};
+	errorCode: string | undefined;
+	constructor(
+		request: SingleHafasRequest,
+		response: HafasResponse<any>,
+		profile: AllowedHafasProfile,
+	) {
+		super(`${request.meth} HAFAS Error`);
+		Error.captureStackTrace(this, HafasError);
+		if (response?.svcResL?.length) {
+			this.errorCode = response.svcResL[0].err;
+		}
+		this.data = {
+			request,
+			response,
+			profile,
+		};
+	}
 }
 
 type CommonHafasResponse<
-  T extends string,
-  R extends GenericHafasRequest<T>,
+	T extends string,
+	R extends GenericHafasRequest<T>,
 > = R extends TripSearchRequest
-  ? TripSearchResponse
-  : R extends StationBoardRequest
-    ? StationBoardResponse
-    : R extends HimSearchRequest
-      ? HimSearchResponse
-      : R extends JourneyMatchRequest
-        ? JourneyMatchResponse
-        : R extends LocMatchRequest
-          ? LocMatchResponse
-          : R extends JourneyDetailsRequest
-            ? JourneyDetailsResponse
-            : R extends SearchOnTripRequest
-              ? SearchOnTripResponse
-              : never;
+	? TripSearchResponse
+	: R extends StationBoardRequest
+		? StationBoardResponse
+		: R extends HimSearchRequest
+			? HimSearchResponse
+			: R extends JourneyMatchRequest
+				? JourneyMatchResponse
+				: R extends LocMatchRequest
+					? LocMatchResponse
+					: R extends JourneyDetailsRequest
+						? JourneyDetailsResponse
+						: R extends SearchOnTripRequest
+							? SearchOnTripResponse
+							: never;
 async function makeRequest<
-  R extends SingleHafasRequest,
-  HR extends GenericRes = CommonHafasResponse<any, R>,
-  P = HR,
+	R extends SingleHafasRequest,
+	HR extends GenericRes = CommonHafasResponse<any, R>,
+	P = HR,
 >(
-  hafasRequest: R,
-  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => Promise<P> = (d) =>
-    d as any,
-  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
+	hafasRequest: R,
+	parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => Promise<P> = (d) =>
+		d as any,
+	profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<P> {
-  const { data, extraParam } = createRequest(hafasRequest, profile);
+	const { data, extraParam } = createRequest(hafasRequest, profile);
 
-  if (process.env.NODE_ENV === 'test') {
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(hafasRequest));
-    // eslint-disable-next-line no-console
-    console.log(extraParam);
-  }
-  UpstreamApiRequestMetric.inc({
-    api: `hafas-${hafasRequest.meth}`,
-  });
+	if (process.env.NODE_ENV === 'test') {
+		console.log(JSON.stringify(hafasRequest));
+		console.log(extraParam);
+	}
+	UpstreamApiRequestMetric.inc({
+		api: `hafas-${hafasRequest.meth}`,
+	});
 
-  const r = (
-    await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
-      params: extraParam,
-    })
-  ).data;
+	const r = (
+		await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
+			params: extraParam,
+		})
+	).data;
 
-  if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
-    throw new HafasError(hafasRequest, r, profile);
-  }
+	if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
+		throw new HafasError(hafasRequest, r, profile);
+	}
 
-  const rawCommon = r.svcResL[0].res.common;
+	const rawCommon = r.svcResL[0].res.common;
 
-  if (!rawCommon) {
-    throw new HafasError(hafasRequest, r, profile);
-  }
-  const parsedCommon = await parseCommon(rawCommon);
+	if (!rawCommon) {
+		throw new HafasError(hafasRequest, r, profile);
+	}
+	const parsedCommon = await parseCommon(rawCommon);
 
-  return parseFn(r, parsedCommon);
+	return parseFn(r, parsedCommon);
 }
 
 export default makeRequest;

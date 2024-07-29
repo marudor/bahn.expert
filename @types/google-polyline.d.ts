@@ -1,3 +1,3 @@
 declare module 'google-polyline' {
-  export function decode(encoded: string): [number, number][];
+	export function decode(encoded: string): [number, number][];
 }

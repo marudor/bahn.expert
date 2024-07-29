@@ -3,11 +3,12 @@
 This is the program behind [bahn.expert](https://bahn.expert)
 
 ## Legacy API Documentation
+
 I no longer provide public API.
 
 ## Self Hosting
-Due to the amount of secret that I can not make public (They can usually be found in DB Applications) I do not support self hosting this.
 
+Due to the amount of secret that I can not make public (They can usually be found in DB Applications) I do not support self hosting this.
 
 ## Cross browser testing
 

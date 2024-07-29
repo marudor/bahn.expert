@@ -1,26 +1,26 @@
 import type { RouteJourneySegment } from '@/types/routing';
 
 export default (segments: RouteJourneySegment[]): RouteJourneySegment[] => {
-  const mergedSegments: RouteJourneySegment[] = [];
-  let currentSegment = segments.shift();
+	const mergedSegments: RouteJourneySegment[] = [];
+	let currentSegment = segments.shift();
 
-  while (currentSegment) {
-    const nextSegment = segments.shift();
+	while (currentSegment) {
+		const nextSegment = segments.shift();
 
-    if (currentSegment.type !== 'WALK' || !nextSegment) {
-      mergedSegments.push(currentSegment);
-      currentSegment = nextSegment;
-    } else if (nextSegment.type === 'WALK') {
-      currentSegment.arrival = nextSegment.arrival;
-      currentSegment.duration += nextSegment.duration;
-      currentSegment.segmentDestination = nextSegment.segmentDestination;
-      mergedSegments.push(currentSegment);
-      currentSegment = segments.shift();
-    } else {
-      mergedSegments.push(currentSegment, nextSegment);
-      currentSegment = segments.shift();
-    }
-  }
+		if (currentSegment.type !== 'WALK' || !nextSegment) {
+			mergedSegments.push(currentSegment);
+			currentSegment = nextSegment;
+		} else if (nextSegment.type === 'WALK') {
+			currentSegment.arrival = nextSegment.arrival;
+			currentSegment.duration += nextSegment.duration;
+			currentSegment.segmentDestination = nextSegment.segmentDestination;
+			mergedSegments.push(currentSegment);
+			currentSegment = segments.shift();
+		} else {
+			mergedSegments.push(currentSegment, nextSegment);
+			currentSegment = segments.shift();
+		}
+	}
 
-  return mergedSegments;
+	return mergedSegments;
 };

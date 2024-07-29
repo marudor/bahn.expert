@@ -1,40 +1,40 @@
 {
-  "entryFile": "./src/server/API/index.ts",
-  "controllerPathGlobs": ["./src/server/API/controller/**"],
-  "noImplicitAdditionalProperties": "ignore",
-  "spec": {
-    "name": "Bahn.expert",
-    "specVersion": 3,
-    "outputDirectory": "./public",
-    "host": "bahn.expert",
-    "basePath": "api/",
-    "tags": [
-      {
-        "name": "HAFAS",
-        "description": "All Operation use a HAFAS backend. By default it will be the HAFAS backend by DB Vertrieb (DB Navigator). Different backends can be selected by providing the query paramter profile."
-      },
-      {
-        "name": "Journeys"
-      },
-      {
-        "name": "IRIS"
-      },
-      {
-        "name": "CoachSequence"
-      },
-      {
-        "name": "StopPlace"
-      }
-    ]
-  },
-  "routes": {
-    "middleware": "koa",
-    "routesDir": "./src/server/API",
-    "basePath": "api/"
-  },
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+	"entryFile": "./src/server/API/index.ts",
+	"controllerPathGlobs": ["./src/server/API/controller/**"],
+	"noImplicitAdditionalProperties": "ignore",
+	"spec": {
+		"name": "Bahn.expert",
+		"specVersion": 3,
+		"outputDirectory": "./public",
+		"host": "bahn.expert",
+		"basePath": "api/",
+		"tags": [
+			{
+				"name": "HAFAS",
+				"description": "All Operation use a HAFAS backend. By default it will be the HAFAS backend by DB Vertrieb (DB Navigator). Different backends can be selected by providing the query paramter profile."
+			},
+			{
+				"name": "Journeys"
+			},
+			{
+				"name": "IRIS"
+			},
+			{
+				"name": "CoachSequence"
+			},
+			{
+				"name": "StopPlace"
+			}
+		]
+	},
+	"routes": {
+		"middleware": "koa",
+		"routesDir": "./src/server/API",
+		"basePath": "api/"
+	},
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	}
 }

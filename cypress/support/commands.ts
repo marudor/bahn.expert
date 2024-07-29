@@ -1,127 +1,127 @@
 import '@testing-library/cypress/add-commands';
 
 Cypress.Commands.add('force404', () => {
-  cy.intercept('/api/**', { statusCode: 404, body: 'unmocked disallowed' });
+	cy.intercept('/api/**', { statusCode: 404, body: 'unmocked disallowed' });
 });
 
 Cypress.Commands.add(
-  'navigateToStation',
-  (
-    value: string,
-    {
-      findPrefix,
-    }: {
-      isStubbed?: boolean;
-      findPrefix?: string;
-    } = {},
-  ) => {
-    const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
+	'navigateToStation',
+	(
+		value: string,
+		{
+			findPrefix,
+		}: {
+			isStubbed?: boolean;
+			findPrefix?: string;
+		} = {},
+	) => {
+		const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
 
-    baseFind.findByTestId('stopPlaceSearchInput').type(value);
-    cy.findAllByTestId('stopPlaceSearchMenuItem').first().click();
-  },
+		baseFind.findByTestId('stopPlaceSearchInput').type(value);
+		cy.findAllByTestId('stopPlaceSearchMenuItem').first().click();
+	},
 );
 
 Cypress.Commands.add('theme', (type) => {
-  cy.findByTestId('navToggle').click();
-  cy.findByTestId('themes').click();
-  cy.findByTestId('themeList').find(`[data-value="${type}"]`).click();
-  cy.get('.MuiBackdrop-root').should('not.exist');
+	cy.findByTestId('navToggle').click();
+	cy.findByTestId('themes').click();
+	cy.findByTestId('themeList').find(`[data-value="${type}"]`).click();
+	cy.get('.MuiBackdrop-root').should('not.exist');
 });
 
 Cypress.Commands.add('closeModal', () => {
-  cy.get('body').type('{esc}');
-  cy.get('.MuiBackdrop-root').should('not.exist');
+	cy.get('body').type('{esc}');
+	cy.get('.MuiBackdrop-root').should('not.exist');
 });
 
 function mockStopPlace({
-  lookbehind,
-  lookahead,
-  delay,
-  name,
-  fixture,
-  startTime,
-  id,
+	lookbehind,
+	lookahead,
+	delay,
+	name,
+	fixture,
+	startTime,
+	id,
 }: {
-  lookbehind: number;
-  lookahead: number;
-  delay: number;
-  name: string;
-  fixture: string;
-  startTime?: Date;
-  id: string;
+	lookbehind: number;
+	lookahead: number;
+	delay: number;
+	name: string;
+	fixture: string;
+	startTime?: Date;
+	id: string;
 }) {
-  cy.intercept(
-    {
-      url: `/api/iris/v2/abfahrten/${id}?*`,
-      query: {
-        lookahead: lookahead.toString(),
-        lookbehind: lookbehind.toString(),
-        ...(startTime && {
-          startTime: startTime.toISOString(),
-        }),
-      },
-    },
-    {
-      delayMs: delay,
-      fixture: `abfahrten${fixture}`,
-    },
-  ).intercept(
-    {
-      url: `/api/stopPlace/v1/search/${encodeURIComponent(name)}?*`,
-    },
-    {
-      fixture: `stopPlaceSearch${fixture}`,
-    },
-  );
+	cy.intercept(
+		{
+			url: `/api/iris/v2/abfahrten/${id}?*`,
+			query: {
+				lookahead: lookahead.toString(),
+				lookbehind: lookbehind.toString(),
+				...(startTime && {
+					startTime: startTime.toISOString(),
+				}),
+			},
+		},
+		{
+			delayMs: delay,
+			fixture: `abfahrten${fixture}`,
+		},
+	).intercept(
+		{
+			url: `/api/stopPlace/v1/search/${encodeURIComponent(name)}?*`,
+		},
+		{
+			fixture: `stopPlaceSearch${fixture}`,
+		},
+	);
 }
 
 Cypress.Commands.add(
-  'mockFrankfurt',
-  ({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
-    mockStopPlace({
-      lookahead,
-      lookbehind,
-      startTime,
-      delay,
-      name: 'Frankfurt (Main) Hbf',
-      id: '8000105',
-      fixture: 'FrankfurtHbf',
-    });
-  },
+	'mockFrankfurt',
+	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
+		mockStopPlace({
+			lookahead,
+			lookbehind,
+			startTime,
+			delay,
+			name: 'Frankfurt (Main) Hbf',
+			id: '8000105',
+			fixture: 'FrankfurtHbf',
+		});
+	},
 );
 
 Cypress.Commands.add(
-  'mockHamburg',
-  ({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
-    mockStopPlace({
-      lookahead,
-      lookbehind,
-      delay,
-      startTime,
-      name: 'Hamburg Hbf',
-      fixture: 'HamburgHbf',
-      id: '8002549',
-    });
-  },
+	'mockHamburg',
+	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
+		mockStopPlace({
+			lookahead,
+			lookbehind,
+			delay,
+			startTime,
+			name: 'Hamburg Hbf',
+			fixture: 'HamburgHbf',
+			id: '8002549',
+		});
+	},
 );
 
 Cypress.Commands.add(
-  'mockHannover',
-  ({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
-    mockStopPlace({
-      lookahead,
-      lookbehind,
-      delay,
-      startTime,
-      name: 'Hannover Hbf',
-      fixture: 'HannoverHbf',
-      id: '8000152',
-    });
-  },
+	'mockHannover',
+	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
+		mockStopPlace({
+			lookahead,
+			lookbehind,
+			delay,
+			startTime,
+			name: 'Hannover Hbf',
+			fixture: 'HannoverHbf',
+			id: '8000152',
+		});
+	},
 );
 
 Cypress.Commands.add('openSettings', () => {
-  cy.findByTestId('navToggle').click();
-  cy.findByTestId('openSettings').click();
+	cy.findByTestId('navToggle').click();
+	cy.findByTestId('openSettings').click();
 });

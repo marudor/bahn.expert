@@ -1,3 +1,3 @@
 export interface LageplanResponse {
-  lageplan?: string;
+	lageplan?: string;
 }

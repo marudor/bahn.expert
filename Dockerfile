@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:21-alpine as base
+FROM --platform=$BUILDPLATFORM node:22-alpine as base
 RUN corepack enable
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
@@ -21,7 +21,7 @@ RUN pnpm i --production --frozen-lockfile
 RUN rm package.json
 RUN pnpm dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 
-FROM node:21-alpine
+FROM node:22-alpine
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
 WORKDIR /app

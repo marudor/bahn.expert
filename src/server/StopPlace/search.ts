@@ -1,293 +1,294 @@
 import { byEva, byName, byRl100, groups, keys } from '@/external/risStations';
+import { StopPlaceKeyType } from '@/external/types';
+import type {
+	ResolvedStopPlaceGroups,
+	StopPlace,
+	StopPlaceSearchResult,
+} from '@/external/types';
+import { searchWithHafas } from '@/server/StopPlace/hafasSearch';
+import { manualNameOverrides } from '@/server/StopPlace/manualNameOverrides';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { getSingleStation } from '@/server/iris/station';
-import { manualNameOverrides } from '@/server/StopPlace/manualNameOverrides';
-import { searchWithHafas } from '@/server/StopPlace/hafasSearch';
-import { StopPlaceKeyType } from '@/external/types';
 import type { GroupedStopPlace, StopPlaceIdentifier } from '@/types/stopPlace';
-import type {
-  ResolvedStopPlaceGroups,
-  StopPlace,
-  StopPlaceSearchResult,
-} from '@/external/types';
 
 const stopPlaceStationSearchCache = new Cache<GroupedStopPlace[]>(
-  CacheDatabase.StopPlaceSearch,
+	CacheDatabase.StopPlaceSearch,
 );
 const stopPlaceSalesSearchCache = new Cache<GroupedStopPlace[]>(
-  CacheDatabase.StopPlaceSalesSearch,
+	CacheDatabase.StopPlaceSalesSearch,
 );
 const stopPlaceIdentifierCache = new Cache<StopPlaceIdentifier | undefined>(
-  CacheDatabase.StopPlaceIdentifier,
+	CacheDatabase.StopPlaceIdentifier,
 );
 const stopPlaceByRilCache = new Cache<StopPlace>(CacheDatabase.StopPlaceByRil);
 const stopPlaceByRilGroupedCache = new Cache<GroupedStopPlace>(
-  CacheDatabase.StopPlaceByRilGrouped,
+	CacheDatabase.StopPlaceByRilGrouped,
 );
 const stopPlaceByEvaCache = new Cache<GroupedStopPlace>(
-  CacheDatabase.StopPlaceByEva,
+	CacheDatabase.StopPlaceByEva,
 );
 const stopPlaceGroupCache = new Cache<ResolvedStopPlaceGroups>(
-  CacheDatabase.StopPlaceGroups,
+	CacheDatabase.StopPlaceGroups,
 );
 
 function mapToGroupedStopPlace(
-  stopPlace: Pick<
-    StopPlaceSearchResult,
-    'evaNumber' | 'names' | 'availableTransports' | 'position'
-  >,
+	stopPlace: Pick<
+		StopPlaceSearchResult,
+		'evaNumber' | 'names' | 'availableTransports' | 'position'
+	>,
 ): GroupedStopPlace {
-  return {
-    evaNumber: stopPlace.evaNumber,
-    name: stopPlace.names.DE.nameLong,
-    availableTransports: stopPlace.availableTransports,
-    position: stopPlace.position,
-  };
+	return {
+		evaNumber: stopPlace.evaNumber,
+		name: stopPlace.names.DE.nameLong,
+		availableTransports: stopPlace.availableTransports,
+		position: stopPlace.position,
+	};
 }
 
 export async function irisFilter(
-  stopPlaces: GroupedStopPlace[],
+	stopPlaces: GroupedStopPlace[],
 ): Promise<GroupedStopPlace[]> {
-  return (
-    await Promise.all(
-      stopPlaces.map(async (stopPlace) => {
-        try {
-          await getSingleStation(stopPlace.evaNumber);
-          return stopPlace;
-        } catch {
-          return undefined;
-        }
-      }),
-    )
-  ).filter(Boolean);
+	return (
+		await Promise.all(
+			stopPlaces.map(async (stopPlace) => {
+				try {
+					await getSingleStation(stopPlace.evaNumber);
+					return stopPlace;
+				} catch {
+					return undefined;
+				}
+			}),
+		)
+	).filter(Boolean);
 }
 
 export async function searchStopPlace(
-  searchTerm?: string,
-  max?: number,
-  filterForIris?: boolean,
-  groupBySales?: boolean,
+	searchTerm?: string,
+	max?: number,
+	filterForIris?: boolean,
+	groupBySales?: boolean,
 ): Promise<GroupedStopPlace[]> {
-  try {
-    const result = await searchStopPlaceRisStations(
-      searchTerm,
-      max,
-      filterForIris,
-      groupBySales,
-    );
-    if (result?.length || filterForIris || groupBySales) return result;
-    return searchWithHafas(searchTerm, max, filterForIris);
-  } catch {
-    return searchWithHafas(searchTerm, max, filterForIris);
-  }
+	try {
+		const result = await searchStopPlaceRisStations(
+			searchTerm,
+			max,
+			filterForIris,
+			groupBySales,
+		);
+		if (result?.length || filterForIris || groupBySales) return result;
+		return searchWithHafas(searchTerm, max, filterForIris);
+	} catch {
+		return searchWithHafas(searchTerm, max, filterForIris);
+	}
 }
 
 export async function searchStopPlaceRisStations(
-  searchTerm?: string,
-  max?: number,
-  filterForIris?: boolean,
-  groupBySales?: boolean,
+	searchTerm?: string,
+	max?: number,
+	filterForIris?: boolean,
+	groupBySales?: boolean,
 ): Promise<GroupedStopPlace[]> {
-  if (!searchTerm) return [];
+	if (!searchTerm) return [];
 
-  searchTerm =
-    manualNameOverrides.get(searchTerm.toLowerCase()) ||
-    searchTerm.toLowerCase();
+	const sanitizedSearchTerm =
+		manualNameOverrides.get(searchTerm.toLowerCase()) ||
+		searchTerm.toLowerCase();
 
-  const searchCache = groupBySales
-    ? stopPlaceSalesSearchCache
-    : stopPlaceStationSearchCache;
+	const searchCache = groupBySales
+		? stopPlaceSalesSearchCache
+		: stopPlaceStationSearchCache;
 
-  let groupedStopPlaces =
-    (await searchCache.get(searchTerm)) ||
-    (await searchStopPlaceRemote(searchTerm, groupBySales));
+	let groupedStopPlaces =
+		(await searchCache.get(sanitizedSearchTerm)) ||
+		(await searchStopPlaceRemote(sanitizedSearchTerm, groupBySales));
 
-  if (filterForIris) {
-    groupedStopPlaces = await irisFilter(groupedStopPlaces);
-  }
+	if (filterForIris) {
+		groupedStopPlaces = await irisFilter(groupedStopPlaces);
+	}
 
-  if (max) {
-    return groupedStopPlaces.splice(0, max);
-  }
+	if (max) {
+		return groupedStopPlaces.splice(0, max);
+	}
 
-  return groupedStopPlaces;
+	return groupedStopPlaces;
 }
 
 export async function getStopPlaceByEva(
-  evaNumber: string,
-  forceLive?: boolean,
+	evaNumber: string,
+	forceLive?: boolean,
 ): Promise<GroupedStopPlace | undefined> {
-  if (!forceLive) {
-    const cached = await stopPlaceByEvaCache.get(evaNumber);
-    if (cached) return cached;
-  }
-  const risResult = await byEva(evaNumber, forceLive);
-  if (risResult) {
-    const groupedStopPlace = mapToGroupedStopPlace(risResult);
-    await addIdentifiers([groupedStopPlace]);
-    void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
-    return groupedStopPlace;
-  } else if (!forceLive) {
-    const hafasResults = await searchWithHafas(evaNumber, 1, false);
-    const groupedHafasResult = hafasResults[0];
-    if (groupedHafasResult && groupedHafasResult.evaNumber === evaNumber) {
-      void stopPlaceByEvaCache.set(
-        groupedHafasResult.evaNumber,
-        groupedHafasResult,
-      );
-      return groupedHafasResult;
-    }
-  }
+	if (!forceLive) {
+		const cached = await stopPlaceByEvaCache.get(evaNumber);
+		if (cached) return cached;
+	}
+	const risResult = await byEva(evaNumber, forceLive);
+	if (risResult) {
+		const groupedStopPlace = mapToGroupedStopPlace(risResult);
+		await addIdentifiers([groupedStopPlace]);
+		void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
+		return groupedStopPlace;
+	}
+	if (!forceLive) {
+		const hafasResults = await searchWithHafas(evaNumber, 1, false);
+		const groupedHafasResult = hafasResults[0];
+		if (groupedHafasResult && groupedHafasResult.evaNumber === evaNumber) {
+			void stopPlaceByEvaCache.set(
+				groupedHafasResult.evaNumber,
+				groupedHafasResult,
+			);
+			return groupedHafasResult;
+		}
+	}
 }
 
 async function byRl100WithSpaceHandling(
-  rl100: string,
+	rl100: string,
 ): Promise<StopPlace | undefined> {
-  if (rl100.length > 5) {
-    return undefined;
-  }
-  const cached = await stopPlaceByRilCache.get(rl100);
-  if (cached) {
-    return cached;
-  }
-  const rl100Promise = byRl100(rl100.toUpperCase());
-  let rl100DoubleSpacePromise: typeof rl100Promise = Promise.resolve(undefined);
-  if (rl100.length < 5 && rl100.includes(' ')) {
-    rl100DoubleSpacePromise = byRl100(
-      rl100.replaceAll(' ', '  ').toUpperCase(),
-    );
-  }
-  const result = (await rl100Promise) || (await rl100DoubleSpacePromise);
-  if (result) {
-    void stopPlaceByRilCache.set(rl100, result);
-  }
-  return result;
+	if (rl100.length > 5) {
+		return undefined;
+	}
+	const cached = await stopPlaceByRilCache.get(rl100);
+	if (cached) {
+		return cached;
+	}
+	const rl100Promise = byRl100(rl100.toUpperCase());
+	let rl100DoubleSpacePromise: typeof rl100Promise = Promise.resolve(undefined);
+	if (rl100.length < 5 && rl100.includes(' ')) {
+		rl100DoubleSpacePromise = byRl100(
+			rl100.replaceAll(' ', '  ').toUpperCase(),
+		);
+	}
+	const result = (await rl100Promise) || (await rl100DoubleSpacePromise);
+	if (result) {
+		void stopPlaceByRilCache.set(rl100, result);
+	}
+	return result;
 }
 
 export async function getStopPlaceByRl100(
-  rl100: string,
+	rl100: string,
 ): Promise<GroupedStopPlace | undefined> {
-  const stopPlace = await byRl100WithSpaceHandling(rl100);
-  if (!stopPlace) {
-    return;
-  }
-  const grouped = mapToGroupedStopPlace(stopPlace);
-  await addIdentifiers([grouped]);
-  if (grouped.ril100) {
-    void stopPlaceByRilGroupedCache.set(grouped.ril100, grouped);
-  }
-  void stopPlaceByEvaCache.set(grouped.evaNumber, grouped);
-  return grouped;
+	const stopPlace = await byRl100WithSpaceHandling(rl100);
+	if (!stopPlace) {
+		return;
+	}
+	const grouped = mapToGroupedStopPlace(stopPlace);
+	await addIdentifiers([grouped]);
+	if (grouped.ril100) {
+		void stopPlaceByRilGroupedCache.set(grouped.ril100, grouped);
+	}
+	void stopPlaceByEvaCache.set(grouped.evaNumber, grouped);
+	return grouped;
 }
 
 async function searchStopPlaceRemote(
-  searchTerm: string,
-  groupBySales?: boolean,
+	searchTerm: string,
+	groupBySales?: boolean,
 ) {
-  const [risResult, rl100Result] = await Promise.all([
-    byName(searchTerm, undefined, groupBySales),
-    byRl100WithSpaceHandling(searchTerm.toUpperCase()),
-  ]);
-  const groupedStopPlaces = risResult.map(mapToGroupedStopPlace);
-  if (rl100Result) {
-    groupedStopPlaces.unshift(mapToGroupedStopPlace(rl100Result));
-    if (groupedStopPlaces[1]?.name.toLowerCase() === searchTerm.toLowerCase()) {
-      const [rl100, directMatch] = groupedStopPlaces;
-      groupedStopPlaces[0] = directMatch;
-      groupedStopPlaces[1] = rl100;
-    }
-  }
-  await addIdentifiers(groupedStopPlaces);
+	const [risResult, rl100Result] = await Promise.all([
+		byName(searchTerm, undefined, groupBySales),
+		byRl100WithSpaceHandling(searchTerm.toUpperCase()),
+	]);
+	const groupedStopPlaces = risResult.map(mapToGroupedStopPlace);
+	if (rl100Result) {
+		groupedStopPlaces.unshift(mapToGroupedStopPlace(rl100Result));
+		if (groupedStopPlaces[1]?.name.toLowerCase() === searchTerm.toLowerCase()) {
+			const [rl100, directMatch] = groupedStopPlaces;
+			groupedStopPlaces[0] = directMatch;
+			groupedStopPlaces[1] = rl100;
+		}
+	}
+	await addIdentifiers(groupedStopPlaces);
 
-  for (const s of groupedStopPlaces) {
-    void stopPlaceByEvaCache.set(s.evaNumber, s);
-    if (s.ril100) {
-      void stopPlaceByRilGroupedCache.set(s.ril100, s);
-    }
-  }
+	for (const s of groupedStopPlaces) {
+		void stopPlaceByEvaCache.set(s.evaNumber, s);
+		if (s.ril100) {
+			void stopPlaceByRilGroupedCache.set(s.ril100, s);
+		}
+	}
 
-  const searchCache = groupBySales
-    ? stopPlaceSalesSearchCache
-    : stopPlaceStationSearchCache;
+	const searchCache = groupBySales
+		? stopPlaceSalesSearchCache
+		: stopPlaceStationSearchCache;
 
-  void searchCache.set(searchTerm, groupedStopPlaces);
-  for (const s of groupedStopPlaces) {
-    void stopPlaceByEvaCache.set(s.evaNumber, s);
-  }
-  return groupedStopPlaces;
+	void searchCache.set(searchTerm, groupedStopPlaces);
+	for (const s of groupedStopPlaces) {
+		void stopPlaceByEvaCache.set(s.evaNumber, s);
+	}
+	return groupedStopPlaces;
 }
 
 async function addIdentifiers(stopPlaces: GroupedStopPlace[]): Promise<void> {
-  await Promise.all(
-    stopPlaces.map(async (stopPlace) => {
-      const identifier = await getIdentifiers(stopPlace.evaNumber);
-      if (identifier) {
-        stopPlace.alternativeRil100 = identifier.alternativeRil100;
-        stopPlace.ifopt = identifier.ifopt;
-        stopPlace.ril100 = identifier.ril100;
-        stopPlace.stationId = identifier.stationId;
-        stopPlace.uic = identifier.uic;
-      }
-    }),
-  );
+	await Promise.all(
+		stopPlaces.map(async (stopPlace) => {
+			const identifier = await getIdentifiers(stopPlace.evaNumber);
+			if (identifier) {
+				stopPlace.alternativeRil100 = identifier.alternativeRil100;
+				stopPlace.ifopt = identifier.ifopt;
+				stopPlace.ril100 = identifier.ril100;
+				stopPlace.stationId = identifier.stationId;
+				stopPlace.uic = identifier.uic;
+			}
+		}),
+	);
 }
 
 export async function getIdentifiers(
-  evaNumber: string,
-  cacheOnly?: boolean,
+	evaNumber: string,
+	cacheOnly?: boolean,
 ): Promise<StopPlaceIdentifier | undefined> {
-  const cached = await stopPlaceIdentifierCache.get(evaNumber);
-  if (cached) return Object.values(cached).length > 0 ? cached : undefined;
-  if (cacheOnly) return undefined;
-  const identifier: StopPlaceIdentifier = {
-    evaNumber,
-  };
-  try {
-    const stopPlaceKeys = await keys(evaNumber);
-    for (const { type, key } of stopPlaceKeys) {
-      switch (type) {
-        case StopPlaceKeyType.Ifopt: {
-          identifier.ifopt = key;
-          break;
-        }
-        case StopPlaceKeyType.Rl100: {
-          identifier.ril100 = key;
-          break;
-        }
-        case StopPlaceKeyType.Rl100Alternative: {
-          if (!identifier.alternativeRil100) {
-            identifier.alternativeRil100 = [];
-          }
-          identifier.alternativeRil100.push(key);
-          break;
-        }
-        case StopPlaceKeyType.Stada: {
-          identifier.stationId = key;
-          break;
-        }
-        case StopPlaceKeyType.Uic: {
-          identifier.uic = key;
-          break;
-        }
-      }
-    }
-    void stopPlaceIdentifierCache.set(evaNumber, identifier);
-    if (Object.keys(identifier).length > 0) {
-      return identifier;
-    }
-  } catch {
-    // Failed, guess no identifier
-  }
+	const cached = await stopPlaceIdentifierCache.get(evaNumber);
+	if (cached) return Object.values(cached).length > 0 ? cached : undefined;
+	if (cacheOnly) return undefined;
+	const identifier: StopPlaceIdentifier = {
+		evaNumber,
+	};
+	try {
+		const stopPlaceKeys = await keys(evaNumber);
+		for (const { type, key } of stopPlaceKeys) {
+			switch (type) {
+				case StopPlaceKeyType.Ifopt: {
+					identifier.ifopt = key;
+					break;
+				}
+				case StopPlaceKeyType.Rl100: {
+					identifier.ril100 = key;
+					break;
+				}
+				case StopPlaceKeyType.Rl100Alternative: {
+					if (!identifier.alternativeRil100) {
+						identifier.alternativeRil100 = [];
+					}
+					identifier.alternativeRil100.push(key);
+					break;
+				}
+				case StopPlaceKeyType.Stada: {
+					identifier.stationId = key;
+					break;
+				}
+				case StopPlaceKeyType.Uic: {
+					identifier.uic = key;
+					break;
+				}
+			}
+		}
+		void stopPlaceIdentifierCache.set(evaNumber, identifier);
+		if (Object.keys(identifier).length > 0) {
+			return identifier;
+		}
+	} catch {
+		// Failed, guess no identifier
+	}
 
-  return undefined;
+	return undefined;
 }
 
 export async function getGroups(
-  evaNumber: string,
+	evaNumber: string,
 ): Promise<ResolvedStopPlaceGroups> {
-  const cached = await stopPlaceGroupCache.get(evaNumber);
-  if (cached) {
-    return cached;
-  }
-  return groups(evaNumber);
+	const cached = await stopPlaceGroupCache.get(evaNumber);
+	if (cached) {
+		return cached;
+	}
+	return groups(evaNumber);
 }

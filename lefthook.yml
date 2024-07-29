@@ -1,0 +1,11 @@
+pre-commit:
+  commands:
+    biome:
+      glob: '*.{js,cjs,mjs,mts,ts,jsx,tsx,json}'
+      run: pnpm biome check --fix {staged_files} && git add {staged_files}
+    buildDoc:
+      run: pnpm doc:build:gitadd
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: pnpm commitlint --edit

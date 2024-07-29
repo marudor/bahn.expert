@@ -13,40 +13,40 @@
  * Do not edit the class manually.
  */
 
-import { Configuration } from './configuration';
+import type {
+	DirectionInfo,
+	ReplacementTransport,
+	StopPlaceEmbedded,
+} from '@/external/generated/risJourneysV2';
+import { TransportType } from '@/external/generated/risStations/api';
 import globalAxios, {
-  AxiosPromise,
-  AxiosInstance,
-  AxiosRequestConfig,
+	type AxiosPromise,
+	type AxiosInstance,
+	type AxiosRequestConfig,
 } from 'axios';
+// @ts-ignore
+import {
+	BASE_PATH,
+	BaseAPI,
+	COLLECTION_FORMATS,
+	type RequestArgs,
+	RequiredError,
+} from './base';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
+	DUMMY_BASE_URL,
+	assertParamExists,
+	createRequestFunction,
+	serializeDataIfNeeded,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	toPathString,
 } from './common';
-// @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  RequestArgs,
-  BaseAPI,
-  RequiredError,
-} from './base';
-import { TransportType } from '@/external/generated/risStations/api';
-import type {
-  StopPlaceEmbedded,
-  ReplacementTransport,
-  DirectionInfo,
-} from '@/external/generated/risJourneysV2';
+import type { Configuration } from './configuration';
 
 export { TransportType };
 /**
@@ -55,24 +55,24 @@ export { TransportType };
  * @interface Administration
  */
 export interface Administration {
-  /**
-   * Unique id of the administration [Verwaltung].
-   * @type {string}
-   * @memberof Administration
-   */
-  administrationID: string;
-  /**
-   * Unique code of the operator [Betreiber].
-   * @type {string}
-   * @memberof Administration
-   */
-  operatorCode: string;
-  /**
-   * Name of the operator [Betreiber].
-   * @type {string}
-   * @memberof Administration
-   */
-  operatorName: string;
+	/**
+	 * Unique id of the administration [Verwaltung].
+	 * @type {string}
+	 * @memberof Administration
+	 */
+	administrationID: string;
+	/**
+	 * Unique code of the operator [Betreiber].
+	 * @type {string}
+	 * @memberof Administration
+	 */
+	operatorCode: string;
+	/**
+	 * Name of the operator [Betreiber].
+	 * @type {string}
+	 * @memberof Administration
+	 */
+	operatorName: string;
 }
 /**
  * Information on journey arrival [Ankunft].
@@ -80,78 +80,78 @@ export interface Administration {
  * @interface Arrival
  */
 export interface Arrival {
-  /**
-   * Unique id for arrival [AnkunftsID].
-   * @type {string}
-   * @memberof Arrival
-   */
-  arrivalID: string;
-  /**
-   * List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop.
-   * @type {Array<MessageAttribute>}
-   * @memberof Arrival
-   */
-  attributes: Array<MessageAttribute>;
-  /**
-   * List of disruptions [Stoerungsinformationen] for journey at this particular stop.
-   * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
-   * @memberof Arrival
-   */
-  disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
-  /**
-   * List of messages [Freitexte] for journey at this particular stop [Freitexte].
-   * @type {Array<MessageLegacy>}
-   * @memberof Arrival
-   */
-  messages: Array<MessageLegacy>;
-  /**
-   * Indicates whether arrival or departure is an on demand stop [Bedarfshalt].
-   * @type {boolean}
-   * @memberof Arrival
-   */
-  onDemand: boolean;
-  /**
-   * Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel].
-   * @type {boolean}
-   * @memberof Arrival
-   */
-  passengerChange: boolean;
-  /**
-   * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof Arrival
-   */
-  platform: string;
-  /**
-   * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof Arrival
-   */
-  platformSchedule?: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof Arrival
-   */
-  station: StopPlaceEmbedded;
-  /**
-   * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof Arrival
-   */
-  time: string;
-  /**
-   * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof Arrival
-   */
-  timeSchedule: string;
-  /**
-   *
-   * @type {TimeType}
-   * @memberof Arrival
-   */
-  timeType: TimeType;
+	/**
+	 * Unique id for arrival [AnkunftsID].
+	 * @type {string}
+	 * @memberof Arrival
+	 */
+	arrivalID: string;
+	/**
+	 * List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop.
+	 * @type {Array<MessageAttribute>}
+	 * @memberof Arrival
+	 */
+	attributes: Array<MessageAttribute>;
+	/**
+	 * List of disruptions [Stoerungsinformationen] for journey at this particular stop.
+	 * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
+	 * @memberof Arrival
+	 */
+	disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
+	/**
+	 * List of messages [Freitexte] for journey at this particular stop [Freitexte].
+	 * @type {Array<MessageLegacy>}
+	 * @memberof Arrival
+	 */
+	messages: Array<MessageLegacy>;
+	/**
+	 * Indicates whether arrival or departure is an on demand stop [Bedarfshalt].
+	 * @type {boolean}
+	 * @memberof Arrival
+	 */
+	onDemand: boolean;
+	/**
+	 * Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel].
+	 * @type {boolean}
+	 * @memberof Arrival
+	 */
+	passengerChange: boolean;
+	/**
+	 * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof Arrival
+	 */
+	platform: string;
+	/**
+	 * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof Arrival
+	 */
+	platformSchedule?: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof Arrival
+	 */
+	station: StopPlaceEmbedded;
+	/**
+	 * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof Arrival
+	 */
+	time: string;
+	/**
+	 * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof Arrival
+	 */
+	timeSchedule: string;
+	/**
+	 *
+	 * @type {TimeType}
+	 * @memberof Arrival
+	 */
+	timeType: TimeType;
 }
 /**
  * Journey event [Fahrtereignis].
@@ -159,138 +159,138 @@ export interface Arrival {
  * @interface ArrivalDepartureEvent
  */
 export interface ArrivalDepartureEvent {
-  /**
-   * Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that an event of an additional journey [Zusatzfahrt] is only considered as additional in case the event has been added to the journeys after the additional journey has been scheduled.
-   * @type {boolean}
-   * @memberof ArrivalDepartureEvent
-   */
-  additional: boolean;
-  /**
-   *
-   * @type {Administration}
-   * @memberof ArrivalDepartureEvent
-   */
-  administration: Administration;
-  /**
-   * ID of arrival or departure, depends on event type.
-   * @type {string}
-   * @memberof ArrivalDepartureEvent
-   */
-  arrivalOrDepartureID: string;
-  /**
-   * List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop.
-   * @type {Array<MessageAttribute>}
-   * @memberof ArrivalDepartureEvent
-   */
-  attributes: Array<MessageAttribute>;
-  /**
-   * Indicates whether this event has been canceled.
-   * @type {boolean}
-   * @memberof ArrivalDepartureEvent
-   */
-  canceled: boolean;
-  /**
-   * List of disruptions [Stoerungsinformationen] for journey at this particular stop.
-   * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
-   * @memberof ArrivalDepartureEvent
-   */
-  disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
-  /**
-   * List of messages [Freitexte] for journey at this particular stop [Freitexte].
-   * @type {Array<MessageLegacy>}
-   * @memberof ArrivalDepartureEvent
-   */
-  messages: Array<MessageLegacy>;
-  /**
-   * Indicates whether arrival or departure is an on demand stop [Bedarfshalt].
-   * @type {boolean}
-   * @memberof ArrivalDepartureEvent
-   */
-  onDemand: boolean;
-  /**
-   * Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel].
-   * @type {boolean}
-   * @memberof ArrivalDepartureEvent
-   */
-  passengerChange: boolean;
-  /**
-   * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof ArrivalDepartureEvent
-   */
-  platform: string;
-  /**
-   * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof ArrivalDepartureEvent
-   */
-  platformSchedule?: string;
-  /**
-   * List of transports this journey at this particular event is reliefed by [Entlastungszug].
-   * @type {Array<TransportPublicDestinationOriginJourney>}
-   * @memberof ArrivalDepartureEvent
-   */
-  reliefBy: Array<TransportPublicDestinationOriginJourney>;
-  /**
-   * List of transports this journey at this particular event reliefs for [Entlastungszug].
-   * @type {Array<TransportPublicDestinationOriginJourney>}
-   * @memberof ArrivalDepartureEvent
-   */
-  reliefFor: Array<TransportPublicDestinationOriginJourney>;
-  /**
-   * List of transports this journey at this particular event is replaced by [Ersatzzug].
-   * @type {Array<TransportPublicDestinationOriginJourney>}
-   * @memberof ArrivalDepartureEvent
-   */
-  replacedBy: Array<TransportPublicDestinationOriginJourney>;
-  /**
-   * List of transports this journey at this particular event replaces [Ersatzzug].
-   * @type {Array<TransportPublicDestinationOriginJourney>}
-   * @memberof ArrivalDepartureEvent
-   */
-  replacementFor: Array<TransportPublicDestinationOriginJourney>;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof ArrivalDepartureEvent
-   */
-  station: StopPlaceEmbedded;
-  /**
-   * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof ArrivalDepartureEvent
-   */
-  time: string;
-  /**
-   * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof ArrivalDepartureEvent
-   */
-  timeSchedule: string;
-  /**
-   *
-   * @type {TimeType}
-   * @memberof ArrivalDepartureEvent
-   */
-  timeType: TimeType;
-  /**
-   *
-   * @type {TransportPublic}
-   * @memberof ArrivalDepartureEvent
-   */
-  transport: TransportPublic;
-  /**
-   * List of journeys this journey at this particular event travels with [Vereinigung].
-   * @type {Array<TransportPublicDestinationPortionWorking>}
-   * @memberof ArrivalDepartureEvent
-   */
-  travelsWith: Array<TransportPublicDestinationPortionWorking>;
-  /**
-   *
-   * @type {EventType}
-   * @memberof ArrivalDepartureEvent
-   */
-  type: EventType;
+	/**
+	 * Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that an event of an additional journey [Zusatzfahrt] is only considered as additional in case the event has been added to the journeys after the additional journey has been scheduled.
+	 * @type {boolean}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	additional: boolean;
+	/**
+	 *
+	 * @type {Administration}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	administration: Administration;
+	/**
+	 * ID of arrival or departure, depends on event type.
+	 * @type {string}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	arrivalOrDepartureID: string;
+	/**
+	 * List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop.
+	 * @type {Array<MessageAttribute>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	attributes: Array<MessageAttribute>;
+	/**
+	 * Indicates whether this event has been canceled.
+	 * @type {boolean}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	canceled: boolean;
+	/**
+	 * List of disruptions [Stoerungsinformationen] for journey at this particular stop.
+	 * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
+	/**
+	 * List of messages [Freitexte] for journey at this particular stop [Freitexte].
+	 * @type {Array<MessageLegacy>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	messages: Array<MessageLegacy>;
+	/**
+	 * Indicates whether arrival or departure is an on demand stop [Bedarfshalt].
+	 * @type {boolean}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	onDemand: boolean;
+	/**
+	 * Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel].
+	 * @type {boolean}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	passengerChange: boolean;
+	/**
+	 * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	platform: string;
+	/**
+	 * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	platformSchedule?: string;
+	/**
+	 * List of transports this journey at this particular event is reliefed by [Entlastungszug].
+	 * @type {Array<TransportPublicDestinationOriginJourney>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	reliefBy: Array<TransportPublicDestinationOriginJourney>;
+	/**
+	 * List of transports this journey at this particular event reliefs for [Entlastungszug].
+	 * @type {Array<TransportPublicDestinationOriginJourney>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	reliefFor: Array<TransportPublicDestinationOriginJourney>;
+	/**
+	 * List of transports this journey at this particular event is replaced by [Ersatzzug].
+	 * @type {Array<TransportPublicDestinationOriginJourney>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	replacedBy: Array<TransportPublicDestinationOriginJourney>;
+	/**
+	 * List of transports this journey at this particular event replaces [Ersatzzug].
+	 * @type {Array<TransportPublicDestinationOriginJourney>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	replacementFor: Array<TransportPublicDestinationOriginJourney>;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	station: StopPlaceEmbedded;
+	/**
+	 * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	time: string;
+	/**
+	 * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	timeSchedule: string;
+	/**
+	 *
+	 * @type {TimeType}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	timeType: TimeType;
+	/**
+	 *
+	 * @type {TransportPublic}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	transport: TransportPublic;
+	/**
+	 * List of journeys this journey at this particular event travels with [Vereinigung].
+	 * @type {Array<TransportPublicDestinationPortionWorking>}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	travelsWith: Array<TransportPublicDestinationPortionWorking>;
+	/**
+	 *
+	 * @type {EventType}
+	 * @memberof ArrivalDepartureEvent
+	 */
+	type: EventType;
 }
 /**
  * Information on journey departure [Abfahrt].
@@ -298,78 +298,78 @@ export interface ArrivalDepartureEvent {
  * @interface Departure
  */
 export interface Departure {
-  /**
-   * List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop.
-   * @type {Array<MessageAttribute>}
-   * @memberof Departure
-   */
-  attributes: Array<MessageAttribute>;
-  /**
-   * Unique id for departure [AbfahrtID].
-   * @type {string}
-   * @memberof Departure
-   */
-  departureID: string;
-  /**
-   * List of disruptions [Stoerungsinformationen] for journey at this particular stop.
-   * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
-   * @memberof Departure
-   */
-  disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
-  /**
-   * List of messages [Freitexte] for journey at this particular stop [Freitexte].
-   * @type {Array<MessageLegacy>}
-   * @memberof Departure
-   */
-  messages: Array<MessageLegacy>;
-  /**
-   * Indicates whether arrival or departure is an on demand stop [Bedarfshalt].
-   * @type {boolean}
-   * @memberof Departure
-   */
-  onDemand: boolean;
-  /**
-   * Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel].
-   * @type {boolean}
-   * @memberof Departure
-   */
-  passengerChange: boolean;
-  /**
-   * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof Departure
-   */
-  platform: string;
-  /**
-   * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof Departure
-   */
-  platformSchedule?: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof Departure
-   */
-  station: StopPlaceEmbedded;
-  /**
-   * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof Departure
-   */
-  time: string;
-  /**
-   * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof Departure
-   */
-  timeSchedule: string;
-  /**
-   *
-   * @type {TimeType}
-   * @memberof Departure
-   */
-  timeType: TimeType;
+	/**
+	 * List of journey-attributes [Fahrtmerkmale / Sollmerkmale] at this particular stop.
+	 * @type {Array<MessageAttribute>}
+	 * @memberof Departure
+	 */
+	attributes: Array<MessageAttribute>;
+	/**
+	 * Unique id for departure [AbfahrtID].
+	 * @type {string}
+	 * @memberof Departure
+	 */
+	departureID: string;
+	/**
+	 * List of disruptions [Stoerungsinformationen] for journey at this particular stop.
+	 * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
+	 * @memberof Departure
+	 */
+	disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
+	/**
+	 * List of messages [Freitexte] for journey at this particular stop [Freitexte].
+	 * @type {Array<MessageLegacy>}
+	 * @memberof Departure
+	 */
+	messages: Array<MessageLegacy>;
+	/**
+	 * Indicates whether arrival or departure is an on demand stop [Bedarfshalt].
+	 * @type {boolean}
+	 * @memberof Departure
+	 */
+	onDemand: boolean;
+	/**
+	 * Indicates whether passengers are allowed to enter / leave [Fahrgastwechsel].
+	 * @type {boolean}
+	 * @memberof Departure
+	 */
+	passengerChange: boolean;
+	/**
+	 * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof Departure
+	 */
+	platform: string;
+	/**
+	 * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof Departure
+	 */
+	platformSchedule?: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof Departure
+	 */
+	station: StopPlaceEmbedded;
+	/**
+	 * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof Departure
+	 */
+	time: string;
+	/**
+	 * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof Departure
+	 */
+	timeSchedule: string;
+	/**
+	 *
+	 * @type {TimeType}
+	 * @memberof Departure
+	 */
+	timeType: TimeType;
 }
 /**
  * Departure [Abfahrt] match.
@@ -377,66 +377,66 @@ export interface Departure {
  * @interface DepartureMatch
  */
 export interface DepartureMatch {
-  /**
-   * Unique id for administration [Verwaltung] at departure.
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  administrationID: string;
-  /**
-   * ID of departure [AbfahrtID]
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  departureID: string;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  journeyID: string;
-  /**
-   * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  platform?: string;
-  /**
-   * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  platformSchedule?: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof DepartureMatch
-   */
-  station: StopPlaceEmbedded;
-  /**
-   * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  time: string;
-  /**
-   * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof DepartureMatch
-   */
-  timeSchedule: string;
-  /**
-   *
-   * @type {TimeType}
-   * @memberof DepartureMatch
-   */
-  timeType: TimeType;
-  /**
-   *
-   * @type {TransportPublic}
-   * @memberof DepartureMatch
-   */
-  transport: TransportPublic;
+	/**
+	 * Unique id for administration [Verwaltung] at departure.
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	administrationID: string;
+	/**
+	 * ID of departure [AbfahrtID]
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	departureID: string;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	journeyID: string;
+	/**
+	 * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	platform?: string;
+	/**
+	 * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	platformSchedule?: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof DepartureMatch
+	 */
+	station: StopPlaceEmbedded;
+	/**
+	 * Best known time information of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	time: string;
+	/**
+	 * Scheduled time [Soll] of stop as fully qualified date (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+	 * @type {string}
+	 * @memberof DepartureMatch
+	 */
+	timeSchedule: string;
+	/**
+	 *
+	 * @type {TimeType}
+	 * @memberof DepartureMatch
+	 */
+	timeType: TimeType;
+	/**
+	 *
+	 * @type {TransportPublic}
+	 * @memberof DepartureMatch
+	 */
+	transport: TransportPublic;
 }
 /**
  * List of possible departure [Abfahrt] matches.
@@ -444,12 +444,12 @@ export interface DepartureMatch {
  * @interface DepartureMatches
  */
 export interface DepartureMatches {
-  /**
-   * Matched departures.
-   * @type {Array<DepartureMatch>}
-   * @memberof DepartureMatches
-   */
-  departures: Array<DepartureMatch>;
+	/**
+	 * Matched departures.
+	 * @type {Array<DepartureMatch>}
+	 * @memberof DepartureMatches
+	 */
+	departures: Array<DepartureMatch>;
 }
 /**
  * Disruption communication information [Stoerungskommunikation] descriptions.
@@ -457,18 +457,18 @@ export interface DepartureMatches {
  * @interface DisruptionCommunicationDescription
  */
 export interface DisruptionCommunicationDescription {
-  /**
-   * Long text of disruption communication.
-   * @type {string}
-   * @memberof DisruptionCommunicationDescription
-   */
-  text: string;
-  /**
-   * Optional short text of disruption communication.
-   * @type {string}
-   * @memberof DisruptionCommunicationDescription
-   */
-  textShort?: string;
+	/**
+	 * Long text of disruption communication.
+	 * @type {string}
+	 * @memberof DisruptionCommunicationDescription
+	 */
+	text: string;
+	/**
+	 * Optional short text of disruption communication.
+	 * @type {string}
+	 * @memberof DisruptionCommunicationDescription
+	 */
+	textShort?: string;
 }
 /**
  * Embedded disruption communication information [Stoerungskommunikation].
@@ -476,30 +476,30 @@ export interface DisruptionCommunicationDescription {
  * @interface DisruptionCommunicationEmbeddedLegacy
  */
 export interface DisruptionCommunicationEmbeddedLegacy {
-  /**
-   * Textual short description of disruption by language identifier.
-   * @type {{ [key: string]: DisruptionCommunicationDescription; }}
-   * @memberof DisruptionCommunicationEmbeddedLegacy
-   */
-  descriptions: { [key: string]: DisruptionCommunicationDescription };
-  /**
-   * Display priority [Anzeigereihenfolge] for disruption. Order is by display priority asc. May be empty.
-   * @type {number}
-   * @memberof DisruptionCommunicationEmbeddedLegacy
-   */
-  displayPriority?: number;
-  /**
-   * ID of disruption communication [StoerungskommunikationsID].
-   * @type {string}
-   * @memberof DisruptionCommunicationEmbeddedLegacy
-   */
-  disruptionCommunicationID?: string;
-  /**
-   * ID of disruption [StoerungsID].
-   * @type {string}
-   * @memberof DisruptionCommunicationEmbeddedLegacy
-   */
-  disruptionID: string;
+	/**
+	 * Textual short description of disruption by language identifier.
+	 * @type {{ [key: string]: DisruptionCommunicationDescription; }}
+	 * @memberof DisruptionCommunicationEmbeddedLegacy
+	 */
+	descriptions: { [key: string]: DisruptionCommunicationDescription };
+	/**
+	 * Display priority [Anzeigereihenfolge] for disruption. Order is by display priority asc. May be empty.
+	 * @type {number}
+	 * @memberof DisruptionCommunicationEmbeddedLegacy
+	 */
+	displayPriority?: number;
+	/**
+	 * ID of disruption communication [StoerungskommunikationsID].
+	 * @type {string}
+	 * @memberof DisruptionCommunicationEmbeddedLegacy
+	 */
+	disruptionCommunicationID?: string;
+	/**
+	 * ID of disruption [StoerungsID].
+	 * @type {string}
+	 * @memberof DisruptionCommunicationEmbeddedLegacy
+	 */
+	disruptionID: string;
 }
 /**
  * Detailed error information on field level.
@@ -507,30 +507,30 @@ export interface DisruptionCommunicationEmbeddedLegacy {
  * @interface ErrorDetail
  */
 export interface ErrorDetail {
-  /**
-   * Detailed information for error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  detail: string;
-  /**
-   * Unique code that identifies error.
-   * @type {number}
-   * @memberof ErrorDetail
-   */
-  errorCode?: number;
-  /**
-   * Name of field / element that raised the error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  field: string;
-  /**
-   * Common description of error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  title: string;
+	/**
+	 * Detailed information for error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	detail: string;
+	/**
+	 * Unique code that identifies error.
+	 * @type {number}
+	 * @memberof ErrorDetail
+	 */
+	errorCode?: number;
+	/**
+	 * Name of field / element that raised the error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	field: string;
+	/**
+	 * Common description of error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	title: string;
 }
 /**
  * API error object conforming to RFC7807.
@@ -538,42 +538,42 @@ export interface ErrorDetail {
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
-  /**
-   * Detailed information for error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  detail: string;
-  /**
-   * Unique code that identifies error.
-   * @type {number}
-   * @memberof ErrorResponse
-   */
-  errorCode?: number;
-  /**
-   * List of detailed errors in case multiple errors have lead to the surrounding error.
-   * @type {Array<ErrorDetail>}
-   * @memberof ErrorResponse
-   */
-  errors?: Array<ErrorDetail>;
-  /**
-   * Unique identifier for instance that raised the error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  instanceId?: string;
-  /**
-   * Http status for error origin.
-   * @type {number}
-   * @memberof ErrorResponse
-   */
-  status?: number;
-  /**
-   * Common description of error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  title: string;
+	/**
+	 * Detailed information for error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	detail: string;
+	/**
+	 * Unique code that identifies error.
+	 * @type {number}
+	 * @memberof ErrorResponse
+	 */
+	errorCode?: number;
+	/**
+	 * List of detailed errors in case multiple errors have lead to the surrounding error.
+	 * @type {Array<ErrorDetail>}
+	 * @memberof ErrorResponse
+	 */
+	errors?: Array<ErrorDetail>;
+	/**
+	 * Unique identifier for instance that raised the error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	instanceId?: string;
+	/**
+	 * Http status for error origin.
+	 * @type {number}
+	 * @memberof ErrorResponse
+	 */
+	status?: number;
+	/**
+	 * Common description of error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	title: string;
 }
 /**
  * Type of event. Can be arrival or departure. - ARRIVAL (Ankunft) - DEPARTURE (Abfahrt)
@@ -582,8 +582,8 @@ export interface ErrorResponse {
  */
 
 export const EventType = {
-  Arrival: 'ARRIVAL',
-  Departure: 'DEPARTURE',
+	Arrival: 'ARRIVAL',
+	Departure: 'DEPARTURE',
 } as const;
 
 export type EventType = (typeof EventType)[keyof typeof EventType];
@@ -594,60 +594,60 @@ export type EventType = (typeof EventType)[keyof typeof EventType];
  * @interface JourneyEventBased
  */
 export interface JourneyEventBased {
-  /**
-   *
-   * @type {TransportPublicDestination}
-   * @memberof JourneyEventBased
-   */
-  continuationBy?: TransportPublicDestination;
-  /**
-   *
-   * @type {TransportPublicOrigin}
-   * @memberof JourneyEventBased
-   */
-  continuationFor?: TransportPublicOrigin;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneyEventBased
-   */
-  destinationSchedule: StopPlaceEmbedded;
-  /**
-   * List of disruptions [Stoerungsinformationen] for whole journey.
-   * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
-   * @memberof JourneyEventBased
-   */
-  disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
-  /**
-   * List of events [Fahrtereignisse]. Order is based on 1 - scheduled time and 2 - arrival before departure.
-   * @type {Array<ArrivalDepartureEvent>}
-   * @memberof JourneyEventBased
-   */
-  events: Array<ArrivalDepartureEvent>;
-  /**
-   * Flag that indicates whether whole journey has been canceled.
-   * @type {boolean}
-   * @memberof JourneyEventBased
-   */
-  journeyCanceled: boolean;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof JourneyEventBased
-   */
-  journeyID: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneyEventBased
-   */
-  originSchedule: StopPlaceEmbedded;
-  /**
-   *
-   * @type {JourneyType}
-   * @memberof JourneyEventBased
-   */
-  type: JourneyType;
+	/**
+	 *
+	 * @type {TransportPublicDestination}
+	 * @memberof JourneyEventBased
+	 */
+	continuationBy?: TransportPublicDestination;
+	/**
+	 *
+	 * @type {TransportPublicOrigin}
+	 * @memberof JourneyEventBased
+	 */
+	continuationFor?: TransportPublicOrigin;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneyEventBased
+	 */
+	destinationSchedule: StopPlaceEmbedded;
+	/**
+	 * List of disruptions [Stoerungsinformationen] for whole journey.
+	 * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
+	 * @memberof JourneyEventBased
+	 */
+	disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
+	/**
+	 * List of events [Fahrtereignisse]. Order is based on 1 - scheduled time and 2 - arrival before departure.
+	 * @type {Array<ArrivalDepartureEvent>}
+	 * @memberof JourneyEventBased
+	 */
+	events: Array<ArrivalDepartureEvent>;
+	/**
+	 * Flag that indicates whether whole journey has been canceled.
+	 * @type {boolean}
+	 * @memberof JourneyEventBased
+	 */
+	journeyCanceled: boolean;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof JourneyEventBased
+	 */
+	journeyID: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneyEventBased
+	 */
+	originSchedule: StopPlaceEmbedded;
+	/**
+	 *
+	 * @type {JourneyType}
+	 * @memberof JourneyEventBased
+	 */
+	type: JourneyType;
 }
 /**
  * Journey [Fahrt] match.
@@ -655,42 +655,42 @@ export interface JourneyEventBased {
  * @interface JourneyMatch
  */
 export interface JourneyMatch {
-  /**
-   * Unique id for administration [Verwaltung].
-   * @type {string}
-   * @memberof JourneyMatch
-   */
-  administrationID: string;
-  /**
-   * Date of scheduled start departure of journey [Verkehrstag].
-   * @type {string}
-   * @memberof JourneyMatch
-   */
-  date: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneyMatch
-   */
-  destinationSchedule: StopPlaceEmbedded;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof JourneyMatch
-   */
-  journeyID: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneyMatch
-   */
-  originSchedule: StopPlaceEmbedded;
-  /**
-   *
-   * @type {TransportPublic}
-   * @memberof JourneyMatch
-   */
-  transport: TransportPublic;
+	/**
+	 * Unique id for administration [Verwaltung].
+	 * @type {string}
+	 * @memberof JourneyMatch
+	 */
+	administrationID: string;
+	/**
+	 * Date of scheduled start departure of journey [Verkehrstag].
+	 * @type {string}
+	 * @memberof JourneyMatch
+	 */
+	date: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneyMatch
+	 */
+	destinationSchedule: StopPlaceEmbedded;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof JourneyMatch
+	 */
+	journeyID: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneyMatch
+	 */
+	originSchedule: StopPlaceEmbedded;
+	/**
+	 *
+	 * @type {TransportPublic}
+	 * @memberof JourneyMatch
+	 */
+	transport: TransportPublic;
 }
 /**
  * List of possible journey [Fahrt] matches.
@@ -698,12 +698,12 @@ export interface JourneyMatch {
  * @interface JourneyMatches
  */
 export interface JourneyMatches {
-  /**
-   * Matched journeys.
-   * @type {Array<JourneyMatch>}
-   * @memberof JourneyMatches
-   */
-  journeys: Array<JourneyMatch>;
+	/**
+	 * Matched journeys.
+	 * @type {Array<JourneyMatch>}
+	 * @memberof JourneyMatches
+	 */
+	journeys: Array<JourneyMatch>;
 }
 /**
  * Segment based [Fahrtabschnittsbasiert] information for a particular journey [Fahrtverlauf].
@@ -711,66 +711,66 @@ export interface JourneyMatches {
  * @interface JourneySegmentBased
  */
 export interface JourneySegmentBased {
-  /**
-   *
-   * @type {TransportPublicDestination}
-   * @memberof JourneySegmentBased
-   */
-  continuationBy?: TransportPublicDestination;
-  /**
-   *
-   * @type {TransportPublicOrigin}
-   * @memberof JourneySegmentBased
-   */
-  continuationFor?: TransportPublicOrigin;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneySegmentBased
-   */
-  destinationSchedule: StopPlaceEmbedded;
-  /**
-   * List of disruptions [Stoerungsinformationen] for whole journey.
-   * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
-   * @memberof JourneySegmentBased
-   */
-  disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
-  /**
-   * Flag that indicates whether whole journey has been canceled.
-   * @type {boolean}
-   * @memberof JourneySegmentBased
-   */
-  journeyCanceled?: boolean;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof JourneySegmentBased
-   */
-  journeyID: string;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneySegmentBased
-   */
-  originSchedule: StopPlaceEmbedded;
-  /**
-   * List of segments [Fahrtabschnitte].
-   * @type {Array<Segment>}
-   * @memberof JourneySegmentBased
-   */
-  segments?: Array<Segment>;
-  /**
-   * List of canceled segments [Fahrtabschnitte].
-   * @type {Array<SegmentCanceled>}
-   * @memberof JourneySegmentBased
-   */
-  segmentsCanceled?: Array<SegmentCanceled>;
-  /**
-   *
-   * @type {JourneyType}
-   * @memberof JourneySegmentBased
-   */
-  type: JourneyType;
+	/**
+	 *
+	 * @type {TransportPublicDestination}
+	 * @memberof JourneySegmentBased
+	 */
+	continuationBy?: TransportPublicDestination;
+	/**
+	 *
+	 * @type {TransportPublicOrigin}
+	 * @memberof JourneySegmentBased
+	 */
+	continuationFor?: TransportPublicOrigin;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneySegmentBased
+	 */
+	destinationSchedule: StopPlaceEmbedded;
+	/**
+	 * List of disruptions [Stoerungsinformationen] for whole journey.
+	 * @type {Array<DisruptionCommunicationEmbeddedLegacy>}
+	 * @memberof JourneySegmentBased
+	 */
+	disruptions?: Array<DisruptionCommunicationEmbeddedLegacy>;
+	/**
+	 * Flag that indicates whether whole journey has been canceled.
+	 * @type {boolean}
+	 * @memberof JourneySegmentBased
+	 */
+	journeyCanceled?: boolean;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof JourneySegmentBased
+	 */
+	journeyID: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneySegmentBased
+	 */
+	originSchedule: StopPlaceEmbedded;
+	/**
+	 * List of segments [Fahrtabschnitte].
+	 * @type {Array<Segment>}
+	 * @memberof JourneySegmentBased
+	 */
+	segments?: Array<Segment>;
+	/**
+	 * List of canceled segments [Fahrtabschnitte].
+	 * @type {Array<SegmentCanceled>}
+	 * @memberof JourneySegmentBased
+	 */
+	segmentsCanceled?: Array<SegmentCanceled>;
+	/**
+	 *
+	 * @type {JourneyType}
+	 * @memberof JourneySegmentBased
+	 */
+	type: JourneyType;
 }
 /**
  * Defines whether journey [Fahrt] is regular or some kind of special. - REGULAR (Regular scheduled journey) - REPLACEMENT (Journey that replaces another journey) - RELIEF (Journey that reliefs another journey) - EXTRA (Journey that is somehow extra
@@ -779,10 +779,10 @@ export interface JourneySegmentBased {
  */
 
 export const JourneyType = {
-  Regular: 'REGULAR',
-  Replacement: 'REPLACEMENT',
-  Relief: 'RELIEF',
-  Extra: 'EXTRA',
+	Regular: 'REGULAR',
+	Replacement: 'REPLACEMENT',
+	Relief: 'RELIEF',
+	Extra: 'EXTRA',
 } as const;
 
 export type JourneyType = (typeof JourneyType)[keyof typeof JourneyType];
@@ -793,30 +793,30 @@ export type JourneyType = (typeof JourneyType)[keyof typeof JourneyType];
  * @interface MessageAttribute
  */
 export interface MessageAttribute {
-  /**
-   * Journey-attribute [Fahrtmerkmale / Sollmerkmale]. - ~~ (Tel. 09141-99351, Anmeldung mind. 60 Min. vor Abfahrt (Mo-Fr 8-17 Uhr)) - ~| (Tel. 08122-1800383, Anmeldung bis 30 Min. vor Abfahrt) - ~{ (Tel. 08122-1800383, Anmeldung bis 45 min. vor Abfahrt) - ~} (Tel. 09141-99350, Anmeldung mind. 60 Min. vor Abfahrt (Mo-Fr 8-17 Uhr)) - |~ (Anschluss kann nicht gewährleistet werden) - || (Rufbus bitte bis 18 Uhr am Vortag unter Tel. 0621 1077077 anmelden) - |{ (Tel.: 08282-9902100, Anmeldung mind. 90 Min. vor Abfahrt (7-18 Uhr)) - |} (Vorbestellung bis 60 Min. vor Fahrtantritt unter Tel.: 0176 27467288) - _ (nur nach Voranmeldung, Tel.: 0365 7390 777 bis 22:00 Uhr am Vortag) - __ (Bedarfshalt Tel.0661-95270400 Anmeld. bis 40Min vor Abf. Mo-Fr 6-18Uhr) - , (Bus mit Fahrradanhänger, Gruppen bitte anmelden unter 05254-6408499) - !< (Alt: verk.nur bei Anm. bis 30 Min vor Abf. u. Tel. 0421 650005) - != (Anm. 60 Min. vor Abf. Tel. 07044 944034) - !_ (AST; Tel. 06172-101310 Anm. bis 60Min vor Abf. So-Do6-22, Fr-Sa6-24Uhr) - !- (Tel.: 02681 951795, bis 22h am Vortag, Gruppen 2 Tage vorher anmelden) - !, (Zustieg am Vortag bis 19 Uhr anmelden unter Tel. (08282) 828700) - !; (Rufbus; Tel. 04161-644670 Anmeldung bis 60 Min. vor Abfahrt) - !: (Anm. 20 Min. vor Abf. Tel. 07025-912663-9) - !. (Tel.: 02681 951795, bis 60 Min, Gruppen 2 Werktage vorher anmelden) - !* (Anm. 1 Stunde vor Abfahrt, Tel. (07331) 7242, Mo-Fr: 7-19 Uhr) - !+ (Anmeldung spätestens 1 Stunde vor Abfahrt, Tel. (07340) 96300) - {~ (Rufbus: Voranmeldung bis 19:30 Uhr unter 06181-6681357) - {} (VBB-Tarif zzgl. des Komfortzuschlages 1,00 EUR je Fahrgast und Strecke) - }~ (Taxi-Anschluss, Voranmeldung 30 Min. vor Abfahrt , Tel. 0731 166-2850) - }| (TaxiBus; Tel. 0291-6111 Anmeldung mind. 30 Min. vor Abfahrt) - }{ (Anmeldung bis 2 Std. vor Abfahrt unter Tel. 06391 1824) - }} (Anmeldung bis 30 Min. vor Abfahrt, Tel. 0731 166-2850) - += (Verstärkungsfahrt; wird nicht im Kursbuch oder Aushang veröffentlicht) - +- (Fahrteneditierattribut) - 0^ (Kleinbus, Gruppenf. anmelden unter 05351-3071) - 0* (HAFAS-Steuerung [Text wird nicht ausgegeben]) - ,0 (AnrufLinienTaxi; Tel. (0241)4013999 ; Anm. bis 30 Min. vor der Abfahrt) - *0 (Verkehrt in den Pfingst- und Sommerferien als Fahrradbus) - 00 (vsl. stark ausgelastet!) - 01 (voraussichtlich starke Nachfrage) - 03 (Rufbus! Anmeldung bis Freitag, 17 Uhr, unter 034295 7420) - 08 (Bedarfshalt Tel.03435-906061 Zustieg nach Anmeldung bis 1h vor Abfahrt) - 09 (Bedarfshalt Tel.03435-906083 Zustieg nach Anmeldung bis 1h vor Abfahrt) - 0b (Bitte dem Fahrer bei Einstieg die Zielhaltestelle mitteilen.) - 0d (Rufbus, Anmeldung mind. 1 Std. vor Abfahrt unter 09161/2935) - 0e (Bedarfshalt, Anmeldung mind. 1 Std. vor Abfahrt unter 09161/2935) - 0g (AST; Tel. 0800-0584584 Fahrt mind. 60 Min. vor Fahrtantritt anmelden) - 0h (Anmeldung mind.30 Min. unter Tel. 07720 / 99780) - 0j (Anm. für Gruppen ab 4 Pers. bis Fr. 14:00; Tel. 06531/9680-0) - 0k (Anmeldung bis 20 Min. vor Abfahrt unter Tel. 07021 2656) - 0l (Bedarfshalt: Tel. (03391)400618 Anmeldung 90 Min vor Fahrtbeginn) - 0m (Bedarfshalt, Anmeldung unter 03531-650010 bis 90 Min vor Fahrtbeginn) - 0n (Gruppenanm. ab 5 Pers. am Vortag, 09381 803656, keine Fahrradmitnahme) - 0o (Bedarfshalt, Anmeldung bis 60 Min. vor Abfahrt, Tel. 0800-6065600) - 0p (Kleinfahrzeug - Gruppen sind anzumelden Tel. 03733 151245) - 0q (Ruftaxi, Tel.: 06332 16363, Anmeldung mind. 30 Min vor Abfahrt) - 0r (TaxiBus; Tel. (0251)6945000 Anmeldung mind. 30 Min. vor Abfahrt) - 0s (AST mind. 30 Min. vor Fahrtbeginn anmelden unter Tel. 07351-30250250) - 0S (Kleinbus, Gruppen ab 4 Personen am Vortag anmelden, Tel.: 0261 9846140) - 0t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 0T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 0v (Bedarfshalt Anmeldung bis 12 Uhr einen Tag vorher: Tel 09171/9676-0) - 0w (AST, mind. 1 Stunde vorher anmelden unter Tel. 0981/48228880) - 0x (Bedarfshalt; Tel. 035365-2102 Anmeldung 1Tag vor Abfahrt Mo-Fr 9-13:30) - 0y (ALT: tel. Anm.04121-906666 erf. Büro Mo-Do8-16,Fr 8-14 Uhr bes. Preis) - 0z (Anmeldung 60 Min. vor Abfahrt: Tel. 0176-80449280) - 1 (nur 1. Kl.) - 1- (AnrufSammelTaxi; Tel. 01801-334433* Anmeldung mind. 45 Min vor Abfahrt) - 1: (TaxiBus; Tel. 0201-8264949 bitte mind. 30 Min. vor Abfahrt anmelden) - =1 (Sammeltaxi: Anmeldung 30 Min. vorher; Tel: 05121/66666) - *1 (Fahrradbus-Verkehrt von Karfreitag bis einschl. 03.10. als Radlbus) - 10 (vsl. stark ausgelastet! (Regio)) - 11 (vsl. starke Nachfrage!) - 12 (Verkehrt nur bei Anmeldung bis 2 Tage vor Fahrt unter Tel. 04841 1888) - 14 (Anrufhst., b. Fahrer od. 30 Min. vor Abfahrt unter 09672-2231 anmelden) - 15 (Rufbus, bis 1 Stunde vor Fahrtbeginn unter 09674-921210 anmelden) - 16 (Anmeldung bis 60 Min. vor Fahrtbeginn, Tel. 09221-66222  oder -75570) - 17 (Bedarfshalt: Zustieg nur nach Anmeldung 1h vor Fahrt Tel: 03941/566166) - 19 (Voranmeldung bis spätestens 60 Min. vor Fahrtbeginn, Tel.: 09273-6857) - 1a (Anmeldung 30 Minuten vor Abfahrt: Tel. (07125) 40 72 40, Sondertarif) - 1A (Expressbus) - 1b (Ruftaxi, Tel.: 06251/5095, Anmeldung mind. 60 Min vor Abfahrt) - 1B (Linie B) - 1c (Anmeldung mind. 30 Min. vor Abfahrt: Tel. 07472/988 966, Sondertarif) - 1C (Linie C) - 1d (Anmeldung bis 2 Stunden vor Abfahrt: Tel. 0160-93981867) - 1D (Linie D) - 1E (Linie E) - 1f (Bedarfshalt: Tel. 0906-706050 Anmelung spätestens 1 Std. vor Abfahrt) - 1F (Linie F) - 1g (Anm. bis 30 Min vor Abfahrt Tel.(0711)356666; besonderer Tarif) - 1h (Ruftaxi; Tel.(07153)22293 Anm. bis 30Min vor Abfahrt; besonderer Tarif) - 1k (Anm. bis 10:00 Uhr unter Tel. 07644 91500) - 1K (Fährzeiten sind Richtzeiten, www.rheinfaehre-linz-remagen.de) - 1l (Anm. 60 Min. vor Abf.; Tel. 07721/9927948, Gruppe 5 Werktage vorher) - 1m (Anm. 18:30 - 22:00; Tel. 07721/9927948, Gruppe 5 Werktage vorher) - 1n (AST; Tel.06192-2002626 Anmeldung bis 30Min vor Abfahrt von 6 bis 1 Uhr) - 1o (AST, (06691)9272929-01/-02/-03 Anm.bis 30Min vor Abf. Zuschlag, 1,-EUR) - 1p (AST, Tel. 0800-0584584 Anmeld. mind. 60Min vor Abfahrt, Mo-So 9-20 Uhr) - 1r (AnrufLinienTaxi;Tel.0160-3116683 Anmeld. 60Min vor Abf. Mo-Fr 5-20 Uhr) - 1s (Kleinbus, Gruppen >8 Pers. Anmeldung am Vortag: Tel. 05544-95030) - 1S (Rufbus, Zuschlag, Anmeldung 7.30 - 17.30 Uhr, 0591-8042050) - 1t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 1T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 1u (Rufbus: Tel. 0180-1726934 Anmeldung 1 Tag vorher (Mo-Fr 7- 19 Uhr)) - 1v (Voranmeldung am Vortag bis 15:30, Tel. 0800-6065600) - 1x (Anmeldung bis 15:50 Uhr: Tel. 07571/74747474) - 1y (Voranmeldung bitte bis 1 Stunde vor Abfahrt, Tel. 09103-462) - 1z (Voranmeldung bitte bis 1 Stunde vor Abfahrt, Tel. 09171-979090) - 1Z (Linie A) - 2^ (Tel. Voranmeldung 30 Min. vor Abfahrt 07524/97380) - 2 (nur 2. Kl.) - 2+ (SECOND PLUS) - _2 (RufBus mit Voranmeldung Mo-Fr bis 16.00 Uhr Tel.:03605-515253) - ,2 (Rufbus; Tel. (02421) 2000 ; Anmeldung bis 30 Min. vor der Abfahrt) - 20 (Tel. 0541-3382214, Fahrradmitnahme nur bei Anmeldung) - 22 (Bis 22Uhr am Vortag anmelden: 02747-91276101 Gruppen 2 Werktage vorher) - 23 (TaxiBus) - 24 (Rfb: verk nur bei Anm bis 10 Min vor Abfahrt unter Tel. 0152 04535502.) - 26 (Tel. 0171-7998484, Anmeldung bis 15 Uhr des vorigen Werktages (Mo-Fr)) - 27 (AST: Anmeldung bis 30 Minuten vor Abfahrt unter Tel. 07732 8008777) - 29 (nur bei Anmeldung bis 30 Minuten vor Abfahrt unter Tel. 04932 927910) - 2a (Rufbus: Tel. 08282-828700 Anmeldung vor 16 Uhr) - 2A (RVV-Nachtschwärmer N28) - 2b (Rufbus: Tel. 08282-828700 Anmeldung vor 19 Uhr) - 2d (Bedarfshalt: Tel. 08282-828700 Anmeldung bis 15 Uhr am Vortag) - 2e (Anmeldung bis 60 Min. vor Abfahrt Tel. 08282-828700) - 2f (Rufbus: Tel. 08282-828700 Anmeldung bis 19 Uhr am Vortag) - 2H (Bedarfsfahrt; Tel. 0176-43643754 Anmeldung bis spätestens 11:45 Uhr) - 2i (Rufbus Tel.07333/5228 oder 0170/9269403, bitte 1 Stunde vorher anrufen) - 2k (Anm. bis 1Std. vor Abfahrt unter Tel. 07335/96270) - 2l (Bedarfshalt: Tel. 08282-828700 Anmeldung mind. 15 Min. vor Abfahrt) - 2m (Rufbus: Anm. mindestens 60 Min vor Abf. Tel. (03521) 741663) - 2n (Rufbus, bitte unter Tel. 08463/605079 am Vortag bis 16 Uhr anmelden.) - 2o (Bedarfshalt am Vortag bis 16 Uhr unter Tel. 08463-605079 anmelden) - 2q (AST: Tel.: (0661) 73919 Anmeldung bis 15 Min vor Abfahrt) - 2r (Rufbus; Tel. (07382) 93740 Anmeldung spätestens Freitag 19 Uhr) - 2t ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 2T ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 2v (Rufbus: Anmeld. bis 1 Std. vor Abfahrt, Tel. (07391) 707060) - 2w (ALT, mind. 30 Min. vor Abfahrt unter Tel. 0921/20208 anmelden) - 2x (Rufbus: Anmeldung am Vortag, Tel. (07353) 984840) - 2y (AnrufSammelTaxi (05651)3565 Anmeld.bis 30Min vor Abfahrt,1EUR Zuschlag) - 2z (Rufbus; Tel. 05032-809300 Anmeld bis 95Min vor Ankunft am ZOB Neustadt) - 3 (1. und 2. Kl.) - 3; (Anruf-Linientaxi, 1 Std. v. Abfahrt. Tel: 05331-77777 od. 0171/1700801) - 31 (Reservierungspflicht für Reisegruppen) - 34 (Leinetal Taxi: verkehrt nur bei Anruf unter 07131 904040) - 35 (Anmeldung bis 1 Std. vor der Fahrt unter Tel. (07262) 912020) - 36 (Rufbus, Tel. 05121-76420 Anmeldung bis spät. 60 Min. vor Abfahrt) - 37 (Fahrradbeförderung bitte voranmelden 07945 91010) - 39 (ALF, Tel.:0261 9846140, Anm. bis 22Uhr am Vortag, Gruppen 2Tage vorher) - 3b (Tel. 08341-809529 Anmeldung mind. 60 Min. vorher (Anm. 10 bis 19 Uhr)) - 3B (Ruftaxi, Tel.: 06762 4019344, Anm. 90Min vorher, Gruppen 2 Tage vorher) - 3c (TaxiBus; Tel. 05231-977681 Anmeldung am Vortag bis 18 Uhr) - 3D (Schlafwagen 2.Klasse T3 mit Dusche und WC) - 3e (Anmeldung bis 30 Minuten vor Abfahrt, Tel. 09733-9447 oder 09721-16060) - 3g (Rufbus: Tel. 01802-908070* Anmeldung bis 16 Uhr am Vortag) - 3G (Im Zug gilt bundesweit 3G-Regel: ein gültiger Nachweis ist mitzuführen) - 3h (Kleinbus: Gruppen bitte anmelden, Tel. 04671-3003) - 3i (AnrufLinienTaxi; Tel. 04342-4646 Anmeldung bis 60 Min. vor Abfahrt) - 3I (bis 22Uhr am Vortag anmelden: 02633 2009600 Gruppen 2 Werktage vorher) - 3j (Bitte mindestens 45 Min. vor Abfahrt anmelden. Tel. (05341-31311)) - 3k (Anm. mind. 2 Std. vor Fahrtantritt unter Tel. 07524/9738-0) - 3n (Ruftaxi: Tel. 08136-4343999 Anmeldung spätestens 30 Min. vor Abfahrt) - 3N (bis 60Min. vorher anm. 02633 2009600(6-22Uhr), Gruppen 2 Werktg vorher) - 3o (Ruftaxi: Tel. 08131-33749991 Anmeldung spätestens 30 Min. vor Abfahrt) - 3p (Ruftaxi: Tel. 08131-33749992 Anmeldung spätestens 30 Min. vor Abfahrt) - 3P (ALF, Tel.:067624019344, Anm. bis 22Uhr am Vortag, Gruppen 2Tage vorher) - 3q (Ruftaxi: Anmeld. mind. 30 Min. vor Abfahrt, Tel. 07231/392163) - 3r (Anmeld. mind. 30 Min.vor Fahrt Tel.07232/372148, spez. Tarif) - 3s (Ruftaxi: Tel. 08258-928440 Anmeldung spätestens 30 Min. vor Abfahrt) - 3t ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 3T ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 3u (Bedarfshalt: Tel. 0906-99989491 Anmeldung mind. 2 Std. vor Abfahrt) - 3v (Rufbus, Tel.: 06282 6014, Anmeldung mind. 60 Min vor Abfahrt) - 3w (Rufbus: Tel. +436474-2213, Fahrtanmeldung mind. 60 Min. vor Abfahrt) - 4= (Anruf-Linientaxi; Tel. (09221)66222 Anmeldung bis 2 Std. vor Abfahrt) - 4- (TaxiBus Anmeldung nur beim Fahrer im S10 zw. Westerk. u. Mettingen) - 4. (RFB verk nur bei Anm b30 Min. vor Abf u Tel: 0800/7007887 + bes.Tarif!) - _4 (Bitte 30 Min. vor Fahrt anmelden unter Tel.: 04551-898989) - $4 (mit Fahrradtransportanhänger) - 41 (Rufbus, nur nach tel. Voranmeldung: 03677 888 952 (1h vor Fahrtbeginn)) - 43 (Rufbus für max. 6 Pers; Tel. 03371-628182 Anmeldezeit Mo - Fr 5-17 Uhr) - 45 (Anmeldung 30 Min vor Abfahrt  unter 07651/9899602) - 46 (Fahrradmitn. f. 9 Räder, Anm. unter 03671-5251999, am Vort. bis 15:00) - 47 (Museums-Dampfzug) - 48 (Achtung: Fahrt kann von Streik-Aktionen betroffen sein) - 4a (Ohne Bedarfsbedienung verkehrt der Bus an dieser Haltestelle 8Min eher) - 4b (Bedarfshalt: mind. 1 Std. vorher anmelden unter Tel. 0731 97744233) - 4c (Ruf mich-Bus, bitte am Vortag bis 17h bestellen: 04463/1046) - 4d (Bedarfshalt: Zustieg am Vortag bis 17 Uhr anmelden, Tel. 07346 96200) - 4e (Vorbestellung bitte bis zum Vortag zwischen 9-19 Uhr) - 4f (Nur nach Vorbestellung Mo.-Fr. 14h, Tel. 08652-94480) - 4i (Ruftaxi, Tel.: 06331/228899, Anmeldung mind. 60 Min vor Abfahrt) - 4j (bis 4:00 Uhr morgens Nachtlinienzuschlag erforderlich) - 4k (Ruftaxi, Tel.: 06337/6637, Anmeldung mind. 60 Min vor Abfahrt) - 4l (Rufbus: Tel. 09181-48800 Anmeldung mind. 60 Min. vor Abfahrt) - 4m (Voranmeldung bitte bis 60 Min. vor Abfahrt, Tel. 0151-54419545) - 4n (AST, Anmeldung mindestens 30 min vor Fahrtbeginn unter Tel. 06806 3434) - 4p (Taxibus; Tel. (02567) 778 Anmeldung mind. 30 Min. vor Abfahrt) - 4q (Gruppen ab 10 Pers. und Fahrradmitnahme anmelden: Tel. 04421-84360) - 4r (Bedarfshalt; Anmeldung bis 1h vor Abfahrt, Tel. 034901-82599 (5-20Uhr)) - 4s (Fahrradzuladung in Lahr West am Betriebshof) - 4t ((*bis 12,6ct/Min. aus d.Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 4T ((*bis 12,6ct/Min. aus d.Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 4u (Anmeldung bis 16.30 Uhr unter Tel. 02631/ 352532) - 4y (TaxiBus; Tel.: 0800-3504031* Anmeldung bis spätestens 18:30 Uhr) - 4z (Rufbus! Tel. 03933-823431 Anmeldung bis 22.11.2019, 12:00 Uhr) - 5, (bitte 1 Stunde vorher anmelden, 01803-229292* (bis 20 Uhr)) - 5+ (TaxiBus-Bestellung beim Einstieg in den NachtBus N1) - _5 (Bitte 60 Min. vor Fahrt anmelden unter Tel.: 04823-920866) - 54 (Anmeldung bis spätestens einen Tag vor Abf. unter Tel. 07522/912222) - 55 (Nichtraucherzug) - 56 (Dampfzug) - 57 (Dampfschiff) - 59 (Tel. 04634 8888, Anmeldung bis 60 Min vor Abfahrt, www.dorfschuttle.de) - 5a (Gruppenbeförderung bitte mit Voranmeldung 03531-650010) - 5b (Verkehrt nur bei Anm. bis 15 Min. vor Abfahrt unter Tel. 0152-2603642) - 5c (Nur nach Voranmeldung bis 22:00 des Vortages, 0173-3951473) - 5d (Bürgerbus, verk. nur nach Anm. b.45Min. vor Abf. u. Tel.: 0162 6192290) - 5D (Tel. 0971-730310, Anm. bis 60 Min. vor Abfahrt Mo-Do 9-15, Fr 9-13 Uhr) - 5e (Bedarfsfahrt: Tel: 09461-941850) - 5f (Rufbus,Tel.0261-29670388 Anmeld. 90Min vorher Mo-Fr6-21,Sa7-20,So7-22*) - 5g (nur an Schultagen) - 5h (Anm. bis 30 Min vor Abfahrt unter 06341-86506) - 5H (Nur nach Voranmeldung bis 90 vor Abfahrt, Tel. 0911-65005) - 5i (Bedarfshalt; Tel: (0800) 2992299 Anmeldung mind. 90 Min vor Abfarhrt.) - 5j (Rufbus; Tel. (0800) 2992299 Anmeldung mind. 90 Min vor Abfahrt.) - 5k (Kleinbus, Gruppen 24 Std. vor Abfahrt anmelden, Tel. (030)396011344*) - 5l (Voranmeldung am Vortag (Mo-Fr bis 20Uhr), Tel. 09221-66222) - 5L (Bedarfshalt; Tel. 09771-9178094 Anmeld. bis 15Uhr am Vortag Mo-So 7-21) - 5m (TaxiBus; Tel. (02052)9258505 Anmeldung mind. 30 Min. vor Abfahrt) - 5p (Gruppen bitte 30 Min. vor Abfahrt unter Tel.: 0511 8484 anmelden.) - 5q (Anmeldung bitte 30 Min. vor der Abfahrt unter Tel.: 0511/8484) - 5Q (Anruf-Fahrt 06543-501924 Anmeld.bis 22Uhr am Vortag(Gruppen 2Werktage)) - 5R (Einstieg nur mit Reservierung: siehe www.postauto.ch) - 5S (Anruf-Linien-Fahrt, 60Min vor Abfahrt anmelden 06543-501924 (6-22 Uhr)) - 5t ((*3,9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 5T ((*3,9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 5w (Rufbus Tel.03372-424848 Anmeldung Mo-Fr von 5-14Uhr bis 60Min.vor Abf.) - 5x (AST; Tel. (06455) 7558133 - Anmeldung bis 30 Min. vor Abfahrt*) - 5y (Rufbus: Tel. 09661-812910 Anmeldung bis spätestens Freitag) - 5z (Anmeldung unter Tel.08000-366910, 1 Std vor Abfahrt (Mo-Sa 7-20Uhr)) - 6: (Anmeldung 2 Std. vor Abfahrt. Tel.: 07122 / 82477; Sondertarif) - 6$ (Bedienung nur zum Ausstieg) - ,6 (AnrufLinienTaxi; Tel. (0241) 182000; Anm. bis 30 Min vor der Abfahrt) - 60 (Rufbus: Fahrtanmeldung nach Bedarf unter Tel. 0711 93383798) - 62 (Anmeldung bitte bis spät. 60 Min. vor Fahrt unter Tel.: 04441-93110) - 63 (AnrufLinienFahrt, Tel.02686-1799 Anmeld. 60Min vor Abfahrt von 6-22Uhr) - 65 (Anm. Mo-Fr 8-16 Uhr unter Tel. 04122-909844 (mind. 60 Min. vor Fahrt)) - 66 (AST: Anm. bis 60 Min. vor Fahrtantritt unter Tel. 04231 922766) - 67 (Komfortzuschlag erforderlich) - 68 (Rufbus, bitte anm. Mo-Fr, 07-16Uhr, bis 60 Min. vor Abf.: 05461 93390) - 6d (Anmeldung bis 11:00 Uhr unter Tel. 02603/ 2727) - 6t ((*6 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 6T ((*6 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7 (Midi-Bus (22 Personen)) - 73 (Anruflinienfahrt, Tel. 06765-9493725 bitte bis spät.16 Uhr anmelden) - 75 (Anmeldung 60 Min vor Abfahrt, Tel. (07162) 6367.) - 78 (Nur nach Voranmeldung bis 60 Minuten vor Abfahrt, Tel:  08751-709888) - 7a (Anmeldung 20 Minuten vor Abfahrt Tel. 0711 5510000) - 7b (Voranmeldung bis spätestens 60 Minuten vor Abfahrt, Tel. 09241-2697) - 7B (Nur nach Voranmeldung bis 14 Uhr, Tel. 02603-8022) - 7c (Anmeld. bis spätestens 60 Min. vor Fahrtbeginn Tel. 09270/91222) - 7C (ALF, Tel.: 06765 9493767, Anmeldung mind. 30 Min vor Abfahrt) - 7d (Anm. am Vortag bis 15 Uhr unter 07520/ 9203-0) - 7f (AnrufLinienTaxi; Tel. 06035-6575 Anmeld. 60Min vor Abf. Mo-Fr 8-17 Uhr) - 7h (Anm. bis 18.00 Uhr des Vortages: Tel. (07381) 93 45 30, Sondertarif) - 7H (für Gruppen u. Bayernticket besteht Anmeldepflicht, Tel. 09771-9178094) - 7i (Rufbus bis spätestens 21 Uhr anmelden: 07333/5228 oder 0170/9269403) - 7j (Anm. bis 30 Min. vor Abfahrt unter Tel. 07633 92620) - 7k (Anm. mind. 30 Min. vor Abfahrt, Tel.: 07431 / 5 51 15; Sondertarif) - 7l (Ruftaxi; Tel. 089-84005811, Anmeldung mind. 45 Min. vor Abfahrt) - 7o (Kleinbus. Gruppen bitte 2 Werktage vorher unter 0581-976280 anmelden) - 7p (Kleinbus. Gruppen bitte 2 Werktage vorher unter 03901-304030 anmelden) - 7q (Rufbus; Tel. (033931)34940 Anmeldung mind. 120 Min vor Fahrtbeginn) - 7s (Anruf-Linien-Taxi, bitte bis 1h vorher anmelden: 04231/69001) - 7t ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7T ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7u (Rufbus; Anmeldung spätestens 2h vor Fahrtbeginn; Tel. 0361-19449) - 7x (Ast: verk. nur bei Anm. bis 30 Min. vor Abf. u. Tel. 04231 922760) - 7y (Ruftaxi, Tel.: 06381 324, Anmeldug bis 60 Minuten vor Abfahrt) - 8: (Anruf-Linientaxi Bitte 60 Min. vor Abfahrt anmelden. (05531) 930711) - 8$ (nur nach Anmeldung 60 Min. vorher 06826/6666) - 8+ (AST; Tel. 06409-2922; Anm. bis 60Min vor Abfahrt*; 1,50 Euro Zuschlag) - 80 (Ausfall bei ungünstigen Wintersportbedingungen) - 81 (ÖBB-Verkehr) - 82 (Anm. 2 Std zuvor (0791/9501012) oder durch Mitteilung an den Fahrer) - 83 (Kleinbus; Gruppenfahrten bitte anmelden! Tel.: 05151 788988) - 87 (AST; Tel. 04542-3340 Anm. 30Min. vor Abfahrt Gruppen ab 5 Pers. 1Tag) - 8a (AST: verk. nur bei Anm. bis 60 Min vor Abf. u. Tel. 0581 828384) - 8b (TaxiBus; Tel.0800-3504031 Anm. 60Min vor Abf. Mo-Fr6-19,Sa7-15,So10-18) - 8d (Ruftaxi, tel. vorbestellen unter 06381-924660) - 8e (Ruftaxi, tel. vorbestellen unter 06381-924666) - 8f (TaxiBus; Tel. (01803)504031* Anmeldung bis spätestens 20 Uhr) - 8g (Ruftaxi, Tel.: 06383-1460, Anmeldung mind. 60 Min vor Abfahrt) - 8h (TaxiBus; Tel. (01803) 504031* Anmeldung bis 19 Uhr am Vortag.) - 8i (Ruftaxi, Tel.: 06382-1551, Anmeldung mind. 60 Min vor Abfahrt) - 8j (Ast: verk. nur bei Anm. bis 60 Min vor Abf. u Tel. 05531 930711) - 8k (Anmeldung mind. 60 Min vor Abfahrt unter Tel.: 06382-993050) - 8l (Anmeldung mind. 60 Min vor Abfahrt unter Tel.: 06382-993600) - 8m (Ruftaxi, Tel.: 06381-2518, Anmeldung mind. 60 Min vor Abfahrt) - 8M (Anmeldung am Vortag bis 16.00; Tel.  06392/995717) - 8n (Anmeldung am Vortag unter Tel. 07567/ 234) - 8p (AST; Tel. (02961) 970297 Anmeldung mind. 30 Min. vor der Abfahrt.) - 8q (Ruftaxi, Tel.: 06331/228080) - 8r (Ruftaxi, Tel.: 06381/2324, Anmeldung mind. 60 Min vor Abfahrt) - 8s (Rufbus; Tel. (01802)783287* Anmeldung bis Freitag 18 Uhr erforderlich) - 8t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Min.)) - 8T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 8u (Anmeld. am Vortag 9:00-12:00 (Mo-Fr) Tel. 09733/81060) - 8w (Voranmeldung bis spätestens 60 Minuten vor Abfahrt, Tel. 09241-1448) - 8x (Anmeldung bis 17:00 Uhr am Vortag unter Tel. 07661/ 9019200) - 8y (Rufbus, Tel. (06131) 4948455, Anmeldung mind. 2 Std. vor Abfahrt) - 8z (Keine unentgeltliche Beförderung Schwerbehinderter) - 90 (ALF- Bestellung am Vortag u. Tel.: 05722 1515 - Anw des VLS Tarifes) - 91 (Anmeldung bis spät. 30 Minuten vor Abfahrt unter Tel. 0531 28639588) - 93 (Rufbus (Kleinbus, max 8 Pers.), bis 19Uhr am Vortag anm.: 06421 205811) - 97 (Schwerbehindertenabteil) - 9a (Rufbus, Tel. (06131)4948455, Anmeldung bis 22 Uhr des Vortages) - 9b (Anrufbürgerbus; Tel. 0175-8977507 Anmeldung bis 30 Min. vor Abfahrt) - 9c (Anmeldung bis 60 Minuten vor Abfahrt unter Tel. 07661/ 9019200) - 9f (Bedarfshalt, Tel. 0391-5363180 Bitte bis 2 Std. vor Abfahrt anmelden) - 9F (Großraumabteil) - 9G (9-Euro-Ticket gültig) - 9i (ALT: verk. nur bei Anmeldung am Vortag bis 16:00 Uhr u. Tel. 05556 374) - 9k (SEV Fahrradbus; Mitnahme von Fahrrädern) - 9l (ALT: verk. nur bei Anmeldung bis 60 Min. vor Abfahrt u. Tel. 05556 374) - 9L (Nachtzug-Rezeption) - 9m (AST: Tel. 04542-9009132 Anm. 30 Min vor Abfahrt (Gruppe 1 Tag vorher)) - 9n (TaxiBus; Tel. (02333)3388 Anmeldung mind. 30 Min. vor Abfahrt) - 9N (9-Euro-Ticket nicht gültig) - 9o (Anm. 1 Std. v.Fahrt,Tel.07721 9132020;Gruppen mind.5 Werktage v.Fahrt) - 9p (Bedarfshalt, nur auf Anfrage. Bitte anm. unter 037755/2222) - 9q (AST; Tel.(06431)203456 Anmeld. 60Min vor Abfahrt zwischen 15 und 24Uhr) - 9r (Anm. am Vorabend bis 24 Uhr; Tel.-Nr.: 07721 9132020) - 9s (TaxiBus; Tel. 02441-99454545 Anm.30Min bis22Uhr; Gruppen 3Tage vorher) - 9S (Steuerwagen) - 9t ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 9T ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 9v (Kleinbus, Gruppen bitte anmelden, Tel. 09729-91010) - 9w (Anm. mind. 1h vor Abf., www.ding.eu oder 0731/1550- 505, 8-18Uhr) - 9x (Anm. mind. 1 Std. vor Abfahrt; Tel. (07392) 973717-225, Mo-Fr: 8-17Uhr) - 9y (Anm. mind. 1 Std. vor Abfahrt; (07392) 973717-226, Mo-Fr: 8-17Uhr) - 9z (Ruftaxi; Tel. 0800-3605200 (bitte Anmeldeverfahren beachten)) - a~ (Bedarfshalt/Zustieg tel. Anmeldung 90 min vor Abfahrt 038326-600-800) - a> (Bedarfshalt; Tel. (0800)6065600 Anmeldung bis 15Uhr am vorigen Werktag) - a| (Rufbus! Anmeldung bis 1 h vor Abfahrt unter 034607/202 94) - a (Rufbus: Tel. 06841 4312, Anmeldug bis 60 Minuten vor Abfahrt) - a_ (Tel. 03531-650010 Anmeldg. bis 90 Min vor Fahrtbeginn Mo-Fr 5:30-18:30) - a- (Bus kann wg. Ferienbeginn/Zeugnisausgabe früher abfahren bzw ausfallen) - a, (TaxiBus; Tel. 0700 / 88839839* Anmeldung 30 Min. vor Abfahrt) - a; (AnrufSammelTaxi; Tel. 0551-38444843 Anmeldung mind. 30 Min vor Abfahrt) - a: (Anmeldung bis 2 Stunden vor Fahrtbeginn unter Tel. 07542 / 7552) - a? (Bedarfshalt, Einstieg anm. bis 1h vor Abfahrt,03921-935945 (bis 18:00)) - a. (TaxiBus; Tel. 02831 / 398765 bis spätestens 30 Min. vor der Abfahrt) - a{ (Bedarfsfahrt bitte 60 Min. vor Abfahrt anmelden, Tel.: 06245 99834) - a} (Es gilt ausschließlich der Sondertarif Nachtschwärmer.) - a$ (Rufbus;Tel.(01802)892892* Bestellung mind 2Std vor Abfahrt von 7-20Uhr) - a* (TaxiBus-Anschlussfahrt, Fahrtwunsch beim Bus-Fahrer anmelden.) - a+ (Rufbus, Tel. (06131)8921652 Anmeldung am vorherigen Werktag bis 17Uhr) - A` (Tel. 09245-983267420, Anmeldung mind. 45 Min. vor Abfahrt) - A^ (Tel. 0951-96869734, Anmeldung bis spätestens am Vortag 12 Uhr) - A< (Rufbus: Anmeldung 60 min vor Abfahrt Tel:(07161) 41070) - A= (Rufbus verk. nach tel. Voranm. 03834/532424 mind. 60 Min.) - A> (Bitte bei Nutzung der Fähre Reservezeit einplanen! Fährt ohne Fahrplan) - A| (Anmeldung spätestens Freitag 18 Uhr, Tel.: 07128 / 687) - A (Schienenersatzverkehr Bus A) - A_ (Tel. 09245-983267419, Anmeldung mind. 45 Min. vor Abfahrt) - A- (Kein Zustieg mit Abo-Ticket: Bus-Bahn) - A, (Shuttle-Bus, Eintrittskarte = Fahrkarte, verkehrt nur bei Bedarf) - A; (Anmeldung bis 60 Min. vor Abfahrt unter Tel. 07331 8888) - A: (freies Attribut) - A! (Anmeldung spätestens am Vortag bis 17:00 Uhr, Tel. 09141-99350) - A? (Für GTF gesperrt) - A/ (Anm. bis 60 Min. vor Abfahrt unter Tel. 0751/3 61 41 52) - A. (Anm. 60 Min. vor Abfahrt, Tel. 0981-9714925 (Mo-Fr 8-17 Uhr)) - A\' (verkehrt vom 01.05. bis 31.10. als RadBus) - A\" (Tel. 09521-953530, Anmeldung spätestens am Vortag bis 17 Uhr (Mo-Fr)) - A( (RFB: verkehrt nur bei Anmeldung bis 11:30 Uhr unter Tel. 04465 9496-0) - A) (Anmeldung bis 45 Minuten vor Abfahrt unter Tel. 07223 3319) - A[ (Rufbus; Tel. 09171-8392395, Anmeldung spätestens 60 Min. vor Abfahrt) - A] (Tel. 09171-8392396 Anmeldung mind. 90 Min. vor Abfahrt (Mo-Fr 7-20Uhr)) - A{ (Zustieg nur nach Voranmeldung, Tel.: 0981-971490 (Mo-Fr 8-17 Uhr)) - A} (Nur bei VFL-Wolfsburg Bundesligaheimspiel, Anpfiff um 18:00 Uhr) - A@ (Anmeldung bis 18 Uhr des Vortags, Tel. 07371/7407, Sondertarif) - A$ (Tel. 0800-0005645, Anmeldung bis 2 Std. vor Abfahrt) - A* (ALT, Anmeldung mindestens 30 min. vorher, Tel.: 07851 884848) - A\\ (Tel. 09171-8392395 Anmeldung mind. 90 Min. vor Abfahrt (Mo-Sa 7-20Uhr)) - A& (Tel. 09933-324, Anmeldung bis spätestens 17 Uhr am Vortag) - A# (Tel. 0800-0005645, Anmeldung spätestens am Vortag (Mo-Fr von 8-15 Uhr)) - A% (Nur nach Voranmeldung am Vortag der Fahrt, Tel. 0871-34994) - ^a (RFB: Anmeldung bis 16:00 Uhr am Vortag unter Tel. 04465 / 94960) - ~a (Anmeldung mind. 30 Min. vor Abf. unter Tel. 07152 335959) - <a (Voranmeldung bitte bis 30 Minuten vor Abfahrt, Tel. 0170-9419849) - =a (BahnCard der DB AG wird nicht anerkannt) - >a (Anmeldung bis spätestens 21:00 Uhr unter (07161) 41070) - |a (Anmeldung unter 0711/666 07 -783 oder -100.) - _a (Anm. am Vortag (Mo-Fr) bis 17:00, Tel. 07579/ 9211729) - ,a (Bedarfshaltestelle, Tel. 0173 / 2521021 Anm. bis 30 Min vor Abfahrt) - ;a (Tel. 0851-21370606, Anmeldung Mo - So von 06:30 Uhr - 21:00 Uhr) - :a (Bedarfshalt; Tel.034202-309980 Zustieg nach Anmeldg bis 1h vor Abfahrt) - .a (Kleinbus, Gruppen bitte unter 03741/4480 anmelden.) - {a (Rufbus, Anmeldung bitte am Vortag bis 15 Uhr, Tel.: 09523-95300) - }a (Anmeldung bis 1 Std. vor Abfahrt Mo-Fr -18 Uhr, Tel. 0800 5842870) - *a (Anmeld. bis spätestens 2 Std. vor Abfahrt unter 06781 219121) - +a (kostenlose Fahrradbeförderung (max. 3 Räder)) - ~A (Anruf-Linien-Taxi-Bitte anm. unter 0162 9097264 spät. 30 Min. vor Abf.) - |A (Rufbus: Voranmeldung bis 2 Stunden vor Fahrtbeginn unter 06181-6681357) - {A (Verkehrt nur bei Anmeldung bis 60 Min. vor Abfahrt unter: 0160 3133383) - }A (Tel. 09351-975797, BUS fährt nur nach Anmeldung bei Mobilitätszentrale) - a0 (Anm. ab 5 P. bis Fr. 12:00 o. am Vortag von Feiertagen;Tel.0731-15500) - A0 (AKN-Eisenbahn-AG) - a1 (TaxiBus; Tel. 02853 / 91910 Anmeldung mind. 30 Min. vor Abfahrt.) - A1 (Arriva) - a3 (Kleinbus; Gruppen bitte 3 Tage unter Tel. 05231-977681 anmelden) - a4 (AST; Tel. 01802 / 552000* Anmeldung mind. 45 Min. vor Abfahrt) - a5 (keine Fahrradmitnahme möglich) - A6 (Albtal-Verkehrs-Gesellschaft) - a8 (Anruf-Linientaxi, Tel. (0921)64422 Anmeldung bis 60 Min. vor Abfahrt.) - aa (RufBus: Tel. 04461 / 912298 Anmeldung bis spätestens 18:00 Uhr) - aA (RufBus, Tel. 03941-566166 Anmeldung mind. 60 Min. vor Fahrtbeginn) - Aa (Barrierefreies Fahrzeug 60Min vor Abf. unter Tel.0331-6614694 anmelden) - ab (AST, Tel. 07641 / 1212 Anmeldung 30 Min. vor gewünschter Fahrt) - aB (Zusatzbus v. Kues, Schulzentr - Kröv, Weisbrunnenhalle 5 Min vor Fahrt) - Ab (AST-Verkehr: Tel. (05541) 12848 Anmeldung bis 30 Minuten vor Abfahrt) - AB (Bus mit Fahrradanhänger) - aC (TaxiBus; Tel. 02831 / 398765 bitte bis 20 Uhr am Vortag bestellen) - Ac (Anruflinientaxi: Tel. 0441 / 9259292 Anmeldung am Werktag vor Abfahrt) - ad (Waldseebus nur bei Badewetter, Info: 06074-696609065 oder www.kvgOF.de) - aD (Rufbus, Tel. 07471 935050, Anmeldung mind. 60 Min. vor Abfahrt) - Ad (Taxibus; Tel. 0800/3504031 Anm. 30 Min vor Abfahrt, Gruppen am Vortag) - AD (Damenabteil) - ae (Mitnahme von max. 5 Fahrrädern 01.04. - 01.11. Infos: www.radbusse.de) - aE (Schülerverkehr-kann kurzfr entfallen. - Infos unter Tel. 03774 18020) - Ae (Tel. 08092-256518, Anmeldung bitte bis 1 Std. vor Abfahrt) - af (Kleinbus: Gruppen ab 10 Personen unter Tel. (03941)566161 anmelden) - aF (Beckenhof nur nach Anmeldung; Tel. 09189/7958 mind. 60 Min vor Abfahrt) - Af (Verkehrt nur nach Voranmeldung bis 70 Min. vor Abfahrt Tel. 08121/3141) - AF (Autofähre) - aG (Rufbus, Tel. 09524 / 850905 Anmeldung bis 15 Uhr am Vortag (Mo-Fr)) - Ag (Nur nach Voranmeld.bis 40 Min.vor Abfahrt, Tel.08084/94500 (tgl.6-22h)) - AG (VVO-Anschlussgarantie: Info unter 0800/3111888 oder www.vvo-online.de) - ah (Anmeldung mind. 30 Min. vor Fahrt Tel. 07041 / 2400 spez.Tarif) - aH (Voranmeldg. bis 1 Std. v. Abfahrt, Tel. 09245-983267422 (Mo-Fr 8-17)) - Ah (Nur nach Voranmeldung 45 Min vor Fahrt Tel. 0170/9419849 (tgl.6-22h)) - ai (Anm. bis 22 Uhr am Vortag unter Tel. (07245) 2323 oder 2635) - aI (Tel. 09723/91190 Anmeldung bis spät. 15 Uhr am Vortag (Mo-Fr)) - Ai (TaxiBus; Tel.0151-58036697 Anmeldung bis 60Min vor Abfahrt von 6-20Uhr) - AI (mit Anschluss Inselbahn) - aj (AST; Tel. 0202 / 750030 Anmeldung mind. 30 Minuten vor Abfahrt) - aJ (Anmeld. bis 1 Std. vor Abf., 09191-862511 (17-22h; Sa+So auch 9-11h)) - Aj (Taxibus; Tel. 05246-6600 Anmeldung 30 Min. vor Abfahrt von 10-18 Uhr) - AJ (ab Inselbahnhof mit Schiffsanschluss) - ak (Kleinbus; Gruppen bitte vorher anmelden) - aK (Rufbus; Tel. (0391)5481212 Anmeldung bis 30 Minuten vor Abfahrt) - Ak (Kleinfahrzeug-Gruppen sind anzumelden, Tel. 03733 / 151240) - al (Kleinbus - Gruppenfahrten bitte unter 0365 824 560 anmelden) - aL (Rufbus; Tel. 02381-9503313 Bestellung am Vortag (Mo-Fr) bis 15:30 Uhr) - Al (Kleinbus; Gruppen bitte am Vortag anmelden 0171 / 5057200) - AL (Anhaltische Bahngesellschaft) - am (Vornehmlich für den Schülerverkehr, Änderungen sind möglich) - aM (Anmeldung bis 1 Stunde vor Abfahrt: Tel. 07121-485588, Sondertarif) - Am (Ruftaxi, Tel. 06326 / 980144 Anmeldung mind. 60 Min vor Abfahrt) - an (Verkehrt nur nach Voranmeldung unter Tel. 09467/224) - aN (Rufbushst.: Hält nur nach Voranmeldung) - An (Anmeldung über www.moBiel.de/Anton oder Tel. 0521-511514,) - ao (Bedarfshalt, Tel. 03431-670815 Anmeldung 60 Min. vor Abfahrt) - aO (Anm. mind. 30 Min vor Abf. Tel. 07051/9689-0; letzte Anm. bis 17.00) - Ao (Rufbushaltestelle; bis 30 Min. vor Abfahrt unter 08122/92323 anmelden) - AO (Konsum alkoholischer Getränke im Zug verboten) - ap (Bedarfsfahrt, Tel.: 09733/81060, Anmeldung bis 15:00 Uhr des Vortages) - Ap (Rufbus: Tel. 06371 459174, Anmeldug bis 60 Minuten vor Abfahrt) - AP (Globalpreis oder Fahrkarte zzgl. Aufpreis möglich) - aq (Tel. 08341-809529 Anmeldung 60 Min. vor Abfahrt (Anm. 10-19 Uhr)) - aQ (verkehrt nur bei Anm. bis 30 Minuten vor Abfahrt Tel. 0175 / 6000148) - Aq (Anmeldeverkehr unter 07443 / 247131 bis 1 Std. vor Abfahrt) - AQ (Buchung: bte-autoreisezug.de; autoreisezug@bahntouristikexpress.de) - ar (Anm. bis 60Min vor Abfahrt, Tel. 09631-7929899, Mo-Fr 7-18:30, Sa 7-12) - aR (ALT: Fahrt bitte mindestens 30 Min vorher anmelden unter 05207/2357) - Ar (AST: Tel. 05656 / 334932 Anmeldung bis 30 Minuten vor Abfahrt) - as (Erw. Fahrradbeförderung vom 15.04. bis 01.10.2023, max. 20 Fahrräder) - aS (Anmeldungszeiten 8:00 - 12:00 Uhr, sonst am Vortag) - As (Tel. 0159-04267760, Anmeldung bis 60 Min. vor Abfahrt, Sa-So 07-22 Uhr) - AS (nur für Reisende mit Kraftfahrzeug) - at (AST=Anruf-Sammel-Taxi) - aT (TaxiBus; Tel. 0208 / 4511122 mind. 30 Min. vor Abfahrt bestellen) - At (Anmeldung bis 18.00 Uhr des Vortages: Tel. 07373 / 1539) - AT (Zug führt Autotransportwagen) - au (Bedarfsabhängige Bedienung:Fahrtverlauf abhängig vom Fahrgastaufkommen) - aU (Rufbus; bitte anmelden unter Tel. 03643 / 86410) - Au (Taxibus; Tel. 02851-1263 Anmeldung mind. 30 Min. vor Abfahrt) - av (Fahrt kann schulbedingt geändert werden) - aV (Kleinbus; Gruppen > 4 Pers. 4 Werktage vorher anm., Tel 06631-963333*) - Av (Rufbus: Tel. 06783 99500, Anmeldug bis 60 Minuten vor Abfahrt) - AV (Tickets: arriva.express@panturist.hr oder 0800 1828530 (kostenlos)) - aw (Diese Fahrt wird mit einem Kleinbus mit max 8 Sitzplätzen durchgeführt) - aW (Voranmldung bitte bis 2 Stunden vor Abfahrt, Tel. 08651-62593) - Aw (Anruf-LinienTaxi; Tel. 06669 / 960230 Anmeldung bis 60 Min vor Abfahrt) - ax (Mit Fahrradanhänger. Reservierung unter 0241 912890 bis Fr. 12 Uhr.) - Ax (Ab Sachsenwaldau nur bei Bedarf: 30 Min. vor Abfahrt: Tel 040-72594830) - AX (Buchung: www.nachtexpress.de; Tel 04661-7368744; info@nachtexpress.de) - ay (Fahrräder müssen 5 Minuten vor Abfahrt zum Verladen bereitstehen)
-   * @type {string}
-   * @memberof MessageAttribute
-   */
-  code: string;
-  /**
-   * Display priority [Anzeigereihenfolge aka \'Priorität*] for message. Order is ascending.
-   * @type {number}
-   * @memberof MessageAttribute
-   */
-  displayPriority?: number;
-  /**
-   * Detailed display priority [detaillierte Anzeigereihenfolge aka \'Feinsortierung\'] for message. Order is ascending.
-   * @type {number}
-   * @memberof MessageAttribute
-   */
-  displayPriorityDetail?: number;
-  /**
-   * Text for attribute.
-   * @type {string}
-   * @memberof MessageAttribute
-   */
-  text: string;
+	/**
+	 * Journey-attribute [Fahrtmerkmale / Sollmerkmale]. - ~~ (Tel. 09141-99351, Anmeldung mind. 60 Min. vor Abfahrt (Mo-Fr 8-17 Uhr)) - ~| (Tel. 08122-1800383, Anmeldung bis 30 Min. vor Abfahrt) - ~{ (Tel. 08122-1800383, Anmeldung bis 45 min. vor Abfahrt) - ~} (Tel. 09141-99350, Anmeldung mind. 60 Min. vor Abfahrt (Mo-Fr 8-17 Uhr)) - |~ (Anschluss kann nicht gewährleistet werden) - || (Rufbus bitte bis 18 Uhr am Vortag unter Tel. 0621 1077077 anmelden) - |{ (Tel.: 08282-9902100, Anmeldung mind. 90 Min. vor Abfahrt (7-18 Uhr)) - |} (Vorbestellung bis 60 Min. vor Fahrtantritt unter Tel.: 0176 27467288) - _ (nur nach Voranmeldung, Tel.: 0365 7390 777 bis 22:00 Uhr am Vortag) - __ (Bedarfshalt Tel.0661-95270400 Anmeld. bis 40Min vor Abf. Mo-Fr 6-18Uhr) - , (Bus mit Fahrradanhänger, Gruppen bitte anmelden unter 05254-6408499) - !< (Alt: verk.nur bei Anm. bis 30 Min vor Abf. u. Tel. 0421 650005) - != (Anm. 60 Min. vor Abf. Tel. 07044 944034) - !_ (AST; Tel. 06172-101310 Anm. bis 60Min vor Abf. So-Do6-22, Fr-Sa6-24Uhr) - !- (Tel.: 02681 951795, bis 22h am Vortag, Gruppen 2 Tage vorher anmelden) - !, (Zustieg am Vortag bis 19 Uhr anmelden unter Tel. (08282) 828700) - !; (Rufbus; Tel. 04161-644670 Anmeldung bis 60 Min. vor Abfahrt) - !: (Anm. 20 Min. vor Abf. Tel. 07025-912663-9) - !. (Tel.: 02681 951795, bis 60 Min, Gruppen 2 Werktage vorher anmelden) - !* (Anm. 1 Stunde vor Abfahrt, Tel. (07331) 7242, Mo-Fr: 7-19 Uhr) - !+ (Anmeldung spätestens 1 Stunde vor Abfahrt, Tel. (07340) 96300) - {~ (Rufbus: Voranmeldung bis 19:30 Uhr unter 06181-6681357) - {} (VBB-Tarif zzgl. des Komfortzuschlages 1,00 EUR je Fahrgast und Strecke) - }~ (Taxi-Anschluss, Voranmeldung 30 Min. vor Abfahrt , Tel. 0731 166-2850) - }| (TaxiBus; Tel. 0291-6111 Anmeldung mind. 30 Min. vor Abfahrt) - }{ (Anmeldung bis 2 Std. vor Abfahrt unter Tel. 06391 1824) - }} (Anmeldung bis 30 Min. vor Abfahrt, Tel. 0731 166-2850) - += (Verstärkungsfahrt; wird nicht im Kursbuch oder Aushang veröffentlicht) - +- (Fahrteneditierattribut) - 0^ (Kleinbus, Gruppenf. anmelden unter 05351-3071) - 0* (HAFAS-Steuerung [Text wird nicht ausgegeben]) - ,0 (AnrufLinienTaxi; Tel. (0241)4013999 ; Anm. bis 30 Min. vor der Abfahrt) - *0 (Verkehrt in den Pfingst- und Sommerferien als Fahrradbus) - 00 (vsl. stark ausgelastet!) - 01 (voraussichtlich starke Nachfrage) - 03 (Rufbus! Anmeldung bis Freitag, 17 Uhr, unter 034295 7420) - 08 (Bedarfshalt Tel.03435-906061 Zustieg nach Anmeldung bis 1h vor Abfahrt) - 09 (Bedarfshalt Tel.03435-906083 Zustieg nach Anmeldung bis 1h vor Abfahrt) - 0b (Bitte dem Fahrer bei Einstieg die Zielhaltestelle mitteilen.) - 0d (Rufbus, Anmeldung mind. 1 Std. vor Abfahrt unter 09161/2935) - 0e (Bedarfshalt, Anmeldung mind. 1 Std. vor Abfahrt unter 09161/2935) - 0g (AST; Tel. 0800-0584584 Fahrt mind. 60 Min. vor Fahrtantritt anmelden) - 0h (Anmeldung mind.30 Min. unter Tel. 07720 / 99780) - 0j (Anm. für Gruppen ab 4 Pers. bis Fr. 14:00; Tel. 06531/9680-0) - 0k (Anmeldung bis 20 Min. vor Abfahrt unter Tel. 07021 2656) - 0l (Bedarfshalt: Tel. (03391)400618 Anmeldung 90 Min vor Fahrtbeginn) - 0m (Bedarfshalt, Anmeldung unter 03531-650010 bis 90 Min vor Fahrtbeginn) - 0n (Gruppenanm. ab 5 Pers. am Vortag, 09381 803656, keine Fahrradmitnahme) - 0o (Bedarfshalt, Anmeldung bis 60 Min. vor Abfahrt, Tel. 0800-6065600) - 0p (Kleinfahrzeug - Gruppen sind anzumelden Tel. 03733 151245) - 0q (Ruftaxi, Tel.: 06332 16363, Anmeldung mind. 30 Min vor Abfahrt) - 0r (TaxiBus; Tel. (0251)6945000 Anmeldung mind. 30 Min. vor Abfahrt) - 0s (AST mind. 30 Min. vor Fahrtbeginn anmelden unter Tel. 07351-30250250) - 0S (Kleinbus, Gruppen ab 4 Personen am Vortag anmelden, Tel.: 0261 9846140) - 0t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 0T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 0v (Bedarfshalt Anmeldung bis 12 Uhr einen Tag vorher: Tel 09171/9676-0) - 0w (AST, mind. 1 Stunde vorher anmelden unter Tel. 0981/48228880) - 0x (Bedarfshalt; Tel. 035365-2102 Anmeldung 1Tag vor Abfahrt Mo-Fr 9-13:30) - 0y (ALT: tel. Anm.04121-906666 erf. Büro Mo-Do8-16,Fr 8-14 Uhr bes. Preis) - 0z (Anmeldung 60 Min. vor Abfahrt: Tel. 0176-80449280) - 1 (nur 1. Kl.) - 1- (AnrufSammelTaxi; Tel. 01801-334433* Anmeldung mind. 45 Min vor Abfahrt) - 1: (TaxiBus; Tel. 0201-8264949 bitte mind. 30 Min. vor Abfahrt anmelden) - =1 (Sammeltaxi: Anmeldung 30 Min. vorher; Tel: 05121/66666) - *1 (Fahrradbus-Verkehrt von Karfreitag bis einschl. 03.10. als Radlbus) - 10 (vsl. stark ausgelastet! (Regio)) - 11 (vsl. starke Nachfrage!) - 12 (Verkehrt nur bei Anmeldung bis 2 Tage vor Fahrt unter Tel. 04841 1888) - 14 (Anrufhst., b. Fahrer od. 30 Min. vor Abfahrt unter 09672-2231 anmelden) - 15 (Rufbus, bis 1 Stunde vor Fahrtbeginn unter 09674-921210 anmelden) - 16 (Anmeldung bis 60 Min. vor Fahrtbeginn, Tel. 09221-66222  oder -75570) - 17 (Bedarfshalt: Zustieg nur nach Anmeldung 1h vor Fahrt Tel: 03941/566166) - 19 (Voranmeldung bis spätestens 60 Min. vor Fahrtbeginn, Tel.: 09273-6857) - 1a (Anmeldung 30 Minuten vor Abfahrt: Tel. (07125) 40 72 40, Sondertarif) - 1A (Expressbus) - 1b (Ruftaxi, Tel.: 06251/5095, Anmeldung mind. 60 Min vor Abfahrt) - 1B (Linie B) - 1c (Anmeldung mind. 30 Min. vor Abfahrt: Tel. 07472/988 966, Sondertarif) - 1C (Linie C) - 1d (Anmeldung bis 2 Stunden vor Abfahrt: Tel. 0160-93981867) - 1D (Linie D) - 1E (Linie E) - 1f (Bedarfshalt: Tel. 0906-706050 Anmelung spätestens 1 Std. vor Abfahrt) - 1F (Linie F) - 1g (Anm. bis 30 Min vor Abfahrt Tel.(0711)356666; besonderer Tarif) - 1h (Ruftaxi; Tel.(07153)22293 Anm. bis 30Min vor Abfahrt; besonderer Tarif) - 1k (Anm. bis 10:00 Uhr unter Tel. 07644 91500) - 1K (Fährzeiten sind Richtzeiten, www.rheinfaehre-linz-remagen.de) - 1l (Anm. 60 Min. vor Abf.; Tel. 07721/9927948, Gruppe 5 Werktage vorher) - 1m (Anm. 18:30 - 22:00; Tel. 07721/9927948, Gruppe 5 Werktage vorher) - 1n (AST; Tel.06192-2002626 Anmeldung bis 30Min vor Abfahrt von 6 bis 1 Uhr) - 1o (AST, (06691)9272929-01/-02/-03 Anm.bis 30Min vor Abf. Zuschlag, 1,-EUR) - 1p (AST, Tel. 0800-0584584 Anmeld. mind. 60Min vor Abfahrt, Mo-So 9-20 Uhr) - 1r (AnrufLinienTaxi;Tel.0160-3116683 Anmeld. 60Min vor Abf. Mo-Fr 5-20 Uhr) - 1s (Kleinbus, Gruppen >8 Pers. Anmeldung am Vortag: Tel. 05544-95030) - 1S (Rufbus, Zuschlag, Anmeldung 7.30 - 17.30 Uhr, 0591-8042050) - 1t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 1T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 1u (Rufbus: Tel. 0180-1726934 Anmeldung 1 Tag vorher (Mo-Fr 7- 19 Uhr)) - 1v (Voranmeldung am Vortag bis 15:30, Tel. 0800-6065600) - 1x (Anmeldung bis 15:50 Uhr: Tel. 07571/74747474) - 1y (Voranmeldung bitte bis 1 Stunde vor Abfahrt, Tel. 09103-462) - 1z (Voranmeldung bitte bis 1 Stunde vor Abfahrt, Tel. 09171-979090) - 1Z (Linie A) - 2^ (Tel. Voranmeldung 30 Min. vor Abfahrt 07524/97380) - 2 (nur 2. Kl.) - 2+ (SECOND PLUS) - _2 (RufBus mit Voranmeldung Mo-Fr bis 16.00 Uhr Tel.:03605-515253) - ,2 (Rufbus; Tel. (02421) 2000 ; Anmeldung bis 30 Min. vor der Abfahrt) - 20 (Tel. 0541-3382214, Fahrradmitnahme nur bei Anmeldung) - 22 (Bis 22Uhr am Vortag anmelden: 02747-91276101 Gruppen 2 Werktage vorher) - 23 (TaxiBus) - 24 (Rfb: verk nur bei Anm bis 10 Min vor Abfahrt unter Tel. 0152 04535502.) - 26 (Tel. 0171-7998484, Anmeldung bis 15 Uhr des vorigen Werktages (Mo-Fr)) - 27 (AST: Anmeldung bis 30 Minuten vor Abfahrt unter Tel. 07732 8008777) - 29 (nur bei Anmeldung bis 30 Minuten vor Abfahrt unter Tel. 04932 927910) - 2a (Rufbus: Tel. 08282-828700 Anmeldung vor 16 Uhr) - 2A (RVV-Nachtschwärmer N28) - 2b (Rufbus: Tel. 08282-828700 Anmeldung vor 19 Uhr) - 2d (Bedarfshalt: Tel. 08282-828700 Anmeldung bis 15 Uhr am Vortag) - 2e (Anmeldung bis 60 Min. vor Abfahrt Tel. 08282-828700) - 2f (Rufbus: Tel. 08282-828700 Anmeldung bis 19 Uhr am Vortag) - 2H (Bedarfsfahrt; Tel. 0176-43643754 Anmeldung bis spätestens 11:45 Uhr) - 2i (Rufbus Tel.07333/5228 oder 0170/9269403, bitte 1 Stunde vorher anrufen) - 2k (Anm. bis 1Std. vor Abfahrt unter Tel. 07335/96270) - 2l (Bedarfshalt: Tel. 08282-828700 Anmeldung mind. 15 Min. vor Abfahrt) - 2m (Rufbus: Anm. mindestens 60 Min vor Abf. Tel. (03521) 741663) - 2n (Rufbus, bitte unter Tel. 08463/605079 am Vortag bis 16 Uhr anmelden.) - 2o (Bedarfshalt am Vortag bis 16 Uhr unter Tel. 08463-605079 anmelden) - 2q (AST: Tel.: (0661) 73919 Anmeldung bis 15 Min vor Abfahrt) - 2r (Rufbus; Tel. (07382) 93740 Anmeldung spätestens Freitag 19 Uhr) - 2t ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 2T ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 2v (Rufbus: Anmeld. bis 1 Std. vor Abfahrt, Tel. (07391) 707060) - 2w (ALT, mind. 30 Min. vor Abfahrt unter Tel. 0921/20208 anmelden) - 2x (Rufbus: Anmeldung am Vortag, Tel. (07353) 984840) - 2y (AnrufSammelTaxi (05651)3565 Anmeld.bis 30Min vor Abfahrt,1EUR Zuschlag) - 2z (Rufbus; Tel. 05032-809300 Anmeld bis 95Min vor Ankunft am ZOB Neustadt) - 3 (1. und 2. Kl.) - 3; (Anruf-Linientaxi, 1 Std. v. Abfahrt. Tel: 05331-77777 od. 0171/1700801) - 31 (Reservierungspflicht für Reisegruppen) - 34 (Leinetal Taxi: verkehrt nur bei Anruf unter 07131 904040) - 35 (Anmeldung bis 1 Std. vor der Fahrt unter Tel. (07262) 912020) - 36 (Rufbus, Tel. 05121-76420 Anmeldung bis spät. 60 Min. vor Abfahrt) - 37 (Fahrradbeförderung bitte voranmelden 07945 91010) - 39 (ALF, Tel.:0261 9846140, Anm. bis 22Uhr am Vortag, Gruppen 2Tage vorher) - 3b (Tel. 08341-809529 Anmeldung mind. 60 Min. vorher (Anm. 10 bis 19 Uhr)) - 3B (Ruftaxi, Tel.: 06762 4019344, Anm. 90Min vorher, Gruppen 2 Tage vorher) - 3c (TaxiBus; Tel. 05231-977681 Anmeldung am Vortag bis 18 Uhr) - 3D (Schlafwagen 2.Klasse T3 mit Dusche und WC) - 3e (Anmeldung bis 30 Minuten vor Abfahrt, Tel. 09733-9447 oder 09721-16060) - 3g (Rufbus: Tel. 01802-908070* Anmeldung bis 16 Uhr am Vortag) - 3G (Im Zug gilt bundesweit 3G-Regel: ein gültiger Nachweis ist mitzuführen) - 3h (Kleinbus: Gruppen bitte anmelden, Tel. 04671-3003) - 3i (AnrufLinienTaxi; Tel. 04342-4646 Anmeldung bis 60 Min. vor Abfahrt) - 3I (bis 22Uhr am Vortag anmelden: 02633 2009600 Gruppen 2 Werktage vorher) - 3j (Bitte mindestens 45 Min. vor Abfahrt anmelden. Tel. (05341-31311)) - 3k (Anm. mind. 2 Std. vor Fahrtantritt unter Tel. 07524/9738-0) - 3n (Ruftaxi: Tel. 08136-4343999 Anmeldung spätestens 30 Min. vor Abfahrt) - 3N (bis 60Min. vorher anm. 02633 2009600(6-22Uhr), Gruppen 2 Werktg vorher) - 3o (Ruftaxi: Tel. 08131-33749991 Anmeldung spätestens 30 Min. vor Abfahrt) - 3p (Ruftaxi: Tel. 08131-33749992 Anmeldung spätestens 30 Min. vor Abfahrt) - 3P (ALF, Tel.:067624019344, Anm. bis 22Uhr am Vortag, Gruppen 2Tage vorher) - 3q (Ruftaxi: Anmeld. mind. 30 Min. vor Abfahrt, Tel. 07231/392163) - 3r (Anmeld. mind. 30 Min.vor Fahrt Tel.07232/372148, spez. Tarif) - 3s (Ruftaxi: Tel. 08258-928440 Anmeldung spätestens 30 Min. vor Abfahrt) - 3t ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 3T ((*14 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 3u (Bedarfshalt: Tel. 0906-99989491 Anmeldung mind. 2 Std. vor Abfahrt) - 3v (Rufbus, Tel.: 06282 6014, Anmeldung mind. 60 Min vor Abfahrt) - 3w (Rufbus: Tel. +436474-2213, Fahrtanmeldung mind. 60 Min. vor Abfahrt) - 4= (Anruf-Linientaxi; Tel. (09221)66222 Anmeldung bis 2 Std. vor Abfahrt) - 4- (TaxiBus Anmeldung nur beim Fahrer im S10 zw. Westerk. u. Mettingen) - 4. (RFB verk nur bei Anm b30 Min. vor Abf u Tel: 0800/7007887 + bes.Tarif!) - _4 (Bitte 30 Min. vor Fahrt anmelden unter Tel.: 04551-898989) - $4 (mit Fahrradtransportanhänger) - 41 (Rufbus, nur nach tel. Voranmeldung: 03677 888 952 (1h vor Fahrtbeginn)) - 43 (Rufbus für max. 6 Pers; Tel. 03371-628182 Anmeldezeit Mo - Fr 5-17 Uhr) - 45 (Anmeldung 30 Min vor Abfahrt  unter 07651/9899602) - 46 (Fahrradmitn. f. 9 Räder, Anm. unter 03671-5251999, am Vort. bis 15:00) - 47 (Museums-Dampfzug) - 48 (Achtung: Fahrt kann von Streik-Aktionen betroffen sein) - 4a (Ohne Bedarfsbedienung verkehrt der Bus an dieser Haltestelle 8Min eher) - 4b (Bedarfshalt: mind. 1 Std. vorher anmelden unter Tel. 0731 97744233) - 4c (Ruf mich-Bus, bitte am Vortag bis 17h bestellen: 04463/1046) - 4d (Bedarfshalt: Zustieg am Vortag bis 17 Uhr anmelden, Tel. 07346 96200) - 4e (Vorbestellung bitte bis zum Vortag zwischen 9-19 Uhr) - 4f (Nur nach Vorbestellung Mo.-Fr. 14h, Tel. 08652-94480) - 4i (Ruftaxi, Tel.: 06331/228899, Anmeldung mind. 60 Min vor Abfahrt) - 4j (bis 4:00 Uhr morgens Nachtlinienzuschlag erforderlich) - 4k (Ruftaxi, Tel.: 06337/6637, Anmeldung mind. 60 Min vor Abfahrt) - 4l (Rufbus: Tel. 09181-48800 Anmeldung mind. 60 Min. vor Abfahrt) - 4m (Voranmeldung bitte bis 60 Min. vor Abfahrt, Tel. 0151-54419545) - 4n (AST, Anmeldung mindestens 30 min vor Fahrtbeginn unter Tel. 06806 3434) - 4p (Taxibus; Tel. (02567) 778 Anmeldung mind. 30 Min. vor Abfahrt) - 4q (Gruppen ab 10 Pers. und Fahrradmitnahme anmelden: Tel. 04421-84360) - 4r (Bedarfshalt; Anmeldung bis 1h vor Abfahrt, Tel. 034901-82599 (5-20Uhr)) - 4s (Fahrradzuladung in Lahr West am Betriebshof) - 4t ((*bis 12,6ct/Min. aus d.Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 4T ((*bis 12,6ct/Min. aus d.Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 4u (Anmeldung bis 16.30 Uhr unter Tel. 02631/ 352532) - 4y (TaxiBus; Tel.: 0800-3504031* Anmeldung bis spätestens 18:30 Uhr) - 4z (Rufbus! Tel. 03933-823431 Anmeldung bis 22.11.2019, 12:00 Uhr) - 5, (bitte 1 Stunde vorher anmelden, 01803-229292* (bis 20 Uhr)) - 5+ (TaxiBus-Bestellung beim Einstieg in den NachtBus N1) - _5 (Bitte 60 Min. vor Fahrt anmelden unter Tel.: 04823-920866) - 54 (Anmeldung bis spätestens einen Tag vor Abf. unter Tel. 07522/912222) - 55 (Nichtraucherzug) - 56 (Dampfzug) - 57 (Dampfschiff) - 59 (Tel. 04634 8888, Anmeldung bis 60 Min vor Abfahrt, www.dorfschuttle.de) - 5a (Gruppenbeförderung bitte mit Voranmeldung 03531-650010) - 5b (Verkehrt nur bei Anm. bis 15 Min. vor Abfahrt unter Tel. 0152-2603642) - 5c (Nur nach Voranmeldung bis 22:00 des Vortages, 0173-3951473) - 5d (Bürgerbus, verk. nur nach Anm. b.45Min. vor Abf. u. Tel.: 0162 6192290) - 5D (Tel. 0971-730310, Anm. bis 60 Min. vor Abfahrt Mo-Do 9-15, Fr 9-13 Uhr) - 5e (Bedarfsfahrt: Tel: 09461-941850) - 5f (Rufbus,Tel.0261-29670388 Anmeld. 90Min vorher Mo-Fr6-21,Sa7-20,So7-22*) - 5g (nur an Schultagen) - 5h (Anm. bis 30 Min vor Abfahrt unter 06341-86506) - 5H (Nur nach Voranmeldung bis 90 vor Abfahrt, Tel. 0911-65005) - 5i (Bedarfshalt; Tel: (0800) 2992299 Anmeldung mind. 90 Min vor Abfarhrt.) - 5j (Rufbus; Tel. (0800) 2992299 Anmeldung mind. 90 Min vor Abfahrt.) - 5k (Kleinbus, Gruppen 24 Std. vor Abfahrt anmelden, Tel. (030)396011344*) - 5l (Voranmeldung am Vortag (Mo-Fr bis 20Uhr), Tel. 09221-66222) - 5L (Bedarfshalt; Tel. 09771-9178094 Anmeld. bis 15Uhr am Vortag Mo-So 7-21) - 5m (TaxiBus; Tel. (02052)9258505 Anmeldung mind. 30 Min. vor Abfahrt) - 5p (Gruppen bitte 30 Min. vor Abfahrt unter Tel.: 0511 8484 anmelden.) - 5q (Anmeldung bitte 30 Min. vor der Abfahrt unter Tel.: 0511/8484) - 5Q (Anruf-Fahrt 06543-501924 Anmeld.bis 22Uhr am Vortag(Gruppen 2Werktage)) - 5R (Einstieg nur mit Reservierung: siehe www.postauto.ch) - 5S (Anruf-Linien-Fahrt, 60Min vor Abfahrt anmelden 06543-501924 (6-22 Uhr)) - 5t ((*3,9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 5T ((*3,9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 5w (Rufbus Tel.03372-424848 Anmeldung Mo-Fr von 5-14Uhr bis 60Min.vor Abf.) - 5x (AST; Tel. (06455) 7558133 - Anmeldung bis 30 Min. vor Abfahrt*) - 5y (Rufbus: Tel. 09661-812910 Anmeldung bis spätestens Freitag) - 5z (Anmeldung unter Tel.08000-366910, 1 Std vor Abfahrt (Mo-Sa 7-20Uhr)) - 6: (Anmeldung 2 Std. vor Abfahrt. Tel.: 07122 / 82477; Sondertarif) - 6$ (Bedienung nur zum Ausstieg) - ,6 (AnrufLinienTaxi; Tel. (0241) 182000; Anm. bis 30 Min vor der Abfahrt) - 60 (Rufbus: Fahrtanmeldung nach Bedarf unter Tel. 0711 93383798) - 62 (Anmeldung bitte bis spät. 60 Min. vor Fahrt unter Tel.: 04441-93110) - 63 (AnrufLinienFahrt, Tel.02686-1799 Anmeld. 60Min vor Abfahrt von 6-22Uhr) - 65 (Anm. Mo-Fr 8-16 Uhr unter Tel. 04122-909844 (mind. 60 Min. vor Fahrt)) - 66 (AST: Anm. bis 60 Min. vor Fahrtantritt unter Tel. 04231 922766) - 67 (Komfortzuschlag erforderlich) - 68 (Rufbus, bitte anm. Mo-Fr, 07-16Uhr, bis 60 Min. vor Abf.: 05461 93390) - 6d (Anmeldung bis 11:00 Uhr unter Tel. 02603/ 2727) - 6t ((*6 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 6T ((*6 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7 (Midi-Bus (22 Personen)) - 73 (Anruflinienfahrt, Tel. 06765-9493725 bitte bis spät.16 Uhr anmelden) - 75 (Anmeldung 60 Min vor Abfahrt, Tel. (07162) 6367.) - 78 (Nur nach Voranmeldung bis 60 Minuten vor Abfahrt, Tel:  08751-709888) - 7a (Anmeldung 20 Minuten vor Abfahrt Tel. 0711 5510000) - 7b (Voranmeldung bis spätestens 60 Minuten vor Abfahrt, Tel. 09241-2697) - 7B (Nur nach Voranmeldung bis 14 Uhr, Tel. 02603-8022) - 7c (Anmeld. bis spätestens 60 Min. vor Fahrtbeginn Tel. 09270/91222) - 7C (ALF, Tel.: 06765 9493767, Anmeldung mind. 30 Min vor Abfahrt) - 7d (Anm. am Vortag bis 15 Uhr unter 07520/ 9203-0) - 7f (AnrufLinienTaxi; Tel. 06035-6575 Anmeld. 60Min vor Abf. Mo-Fr 8-17 Uhr) - 7h (Anm. bis 18.00 Uhr des Vortages: Tel. (07381) 93 45 30, Sondertarif) - 7H (für Gruppen u. Bayernticket besteht Anmeldepflicht, Tel. 09771-9178094) - 7i (Rufbus bis spätestens 21 Uhr anmelden: 07333/5228 oder 0170/9269403) - 7j (Anm. bis 30 Min. vor Abfahrt unter Tel. 07633 92620) - 7k (Anm. mind. 30 Min. vor Abfahrt, Tel.: 07431 / 5 51 15; Sondertarif) - 7l (Ruftaxi; Tel. 089-84005811, Anmeldung mind. 45 Min. vor Abfahrt) - 7o (Kleinbus. Gruppen bitte 2 Werktage vorher unter 0581-976280 anmelden) - 7p (Kleinbus. Gruppen bitte 2 Werktage vorher unter 03901-304030 anmelden) - 7q (Rufbus; Tel. (033931)34940 Anmeldung mind. 120 Min vor Fahrtbeginn) - 7s (Anruf-Linien-Taxi, bitte bis 1h vorher anmelden: 04231/69001) - 7t ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7T ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 7u (Rufbus; Anmeldung spätestens 2h vor Fahrtbeginn; Tel. 0361-19449) - 7x (Ast: verk. nur bei Anm. bis 30 Min. vor Abf. u. Tel. 04231 922760) - 7y (Ruftaxi, Tel.: 06381 324, Anmeldug bis 60 Minuten vor Abfahrt) - 8: (Anruf-Linientaxi Bitte 60 Min. vor Abfahrt anmelden. (05531) 930711) - 8$ (nur nach Anmeldung 60 Min. vorher 06826/6666) - 8+ (AST; Tel. 06409-2922; Anm. bis 60Min vor Abfahrt*; 1,50 Euro Zuschlag) - 80 (Ausfall bei ungünstigen Wintersportbedingungen) - 81 (ÖBB-Verkehr) - 82 (Anm. 2 Std zuvor (0791/9501012) oder durch Mitteilung an den Fahrer) - 83 (Kleinbus; Gruppenfahrten bitte anmelden! Tel.: 05151 788988) - 87 (AST; Tel. 04542-3340 Anm. 30Min. vor Abfahrt Gruppen ab 5 Pers. 1Tag) - 8a (AST: verk. nur bei Anm. bis 60 Min vor Abf. u. Tel. 0581 828384) - 8b (TaxiBus; Tel.0800-3504031 Anm. 60Min vor Abf. Mo-Fr6-19,Sa7-15,So10-18) - 8d (Ruftaxi, tel. vorbestellen unter 06381-924660) - 8e (Ruftaxi, tel. vorbestellen unter 06381-924666) - 8f (TaxiBus; Tel. (01803)504031* Anmeldung bis spätestens 20 Uhr) - 8g (Ruftaxi, Tel.: 06383-1460, Anmeldung mind. 60 Min vor Abfahrt) - 8h (TaxiBus; Tel. (01803) 504031* Anmeldung bis 19 Uhr am Vortag.) - 8i (Ruftaxi, Tel.: 06382-1551, Anmeldung mind. 60 Min vor Abfahrt) - 8j (Ast: verk. nur bei Anm. bis 60 Min vor Abf. u Tel. 05531 930711) - 8k (Anmeldung mind. 60 Min vor Abfahrt unter Tel.: 06382-993050) - 8l (Anmeldung mind. 60 Min vor Abfahrt unter Tel.: 06382-993600) - 8m (Ruftaxi, Tel.: 06381-2518, Anmeldung mind. 60 Min vor Abfahrt) - 8M (Anmeldung am Vortag bis 16.00; Tel.  06392/995717) - 8n (Anmeldung am Vortag unter Tel. 07567/ 234) - 8p (AST; Tel. (02961) 970297 Anmeldung mind. 30 Min. vor der Abfahrt.) - 8q (Ruftaxi, Tel.: 06331/228080) - 8r (Ruftaxi, Tel.: 06381/2324, Anmeldung mind. 60 Min vor Abfahrt) - 8s (Rufbus; Tel. (01802)783287* Anmeldung bis Freitag 18 Uhr erforderlich) - 8t ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Min.)) - 8T ((*20 ct/Anruf aus dem Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf)) - 8u (Anmeld. am Vortag 9:00-12:00 (Mo-Fr) Tel. 09733/81060) - 8w (Voranmeldung bis spätestens 60 Minuten vor Abfahrt, Tel. 09241-1448) - 8x (Anmeldung bis 17:00 Uhr am Vortag unter Tel. 07661/ 9019200) - 8y (Rufbus, Tel. (06131) 4948455, Anmeldung mind. 2 Std. vor Abfahrt) - 8z (Keine unentgeltliche Beförderung Schwerbehinderter) - 90 (ALF- Bestellung am Vortag u. Tel.: 05722 1515 - Anw des VLS Tarifes) - 91 (Anmeldung bis spät. 30 Minuten vor Abfahrt unter Tel. 0531 28639588) - 93 (Rufbus (Kleinbus, max 8 Pers.), bis 19Uhr am Vortag anm.: 06421 205811) - 97 (Schwerbehindertenabteil) - 9a (Rufbus, Tel. (06131)4948455, Anmeldung bis 22 Uhr des Vortages) - 9b (Anrufbürgerbus; Tel. 0175-8977507 Anmeldung bis 30 Min. vor Abfahrt) - 9c (Anmeldung bis 60 Minuten vor Abfahrt unter Tel. 07661/ 9019200) - 9f (Bedarfshalt, Tel. 0391-5363180 Bitte bis 2 Std. vor Abfahrt anmelden) - 9F (Großraumabteil) - 9G (9-Euro-Ticket gültig) - 9i (ALT: verk. nur bei Anmeldung am Vortag bis 16:00 Uhr u. Tel. 05556 374) - 9k (SEV Fahrradbus; Mitnahme von Fahrrädern) - 9l (ALT: verk. nur bei Anmeldung bis 60 Min. vor Abfahrt u. Tel. 05556 374) - 9L (Nachtzug-Rezeption) - 9m (AST: Tel. 04542-9009132 Anm. 30 Min vor Abfahrt (Gruppe 1 Tag vorher)) - 9n (TaxiBus; Tel. (02333)3388 Anmeldung mind. 30 Min. vor Abfahrt) - 9N (9-Euro-Ticket nicht gültig) - 9o (Anm. 1 Std. v.Fahrt,Tel.07721 9132020;Gruppen mind.5 Werktage v.Fahrt) - 9p (Bedarfshalt, nur auf Anfrage. Bitte anm. unter 037755/2222) - 9q (AST; Tel.(06431)203456 Anmeld. 60Min vor Abfahrt zwischen 15 und 24Uhr) - 9r (Anm. am Vorabend bis 24 Uhr; Tel.-Nr.: 07721 9132020) - 9s (TaxiBus; Tel. 02441-99454545 Anm.30Min bis22Uhr; Gruppen 3Tage vorher) - 9S (Steuerwagen) - 9t ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 9T ((*9 ct/Min. aus dem Festnetz, Tarif bei Mobilfunk max. 42 ct/Min.)) - 9v (Kleinbus, Gruppen bitte anmelden, Tel. 09729-91010) - 9w (Anm. mind. 1h vor Abf., www.ding.eu oder 0731/1550- 505, 8-18Uhr) - 9x (Anm. mind. 1 Std. vor Abfahrt; Tel. (07392) 973717-225, Mo-Fr: 8-17Uhr) - 9y (Anm. mind. 1 Std. vor Abfahrt; (07392) 973717-226, Mo-Fr: 8-17Uhr) - 9z (Ruftaxi; Tel. 0800-3605200 (bitte Anmeldeverfahren beachten)) - a~ (Bedarfshalt/Zustieg tel. Anmeldung 90 min vor Abfahrt 038326-600-800) - a> (Bedarfshalt; Tel. (0800)6065600 Anmeldung bis 15Uhr am vorigen Werktag) - a| (Rufbus! Anmeldung bis 1 h vor Abfahrt unter 034607/202 94) - a (Rufbus: Tel. 06841 4312, Anmeldug bis 60 Minuten vor Abfahrt) - a_ (Tel. 03531-650010 Anmeldg. bis 90 Min vor Fahrtbeginn Mo-Fr 5:30-18:30) - a- (Bus kann wg. Ferienbeginn/Zeugnisausgabe früher abfahren bzw ausfallen) - a, (TaxiBus; Tel. 0700 / 88839839* Anmeldung 30 Min. vor Abfahrt) - a; (AnrufSammelTaxi; Tel. 0551-38444843 Anmeldung mind. 30 Min vor Abfahrt) - a: (Anmeldung bis 2 Stunden vor Fahrtbeginn unter Tel. 07542 / 7552) - a? (Bedarfshalt, Einstieg anm. bis 1h vor Abfahrt,03921-935945 (bis 18:00)) - a. (TaxiBus; Tel. 02831 / 398765 bis spätestens 30 Min. vor der Abfahrt) - a{ (Bedarfsfahrt bitte 60 Min. vor Abfahrt anmelden, Tel.: 06245 99834) - a} (Es gilt ausschließlich der Sondertarif Nachtschwärmer.) - a$ (Rufbus;Tel.(01802)892892* Bestellung mind 2Std vor Abfahrt von 7-20Uhr) - a* (TaxiBus-Anschlussfahrt, Fahrtwunsch beim Bus-Fahrer anmelden.) - a+ (Rufbus, Tel. (06131)8921652 Anmeldung am vorherigen Werktag bis 17Uhr) - A` (Tel. 09245-983267420, Anmeldung mind. 45 Min. vor Abfahrt) - A^ (Tel. 0951-96869734, Anmeldung bis spätestens am Vortag 12 Uhr) - A< (Rufbus: Anmeldung 60 min vor Abfahrt Tel:(07161) 41070) - A= (Rufbus verk. nach tel. Voranm. 03834/532424 mind. 60 Min.) - A> (Bitte bei Nutzung der Fähre Reservezeit einplanen! Fährt ohne Fahrplan) - A| (Anmeldung spätestens Freitag 18 Uhr, Tel.: 07128 / 687) - A (Schienenersatzverkehr Bus A) - A_ (Tel. 09245-983267419, Anmeldung mind. 45 Min. vor Abfahrt) - A- (Kein Zustieg mit Abo-Ticket: Bus-Bahn) - A, (Shuttle-Bus, Eintrittskarte = Fahrkarte, verkehrt nur bei Bedarf) - A; (Anmeldung bis 60 Min. vor Abfahrt unter Tel. 07331 8888) - A: (freies Attribut) - A! (Anmeldung spätestens am Vortag bis 17:00 Uhr, Tel. 09141-99350) - A? (Für GTF gesperrt) - A/ (Anm. bis 60 Min. vor Abfahrt unter Tel. 0751/3 61 41 52) - A. (Anm. 60 Min. vor Abfahrt, Tel. 0981-9714925 (Mo-Fr 8-17 Uhr)) - A\' (verkehrt vom 01.05. bis 31.10. als RadBus) - A\" (Tel. 09521-953530, Anmeldung spätestens am Vortag bis 17 Uhr (Mo-Fr)) - A( (RFB: verkehrt nur bei Anmeldung bis 11:30 Uhr unter Tel. 04465 9496-0) - A) (Anmeldung bis 45 Minuten vor Abfahrt unter Tel. 07223 3319) - A[ (Rufbus; Tel. 09171-8392395, Anmeldung spätestens 60 Min. vor Abfahrt) - A] (Tel. 09171-8392396 Anmeldung mind. 90 Min. vor Abfahrt (Mo-Fr 7-20Uhr)) - A{ (Zustieg nur nach Voranmeldung, Tel.: 0981-971490 (Mo-Fr 8-17 Uhr)) - A} (Nur bei VFL-Wolfsburg Bundesligaheimspiel, Anpfiff um 18:00 Uhr) - A@ (Anmeldung bis 18 Uhr des Vortags, Tel. 07371/7407, Sondertarif) - A$ (Tel. 0800-0005645, Anmeldung bis 2 Std. vor Abfahrt) - A* (ALT, Anmeldung mindestens 30 min. vorher, Tel.: 07851 884848) - A\\ (Tel. 09171-8392395 Anmeldung mind. 90 Min. vor Abfahrt (Mo-Sa 7-20Uhr)) - A& (Tel. 09933-324, Anmeldung bis spätestens 17 Uhr am Vortag) - A# (Tel. 0800-0005645, Anmeldung spätestens am Vortag (Mo-Fr von 8-15 Uhr)) - A% (Nur nach Voranmeldung am Vortag der Fahrt, Tel. 0871-34994) - ^a (RFB: Anmeldung bis 16:00 Uhr am Vortag unter Tel. 04465 / 94960) - ~a (Anmeldung mind. 30 Min. vor Abf. unter Tel. 07152 335959) - <a (Voranmeldung bitte bis 30 Minuten vor Abfahrt, Tel. 0170-9419849) - =a (BahnCard der DB AG wird nicht anerkannt) - >a (Anmeldung bis spätestens 21:00 Uhr unter (07161) 41070) - |a (Anmeldung unter 0711/666 07 -783 oder -100.) - _a (Anm. am Vortag (Mo-Fr) bis 17:00, Tel. 07579/ 9211729) - ,a (Bedarfshaltestelle, Tel. 0173 / 2521021 Anm. bis 30 Min vor Abfahrt) - ;a (Tel. 0851-21370606, Anmeldung Mo - So von 06:30 Uhr - 21:00 Uhr) - :a (Bedarfshalt; Tel.034202-309980 Zustieg nach Anmeldg bis 1h vor Abfahrt) - .a (Kleinbus, Gruppen bitte unter 03741/4480 anmelden.) - {a (Rufbus, Anmeldung bitte am Vortag bis 15 Uhr, Tel.: 09523-95300) - }a (Anmeldung bis 1 Std. vor Abfahrt Mo-Fr -18 Uhr, Tel. 0800 5842870) - *a (Anmeld. bis spätestens 2 Std. vor Abfahrt unter 06781 219121) - +a (kostenlose Fahrradbeförderung (max. 3 Räder)) - ~A (Anruf-Linien-Taxi-Bitte anm. unter 0162 9097264 spät. 30 Min. vor Abf.) - |A (Rufbus: Voranmeldung bis 2 Stunden vor Fahrtbeginn unter 06181-6681357) - {A (Verkehrt nur bei Anmeldung bis 60 Min. vor Abfahrt unter: 0160 3133383) - }A (Tel. 09351-975797, BUS fährt nur nach Anmeldung bei Mobilitätszentrale) - a0 (Anm. ab 5 P. bis Fr. 12:00 o. am Vortag von Feiertagen;Tel.0731-15500) - A0 (AKN-Eisenbahn-AG) - a1 (TaxiBus; Tel. 02853 / 91910 Anmeldung mind. 30 Min. vor Abfahrt.) - A1 (Arriva) - a3 (Kleinbus; Gruppen bitte 3 Tage unter Tel. 05231-977681 anmelden) - a4 (AST; Tel. 01802 / 552000* Anmeldung mind. 45 Min. vor Abfahrt) - a5 (keine Fahrradmitnahme möglich) - A6 (Albtal-Verkehrs-Gesellschaft) - a8 (Anruf-Linientaxi, Tel. (0921)64422 Anmeldung bis 60 Min. vor Abfahrt.) - aa (RufBus: Tel. 04461 / 912298 Anmeldung bis spätestens 18:00 Uhr) - aA (RufBus, Tel. 03941-566166 Anmeldung mind. 60 Min. vor Fahrtbeginn) - Aa (Barrierefreies Fahrzeug 60Min vor Abf. unter Tel.0331-6614694 anmelden) - ab (AST, Tel. 07641 / 1212 Anmeldung 30 Min. vor gewünschter Fahrt) - aB (Zusatzbus v. Kues, Schulzentr - Kröv, Weisbrunnenhalle 5 Min vor Fahrt) - Ab (AST-Verkehr: Tel. (05541) 12848 Anmeldung bis 30 Minuten vor Abfahrt) - AB (Bus mit Fahrradanhänger) - aC (TaxiBus; Tel. 02831 / 398765 bitte bis 20 Uhr am Vortag bestellen) - Ac (Anruflinientaxi: Tel. 0441 / 9259292 Anmeldung am Werktag vor Abfahrt) - ad (Waldseebus nur bei Badewetter, Info: 06074-696609065 oder www.kvgOF.de) - aD (Rufbus, Tel. 07471 935050, Anmeldung mind. 60 Min. vor Abfahrt) - Ad (Taxibus; Tel. 0800/3504031 Anm. 30 Min vor Abfahrt, Gruppen am Vortag) - AD (Damenabteil) - ae (Mitnahme von max. 5 Fahrrädern 01.04. - 01.11. Infos: www.radbusse.de) - aE (Schülerverkehr-kann kurzfr entfallen. - Infos unter Tel. 03774 18020) - Ae (Tel. 08092-256518, Anmeldung bitte bis 1 Std. vor Abfahrt) - af (Kleinbus: Gruppen ab 10 Personen unter Tel. (03941)566161 anmelden) - aF (Beckenhof nur nach Anmeldung; Tel. 09189/7958 mind. 60 Min vor Abfahrt) - Af (Verkehrt nur nach Voranmeldung bis 70 Min. vor Abfahrt Tel. 08121/3141) - AF (Autofähre) - aG (Rufbus, Tel. 09524 / 850905 Anmeldung bis 15 Uhr am Vortag (Mo-Fr)) - Ag (Nur nach Voranmeld.bis 40 Min.vor Abfahrt, Tel.08084/94500 (tgl.6-22h)) - AG (VVO-Anschlussgarantie: Info unter 0800/3111888 oder www.vvo-online.de) - ah (Anmeldung mind. 30 Min. vor Fahrt Tel. 07041 / 2400 spez.Tarif) - aH (Voranmeldg. bis 1 Std. v. Abfahrt, Tel. 09245-983267422 (Mo-Fr 8-17)) - Ah (Nur nach Voranmeldung 45 Min vor Fahrt Tel. 0170/9419849 (tgl.6-22h)) - ai (Anm. bis 22 Uhr am Vortag unter Tel. (07245) 2323 oder 2635) - aI (Tel. 09723/91190 Anmeldung bis spät. 15 Uhr am Vortag (Mo-Fr)) - Ai (TaxiBus; Tel.0151-58036697 Anmeldung bis 60Min vor Abfahrt von 6-20Uhr) - AI (mit Anschluss Inselbahn) - aj (AST; Tel. 0202 / 750030 Anmeldung mind. 30 Minuten vor Abfahrt) - aJ (Anmeld. bis 1 Std. vor Abf., 09191-862511 (17-22h; Sa+So auch 9-11h)) - Aj (Taxibus; Tel. 05246-6600 Anmeldung 30 Min. vor Abfahrt von 10-18 Uhr) - AJ (ab Inselbahnhof mit Schiffsanschluss) - ak (Kleinbus; Gruppen bitte vorher anmelden) - aK (Rufbus; Tel. (0391)5481212 Anmeldung bis 30 Minuten vor Abfahrt) - Ak (Kleinfahrzeug-Gruppen sind anzumelden, Tel. 03733 / 151240) - al (Kleinbus - Gruppenfahrten bitte unter 0365 824 560 anmelden) - aL (Rufbus; Tel. 02381-9503313 Bestellung am Vortag (Mo-Fr) bis 15:30 Uhr) - Al (Kleinbus; Gruppen bitte am Vortag anmelden 0171 / 5057200) - AL (Anhaltische Bahngesellschaft) - am (Vornehmlich für den Schülerverkehr, Änderungen sind möglich) - aM (Anmeldung bis 1 Stunde vor Abfahrt: Tel. 07121-485588, Sondertarif) - Am (Ruftaxi, Tel. 06326 / 980144 Anmeldung mind. 60 Min vor Abfahrt) - an (Verkehrt nur nach Voranmeldung unter Tel. 09467/224) - aN (Rufbushst.: Hält nur nach Voranmeldung) - An (Anmeldung über www.moBiel.de/Anton oder Tel. 0521-511514,) - ao (Bedarfshalt, Tel. 03431-670815 Anmeldung 60 Min. vor Abfahrt) - aO (Anm. mind. 30 Min vor Abf. Tel. 07051/9689-0; letzte Anm. bis 17.00) - Ao (Rufbushaltestelle; bis 30 Min. vor Abfahrt unter 08122/92323 anmelden) - AO (Konsum alkoholischer Getränke im Zug verboten) - ap (Bedarfsfahrt, Tel.: 09733/81060, Anmeldung bis 15:00 Uhr des Vortages) - Ap (Rufbus: Tel. 06371 459174, Anmeldug bis 60 Minuten vor Abfahrt) - AP (Globalpreis oder Fahrkarte zzgl. Aufpreis möglich) - aq (Tel. 08341-809529 Anmeldung 60 Min. vor Abfahrt (Anm. 10-19 Uhr)) - aQ (verkehrt nur bei Anm. bis 30 Minuten vor Abfahrt Tel. 0175 / 6000148) - Aq (Anmeldeverkehr unter 07443 / 247131 bis 1 Std. vor Abfahrt) - AQ (Buchung: bte-autoreisezug.de; autoreisezug@bahntouristikexpress.de) - ar (Anm. bis 60Min vor Abfahrt, Tel. 09631-7929899, Mo-Fr 7-18:30, Sa 7-12) - aR (ALT: Fahrt bitte mindestens 30 Min vorher anmelden unter 05207/2357) - Ar (AST: Tel. 05656 / 334932 Anmeldung bis 30 Minuten vor Abfahrt) - as (Erw. Fahrradbeförderung vom 15.04. bis 01.10.2023, max. 20 Fahrräder) - aS (Anmeldungszeiten 8:00 - 12:00 Uhr, sonst am Vortag) - As (Tel. 0159-04267760, Anmeldung bis 60 Min. vor Abfahrt, Sa-So 07-22 Uhr) - AS (nur für Reisende mit Kraftfahrzeug) - at (AST=Anruf-Sammel-Taxi) - aT (TaxiBus; Tel. 0208 / 4511122 mind. 30 Min. vor Abfahrt bestellen) - At (Anmeldung bis 18.00 Uhr des Vortages: Tel. 07373 / 1539) - AT (Zug führt Autotransportwagen) - au (Bedarfsabhängige Bedienung:Fahrtverlauf abhängig vom Fahrgastaufkommen) - aU (Rufbus; bitte anmelden unter Tel. 03643 / 86410) - Au (Taxibus; Tel. 02851-1263 Anmeldung mind. 30 Min. vor Abfahrt) - av (Fahrt kann schulbedingt geändert werden) - aV (Kleinbus; Gruppen > 4 Pers. 4 Werktage vorher anm., Tel 06631-963333*) - Av (Rufbus: Tel. 06783 99500, Anmeldug bis 60 Minuten vor Abfahrt) - AV (Tickets: arriva.express@panturist.hr oder 0800 1828530 (kostenlos)) - aw (Diese Fahrt wird mit einem Kleinbus mit max 8 Sitzplätzen durchgeführt) - aW (Voranmldung bitte bis 2 Stunden vor Abfahrt, Tel. 08651-62593) - Aw (Anruf-LinienTaxi; Tel. 06669 / 960230 Anmeldung bis 60 Min vor Abfahrt) - ax (Mit Fahrradanhänger. Reservierung unter 0241 912890 bis Fr. 12 Uhr.) - Ax (Ab Sachsenwaldau nur bei Bedarf: 30 Min. vor Abfahrt: Tel 040-72594830) - AX (Buchung: www.nachtexpress.de; Tel 04661-7368744; info@nachtexpress.de) - ay (Fahrräder müssen 5 Minuten vor Abfahrt zum Verladen bereitstehen)
+	 * @type {string}
+	 * @memberof MessageAttribute
+	 */
+	code: string;
+	/**
+	 * Display priority [Anzeigereihenfolge aka \'Priorität*] for message. Order is ascending.
+	 * @type {number}
+	 * @memberof MessageAttribute
+	 */
+	displayPriority?: number;
+	/**
+	 * Detailed display priority [detaillierte Anzeigereihenfolge aka \'Feinsortierung\'] for message. Order is ascending.
+	 * @type {number}
+	 * @memberof MessageAttribute
+	 */
+	displayPriorityDetail?: number;
+	/**
+	 * Text for attribute.
+	 * @type {string}
+	 * @memberof MessageAttribute
+	 */
+	text: string;
 }
 /**
  * Message for customers.
@@ -824,42 +824,42 @@ export interface MessageAttribute {
  * @interface MessageLegacy
  */
 export interface MessageLegacy {
-  /**
-   * Optional category of message, like for instance \'Bauarbeiten\' or \'Informationen\'
-   * @type {string}
-   * @memberof MessageLegacy
-   */
-  category?: string;
-  /**
-   * Unique code of message may be empty in case of HIM based messages.
-   * @type {string}
-   * @memberof MessageLegacy
-   */
-  code?: string;
-  /**
-   * Display priority [Anzeigereihenfolge] for message. Order is by display priority asc. May be empty.
-   * @type {number}
-   * @memberof MessageLegacy
-   */
-  displayPriority?: number;
-  /**
-   * Freetext of message.
-   * @type {string}
-   * @memberof MessageLegacy
-   */
-  text: string;
-  /**
-   * Short freetext of message, may be empty.
-   * @type {string}
-   * @memberof MessageLegacy
-   */
-  textShort?: string;
-  /**
-   *
-   * @type {MessageType}
-   * @memberof MessageLegacy
-   */
-  type: MessageType;
+	/**
+	 * Optional category of message, like for instance \'Bauarbeiten\' or \'Informationen\'
+	 * @type {string}
+	 * @memberof MessageLegacy
+	 */
+	category?: string;
+	/**
+	 * Unique code of message may be empty in case of HIM based messages.
+	 * @type {string}
+	 * @memberof MessageLegacy
+	 */
+	code?: string;
+	/**
+	 * Display priority [Anzeigereihenfolge] for message. Order is by display priority asc. May be empty.
+	 * @type {number}
+	 * @memberof MessageLegacy
+	 */
+	displayPriority?: number;
+	/**
+	 * Freetext of message.
+	 * @type {string}
+	 * @memberof MessageLegacy
+	 */
+	text: string;
+	/**
+	 * Short freetext of message, may be empty.
+	 * @type {string}
+	 * @memberof MessageLegacy
+	 */
+	textShort?: string;
+	/**
+	 *
+	 * @type {MessageType}
+	 * @memberof MessageLegacy
+	 */
+	type: MessageType;
 }
 /**
  * Classification of message. - CUSTOMER_TEXT (unstructured free text [unstrukturierter Kundenfreitext], may be based on HIM messages (no disruptions!) (for instance \'Bitte beachten Sie die Maskenpflicht\') - QUALITY_VARIATION (structured quality variations [struckturierte Qualitätsabweichung] (for instance \'Geänderte Wagenreihung\' or \'Fahrradmitnahme nicht möglich\') - CUSTOMER_REASON (structured customer reasons [struckturierte Kundenbegründungen] (for instance \'Umgestürzter Baum auf Strecke\' or \'Verspätung aufgrund vorausfahrendem Zug\')
@@ -868,9 +868,9 @@ export interface MessageLegacy {
  */
 
 export const MessageType = {
-  CustomerText: 'CUSTOMER_TEXT',
-  QualityVariation: 'QUALITY_VARIATION',
-  CustomerReason: 'CUSTOMER_REASON',
+	CustomerText: 'CUSTOMER_TEXT',
+	QualityVariation: 'QUALITY_VARIATION',
+	CustomerReason: 'CUSTOMER_REASON',
 } as const;
 
 export type MessageType = (typeof MessageType)[keyof typeof MessageType];
@@ -886,72 +886,72 @@ export type MessageType = (typeof MessageType)[keyof typeof MessageType];
  * @interface Segment
  */
 export interface Segment {
-  /**
-   * Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that a segment of an additional journey [Zusatzfahrt] is only considered as additional in case the segment has been added to the journeys after the additional journey has been scheduled.
-   * @type {boolean}
-   * @memberof Segment
-   */
-  additional: boolean;
-  /**
-   *
-   * @type {Administration}
-   * @memberof Segment
-   */
-  administration: Administration;
-  /**
-   *
-   * @type {Arrival}
-   * @memberof Segment
-   */
-  arrival: Arrival;
-  /**
-   * Indicates whether this segment has been canceled.
-   * @type {boolean}
-   * @memberof Segment
-   */
-  canceled: boolean;
-  /**
-   *
-   * @type {Departure}
-   * @memberof Segment
-   */
-  departure: Departure;
-  /**
-   * List of transports this journey at this particular segment is reliefed by [Entlastungszug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof Segment
-   */
-  reliefBy?: Array<TransportPublicDestination>;
-  /**
-   * List of transports this journey at this particular segment reliefs for [Entlastungszug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof Segment
-   */
-  reliefFor?: Array<TransportPublicDestination>;
-  /**
-   * List of transports this journey at this particular segment is replaced by [Ersatzzug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof Segment
-   */
-  replacedBy?: Array<TransportPublicDestination>;
-  /**
-   * List of transports this journey at this particular segment replaces [Ersatzzug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof Segment
-   */
-  replacementFor?: Array<TransportPublicDestination>;
-  /**
-   *
-   * @type {TransportPublic}
-   * @memberof Segment
-   */
-  transport: TransportPublic;
-  /**
-   * List of journeys this journey at this particular segment travels with [Vereinigung].
-   * @type {Array<TransportPublicDestinationPortionWorking>}
-   * @memberof Segment
-   */
-  travelsWith?: Array<TransportPublicDestinationPortionWorking>;
+	/**
+	 * Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that a segment of an additional journey [Zusatzfahrt] is only considered as additional in case the segment has been added to the journeys after the additional journey has been scheduled.
+	 * @type {boolean}
+	 * @memberof Segment
+	 */
+	additional: boolean;
+	/**
+	 *
+	 * @type {Administration}
+	 * @memberof Segment
+	 */
+	administration: Administration;
+	/**
+	 *
+	 * @type {Arrival}
+	 * @memberof Segment
+	 */
+	arrival: Arrival;
+	/**
+	 * Indicates whether this segment has been canceled.
+	 * @type {boolean}
+	 * @memberof Segment
+	 */
+	canceled: boolean;
+	/**
+	 *
+	 * @type {Departure}
+	 * @memberof Segment
+	 */
+	departure: Departure;
+	/**
+	 * List of transports this journey at this particular segment is reliefed by [Entlastungszug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof Segment
+	 */
+	reliefBy?: Array<TransportPublicDestination>;
+	/**
+	 * List of transports this journey at this particular segment reliefs for [Entlastungszug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof Segment
+	 */
+	reliefFor?: Array<TransportPublicDestination>;
+	/**
+	 * List of transports this journey at this particular segment is replaced by [Ersatzzug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof Segment
+	 */
+	replacedBy?: Array<TransportPublicDestination>;
+	/**
+	 * List of transports this journey at this particular segment replaces [Ersatzzug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof Segment
+	 */
+	replacementFor?: Array<TransportPublicDestination>;
+	/**
+	 *
+	 * @type {TransportPublic}
+	 * @memberof Segment
+	 */
+	transport: TransportPublic;
+	/**
+	 * List of journeys this journey at this particular segment travels with [Vereinigung].
+	 * @type {Array<TransportPublicDestinationPortionWorking>}
+	 * @memberof Segment
+	 */
+	travelsWith?: Array<TransportPublicDestinationPortionWorking>;
 }
 /**
  * Reflects a canceled segment.
@@ -959,78 +959,78 @@ export interface Segment {
  * @interface SegmentCanceled
  */
 export interface SegmentCanceled {
-  /**
-   * Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that a segment of an additional journey [Zusatzfahrt] is only considered as additional in case the segment has been added to the journeys after the additional journey has been scheduled.
-   * @type {boolean}
-   * @memberof SegmentCanceled
-   */
-  additional: boolean;
-  /**
-   *
-   * @type {Administration}
-   * @memberof SegmentCanceled
-   */
-  administration: Administration;
-  /**
-   *
-   * @type {Arrival}
-   * @memberof SegmentCanceled
-   */
-  arrival: Arrival;
-  /**
-   * Indicates whether this segment has been canceled.
-   * @type {boolean}
-   * @memberof SegmentCanceled
-   */
-  canceled: boolean;
-  /**
-   *
-   * @type {Departure}
-   * @memberof SegmentCanceled
-   */
-  departure: Departure;
-  /**
-   * List of transports this journey at this particular segment is reliefed by [Entlastungszug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof SegmentCanceled
-   */
-  reliefBy?: Array<TransportPublicDestination>;
-  /**
-   * List of transports this journey at this particular segment reliefs for [Entlastungszug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof SegmentCanceled
-   */
-  reliefFor?: Array<TransportPublicDestination>;
-  /**
-   * List of transports this journey at this particular segment is replaced by [Ersatzzug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof SegmentCanceled
-   */
-  replacedBy?: Array<TransportPublicDestination>;
-  /**
-   * List of transports this journey at this particular segment replaces [Ersatzzug].
-   * @type {Array<TransportPublicDestination>}
-   * @memberof SegmentCanceled
-   */
-  replacementFor?: Array<TransportPublicDestination>;
-  /**
-   * References to departure ID this segment was positioned before. May reference to a canceled segment as well and may be empty in case of destination.
-   * @type {string}
-   * @memberof SegmentCanceled
-   */
-  scheduledBeforeDepartureID: string;
-  /**
-   *
-   * @type {TransportPublic}
-   * @memberof SegmentCanceled
-   */
-  transport: TransportPublic;
-  /**
-   * List of journeys this journey at this particular segment travels with [Vereinigung].
-   * @type {Array<TransportPublicDestinationPortionWorking>}
-   * @memberof SegmentCanceled
-   */
-  travelsWith?: Array<TransportPublicDestinationPortionWorking>;
+	/**
+	 * Indicates whether this segment is additional, meaning not be part of the regular schedule. Take care that a segment of an additional journey [Zusatzfahrt] is only considered as additional in case the segment has been added to the journeys after the additional journey has been scheduled.
+	 * @type {boolean}
+	 * @memberof SegmentCanceled
+	 */
+	additional: boolean;
+	/**
+	 *
+	 * @type {Administration}
+	 * @memberof SegmentCanceled
+	 */
+	administration: Administration;
+	/**
+	 *
+	 * @type {Arrival}
+	 * @memberof SegmentCanceled
+	 */
+	arrival: Arrival;
+	/**
+	 * Indicates whether this segment has been canceled.
+	 * @type {boolean}
+	 * @memberof SegmentCanceled
+	 */
+	canceled: boolean;
+	/**
+	 *
+	 * @type {Departure}
+	 * @memberof SegmentCanceled
+	 */
+	departure: Departure;
+	/**
+	 * List of transports this journey at this particular segment is reliefed by [Entlastungszug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof SegmentCanceled
+	 */
+	reliefBy?: Array<TransportPublicDestination>;
+	/**
+	 * List of transports this journey at this particular segment reliefs for [Entlastungszug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof SegmentCanceled
+	 */
+	reliefFor?: Array<TransportPublicDestination>;
+	/**
+	 * List of transports this journey at this particular segment is replaced by [Ersatzzug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof SegmentCanceled
+	 */
+	replacedBy?: Array<TransportPublicDestination>;
+	/**
+	 * List of transports this journey at this particular segment replaces [Ersatzzug].
+	 * @type {Array<TransportPublicDestination>}
+	 * @memberof SegmentCanceled
+	 */
+	replacementFor?: Array<TransportPublicDestination>;
+	/**
+	 * References to departure ID this segment was positioned before. May reference to a canceled segment as well and may be empty in case of destination.
+	 * @type {string}
+	 * @memberof SegmentCanceled
+	 */
+	scheduledBeforeDepartureID: string;
+	/**
+	 *
+	 * @type {TransportPublic}
+	 * @memberof SegmentCanceled
+	 */
+	transport: TransportPublic;
+	/**
+	 * List of journeys this journey at this particular segment travels with [Vereinigung].
+	 * @type {Array<TransportPublicDestinationPortionWorking>}
+	 * @memberof SegmentCanceled
+	 */
+	travelsWith?: Array<TransportPublicDestinationPortionWorking>;
 }
 /**
  * Stop at a particular stop-place [Haltestelle] for arrival / departure boards.
@@ -1038,24 +1038,24 @@ export interface SegmentCanceled {
  * @interface StopAtStopPlace
  */
 export interface StopAtStopPlace {
-  /**
-   * Indicates whether the stop ie departure / arrival has been canceled [Haltausfall].
-   * @type {boolean}
-   * @memberof StopAtStopPlace
-   */
-  canceled: boolean;
-  /**
-   * Eva number of stop-place [Haltestelle].
-   * @type {string}
-   * @memberof StopAtStopPlace
-   */
-  evaNumber: string;
-  /**
-   * Name for stop-place [Haltestelle] in fixed language \'DE\'.
-   * @type {string}
-   * @memberof StopAtStopPlace
-   */
-  name: string;
+	/**
+	 * Indicates whether the stop ie departure / arrival has been canceled [Haltausfall].
+	 * @type {boolean}
+	 * @memberof StopAtStopPlace
+	 */
+	canceled: boolean;
+	/**
+	 * Eva number of stop-place [Haltestelle].
+	 * @type {string}
+	 * @memberof StopAtStopPlace
+	 */
+	evaNumber: string;
+	/**
+	 * Name for stop-place [Haltestelle] in fixed language \'DE\'.
+	 * @type {string}
+	 * @memberof StopAtStopPlace
+	 */
+	name: string;
 }
 /**
  * Specifies whether \'time\' is based on schedule or preview. - SCHEDULE (Time source is schedule) - PREVIEW (Time source is preview / forecast) - REAL (Time source is real)
@@ -1064,9 +1064,9 @@ export interface StopAtStopPlace {
  */
 
 export const TimeType = {
-  Schedule: 'SCHEDULE',
-  Preview: 'PREVIEW',
-  Real: 'REAL',
+	Schedule: 'SCHEDULE',
+	Preview: 'PREVIEW',
+	Real: 'REAL',
 } as const;
 
 export type TimeType = (typeof TimeType)[keyof typeof TimeType];
@@ -1077,48 +1077,48 @@ export type TimeType = (typeof TimeType)[keyof typeof TimeType];
  * @interface TransportPublic
  */
 export interface TransportPublic {
-  /**
-   * Code of the transport [Fahrtgattung].
-   * @type {string}
-   * @memberof TransportPublic
-   */
-  category: string;
-  /**
-   *
-   * @type {DirectionInfo}
-   * @memberof TransportPublic
-   */
-  direction?: DirectionInfo;
-  /**
-   * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportPublic
-   */
-  label?: string;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportPublic
-   */
-  line?: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportPublic
-   */
-  number: number;
-  /**
-   *
-   * @type {ReplacementTransport}
-   * @memberof TransportPublic
-   */
-  replacementTransport?: ReplacementTransport;
-  /**
-   *
-   * @type {TransportType}
-   * @memberof TransportPublic
-   */
-  type: TransportType;
+	/**
+	 * Code of the transport [Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportPublic
+	 */
+	category: string;
+	/**
+	 *
+	 * @type {DirectionInfo}
+	 * @memberof TransportPublic
+	 */
+	direction?: DirectionInfo;
+	/**
+	 * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportPublic
+	 */
+	label?: string;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportPublic
+	 */
+	line?: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportPublic
+	 */
+	number: number;
+	/**
+	 *
+	 * @type {ReplacementTransport}
+	 * @memberof TransportPublic
+	 */
+	replacementTransport?: ReplacementTransport;
+	/**
+	 *
+	 * @type {TransportType}
+	 * @memberof TransportPublic
+	 */
+	type: TransportType;
 }
 /**
  * Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination in case the final stop of the journey changed [Haltausfall, Laufwegverlängerung, ...].
@@ -1126,66 +1126,66 @@ export interface TransportPublic {
  * @interface TransportPublicDestination
  */
 export interface TransportPublicDestination {
-  /**
-   * Code of the transport [Fahrtgattung].
-   * @type {string}
-   * @memberof TransportPublicDestination
-   */
-  category: string;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestination
-   */
-  destination: StopAtStopPlace;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestination
-   */
-  differingDestination?: StopAtStopPlace;
-  /**
-   *
-   * @type {DirectionInfo}
-   * @memberof TransportPublicDestination
-   */
-  direction?: DirectionInfo;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportPublicDestination
-   */
-  journeyID: string;
-  /**
-   * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportPublicDestination
-   */
-  label?: string;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportPublicDestination
-   */
-  line?: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportPublicDestination
-   */
-  number: number;
-  /**
-   *
-   * @type {ReplacementTransport}
-   * @memberof TransportPublicDestination
-   */
-  replacementTransport?: ReplacementTransport;
-  /**
-   *
-   * @type {TransportType}
-   * @memberof TransportPublicDestination
-   */
-  type: TransportType;
+	/**
+	 * Code of the transport [Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportPublicDestination
+	 */
+	category: string;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestination
+	 */
+	destination: StopAtStopPlace;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestination
+	 */
+	differingDestination?: StopAtStopPlace;
+	/**
+	 *
+	 * @type {DirectionInfo}
+	 * @memberof TransportPublicDestination
+	 */
+	direction?: DirectionInfo;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportPublicDestination
+	 */
+	journeyID: string;
+	/**
+	 * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportPublicDestination
+	 */
+	label?: string;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportPublicDestination
+	 */
+	line?: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportPublicDestination
+	 */
+	number: number;
+	/**
+	 *
+	 * @type {ReplacementTransport}
+	 * @memberof TransportPublicDestination
+	 */
+	replacementTransport?: ReplacementTransport;
+	/**
+	 *
+	 * @type {TransportType}
+	 * @memberof TransportPublicDestination
+	 */
+	type: TransportType;
 }
 /**
  * Public transport reference [Oeffentlicher Verkehr Referenz] with origin [Herkunft] and destination [Ziel] information and journey id [FahrtID].
@@ -1193,72 +1193,72 @@ export interface TransportPublicDestination {
  * @interface TransportPublicDestinationOriginJourney
  */
 export interface TransportPublicDestinationOriginJourney {
-  /**
-   * Code of the transport [Fahrtgattung].
-   * @type {string}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  category: string;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  destination: StopAtStopPlace;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  differingDestination?: StopAtStopPlace;
-  /**
-   *
-   * @type {DirectionInfo}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  direction?: DirectionInfo;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  journeyID: string;
-  /**
-   * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  label?: string;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  line?: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  number: number;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  // origin: StopAtStopPlace;
-  /**
-   *
-   * @type {ReplacementTransport}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  replacementTransport?: ReplacementTransport;
-  /**
-   *
-   * @type {TransportType}
-   * @memberof TransportPublicDestinationOriginJourney
-   */
-  type: TransportType;
+	/**
+	 * Code of the transport [Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	category: string;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	destination: StopAtStopPlace;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	differingDestination?: StopAtStopPlace;
+	/**
+	 *
+	 * @type {DirectionInfo}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	direction?: DirectionInfo;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	journeyID: string;
+	/**
+	 * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	label?: string;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	line?: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	number: number;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	// origin: StopAtStopPlace;
+	/**
+	 *
+	 * @type {ReplacementTransport}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	replacementTransport?: ReplacementTransport;
+	/**
+	 *
+	 * @type {TransportType}
+	 * @memberof TransportPublicDestinationOriginJourney
+	 */
+	type: TransportType;
 }
 /**
  * Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination [abweichender Zielhalt] for coupled transports [vereinigte Züge].
@@ -1266,72 +1266,72 @@ export interface TransportPublicDestinationOriginJourney {
  * @interface TransportPublicDestinationPortionWorking
  */
 export interface TransportPublicDestinationPortionWorking {
-  /**
-   * Code of the transport [Fahrtgattung].
-   * @type {string}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  category: string;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  destination: StopAtStopPlace;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  differingDestination?: StopAtStopPlace;
-  /**
-   *
-   * @type {DirectionInfo}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  direction?: DirectionInfo;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  journeyID: string;
-  /**
-   * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  label?: string;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  line?: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  number: number;
-  /**
-   *
-   * @type {ReplacementTransport}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  replacementTransport?: ReplacementTransport;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  separationAt?: StopPlaceEmbedded;
-  /**
-   *
-   * @type {TransportType}
-   * @memberof TransportPublicDestinationPortionWorking
-   */
-  type: TransportType;
+	/**
+	 * Code of the transport [Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	category: string;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	destination: StopAtStopPlace;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	differingDestination?: StopAtStopPlace;
+	/**
+	 *
+	 * @type {DirectionInfo}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	direction?: DirectionInfo;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	journeyID: string;
+	/**
+	 * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	label?: string;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	line?: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	number: number;
+	/**
+	 *
+	 * @type {ReplacementTransport}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	replacementTransport?: ReplacementTransport;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	separationAt?: StopPlaceEmbedded;
+	/**
+	 *
+	 * @type {TransportType}
+	 * @memberof TransportPublicDestinationPortionWorking
+	 */
+	type: TransportType;
 }
 /**
  * Public transport [Oeffentlicher Transport] with origin [Herkunft].
@@ -1339,66 +1339,66 @@ export interface TransportPublicDestinationPortionWorking {
  * @interface TransportPublicOrigin
  */
 export interface TransportPublicOrigin {
-  /**
-   * Code of the transport [Fahrtgattung].
-   * @type {string}
-   * @memberof TransportPublicOrigin
-   */
-  category: string;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicOrigin
-   */
-  differingOrigin?: StopAtStopPlace;
-  /**
-   *
-   * @type {DirectionInfo}
-   * @memberof TransportPublicOrigin
-   */
-  direction?: DirectionInfo;
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportPublicOrigin
-   */
-  journeyID: string;
-  /**
-   * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportPublicOrigin
-   */
-  label?: string;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportPublicOrigin
-   */
-  line?: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportPublicOrigin
-   */
-  number: number;
-  /**
-   *
-   * @type {StopAtStopPlace}
-   * @memberof TransportPublicOrigin
-   */
-  origin: StopAtStopPlace;
-  /**
-   *
-   * @type {ReplacementTransport}
-   * @memberof TransportPublicOrigin
-   */
-  replacementTransport?: ReplacementTransport;
-  /**
-   *
-   * @type {TransportType}
-   * @memberof TransportPublicOrigin
-   */
-  type: TransportType;
+	/**
+	 * Code of the transport [Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportPublicOrigin
+	 */
+	category: string;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicOrigin
+	 */
+	differingOrigin?: StopAtStopPlace;
+	/**
+	 *
+	 * @type {DirectionInfo}
+	 * @memberof TransportPublicOrigin
+	 */
+	direction?: DirectionInfo;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportPublicOrigin
+	 */
+	journeyID: string;
+	/**
+	 * Marketing - or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportPublicOrigin
+	 */
+	label?: string;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportPublicOrigin
+	 */
+	line?: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportPublicOrigin
+	 */
+	number: number;
+	/**
+	 *
+	 * @type {StopAtStopPlace}
+	 * @memberof TransportPublicOrigin
+	 */
+	origin: StopAtStopPlace;
+	/**
+	 *
+	 * @type {ReplacementTransport}
+	 * @memberof TransportPublicOrigin
+	 */
+	replacementTransport?: ReplacementTransport;
+	/**
+	 *
+	 * @type {TransportType}
+	 * @memberof TransportPublicOrigin
+	 */
+	type: TransportType;
 }
 /**
  * Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)
@@ -1410,689 +1410,687 @@ export interface TransportPublicOrigin {
  * JourneysApi - axios parameter creator
  * @export
  */
-export const JourneysApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
-     * @param {string} [date] date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
-     * @param {number} [number] number of transport [Fahrtnummer]
-     * @param {string} [administrationID] administration [Verwaltung] id
-     * @param {string} [originEvaNumber] scheduled origin station [Geplanter Starthalt]
-     * @param {string} [destinationEvaNumber] scheduled destination station [Geplanter Zielhalt]
-     * @param {Array<TransportType>} [transports] transport types that should be returned, if omitted all types of transport are returned
-     * @param {string} [category] category of transport [Fahrtgattung]
-     * @param {string} [line] line of transport [Linie]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    find: async (
-      date?: string,
-      number?: number,
-      administrationID?: string,
-      originEvaNumber?: string,
-      destinationEvaNumber?: string,
-      transports?: Array<TransportType>,
-      category?: string,
-      line?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/byrelation`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const JourneysApiAxiosParamCreator = (
+	configuration?: Configuration,
+) => ({
+	/**
+	 * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
+	 * @param {string} [date] date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
+	 * @param {number} [number] number of transport [Fahrtnummer]
+	 * @param {string} [administrationID] administration [Verwaltung] id
+	 * @param {string} [originEvaNumber] scheduled origin station [Geplanter Starthalt]
+	 * @param {string} [destinationEvaNumber] scheduled destination station [Geplanter Zielhalt]
+	 * @param {Array<TransportType>} [transports] transport types that should be returned, if omitted all types of transport are returned
+	 * @param {string} [category] category of transport [Fahrtgattung]
+	 * @param {string} [line] line of transport [Linie]
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	find: async (
+		date?: string,
+		number?: number,
+		administrationID?: string,
+		originEvaNumber?: string,
+		destinationEvaNumber?: string,
+		transports?: Array<TransportType>,
+		category?: string,
+		line?: string,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		const localVarPath = `/byrelation`;
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      // authentication ApiKey required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ApiKey required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      // authentication ClientId required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Client-Id',
-        configuration,
-      );
+		// authentication ClientId required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Client-Id',
+			configuration,
+		);
 
-      // authentication ClientSecret required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ClientSecret required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      if (date !== undefined) {
-        localVarQueryParameter['date'] =
-          (date as any) instanceof Date
-            ? (date as any).toISOString().substr(0, 10)
-            : date;
-      }
+		if (date !== undefined) {
+			localVarQueryParameter['date'] =
+				(date as any) instanceof Date
+					? (date as any).toISOString().substr(0, 10)
+					: date;
+		}
 
-      if (number !== undefined) {
-        localVarQueryParameter['number'] = number;
-      }
+		if (number !== undefined) {
+			localVarQueryParameter['number'] = number;
+		}
 
-      if (administrationID !== undefined) {
-        localVarQueryParameter['administrationID'] = administrationID;
-      }
+		if (administrationID !== undefined) {
+			localVarQueryParameter['administrationID'] = administrationID;
+		}
 
-      if (originEvaNumber !== undefined) {
-        localVarQueryParameter['originEvaNumber'] = originEvaNumber;
-      }
+		if (originEvaNumber !== undefined) {
+			localVarQueryParameter['originEvaNumber'] = originEvaNumber;
+		}
 
-      if (destinationEvaNumber !== undefined) {
-        localVarQueryParameter['destinationEvaNumber'] = destinationEvaNumber;
-      }
+		if (destinationEvaNumber !== undefined) {
+			localVarQueryParameter['destinationEvaNumber'] = destinationEvaNumber;
+		}
 
-      if (transports) {
-        localVarQueryParameter['transports'] = transports;
-      }
+		if (transports) {
+			localVarQueryParameter['transports'] = transports;
+		}
 
-      if (category !== undefined) {
-        localVarQueryParameter['category'] = category;
-      }
+		if (category !== undefined) {
+			localVarQueryParameter['category'] = category;
+		}
 
-      if (line !== undefined) {
-        localVarQueryParameter['line'] = line;
-      }
+		if (line !== undefined) {
+			localVarQueryParameter['line'] = line;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
-     * @param {string} date start date (yyyy-MM-dd) of of journey [Verkehrstag]
-     * @param {string} evaNumber scheduled departure station id [Haltestelle ID] for desired departure
-     * @param {string} timeSchedule scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
-     * @param {number} [number] number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
-     * @param {string} [line] line of transport [Linie] at desired departure (at least a number or line must be provided)
-     * @param {string} [administrationID] administration [Verwaltung] id at desired departure
-     * @param {string} [category] category of transport [Fahrtgattung] at desired departure
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    findDeparture: async (
-      date: string,
-      evaNumber: string,
-      timeSchedule: string,
-      number?: number,
-      line?: string,
-      administrationID?: string,
-      category?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'date' is not null or undefined
-      assertParamExists('findDeparture', 'date', date);
-      // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('findDeparture', 'evaNumber', evaNumber);
-      // verify required parameter 'timeSchedule' is not null or undefined
-      assertParamExists('findDeparture', 'timeSchedule', timeSchedule);
-      const localVarPath = `/departures/byrelation`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+	/**
+	 * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
+	 * @param {string} date start date (yyyy-MM-dd) of of journey [Verkehrstag]
+	 * @param {string} evaNumber scheduled departure station id [Haltestelle ID] for desired departure
+	 * @param {string} timeSchedule scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
+	 * @param {number} [number] number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
+	 * @param {string} [line] line of transport [Linie] at desired departure (at least a number or line must be provided)
+	 * @param {string} [administrationID] administration [Verwaltung] id at desired departure
+	 * @param {string} [category] category of transport [Fahrtgattung] at desired departure
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	findDeparture: async (
+		date: string,
+		evaNumber: string,
+		timeSchedule: string,
+		number?: number,
+		line?: string,
+		administrationID?: string,
+		category?: string,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		// verify required parameter 'date' is not null or undefined
+		assertParamExists('findDeparture', 'date', date);
+		// verify required parameter 'evaNumber' is not null or undefined
+		assertParamExists('findDeparture', 'evaNumber', evaNumber);
+		// verify required parameter 'timeSchedule' is not null or undefined
+		assertParamExists('findDeparture', 'timeSchedule', timeSchedule);
+		const localVarPath = `/departures/byrelation`;
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      // authentication ApiKey required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ApiKey required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      // authentication ClientId required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Client-Id',
-        configuration,
-      );
+		// authentication ClientId required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Client-Id',
+			configuration,
+		);
 
-      // authentication ClientSecret required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ClientSecret required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      if (date !== undefined) {
-        localVarQueryParameter['date'] =
-          (date as any) instanceof Date
-            ? (date as any).toISOString().substr(0, 10)
-            : date;
-      }
+		if (date !== undefined) {
+			localVarQueryParameter['date'] =
+				(date as any) instanceof Date
+					? (date as any).toISOString().substr(0, 10)
+					: date;
+		}
 
-      if (number !== undefined) {
-        localVarQueryParameter['number'] = number;
-      }
+		if (number !== undefined) {
+			localVarQueryParameter['number'] = number;
+		}
 
-      if (line !== undefined) {
-        localVarQueryParameter['line'] = line;
-      }
+		if (line !== undefined) {
+			localVarQueryParameter['line'] = line;
+		}
 
-      if (administrationID !== undefined) {
-        localVarQueryParameter['administrationID'] = administrationID;
-      }
+		if (administrationID !== undefined) {
+			localVarQueryParameter['administrationID'] = administrationID;
+		}
 
-      if (category !== undefined) {
-        localVarQueryParameter['category'] = category;
-      }
+		if (category !== undefined) {
+			localVarQueryParameter['category'] = category;
+		}
 
-      if (evaNumber !== undefined) {
-        localVarQueryParameter['evaNumber'] = evaNumber;
-      }
+		if (evaNumber !== undefined) {
+			localVarQueryParameter['evaNumber'] = evaNumber;
+		}
 
-      if (timeSchedule !== undefined) {
-        localVarQueryParameter['timeSchedule'] =
-          (timeSchedule as any) instanceof Date
-            ? (timeSchedule as any).toISOString()
-            : timeSchedule;
-      }
+		if (timeSchedule !== undefined) {
+			localVarQueryParameter['timeSchedule'] =
+				(timeSchedule as any) instanceof Date
+					? (timeSchedule as any).toISOString()
+					: timeSchedule;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeCanceled] include canceled arrivals / departures
-     * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeyEventBasedById: async (
-      journeyID: string,
-      includeCanceled?: boolean,
-      includeJourneyReferences?: boolean,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'journeyID' is not null or undefined
-      assertParamExists('journeyEventBasedById', 'journeyID', journeyID);
-      const localVarPath = `/eventbased/{journeyID}`.replace(
-        `{${'journeyID'}}`,
-        encodeURIComponent(String(journeyID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+	/**
+	 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+	 * @param {string} journeyID id of journey [FahrtID]
+	 * @param {boolean} [includeCanceled] include canceled arrivals / departures
+	 * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	journeyEventBasedById: async (
+		journeyID: string,
+		includeCanceled?: boolean,
+		includeJourneyReferences?: boolean,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		// verify required parameter 'journeyID' is not null or undefined
+		assertParamExists('journeyEventBasedById', 'journeyID', journeyID);
+		const localVarPath = `/eventbased/{journeyID}`.replace(
+			`{${'journeyID'}}`,
+			encodeURIComponent(String(journeyID)),
+		);
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      // authentication ApiKey required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ApiKey required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      // authentication ClientId required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Client-Id',
-        configuration,
-      );
+		// authentication ClientId required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Client-Id',
+			configuration,
+		);
 
-      // authentication ClientSecret required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ClientSecret required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      if (includeCanceled !== undefined) {
-        localVarQueryParameter['includeCanceled'] = includeCanceled;
-      }
+		if (includeCanceled !== undefined) {
+			localVarQueryParameter['includeCanceled'] = includeCanceled;
+		}
 
-      if (includeJourneyReferences !== undefined) {
-        localVarQueryParameter['includeJourneyReferences'] =
-          includeJourneyReferences;
-      }
+		if (includeJourneyReferences !== undefined) {
+			localVarQueryParameter['includeJourneyReferences'] =
+				includeJourneyReferences;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeCanceled] include canceled arrivals / departures
-     * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeySegmentBasedById: async (
-      journeyID: string,
-      includeCanceled?: boolean,
-      includeJourneyReferences?: boolean,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'journeyID' is not null or undefined
-      assertParamExists('journeySegmentBasedById', 'journeyID', journeyID);
-      const localVarPath = `/segmentbased/{journeyID}`.replace(
-        `{${'journeyID'}}`,
-        encodeURIComponent(String(journeyID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+	/**
+	 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
+	 * @param {string} journeyID id of journey [FahrtID]
+	 * @param {boolean} [includeCanceled] include canceled arrivals / departures
+	 * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	journeySegmentBasedById: async (
+		journeyID: string,
+		includeCanceled?: boolean,
+		includeJourneyReferences?: boolean,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		// verify required parameter 'journeyID' is not null or undefined
+		assertParamExists('journeySegmentBasedById', 'journeyID', journeyID);
+		const localVarPath = `/segmentbased/{journeyID}`.replace(
+			`{${'journeyID'}}`,
+			encodeURIComponent(String(journeyID)),
+		);
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      // authentication ApiKey required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ApiKey required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      // authentication ClientId required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Client-Id',
-        configuration,
-      );
+		// authentication ClientId required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Client-Id',
+			configuration,
+		);
 
-      // authentication ClientSecret required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
+		// authentication ClientSecret required
+		await setApiKeyToObject(
+			localVarHeaderParameter,
+			'DB-Api-Key',
+			configuration,
+		);
 
-      if (includeCanceled !== undefined) {
-        localVarQueryParameter['includeCanceled'] = includeCanceled;
-      }
+		if (includeCanceled !== undefined) {
+			localVarQueryParameter['includeCanceled'] = includeCanceled;
+		}
 
-      if (includeJourneyReferences !== undefined) {
-        localVarQueryParameter['includeJourneyReferences'] =
-          includeJourneyReferences;
-      }
+		if (includeJourneyReferences !== undefined) {
+			localVarQueryParameter['includeJourneyReferences'] =
+				includeJourneyReferences;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+});
 
 /**
  * JourneysApi - functional programming interface
  * @export
  */
-export const JourneysApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = JourneysApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
-     * @param {string} [date] date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
-     * @param {number} [number] number of transport [Fahrtnummer]
-     * @param {string} [administrationID] administration [Verwaltung] id
-     * @param {string} [originEvaNumber] scheduled origin station [Geplanter Starthalt]
-     * @param {string} [destinationEvaNumber] scheduled destination station [Geplanter Zielhalt]
-     * @param {Array<TransportType>} [transports] transport types that should be returned, if omitted all types of transport are returned
-     * @param {string} [category] category of transport [Fahrtgattung]
-     * @param {string} [line] line of transport [Linie]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async find(
-      date?: string,
-      number?: number,
-      administrationID?: string,
-      originEvaNumber?: string,
-      destinationEvaNumber?: string,
-      transports?: Array<TransportType>,
-      category?: string,
-      line?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyMatches>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.find(
-        date,
-        number,
-        administrationID,
-        originEvaNumber,
-        destinationEvaNumber,
-        transports,
-        category,
-        line,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
-     * @param {string} date start date (yyyy-MM-dd) of of journey [Verkehrstag]
-     * @param {string} evaNumber scheduled departure station id [Haltestelle ID] for desired departure
-     * @param {string} timeSchedule scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
-     * @param {number} [number] number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
-     * @param {string} [line] line of transport [Linie] at desired departure (at least a number or line must be provided)
-     * @param {string} [administrationID] administration [Verwaltung] id at desired departure
-     * @param {string} [category] category of transport [Fahrtgattung] at desired departure
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async findDeparture(
-      date: string,
-      evaNumber: string,
-      timeSchedule: string,
-      number?: number,
-      line?: string,
-      administrationID?: string,
-      category?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<DepartureMatches>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.findDeparture(
-        date,
-        evaNumber,
-        timeSchedule,
-        number,
-        line,
-        administrationID,
-        category,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeCanceled] include canceled arrivals / departures
-     * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async journeyEventBasedById(
-      journeyID: string,
-      includeCanceled?: boolean,
-      includeJourneyReferences?: boolean,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<JourneyEventBased>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.journeyEventBasedById(
-          journeyID,
-          includeCanceled,
-          includeJourneyReferences,
-          options,
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeCanceled] include canceled arrivals / departures
-     * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async journeySegmentBasedById(
-      journeyID: string,
-      includeCanceled?: boolean,
-      includeJourneyReferences?: boolean,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<JourneySegmentBased>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.journeySegmentBasedById(
-          journeyID,
-          includeCanceled,
-          includeJourneyReferences,
-          options,
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-  };
+export const JourneysApiFp = (configuration?: Configuration) => {
+	const localVarAxiosParamCreator = JourneysApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
+		 * @param {string} [date] date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
+		 * @param {number} [number] number of transport [Fahrtnummer]
+		 * @param {string} [administrationID] administration [Verwaltung] id
+		 * @param {string} [originEvaNumber] scheduled origin station [Geplanter Starthalt]
+		 * @param {string} [destinationEvaNumber] scheduled destination station [Geplanter Zielhalt]
+		 * @param {Array<TransportType>} [transports] transport types that should be returned, if omitted all types of transport are returned
+		 * @param {string} [category] category of transport [Fahrtgattung]
+		 * @param {string} [line] line of transport [Linie]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async find(
+			date?: string,
+			number?: number,
+			administrationID?: string,
+			originEvaNumber?: string,
+			destinationEvaNumber?: string,
+			transports?: Array<TransportType>,
+			category?: string,
+			line?: string,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyMatches>
+		> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.find(
+				date,
+				number,
+				administrationID,
+				originEvaNumber,
+				destinationEvaNumber,
+				transports,
+				category,
+				line,
+				options,
+			);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+		/**
+		 * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
+		 * @param {string} date start date (yyyy-MM-dd) of of journey [Verkehrstag]
+		 * @param {string} evaNumber scheduled departure station id [Haltestelle ID] for desired departure
+		 * @param {string} timeSchedule scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
+		 * @param {number} [number] number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
+		 * @param {string} [line] line of transport [Linie] at desired departure (at least a number or line must be provided)
+		 * @param {string} [administrationID] administration [Verwaltung] id at desired departure
+		 * @param {string} [category] category of transport [Fahrtgattung] at desired departure
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async findDeparture(
+			date: string,
+			evaNumber: string,
+			timeSchedule: string,
+			number?: number,
+			line?: string,
+			administrationID?: string,
+			category?: string,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<DepartureMatches>
+		> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.findDeparture(
+				date,
+				evaNumber,
+				timeSchedule,
+				number,
+				line,
+				administrationID,
+				category,
+				options,
+			);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+		/**
+		 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+		 * @param {string} journeyID id of journey [FahrtID]
+		 * @param {boolean} [includeCanceled] include canceled arrivals / departures
+		 * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async journeyEventBasedById(
+			journeyID: string,
+			includeCanceled?: boolean,
+			includeJourneyReferences?: boolean,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<JourneyEventBased>
+		> {
+			const localVarAxiosArgs =
+				await localVarAxiosParamCreator.journeyEventBasedById(
+					journeyID,
+					includeCanceled,
+					includeJourneyReferences,
+					options,
+				);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+		/**
+		 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
+		 * @param {string} journeyID id of journey [FahrtID]
+		 * @param {boolean} [includeCanceled] include canceled arrivals / departures
+		 * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async journeySegmentBasedById(
+			journeyID: string,
+			includeCanceled?: boolean,
+			includeJourneyReferences?: boolean,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<JourneySegmentBased>
+		> {
+			const localVarAxiosArgs =
+				await localVarAxiosParamCreator.journeySegmentBasedById(
+					journeyID,
+					includeCanceled,
+					includeJourneyReferences,
+					options,
+				);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+	};
 };
 
 /**
  * JourneysApi - factory interface
  * @export
  */
-export const JourneysApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance,
-) {
-  const localVarFp = JourneysApiFp(configuration);
-  return {
-    /**
-     * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
-     * @param {string} [date] date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
-     * @param {number} [number] number of transport [Fahrtnummer]
-     * @param {string} [administrationID] administration [Verwaltung] id
-     * @param {string} [originEvaNumber] scheduled origin station [Geplanter Starthalt]
-     * @param {string} [destinationEvaNumber] scheduled destination station [Geplanter Zielhalt]
-     * @param {Array<TransportType>} [transports] transport types that should be returned, if omitted all types of transport are returned
-     * @param {string} [category] category of transport [Fahrtgattung]
-     * @param {string} [line] line of transport [Linie]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    find(
-      date?: string,
-      number?: number,
-      administrationID?: string,
-      originEvaNumber?: string,
-      destinationEvaNumber?: string,
-      transports?: Array<TransportType>,
-      category?: string,
-      line?: string,
-      options?: any,
-    ): AxiosPromise<JourneyMatches> {
-      return localVarFp
-        .find(
-          date,
-          number,
-          administrationID,
-          originEvaNumber,
-          destinationEvaNumber,
-          transports,
-          category,
-          line,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
-     * @param {string} date start date (yyyy-MM-dd) of of journey [Verkehrstag]
-     * @param {string} evaNumber scheduled departure station id [Haltestelle ID] for desired departure
-     * @param {string} timeSchedule scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
-     * @param {number} [number] number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
-     * @param {string} [line] line of transport [Linie] at desired departure (at least a number or line must be provided)
-     * @param {string} [administrationID] administration [Verwaltung] id at desired departure
-     * @param {string} [category] category of transport [Fahrtgattung] at desired departure
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    findDeparture(
-      date: string,
-      evaNumber: string,
-      timeSchedule: string,
-      number?: number,
-      line?: string,
-      administrationID?: string,
-      category?: string,
-      options?: any,
-    ): AxiosPromise<DepartureMatches> {
-      return localVarFp
-        .findDeparture(
-          date,
-          evaNumber,
-          timeSchedule,
-          number,
-          line,
-          administrationID,
-          category,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeCanceled] include canceled arrivals / departures
-     * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeyEventBasedById(
-      journeyID: string,
-      includeCanceled?: boolean,
-      includeJourneyReferences?: boolean,
-      options?: any,
-    ): AxiosPromise<JourneyEventBased> {
-      return localVarFp
-        .journeyEventBasedById(
-          journeyID,
-          includeCanceled,
-          includeJourneyReferences,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeCanceled] include canceled arrivals / departures
-     * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeySegmentBasedById(
-      journeyID: string,
-      includeCanceled?: boolean,
-      includeJourneyReferences?: boolean,
-      options?: any,
-    ): AxiosPromise<JourneySegmentBased> {
-      return localVarFp
-        .journeySegmentBasedById(
-          journeyID,
-          includeCanceled,
-          includeJourneyReferences,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const JourneysApiFactory = (
+	configuration?: Configuration,
+	basePath?: string,
+	axios?: AxiosInstance,
+) => {
+	const localVarFp = JourneysApiFp(configuration);
+	return {
+		/**
+		 * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
+		 * @param {string} [date] date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
+		 * @param {number} [number] number of transport [Fahrtnummer]
+		 * @param {string} [administrationID] administration [Verwaltung] id
+		 * @param {string} [originEvaNumber] scheduled origin station [Geplanter Starthalt]
+		 * @param {string} [destinationEvaNumber] scheduled destination station [Geplanter Zielhalt]
+		 * @param {Array<TransportType>} [transports] transport types that should be returned, if omitted all types of transport are returned
+		 * @param {string} [category] category of transport [Fahrtgattung]
+		 * @param {string} [line] line of transport [Linie]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		find(
+			date?: string,
+			number?: number,
+			administrationID?: string,
+			originEvaNumber?: string,
+			destinationEvaNumber?: string,
+			transports?: Array<TransportType>,
+			category?: string,
+			line?: string,
+			options?: any,
+		): AxiosPromise<JourneyMatches> {
+			return localVarFp
+				.find(
+					date,
+					number,
+					administrationID,
+					originEvaNumber,
+					destinationEvaNumber,
+					transports,
+					category,
+					line,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
+		 * @param {string} date start date (yyyy-MM-dd) of of journey [Verkehrstag]
+		 * @param {string} evaNumber scheduled departure station id [Haltestelle ID] for desired departure
+		 * @param {string} timeSchedule scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
+		 * @param {number} [number] number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
+		 * @param {string} [line] line of transport [Linie] at desired departure (at least a number or line must be provided)
+		 * @param {string} [administrationID] administration [Verwaltung] id at desired departure
+		 * @param {string} [category] category of transport [Fahrtgattung] at desired departure
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		findDeparture(
+			date: string,
+			evaNumber: string,
+			timeSchedule: string,
+			number?: number,
+			line?: string,
+			administrationID?: string,
+			category?: string,
+			options?: any,
+		): AxiosPromise<DepartureMatches> {
+			return localVarFp
+				.findDeparture(
+					date,
+					evaNumber,
+					timeSchedule,
+					number,
+					line,
+					administrationID,
+					category,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+		 * @param {string} journeyID id of journey [FahrtID]
+		 * @param {boolean} [includeCanceled] include canceled arrivals / departures
+		 * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		journeyEventBasedById(
+			journeyID: string,
+			includeCanceled?: boolean,
+			includeJourneyReferences?: boolean,
+			options?: any,
+		): AxiosPromise<JourneyEventBased> {
+			return localVarFp
+				.journeyEventBasedById(
+					journeyID,
+					includeCanceled,
+					includeJourneyReferences,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
+		 * @param {string} journeyID id of journey [FahrtID]
+		 * @param {boolean} [includeCanceled] include canceled arrivals / departures
+		 * @param {boolean} [includeJourneyReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		journeySegmentBasedById(
+			journeyID: string,
+			includeCanceled?: boolean,
+			includeJourneyReferences?: boolean,
+			options?: any,
+		): AxiosPromise<JourneySegmentBased> {
+			return localVarFp
+				.journeySegmentBasedById(
+					journeyID,
+					includeCanceled,
+					includeJourneyReferences,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -2101,61 +2099,61 @@ export const JourneysApiFactory = function (
  * @interface JourneysApiFindRequest
  */
 export interface JourneysApiFindRequest {
-  /**
-   * date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly date?: string;
+	/**
+	 * date (yyyy-MM-dd) of scheduled start of journey [Verkehrstag], if omitted defaults to today (max of 7 days in the past is allowed)
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly date?: string;
 
-  /**
-   * number of transport [Fahrtnummer]
-   * @type {number}
-   * @memberof JourneysApiFind
-   */
-  readonly number?: number;
+	/**
+	 * number of transport [Fahrtnummer]
+	 * @type {number}
+	 * @memberof JourneysApiFind
+	 */
+	readonly number?: number;
 
-  /**
-   * administration [Verwaltung] id
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly administrationID?: string;
+	/**
+	 * administration [Verwaltung] id
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly administrationID?: string;
 
-  /**
-   * scheduled origin station [Geplanter Starthalt]
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly originEvaNumber?: string;
+	/**
+	 * scheduled origin station [Geplanter Starthalt]
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly originEvaNumber?: string;
 
-  /**
-   * scheduled destination station [Geplanter Zielhalt]
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly destinationEvaNumber?: string;
+	/**
+	 * scheduled destination station [Geplanter Zielhalt]
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly destinationEvaNumber?: string;
 
-  /**
-   * transport types that should be returned, if omitted all types of transport are returned
-   * @type {Array<TransportType>}
-   * @memberof JourneysApiFind
-   */
-  readonly transports?: Array<TransportType>;
+	/**
+	 * transport types that should be returned, if omitted all types of transport are returned
+	 * @type {Array<TransportType>}
+	 * @memberof JourneysApiFind
+	 */
+	readonly transports?: Array<TransportType>;
 
-  /**
-   * category of transport [Fahrtgattung]
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly category?: string;
+	/**
+	 * category of transport [Fahrtgattung]
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly category?: string;
 
-  /**
-   * line of transport [Linie]
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly line?: string;
+	/**
+	 * line of transport [Linie]
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly line?: string;
 }
 
 /**
@@ -2164,54 +2162,54 @@ export interface JourneysApiFindRequest {
  * @interface JourneysApiFindDepartureRequest
  */
 export interface JourneysApiFindDepartureRequest {
-  /**
-   * start date (yyyy-MM-dd) of of journey [Verkehrstag]
-   * @type {string}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly date: string;
+	/**
+	 * start date (yyyy-MM-dd) of of journey [Verkehrstag]
+	 * @type {string}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly date: string;
 
-  /**
-   * scheduled departure station id [Haltestelle ID] for desired departure
-   * @type {string}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly evaNumber: string;
+	/**
+	 * scheduled departure station id [Haltestelle ID] for desired departure
+	 * @type {string}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly evaNumber: string;
 
-  /**
-   * scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
-   * @type {string}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly timeSchedule: string;
+	/**
+	 * scheduled departure time [Geplante Abfahrtszeit] for desired departure as fully qualified datetime (ISO8601 with timezone / offset, for instance yyyy-MM-ddTHH:mm:ssZ)
+	 * @type {string}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly timeSchedule: string;
 
-  /**
-   * number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
-   * @type {number}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly number?: number;
+	/**
+	 * number of transport [Fahrtnummer] at desired departure (at least a number or line must be provided)
+	 * @type {number}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly number?: number;
 
-  /**
-   * line of transport [Linie] at desired departure (at least a number or line must be provided)
-   * @type {string}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly line?: string;
+	/**
+	 * line of transport [Linie] at desired departure (at least a number or line must be provided)
+	 * @type {string}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly line?: string;
 
-  /**
-   * administration [Verwaltung] id at desired departure
-   * @type {string}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly administrationID?: string;
+	/**
+	 * administration [Verwaltung] id at desired departure
+	 * @type {string}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly administrationID?: string;
 
-  /**
-   * category of transport [Fahrtgattung] at desired departure
-   * @type {string}
-   * @memberof JourneysApiFindDeparture
-   */
-  readonly category?: string;
+	/**
+	 * category of transport [Fahrtgattung] at desired departure
+	 * @type {string}
+	 * @memberof JourneysApiFindDeparture
+	 */
+	readonly category?: string;
 }
 
 /**
@@ -2220,26 +2218,26 @@ export interface JourneysApiFindDepartureRequest {
  * @interface JourneysApiJourneyEventBasedByIdRequest
  */
 export interface JourneysApiJourneyEventBasedByIdRequest {
-  /**
-   * id of journey [FahrtID]
-   * @type {string}
-   * @memberof JourneysApiJourneyEventBasedById
-   */
-  readonly journeyID: string;
+	/**
+	 * id of journey [FahrtID]
+	 * @type {string}
+	 * @memberof JourneysApiJourneyEventBasedById
+	 */
+	readonly journeyID: string;
 
-  /**
-   * include canceled arrivals / departures
-   * @type {boolean}
-   * @memberof JourneysApiJourneyEventBasedById
-   */
-  readonly includeCanceled?: boolean;
+	/**
+	 * include canceled arrivals / departures
+	 * @type {boolean}
+	 * @memberof JourneysApiJourneyEventBasedById
+	 */
+	readonly includeCanceled?: boolean;
 
-  /**
-   * include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-   * @type {boolean}
-   * @memberof JourneysApiJourneyEventBasedById
-   */
-  readonly includeJourneyReferences?: boolean;
+	/**
+	 * include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+	 * @type {boolean}
+	 * @memberof JourneysApiJourneyEventBasedById
+	 */
+	readonly includeJourneyReferences?: boolean;
 }
 
 /**
@@ -2248,26 +2246,26 @@ export interface JourneysApiJourneyEventBasedByIdRequest {
  * @interface JourneysApiJourneySegmentBasedByIdRequest
  */
 export interface JourneysApiJourneySegmentBasedByIdRequest {
-  /**
-   * id of journey [FahrtID]
-   * @type {string}
-   * @memberof JourneysApiJourneySegmentBasedById
-   */
-  readonly journeyID: string;
+	/**
+	 * id of journey [FahrtID]
+	 * @type {string}
+	 * @memberof JourneysApiJourneySegmentBasedById
+	 */
+	readonly journeyID: string;
 
-  /**
-   * include canceled arrivals / departures
-   * @type {boolean}
-   * @memberof JourneysApiJourneySegmentBasedById
-   */
-  readonly includeCanceled?: boolean;
+	/**
+	 * include canceled arrivals / departures
+	 * @type {boolean}
+	 * @memberof JourneysApiJourneySegmentBasedById
+	 */
+	readonly includeCanceled?: boolean;
 
-  /**
-   * include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
-   * @type {boolean}
-   * @memberof JourneysApiJourneySegmentBasedById
-   */
-  readonly includeJourneyReferences?: boolean;
+	/**
+	 * include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung], travels-with [Vereinigung / Fluegelung]
+	 * @type {boolean}
+	 * @memberof JourneysApiJourneySegmentBasedById
+	 */
+	readonly includeJourneyReferences?: boolean;
 }
 
 /**
@@ -2277,96 +2275,96 @@ export interface JourneysApiJourneySegmentBasedByIdRequest {
  * @extends {BaseAPI}
  */
 export class JourneysApi extends BaseAPI {
-  /**
-   * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
-   * @param {JourneysApiFindRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public find(
-    requestParameters: JourneysApiFindRequest = {},
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .find(
-        requestParameters.date,
-        requestParameters.number,
-        requestParameters.administrationID,
-        requestParameters.originEvaNumber,
-        requestParameters.destinationEvaNumber,
-        requestParameters.transports,
-        requestParameters.category,
-        requestParameters.line,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Finds journeys [Fahrten] by provided relation criteria [Fahrtrelation] (max of 100 matches are returned).
+	 * @param {JourneysApiFindRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public find(
+		requestParameters: JourneysApiFindRequest = {},
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.find(
+				requestParameters.date,
+				requestParameters.number,
+				requestParameters.administrationID,
+				requestParameters.originEvaNumber,
+				requestParameters.destinationEvaNumber,
+				requestParameters.transports,
+				requestParameters.category,
+				requestParameters.line,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
-   * @param {JourneysApiFindDepartureRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public findDeparture(
-    requestParameters: JourneysApiFindDepartureRequest,
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .findDeparture(
-        requestParameters.date,
-        requestParameters.evaNumber,
-        requestParameters.timeSchedule,
-        requestParameters.number,
-        requestParameters.line,
-        requestParameters.administrationID,
-        requestParameters.category,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Finds journey [Fahrt] departure [Abfahrt] by provided relation criteria [Fahrtrelation]. Take care that at least a journey number or a line must be provided.
+	 * @param {JourneysApiFindDepartureRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public findDeparture(
+		requestParameters: JourneysApiFindDepartureRequest,
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.findDeparture(
+				requestParameters.date,
+				requestParameters.evaNumber,
+				requestParameters.timeSchedule,
+				requestParameters.number,
+				requestParameters.line,
+				requestParameters.administrationID,
+				requestParameters.category,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-   * @param {JourneysApiJourneyEventBasedByIdRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public journeyEventBasedById(
-    requestParameters: JourneysApiJourneyEventBasedByIdRequest,
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .journeyEventBasedById(
-        requestParameters.journeyID,
-        requestParameters.includeCanceled,
-        requestParameters.includeJourneyReferences,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+	 * @param {JourneysApiJourneyEventBasedByIdRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public journeyEventBasedById(
+		requestParameters: JourneysApiJourneyEventBasedByIdRequest,
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.journeyEventBasedById(
+				requestParameters.journeyID,
+				requestParameters.includeCanceled,
+				requestParameters.includeJourneyReferences,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
-   * @param {JourneysApiJourneySegmentBasedByIdRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public journeySegmentBasedById(
-    requestParameters: JourneysApiJourneySegmentBasedByIdRequest,
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .journeySegmentBasedById(
-        requestParameters.journeyID,
-        requestParameters.includeCanceled,
-        requestParameters.includeJourneyReferences,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Segment based [Fahrtabschnittsbasiert] view.
+	 * @param {JourneysApiJourneySegmentBasedByIdRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public journeySegmentBasedById(
+		requestParameters: JourneysApiJourneySegmentBasedByIdRequest,
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.journeySegmentBasedById(
+				requestParameters.journeyID,
+				requestParameters.includeCanceled,
+				requestParameters.includeJourneyReferences,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }

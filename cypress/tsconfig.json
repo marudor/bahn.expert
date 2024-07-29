@@ -1,25 +1,19 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "noEmit": true,
-    "strict": true,
-    "target": "es5",
-    "lib": ["es6", "dom", "esnext"],
-    "types": [
-      "cypress",
-      "@testing-library/cypress",
-      "../cypress/support/index",
-      "@percy/cypress"
-    ]
-  },
-  "include": [
-    "**/*.ts",
-    "support/index.ts",
-    ".eslintrc.cjs",
-    "plugins/index.js",
-    "support/component.tsx"
-  ],
-  "exclude": ["support/component.tsx"]
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"noEmit": true,
+		"strict": true,
+		"target": "es5",
+		"lib": ["es6", "dom", "esnext"],
+		"types": [
+			"cypress",
+			"@testing-library/cypress",
+			"../cypress/support/index",
+			"@percy/cypress"
+		]
+	},
+	"include": ["**/*.ts", "support/index.ts", "plugins/index.js"],
+	"exclude": ["support/component.tsx"]
 }

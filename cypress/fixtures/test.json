@@ -1,88 +1,88 @@
 {
-  "o": "R1",
-  "initialDeparture": "2019-11-30T09:32:00.000Z",
-  "arrival": {
-    "scheduledTime": "2019-11-30T10:23:00.000Z",
-    "time": "2019-11-30T10:29:00.000Z",
-    "platform": "12",
-    "scheduledPlatform": "12",
-    "hidden": false,
-    "cancelled": true,
-    "delay": 6
-  },
-  "productClass": "D",
-  "currentStopPlace": {
-    "name": "Hamburg Hbf",
-    "evaNumber": "8002549"
-  },
-  "scheduledDestination": "Hamburg Hbf",
-  "lineNumber": "RB31",
-  "id": "1494893474156392079",
-  "rawId": "-1494893474156392079-1911301032-10",
-  "mediumId": "1494893474156392079-1911301032",
-  "substitute": false,
-  "train": {
-    "name": "ME RB31",
-    "number": "81616",
-    "trainCategory": "ME",
-    "thirdParty": "ME",
-    "type": "RB",
-    "line": "31"
-  },
-  "messages": {
-    "him": [],
-    "delay": [
-      {
-        "text": "Verspätung aus vorheriger Fahrt",
-        "timestamp": "2019-11-30T10:18:00.000Z"
-      }
-    ],
-    "qos": []
-  },
-  "route": [
-    {
-      "name": "Lüneburg",
-      "cancelled": true
-    },
-    {
-      "name": "Bardowick",
-      "cancelled": true
-    },
-    {
-      "name": "Radbruch",
-      "cancelled": true
-    },
-    {
-      "name": "Winsen (Luhe)",
-      "cancelled": true
-    },
-    {
-      "name": "Ashausen",
-      "cancelled": true
-    },
-    {
-      "name": "Stelle",
-      "cancelled": true
-    },
-    {
-      "name": "Maschen",
-      "cancelled": true
-    },
-    {
-      "name": "Meckelfeld",
-      "cancelled": true
-    },
-    {
-      "name": "Hamburg-Harburg",
-      "cancelled": true
-    },
-    {
-      "name": "Hamburg Hbf",
-      "cancelled": true
-    }
-  ],
-  "destination": "Hamburg Hbf",
-  "platform": "12",
-  "scheduledPlatform": "12",
-  "cancelled": true
+	"o": "R1",
+	"initialDeparture": "2019-11-30T09:32:00.000Z",
+	"arrival": {
+		"scheduledTime": "2019-11-30T10:23:00.000Z",
+		"time": "2019-11-30T10:29:00.000Z",
+		"platform": "12",
+		"scheduledPlatform": "12",
+		"hidden": false,
+		"cancelled": true,
+		"delay": 6
+	},
+	"productClass": "D",
+	"currentStopPlace": {
+		"name": "Hamburg Hbf",
+		"evaNumber": "8002549"
+	},
+	"scheduledDestination": "Hamburg Hbf",
+	"lineNumber": "RB31",
+	"id": "1494893474156392079",
+	"rawId": "-1494893474156392079-1911301032-10",
+	"mediumId": "1494893474156392079-1911301032",
+	"substitute": false,
+	"train": {
+		"name": "ME RB31",
+		"number": "81616",
+		"trainCategory": "ME",
+		"thirdParty": "ME",
+		"type": "RB",
+		"line": "31"
+	},
+	"messages": {
+		"him": [],
+		"delay": [
+			{
+				"text": "Verspätung aus vorheriger Fahrt",
+				"timestamp": "2019-11-30T10:18:00.000Z"
+			}
+		],
+		"qos": []
+	},
+	"route": [
+		{
+			"name": "Lüneburg",
+			"cancelled": true
+		},
+		{
+			"name": "Bardowick",
+			"cancelled": true
+		},
+		{
+			"name": "Radbruch",
+			"cancelled": true
+		},
+		{
+			"name": "Winsen (Luhe)",
+			"cancelled": true
+		},
+		{
+			"name": "Ashausen",
+			"cancelled": true
+		},
+		{
+			"name": "Stelle",
+			"cancelled": true
+		},
+		{
+			"name": "Maschen",
+			"cancelled": true
+		},
+		{
+			"name": "Meckelfeld",
+			"cancelled": true
+		},
+		{
+			"name": "Hamburg-Harburg",
+			"cancelled": true
+		},
+		{
+			"name": "Hamburg Hbf",
+			"cancelled": true
+		}
+	],
+	"destination": "Hamburg Hbf",
+	"platform": "12",
+	"scheduledPlatform": "12",
+	"cancelled": true
 }

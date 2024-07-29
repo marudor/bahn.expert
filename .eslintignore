@@ -1,8 +1,0 @@
-public/**
-research/**
-@types/**
-src/external/generated
-!.babelrc.js
-!.babelrc.server.js
-!.eslintrc.js
-!.dependency-cruiser.js

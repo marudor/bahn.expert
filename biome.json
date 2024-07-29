@@ -1,0 +1,37 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+	"files": {
+		"ignore": ["src/server/api/routes.ts", "src/external/generated/**/*"]
+	},
+	"linter": {
+		"rules": {
+			"style": {
+				"noNonNullAssertion": "off",
+				"useDefaultParameterLast": "off"
+			},
+			"suspicious": {
+				"noConfusingVoidType": "off",
+				"noExplicitAny": "off",
+				"noArrayIndexKey": "off",
+				"noShadowRestrictedNames": "off"
+			},
+			"a11y": {
+				"useKeyWithClickEvents": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			},
+			"performance": {
+				"noDelete": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		},
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
+		}
+	}
+}

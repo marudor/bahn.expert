@@ -12,26 +12,26 @@
  * Do not edit the class manually.
  */
 
-import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
+import type { RequestArgs } from './base';
+// @ts-ignore
+import { BASE_PATH, BaseAPI, COLLECTION_FORMATS, RequiredError } from './base';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
+	DUMMY_BASE_URL,
+	assertParamExists,
+	createRequestFunction,
+	serializeDataIfNeeded,
+	setApiKeyToObject,
+	setBasicAuthToObject,
+	setBearerAuthToObject,
+	setOAuthToObject,
+	setSearchParams,
+	toPathString,
 } from './common';
-import type { RequestArgs } from './base';
-// @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
+import type { Configuration } from './configuration';
 
 /**
  * Information on the operator [Betreiber] and the administration [Verwaltung] of the journey.
@@ -39,24 +39,24 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
  * @interface Administration
  */
 export interface Administration {
-  /**
-   * Unique id of the administration [Verwaltung]. - 8 (S - S-Bahn Berlin) - 19 (EST - EUROSTAR) - 51 (PKP - PKP Intercity) - 53 (DPN - Nahreisezug) - 54 (CD - Ceske Drahy) - 55 (MAV - MAV) - 56 (ZSS - ZSSK) - 71 (REN - RENFE) - 74 (SJ - SJ) - 78 (HZ - HZPP) - 79 (SZ - Slovenske zeleznice) - 80 (DB - DB Fernverkehr AG) - 81 (ÖBB - Österreichische Bundesbahnen) - 82 (CFL - CFL) - 83 (TI - Trenitalia) - 84 (NS - Nederlandse Spoorwegen) - 85 (SBB - SBB) - 86 (DSB - Dänische Staatsbahnen) - 87 (SCF - SNCF) - 88 (SCB - SNCB) - 3018 (THA - THALYS) - 3189 (ARV - ARRIVA vlaky) - 3230 (VBG - vogtlandbahn - Die Länderbahn GmbH DLB) - 3236 (WB - WESTbahn) - 3246 (IC - RegioJet) - 3270 (TN - TRENORD) - 3288 (GW - GW Train Regio) - 3332 (KZC - KZC Doprava s.r.o.) - 3393 (TGV - SNCF Voyages Deutschland) - 3613 (StB - Steiermarkbahn und Bus GmbH) - 80001 (S - S-Bahn Berlin) - 550043 (GyS - GySEV) - 743051 (ST - Snälltåget) - 800151 (DB - DB Regio AG Nordost) - 800153 (DB - DB Regio AG Nordost) - 800154 (DB - DB Regio AG Nordost) - 800155 (DB - DB Regio AG Nordost) - 800156 (DB - DB Regio AG Nordost) - 800157 (DB - DB Regio AG Nordost) - 800158 (DB - DB Regio AG Nordost) - 800159 (DB - DB Regio AG Nordost) - 800160 (DB - DB Regio AG Nordost) - 800161 (DB - DB Regio AG Nordost) - 800163 (DB - DB Regio AG Nordost) - 800165 (DB - DB Regio AG Nordost) - 800166 (DB - DB Regio AG Nordost) - 800201 (DB - DB Regio AG Nord) - 800271 (DB - DB Regio AG Nord) - 800279 (DB - DB Regio AG Nord) - 800292 (DB - DB Regio AG Nord) - 800293 (DB - DB Regio AG Nord) - 800295 (DB - DB Regio AG Nord) - 800310 (DB - DB Regio AG NRW) - 800318 (DB - DB Arriva) - 800333 (DB - DB Regio AG NRW) - 800337 (DB - DB Regio AG NRW) - 800338 (DB - DB Regio AG NRW) - 800348 (DB - DB Regio AG NRW) - 800349 (DB - DB Regio AG NRW) - 800351 (DB - DB Regio AG NRW) - 800352 (DB - DB Regio AG NRW) - 800354 (DB - DB Regio AG NRW) - 800363 (DB - DB Regio AG NRW) - 800413 (DB - DB Regio AG Südost) - 800417 (DB - DB Regio AG Südost) - 800430 (EGB - DB RegioNetz Verkehrs GmbH Erzgebirgsbahn) - 800445 (DB - DB Regio AG Südost) - 800456 (DB - DB Regio AG Südost) - 800469 (DB - DB Regio AG Südost) - 800478 (DB - DB Regio AG Südost) - 800486 (DB - DB Regio AG Südost) - 800487 (DB - DB Regio AG Südost) - 800489 (DB - DB Regio AG Südost) - 800523 (KHB - DB RegioNetz Verkehrs GmbH Kurhessenbahn) - 800528 (S - DB Regio AG S-Bahn Rhein-Main) - 800535 (DB - DB Regio AG Mitte) - 800553 (DB - DB Regio AG Mitte) - 800571 (DB - DB Regio AG Mitte) - 800572 (DB - DB Regio AG Mitte) - 800574 (DB - DB Regio AG Mitte) - 800603 (WFB - DB RegioNetz Verkehrs GmbH Westfrankenbahn) - 800622 (DB - DB Regio AG Baden-Württemberg) - 800631 (DB - DB Regio AG Baden-Württemberg) - 800632 (DB - DB Regio AG Baden-Württemberg) - 800640 (SWX - DB Regio AG Mitte SÜWEX) - 800643 (S - DB Regio AG S-Bahn Stuttgart) - 800647 (DB - DB Regio AG Baden-Württemberg) - 800659 (DB - DB Regio AG Baden-Württemberg) - 800693 (DB - DB Regio AG Baden-Württemberg) - 800694 (DB - DB Regio AG Baden-Württemberg) - 800714 (DB - DB Regio AG Bayern) - 800720 (DB - DB Regio AG Bayern) - 800721 (DB - DB Regio AG Bayern) - 800725 (S - DB Regio AG S-Bahn München) - 800734 (DB - DB Regio AG Bayern) - 800742 (DB - DB Regio AG Bayern) - 800746 (DB - DB Regio AG Bayern) - 800755 (DB - DB Regio AG Bayern) - 800759 (DB - DB Regio AG Bayern) - 800765 (DB - DB Regio AG Bayern) - 800767 (DB - DB Regio AG Bayern) - 800772 (DB - DB Regio AG Bayern) - 800785 (DB - DB Regio AG Bayern) - 800790 (DB - DB Regio AG Bayern) - 801512 (DB - DB Regio AG Mitte) - 801513 (DB - DB Regio AG Mitte) - 801518 (DB - DB Regio AG Mitte) - 801526 (DB - DB Regio AG Mitte) - 801539 (DB - DB Regio AG Mitte) - 801566 (DB - DB Regio AG Mitte) - 801591 (DB - DB Regio AG Mitte) - 801599 (DB - DB Regio AG Mitte) - 810003 (mbs - Montafoner Bahn) - 810005 (ZB - Zillertalbahn) - 810007 (SLB - Salzburger Lokalbahnen) - 810008 (STH - Stern & Hafferl Verkehrs-GmbH) - 810009 (WiL - Wiener Linien) - 810011 (R - Schneebergbahn) - 810017 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810021 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810023 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810024 (P - Waldviertler Schmalspurbahn) - 810025 (SLB - Salzburger Lokalbahnen) - 810028 (GyS - GySEV) - 810031 (STR - Linz Linien AG (Straßenbahn Stadt Linz)) - 810043 (ÖPO - ÖBB-Postbus) - 840037 (Rnt - R-net) - 840052 (Brg - Breng) - 840054 (Vll - Valleilijn) - 840055 (BN - Blauwnet) - 840100 (NS - Nederlandse Spoorwegen) - 840500 (ARR - Arriva Nederland) - 850022 (AB - Appenzeller Bahnen) - 850023 (TPC - Transports Publics du Chablais) - 850029 (MBC - Transports de la région Morges-Bière-Cossonay) - 850031 (BDW - BDWM Transport) - 850032 (BLM - Lauterbrunnen-Mürren) - 850033 (BLS - BLS AG) - 850035 (BOB - Berner Oberland-Bahnen) - 850038 (ASM - Aare Seeland mobil) - 850042 (MVR - Montreux-Vevey-Riviera) - 850043 (CJ - Chemins de fer du Jura) - 850044 (TRN - Transports Publics Neuchâtelois SA) - 850046 (FB - Forchbahn) - 850047 (FLP - Lugano-Ponte Tresa) - 850048 (MGB - Matterhorn Gotthard Bahn (fo)) - 850049 (FAR - Ferrovie Autolinee Regionali Ticinesi) - 850051 (FW - Frauenfeld-Wil) - 850053 (TPF - Transports publics fribourgeois) - 850055 (LEB - Lausanne-Echallens-Bercher) - 850056 (ASM - Aare Seeland mobil) - 850061 (TMR - Transports de Martigny et Régions (mc)) - 850064 (MOB - Montreux-Oberland Bernois) - 850065 (THU - THURBO) - 850066 (NSt - Nyon-St-Cergue-Morez) - 850072 (RhB - Rhätische Bahn) - 850073 (TRN - Transports Publics Neuchâtelois SA) - 850074 (RA - Regionalps) - 850078 (SZU - Sihltal-Zürich-Uetliberg-Bahn) - 850081 (ASM - Aare Seeland mobil) - 850082 (SOB - Schweizerische Südostbahn (sob)) - 850086 (ZB - Zentralbahn) - 850088 (RBS - Regionalverkehr Bern-Solothurn) - 850093 (MGB - Matterhorn Gotthard Bahn (bvz)) - 850096 (WSB - Wynental-und Suhrental-Bahn) - 850097 (TRA - Transports Vallée de Joux-Yverdon-Ste-Croix) - 850193 (URh - Untersee und Rhein) - 850195 (SBS - Schweizerische Bodensee-Schiffahrtsgesellschaft) - 850360 (BSB - Bodensee-Schiffsbetriebe) - 850371 (BC - Société coopérative du Chemin de fer - Musée Blonay-Chamby) - 850801 (PAG - PostAuto Schweiz) - 850846 (RVS - Regionale Verkehrsbetriebe Schaffhausen) - 853186 (SZR - Schiff Eglisau-Tössegg) - 853271 (ANA - Association neuchâteloise des Amis du Tramway ANAT) - 857200 (SBB - SBB) - 857206 (SBB - SBB) - 857210 (SBB - SBB) - 857221 (THU - THURBO) - 857231 (SBB - SBB) - 859014 (VDB - Verein Dampfbahn Bern) - 859999 (SBB - SBB) - 860087 (ARR - Arriva Danmark) - 861002 (DSB - Dänische Staatsbahnen) - 8006000 (DB - DB Regio AG Baden-Württemberg) - 0S (S - S-Bahn Hamburg) - 51KD (KD - Koleje Dolnoslaskie) - 51PR (PR - Polregio) - 51PR-Q (PR - Polregio) - 51PR-R (PR - Polregio) - 51PR-S (PR - Polregio) - 8002A3 (DB - DB Regio AG Nord) - 8002B5 (DB - DB Regio AG Nord) - 8003A5 (DB - DB Regio AG NRW) - 8003G1 (DB - DB Regio AG NRW) - 8003G2 (DB - DB Regio AG NRW) - 8003H5 (DB - DB Regio AG NRW) - 8003L1 (DB - DB Regio AG NRW) - 8003L2 (DB - DB Regio AG NRW) - 8003RL (DB - DB Regio AG NRW) - 8003S (DB - DB Regio AG NRW) - 8004A9 (DB - DB Regio AG Südost) - 8004L1 (DB - DB Regio AG Südost) - 8004NT (DB - DB Regio AG Südost) - 8004OB (OBS - DB RegioNetz Verkehrs GmbH Oberweißbacher Berg+Schwarzatalbahn) - 8005A4 (DB - DB Regio AG Mitte) - 8005KG (DB - DB Regio AG Mitte) - 8005MW (DB - DB Regio AG Mitte) - 8005ND (DB - DB Regio AG Mitte) - 8005SV (DB - Rhein-Mosel-Bus Ahrweiler) - 8006A7 (WFB - DB RegioNetz Verkehrs GmbH Westfrankenbahn) - 8006C4 (DB - DB Regio AG Baden-Württemberg) - 8006C5 (DB - DB Regio AG Baden-Württemberg) - 8006C6 (DB - DB Regio AG Baden-Württemberg) - 8006D1 (DB - DB Regio AG Baden-Württemberg) - 8006D2 (DB - DB Regio AG Baden-Württemberg) - 8006D6 (DB - DB Regio AG Baden-Württemberg) - 8006D8 (DB - DB Regio AG Baden-Württemberg) - 8006SH (DB - DB Regio AG Baden-Württemberg) - 8007D4 (DB - DB Regio AG Bayern) - 8007D5 (DB - DB Regio AG Bayern) - 8007DU (DB - DB Regio AG Bayern) - 8007H1 (DB - DB Regio AG Bayern) - 8007H2 (DB - DB Regio AG Bayern) - 8013D (SOB - DB RegioNetz Verkehrs GmbH Südostbayernbahn) - 8013E (SOB - DB RegioNetz Verkehrs GmbH Südostbayernbahn) - 8015A1 (DB - DB Regio AG Mitte) - 8015A6 (DB - DB Regio AG Mitte) - 8015FR (DB - DB Regio AG Mitte) - 8015H9 (DB - DB Regio AG Mitte) - 80SEV (DB - DB Fernverkehr AG) - 80SSP (D - Sylt Shuttle Plus) - 80TRI (EC - DB/SBB/TI) - 81GE43 (DPN - Nahreisezug) - 857LEX (LEX - LEX) - 85DBSH (SBB - SBB) - A0 (AKN - AKN Eisenbahn GmbH) - A5 (VEN - Rhenus Veniro) - A6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6FEX (DPN - Nahreisezug) - A6S1 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S11 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S12 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S31 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S32 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S34 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S4 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S41 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S42 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S5 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S51 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S52 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S7 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S71 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S8 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S81 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A8N (ALX - alex - Die Länderbahn GmbH DLB) - A9 (ag - agilis) - aav006 (DPN - Nahreisezug) - aavARN (DPN - Nahreisezug) - aavARR (DPN - Nahreisezug) - aavASE (DPN - Nahreisezug) - aavDKB (DPN - Nahreisezug) - aavNET (DPN - Nahreisezug) - aavTEC (DPN - Nahreisezug) - AB (ABR - SWEG Bahn Stuttgart GmbH) - ABIRE (IRE - SWEG Bahn Stuttgart GmbH) - ABRB (RB - SWEG Bahn Stuttgart GmbH) - ABRE (RE - SWEG Bahn Stuttgart GmbH) - ak_AK (AK - Autokraft) - ak_DRN (DIB - Dithmarschenbus (DB Regio Bus Nord GmbH)) - ak_SVG (SVG - Sylter Verkehrsgesellschaft) - ak_SVL (DPN - Nahreisezug) - ak_SWN (DPN - Nahreisezug) - ak_VIN (DPN - Nahreisezug) - ak_VKP (DPN - Nahreisezug) - ak_VSF (DPN - Nahreisezug) - akAK_A (DPN - Nahreisezug) - akAKTI (DPN - Nahreisezug) - akDRNA (DPN - Nahreisezug) - akECKE (DPN - Nahreisezug) - akKVGK (DPN - Nahreisezug) - akROH (DPN - Nahreisezug) - akSFKK (DPN - Nahreisezug) - akTRAN (DPN - Nahreisezug) - akVINA (DPN - Nahreisezug) - akWDR (DPN - Nahreisezug) - AL (DWE - Dessau-Wörlitzer Eisenbahn) - ald012 (DPN - Nahreisezug) - ald020 (DPN - Nahreisezug) - ald021 (DPN - Nahreisezug) - ald022 (DPN - Nahreisezug) - ald023 (DPN - Nahreisezug) - ald024 (DPN - Nahreisezug) - ald025 (DPN - Nahreisezug) - ald030 (DPN - Nahreisezug) - ald044 (DPN - Nahreisezug) - ald046 (DPN - Nahreisezug) - ald065 (DPN - Nahreisezug) - ald067 (DPN - Nahreisezug) - ald069 (DPN - Nahreisezug) - ald072 (DPN - Nahreisezug) - ald073 (DPN - Nahreisezug) - ald075 (DPN - Nahreisezug) - ald077 (DPN - Nahreisezug) - ald083 (DPN - Nahreisezug) - ald084 (DPN - Nahreisezug) - ald087 (DPN - Nahreisezug) - ald091 (DPN - Nahreisezug) - ald093 (DPN - Nahreisezug) - ald094 (DPN - Nahreisezug) - ald095 (DPN - Nahreisezug) - ald096 (DPN - Nahreisezug) - ald099 (DPN - Nahreisezug) - AM (ABR - Abellio Rail Mitteldeutschland GmbH) - AMHBX (HBX - Abellio Rail Mitteldeutschland GmbH) - AMRB (RB - Abellio Rail Mitteldeutschland GmbH) - AMRE (RE - Abellio Rail Mitteldeutschland GmbH) - AMS (S - Abellio Rail Mitteldeutschland GmbH) - aoeBus (DPN - Nahreisezug) - apg__1 (DPN - Nahreisezug) - avv009 (DPN - Nahreisezug) - avvBus (DPN - Nahreisezug) - B1 (DB - DB Regio AG Nord) - B1EDZ (DPN - Nahreisezug) - B2 (DB - DB Regio AG NRW) - B3 (P - Brohltalbahn) - B4 (S - DB Regio AG S-Bahn Rhein-Main) - B5 (DB - DB Regio AG Mitte) - B6 (DB - DB Regio AG Baden-Württemberg) - B7 (DPN - Nahreisezug) - bacBus (DPN - Nahreisezug) - bambus (DPN - Nahreisezug) - bayaut (DPN - Nahreisezug) - BB (DB - DB Regio AG Nordost) - bcl001 (DPN - Nahreisezug) - BD (SDG - SDG Sächsische Dampfeisenbahngesellschaft mbH) - BE (BE - Bentheimer Eisenbahn) - bod000 (DPN - Nahreisezug) - bod001 (DPN - Nahreisezug) - bod002 (DPN - Nahreisezug) - bod003 (DPN - Nahreisezug) - bod004 (DPN - Nahreisezug) - bod005 (DPN - Nahreisezug) - bod006 (DPN - Nahreisezug) - bod008 (DPN - Nahreisezug) - bod012 (DPN - Nahreisezug) - bod013 (DPN - Nahreisezug) - bod014 (DPN - Nahreisezug) - bod015 (DPN - Nahreisezug) - bod018 (DPN - Nahreisezug) - bod019 (DPN - Nahreisezug) - bod020 (DPN - Nahreisezug) - bod031 (DPN - Nahreisezug) - BurBus (DPN - Nahreisezug) - BW (DB - DB Regio AG Nordost) - byr001 (DPN - Nahreisezug) - C6 (KTB - Kandertalbahn) - C8 (LEO - Chiemgauer Lokalbahn) - CD (CB - City-Bahn Chemnitz) - cha016 (DPN - Nahreisezug) - cobBus (DPN - Nahreisezug) - css002 (P - Chiemseebahn) - csscss (DPN - Nahreisezug) - cw001 (DPN - Nahreisezug) - cw010 (DPN - Nahreisezug) - CX (MRB - Mitteldeutsche Regiobahn) - CXRB (RB - Mitteldeutsche Regiobahn) - CXRE (RE - Mitteldeutsche Regiobahn) - D3 (RTB - Rurtalbahn) - daf005 (DPN - Nahreisezug) - dgfBus (DPN - Nahreisezug) - drbBUS (DPN - Nahreisezug) - E0 (EVB - EVB ELBE-WESER GmbH) - E3 (P - Kasbachtalbahn) - EB (RB - Erfurter Bahn GmbH) - ED (FEG - Freiberger Eisenbahngesellschaft) - estbus (DPN - Nahreisezug) - etgBus (DPN - Nahreisezug) - EX (RE - Erfurter Bahn GmbH) - F1 (DPN - Nahreisezug) - F7 (RB - Bodensee-Oberschwaben-Bahn) - fds002 (DPN - Nahreisezug) - fdsBus (DPN - Nahreisezug) - FisBus (DPN - Nahreisezug) - FLX10 (FLX - FlixTrain) - FLX11 (FLX - FlixTrain) - FLX15 (FLX - FlixTrain) - FLX20 (FLX - FlixTrain) - FLX30 (FLX - FlixTrain) - FLX35 (FLX - FlixTrain) - frg001 (DPN - Nahreisezug) - fuebus (DPN - Nahreisezug) - fwzBus (DPN - Nahreisezug) - GA (GA - Go-Ahead Baden-Württemberg GmbH) - GAIRE (IRE - Go-Ahead Baden-Württemberg GmbH) - GAMEX (MEX - Go-Ahead Baden-Württemberg GmbH) - GARB (RB - Go-Ahead Baden-Württemberg GmbH) - GARE (RE - Go-Ahead Baden-Württemberg GmbH) - ge2GEV (DPN - Nahreisezug) - ge3GEV (DPN - Nahreisezug) - geiBus (DPN - Nahreisezug) - gf2001 (DPN - Nahreisezug) - gfn011 (DPN - Nahreisezug) - gfn012 (DPN - Nahreisezug) - gfn015 (DPN - Nahreisezug) - gfn020 (DPN - Nahreisezug) - ghuBus (DPN - Nahreisezug) - grhBus (DPN - Nahreisezug) - GY (GA - Go-Ahead Bayern GmbH) - GYRB (RB - Go-Ahead Bayern GmbH) - GYRE (RE - Go-Ahead Bayern GmbH) - H4 (RT - RegioTram) - H6 (HzL - Hohenzollerische Landesbahn (SWEG)) - H7 (HzL - Hohenzollerische Landesbahn (SWEG)) - hggBus (DPN - Nahreisezug) - HL (HSB - Harzer Schmalspurbahn) - hnv030 (DPN - Nahreisezug) - hnv031 (DPN - Nahreisezug) - hnv034 (DPN - Nahreisezug) - hnv050 (DPN - Nahreisezug) - hof004 (DPN - Nahreisezug) - hvv001 (DPN - Nahreisezug) - hvvDAH (DPN - Nahreisezug) - hvvHAD (DPN - Nahreisezug) - hvvHHA (DPN - Nahreisezug) - hvvHOX (DPN - Nahreisezug) - hvvKVI (DPN - Nahreisezug) - hvvLIZ (DPN - Nahreisezug) - hvvRAO (DPN - Nahreisezug) - hvvRMV (DPN - Nahreisezug) - hvvVHH (DPN - Nahreisezug) - hvvVLP (DPN - Nahreisezug) - invBus (DPN - Nahreisezug) - K4 (HLB - HLB Hessenbahn GmbH) - K4RB (HLB - HLB Hessenbahn GmbH) - K4RE (HLB - HLB Hessenbahn GmbH) - K6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - KD (KD - Köln-Düsseldorfer Deutsche Rheinschifffahrt GmbH) - kis001 (DPN - Nahreisezug) - kolbus (DPN - Nahreisezug) - kraBus (DPN - Nahreisezug) - krgBus (DPN - Nahreisezug) - kulBus (DPN - Nahreisezug) - kvg001 (DPN - Nahreisezug) - kvv002 (DPN - Nahreisezug) - kvv003 (DPN - Nahreisezug) - kvv004 (DPN - Nahreisezug) - kvv006 (DPN - Nahreisezug) - kvv010 (DPN - Nahreisezug) - kvv011 (DPN - Nahreisezug) - kvv012 (DPN - Nahreisezug) - kvv015 (DPN - Nahreisezug) - kvv017 (DPN - Nahreisezug) - kvv021 (DPN - Nahreisezug) - kvv023 (DPN - Nahreisezug) - kvv024 (DPN - Nahreisezug) - kvv025 (DPN - Nahreisezug) - kvv027 (DPN - Nahreisezug) - kvv028 (DPN - Nahreisezug) - kvv030 (DPN - Nahreisezug) - kvv041 (DPN - Nahreisezug) - kvv22E (DPN - Nahreisezug) - kvvFEX (DPN - Nahreisezug) - L7 (SBB - SBB GmbH) - L8 (BRB - Bayerische Regiobahn) - lamBus (DPN - Nahreisezug) - lanGEV (DPN - Nahreisezug) - LD (TL - trilex  - Die Länderbahn GmbH DLB) - LDTLX (TLX - trilex-express - Die Länderbahn GmbH DLB) - lklGEV (DPN - Nahreisezug) - M1 (P - Museumsbahn) - M2 (S - REGIOBAHN) - M2RE (R - REGIOBAHN) - M4 (VSE - Verein Sächsischer Eisenbahnfreunde) - M8 (BRB - Bayerische Regiobahn) - M9 (MSB - Mainschleifenbahn) - marmar (DPN - Nahreisezug) - marovf (DPN - Nahreisezug) - marrbk (DPN - Nahreisezug) - mvgb10 (DPN - Nahreisezug) - mvgb14 (DPN - Nahreisezug) - mvgb15 (DPN - Nahreisezug) - mvgb16 (DPN - Nahreisezug) - mvv099 (DPN - Nahreisezug) - mvvEBU (DPN - Nahreisezug) - mvvRBU (DPN - Nahreisezug) - mvvRFB (DPN - Nahreisezug) - MW (MBB - Mecklenburgische Bäderbahn Molli) - mzbBUS (DPN - Nahreisezug) - N0 (neg - Norddeutsche Eisenbahn Gesellschaft) - N1 (NWB - NordWestBahn) - N2 (NWB - NordWestBahn) - N4 (RB - cantus Verkehrsgesellschaft) - N4RE (RE - cantus Verkehrsgesellschaft) - N6 (SWE - Südwestdeutsche Landesverkehrs-GmbH) - N8 (P - BayernBahn GmbH) - nas001 (DPN - Nahreisezug) - nas003 (DPN - Nahreisezug) - nasBLK (DPN - Nahreisezug) - nasBOE (DPN - Nahreisezug) - nasDVG (DPN - Nahreisezug) - nasFWL (DPN - Nahreisezug) - nasHAB (DPN - Nahreisezug) - nasHAT (DPN - Nahreisezug) - nasHVB (DPN - Nahreisezug) - nasHVG (DPN - Nahreisezug) - nasKSB (DPN - Nahreisezug) - nasLVB (DPN - Nahreisezug) - nasLVT (DPN - Nahreisezug) - nasMBB (DPN - Nahreisezug) - nasMBT (DPN - Nahreisezug) - nasMQ (DPN - Nahreisezug) - nasNJL (DPN - Nahreisezug) - nasNTB (DPN - Nahreisezug) - nasOBS (DPN - Nahreisezug) - nasOVH (DPN - Nahreisezug) - nasRBM (DPN - Nahreisezug) - nasRL (DPN - Nahreisezug) - nasSAW (DPN - Nahreisezug) - nasSDL (DPN - Nahreisezug) - nasTHU (DPN - Nahreisezug) - nasVET (DPN - Nahreisezug) - nasVGS (DPN - Nahreisezug) - nasZel (DPN - Nahreisezug) - NB (RB - NEB Niederbarnimer Eisenbahn) - NBRB12 (RB - NEB Niederbarnimer Eisenbahn) - NBRB25 (RB - NEB Niederbarnimer Eisenbahn) - NBRB26 (RB - NEB Niederbarnimer Eisenbahn) - NBRB27 (RB - NEB Niederbarnimer Eisenbahn) - NBRB35 (RB - NEB Niederbarnimer Eisenbahn) - NBRB36 (RB - NEB Niederbarnimer Eisenbahn) - NBRB54 (RB - NEB Niederbarnimer Eisenbahn) - NBRB60 (RB - NEB Niederbarnimer Eisenbahn) - NBRB61 (RB - NEB Niederbarnimer Eisenbahn) - NBRB62 (RB - NEB Niederbarnimer Eisenbahn) - NBRB63 (RB - NEB Niederbarnimer Eisenbahn) - nvpBUS (DPN - Nahreisezug) - NWBus (NWB - NordWestBahn) - NX (NX - National Express) - NXRB (RB - National Express) - NXRE (RE - National Express) - NY (MSM - MSM Partyzug) - NYUEX (UEX - Urlaubs-Express) - NZ (RE - DB Fernverkehr AG) - O0 (NBE - Nordbahn Eisenbahngesellschaft) - O7 (ÖBA - Öchsle-Bahn-Betriebsgesellschaft mbH) - O9 (OPB - oberpfalzbahn - Die Länderbahn GmbH DLB) - O9X (OPX - oberpfalz-express - Die Länderbahn GmbH DLB) - OD (SOE - Sächsisch-Oberlausitzer Eisenbahngesellschaft) - omp001 (DPN - Nahreisezug) - omp003 (DPN - Nahreisezug) - omp007 (DPN - Nahreisezug) - omp014 (DPN - Nahreisezug) - omp022 (DPN - Nahreisezug) - omp024 (DPN - Nahreisezug) - omp033 (DPN - Nahreisezug) - omp035 (DPN - Nahreisezug) - omp043 (DPN - Nahreisezug) - omp047 (DPN - Nahreisezug) - omp048 (DPN - Nahreisezug) - omp050 (DPN - Nahreisezug) - omp051 (DPN - Nahreisezug) - omp052 (DPN - Nahreisezug) - omp053 (DPN - Nahreisezug) - omp054 (DPN - Nahreisezug) - omp055 (DPN - Nahreisezug) - omp056 (DPN - Nahreisezug) - omp057 (DPN - Nahreisezug) - omp058 (DPN - Nahreisezug) - omp059 (DPN - Nahreisezug) - omp062 (DPN - Nahreisezug) - omp063 (DPN - Nahreisezug) - omp065 (DPN - Nahreisezug) - omp066 (DPN - Nahreisezug) - omp067 (DPN - Nahreisezug) - omp069 (DPN - Nahreisezug) - omp070 (DPN - Nahreisezug) - omp071 (DPN - Nahreisezug) - omp072 (DPN - Nahreisezug) - omp073 (DPN - Nahreisezug) - omp074 (DPN - Nahreisezug) - omp075 (DPN - Nahreisezug) - omp077 (DPN - Nahreisezug) - omp079 (DPN - Nahreisezug) - omp085 (DPN - Nahreisezug) - omp086 (DPN - Nahreisezug) - omp088 (DPN - Nahreisezug) - omp092 (DPN - Nahreisezug) - omp093 (DPN - Nahreisezug) - omp094 (DPN - Nahreisezug) - omp095 (DPN - Nahreisezug) - omp096 (DPN - Nahreisezug) - omp098 (DPN - Nahreisezug) - omp099 (DPN - Nahreisezug) - omsBus (DPN - Nahreisezug) - ova002 (DPN - Nahreisezug) - ova035 (DPN - Nahreisezug) - ovaOVA (DPN - Nahreisezug) - ovfOVF (DPN - Nahreisezug) - OWBus (OE - Ostdeutsche Eisenbahn GmbH) - owl020 (DPN - Nahreisezug) - owl021 (DPN - Nahreisezug) - owl022 (DPN - Nahreisezug) - owl023 (DPN - Nahreisezug) - owl024 (DPN - Nahreisezug) - owl025 (DPN - Nahreisezug) - owl026 (DPN - Nahreisezug) - owl027 (DPN - Nahreisezug) - owl028 (DPN - Nahreisezug) - owl029 (DPN - Nahreisezug) - owl031 (STB - moBiel GmbH) - owl032 (DPN - Nahreisezug) - owl038 (DPN - Nahreisezug) - owl039 (DPN - Nahreisezug) - owl040 (DPN - Nahreisezug) - owl041 (DPN - Nahreisezug) - owl042 (DPN - Nahreisezug) - owl043 (DPN - Nahreisezug) - owl044 (DPN - Nahreisezug) - owl045 (DPN - Nahreisezug) - owl049 (DPN - Nahreisezug) - owl050 (DPN - Nahreisezug) - owl051 (DPN - Nahreisezug) - owl052 (DPN - Nahreisezug) - owl053 (DPN - Nahreisezug) - owl054 (DPN - Nahreisezug) - owl059 (DPN - Nahreisezug) - OWRB (RB - Ostdeutsche Eisenbahn GmbH) - OWRB13 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB14 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB15 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB19 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB33 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB46 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB51 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB64 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB65 (RB - Ostdeutsche Eisenbahn GmbH) - OWRE (RE - Ostdeutsche Eisenbahn GmbH) - OWRE2 (RE - Ostdeutsche Eisenbahn GmbH) - OWRE4 (RE - Ostdeutsche Eisenbahn GmbH) - pafBus (DPN - Nahreisezug) - PB (RB - Hanseatische Eisenbahn GmbH) - pbaATT (DPN - Nahreisezug) - pbaitr (DPN - Nahreisezug) - pbaKB (ÖPO - ÖBB-Postbus) - pbaVVT (DPN - Nahreisezug) - pbaW3 (DPN - Nahreisezug) - pbaWR (ÖPO - ÖBB-Postbus) - prg091 (DPN - Nahreisezug) - R0 (ENO - enno) - R1 (ME - metronom) - R2 (ERB - eurobahn) - R2RB (RB - eurobahn) - R2RE (RE - eurobahn) - R4 (VIA - VIAS Rail GmbH) - R4NRN (VIA - VIAS Rail GmbH) - R4RB35 (VIA - VIAS Rail GmbH) - R4RH (VIA - VIAS GmbH) - R4S7 (VIA - VIAS Rail GmbH) - R4WEST (VIA - VIAS Rail GmbH) - R7 (HzL - Hohenzollerische Landesbahn (SWEG)) - rabRAB (RAB - Regionalverkehr Alb-Bodensee) - rbgAST (SBG - Südbadenbus) - rbgBBO (DPN - Nahreisezug) - rbgBER (DPN - Nahreisezug) - rbgBRN (BRN - Busverkehr Rhein-Neckar) - rbgBVH (DPN - Nahreisezug) - rbgFAB (DPN - Nahreisezug) - rbgFMO (FMO - Friedrich Müller Omnibusunternehmen GmbH) - rbgHMO (DPN - Nahreisezug) - rbgKNU (DPN - Nahreisezug) - rbgOVZ (DPN - Nahreisezug) - rbgRBG (DPN - Nahreisezug) - rbgRBS (RBS - Regiobus Stuttgart) - rbgRVS (RVS - Südwestbus) - rbgRVs (RVS - Südwestbus) - rbgSBG (SBG - Südbadenbus) - rbgWMR (DPN - Nahreisezug) - rboMB (DPN - Nahreisezug) - rbpORN (ORN - ORN Omnibusverkehr Rhein-Nahe GmbH (Rhein-Nahe-Bus)) - rbpRMA (DB - Rhein-Mosel-Bus Ahrweiler) - rbpRMB (DB - RMB Rhein-Mosel-Bus) - rbpRPB (RPB - Rheinpfalzbus) - rbpRU1 (DPN - Nahreisezug) - rbpRU2 (DPN - Nahreisezug) - rbpSAA (DPN - Nahreisezug) - rbpSWM (DB - DB Regio Bus Mitte) - rbr002 (DPN - Nahreisezug) - rbr003 (DPN - Nahreisezug) - rbr004 (DPN - Nahreisezug) - rbrBOS (DPN - Nahreisezug) - rbrOST (DPN - Nahreisezug) - rbrSBE (DPN - Nahreisezug) - rbrSEV (DPN - Nahreisezug) - rbrSNB (DPN - Nahreisezug) - RC (AZS - AUTOZUG Sylt) - RD (VBG - vogtlandbahn - Die Länderbahn GmbH DLB) - rmbwug (DPN - Nahreisezug) - rmpREB (DPN - Nahreisezug) - rmpRSG (DPN - Nahreisezug) - rmpUBB (DPN - Nahreisezug) - rmtEVA (DPN - Nahreisezug) - rmtEWB (DPN - Nahreisezug) - rmtFiS (DPN - Nahreisezug) - rmtGVB (DPN - Nahreisezug) - rmtIOV (DPN - Nahreisezug) - rmtJES (DPN - Nahreisezug) - rmtJNV (DPN - Nahreisezug) - rmtKOM (DPN - Nahreisezug) - rmtLWW (DPN - Nahreisezug) - rmtMBB (DPN - Nahreisezug) - rmtMKI (DPN - Nahreisezug) - rmtNDH (DPN - Nahreisezug) - rmtOVG (DPN - Nahreisezug) - rmtPVG (DPN - Nahreisezug) - rmtRBM (DPN - Nahreisezug) - rmtSal (DPN - Nahreisezug) - rmtSNG (DPN - Nahreisezug) - rmtSWG (DPN - Nahreisezug) - rmtTWS (DPN - Nahreisezug) - rmtVHO (DPN - Nahreisezug) - rmtVLG (DPN - Nahreisezug) - rmtVLO (DPN - Nahreisezug) - rmtVUS (DPN - Nahreisezug) - rmtVUW (DPN - Nahreisezug) - rmtVWG (DPN - Nahreisezug) - rmtVWO (DPN - Nahreisezug) - rmtWER (DPN - Nahreisezug) - rmtWGT (DPN - Nahreisezug) - rmv001 (DPN - Nahreisezug) - rmv007 (DPN - Nahreisezug) - rmv019 (DPN - Nahreisezug) - rmv020 (DPN - Nahreisezug) - rmv031 (DPN - Nahreisezug) - rmv045 (DPN - Nahreisezug) - rmv053 (DPN - Nahreisezug) - rmv061 (DPN - Nahreisezug) - rmv087 (DPN - Nahreisezug) - rmv099 (DPN - Nahreisezug) - rmv106 (DPN - Nahreisezug) - rmv117 (DPN - Nahreisezug) - rmv156 (DPN - Nahreisezug) - rmv158 (DPN - Nahreisezug) - rmv162 (DPN - Nahreisezug) - rmv163 (DPN - Nahreisezug) - rmv165 (DPN - Nahreisezug) - rmv168 (DPN - Nahreisezug) - rmv196 (DPN - Nahreisezug) - rmv211 (DPN - Nahreisezug) - rmv218 (DPN - Nahreisezug) - rmv222 (DPN - Nahreisezug) - rmv223 (DPN - Nahreisezug) - rmv224 (DPN - Nahreisezug) - rmv234 (DPN - Nahreisezug) - rmv238 (DPN - Nahreisezug) - rmv242 (DPN - Nahreisezug) - rmv243 (DPN - Nahreisezug) - rmv251 (DPN - Nahreisezug) - rmv254 (DPN - Nahreisezug) - rmv255 (DPN - Nahreisezug) - rmv257 (DPN - Nahreisezug) - rmv258 (DPN - Nahreisezug) - rmv260 (DPN - Nahreisezug) - rmv264 (DPN - Nahreisezug) - rmv265 (DPN - Nahreisezug) - rmv269 (DPN - Nahreisezug) - rmv272 (DPN - Nahreisezug) - rmv275 (DPN - Nahreisezug) - rmv277 (DPN - Nahreisezug) - rmv278 (DPN - Nahreisezug) - rmv282 (DPN - Nahreisezug) - rmv283 (DPN - Nahreisezug) - rmv284 (DPN - Nahreisezug) - rmv289 (DPN - Nahreisezug) - rmv290 (DPN - Nahreisezug) - rmv293 (DPN - Nahreisezug) - rmv294 (DPN - Nahreisezug) - rmv295 (DPN - Nahreisezug) - rmv297 (DPN - Nahreisezug) - rmv301 (DPN - Nahreisezug) - rmv304 (DPN - Nahreisezug) - rmv305 (DPN - Nahreisezug) - rmv306 (DPN - Nahreisezug) - rmv307 (DPN - Nahreisezug) - rmv308 (DPN - Nahreisezug) - rmv309 (DPN - Nahreisezug) - rmv316 (DPN - Nahreisezug) - rmv317 (DPN - Nahreisezug) - rmv319 (DPN - Nahreisezug) - rmv322 (DPN - Nahreisezug) - rmv323 (DPN - Nahreisezug) - rmv333 (DPN - Nahreisezug) - rmv392 (DPN - Nahreisezug) - rmv394 (DPN - Nahreisezug) - rmv395 (DPN - Nahreisezug) - rmv396 (DPN - Nahreisezug) - rmv397 (DPN - Nahreisezug) - rmv398 (DPN - Nahreisezug) - rmv399 (DPN - Nahreisezug) - rmv400 (DPN - Nahreisezug) - rmv401 (DPN - Nahreisezug) - rmv403 (DPN - Nahreisezug) - rmv404 (DPN - Nahreisezug) - rmv405 (DPN - Nahreisezug) - rmv406 (DPN - Nahreisezug) - rmv408 (DPN - Nahreisezug) - rmv412 (DPN - Nahreisezug) - rmv413 (DPN - Nahreisezug) - rmvALV (DPN - Nahreisezug) - rmvARG (DPN - Nahreisezug) - rmvBBW (DPN - Nahreisezug) - rmvBEC (DPN - Nahreisezug) - rmvCBU (DPN - Nahreisezug) - rmvDBR (DPN - Nahreisezug) - rmvERL (DPN - Nahreisezug) - rmvESE (DPN - Nahreisezug) - rmvFBB (DPN - Nahreisezug) - rmvFGR (DPN - Nahreisezug) - rmvFRI (DPN - Nahreisezug) - rmvFro (DPN - Nahreisezug) - rmvFSB (DPN - Nahreisezug) - rmvFUL (DPN - Nahreisezug) - rmvGBG (DPN - Nahreisezug) - rmvGIB (DPN - Nahreisezug) - rmvHEB (DPN - Nahreisezug) - rmvHGS (DPN - Nahreisezug) - rmvHLB (DPN - Nahreisezug) - rmvHTR (DPN - Nahreisezug) - rmvJUN (DPN - Nahreisezug) - rmvKAE (DPN - Nahreisezug) - rmvKOF (DPN - Nahreisezug) - rmvKRT (DPN - Nahreisezug) - rmvLGG (DPN - Nahreisezug) - rmvMUL (DPN - Nahreisezug) - rmvNVG (DPN - Nahreisezug) - rmvPoh (DPN - Nahreisezug) - rmvRAC (DPN - Nahreisezug) - rmvREV (DPN - Nahreisezug) - rmvRIN (DPN - Nahreisezug) - rmvRTO (DPN - Nahreisezug) - rmvRTV (DPN - Nahreisezug) - rmvSBB (DPN - Nahreisezug) - rmvSBO (DPN - Nahreisezug) - rmvSFB (DPN - Nahreisezug) - rmvSIL (DPN - Nahreisezug) - rmvSLM (DPN - Nahreisezug) - rmvSWF (DPN - Nahreisezug) - rmvSWK (DPN - Nahreisezug) - rmvSWN (DPN - Nahreisezug) - rmvSWR (DPN - Nahreisezug) - rmvTRD (DPN - Nahreisezug) - rmvVBB (DPN - Nahreisezug) - rmvVES (DPN - Nahreisezug) - rmvVIL (DPN - Nahreisezug) - rmvVLD (DPN - Nahreisezug) - rmvVUW (DPN - Nahreisezug) - rmvWB (DPN - Nahreisezug) - rmvWIN (DPN - Nahreisezug) - rmvWIR (DPN - Nahreisezug) - rmvWIS (DPN - Nahreisezug) - rmvWZV (DPN - Nahreisezug) - rohBus (DPN - Nahreisezug) - RS (RE - Regionalverkehre Start Deutschland GmbH) - RSNM (RB - Regionalverkehre Start Deutschland GmbH (Start Niedersachsen-Mitte)) - RSTN (STN - Regionalverkehre Start Deutschland GmbH (Start Taunus)) - RSUE (RE - Regionalverkehre Start Deutschland GmbH (Start Unterelbe)) - rvgRVG (DPN - Nahreisezug) - rvoRVO (RVO - Regionalverkehr Oberbayern) - rvvRVV (DPN - Nahreisezug) - RW (PRE - Pressnitztalbahn) - S0 (DPN - Nahreisezug) - S1 (DPN - Nahreisezug) - S3 (SWB - Stadtwerke Bonn) - S6 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - S7 (DPN - Nahreisezug) - S9 (ag - agilis) - SAB (SAB - Schwäbische Alb-Bahn) - SAD003 (SAD - Vinschgaubahn) - sadBUS (DPN - Nahreisezug) - SB (RB - Süd-Thüringen-Bahn GmbH) - sbpMU (DPN - Nahreisezug) - sbpRW (DPN - Nahreisezug) - sbpSK (DPN - Nahreisezug) - SBSBUS (DPN - Nahreisezug) - sbsbus (DPN - Nahreisezug) - SBSIRE (IRE - SWEG Bahn Stuttgart GmbH) - SBSMEX (MEX - SWEG Bahn Stuttgart GmbH) - SBSRB (RB - SWEG Bahn Stuttgart GmbH) - SBSRE (RE - SWEG Bahn Stuttgart GmbH) - SBX (RE - Süd-Thüringen-Bahn GmbH) - SD (DB - DB Regio AG Südost) - smrBus (DPN - Nahreisezug) - smrRfb (DPN - Nahreisezug) - snp001 (DPN - Nahreisezug) - snp002 (DPN - Nahreisezug) - spaBus (DPN - Nahreisezug) - srlBus (DPN - Nahreisezug) - sswssw (DPN - Nahreisezug) - sva006 (DPN - Nahreisezug) - svaBUS (DPN - Nahreisezug) - svaSTR (DPN - Nahreisezug) - svr001 (DPN - Nahreisezug) - SW (DPN - Nahreisezug) - swg099 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - swgSWB (DPN - Nahreisezug) - swlbus (DPN - Nahreisezug) - swm001 (DPN - Nahreisezug) - swm002 (DPN - Nahreisezug) - swm003 (DPN - Nahreisezug) - swpVBP (DPN - Nahreisezug) - swt_31 (DPN - Nahreisezug) - swt_32 (DPN - Nahreisezug) - swt_33 (DPN - Nahreisezug) - swt_35 (DPN - Nahreisezug) - swt_36 (DPN - Nahreisezug) - swt_37 (DPN - Nahreisezug) - swt_38 (DPN - Nahreisezug) - swt_39 (DPN - Nahreisezug) - swt001 (DPN - Nahreisezug) - swt007 (DPN - Nahreisezug) - swt009 (DPN - Nahreisezug) - swt014 (DPN - Nahreisezug) - swt021 (DPN - Nahreisezug) - swt022 (DPN - Nahreisezug) - swt023 (DPN - Nahreisezug) - swt024 (DPN - Nahreisezug) - swt025 (DPN - Nahreisezug) - swt026 (DPN - Nahreisezug) - swt028 (DPN - Nahreisezug) - swt030 (DPN - Nahreisezug) - swt031 (DPN - Nahreisezug) - swt032 (DPN - Nahreisezug) - swt033 (DPN - Nahreisezug) - swtb00 (DPN - Nahreisezug) - swtb01 (DPN - Nahreisezug) - swtb03 (DPN - Nahreisezug) - swtb12 (DPN - Nahreisezug) - swtb16 (DPN - Nahreisezug) - swtb19 (DPN - Nahreisezug) - swtb20 (DPN - Nahreisezug) - swtb21 (DPN - Nahreisezug) - swtb22 (DPN - Nahreisezug) - swtb24 (DPN - Nahreisezug) - swtb25 (DPN - Nahreisezug) - swtb27 (DPN - Nahreisezug) - swtb29 (DPN - Nahreisezug) - T8 (BRB - Bayerische Regiobahn) - TDHS (S - S-Bahn Hannover (Transdev)) - TDRR (RRB - RheinRuhrBahn (Transdev)) - tgo099 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - TR (RB - MittelrheinBahn (Trans Regio)) - TRI (TRI - TRI Train Rental GmbH) - tub001 (DPN - Nahreisezug) - tub003 (DPN - Nahreisezug) - tub004 (DPN - Nahreisezug) - tub007 (DPN - Nahreisezug) - tub008 (DPN - Nahreisezug) - tub009 (DPN - Nahreisezug) - tub010 (DPN - Nahreisezug) - tub015 (DPN - Nahreisezug) - tub022 (DPN - Nahreisezug) - tub030 (DPN - Nahreisezug) - tub031 (DPN - Nahreisezug) - tub033 (DPN - Nahreisezug) - tub034 (DPN - Nahreisezug) - tub035 (DPN - Nahreisezug) - tub036 (DPN - Nahreisezug) - tub038 (DPN - Nahreisezug) - tub041 (DPN - Nahreisezug) - tub042 (DPN - Nahreisezug) - tub044 (DPN - Nahreisezug) - tub048 (DPN - Nahreisezug) - tub049 (DPN - Nahreisezug) - tub051 (DPN - Nahreisezug) - tub053 (DPN - Nahreisezug) - tub054 (DPN - Nahreisezug) - tub061 (DPN - Nahreisezug) - tub068 (DPN - Nahreisezug) - tub069 (DPN - Nahreisezug) - tub071 (DPN - Nahreisezug) - tub072 (DPN - Nahreisezug) - tub079 (DPN - Nahreisezug) - tub090 (DPN - Nahreisezug) - tub093 (DPN - Nahreisezug) - tub094 (DPN - Nahreisezug) - tub095 (DPN - Nahreisezug) - tut001 (DPN - Nahreisezug) - UW (UBB - Usedomer Bäderbahn) - V6 (vlx - vlexx) - V6RB (RB - vlexx) - V6RE (RE - vlexx) - V7 (SVG - SVG Schienenverkehrsgesellschaft Stuttgart) - V9 (P - Wanderbahn im Regental) - vabsta (DPN - Nahreisezug) - vag010 (DPN - Nahreisezug) - vag011 (DPN - Nahreisezug) - vag013 (DPN - Nahreisezug) - vag014 (DPN - Nahreisezug) - vag060 (DPN - Nahreisezug) - vanbus (DPN - Nahreisezug) - vanstr (DPN - Nahreisezug) - vanuba (DPN - Nahreisezug) - vbb070 (DPN - Nahreisezug) - vbb071 (DPN - Nahreisezug) - vbb072 (DPN - Nahreisezug) - vbbBBG (DPN - Nahreisezug) - vbbBRB (DPN - Nahreisezug) - vbbBRT (DPN - Nahreisezug) - vbbBVB (DPN - Nahreisezug) - vbbBVF (DPN - Nahreisezug) - vbbBVT (DPN - Nahreisezug) - vbbBVU (DPN - Nahreisezug) - vbbCNB (DPN - Nahreisezug) - vbbCNT (DPN - Nahreisezug) - vbbFFB (DPN - Nahreisezug) - vbbFFT (DPN - Nahreisezug) - vbbGLA (DPN - Nahreisezug) - vbbHVG (DPN - Nahreisezug) - vbbMOB (DPN - Nahreisezug) - vbbORP (DPN - Nahreisezug) - vbbOSL (DPN - Nahreisezug) - vbbOVG (DPN - Nahreisezug) - vbbREI (DPN - Nahreisezug) - vbbRPM (DPN - Nahreisezug) - vbbRVS (DPN - Nahreisezug) - vbbSCH (DPN - Nahreisezug) - vbbSRS (DPN - Nahreisezug) - vbbSTE (DPN - Nahreisezug) - vbbSTF (DPN - Nahreisezug) - vbbSTG (DPN - Nahreisezug) - vbbUVG (DPN - Nahreisezug) - vbbVEE (DPN - Nahreisezug) - vbbVIB (DPN - Nahreisezug) - vbbVIF (DPN - Nahreisezug) - vbbVIT (DPN - Nahreisezug) - vbbVTF (DPN - Nahreisezug) - vgb00 (DPN - Nahreisezug) - vgm013 (DPN - Nahreisezug) - vgm020 (DPN - Nahreisezug) - vgm022 (DPN - Nahreisezug) - vgm023 (DPN - Nahreisezug) - vgm024 (DPN - Nahreisezug) - vgm025 (DPN - Nahreisezug) - vgm026 (DPN - Nahreisezug) - vgm028 (DPN - Nahreisezug) - vgm029 (DPN - Nahreisezug) - vgm030 (DPN - Nahreisezug) - vgm031 (DPN - Nahreisezug) - vgm032 (DPN - Nahreisezug) - vgm033 (DPN - Nahreisezug) - vgm034 (DPN - Nahreisezug) - vgm035 (DPN - Nahreisezug) - vgm036 (DPN - Nahreisezug) - vgm037 (DPN - Nahreisezug) - vgm038 (DPN - Nahreisezug) - vgm039 (DPN - Nahreisezug) - vgm040 (DPN - Nahreisezug) - vgm041 (DPN - Nahreisezug) - vgm042 (DPN - Nahreisezug) - vgm044 (DPN - Nahreisezug) - vgm045 (DPN - Nahreisezug) - vgm046 (DPN - Nahreisezug) - vgm047 (DPN - Nahreisezug) - vgm050 (DPN - Nahreisezug) - vgm051 (DPN - Nahreisezug) - vgm053 (DPN - Nahreisezug) - vgm060 (DPN - Nahreisezug) - vgm079 (DPN - Nahreisezug) - vgm092 (DPN - Nahreisezug) - vgm093 (WB - Westfalenbus) - vgm094 (DPN - Nahreisezug) - vgmb93 (WB - Westfalenbus) - vgn_16 (DPN - Nahreisezug) - vgn043 (DPN - Nahreisezug) - vgn061 (DPN - Nahreisezug) - vgn063 (DPN - Nahreisezug) - vgn065 (DPN - Nahreisezug) - vgn068 (DPN - Nahreisezug) - vgn083 (DPN - Nahreisezug) - vgsARG (DPN - Nahreisezug) - vgsBar (DPN - Nahreisezug) - vgsBTV (DPN - Nahreisezug) - vgsKIR (DPN - Nahreisezug) - vgsKVS (DPN - Nahreisezug) - vgsLay (DPN - Nahreisezug) - vgsMLB (DPN - Nahreisezug) - vgsNVG (DPN - Nahreisezug) - vgsSAM (DPN - Nahreisezug) - vgsSBB (DPN - Nahreisezug) - vgsSBS (S - Saarbahn) - vgsVVB (DPN - Nahreisezug) - vgsZar (DPN - Nahreisezug) - vhb000 (DPN - Nahreisezug) - vhb002 (DPN - Nahreisezug) - vhb003 (DPN - Nahreisezug) - vmo004 (DPN - Nahreisezug) - vmo008 (DPN - Nahreisezug) - vmo010 (DPN - Nahreisezug) - vmo012 (DPN - Nahreisezug) - vmo050 (DPN - Nahreisezug) - vmo099 (DPN - Nahreisezug) - vms001 (DPN - Nahreisezug) - vms002 (DPN - Nahreisezug) - vms010 (DPN - Nahreisezug) - vms011 (DPN - Nahreisezug) - vms012 (DPN - Nahreisezug) - vms014 (DPN - Nahreisezug) - vms020 (DPN - Nahreisezug) - vms022 (DPN - Nahreisezug) - vms023 (DPN - Nahreisezug) - vms024 (DPN - Nahreisezug) - vms025 (DPN - Nahreisezug) - vms031 (DPN - Nahreisezug) - vms032 (DPN - Nahreisezug) - vms040 (DPN - Nahreisezug) - vms041 (DPN - Nahreisezug) - vms042 (DPN - Nahreisezug) - vms043 (DPN - Nahreisezug) - vms044 (DPN - Nahreisezug) - vms046 (DPN - Nahreisezug) - vms047 (DPN - Nahreisezug) - vms051 (DPN - Nahreisezug) - vms056 (DPN - Nahreisezug) - vms060 (DPN - Nahreisezug) - vms061 (DPN - Nahreisezug) - vms062 (DPN - Nahreisezug) - vms063 (DPN - Nahreisezug) - vms064 (DPN - Nahreisezug) - vms070 (DPN - Nahreisezug) - vms076 (DPN - Nahreisezug) - vms077 (DPN - Nahreisezug) - vms080 (DPN - Nahreisezug) - vms081 (DPN - Nahreisezug) - vms099 (DPN - Nahreisezug) - voe_12 (DPN - Nahreisezug) - voe_SB (DPN - Nahreisezug) - voe002 (DPN - Nahreisezug) - voe011 (DPN - Nahreisezug) - voe012 (DPN - Nahreisezug) - voe013 (DPN - Nahreisezug) - voe015 (DPN - Nahreisezug) - voe021 (DPN - Nahreisezug) - voe022 (DPN - Nahreisezug) - voe023 (DPN - Nahreisezug) - voe024 (DPN - Nahreisezug) - voe027 (DPN - Nahreisezug) - voe028 (DPN - Nahreisezug) - voe029 (DPN - Nahreisezug) - voe081 (DPN - Nahreisezug) - voe091 (DPN - Nahreisezug) - voeALT (DPN - Nahreisezug) - voeBU3 (DPN - Nahreisezug) - voeBU4 (DPN - Nahreisezug) - voeFAE (DPN - Nahreisezug) - voeSTR (DPN - Nahreisezug) - voeSWB (DPN - Nahreisezug) - vogBus (DPN - Nahreisezug) - von026 (DPN - Nahreisezug) - von027 (DPN - Nahreisezug) - von030 (DPN - Nahreisezug) - von031 (DPN - Nahreisezug) - von032 (DPN - Nahreisezug) - von042 (DPN - Nahreisezug) - von044 (DPN - Nahreisezug) - von052 (DPN - Nahreisezug) - von062 (DPN - Nahreisezug) - von064 (DPN - Nahreisezug) - von065 (DPN - Nahreisezug) - von069 (DPN - Nahreisezug) - vpeAST (DPN - Nahreisezug) - vpeBus (DPN - Nahreisezug) - vph063 (DPN - Nahreisezug) - vph071 (DPN - Nahreisezug) - vph072 (DPN - Nahreisezug) - vph073 (DPN - Nahreisezug) - vph074 (DPN - Nahreisezug) - vph075 (DPN - Nahreisezug) - vph076 (DPN - Nahreisezug) - vph077 (DPN - Nahreisezug) - vph078 (DPN - Nahreisezug) - vph079 (DPN - Nahreisezug) - vph080 (DPN - Nahreisezug) - vph081 (DPN - Nahreisezug) - vph082 (DPN - Nahreisezug) - vpo099 (DPN - Nahreisezug) - vrm002 (DPN - Nahreisezug) - vrm005 (DPN - Nahreisezug) - vrm006 (DPN - Nahreisezug) - vrm007 (DPN - Nahreisezug) - vrm008 (DPN - Nahreisezug) - vrm009 (DPN - Nahreisezug) - vrm011 (DPN - Nahreisezug) - vrm014 (DPN - Nahreisezug) - vrm015 (DPN - Nahreisezug) - vrm016 (DPN - Nahreisezug) - vrm017 (DPN - Nahreisezug) - vrm019 (DPN - Nahreisezug) - vrm020 (DPN - Nahreisezug) - vrm025 (DPN - Nahreisezug) - vrm031 (DPN - Nahreisezug) - vrm032 (DPN - Nahreisezug) - vrm036 (DPN - Nahreisezug) - vrm061 (DPN - Nahreisezug) - vrm066 (DPN - Nahreisezug) - vrm067 (DPN - Nahreisezug) - vrm068 (DPN - Nahreisezug) - vrm069 (DPN - Nahreisezug) - vrm070 (DPN - Nahreisezug) - vrm072 (DPN - Nahreisezug) - vrm073 (DPN - Nahreisezug) - vrm074 (DPN - Nahreisezug) - vrm077 (DPN - Nahreisezug) - vrm078 (DPN - Nahreisezug) - vrm083 (DPN - Nahreisezug) - vrm084 (DPN - Nahreisezug) - vrm085 (DPN - Nahreisezug) - vrn008 (STR - Rhein-Neckar-Verkehr GmbH) - vrn011 (STR - Rhein-Neckar-Verkehr GmbH) - vrn016 (DPN - Nahreisezug) - vrn017 (DPN - Nahreisezug) - vrn018 (DPN - Nahreisezug) - vrn019 (DPN - Nahreisezug) - vrn020 (DPN - Nahreisezug) - vrn022 (MNV - MNV Mittelhaardt Nahverkehrsgesellschaft) - vrn023 (DPN - Nahreisezug) - vrn025 (DPN - Nahreisezug) - vrn026 (DPN - Nahreisezug) - vrn027 (DPN - Nahreisezug) - vrn028 (H&P - Hetzler & Pfadt) - vrn029 (DPN - Nahreisezug) - vrn030 (DPN - Nahreisezug) - vrn032 (PAL - PalatinaBus) - vrn033 (DPN - Nahreisezug) - vrn040 (DPN - Nahreisezug) - vrn041 (DPN - Nahreisezug) - vrn043 (DPN - Nahreisezug) - vrn047 (DPN - Nahreisezug) - vrn049 (DPN - Nahreisezug) - vrn050 (QNV - QNV Queichtal Nahverkehr) - vrn051 (DPN - Nahreisezug) - vrn053 (DPN - Nahreisezug) - vrn057 (DPN - Nahreisezug) - vrn058 (DPN - Nahreisezug) - vrn059 (DPN - Nahreisezug) - vrn062 (DPN - Nahreisezug) - vrn068 (DPN - Nahreisezug) - vrn073 (DPN - Nahreisezug) - vrn074 (DPN - Nahreisezug) - vrn076 (DPN - Nahreisezug) - vrn078 (DPN - Nahreisezug) - vrn079 (DPN - Nahreisezug) - vrn080 (DPN - Nahreisezug) - vrn081 (DPN - Nahreisezug) - vrn082 (DPN - Nahreisezug) - vrn083 (DPN - Nahreisezug) - vrn095 (DPN - Nahreisezug) - vrnOEG (RNV - Rhein-Neckar-Verkehr GmbH (Oberrheinische Eisenbahn)) - vrnRHB (RNV - Rhein-Neckar-Verkehr GmbH (Rhein-Haardtbahn)) - vrr001 (DPN - Nahreisezug) - vrr002 (DPN - Nahreisezug) - vrr010 (DPN - Nahreisezug) - vrr011 (DPN - Nahreisezug) - vrr012 (DPN - Nahreisezug) - vrr013 (DPN - Nahreisezug) - vrr015 (DPN - Nahreisezug) - vrr016 (DPN - Nahreisezug) - vrr018 (DPN - Nahreisezug) - vrr020 (DPN - Nahreisezug) - vrr021 (DPN - Nahreisezug) - vrr023 (DPN - Nahreisezug) - vrr025 (DPN - Nahreisezug) - vrr029 (DPN - Nahreisezug) - vrr030 (DPN - Nahreisezug) - vrr031 (DPN - Nahreisezug) - vrr032 (DPN - Nahreisezug) - vrr033 (DPN - Nahreisezug) - vrr034 (DPN - Nahreisezug) - vrr035 (DPN - Nahreisezug) - vrr036 (DPN - Nahreisezug) - vrr037 (DPN - Nahreisezug) - vrr038 (DPN - Nahreisezug) - vrr039 (DPN - Nahreisezug) - vrr040 (DPN - Nahreisezug) - vrr045 (DPN - Nahreisezug) - vrr050 (DPN - Nahreisezug) - vrr060 (DPN - Nahreisezug) - vrr064 (DPN - Nahreisezug) - vrr065 (DPN - Nahreisezug) - vrr066 (DPN - Nahreisezug) - vrr070 (DPN - Nahreisezug) - vrr071 (DPN - Nahreisezug) - vrr072 (DPN - Nahreisezug) - vrr073 (DPN - Nahreisezug) - vrr075 (DPN - Nahreisezug) - vrr076 (DPN - Nahreisezug) - vrr077 (DPN - Nahreisezug) - vrr080 (DPN - Nahreisezug) - vrr088 (BVR - Busverkehr Rheinland) - vrs001 (DPN - Nahreisezug) - vrs003 (DPN - Nahreisezug) - vrs006 (DPN - Nahreisezug) - vrs008 (DPN - Nahreisezug) - vrs011 (DPN - Nahreisezug) - vrs012 (DPN - Nahreisezug) - vrs013 (DPN - Nahreisezug) - vrs014 (DPN - Nahreisezug) - vrs016 (DPN - Nahreisezug) - vrs017 (DPN - Nahreisezug) - vrs021 (DPN - Nahreisezug) - vrs022 (DPN - Nahreisezug) - vrs023 (DPN - Nahreisezug) - vrs024 (DPN - Nahreisezug) - vrs025 (DPN - Nahreisezug) - vrs028 (DPN - Nahreisezug) - vrs029 (DPN - Nahreisezug) - vrs060 (DPN - Nahreisezug) - vrs063 (DPN - Nahreisezug) - vsh001 (DPN - Nahreisezug) - vsh010 (DPN - Nahreisezug) - vsh020 (DPN - Nahreisezug) - vuvab (VU - Verkehrsgesellschaft mbH Untermain) - vvs012 (WEG - Württembergische Eisenbahn-Gesellschaft mbH) - vvs020 (DPN - Nahreisezug) - vvs021 (DPN - Nahreisezug) - vvs030 (DPN - Nahreisezug) - vvs031 (DPN - Nahreisezug) - vvs033 (DPN - Nahreisezug) - vvs034 (DPN - Nahreisezug) - vvs035 (DPN - Nahreisezug) - vvs041 (DPN - Nahreisezug) - vvs050 (DPN - Nahreisezug) - vvs051 (DPN - Nahreisezug) - vvs052 (DPN - Nahreisezug) - vvs055 (DPN - Nahreisezug) - vvs077 (DPN - Nahreisezug) - vvs078 (DPN - Nahreisezug) - vwmBuS (DPN - Nahreisezug) - vwmNAH (DPN - Nahreisezug) - vwmStr (DPN - Nahreisezug) - vwmVLP (DPN - Nahreisezug) - vws003 (DPN - Nahreisezug) - vws005 (DPN - Nahreisezug) - vws007 (DPN - Nahreisezug) - W0 (WDR - Wyker Dampfschiffs-Reederei Föhr-Amrum GmbH) - W2 (Dab - Daadetalbahn) - W3 (WFB - WestfalenBahn) - W6 (WTB - Wutachtalbahn) - W9 (WBA - waldbahn - Die Länderbahn GmbH DLB) - wabBus (DPN - Nahreisezug) - web_AN (DPN - Nahreisezug) - web_HB (DPN - Nahreisezug) - web_OF (DPN - Nahreisezug) - web_OS (DPN - Nahreisezug) - web002 (DPN - Nahreisezug) - web005 (DPN - Nahreisezug) - web006 (DPN - Nahreisezug) - web018 (DPN - Nahreisezug) - web019 (DPN - Nahreisezug) - webALL (DPN - Nahreisezug) - webAND (DPN - Nahreisezug) - webARE (DPN - Nahreisezug) - webAST (DPN - Nahreisezug) - webBBU (DPN - Nahreisezug) - webBEC (DPN - Nahreisezug) - webBPU (DPN - Nahreisezug) - webBRU (DPN - Nahreisezug) - webBTR (STR - Bremer Straßenbahn AG) - webBVB (DPN - Nahreisezug) - webBVS (DPN - Nahreisezug) - webDEL (DPN - Nahreisezug) - webDHE (DPN - Nahreisezug) - webEDZ (DPN - Nahreisezug) - webEMS (DPN - Nahreisezug) - webEVB (DPN - Nahreisezug) - webFAS (DPN - Nahreisezug) - webFIS (DPN - Nahreisezug) - webFLX (DPN - Nahreisezug) - webGEB (DPN - Nahreisezug) - webGER (DPN - Nahreisezug) - webGIE (DPN - Nahreisezug) - webGOE (DPN - Nahreisezug) - webGOS (DPN - Nahreisezug) - webHAR (DPN - Nahreisezug) - webHDK (DPN - Nahreisezug) - webHKR (DPN - Nahreisezug) - webHM (DPN - Nahreisezug) - webHUT (DPN - Nahreisezug) - webHVG (DPN - Nahreisezug) - webJAC (DPN - Nahreisezug) - webjan (DPN - Nahreisezug) - webKAR (DPN - Nahreisezug) - webKBA (DPN - Nahreisezug) - webKRR (DPN - Nahreisezug) - webKVG (DPN - Nahreisezug) - webLSE (DPN - Nahreisezug) - webMEY (DPN - Nahreisezug) - webNIE (DPN - Nahreisezug) - webNOH (DPN - Nahreisezug) - webNOR (DPN - Nahreisezug) - webONS (DPN - Nahreisezug) - webOS1 (DPN - Nahreisezug) - webOSV (DPN - Nahreisezug) - webRA1 (DPN - Nahreisezug) - webRBG (DPN - Nahreisezug) - webRVH (DPN - Nahreisezug) - webSAL (DPN - Nahreisezug) - webSTO (DPN - Nahreisezug) - webSVG (DPN - Nahreisezug) - webSWE (DPN - Nahreisezug) - webSWH (DPN - Nahreisezug) - webSZG (DPN - Nahreisezug) - webTMW (DPN - Nahreisezug) - webUEB (DPN - Nahreisezug) - webUET (STB - üstra Hannoversche Verkehrsbetriebe AG) - webUFF (DPN - Nahreisezug) - webVBB (DPN - Nahreisezug) - webVBN (DPN - Nahreisezug) - webVBW (DPN - Nahreisezug) - webVGE (DPN - Nahreisezug) - webVGH (DPN - Nahreisezug) - webVGP (DPN - Nahreisezug) - webVGV (DPN - Nahreisezug) - webVGW (DPN - Nahreisezug) - webVL1 (DPN - Nahreisezug) - webVLG (DPN - Nahreisezug) - webVO8 (DPN - Nahreisezug) - webVOH (DPN - Nahreisezug) - webVOL (DPN - Nahreisezug) - webVOS (DPN - Nahreisezug) - webVSN (DPN - Nahreisezug) - webVWG (DPN - Nahreisezug) - webWHV (DPN - Nahreisezug) - webWIN (DPN - Nahreisezug) - webWIS (DPN - Nahreisezug) - webWOB (DPN - Nahreisezug) - webWSF (DPN - Nahreisezug) - webXOS (WEB - Weser-Ems-Bus) - webYGO (RBB - Regionalbus Braunschweig GmbH) - webYUE (RBB - Regionalbus Braunschweig GmbH) - webYUZ (DPN - Nahreisezug) - wenBUS (DPN - Nahreisezug) - WL (RB - Kreisbahn Mansfelder Land) - wstwst (DPN - Nahreisezug) - wvvBUS (DPN - Nahreisezug) - wvvSTR (DPN - Nahreisezug) - wzlBus (DPN - Nahreisezug) - X1 (erx - erixx) - X2 (erx - erixx) - Y0 (SCH - Adler-Schiffe) - Y8 (BRB - Bayerische Regiobahn) - Z8 (BZB - Bayerische Zugspitzbahn) - Z9 (P - Rhön-Zügle) - zsbteg (DPN - Nahreisezug) - zvv008 (DPN - Nahreisezug) - zvv018 (DPN - Nahreisezug) - zvv019 (DPN - Nahreisezug) - zvv041 (DPN - Nahreisezug) note: list is not exhausting and more undocumented values may be returned
-   * @type {string}
-   * @memberof Administration
-   */
-  administrationID: string;
-  /**
-   * Unique code of the operator [Betreiber].
-   * @type {string}
-   * @memberof Administration
-   */
-  operatorCode: string;
-  /**
-   * Name of the operator [Betreiber].
-   * @type {string}
-   * @memberof Administration
-   */
-  operatorName: string;
+	/**
+	 * Unique id of the administration [Verwaltung]. - 8 (S - S-Bahn Berlin) - 19 (EST - EUROSTAR) - 51 (PKP - PKP Intercity) - 53 (DPN - Nahreisezug) - 54 (CD - Ceske Drahy) - 55 (MAV - MAV) - 56 (ZSS - ZSSK) - 71 (REN - RENFE) - 74 (SJ - SJ) - 78 (HZ - HZPP) - 79 (SZ - Slovenske zeleznice) - 80 (DB - DB Fernverkehr AG) - 81 (ÖBB - Österreichische Bundesbahnen) - 82 (CFL - CFL) - 83 (TI - Trenitalia) - 84 (NS - Nederlandse Spoorwegen) - 85 (SBB - SBB) - 86 (DSB - Dänische Staatsbahnen) - 87 (SCF - SNCF) - 88 (SCB - SNCB) - 3018 (THA - THALYS) - 3189 (ARV - ARRIVA vlaky) - 3230 (VBG - vogtlandbahn - Die Länderbahn GmbH DLB) - 3236 (WB - WESTbahn) - 3246 (IC - RegioJet) - 3270 (TN - TRENORD) - 3288 (GW - GW Train Regio) - 3332 (KZC - KZC Doprava s.r.o.) - 3393 (TGV - SNCF Voyages Deutschland) - 3613 (StB - Steiermarkbahn und Bus GmbH) - 80001 (S - S-Bahn Berlin) - 550043 (GyS - GySEV) - 743051 (ST - Snälltåget) - 800151 (DB - DB Regio AG Nordost) - 800153 (DB - DB Regio AG Nordost) - 800154 (DB - DB Regio AG Nordost) - 800155 (DB - DB Regio AG Nordost) - 800156 (DB - DB Regio AG Nordost) - 800157 (DB - DB Regio AG Nordost) - 800158 (DB - DB Regio AG Nordost) - 800159 (DB - DB Regio AG Nordost) - 800160 (DB - DB Regio AG Nordost) - 800161 (DB - DB Regio AG Nordost) - 800163 (DB - DB Regio AG Nordost) - 800165 (DB - DB Regio AG Nordost) - 800166 (DB - DB Regio AG Nordost) - 800201 (DB - DB Regio AG Nord) - 800271 (DB - DB Regio AG Nord) - 800279 (DB - DB Regio AG Nord) - 800292 (DB - DB Regio AG Nord) - 800293 (DB - DB Regio AG Nord) - 800295 (DB - DB Regio AG Nord) - 800310 (DB - DB Regio AG NRW) - 800318 (DB - DB Arriva) - 800333 (DB - DB Regio AG NRW) - 800337 (DB - DB Regio AG NRW) - 800338 (DB - DB Regio AG NRW) - 800348 (DB - DB Regio AG NRW) - 800349 (DB - DB Regio AG NRW) - 800351 (DB - DB Regio AG NRW) - 800352 (DB - DB Regio AG NRW) - 800354 (DB - DB Regio AG NRW) - 800363 (DB - DB Regio AG NRW) - 800413 (DB - DB Regio AG Südost) - 800417 (DB - DB Regio AG Südost) - 800430 (EGB - DB RegioNetz Verkehrs GmbH Erzgebirgsbahn) - 800445 (DB - DB Regio AG Südost) - 800456 (DB - DB Regio AG Südost) - 800469 (DB - DB Regio AG Südost) - 800478 (DB - DB Regio AG Südost) - 800486 (DB - DB Regio AG Südost) - 800487 (DB - DB Regio AG Südost) - 800489 (DB - DB Regio AG Südost) - 800523 (KHB - DB RegioNetz Verkehrs GmbH Kurhessenbahn) - 800528 (S - DB Regio AG S-Bahn Rhein-Main) - 800535 (DB - DB Regio AG Mitte) - 800553 (DB - DB Regio AG Mitte) - 800571 (DB - DB Regio AG Mitte) - 800572 (DB - DB Regio AG Mitte) - 800574 (DB - DB Regio AG Mitte) - 800603 (WFB - DB RegioNetz Verkehrs GmbH Westfrankenbahn) - 800622 (DB - DB Regio AG Baden-Württemberg) - 800631 (DB - DB Regio AG Baden-Württemberg) - 800632 (DB - DB Regio AG Baden-Württemberg) - 800640 (SWX - DB Regio AG Mitte SÜWEX) - 800643 (S - DB Regio AG S-Bahn Stuttgart) - 800647 (DB - DB Regio AG Baden-Württemberg) - 800659 (DB - DB Regio AG Baden-Württemberg) - 800693 (DB - DB Regio AG Baden-Württemberg) - 800694 (DB - DB Regio AG Baden-Württemberg) - 800714 (DB - DB Regio AG Bayern) - 800720 (DB - DB Regio AG Bayern) - 800721 (DB - DB Regio AG Bayern) - 800725 (S - DB Regio AG S-Bahn München) - 800734 (DB - DB Regio AG Bayern) - 800742 (DB - DB Regio AG Bayern) - 800746 (DB - DB Regio AG Bayern) - 800755 (DB - DB Regio AG Bayern) - 800759 (DB - DB Regio AG Bayern) - 800765 (DB - DB Regio AG Bayern) - 800767 (DB - DB Regio AG Bayern) - 800772 (DB - DB Regio AG Bayern) - 800785 (DB - DB Regio AG Bayern) - 800790 (DB - DB Regio AG Bayern) - 801512 (DB - DB Regio AG Mitte) - 801513 (DB - DB Regio AG Mitte) - 801518 (DB - DB Regio AG Mitte) - 801526 (DB - DB Regio AG Mitte) - 801539 (DB - DB Regio AG Mitte) - 801566 (DB - DB Regio AG Mitte) - 801591 (DB - DB Regio AG Mitte) - 801599 (DB - DB Regio AG Mitte) - 810003 (mbs - Montafoner Bahn) - 810005 (ZB - Zillertalbahn) - 810007 (SLB - Salzburger Lokalbahnen) - 810008 (STH - Stern & Hafferl Verkehrs-GmbH) - 810009 (WiL - Wiener Linien) - 810011 (R - Schneebergbahn) - 810017 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810021 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810023 (NÖV - NÖ Verkehrsorganisations-ges.m.b.H.) - 810024 (P - Waldviertler Schmalspurbahn) - 810025 (SLB - Salzburger Lokalbahnen) - 810028 (GyS - GySEV) - 810031 (STR - Linz Linien AG (Straßenbahn Stadt Linz)) - 810043 (ÖPO - ÖBB-Postbus) - 840037 (Rnt - R-net) - 840052 (Brg - Breng) - 840054 (Vll - Valleilijn) - 840055 (BN - Blauwnet) - 840100 (NS - Nederlandse Spoorwegen) - 840500 (ARR - Arriva Nederland) - 850022 (AB - Appenzeller Bahnen) - 850023 (TPC - Transports Publics du Chablais) - 850029 (MBC - Transports de la région Morges-Bière-Cossonay) - 850031 (BDW - BDWM Transport) - 850032 (BLM - Lauterbrunnen-Mürren) - 850033 (BLS - BLS AG) - 850035 (BOB - Berner Oberland-Bahnen) - 850038 (ASM - Aare Seeland mobil) - 850042 (MVR - Montreux-Vevey-Riviera) - 850043 (CJ - Chemins de fer du Jura) - 850044 (TRN - Transports Publics Neuchâtelois SA) - 850046 (FB - Forchbahn) - 850047 (FLP - Lugano-Ponte Tresa) - 850048 (MGB - Matterhorn Gotthard Bahn (fo)) - 850049 (FAR - Ferrovie Autolinee Regionali Ticinesi) - 850051 (FW - Frauenfeld-Wil) - 850053 (TPF - Transports publics fribourgeois) - 850055 (LEB - Lausanne-Echallens-Bercher) - 850056 (ASM - Aare Seeland mobil) - 850061 (TMR - Transports de Martigny et Régions (mc)) - 850064 (MOB - Montreux-Oberland Bernois) - 850065 (THU - THURBO) - 850066 (NSt - Nyon-St-Cergue-Morez) - 850072 (RhB - Rhätische Bahn) - 850073 (TRN - Transports Publics Neuchâtelois SA) - 850074 (RA - Regionalps) - 850078 (SZU - Sihltal-Zürich-Uetliberg-Bahn) - 850081 (ASM - Aare Seeland mobil) - 850082 (SOB - Schweizerische Südostbahn (sob)) - 850086 (ZB - Zentralbahn) - 850088 (RBS - Regionalverkehr Bern-Solothurn) - 850093 (MGB - Matterhorn Gotthard Bahn (bvz)) - 850096 (WSB - Wynental-und Suhrental-Bahn) - 850097 (TRA - Transports Vallée de Joux-Yverdon-Ste-Croix) - 850193 (URh - Untersee und Rhein) - 850195 (SBS - Schweizerische Bodensee-Schiffahrtsgesellschaft) - 850360 (BSB - Bodensee-Schiffsbetriebe) - 850371 (BC - Société coopérative du Chemin de fer - Musée Blonay-Chamby) - 850801 (PAG - PostAuto Schweiz) - 850846 (RVS - Regionale Verkehrsbetriebe Schaffhausen) - 853186 (SZR - Schiff Eglisau-Tössegg) - 853271 (ANA - Association neuchâteloise des Amis du Tramway ANAT) - 857200 (SBB - SBB) - 857206 (SBB - SBB) - 857210 (SBB - SBB) - 857221 (THU - THURBO) - 857231 (SBB - SBB) - 859014 (VDB - Verein Dampfbahn Bern) - 859999 (SBB - SBB) - 860087 (ARR - Arriva Danmark) - 861002 (DSB - Dänische Staatsbahnen) - 8006000 (DB - DB Regio AG Baden-Württemberg) - 0S (S - S-Bahn Hamburg) - 51KD (KD - Koleje Dolnoslaskie) - 51PR (PR - Polregio) - 51PR-Q (PR - Polregio) - 51PR-R (PR - Polregio) - 51PR-S (PR - Polregio) - 8002A3 (DB - DB Regio AG Nord) - 8002B5 (DB - DB Regio AG Nord) - 8003A5 (DB - DB Regio AG NRW) - 8003G1 (DB - DB Regio AG NRW) - 8003G2 (DB - DB Regio AG NRW) - 8003H5 (DB - DB Regio AG NRW) - 8003L1 (DB - DB Regio AG NRW) - 8003L2 (DB - DB Regio AG NRW) - 8003RL (DB - DB Regio AG NRW) - 8003S (DB - DB Regio AG NRW) - 8004A9 (DB - DB Regio AG Südost) - 8004L1 (DB - DB Regio AG Südost) - 8004NT (DB - DB Regio AG Südost) - 8004OB (OBS - DB RegioNetz Verkehrs GmbH Oberweißbacher Berg+Schwarzatalbahn) - 8005A4 (DB - DB Regio AG Mitte) - 8005KG (DB - DB Regio AG Mitte) - 8005MW (DB - DB Regio AG Mitte) - 8005ND (DB - DB Regio AG Mitte) - 8005SV (DB - Rhein-Mosel-Bus Ahrweiler) - 8006A7 (WFB - DB RegioNetz Verkehrs GmbH Westfrankenbahn) - 8006C4 (DB - DB Regio AG Baden-Württemberg) - 8006C5 (DB - DB Regio AG Baden-Württemberg) - 8006C6 (DB - DB Regio AG Baden-Württemberg) - 8006D1 (DB - DB Regio AG Baden-Württemberg) - 8006D2 (DB - DB Regio AG Baden-Württemberg) - 8006D6 (DB - DB Regio AG Baden-Württemberg) - 8006D8 (DB - DB Regio AG Baden-Württemberg) - 8006SH (DB - DB Regio AG Baden-Württemberg) - 8007D4 (DB - DB Regio AG Bayern) - 8007D5 (DB - DB Regio AG Bayern) - 8007DU (DB - DB Regio AG Bayern) - 8007H1 (DB - DB Regio AG Bayern) - 8007H2 (DB - DB Regio AG Bayern) - 8013D (SOB - DB RegioNetz Verkehrs GmbH Südostbayernbahn) - 8013E (SOB - DB RegioNetz Verkehrs GmbH Südostbayernbahn) - 8015A1 (DB - DB Regio AG Mitte) - 8015A6 (DB - DB Regio AG Mitte) - 8015FR (DB - DB Regio AG Mitte) - 8015H9 (DB - DB Regio AG Mitte) - 80SEV (DB - DB Fernverkehr AG) - 80SSP (D - Sylt Shuttle Plus) - 80TRI (EC - DB/SBB/TI) - 81GE43 (DPN - Nahreisezug) - 857LEX (LEX - LEX) - 85DBSH (SBB - SBB) - A0 (AKN - AKN Eisenbahn GmbH) - A5 (VEN - Rhenus Veniro) - A6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6FEX (DPN - Nahreisezug) - A6S1 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S11 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S12 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S31 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S32 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S34 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S4 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S41 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S42 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S5 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S51 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S52 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S7 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S71 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S8 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A6S81 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - A8N (ALX - alex - Die Länderbahn GmbH DLB) - A9 (ag - agilis) - aav006 (DPN - Nahreisezug) - aavARN (DPN - Nahreisezug) - aavARR (DPN - Nahreisezug) - aavASE (DPN - Nahreisezug) - aavDKB (DPN - Nahreisezug) - aavNET (DPN - Nahreisezug) - aavTEC (DPN - Nahreisezug) - AB (ABR - SWEG Bahn Stuttgart GmbH) - ABIRE (IRE - SWEG Bahn Stuttgart GmbH) - ABRB (RB - SWEG Bahn Stuttgart GmbH) - ABRE (RE - SWEG Bahn Stuttgart GmbH) - ak_AK (AK - Autokraft) - ak_DRN (DIB - Dithmarschenbus (DB Regio Bus Nord GmbH)) - ak_SVG (SVG - Sylter Verkehrsgesellschaft) - ak_SVL (DPN - Nahreisezug) - ak_SWN (DPN - Nahreisezug) - ak_VIN (DPN - Nahreisezug) - ak_VKP (DPN - Nahreisezug) - ak_VSF (DPN - Nahreisezug) - akAK_A (DPN - Nahreisezug) - akAKTI (DPN - Nahreisezug) - akDRNA (DPN - Nahreisezug) - akECKE (DPN - Nahreisezug) - akKVGK (DPN - Nahreisezug) - akROH (DPN - Nahreisezug) - akSFKK (DPN - Nahreisezug) - akTRAN (DPN - Nahreisezug) - akVINA (DPN - Nahreisezug) - akWDR (DPN - Nahreisezug) - AL (DWE - Dessau-Wörlitzer Eisenbahn) - ald012 (DPN - Nahreisezug) - ald020 (DPN - Nahreisezug) - ald021 (DPN - Nahreisezug) - ald022 (DPN - Nahreisezug) - ald023 (DPN - Nahreisezug) - ald024 (DPN - Nahreisezug) - ald025 (DPN - Nahreisezug) - ald030 (DPN - Nahreisezug) - ald044 (DPN - Nahreisezug) - ald046 (DPN - Nahreisezug) - ald065 (DPN - Nahreisezug) - ald067 (DPN - Nahreisezug) - ald069 (DPN - Nahreisezug) - ald072 (DPN - Nahreisezug) - ald073 (DPN - Nahreisezug) - ald075 (DPN - Nahreisezug) - ald077 (DPN - Nahreisezug) - ald083 (DPN - Nahreisezug) - ald084 (DPN - Nahreisezug) - ald087 (DPN - Nahreisezug) - ald091 (DPN - Nahreisezug) - ald093 (DPN - Nahreisezug) - ald094 (DPN - Nahreisezug) - ald095 (DPN - Nahreisezug) - ald096 (DPN - Nahreisezug) - ald099 (DPN - Nahreisezug) - AM (ABR - Abellio Rail Mitteldeutschland GmbH) - AMHBX (HBX - Abellio Rail Mitteldeutschland GmbH) - AMRB (RB - Abellio Rail Mitteldeutschland GmbH) - AMRE (RE - Abellio Rail Mitteldeutschland GmbH) - AMS (S - Abellio Rail Mitteldeutschland GmbH) - aoeBus (DPN - Nahreisezug) - apg__1 (DPN - Nahreisezug) - avv009 (DPN - Nahreisezug) - avvBus (DPN - Nahreisezug) - B1 (DB - DB Regio AG Nord) - B1EDZ (DPN - Nahreisezug) - B2 (DB - DB Regio AG NRW) - B3 (P - Brohltalbahn) - B4 (S - DB Regio AG S-Bahn Rhein-Main) - B5 (DB - DB Regio AG Mitte) - B6 (DB - DB Regio AG Baden-Württemberg) - B7 (DPN - Nahreisezug) - bacBus (DPN - Nahreisezug) - bambus (DPN - Nahreisezug) - bayaut (DPN - Nahreisezug) - BB (DB - DB Regio AG Nordost) - bcl001 (DPN - Nahreisezug) - BD (SDG - SDG Sächsische Dampfeisenbahngesellschaft mbH) - BE (BE - Bentheimer Eisenbahn) - bod000 (DPN - Nahreisezug) - bod001 (DPN - Nahreisezug) - bod002 (DPN - Nahreisezug) - bod003 (DPN - Nahreisezug) - bod004 (DPN - Nahreisezug) - bod005 (DPN - Nahreisezug) - bod006 (DPN - Nahreisezug) - bod008 (DPN - Nahreisezug) - bod012 (DPN - Nahreisezug) - bod013 (DPN - Nahreisezug) - bod014 (DPN - Nahreisezug) - bod015 (DPN - Nahreisezug) - bod018 (DPN - Nahreisezug) - bod019 (DPN - Nahreisezug) - bod020 (DPN - Nahreisezug) - bod031 (DPN - Nahreisezug) - BurBus (DPN - Nahreisezug) - BW (DB - DB Regio AG Nordost) - byr001 (DPN - Nahreisezug) - C6 (KTB - Kandertalbahn) - C8 (LEO - Chiemgauer Lokalbahn) - CD (CB - City-Bahn Chemnitz) - cha016 (DPN - Nahreisezug) - cobBus (DPN - Nahreisezug) - css002 (P - Chiemseebahn) - csscss (DPN - Nahreisezug) - cw001 (DPN - Nahreisezug) - cw010 (DPN - Nahreisezug) - CX (MRB - Mitteldeutsche Regiobahn) - CXRB (RB - Mitteldeutsche Regiobahn) - CXRE (RE - Mitteldeutsche Regiobahn) - D3 (RTB - Rurtalbahn) - daf005 (DPN - Nahreisezug) - dgfBus (DPN - Nahreisezug) - drbBUS (DPN - Nahreisezug) - E0 (EVB - EVB ELBE-WESER GmbH) - E3 (P - Kasbachtalbahn) - EB (RB - Erfurter Bahn GmbH) - ED (FEG - Freiberger Eisenbahngesellschaft) - estbus (DPN - Nahreisezug) - etgBus (DPN - Nahreisezug) - EX (RE - Erfurter Bahn GmbH) - F1 (DPN - Nahreisezug) - F7 (RB - Bodensee-Oberschwaben-Bahn) - fds002 (DPN - Nahreisezug) - fdsBus (DPN - Nahreisezug) - FisBus (DPN - Nahreisezug) - FLX10 (FLX - FlixTrain) - FLX11 (FLX - FlixTrain) - FLX15 (FLX - FlixTrain) - FLX20 (FLX - FlixTrain) - FLX30 (FLX - FlixTrain) - FLX35 (FLX - FlixTrain) - frg001 (DPN - Nahreisezug) - fuebus (DPN - Nahreisezug) - fwzBus (DPN - Nahreisezug) - GA (GA - Go-Ahead Baden-Württemberg GmbH) - GAIRE (IRE - Go-Ahead Baden-Württemberg GmbH) - GAMEX (MEX - Go-Ahead Baden-Württemberg GmbH) - GARB (RB - Go-Ahead Baden-Württemberg GmbH) - GARE (RE - Go-Ahead Baden-Württemberg GmbH) - ge2GEV (DPN - Nahreisezug) - ge3GEV (DPN - Nahreisezug) - geiBus (DPN - Nahreisezug) - gf2001 (DPN - Nahreisezug) - gfn011 (DPN - Nahreisezug) - gfn012 (DPN - Nahreisezug) - gfn015 (DPN - Nahreisezug) - gfn020 (DPN - Nahreisezug) - ghuBus (DPN - Nahreisezug) - grhBus (DPN - Nahreisezug) - GY (GA - Go-Ahead Bayern GmbH) - GYRB (RB - Go-Ahead Bayern GmbH) - GYRE (RE - Go-Ahead Bayern GmbH) - H4 (RT - RegioTram) - H6 (HzL - Hohenzollerische Landesbahn (SWEG)) - H7 (HzL - Hohenzollerische Landesbahn (SWEG)) - hggBus (DPN - Nahreisezug) - HL (HSB - Harzer Schmalspurbahn) - hnv030 (DPN - Nahreisezug) - hnv031 (DPN - Nahreisezug) - hnv034 (DPN - Nahreisezug) - hnv050 (DPN - Nahreisezug) - hof004 (DPN - Nahreisezug) - hvv001 (DPN - Nahreisezug) - hvvDAH (DPN - Nahreisezug) - hvvHAD (DPN - Nahreisezug) - hvvHHA (DPN - Nahreisezug) - hvvHOX (DPN - Nahreisezug) - hvvKVI (DPN - Nahreisezug) - hvvLIZ (DPN - Nahreisezug) - hvvRAO (DPN - Nahreisezug) - hvvRMV (DPN - Nahreisezug) - hvvVHH (DPN - Nahreisezug) - hvvVLP (DPN - Nahreisezug) - invBus (DPN - Nahreisezug) - K4 (HLB - HLB Hessenbahn GmbH) - K4RB (HLB - HLB Hessenbahn GmbH) - K4RE (HLB - HLB Hessenbahn GmbH) - K6 (AVG - Albtal-Verkehrs-Gesellschaft mbH) - KD (KD - Köln-Düsseldorfer Deutsche Rheinschifffahrt GmbH) - kis001 (DPN - Nahreisezug) - kolbus (DPN - Nahreisezug) - kraBus (DPN - Nahreisezug) - krgBus (DPN - Nahreisezug) - kulBus (DPN - Nahreisezug) - kvg001 (DPN - Nahreisezug) - kvv002 (DPN - Nahreisezug) - kvv003 (DPN - Nahreisezug) - kvv004 (DPN - Nahreisezug) - kvv006 (DPN - Nahreisezug) - kvv010 (DPN - Nahreisezug) - kvv011 (DPN - Nahreisezug) - kvv012 (DPN - Nahreisezug) - kvv015 (DPN - Nahreisezug) - kvv017 (DPN - Nahreisezug) - kvv021 (DPN - Nahreisezug) - kvv023 (DPN - Nahreisezug) - kvv024 (DPN - Nahreisezug) - kvv025 (DPN - Nahreisezug) - kvv027 (DPN - Nahreisezug) - kvv028 (DPN - Nahreisezug) - kvv030 (DPN - Nahreisezug) - kvv041 (DPN - Nahreisezug) - kvv22E (DPN - Nahreisezug) - kvvFEX (DPN - Nahreisezug) - L7 (SBB - SBB GmbH) - L8 (BRB - Bayerische Regiobahn) - lamBus (DPN - Nahreisezug) - lanGEV (DPN - Nahreisezug) - LD (TL - trilex  - Die Länderbahn GmbH DLB) - LDTLX (TLX - trilex-express - Die Länderbahn GmbH DLB) - lklGEV (DPN - Nahreisezug) - M1 (P - Museumsbahn) - M2 (S - REGIOBAHN) - M2RE (R - REGIOBAHN) - M4 (VSE - Verein Sächsischer Eisenbahnfreunde) - M8 (BRB - Bayerische Regiobahn) - M9 (MSB - Mainschleifenbahn) - marmar (DPN - Nahreisezug) - marovf (DPN - Nahreisezug) - marrbk (DPN - Nahreisezug) - mvgb10 (DPN - Nahreisezug) - mvgb14 (DPN - Nahreisezug) - mvgb15 (DPN - Nahreisezug) - mvgb16 (DPN - Nahreisezug) - mvv099 (DPN - Nahreisezug) - mvvEBU (DPN - Nahreisezug) - mvvRBU (DPN - Nahreisezug) - mvvRFB (DPN - Nahreisezug) - MW (MBB - Mecklenburgische Bäderbahn Molli) - mzbBUS (DPN - Nahreisezug) - N0 (neg - Norddeutsche Eisenbahn Gesellschaft) - N1 (NWB - NordWestBahn) - N2 (NWB - NordWestBahn) - N4 (RB - cantus Verkehrsgesellschaft) - N4RE (RE - cantus Verkehrsgesellschaft) - N6 (SWE - Südwestdeutsche Landesverkehrs-GmbH) - N8 (P - BayernBahn GmbH) - nas001 (DPN - Nahreisezug) - nas003 (DPN - Nahreisezug) - nasBLK (DPN - Nahreisezug) - nasBOE (DPN - Nahreisezug) - nasDVG (DPN - Nahreisezug) - nasFWL (DPN - Nahreisezug) - nasHAB (DPN - Nahreisezug) - nasHAT (DPN - Nahreisezug) - nasHVB (DPN - Nahreisezug) - nasHVG (DPN - Nahreisezug) - nasKSB (DPN - Nahreisezug) - nasLVB (DPN - Nahreisezug) - nasLVT (DPN - Nahreisezug) - nasMBB (DPN - Nahreisezug) - nasMBT (DPN - Nahreisezug) - nasMQ (DPN - Nahreisezug) - nasNJL (DPN - Nahreisezug) - nasNTB (DPN - Nahreisezug) - nasOBS (DPN - Nahreisezug) - nasOVH (DPN - Nahreisezug) - nasRBM (DPN - Nahreisezug) - nasRL (DPN - Nahreisezug) - nasSAW (DPN - Nahreisezug) - nasSDL (DPN - Nahreisezug) - nasTHU (DPN - Nahreisezug) - nasVET (DPN - Nahreisezug) - nasVGS (DPN - Nahreisezug) - nasZel (DPN - Nahreisezug) - NB (RB - NEB Niederbarnimer Eisenbahn) - NBRB12 (RB - NEB Niederbarnimer Eisenbahn) - NBRB25 (RB - NEB Niederbarnimer Eisenbahn) - NBRB26 (RB - NEB Niederbarnimer Eisenbahn) - NBRB27 (RB - NEB Niederbarnimer Eisenbahn) - NBRB35 (RB - NEB Niederbarnimer Eisenbahn) - NBRB36 (RB - NEB Niederbarnimer Eisenbahn) - NBRB54 (RB - NEB Niederbarnimer Eisenbahn) - NBRB60 (RB - NEB Niederbarnimer Eisenbahn) - NBRB61 (RB - NEB Niederbarnimer Eisenbahn) - NBRB62 (RB - NEB Niederbarnimer Eisenbahn) - NBRB63 (RB - NEB Niederbarnimer Eisenbahn) - nvpBUS (DPN - Nahreisezug) - NWBus (NWB - NordWestBahn) - NX (NX - National Express) - NXRB (RB - National Express) - NXRE (RE - National Express) - NY (MSM - MSM Partyzug) - NYUEX (UEX - Urlaubs-Express) - NZ (RE - DB Fernverkehr AG) - O0 (NBE - Nordbahn Eisenbahngesellschaft) - O7 (ÖBA - Öchsle-Bahn-Betriebsgesellschaft mbH) - O9 (OPB - oberpfalzbahn - Die Länderbahn GmbH DLB) - O9X (OPX - oberpfalz-express - Die Länderbahn GmbH DLB) - OD (SOE - Sächsisch-Oberlausitzer Eisenbahngesellschaft) - omp001 (DPN - Nahreisezug) - omp003 (DPN - Nahreisezug) - omp007 (DPN - Nahreisezug) - omp014 (DPN - Nahreisezug) - omp022 (DPN - Nahreisezug) - omp024 (DPN - Nahreisezug) - omp033 (DPN - Nahreisezug) - omp035 (DPN - Nahreisezug) - omp043 (DPN - Nahreisezug) - omp047 (DPN - Nahreisezug) - omp048 (DPN - Nahreisezug) - omp050 (DPN - Nahreisezug) - omp051 (DPN - Nahreisezug) - omp052 (DPN - Nahreisezug) - omp053 (DPN - Nahreisezug) - omp054 (DPN - Nahreisezug) - omp055 (DPN - Nahreisezug) - omp056 (DPN - Nahreisezug) - omp057 (DPN - Nahreisezug) - omp058 (DPN - Nahreisezug) - omp059 (DPN - Nahreisezug) - omp062 (DPN - Nahreisezug) - omp063 (DPN - Nahreisezug) - omp065 (DPN - Nahreisezug) - omp066 (DPN - Nahreisezug) - omp067 (DPN - Nahreisezug) - omp069 (DPN - Nahreisezug) - omp070 (DPN - Nahreisezug) - omp071 (DPN - Nahreisezug) - omp072 (DPN - Nahreisezug) - omp073 (DPN - Nahreisezug) - omp074 (DPN - Nahreisezug) - omp075 (DPN - Nahreisezug) - omp077 (DPN - Nahreisezug) - omp079 (DPN - Nahreisezug) - omp085 (DPN - Nahreisezug) - omp086 (DPN - Nahreisezug) - omp088 (DPN - Nahreisezug) - omp092 (DPN - Nahreisezug) - omp093 (DPN - Nahreisezug) - omp094 (DPN - Nahreisezug) - omp095 (DPN - Nahreisezug) - omp096 (DPN - Nahreisezug) - omp098 (DPN - Nahreisezug) - omp099 (DPN - Nahreisezug) - omsBus (DPN - Nahreisezug) - ova002 (DPN - Nahreisezug) - ova035 (DPN - Nahreisezug) - ovaOVA (DPN - Nahreisezug) - ovfOVF (DPN - Nahreisezug) - OWBus (OE - Ostdeutsche Eisenbahn GmbH) - owl020 (DPN - Nahreisezug) - owl021 (DPN - Nahreisezug) - owl022 (DPN - Nahreisezug) - owl023 (DPN - Nahreisezug) - owl024 (DPN - Nahreisezug) - owl025 (DPN - Nahreisezug) - owl026 (DPN - Nahreisezug) - owl027 (DPN - Nahreisezug) - owl028 (DPN - Nahreisezug) - owl029 (DPN - Nahreisezug) - owl031 (STB - moBiel GmbH) - owl032 (DPN - Nahreisezug) - owl038 (DPN - Nahreisezug) - owl039 (DPN - Nahreisezug) - owl040 (DPN - Nahreisezug) - owl041 (DPN - Nahreisezug) - owl042 (DPN - Nahreisezug) - owl043 (DPN - Nahreisezug) - owl044 (DPN - Nahreisezug) - owl045 (DPN - Nahreisezug) - owl049 (DPN - Nahreisezug) - owl050 (DPN - Nahreisezug) - owl051 (DPN - Nahreisezug) - owl052 (DPN - Nahreisezug) - owl053 (DPN - Nahreisezug) - owl054 (DPN - Nahreisezug) - owl059 (DPN - Nahreisezug) - OWRB (RB - Ostdeutsche Eisenbahn GmbH) - OWRB13 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB14 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB15 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB19 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB33 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB46 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB51 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB64 (RB - Ostdeutsche Eisenbahn GmbH) - OWRB65 (RB - Ostdeutsche Eisenbahn GmbH) - OWRE (RE - Ostdeutsche Eisenbahn GmbH) - OWRE2 (RE - Ostdeutsche Eisenbahn GmbH) - OWRE4 (RE - Ostdeutsche Eisenbahn GmbH) - pafBus (DPN - Nahreisezug) - PB (RB - Hanseatische Eisenbahn GmbH) - pbaATT (DPN - Nahreisezug) - pbaitr (DPN - Nahreisezug) - pbaKB (ÖPO - ÖBB-Postbus) - pbaVVT (DPN - Nahreisezug) - pbaW3 (DPN - Nahreisezug) - pbaWR (ÖPO - ÖBB-Postbus) - prg091 (DPN - Nahreisezug) - R0 (ENO - enno) - R1 (ME - metronom) - R2 (ERB - eurobahn) - R2RB (RB - eurobahn) - R2RE (RE - eurobahn) - R4 (VIA - VIAS Rail GmbH) - R4NRN (VIA - VIAS Rail GmbH) - R4RB35 (VIA - VIAS Rail GmbH) - R4RH (VIA - VIAS GmbH) - R4S7 (VIA - VIAS Rail GmbH) - R4WEST (VIA - VIAS Rail GmbH) - R7 (HzL - Hohenzollerische Landesbahn (SWEG)) - rabRAB (RAB - Regionalverkehr Alb-Bodensee) - rbgAST (SBG - Südbadenbus) - rbgBBO (DPN - Nahreisezug) - rbgBER (DPN - Nahreisezug) - rbgBRN (BRN - Busverkehr Rhein-Neckar) - rbgBVH (DPN - Nahreisezug) - rbgFAB (DPN - Nahreisezug) - rbgFMO (FMO - Friedrich Müller Omnibusunternehmen GmbH) - rbgHMO (DPN - Nahreisezug) - rbgKNU (DPN - Nahreisezug) - rbgOVZ (DPN - Nahreisezug) - rbgRBG (DPN - Nahreisezug) - rbgRBS (RBS - Regiobus Stuttgart) - rbgRVS (RVS - Südwestbus) - rbgRVs (RVS - Südwestbus) - rbgSBG (SBG - Südbadenbus) - rbgWMR (DPN - Nahreisezug) - rboMB (DPN - Nahreisezug) - rbpORN (ORN - ORN Omnibusverkehr Rhein-Nahe GmbH (Rhein-Nahe-Bus)) - rbpRMA (DB - Rhein-Mosel-Bus Ahrweiler) - rbpRMB (DB - RMB Rhein-Mosel-Bus) - rbpRPB (RPB - Rheinpfalzbus) - rbpRU1 (DPN - Nahreisezug) - rbpRU2 (DPN - Nahreisezug) - rbpSAA (DPN - Nahreisezug) - rbpSWM (DB - DB Regio Bus Mitte) - rbr002 (DPN - Nahreisezug) - rbr003 (DPN - Nahreisezug) - rbr004 (DPN - Nahreisezug) - rbrBOS (DPN - Nahreisezug) - rbrOST (DPN - Nahreisezug) - rbrSBE (DPN - Nahreisezug) - rbrSEV (DPN - Nahreisezug) - rbrSNB (DPN - Nahreisezug) - RC (AZS - AUTOZUG Sylt) - RD (VBG - vogtlandbahn - Die Länderbahn GmbH DLB) - rmbwug (DPN - Nahreisezug) - rmpREB (DPN - Nahreisezug) - rmpRSG (DPN - Nahreisezug) - rmpUBB (DPN - Nahreisezug) - rmtEVA (DPN - Nahreisezug) - rmtEWB (DPN - Nahreisezug) - rmtFiS (DPN - Nahreisezug) - rmtGVB (DPN - Nahreisezug) - rmtIOV (DPN - Nahreisezug) - rmtJES (DPN - Nahreisezug) - rmtJNV (DPN - Nahreisezug) - rmtKOM (DPN - Nahreisezug) - rmtLWW (DPN - Nahreisezug) - rmtMBB (DPN - Nahreisezug) - rmtMKI (DPN - Nahreisezug) - rmtNDH (DPN - Nahreisezug) - rmtOVG (DPN - Nahreisezug) - rmtPVG (DPN - Nahreisezug) - rmtRBM (DPN - Nahreisezug) - rmtSal (DPN - Nahreisezug) - rmtSNG (DPN - Nahreisezug) - rmtSWG (DPN - Nahreisezug) - rmtTWS (DPN - Nahreisezug) - rmtVHO (DPN - Nahreisezug) - rmtVLG (DPN - Nahreisezug) - rmtVLO (DPN - Nahreisezug) - rmtVUS (DPN - Nahreisezug) - rmtVUW (DPN - Nahreisezug) - rmtVWG (DPN - Nahreisezug) - rmtVWO (DPN - Nahreisezug) - rmtWER (DPN - Nahreisezug) - rmtWGT (DPN - Nahreisezug) - rmv001 (DPN - Nahreisezug) - rmv007 (DPN - Nahreisezug) - rmv019 (DPN - Nahreisezug) - rmv020 (DPN - Nahreisezug) - rmv031 (DPN - Nahreisezug) - rmv045 (DPN - Nahreisezug) - rmv053 (DPN - Nahreisezug) - rmv061 (DPN - Nahreisezug) - rmv087 (DPN - Nahreisezug) - rmv099 (DPN - Nahreisezug) - rmv106 (DPN - Nahreisezug) - rmv117 (DPN - Nahreisezug) - rmv156 (DPN - Nahreisezug) - rmv158 (DPN - Nahreisezug) - rmv162 (DPN - Nahreisezug) - rmv163 (DPN - Nahreisezug) - rmv165 (DPN - Nahreisezug) - rmv168 (DPN - Nahreisezug) - rmv196 (DPN - Nahreisezug) - rmv211 (DPN - Nahreisezug) - rmv218 (DPN - Nahreisezug) - rmv222 (DPN - Nahreisezug) - rmv223 (DPN - Nahreisezug) - rmv224 (DPN - Nahreisezug) - rmv234 (DPN - Nahreisezug) - rmv238 (DPN - Nahreisezug) - rmv242 (DPN - Nahreisezug) - rmv243 (DPN - Nahreisezug) - rmv251 (DPN - Nahreisezug) - rmv254 (DPN - Nahreisezug) - rmv255 (DPN - Nahreisezug) - rmv257 (DPN - Nahreisezug) - rmv258 (DPN - Nahreisezug) - rmv260 (DPN - Nahreisezug) - rmv264 (DPN - Nahreisezug) - rmv265 (DPN - Nahreisezug) - rmv269 (DPN - Nahreisezug) - rmv272 (DPN - Nahreisezug) - rmv275 (DPN - Nahreisezug) - rmv277 (DPN - Nahreisezug) - rmv278 (DPN - Nahreisezug) - rmv282 (DPN - Nahreisezug) - rmv283 (DPN - Nahreisezug) - rmv284 (DPN - Nahreisezug) - rmv289 (DPN - Nahreisezug) - rmv290 (DPN - Nahreisezug) - rmv293 (DPN - Nahreisezug) - rmv294 (DPN - Nahreisezug) - rmv295 (DPN - Nahreisezug) - rmv297 (DPN - Nahreisezug) - rmv301 (DPN - Nahreisezug) - rmv304 (DPN - Nahreisezug) - rmv305 (DPN - Nahreisezug) - rmv306 (DPN - Nahreisezug) - rmv307 (DPN - Nahreisezug) - rmv308 (DPN - Nahreisezug) - rmv309 (DPN - Nahreisezug) - rmv316 (DPN - Nahreisezug) - rmv317 (DPN - Nahreisezug) - rmv319 (DPN - Nahreisezug) - rmv322 (DPN - Nahreisezug) - rmv323 (DPN - Nahreisezug) - rmv333 (DPN - Nahreisezug) - rmv392 (DPN - Nahreisezug) - rmv394 (DPN - Nahreisezug) - rmv395 (DPN - Nahreisezug) - rmv396 (DPN - Nahreisezug) - rmv397 (DPN - Nahreisezug) - rmv398 (DPN - Nahreisezug) - rmv399 (DPN - Nahreisezug) - rmv400 (DPN - Nahreisezug) - rmv401 (DPN - Nahreisezug) - rmv403 (DPN - Nahreisezug) - rmv404 (DPN - Nahreisezug) - rmv405 (DPN - Nahreisezug) - rmv406 (DPN - Nahreisezug) - rmv408 (DPN - Nahreisezug) - rmv412 (DPN - Nahreisezug) - rmv413 (DPN - Nahreisezug) - rmvALV (DPN - Nahreisezug) - rmvARG (DPN - Nahreisezug) - rmvBBW (DPN - Nahreisezug) - rmvBEC (DPN - Nahreisezug) - rmvCBU (DPN - Nahreisezug) - rmvDBR (DPN - Nahreisezug) - rmvERL (DPN - Nahreisezug) - rmvESE (DPN - Nahreisezug) - rmvFBB (DPN - Nahreisezug) - rmvFGR (DPN - Nahreisezug) - rmvFRI (DPN - Nahreisezug) - rmvFro (DPN - Nahreisezug) - rmvFSB (DPN - Nahreisezug) - rmvFUL (DPN - Nahreisezug) - rmvGBG (DPN - Nahreisezug) - rmvGIB (DPN - Nahreisezug) - rmvHEB (DPN - Nahreisezug) - rmvHGS (DPN - Nahreisezug) - rmvHLB (DPN - Nahreisezug) - rmvHTR (DPN - Nahreisezug) - rmvJUN (DPN - Nahreisezug) - rmvKAE (DPN - Nahreisezug) - rmvKOF (DPN - Nahreisezug) - rmvKRT (DPN - Nahreisezug) - rmvLGG (DPN - Nahreisezug) - rmvMUL (DPN - Nahreisezug) - rmvNVG (DPN - Nahreisezug) - rmvPoh (DPN - Nahreisezug) - rmvRAC (DPN - Nahreisezug) - rmvREV (DPN - Nahreisezug) - rmvRIN (DPN - Nahreisezug) - rmvRTO (DPN - Nahreisezug) - rmvRTV (DPN - Nahreisezug) - rmvSBB (DPN - Nahreisezug) - rmvSBO (DPN - Nahreisezug) - rmvSFB (DPN - Nahreisezug) - rmvSIL (DPN - Nahreisezug) - rmvSLM (DPN - Nahreisezug) - rmvSWF (DPN - Nahreisezug) - rmvSWK (DPN - Nahreisezug) - rmvSWN (DPN - Nahreisezug) - rmvSWR (DPN - Nahreisezug) - rmvTRD (DPN - Nahreisezug) - rmvVBB (DPN - Nahreisezug) - rmvVES (DPN - Nahreisezug) - rmvVIL (DPN - Nahreisezug) - rmvVLD (DPN - Nahreisezug) - rmvVUW (DPN - Nahreisezug) - rmvWB (DPN - Nahreisezug) - rmvWIN (DPN - Nahreisezug) - rmvWIR (DPN - Nahreisezug) - rmvWIS (DPN - Nahreisezug) - rmvWZV (DPN - Nahreisezug) - rohBus (DPN - Nahreisezug) - RS (RE - Regionalverkehre Start Deutschland GmbH) - RSNM (RB - Regionalverkehre Start Deutschland GmbH (Start Niedersachsen-Mitte)) - RSTN (STN - Regionalverkehre Start Deutschland GmbH (Start Taunus)) - RSUE (RE - Regionalverkehre Start Deutschland GmbH (Start Unterelbe)) - rvgRVG (DPN - Nahreisezug) - rvoRVO (RVO - Regionalverkehr Oberbayern) - rvvRVV (DPN - Nahreisezug) - RW (PRE - Pressnitztalbahn) - S0 (DPN - Nahreisezug) - S1 (DPN - Nahreisezug) - S3 (SWB - Stadtwerke Bonn) - S6 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - S7 (DPN - Nahreisezug) - S9 (ag - agilis) - SAB (SAB - Schwäbische Alb-Bahn) - SAD003 (SAD - Vinschgaubahn) - sadBUS (DPN - Nahreisezug) - SB (RB - Süd-Thüringen-Bahn GmbH) - sbpMU (DPN - Nahreisezug) - sbpRW (DPN - Nahreisezug) - sbpSK (DPN - Nahreisezug) - SBSBUS (DPN - Nahreisezug) - sbsbus (DPN - Nahreisezug) - SBSIRE (IRE - SWEG Bahn Stuttgart GmbH) - SBSMEX (MEX - SWEG Bahn Stuttgart GmbH) - SBSRB (RB - SWEG Bahn Stuttgart GmbH) - SBSRE (RE - SWEG Bahn Stuttgart GmbH) - SBX (RE - Süd-Thüringen-Bahn GmbH) - SD (DB - DB Regio AG Südost) - smrBus (DPN - Nahreisezug) - smrRfb (DPN - Nahreisezug) - snp001 (DPN - Nahreisezug) - snp002 (DPN - Nahreisezug) - spaBus (DPN - Nahreisezug) - srlBus (DPN - Nahreisezug) - sswssw (DPN - Nahreisezug) - sva006 (DPN - Nahreisezug) - svaBUS (DPN - Nahreisezug) - svaSTR (DPN - Nahreisezug) - svr001 (DPN - Nahreisezug) - SW (DPN - Nahreisezug) - swg099 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - swgSWB (DPN - Nahreisezug) - swlbus (DPN - Nahreisezug) - swm001 (DPN - Nahreisezug) - swm002 (DPN - Nahreisezug) - swm003 (DPN - Nahreisezug) - swpVBP (DPN - Nahreisezug) - swt_31 (DPN - Nahreisezug) - swt_32 (DPN - Nahreisezug) - swt_33 (DPN - Nahreisezug) - swt_35 (DPN - Nahreisezug) - swt_36 (DPN - Nahreisezug) - swt_37 (DPN - Nahreisezug) - swt_38 (DPN - Nahreisezug) - swt_39 (DPN - Nahreisezug) - swt001 (DPN - Nahreisezug) - swt007 (DPN - Nahreisezug) - swt009 (DPN - Nahreisezug) - swt014 (DPN - Nahreisezug) - swt021 (DPN - Nahreisezug) - swt022 (DPN - Nahreisezug) - swt023 (DPN - Nahreisezug) - swt024 (DPN - Nahreisezug) - swt025 (DPN - Nahreisezug) - swt026 (DPN - Nahreisezug) - swt028 (DPN - Nahreisezug) - swt030 (DPN - Nahreisezug) - swt031 (DPN - Nahreisezug) - swt032 (DPN - Nahreisezug) - swt033 (DPN - Nahreisezug) - swtb00 (DPN - Nahreisezug) - swtb01 (DPN - Nahreisezug) - swtb03 (DPN - Nahreisezug) - swtb12 (DPN - Nahreisezug) - swtb16 (DPN - Nahreisezug) - swtb19 (DPN - Nahreisezug) - swtb20 (DPN - Nahreisezug) - swtb21 (DPN - Nahreisezug) - swtb22 (DPN - Nahreisezug) - swtb24 (DPN - Nahreisezug) - swtb25 (DPN - Nahreisezug) - swtb27 (DPN - Nahreisezug) - swtb29 (DPN - Nahreisezug) - T8 (BRB - Bayerische Regiobahn) - TDHS (S - S-Bahn Hannover (Transdev)) - TDRR (RRB - RheinRuhrBahn (Transdev)) - tgo099 (SWE - SWEG Südwestdeutsche Landesverkehrs-GmbH) - TR (RB - MittelrheinBahn (Trans Regio)) - TRI (TRI - TRI Train Rental GmbH) - tub001 (DPN - Nahreisezug) - tub003 (DPN - Nahreisezug) - tub004 (DPN - Nahreisezug) - tub007 (DPN - Nahreisezug) - tub008 (DPN - Nahreisezug) - tub009 (DPN - Nahreisezug) - tub010 (DPN - Nahreisezug) - tub015 (DPN - Nahreisezug) - tub022 (DPN - Nahreisezug) - tub030 (DPN - Nahreisezug) - tub031 (DPN - Nahreisezug) - tub033 (DPN - Nahreisezug) - tub034 (DPN - Nahreisezug) - tub035 (DPN - Nahreisezug) - tub036 (DPN - Nahreisezug) - tub038 (DPN - Nahreisezug) - tub041 (DPN - Nahreisezug) - tub042 (DPN - Nahreisezug) - tub044 (DPN - Nahreisezug) - tub048 (DPN - Nahreisezug) - tub049 (DPN - Nahreisezug) - tub051 (DPN - Nahreisezug) - tub053 (DPN - Nahreisezug) - tub054 (DPN - Nahreisezug) - tub061 (DPN - Nahreisezug) - tub068 (DPN - Nahreisezug) - tub069 (DPN - Nahreisezug) - tub071 (DPN - Nahreisezug) - tub072 (DPN - Nahreisezug) - tub079 (DPN - Nahreisezug) - tub090 (DPN - Nahreisezug) - tub093 (DPN - Nahreisezug) - tub094 (DPN - Nahreisezug) - tub095 (DPN - Nahreisezug) - tut001 (DPN - Nahreisezug) - UW (UBB - Usedomer Bäderbahn) - V6 (vlx - vlexx) - V6RB (RB - vlexx) - V6RE (RE - vlexx) - V7 (SVG - SVG Schienenverkehrsgesellschaft Stuttgart) - V9 (P - Wanderbahn im Regental) - vabsta (DPN - Nahreisezug) - vag010 (DPN - Nahreisezug) - vag011 (DPN - Nahreisezug) - vag013 (DPN - Nahreisezug) - vag014 (DPN - Nahreisezug) - vag060 (DPN - Nahreisezug) - vanbus (DPN - Nahreisezug) - vanstr (DPN - Nahreisezug) - vanuba (DPN - Nahreisezug) - vbb070 (DPN - Nahreisezug) - vbb071 (DPN - Nahreisezug) - vbb072 (DPN - Nahreisezug) - vbbBBG (DPN - Nahreisezug) - vbbBRB (DPN - Nahreisezug) - vbbBRT (DPN - Nahreisezug) - vbbBVB (DPN - Nahreisezug) - vbbBVF (DPN - Nahreisezug) - vbbBVT (DPN - Nahreisezug) - vbbBVU (DPN - Nahreisezug) - vbbCNB (DPN - Nahreisezug) - vbbCNT (DPN - Nahreisezug) - vbbFFB (DPN - Nahreisezug) - vbbFFT (DPN - Nahreisezug) - vbbGLA (DPN - Nahreisezug) - vbbHVG (DPN - Nahreisezug) - vbbMOB (DPN - Nahreisezug) - vbbORP (DPN - Nahreisezug) - vbbOSL (DPN - Nahreisezug) - vbbOVG (DPN - Nahreisezug) - vbbREI (DPN - Nahreisezug) - vbbRPM (DPN - Nahreisezug) - vbbRVS (DPN - Nahreisezug) - vbbSCH (DPN - Nahreisezug) - vbbSRS (DPN - Nahreisezug) - vbbSTE (DPN - Nahreisezug) - vbbSTF (DPN - Nahreisezug) - vbbSTG (DPN - Nahreisezug) - vbbUVG (DPN - Nahreisezug) - vbbVEE (DPN - Nahreisezug) - vbbVIB (DPN - Nahreisezug) - vbbVIF (DPN - Nahreisezug) - vbbVIT (DPN - Nahreisezug) - vbbVTF (DPN - Nahreisezug) - vgb00 (DPN - Nahreisezug) - vgm013 (DPN - Nahreisezug) - vgm020 (DPN - Nahreisezug) - vgm022 (DPN - Nahreisezug) - vgm023 (DPN - Nahreisezug) - vgm024 (DPN - Nahreisezug) - vgm025 (DPN - Nahreisezug) - vgm026 (DPN - Nahreisezug) - vgm028 (DPN - Nahreisezug) - vgm029 (DPN - Nahreisezug) - vgm030 (DPN - Nahreisezug) - vgm031 (DPN - Nahreisezug) - vgm032 (DPN - Nahreisezug) - vgm033 (DPN - Nahreisezug) - vgm034 (DPN - Nahreisezug) - vgm035 (DPN - Nahreisezug) - vgm036 (DPN - Nahreisezug) - vgm037 (DPN - Nahreisezug) - vgm038 (DPN - Nahreisezug) - vgm039 (DPN - Nahreisezug) - vgm040 (DPN - Nahreisezug) - vgm041 (DPN - Nahreisezug) - vgm042 (DPN - Nahreisezug) - vgm044 (DPN - Nahreisezug) - vgm045 (DPN - Nahreisezug) - vgm046 (DPN - Nahreisezug) - vgm047 (DPN - Nahreisezug) - vgm050 (DPN - Nahreisezug) - vgm051 (DPN - Nahreisezug) - vgm053 (DPN - Nahreisezug) - vgm060 (DPN - Nahreisezug) - vgm079 (DPN - Nahreisezug) - vgm092 (DPN - Nahreisezug) - vgm093 (WB - Westfalenbus) - vgm094 (DPN - Nahreisezug) - vgmb93 (WB - Westfalenbus) - vgn_16 (DPN - Nahreisezug) - vgn043 (DPN - Nahreisezug) - vgn061 (DPN - Nahreisezug) - vgn063 (DPN - Nahreisezug) - vgn065 (DPN - Nahreisezug) - vgn068 (DPN - Nahreisezug) - vgn083 (DPN - Nahreisezug) - vgsARG (DPN - Nahreisezug) - vgsBar (DPN - Nahreisezug) - vgsBTV (DPN - Nahreisezug) - vgsKIR (DPN - Nahreisezug) - vgsKVS (DPN - Nahreisezug) - vgsLay (DPN - Nahreisezug) - vgsMLB (DPN - Nahreisezug) - vgsNVG (DPN - Nahreisezug) - vgsSAM (DPN - Nahreisezug) - vgsSBB (DPN - Nahreisezug) - vgsSBS (S - Saarbahn) - vgsVVB (DPN - Nahreisezug) - vgsZar (DPN - Nahreisezug) - vhb000 (DPN - Nahreisezug) - vhb002 (DPN - Nahreisezug) - vhb003 (DPN - Nahreisezug) - vmo004 (DPN - Nahreisezug) - vmo008 (DPN - Nahreisezug) - vmo010 (DPN - Nahreisezug) - vmo012 (DPN - Nahreisezug) - vmo050 (DPN - Nahreisezug) - vmo099 (DPN - Nahreisezug) - vms001 (DPN - Nahreisezug) - vms002 (DPN - Nahreisezug) - vms010 (DPN - Nahreisezug) - vms011 (DPN - Nahreisezug) - vms012 (DPN - Nahreisezug) - vms014 (DPN - Nahreisezug) - vms020 (DPN - Nahreisezug) - vms022 (DPN - Nahreisezug) - vms023 (DPN - Nahreisezug) - vms024 (DPN - Nahreisezug) - vms025 (DPN - Nahreisezug) - vms031 (DPN - Nahreisezug) - vms032 (DPN - Nahreisezug) - vms040 (DPN - Nahreisezug) - vms041 (DPN - Nahreisezug) - vms042 (DPN - Nahreisezug) - vms043 (DPN - Nahreisezug) - vms044 (DPN - Nahreisezug) - vms046 (DPN - Nahreisezug) - vms047 (DPN - Nahreisezug) - vms051 (DPN - Nahreisezug) - vms056 (DPN - Nahreisezug) - vms060 (DPN - Nahreisezug) - vms061 (DPN - Nahreisezug) - vms062 (DPN - Nahreisezug) - vms063 (DPN - Nahreisezug) - vms064 (DPN - Nahreisezug) - vms070 (DPN - Nahreisezug) - vms076 (DPN - Nahreisezug) - vms077 (DPN - Nahreisezug) - vms080 (DPN - Nahreisezug) - vms081 (DPN - Nahreisezug) - vms099 (DPN - Nahreisezug) - voe_12 (DPN - Nahreisezug) - voe_SB (DPN - Nahreisezug) - voe002 (DPN - Nahreisezug) - voe011 (DPN - Nahreisezug) - voe012 (DPN - Nahreisezug) - voe013 (DPN - Nahreisezug) - voe015 (DPN - Nahreisezug) - voe021 (DPN - Nahreisezug) - voe022 (DPN - Nahreisezug) - voe023 (DPN - Nahreisezug) - voe024 (DPN - Nahreisezug) - voe027 (DPN - Nahreisezug) - voe028 (DPN - Nahreisezug) - voe029 (DPN - Nahreisezug) - voe081 (DPN - Nahreisezug) - voe091 (DPN - Nahreisezug) - voeALT (DPN - Nahreisezug) - voeBU3 (DPN - Nahreisezug) - voeBU4 (DPN - Nahreisezug) - voeFAE (DPN - Nahreisezug) - voeSTR (DPN - Nahreisezug) - voeSWB (DPN - Nahreisezug) - vogBus (DPN - Nahreisezug) - von026 (DPN - Nahreisezug) - von027 (DPN - Nahreisezug) - von030 (DPN - Nahreisezug) - von031 (DPN - Nahreisezug) - von032 (DPN - Nahreisezug) - von042 (DPN - Nahreisezug) - von044 (DPN - Nahreisezug) - von052 (DPN - Nahreisezug) - von062 (DPN - Nahreisezug) - von064 (DPN - Nahreisezug) - von065 (DPN - Nahreisezug) - von069 (DPN - Nahreisezug) - vpeAST (DPN - Nahreisezug) - vpeBus (DPN - Nahreisezug) - vph063 (DPN - Nahreisezug) - vph071 (DPN - Nahreisezug) - vph072 (DPN - Nahreisezug) - vph073 (DPN - Nahreisezug) - vph074 (DPN - Nahreisezug) - vph075 (DPN - Nahreisezug) - vph076 (DPN - Nahreisezug) - vph077 (DPN - Nahreisezug) - vph078 (DPN - Nahreisezug) - vph079 (DPN - Nahreisezug) - vph080 (DPN - Nahreisezug) - vph081 (DPN - Nahreisezug) - vph082 (DPN - Nahreisezug) - vpo099 (DPN - Nahreisezug) - vrm002 (DPN - Nahreisezug) - vrm005 (DPN - Nahreisezug) - vrm006 (DPN - Nahreisezug) - vrm007 (DPN - Nahreisezug) - vrm008 (DPN - Nahreisezug) - vrm009 (DPN - Nahreisezug) - vrm011 (DPN - Nahreisezug) - vrm014 (DPN - Nahreisezug) - vrm015 (DPN - Nahreisezug) - vrm016 (DPN - Nahreisezug) - vrm017 (DPN - Nahreisezug) - vrm019 (DPN - Nahreisezug) - vrm020 (DPN - Nahreisezug) - vrm025 (DPN - Nahreisezug) - vrm031 (DPN - Nahreisezug) - vrm032 (DPN - Nahreisezug) - vrm036 (DPN - Nahreisezug) - vrm061 (DPN - Nahreisezug) - vrm066 (DPN - Nahreisezug) - vrm067 (DPN - Nahreisezug) - vrm068 (DPN - Nahreisezug) - vrm069 (DPN - Nahreisezug) - vrm070 (DPN - Nahreisezug) - vrm072 (DPN - Nahreisezug) - vrm073 (DPN - Nahreisezug) - vrm074 (DPN - Nahreisezug) - vrm077 (DPN - Nahreisezug) - vrm078 (DPN - Nahreisezug) - vrm083 (DPN - Nahreisezug) - vrm084 (DPN - Nahreisezug) - vrm085 (DPN - Nahreisezug) - vrn008 (STR - Rhein-Neckar-Verkehr GmbH) - vrn011 (STR - Rhein-Neckar-Verkehr GmbH) - vrn016 (DPN - Nahreisezug) - vrn017 (DPN - Nahreisezug) - vrn018 (DPN - Nahreisezug) - vrn019 (DPN - Nahreisezug) - vrn020 (DPN - Nahreisezug) - vrn022 (MNV - MNV Mittelhaardt Nahverkehrsgesellschaft) - vrn023 (DPN - Nahreisezug) - vrn025 (DPN - Nahreisezug) - vrn026 (DPN - Nahreisezug) - vrn027 (DPN - Nahreisezug) - vrn028 (H&P - Hetzler & Pfadt) - vrn029 (DPN - Nahreisezug) - vrn030 (DPN - Nahreisezug) - vrn032 (PAL - PalatinaBus) - vrn033 (DPN - Nahreisezug) - vrn040 (DPN - Nahreisezug) - vrn041 (DPN - Nahreisezug) - vrn043 (DPN - Nahreisezug) - vrn047 (DPN - Nahreisezug) - vrn049 (DPN - Nahreisezug) - vrn050 (QNV - QNV Queichtal Nahverkehr) - vrn051 (DPN - Nahreisezug) - vrn053 (DPN - Nahreisezug) - vrn057 (DPN - Nahreisezug) - vrn058 (DPN - Nahreisezug) - vrn059 (DPN - Nahreisezug) - vrn062 (DPN - Nahreisezug) - vrn068 (DPN - Nahreisezug) - vrn073 (DPN - Nahreisezug) - vrn074 (DPN - Nahreisezug) - vrn076 (DPN - Nahreisezug) - vrn078 (DPN - Nahreisezug) - vrn079 (DPN - Nahreisezug) - vrn080 (DPN - Nahreisezug) - vrn081 (DPN - Nahreisezug) - vrn082 (DPN - Nahreisezug) - vrn083 (DPN - Nahreisezug) - vrn095 (DPN - Nahreisezug) - vrnOEG (RNV - Rhein-Neckar-Verkehr GmbH (Oberrheinische Eisenbahn)) - vrnRHB (RNV - Rhein-Neckar-Verkehr GmbH (Rhein-Haardtbahn)) - vrr001 (DPN - Nahreisezug) - vrr002 (DPN - Nahreisezug) - vrr010 (DPN - Nahreisezug) - vrr011 (DPN - Nahreisezug) - vrr012 (DPN - Nahreisezug) - vrr013 (DPN - Nahreisezug) - vrr015 (DPN - Nahreisezug) - vrr016 (DPN - Nahreisezug) - vrr018 (DPN - Nahreisezug) - vrr020 (DPN - Nahreisezug) - vrr021 (DPN - Nahreisezug) - vrr023 (DPN - Nahreisezug) - vrr025 (DPN - Nahreisezug) - vrr029 (DPN - Nahreisezug) - vrr030 (DPN - Nahreisezug) - vrr031 (DPN - Nahreisezug) - vrr032 (DPN - Nahreisezug) - vrr033 (DPN - Nahreisezug) - vrr034 (DPN - Nahreisezug) - vrr035 (DPN - Nahreisezug) - vrr036 (DPN - Nahreisezug) - vrr037 (DPN - Nahreisezug) - vrr038 (DPN - Nahreisezug) - vrr039 (DPN - Nahreisezug) - vrr040 (DPN - Nahreisezug) - vrr045 (DPN - Nahreisezug) - vrr050 (DPN - Nahreisezug) - vrr060 (DPN - Nahreisezug) - vrr064 (DPN - Nahreisezug) - vrr065 (DPN - Nahreisezug) - vrr066 (DPN - Nahreisezug) - vrr070 (DPN - Nahreisezug) - vrr071 (DPN - Nahreisezug) - vrr072 (DPN - Nahreisezug) - vrr073 (DPN - Nahreisezug) - vrr075 (DPN - Nahreisezug) - vrr076 (DPN - Nahreisezug) - vrr077 (DPN - Nahreisezug) - vrr080 (DPN - Nahreisezug) - vrr088 (BVR - Busverkehr Rheinland) - vrs001 (DPN - Nahreisezug) - vrs003 (DPN - Nahreisezug) - vrs006 (DPN - Nahreisezug) - vrs008 (DPN - Nahreisezug) - vrs011 (DPN - Nahreisezug) - vrs012 (DPN - Nahreisezug) - vrs013 (DPN - Nahreisezug) - vrs014 (DPN - Nahreisezug) - vrs016 (DPN - Nahreisezug) - vrs017 (DPN - Nahreisezug) - vrs021 (DPN - Nahreisezug) - vrs022 (DPN - Nahreisezug) - vrs023 (DPN - Nahreisezug) - vrs024 (DPN - Nahreisezug) - vrs025 (DPN - Nahreisezug) - vrs028 (DPN - Nahreisezug) - vrs029 (DPN - Nahreisezug) - vrs060 (DPN - Nahreisezug) - vrs063 (DPN - Nahreisezug) - vsh001 (DPN - Nahreisezug) - vsh010 (DPN - Nahreisezug) - vsh020 (DPN - Nahreisezug) - vuvab (VU - Verkehrsgesellschaft mbH Untermain) - vvs012 (WEG - Württembergische Eisenbahn-Gesellschaft mbH) - vvs020 (DPN - Nahreisezug) - vvs021 (DPN - Nahreisezug) - vvs030 (DPN - Nahreisezug) - vvs031 (DPN - Nahreisezug) - vvs033 (DPN - Nahreisezug) - vvs034 (DPN - Nahreisezug) - vvs035 (DPN - Nahreisezug) - vvs041 (DPN - Nahreisezug) - vvs050 (DPN - Nahreisezug) - vvs051 (DPN - Nahreisezug) - vvs052 (DPN - Nahreisezug) - vvs055 (DPN - Nahreisezug) - vvs077 (DPN - Nahreisezug) - vvs078 (DPN - Nahreisezug) - vwmBuS (DPN - Nahreisezug) - vwmNAH (DPN - Nahreisezug) - vwmStr (DPN - Nahreisezug) - vwmVLP (DPN - Nahreisezug) - vws003 (DPN - Nahreisezug) - vws005 (DPN - Nahreisezug) - vws007 (DPN - Nahreisezug) - W0 (WDR - Wyker Dampfschiffs-Reederei Föhr-Amrum GmbH) - W2 (Dab - Daadetalbahn) - W3 (WFB - WestfalenBahn) - W6 (WTB - Wutachtalbahn) - W9 (WBA - waldbahn - Die Länderbahn GmbH DLB) - wabBus (DPN - Nahreisezug) - web_AN (DPN - Nahreisezug) - web_HB (DPN - Nahreisezug) - web_OF (DPN - Nahreisezug) - web_OS (DPN - Nahreisezug) - web002 (DPN - Nahreisezug) - web005 (DPN - Nahreisezug) - web006 (DPN - Nahreisezug) - web018 (DPN - Nahreisezug) - web019 (DPN - Nahreisezug) - webALL (DPN - Nahreisezug) - webAND (DPN - Nahreisezug) - webARE (DPN - Nahreisezug) - webAST (DPN - Nahreisezug) - webBBU (DPN - Nahreisezug) - webBEC (DPN - Nahreisezug) - webBPU (DPN - Nahreisezug) - webBRU (DPN - Nahreisezug) - webBTR (STR - Bremer Straßenbahn AG) - webBVB (DPN - Nahreisezug) - webBVS (DPN - Nahreisezug) - webDEL (DPN - Nahreisezug) - webDHE (DPN - Nahreisezug) - webEDZ (DPN - Nahreisezug) - webEMS (DPN - Nahreisezug) - webEVB (DPN - Nahreisezug) - webFAS (DPN - Nahreisezug) - webFIS (DPN - Nahreisezug) - webFLX (DPN - Nahreisezug) - webGEB (DPN - Nahreisezug) - webGER (DPN - Nahreisezug) - webGIE (DPN - Nahreisezug) - webGOE (DPN - Nahreisezug) - webGOS (DPN - Nahreisezug) - webHAR (DPN - Nahreisezug) - webHDK (DPN - Nahreisezug) - webHKR (DPN - Nahreisezug) - webHM (DPN - Nahreisezug) - webHUT (DPN - Nahreisezug) - webHVG (DPN - Nahreisezug) - webJAC (DPN - Nahreisezug) - webjan (DPN - Nahreisezug) - webKAR (DPN - Nahreisezug) - webKBA (DPN - Nahreisezug) - webKRR (DPN - Nahreisezug) - webKVG (DPN - Nahreisezug) - webLSE (DPN - Nahreisezug) - webMEY (DPN - Nahreisezug) - webNIE (DPN - Nahreisezug) - webNOH (DPN - Nahreisezug) - webNOR (DPN - Nahreisezug) - webONS (DPN - Nahreisezug) - webOS1 (DPN - Nahreisezug) - webOSV (DPN - Nahreisezug) - webRA1 (DPN - Nahreisezug) - webRBG (DPN - Nahreisezug) - webRVH (DPN - Nahreisezug) - webSAL (DPN - Nahreisezug) - webSTO (DPN - Nahreisezug) - webSVG (DPN - Nahreisezug) - webSWE (DPN - Nahreisezug) - webSWH (DPN - Nahreisezug) - webSZG (DPN - Nahreisezug) - webTMW (DPN - Nahreisezug) - webUEB (DPN - Nahreisezug) - webUET (STB - üstra Hannoversche Verkehrsbetriebe AG) - webUFF (DPN - Nahreisezug) - webVBB (DPN - Nahreisezug) - webVBN (DPN - Nahreisezug) - webVBW (DPN - Nahreisezug) - webVGE (DPN - Nahreisezug) - webVGH (DPN - Nahreisezug) - webVGP (DPN - Nahreisezug) - webVGV (DPN - Nahreisezug) - webVGW (DPN - Nahreisezug) - webVL1 (DPN - Nahreisezug) - webVLG (DPN - Nahreisezug) - webVO8 (DPN - Nahreisezug) - webVOH (DPN - Nahreisezug) - webVOL (DPN - Nahreisezug) - webVOS (DPN - Nahreisezug) - webVSN (DPN - Nahreisezug) - webVWG (DPN - Nahreisezug) - webWHV (DPN - Nahreisezug) - webWIN (DPN - Nahreisezug) - webWIS (DPN - Nahreisezug) - webWOB (DPN - Nahreisezug) - webWSF (DPN - Nahreisezug) - webXOS (WEB - Weser-Ems-Bus) - webYGO (RBB - Regionalbus Braunschweig GmbH) - webYUE (RBB - Regionalbus Braunschweig GmbH) - webYUZ (DPN - Nahreisezug) - wenBUS (DPN - Nahreisezug) - WL (RB - Kreisbahn Mansfelder Land) - wstwst (DPN - Nahreisezug) - wvvBUS (DPN - Nahreisezug) - wvvSTR (DPN - Nahreisezug) - wzlBus (DPN - Nahreisezug) - X1 (erx - erixx) - X2 (erx - erixx) - Y0 (SCH - Adler-Schiffe) - Y8 (BRB - Bayerische Regiobahn) - Z8 (BZB - Bayerische Zugspitzbahn) - Z9 (P - Rhön-Zügle) - zsbteg (DPN - Nahreisezug) - zvv008 (DPN - Nahreisezug) - zvv018 (DPN - Nahreisezug) - zvv019 (DPN - Nahreisezug) - zvv041 (DPN - Nahreisezug) note: list is not exhausting and more undocumented values may be returned
+	 * @type {string}
+	 * @memberof Administration
+	 */
+	administrationID: string;
+	/**
+	 * Unique code of the operator [Betreiber].
+	 * @type {string}
+	 * @memberof Administration
+	 */
+	operatorCode: string;
+	/**
+	 * Name of the operator [Betreiber].
+	 * @type {string}
+	 * @memberof Administration
+	 */
+	operatorName: string;
 }
 /**
  * Codeshare [Code-Teilungen mit Flügen verschiedener Fluggesellschaften] information for a particular journey event.
@@ -64,18 +64,18 @@ export interface Administration {
  * @interface CodeShare
  */
 export interface CodeShare {
-  /**
-   * Code of cooperating airline [IATA-Code der Fluggesellschaft].
-   * @type {string}
-   * @memberof CodeShare
-   */
-  airlineCode: string;
-  /**
-   * Flightnumber of cooperating airline journey [Flugnummer des Fluges der kooperierenden Fluggesellschaft].
-   * @type {number}
-   * @memberof CodeShare
-   */
-  flightnumber: number;
+	/**
+	 * Code of cooperating airline [IATA-Code der Fluggesellschaft].
+	 * @type {string}
+	 * @memberof CodeShare
+	 */
+	airlineCode: string;
+	/**
+	 * Flightnumber of cooperating airline journey [Flugnummer des Fluges der kooperierenden Fluggesellschaft].
+	 * @type {number}
+	 * @memberof CodeShare
+	 */
+	flightnumber: number;
 }
 /**
  * Optional direction information [Richtungstext] for a particular transport that may differ from the destination [Zielhalt] on some parts of the journey. Take care that a text and / or a particular stop-place [Haltestelle] may be provided.
@@ -83,18 +83,18 @@ export interface CodeShare {
  * @interface DirectionInfo
  */
 export interface DirectionInfo {
-  /**
-   * Direction text [Richtungstext]. Must not necessarly be the name of a real stop-place [Haltestelle] (for instance \'Richtung Automobilmesse\'). For instance before the stop \'fare\' the transport has direction \'fare\', after \'fare\' has been reached maybe \'central station\' or \'airport\'.
-   * @type {string}
-   * @memberof DirectionInfo
-   */
-  text?: string;
-  /**
-   * Optional list of stop-places [Haltestellen] the direction text refers to. May be more than one stop-place for cases like for instance \'Richtung Messe & Hauptbahnhof\'.
-   * @type {Array<StopPlaceEmbedded>}
-   * @memberof DirectionInfo
-   */
-  stopPlaces?: Array<StopPlaceEmbedded>;
+	/**
+	 * Direction text [Richtungstext]. Must not necessarly be the name of a real stop-place [Haltestelle] (for instance \'Richtung Automobilmesse\'). For instance before the stop \'fare\' the transport has direction \'fare\', after \'fare\' has been reached maybe \'central station\' or \'airport\'.
+	 * @type {string}
+	 * @memberof DirectionInfo
+	 */
+	text?: string;
+	/**
+	 * Optional list of stop-places [Haltestellen] the direction text refers to. May be more than one stop-place for cases like for instance \'Richtung Messe & Hauptbahnhof\'.
+	 * @type {Array<StopPlaceEmbedded>}
+	 * @memberof DirectionInfo
+	 */
+	stopPlaces?: Array<StopPlaceEmbedded>;
 }
 /**
  * Disruption communication information [Stoerungskommunikation] descriptions.
@@ -102,18 +102,18 @@ export interface DirectionInfo {
  * @interface DisruptionCommunicationDescription
  */
 export interface DisruptionCommunicationDescription {
-  /**
-   * Long text of disruption communication.
-   * @type {string}
-   * @memberof DisruptionCommunicationDescription
-   */
-  text: string;
-  /**
-   * Optional short text of disruption communication.
-   * @type {string}
-   * @memberof DisruptionCommunicationDescription
-   */
-  textShort?: string;
+	/**
+	 * Long text of disruption communication.
+	 * @type {string}
+	 * @memberof DisruptionCommunicationDescription
+	 */
+	text: string;
+	/**
+	 * Optional short text of disruption communication.
+	 * @type {string}
+	 * @memberof DisruptionCommunicationDescription
+	 */
+	textShort?: string;
 }
 /**
  * Detailed error information on field level.
@@ -121,30 +121,30 @@ export interface DisruptionCommunicationDescription {
  * @interface ErrorDetail
  */
 export interface ErrorDetail {
-  /**
-   * Unique code that identifies error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  errorCode?: string;
-  /**
-   * Common description of error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  title: string;
-  /**
-   * Name of field / element that raised the error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  field: string;
-  /**
-   * Detailed information for error.
-   * @type {string}
-   * @memberof ErrorDetail
-   */
-  detail: string;
+	/**
+	 * Unique code that identifies error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	errorCode?: string;
+	/**
+	 * Common description of error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	title: string;
+	/**
+	 * Name of field / element that raised the error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	field: string;
+	/**
+	 * Detailed information for error.
+	 * @type {string}
+	 * @memberof ErrorDetail
+	 */
+	detail: string;
 }
 /**
  * API error object according to RFC7807.
@@ -152,42 +152,42 @@ export interface ErrorDetail {
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
-  /**
-   * Unique code that identifies error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  errorCode?: string;
-  /**
-   * Common description of error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  title: string;
-  /**
-   * Detailed information for error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  detail: string;
-  /**
-   * Http status for error origin.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  status?: string;
-  /**
-   * Unique identifier for instance that raised the error.
-   * @type {string}
-   * @memberof ErrorResponse
-   */
-  instanceId?: string;
-  /**
-   * List of detailed errors in case multiple errors have lead to the surrounding error.
-   * @type {Array<ErrorDetail>}
-   * @memberof ErrorResponse
-   */
-  errors?: Array<ErrorDetail>;
+	/**
+	 * Unique code that identifies error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	errorCode?: string;
+	/**
+	 * Common description of error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	title: string;
+	/**
+	 * Detailed information for error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	detail: string;
+	/**
+	 * Http status for error origin.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	status?: string;
+	/**
+	 * Unique identifier for instance that raised the error.
+	 * @type {string}
+	 * @memberof ErrorResponse
+	 */
+	instanceId?: string;
+	/**
+	 * List of detailed errors in case multiple errors have lead to the surrounding error.
+	 * @type {Array<ErrorDetail>}
+	 * @memberof ErrorResponse
+	 */
+	errors?: Array<ErrorDetail>;
 }
 /**
  * Type of event. - ARRIVAL (Ankunft) - DEPARTURE (Abfahrt)
@@ -196,8 +196,8 @@ export interface ErrorResponse {
  */
 
 export const EventType = {
-  Arrival: 'ARRIVAL',
-  Departure: 'DEPARTURE',
+	Arrival: 'ARRIVAL',
+	Departure: 'DEPARTURE',
 } as const;
 
 export type EventType = (typeof EventType)[keyof typeof EventType];
@@ -208,24 +208,24 @@ export type EventType = (typeof EventType)[keyof typeof EventType];
  * @interface JourneyBatchError
  */
 export interface JourneyBatchError {
-  /**
-   * ID of erroneous journey [FahrtID].
-   * @type {string}
-   * @memberof JourneyBatchError
-   */
-  journeyID: string;
-  /**
-   * Unique code that identifies error.
-   * @type {string}
-   * @memberof JourneyBatchError
-   */
-  errorCode?: string;
-  /**
-   * Text that describes the error.
-   * @type {string}
-   * @memberof JourneyBatchError
-   */
-  errorText: string;
+	/**
+	 * ID of erroneous journey [FahrtID].
+	 * @type {string}
+	 * @memberof JourneyBatchError
+	 */
+	journeyID: string;
+	/**
+	 * Unique code that identifies error.
+	 * @type {string}
+	 * @memberof JourneyBatchError
+	 */
+	errorCode?: string;
+	/**
+	 * Text that describes the error.
+	 * @type {string}
+	 * @memberof JourneyBatchError
+	 */
+	errorText: string;
 }
 /**
  * Batch request to return mutiple journeys [Fahrten] at once.
@@ -233,24 +233,24 @@ export interface JourneyBatchError {
  * @interface JourneyBatchRequest
  */
 export interface JourneyBatchRequest {
-  /**
-   * Include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung].
-   * @type {boolean}
-   * @memberof JourneyBatchRequest
-   */
-  includeReferences?: boolean;
-  /**
-   * Separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \'eventsCancelled\'.
-   * @type {boolean}
-   * @memberof JourneyBatchRequest
-   */
-  separateCancelled?: boolean;
-  /**
-   * IDs of journeys [Fahrt-IDs]. A maximum of 500 journey-ids is allowed.
-   * @type {Array<string>}
-   * @memberof JourneyBatchRequest
-   */
-  journeyIDs: Array<string>;
+	/**
+	 * Include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung].
+	 * @type {boolean}
+	 * @memberof JourneyBatchRequest
+	 */
+	includeReferences?: boolean;
+	/**
+	 * Separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \'eventsCancelled\'.
+	 * @type {boolean}
+	 * @memberof JourneyBatchRequest
+	 */
+	separateCancelled?: boolean;
+	/**
+	 * IDs of journeys [Fahrt-IDs]. A maximum of 500 journey-ids is allowed.
+	 * @type {Array<string>}
+	 * @memberof JourneyBatchRequest
+	 */
+	journeyIDs: Array<string>;
 }
 /**
  * Batch response to return mutiple journeys [Fahrten] at once.
@@ -258,24 +258,24 @@ export interface JourneyBatchRequest {
  * @interface JourneyBatchResponse
  */
 export interface JourneyBatchResponse {
-  /**
-   * List of journeys.
-   * @type {Array<JourneyEventBased>}
-   * @memberof JourneyBatchResponse
-   */
-  journeys: Array<JourneyEventBased>;
-  /**
-   * List of meta last changed timestamps the returned journeys have been changed as fully-qualified-date (ISO-8601 with time-zone or offset).
-   * @type {Array<MetaLastChangedTimestamp>}
-   * @memberof JourneyBatchResponse
-   */
-  metaLastChangedTimestamps: Array<MetaLastChangedTimestamp>;
-  /**
-   * List of erroneous journeys for this particular batch request.
-   * @type {Array<JourneyBatchError>}
-   * @memberof JourneyBatchResponse
-   */
-  erroneousJourneys?: Array<JourneyBatchError>;
+	/**
+	 * List of journeys.
+	 * @type {Array<JourneyEventBased>}
+	 * @memberof JourneyBatchResponse
+	 */
+	journeys: Array<JourneyEventBased>;
+	/**
+	 * List of meta last changed timestamps the returned journeys have been changed as fully-qualified-date (ISO-8601 with time-zone or offset).
+	 * @type {Array<MetaLastChangedTimestamp>}
+	 * @memberof JourneyBatchResponse
+	 */
+	metaLastChangedTimestamps: Array<MetaLastChangedTimestamp>;
+	/**
+	 * List of erroneous journeys for this particular batch request.
+	 * @type {Array<JourneyBatchError>}
+	 * @memberof JourneyBatchResponse
+	 */
+	erroneousJourneys?: Array<JourneyBatchError>;
 }
 /**
  * Journey relation results.
@@ -283,12 +283,12 @@ export interface JourneyBatchResponse {
  * @interface JourneyByRelationResults
  */
 export interface JourneyByRelationResults {
-  /**
-   * List of found journeys.
-   * @type {Array<JourneyFindResult>}
-   * @memberof JourneyByRelationResults
-   */
-  journeys: Array<JourneyFindResult>;
+	/**
+	 * List of found journeys.
+	 * @type {Array<JourneyFindResult>}
+	 * @memberof JourneyByRelationResults
+	 */
+	journeys: Array<JourneyFindResult>;
 }
 /**
  * Journey event [Fahrtereignis].
@@ -296,126 +296,126 @@ export interface JourneyByRelationResults {
  * @interface JourneyEvent
  */
 export interface JourneyEvent {
-  /**
-   *
-   * @type {EventType}
-   * @memberof JourneyEvent
-   */
-  type: EventType;
-  /**
-   * ID of arrival or departure, depends on event type.
-   * @type {string}
-   * @memberof JourneyEvent
-   */
-  arrivalOrDepartureID: string;
-  /**
-   *
-   * @type {StopPlaceInJourney}
-   * @memberof JourneyEvent
-   */
-  stopPlace: StopPlaceInJourney;
-  /**
-   *
-   * @type {TransportWithDirection}
-   * @memberof JourneyEvent
-   */
-  transport: TransportWithDirection;
-  /**
-   * Scheduled time [Soll] of stop as fully-qualified-date (ISO-8601 with time-zone or offset).
-   * @type {string}
-   * @memberof JourneyEvent
-   */
-  timeSchedule: string;
-  /**
-   * Specifies on which information \'time\' is based. - SCHEDULE (Time source is schedule [Plan / Soll]) - PREVIEW (Time source is preview / forecast [Vorschau / Disposition / Prognose]) - REAL (Time source is real [Echt = passiert (kann nur in die Vergangenheit gesetzt werden)
-   * @type {string}
-   * @memberof JourneyEvent
-   */
-  timeType: string;
-  /**
-   * Best known time information of stop as fully-qualified-date (ISO-8601 with time-zone or offset).
-   * @type {string}
-   * @memberof JourneyEvent
-   */
-  time: string;
-  /**
-   * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
-   * @type {string}
-   * @memberof JourneyEvent
-   */
-  platformSchedule?: string;
-  /**
-   * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at, may be empty.
-   * @type {string}
-   * @memberof JourneyEvent
-   */
-  platform?: string;
-  /**
-   * Indicates whether event is cancelled [Haltausfall]. Note: In case an event is cancelled and additional, it\'s considered as an cancelled additional stop [zurückgenommener Zusatzhalt].
-   * @type {boolean}
-   * @memberof JourneyEvent
-   */
-  cancelled?: boolean;
-  /**
-   * Indicates whether event is additional, meaning not be part of the regular schedule [Zusatzhalt]. Note: In case an event is cancelled and additional, it\'s considered as an cancelled additional stop [zurückgenommener Zusatzhalt].
-   * @type {boolean}
-   * @memberof JourneyEvent
-   */
-  additional?: boolean;
-  /**
-   * Indicates whether passengers are not allowed to enter / leave [kein Fahrgastwechsel].
-   * @type {boolean}
-   * @memberof JourneyEvent
-   */
-  noPassengerChange?: boolean;
-  /**
-   * Indicates whether arrival / departure is an on demand stop [Bedarfshalt].
-   * @type {boolean}
-   * @memberof JourneyEvent
-   */
-  onDemand?: boolean;
-  /**
-   * List of message-ids [Nachrichten IDs] for this particular event. IDs are pointing to the global \'messages\' structure, containing disruption-communications [Störungskommunikationen], attributes [Fahrtmerkmale], notes [Hinweise], ris cause codes [RIS Kundengründe] and ris quality deviations [RIS Qualitätsabweichungen].
-   * @type {Array<number>}
-   * @memberof JourneyEvent
-   */
-  messages?: Array<number>;
-  /**
-   * List of codeshares [Code-Teilungen mit Flügen verschiedener Fluggesellschaften] for this particular journey at this arrival / departure.
-   * @type {Array<CodeShare>}
-   * @memberof JourneyEvent
-   */
-  codeshares?: Array<CodeShare>;
-  /**
-   * List of transports this journey at this particular event reliefs for [Entlastungszug].
-   * @type {Array<TransportDestinationRef>}
-   * @memberof JourneyEvent
-   */
-  reliefFor?: Array<TransportDestinationRef>;
-  /**
-   * List of transports this journey at this particular event is reliefed by [Entlastungszug].
-   * @type {Array<TransportDestinationRef>}
-   * @memberof JourneyEvent
-   */
-  reliefBy?: Array<TransportDestinationRef>;
-  /**
-   * List of transports this journey at this particular event replaces [Ersatzzug].
-   * @type {Array<TransportDestinationRef>}
-   * @memberof JourneyEvent
-   */
-  replacementFor?: Array<TransportDestinationRef>;
-  /**
-   * List of transports this journey at this particular event is replaced by [Ersatzzug].
-   * @type {Array<TransportDestinationRef>}
-   * @memberof JourneyEvent
-   */
-  replacedBy?: Array<TransportDestinationRef>;
-  /**
-   * List of journeys this journey at this particular event travels with [Vereinigung].
-   * @type {Array<TransportDestinationPortionWorkingRef>}
-   * @memberof JourneyEvent
-   */
-  travelsWith?: Array<TransportDestinationPortionWorkingRef>;
+	/**
+	 *
+	 * @type {EventType}
+	 * @memberof JourneyEvent
+	 */
+	type: EventType;
+	/**
+	 * ID of arrival or departure, depends on event type.
+	 * @type {string}
+	 * @memberof JourneyEvent
+	 */
+	arrivalOrDepartureID: string;
+	/**
+	 *
+	 * @type {StopPlaceInJourney}
+	 * @memberof JourneyEvent
+	 */
+	stopPlace: StopPlaceInJourney;
+	/**
+	 *
+	 * @type {TransportWithDirection}
+	 * @memberof JourneyEvent
+	 */
+	transport: TransportWithDirection;
+	/**
+	 * Scheduled time [Soll] of stop as fully-qualified-date (ISO-8601 with time-zone or offset).
+	 * @type {string}
+	 * @memberof JourneyEvent
+	 */
+	timeSchedule: string;
+	/**
+	 * Specifies on which information \'time\' is based. - SCHEDULE (Time source is schedule [Plan / Soll]) - PREVIEW (Time source is preview / forecast [Vorschau / Disposition / Prognose]) - REAL (Time source is real [Echt = passiert (kann nur in die Vergangenheit gesetzt werden)
+	 * @type {string}
+	 * @memberof JourneyEvent
+	 */
+	timeType: string;
+	/**
+	 * Best known time information of stop as fully-qualified-date (ISO-8601 with time-zone or offset).
+	 * @type {string}
+	 * @memberof JourneyEvent
+	 */
+	time: string;
+	/**
+	 * Scheduled platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at.
+	 * @type {string}
+	 * @memberof JourneyEvent
+	 */
+	platformSchedule?: string;
+	/**
+	 * Actual platform [Gleis, Bahnsteig, Plattform] the transport arrives / departs at, may be empty.
+	 * @type {string}
+	 * @memberof JourneyEvent
+	 */
+	platform?: string;
+	/**
+	 * Indicates whether event is cancelled [Haltausfall]. Note: In case an event is cancelled and additional, it\'s considered as an cancelled additional stop [zurückgenommener Zusatzhalt].
+	 * @type {boolean}
+	 * @memberof JourneyEvent
+	 */
+	cancelled?: boolean;
+	/**
+	 * Indicates whether event is additional, meaning not be part of the regular schedule [Zusatzhalt]. Note: In case an event is cancelled and additional, it\'s considered as an cancelled additional stop [zurückgenommener Zusatzhalt].
+	 * @type {boolean}
+	 * @memberof JourneyEvent
+	 */
+	additional?: boolean;
+	/**
+	 * Indicates whether passengers are not allowed to enter / leave [kein Fahrgastwechsel].
+	 * @type {boolean}
+	 * @memberof JourneyEvent
+	 */
+	noPassengerChange?: boolean;
+	/**
+	 * Indicates whether arrival / departure is an on demand stop [Bedarfshalt].
+	 * @type {boolean}
+	 * @memberof JourneyEvent
+	 */
+	onDemand?: boolean;
+	/**
+	 * List of message-ids [Nachrichten IDs] for this particular event. IDs are pointing to the global \'messages\' structure, containing disruption-communications [Störungskommunikationen], attributes [Fahrtmerkmale], notes [Hinweise], ris cause codes [RIS Kundengründe] and ris quality deviations [RIS Qualitätsabweichungen].
+	 * @type {Array<number>}
+	 * @memberof JourneyEvent
+	 */
+	messages?: Array<number>;
+	/**
+	 * List of codeshares [Code-Teilungen mit Flügen verschiedener Fluggesellschaften] for this particular journey at this arrival / departure.
+	 * @type {Array<CodeShare>}
+	 * @memberof JourneyEvent
+	 */
+	codeshares?: Array<CodeShare>;
+	/**
+	 * List of transports this journey at this particular event reliefs for [Entlastungszug].
+	 * @type {Array<TransportDestinationRef>}
+	 * @memberof JourneyEvent
+	 */
+	reliefFor?: Array<TransportDestinationRef>;
+	/**
+	 * List of transports this journey at this particular event is reliefed by [Entlastungszug].
+	 * @type {Array<TransportDestinationRef>}
+	 * @memberof JourneyEvent
+	 */
+	reliefBy?: Array<TransportDestinationRef>;
+	/**
+	 * List of transports this journey at this particular event replaces [Ersatzzug].
+	 * @type {Array<TransportDestinationRef>}
+	 * @memberof JourneyEvent
+	 */
+	replacementFor?: Array<TransportDestinationRef>;
+	/**
+	 * List of transports this journey at this particular event is replaced by [Ersatzzug].
+	 * @type {Array<TransportDestinationRef>}
+	 * @memberof JourneyEvent
+	 */
+	replacedBy?: Array<TransportDestinationRef>;
+	/**
+	 * List of journeys this journey at this particular event travels with [Vereinigung].
+	 * @type {Array<TransportDestinationPortionWorkingRef>}
+	 * @memberof JourneyEvent
+	 */
+	travelsWith?: Array<TransportDestinationPortionWorkingRef>;
 }
 
 /**
@@ -425,48 +425,48 @@ export interface JourneyEvent {
  * @tsoaModel
  */
 export interface JourneyEventBased {
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof JourneyEventBased
-   */
-  journeyID: string;
-  /**
-   *
-   * @type {JourneyInfo}
-   * @memberof JourneyEventBased
-   */
-  info: JourneyInfo;
-  /**
-   *
-   * @type {Messages}
-   * @memberof JourneyEventBased
-   */
-  messages?: Messages;
-  /**
-   * List of events [Fahrtereignisse (Abfahrten und Ankünfte)].
-   * @type {Array<JourneyEvent>}
-   * @memberof JourneyEventBased
-   */
-  events?: Array<JourneyEvent>;
-  /**
-   * List of cancelled events [ausgefallene Fahrtereignisse (Abfahrten und Ankünfte)]. Only filled in case separation of cancelled events has been requested.
-   * @type {Array<JourneyEvent>}
-   * @memberof JourneyEventBased
-   */
-  eventsCancelled?: Array<JourneyEvent>;
-  /**
-   * Continuation by predecessor journey, if available [Durchbindung am Start].
-   * @type {Array<TransportOriginRef>}
-   * @memberof JourneyEventBased
-   */
-  continuationFor?: Array<TransportOriginRef>;
-  /**
-   * Continuation by successor journey, if available [Durchbindung am Ziel].
-   * @type {Array<TransportDestinationRef>}
-   * @memberof JourneyEventBased
-   */
-  continuationBy?: Array<TransportDestinationRef>;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof JourneyEventBased
+	 */
+	journeyID: string;
+	/**
+	 *
+	 * @type {JourneyInfo}
+	 * @memberof JourneyEventBased
+	 */
+	info: JourneyInfo;
+	/**
+	 *
+	 * @type {Messages}
+	 * @memberof JourneyEventBased
+	 */
+	messages?: Messages;
+	/**
+	 * List of events [Fahrtereignisse (Abfahrten und Ankünfte)].
+	 * @type {Array<JourneyEvent>}
+	 * @memberof JourneyEventBased
+	 */
+	events?: Array<JourneyEvent>;
+	/**
+	 * List of cancelled events [ausgefallene Fahrtereignisse (Abfahrten und Ankünfte)]. Only filled in case separation of cancelled events has been requested.
+	 * @type {Array<JourneyEvent>}
+	 * @memberof JourneyEventBased
+	 */
+	eventsCancelled?: Array<JourneyEvent>;
+	/**
+	 * Continuation by predecessor journey, if available [Durchbindung am Start].
+	 * @type {Array<TransportOriginRef>}
+	 * @memberof JourneyEventBased
+	 */
+	continuationFor?: Array<TransportOriginRef>;
+	/**
+	 * Continuation by successor journey, if available [Durchbindung am Ziel].
+	 * @type {Array<TransportDestinationRef>}
+	 * @memberof JourneyEventBased
+	 */
+	continuationBy?: Array<TransportDestinationRef>;
 }
 /**
  * Journey find result.
@@ -474,24 +474,24 @@ export interface JourneyEventBased {
  * @interface JourneyFindResult
  */
 export interface JourneyFindResult {
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof JourneyFindResult
-   */
-  journeyID: string;
-  /**
-   *
-   * @type {JourneyRelation}
-   * @memberof JourneyFindResult
-   */
-  journeyRelation: JourneyRelation;
-  /**
-   *
-   * @type {JourneyInfo}
-   * @memberof JourneyFindResult
-   */
-  info: JourneyInfo;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof JourneyFindResult
+	 */
+	journeyID: string;
+	/**
+	 *
+	 * @type {JourneyRelation}
+	 * @memberof JourneyFindResult
+	 */
+	journeyRelation: JourneyRelation;
+	/**
+	 *
+	 * @type {JourneyInfo}
+	 * @memberof JourneyFindResult
+	 */
+	info: JourneyInfo;
 }
 /**
  * Journey find results.
@@ -499,30 +499,30 @@ export interface JourneyFindResult {
  * @interface JourneyFindResults
  */
 export interface JourneyFindResults {
-  /**
-   * Pagination offset the caller has requested in order to navigate through results.
-   * @type {number}
-   * @memberof JourneyFindResults
-   */
-  offset: number;
-  /**
-   * Maximum number of results the caller has requested to return from provided offset.
-   * @type {number}
-   * @memberof JourneyFindResults
-   */
-  limit: number;
-  /**
-   * Total number of available results.
-   * @type {number}
-   * @memberof JourneyFindResults
-   */
-  total: number;
-  /**
-   * List of found journeys.
-   * @type {Array<JourneyFindResult>}
-   * @memberof JourneyFindResults
-   */
-  journeys: Array<JourneyFindResult>;
+	/**
+	 * Pagination offset the caller has requested in order to navigate through results.
+	 * @type {number}
+	 * @memberof JourneyFindResults
+	 */
+	offset: number;
+	/**
+	 * Maximum number of results the caller has requested to return from provided offset.
+	 * @type {number}
+	 * @memberof JourneyFindResults
+	 */
+	limit: number;
+	/**
+	 * Total number of available results.
+	 * @type {number}
+	 * @memberof JourneyFindResults
+	 */
+	total: number;
+	/**
+	 * List of found journeys.
+	 * @type {Array<JourneyFindResult>}
+	 * @memberof JourneyFindResults
+	 */
+	journeys: Array<JourneyFindResult>;
 }
 /**
  * Comprehensive journey information.
@@ -531,60 +531,60 @@ export interface JourneyFindResults {
  * @tsoaModel
  */
 export interface JourneyInfo {
-  /**
-   *
-   * @type {Transport}
-   * @memberof JourneyInfo
-   */
-  transportAtStart: Transport;
-  /**
-   * Defines whether journey [Fahrt] is regular or some kind of special. - REGULAR (Regular scheduled journey) - REPLACEMENT (Journey that replaces another journey) - RELIEF (Journey that reliefs another journey) - EXTRA (Journey that is somehow extra)
-   * @type {string}
-   * @memberof JourneyInfo
-   */
-  type: string;
-  /**
-   * Indicates whether whole journey has been cancelled.
-   * @type {boolean}
-   * @memberof JourneyInfo
-   */
-  journeyCancelled?: boolean;
-  /**
-   *
-   * @type {StopPlaceEmbeddedWithCancel}
-   * @memberof JourneyInfo
-   */
-  origin: StopPlaceEmbeddedWithCancel;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneyInfo
-   */
-  differingOrigin?: StopPlaceEmbedded;
-  /**
-   *
-   * @type {StopPlaceEmbeddedWithCancel}
-   * @memberof JourneyInfo
-   */
-  destination: StopPlaceEmbeddedWithCancel;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof JourneyInfo
-   */
-  differingDestination?: StopPlaceEmbedded;
-  /**
-   *
-   * @type {Administration}
-   * @memberof JourneyInfo
-   */
-  headerAdministration: Administration;
-  /**
-   * Header number of journey [Kopf-Fahrtnummer], may differ from number of journey.
-   * @type {number}
-   * @memberof JourneyInfo
-   */
-  headerJourneyNumber: number;
+	/**
+	 *
+	 * @type {Transport}
+	 * @memberof JourneyInfo
+	 */
+	transportAtStart: Transport;
+	/**
+	 * Defines whether journey [Fahrt] is regular or some kind of special. - REGULAR (Regular scheduled journey) - REPLACEMENT (Journey that replaces another journey) - RELIEF (Journey that reliefs another journey) - EXTRA (Journey that is somehow extra)
+	 * @type {string}
+	 * @memberof JourneyInfo
+	 */
+	type: string;
+	/**
+	 * Indicates whether whole journey has been cancelled.
+	 * @type {boolean}
+	 * @memberof JourneyInfo
+	 */
+	journeyCancelled?: boolean;
+	/**
+	 *
+	 * @type {StopPlaceEmbeddedWithCancel}
+	 * @memberof JourneyInfo
+	 */
+	origin: StopPlaceEmbeddedWithCancel;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneyInfo
+	 */
+	differingOrigin?: StopPlaceEmbedded;
+	/**
+	 *
+	 * @type {StopPlaceEmbeddedWithCancel}
+	 * @memberof JourneyInfo
+	 */
+	destination: StopPlaceEmbeddedWithCancel;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof JourneyInfo
+	 */
+	differingDestination?: StopPlaceEmbedded;
+	/**
+	 *
+	 * @type {Administration}
+	 * @memberof JourneyInfo
+	 */
+	headerAdministration: Administration;
+	/**
+	 * Header number of journey [Kopf-Fahrtnummer], may differ from number of journey.
+	 * @type {number}
+	 * @memberof JourneyInfo
+	 */
+	headerJourneyNumber: number;
 }
 /**
  * Description of a journey [Fahrt] by key attributes, that are summarized as journey relation [Fahrtrelation].
@@ -592,48 +592,48 @@ export interface JourneyInfo {
  * @interface JourneyRelation
  */
 export interface JourneyRelation {
-  /**
-   * Scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset).
-   * @type {string}
-   * @memberof JourneyRelation
-   */
-  startTime: string;
-  /**
-   * Eva number of scheduled start stop-place [Geplanter Starthalt].
-   * @type {string}
-   * @memberof JourneyRelation
-   */
-  startEvaNumber: string;
-  /**
-   * Unique id of the administration [Verwaltung] at scheduled start stop-place [Geplanter Starthalt].
-   * @type {string}
-   * @memberof JourneyRelation
-   */
-  startAdministrationID: string;
-  /**
-   * Unique id of the header administration [Kopf-Verwaltung], may differ from startAdministrationID (for instance journeys has been created by DB Fernverkehr 80 but its operated by SNCF 81).
-   * @type {string}
-   * @memberof JourneyRelation
-   */
-  headerAdministrationID: string;
-  /**
-   * Category [externe Fahrtgattung nach Ausgabensteurerung] at scheduled start stop-place [Geplanter Starthalt].
-   * @type {string}
-   * @memberof JourneyRelation
-   */
-  startCategory: string;
-  /**
-   * Number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt].
-   * @type {number}
-   * @memberof JourneyRelation
-   */
-  startJourneyNumber: number;
-  /**
-   * Header number of journey [Kopf-Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt], may differ from startNumber.
-   * @type {number}
-   * @memberof JourneyRelation
-   */
-  headerJourneyNumber: number;
+	/**
+	 * Scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset).
+	 * @type {string}
+	 * @memberof JourneyRelation
+	 */
+	startTime: string;
+	/**
+	 * Eva number of scheduled start stop-place [Geplanter Starthalt].
+	 * @type {string}
+	 * @memberof JourneyRelation
+	 */
+	startEvaNumber: string;
+	/**
+	 * Unique id of the administration [Verwaltung] at scheduled start stop-place [Geplanter Starthalt].
+	 * @type {string}
+	 * @memberof JourneyRelation
+	 */
+	startAdministrationID: string;
+	/**
+	 * Unique id of the header administration [Kopf-Verwaltung], may differ from startAdministrationID (for instance journeys has been created by DB Fernverkehr 80 but its operated by SNCF 81).
+	 * @type {string}
+	 * @memberof JourneyRelation
+	 */
+	headerAdministrationID: string;
+	/**
+	 * Category [externe Fahrtgattung nach Ausgabensteurerung] at scheduled start stop-place [Geplanter Starthalt].
+	 * @type {string}
+	 * @memberof JourneyRelation
+	 */
+	startCategory: string;
+	/**
+	 * Number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt].
+	 * @type {number}
+	 * @memberof JourneyRelation
+	 */
+	startJourneyNumber: number;
+	/**
+	 * Header number of journey [Kopf-Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt], may differ from startNumber.
+	 * @type {number}
+	 * @memberof JourneyRelation
+	 */
+	headerJourneyNumber: number;
 }
 /**
  * Journey-attribute [Fahrtmerkmale / Sollmerkmale] message.
@@ -641,36 +641,36 @@ export interface JourneyRelation {
  * @interface MessageAttribute
  */
 export interface MessageAttribute {
-  /**
-   * ID of message that is unique within all message collections.
-   * @type {number}
-   * @memberof MessageAttribute
-   */
-  messageID: number;
-  /**
-   * Display priority [Anzeigereihenfolge aka \'Priorität*] for message. Order is ascending.
-   * @type {number}
-   * @memberof MessageAttribute
-   */
-  displayPriority?: number;
-  /**
-   * Detailed display priority [detaillierte Anzeigereihenfolge aka \'Feinsortierung\'] for message. Order is ascending.
-   * @type {number}
-   * @memberof MessageAttribute
-   */
-  displayPriorityDetail?: number;
-  /**
-   * - FR (Fahrradmitnahme reservierungspflichtig) - RP (Reservierungspflicht) - RR (1. Kl. Reservierungspflicht) - RT (Teilreservierungspflicht) - OC (rollstuhltaugliches WC) - 3D (Schlafwagen 2. Klasse T3 mit Dusche und WC) - S1 (Schlafwagen 1. Klasse Single mit Dusche und WC) - S2 (Schlafwagen 1. Klasse Double mit Dusche und WC) - NG (Tarifliche Vereinigung (DB-Nahverkehrsfahrkarten gelten mit Ausnahme von Sonderangeboten) - NJ (Tarifliche Vereinigung (Alle Nahverkehrsfahrkarten werden anerkannt) - N+ (Tarifliche Vereinigung (Nahverkehrskooperation DB FV: fiktiver Zug) - CK (Komfort Check-in möglich) - HS (Zugang fuer Rollstuhlfahrer) - OA (Rollstuhlstellplatz - Voranmeldung unter +43 5 1717) - OG (bedingt rollstuhltaugliches WC) - RO (Rollstuhlstellplatz) - FB (Fahrradmitnahme begrenzt moeglich) - FF (Fahrradmitnahme reservierungpflichtig -nur grenzueberschreitend moeglich) - FK (Fahrradmitnahme begrenzt moeglich) - FO (Fahrradreservierung unter 030 2970 oder in Reisezentren + DB Agenturen) - FR (Fahrradmitnahme reservierungspflichtig) - G  (Fahrradmitnahme begrenzt moeglich) - NF (keine Fahrradbefoerderung moeglich) - DC (keine behindertengerechte Toilette) - EH (Fahrzeuggebundene Einstiegshilfe: Anmeldung 01806-512512 *) - EF (Fahrzeuggebundene Einstiegshilfe) - RG (Behindertengerechtes Fahrzeug) - SM (Info www.bahn.de/sh-barrierefrei) - SI (Barrierefreier Zustieg an geeigneten Stationen moeglich) - AB (Bus mit Fahrradanhaenger) - FJ (Keine Mitnahme von Fahrradgruppen moeglich) - FS (Bei Fahrradmitnahme Sperrzeiten beachten) - FT (Radexpress und Ausflugszug) - KF (Kostenlose Fahrradbefoerderung) - RF (Fahrradbus: Fuer Reisende mit Fahrrad) - TF (Bus mit Fahrradtraeger)
-   * @type {string}
-   * @memberof MessageAttribute
-   */
-  code: string;
-  /**
-   * Text for attribute.
-   * @type {string}
-   * @memberof MessageAttribute
-   */
-  text: string;
+	/**
+	 * ID of message that is unique within all message collections.
+	 * @type {number}
+	 * @memberof MessageAttribute
+	 */
+	messageID: number;
+	/**
+	 * Display priority [Anzeigereihenfolge aka \'Priorität*] for message. Order is ascending.
+	 * @type {number}
+	 * @memberof MessageAttribute
+	 */
+	displayPriority?: number;
+	/**
+	 * Detailed display priority [detaillierte Anzeigereihenfolge aka \'Feinsortierung\'] for message. Order is ascending.
+	 * @type {number}
+	 * @memberof MessageAttribute
+	 */
+	displayPriorityDetail?: number;
+	/**
+	 * - FR (Fahrradmitnahme reservierungspflichtig) - RP (Reservierungspflicht) - RR (1. Kl. Reservierungspflicht) - RT (Teilreservierungspflicht) - OC (rollstuhltaugliches WC) - 3D (Schlafwagen 2. Klasse T3 mit Dusche und WC) - S1 (Schlafwagen 1. Klasse Single mit Dusche und WC) - S2 (Schlafwagen 1. Klasse Double mit Dusche und WC) - NG (Tarifliche Vereinigung (DB-Nahverkehrsfahrkarten gelten mit Ausnahme von Sonderangeboten) - NJ (Tarifliche Vereinigung (Alle Nahverkehrsfahrkarten werden anerkannt) - N+ (Tarifliche Vereinigung (Nahverkehrskooperation DB FV: fiktiver Zug) - CK (Komfort Check-in möglich) - HS (Zugang fuer Rollstuhlfahrer) - OA (Rollstuhlstellplatz - Voranmeldung unter +43 5 1717) - OG (bedingt rollstuhltaugliches WC) - RO (Rollstuhlstellplatz) - FB (Fahrradmitnahme begrenzt moeglich) - FF (Fahrradmitnahme reservierungpflichtig -nur grenzueberschreitend moeglich) - FK (Fahrradmitnahme begrenzt moeglich) - FO (Fahrradreservierung unter 030 2970 oder in Reisezentren + DB Agenturen) - FR (Fahrradmitnahme reservierungspflichtig) - G  (Fahrradmitnahme begrenzt moeglich) - NF (keine Fahrradbefoerderung moeglich) - DC (keine behindertengerechte Toilette) - EH (Fahrzeuggebundene Einstiegshilfe: Anmeldung 01806-512512 *) - EF (Fahrzeuggebundene Einstiegshilfe) - RG (Behindertengerechtes Fahrzeug) - SM (Info www.bahn.de/sh-barrierefrei) - SI (Barrierefreier Zustieg an geeigneten Stationen moeglich) - AB (Bus mit Fahrradanhaenger) - FJ (Keine Mitnahme von Fahrradgruppen moeglich) - FS (Bei Fahrradmitnahme Sperrzeiten beachten) - FT (Radexpress und Ausflugszug) - KF (Kostenlose Fahrradbefoerderung) - RF (Fahrradbus: Fuer Reisende mit Fahrrad) - TF (Bus mit Fahrradtraeger)
+	 * @type {string}
+	 * @memberof MessageAttribute
+	 */
+	code: string;
+	/**
+	 * Text for attribute.
+	 * @type {string}
+	 * @memberof MessageAttribute
+	 */
+	text: string;
 }
 /**
  * Disruption-communication [Störungskommunikationen] message.
@@ -678,42 +678,42 @@ export interface MessageAttribute {
  * @interface MessageDisruptionCommunication
  */
 export interface MessageDisruptionCommunication {
-  /**
-   * ID of message that is unique within all message collections.
-   * @type {number}
-   * @memberof MessageDisruptionCommunication
-   */
-  messageID: number;
-  /**
-   * ID of disruption [StoerungsID].
-   * @type {string}
-   * @memberof MessageDisruptionCommunication
-   */
-  disruptionID?: string;
-  /**
-   * ID of disruption communication [StoerungskommunikationsID].
-   * @type {string}
-   * @memberof MessageDisruptionCommunication
-   */
-  disruptionCommunicationID?: string;
-  /**
-   * Display priority [Anzeigereihenfolge] for disruption-communication. Order is ascending.
-   * @type {number}
-   * @memberof MessageDisruptionCommunication
-   */
-  displayPriority?: number;
-  /**
-   *
-   * @type {DisruptionCommunicationDescription}
-   * @memberof MessageDisruptionCommunication
-   */
-  langDe: DisruptionCommunicationDescription;
-  /**
-   *
-   * @type {DisruptionCommunicationDescription}
-   * @memberof MessageDisruptionCommunication
-   */
-  langEn?: DisruptionCommunicationDescription;
+	/**
+	 * ID of message that is unique within all message collections.
+	 * @type {number}
+	 * @memberof MessageDisruptionCommunication
+	 */
+	messageID: number;
+	/**
+	 * ID of disruption [StoerungsID].
+	 * @type {string}
+	 * @memberof MessageDisruptionCommunication
+	 */
+	disruptionID?: string;
+	/**
+	 * ID of disruption communication [StoerungskommunikationsID].
+	 * @type {string}
+	 * @memberof MessageDisruptionCommunication
+	 */
+	disruptionCommunicationID?: string;
+	/**
+	 * Display priority [Anzeigereihenfolge] for disruption-communication. Order is ascending.
+	 * @type {number}
+	 * @memberof MessageDisruptionCommunication
+	 */
+	displayPriority?: number;
+	/**
+	 *
+	 * @type {DisruptionCommunicationDescription}
+	 * @memberof MessageDisruptionCommunication
+	 */
+	langDe: DisruptionCommunicationDescription;
+	/**
+	 *
+	 * @type {DisruptionCommunicationDescription}
+	 * @memberof MessageDisruptionCommunication
+	 */
+	langEn?: DisruptionCommunicationDescription;
 }
 /**
  * Note [Hinweistext] message.
@@ -721,36 +721,36 @@ export interface MessageDisruptionCommunication {
  * @interface MessageNote
  */
 export interface MessageNote {
-  /**
-   * ID of message that is unique within all message collections.
-   * @type {number}
-   * @memberof MessageNote
-   */
-  messageID: number;
-  /**
-   * Optional code of note.
-   * @type {string}
-   * @memberof MessageNote
-   */
-  code?: string;
-  /**
-   * Optional category of message, like for instance \'Bauarbeiten\' or \'Informationen\'.
-   * @type {string}
-   * @memberof MessageNote
-   */
-  category?: string;
-  /**
-   * Freetext of note.
-   * @type {string}
-   * @memberof MessageNote
-   */
-  text: string;
-  /**
-   * Short freetext of note, may be empty.
-   * @type {string}
-   * @memberof MessageNote
-   */
-  textShort?: string;
+	/**
+	 * ID of message that is unique within all message collections.
+	 * @type {number}
+	 * @memberof MessageNote
+	 */
+	messageID: number;
+	/**
+	 * Optional code of note.
+	 * @type {string}
+	 * @memberof MessageNote
+	 */
+	code?: string;
+	/**
+	 * Optional category of message, like for instance \'Bauarbeiten\' or \'Informationen\'.
+	 * @type {string}
+	 * @memberof MessageNote
+	 */
+	category?: string;
+	/**
+	 * Freetext of note.
+	 * @type {string}
+	 * @memberof MessageNote
+	 */
+	text: string;
+	/**
+	 * Short freetext of note, may be empty.
+	 * @type {string}
+	 * @memberof MessageNote
+	 */
+	textShort?: string;
 }
 /**
  * Ris cause code [RIS Kundengrund] message.
@@ -758,24 +758,24 @@ export interface MessageNote {
  * @interface MessageRisCauseCode
  */
 export interface MessageRisCauseCode {
-  /**
-   * ID of message that is unique within all message collections.
-   * @type {number}
-   * @memberof MessageRisCauseCode
-   */
-  messageID: number;
-  /**
-   * RIS cause code [Code für RIS Kundengrund]. - 00 (entspricht \'keine Verspätungsbegründung\') - 01 (entspricht \'nähere Informationen in Kürze\') - 02 (entspricht \'Polizeieinsatz\') - 03 (entspricht \'Feuerwehreinsatz auf der Strecke\') - 04 (aktuell nicht belegt) - 05 (entspricht \'ärztliche Versorgung eines Fahrgastes\') - 06 (entspricht \'unbefugtes Ziehen der Notbremse\') - 07 (entspricht \'unbefugte Personen auf der Strecke\') - 08 (entspricht \'Notarzteinsatz auf der Strecke\') - 09 (entspricht \'Streikauswirkungen\') - 10 (entspricht \'Tiere auf der Strecke\') - 11 (entspricht \'Unwetter\') - 12 (entspricht \'Warten auf ein verspätetes Schiff\') - 13 (entspricht \'Pass- und Zollkontrolle\') - 14 (aktuell nicht belegt) - 15 (entspricht \'Beeinträchtigung durch Vandalismus\') - 16 (entspricht \'Entschärfung einer Fliegerbombe\') - 17 (entspricht \'Beschädigung einer Brücke\') - 18 (entspricht \'umgestürzter Baum auf der Strecke\') - 19 (entspricht \'Unfall an einem Bahnübergang\') - 20 (aktuell nicht belegt) - 21 (entspricht \'Warten auf Anschlussreisende\') - 22 (entspricht \'Witterungsbedingte Beeinträchtigungen\') - 23 (aktuell nicht belegt) - 24 (entspricht \'Verspätung im Ausland\') - 25 (entspricht \'Bereitstellung weiterer Wagen\') - 26 (aktuell nicht belegt) - 27 (aktuell nicht belegt) - 28 (entspricht \'Gegenstände auf der Strecke\') - 29 (entspricht \'Ersatzverkehr mit Bus ist eingerichtet\') - 30 (aktuell nicht belegt) - 31 (entspricht \'Bauarbeiten\') - 32 (entspricht \'Unterstützung beim Ein- und Ausstieg\') - 33 (entspricht \'Reparatur an der Oberleitung\') - 34 (entspricht \'Reparatur an einem Signal\') - 35 (entspricht \'Streckensperrung \') - 36 (entspricht \'Reparatur am Zug\') - 37 (aktuell nicht belegt) - 38 (entspricht \'Reparatur an der Strecke\') - 39 (entspricht \'\') - 40 (entspricht \'defektes Stellwerk\') - 41 (aktuell nicht belegt) - 42 (entspricht \'vorübergehend verminderte Geschwindigkeit auf der Strecke\') - 43 (entspricht \'Verspätung eines vorausfahrenden Zuges\') - 44 (entspricht \'Warten auf einen entgegenkommenden Zug\') - 45 (entspricht \'Vorfahrt eines anderen Zuges\') - 46 (entspricht \'Vorfahrt eines anderen Zuges\') - 47 (entspricht \'verspätete Bereitstellung des Zuges\') - 48 (entspricht \'Verspätung aus vorheriger Fahrt\') - 49 (entspricht \'kurzfristiger Personalausfall\') - 50 (entspricht \'kurzfristige Erkrankung von Personal\') - 51 (entspricht \'verspätetes Personal aus vorheriger Fahrt\') - 52 (entspricht \'Streik\') - 53 (entspricht \'Unwetterauswirkungen\') - 54 (entspricht \'Verfügbarkeit der Gleise derzeit eingeschränkt\') - 55 (aktuell nicht belegt) - 56 (entspricht \'Warten auf Anschlussreisende\') - 57 (entspricht \'zusätzlicher Halt zum Ein- und Ausstieg\') - 58 (entspricht \'Umleitung des Zuges\') - 59 (entspricht \'Schnee und Eis\') - 60 (entspricht \'witterungsbedingt verminderte Geschwindigkeit\') - 61 (entspricht \'defekte Tür\') - 62 (aktuell nicht belegt) - 63 (aktuell nicht belegt) - 64 (entspricht \'Reparatur an der Weiche\') - 65 (entspricht \'Erdrutsch\') - 66 (entspricht \'Hochwasser\') - 67 (entspricht \'behördliche Maßnahme\') - 68 (entspricht \'hohes Fahrgastaufkommen verlängert Ein- und Ausstieg\') - 69 (entspricht \'Zug verkehrt mit verminderter Geschwindigkeit\') - 99 (entspricht \'sonstige Gründe\')  note: list is not exhausting and more undocumented values may be returned
-   * @type {string}
-   * @memberof MessageRisCauseCode
-   */
-  code: string;
-  /**
-   * Text for code.
-   * @type {string}
-   * @memberof MessageRisCauseCode
-   */
-  text: string;
+	/**
+	 * ID of message that is unique within all message collections.
+	 * @type {number}
+	 * @memberof MessageRisCauseCode
+	 */
+	messageID: number;
+	/**
+	 * RIS cause code [Code für RIS Kundengrund]. - 00 (entspricht \'keine Verspätungsbegründung\') - 01 (entspricht \'nähere Informationen in Kürze\') - 02 (entspricht \'Polizeieinsatz\') - 03 (entspricht \'Feuerwehreinsatz auf der Strecke\') - 04 (aktuell nicht belegt) - 05 (entspricht \'ärztliche Versorgung eines Fahrgastes\') - 06 (entspricht \'unbefugtes Ziehen der Notbremse\') - 07 (entspricht \'unbefugte Personen auf der Strecke\') - 08 (entspricht \'Notarzteinsatz auf der Strecke\') - 09 (entspricht \'Streikauswirkungen\') - 10 (entspricht \'Tiere auf der Strecke\') - 11 (entspricht \'Unwetter\') - 12 (entspricht \'Warten auf ein verspätetes Schiff\') - 13 (entspricht \'Pass- und Zollkontrolle\') - 14 (aktuell nicht belegt) - 15 (entspricht \'Beeinträchtigung durch Vandalismus\') - 16 (entspricht \'Entschärfung einer Fliegerbombe\') - 17 (entspricht \'Beschädigung einer Brücke\') - 18 (entspricht \'umgestürzter Baum auf der Strecke\') - 19 (entspricht \'Unfall an einem Bahnübergang\') - 20 (aktuell nicht belegt) - 21 (entspricht \'Warten auf Anschlussreisende\') - 22 (entspricht \'Witterungsbedingte Beeinträchtigungen\') - 23 (aktuell nicht belegt) - 24 (entspricht \'Verspätung im Ausland\') - 25 (entspricht \'Bereitstellung weiterer Wagen\') - 26 (aktuell nicht belegt) - 27 (aktuell nicht belegt) - 28 (entspricht \'Gegenstände auf der Strecke\') - 29 (entspricht \'Ersatzverkehr mit Bus ist eingerichtet\') - 30 (aktuell nicht belegt) - 31 (entspricht \'Bauarbeiten\') - 32 (entspricht \'Unterstützung beim Ein- und Ausstieg\') - 33 (entspricht \'Reparatur an der Oberleitung\') - 34 (entspricht \'Reparatur an einem Signal\') - 35 (entspricht \'Streckensperrung \') - 36 (entspricht \'Reparatur am Zug\') - 37 (aktuell nicht belegt) - 38 (entspricht \'Reparatur an der Strecke\') - 39 (entspricht \'\') - 40 (entspricht \'defektes Stellwerk\') - 41 (aktuell nicht belegt) - 42 (entspricht \'vorübergehend verminderte Geschwindigkeit auf der Strecke\') - 43 (entspricht \'Verspätung eines vorausfahrenden Zuges\') - 44 (entspricht \'Warten auf einen entgegenkommenden Zug\') - 45 (entspricht \'Vorfahrt eines anderen Zuges\') - 46 (entspricht \'Vorfahrt eines anderen Zuges\') - 47 (entspricht \'verspätete Bereitstellung des Zuges\') - 48 (entspricht \'Verspätung aus vorheriger Fahrt\') - 49 (entspricht \'kurzfristiger Personalausfall\') - 50 (entspricht \'kurzfristige Erkrankung von Personal\') - 51 (entspricht \'verspätetes Personal aus vorheriger Fahrt\') - 52 (entspricht \'Streik\') - 53 (entspricht \'Unwetterauswirkungen\') - 54 (entspricht \'Verfügbarkeit der Gleise derzeit eingeschränkt\') - 55 (aktuell nicht belegt) - 56 (entspricht \'Warten auf Anschlussreisende\') - 57 (entspricht \'zusätzlicher Halt zum Ein- und Ausstieg\') - 58 (entspricht \'Umleitung des Zuges\') - 59 (entspricht \'Schnee und Eis\') - 60 (entspricht \'witterungsbedingt verminderte Geschwindigkeit\') - 61 (entspricht \'defekte Tür\') - 62 (aktuell nicht belegt) - 63 (aktuell nicht belegt) - 64 (entspricht \'Reparatur an der Weiche\') - 65 (entspricht \'Erdrutsch\') - 66 (entspricht \'Hochwasser\') - 67 (entspricht \'behördliche Maßnahme\') - 68 (entspricht \'hohes Fahrgastaufkommen verlängert Ein- und Ausstieg\') - 69 (entspricht \'Zug verkehrt mit verminderter Geschwindigkeit\') - 99 (entspricht \'sonstige Gründe\')  note: list is not exhausting and more undocumented values may be returned
+	 * @type {string}
+	 * @memberof MessageRisCauseCode
+	 */
+	code: string;
+	/**
+	 * Text for code.
+	 * @type {string}
+	 * @memberof MessageRisCauseCode
+	 */
+	text: string;
 }
 /**
  * Ris quality deviation [RIS Qualitätsabweichungen] message.
@@ -783,24 +783,24 @@ export interface MessageRisCauseCode {
  * @interface MessageRisQualityDeviation
  */
 export interface MessageRisQualityDeviation {
-  /**
-   * ID of message that is unique within all message collections.
-   * @type {number}
-   * @memberof MessageRisQualityDeviation
-   */
-  messageID: number;
-  /**
-   * RIS quality deviation [Code für RIS Qualitätsabweichung]. - 70 (WLAN nicht verfügbar) - 71 (WLAN in einem/mehreren Wagen nicht verfügbar) - 72 (Info-/Entertainment nicht verfügbar) - 73 (Heute: Mehrzweckabteil vorne) - 74 (Heute: Mehrzweckabteil hinten) - 75 (Heute: 1. Klasse vorne) - 76 (Heute: 1. Klasse hinten) - 77 (1. Klasse fehlt) - 78 (aktuell nicht belegt) - 79 (Mehrzweckabteil fehlt) - 80 (andere Reihenfolge der Wagen) - 81 (aktuell nicht belegt) - 82 (mehrere Wagen fehlen) - 83 (defekte fahrzeuggebundene Einstiegshilfe) - 84 (Zug verkehrt richtig gereiht) - 85 (ein Wagen fehlt) - 86 (gesamter Zug ohne Reservierung) - 87 (einzelne Wagen ohne Reservierung) - 88 (keine Qualitätsmängel) - 89 (Reservierungen sind wieder vorhanden) - 90 (kein gastronomisches Angebot) - 91 (Fahrradmitnahme nicht möglich) - 92 (Eingeschränkte Fahrradbeförderung ) - 93 (behindertengerechte Einrichtung fehlt) - 94 (Ersatzbewirtschaftung) - 95 (Universal-WC fehlt) - 96 (Überbesetzung mit Kulanzleistungen) - 97 (Überbesetzung ohne Kulanzleistungen) - 98 (sonstige Qualitätsmängel)  note: list is not exhausting and more undocumented values may be returned
-   * @type {string}
-   * @memberof MessageRisQualityDeviation
-   */
-  code: string;
-  /**
-   * Text for code.
-   * @type {string}
-   * @memberof MessageRisQualityDeviation
-   */
-  text: string;
+	/**
+	 * ID of message that is unique within all message collections.
+	 * @type {number}
+	 * @memberof MessageRisQualityDeviation
+	 */
+	messageID: number;
+	/**
+	 * RIS quality deviation [Code für RIS Qualitätsabweichung]. - 70 (WLAN nicht verfügbar) - 71 (WLAN in einem/mehreren Wagen nicht verfügbar) - 72 (Info-/Entertainment nicht verfügbar) - 73 (Heute: Mehrzweckabteil vorne) - 74 (Heute: Mehrzweckabteil hinten) - 75 (Heute: 1. Klasse vorne) - 76 (Heute: 1. Klasse hinten) - 77 (1. Klasse fehlt) - 78 (aktuell nicht belegt) - 79 (Mehrzweckabteil fehlt) - 80 (andere Reihenfolge der Wagen) - 81 (aktuell nicht belegt) - 82 (mehrere Wagen fehlen) - 83 (defekte fahrzeuggebundene Einstiegshilfe) - 84 (Zug verkehrt richtig gereiht) - 85 (ein Wagen fehlt) - 86 (gesamter Zug ohne Reservierung) - 87 (einzelne Wagen ohne Reservierung) - 88 (keine Qualitätsmängel) - 89 (Reservierungen sind wieder vorhanden) - 90 (kein gastronomisches Angebot) - 91 (Fahrradmitnahme nicht möglich) - 92 (Eingeschränkte Fahrradbeförderung ) - 93 (behindertengerechte Einrichtung fehlt) - 94 (Ersatzbewirtschaftung) - 95 (Universal-WC fehlt) - 96 (Überbesetzung mit Kulanzleistungen) - 97 (Überbesetzung ohne Kulanzleistungen) - 98 (sonstige Qualitätsmängel)  note: list is not exhausting and more undocumented values may be returned
+	 * @type {string}
+	 * @memberof MessageRisQualityDeviation
+	 */
+	code: string;
+	/**
+	 * Text for code.
+	 * @type {string}
+	 * @memberof MessageRisQualityDeviation
+	 */
+	text: string;
 }
 /**
  * Container to deduplicate messages [Störungskommunikationen, Fahrtmerkmale, Hinweise, RIS Kundengründe oder RIS Qualitätsabweichungen] in order to assign them to journeys [Fahrten], journey-events [Fahrtereignisse wie Abfahrt und Ankunft] and stop-places [Haltestellen]. - messages are provided once and may be referenced multiple times [z.B. ein Fahrtmerkmal für alle Fahrtereignisse oder eine Störungskommunikation für alle Abfahrten] - ids are not stable and only valid within the provided context (ie first journey request may have different message ids than second request for the same journey) - ids are unique over all buckets
@@ -808,36 +808,36 @@ export interface MessageRisQualityDeviation {
  * @interface Messages
  */
 export interface Messages {
-  /**
-   * List of journey-attributes [Fahrtmerkmale / Sollmerkmale].
-   * @type {Array<MessageAttribute>}
-   * @memberof Messages
-   */
-  attributes?: Array<MessageAttribute>;
-  /**
-   * List of disruption-communications [Störungskommunikationen].
-   * @type {Array<MessageDisruptionCommunication>}
-   * @memberof Messages
-   */
-  disruptions?: Array<MessageDisruptionCommunication>;
-  /**
-   * List of notes [Freitexte / Hinweistexte].
-   * @type {Array<MessageNote>}
-   * @memberof Messages
-   */
-  notes?: Array<MessageNote>;
-  /**
-   * List of ris cause codes [RIS Kundengründe].
-   * @type {Array<MessageRisCauseCode>}
-   * @memberof Messages
-   */
-  risCauseCodes?: Array<MessageRisCauseCode>;
-  /**
-   * List of ris quality deviations [RIS Qualitätsabweichungen].
-   * @type {Array<MessageRisQualityDeviation>}
-   * @memberof Messages
-   */
-  risQualityDeviations?: Array<MessageRisQualityDeviation>;
+	/**
+	 * List of journey-attributes [Fahrtmerkmale / Sollmerkmale].
+	 * @type {Array<MessageAttribute>}
+	 * @memberof Messages
+	 */
+	attributes?: Array<MessageAttribute>;
+	/**
+	 * List of disruption-communications [Störungskommunikationen].
+	 * @type {Array<MessageDisruptionCommunication>}
+	 * @memberof Messages
+	 */
+	disruptions?: Array<MessageDisruptionCommunication>;
+	/**
+	 * List of notes [Freitexte / Hinweistexte].
+	 * @type {Array<MessageNote>}
+	 * @memberof Messages
+	 */
+	notes?: Array<MessageNote>;
+	/**
+	 * List of ris cause codes [RIS Kundengründe].
+	 * @type {Array<MessageRisCauseCode>}
+	 * @memberof Messages
+	 */
+	risCauseCodes?: Array<MessageRisCauseCode>;
+	/**
+	 * List of ris quality deviations [RIS Qualitätsabweichungen].
+	 * @type {Array<MessageRisQualityDeviation>}
+	 * @memberof Messages
+	 */
+	risQualityDeviations?: Array<MessageRisQualityDeviation>;
 }
 /**
  * Meta information a journey has been changed the last time for batch results.
@@ -845,18 +845,18 @@ export interface Messages {
  * @interface MetaLastChangedTimestamp
  */
 export interface MetaLastChangedTimestamp {
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof MetaLastChangedTimestamp
-   */
-  journeyID: string;
-  /**
-   * Timestamp the journey has been changed the last time as fully-qualified-date (ISO-8601 with time-zone or offset).
-   * @type {string}
-   * @memberof MetaLastChangedTimestamp
-   */
-  metaLastChangedTimestamp: string;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof MetaLastChangedTimestamp
+	 */
+	journeyID: string;
+	/**
+	 * Timestamp the journey has been changed the last time as fully-qualified-date (ISO-8601 with time-zone or offset).
+	 * @type {string}
+	 * @memberof MetaLastChangedTimestamp
+	 */
+	metaLastChangedTimestamp: string;
 }
 /**
  * Replacement transport [Ersatzverkehr] information, in case transport is a rail replacement transport [Schienenersatzverkehr (SEV)] or emergency bus service [Busnotverkehr]. Indicates that this transport is a replacement transport.
@@ -864,12 +864,12 @@ export interface MetaLastChangedTimestamp {
  * @interface ReplacementTransport
  */
 export interface ReplacementTransport {
-  /**
-   * Real type of replacement transport that may differ from sales perspective (for instance a \'REGIONAL_TRAIN\' is usuallay replaced by a \'BUS\'). Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof ReplacementTransport
-   */
-  realType: string;
+	/**
+	 * Real type of replacement transport that may differ from sales perspective (for instance a \'REGIONAL_TRAIN\' is usuallay replaced by a \'BUS\'). Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {string}
+	 * @memberof ReplacementTransport
+	 */
+	realType: string;
 }
 /**
  * Differing stop-place [Haltestelle] in case a platform change [Gleiswechsel] within a station [Bahnhof], the stop-place belongs to, occurs and stop-place ids are changed (for instance a platform change in \'Frankfurt Main Hbf\' from platform \'12\' to \'103\' will result in a change of the stop-place id from \'8000105\' to \'8098105\' hence stopPlace.evaNumber = \'8000105\' and stopPlace.differingStopPlace.evaNumber = \'8098105\').
@@ -877,35 +877,35 @@ export interface ReplacementTransport {
  * @interface StopPlaceDifferingInJourney
  */
 export interface StopPlaceDifferingInJourney {
-  /**
-   * Eva number of stop-place [Haltestelle].
-   * @type {string}
-   * @memberof StopPlaceDifferingInJourney
-   */
-  evaNumber: string;
-  /**
-   * Name for stop-place [Haltestelle] in fixed language \'DE\'.
-   * @type {string}
-   * @memberof StopPlaceDifferingInJourney
-   */
-  name: string;
+	/**
+	 * Eva number of stop-place [Haltestelle].
+	 * @type {string}
+	 * @memberof StopPlaceDifferingInJourney
+	 */
+	evaNumber: string;
+	/**
+	 * Name for stop-place [Haltestelle] in fixed language \'DE\'.
+	 * @type {string}
+	 * @memberof StopPlaceDifferingInJourney
+	 */
+	name: string;
 }
 /**
  * @tsoaModel
  */
 export interface StopPlaceEmbedded {
-  /**
-   * Eva number of stop-place [Haltestelle].
-   * @type {string}
-   * @memberof StopPlaceEmbedded
-   */
-  evaNumber: string;
-  /**
-   * Name for stop-place [Haltestelle] in fixed language \'DE\'.
-   * @type {string}
-   * @memberof StopPlaceEmbedded
-   */
-  name: string;
+	/**
+	 * Eva number of stop-place [Haltestelle].
+	 * @type {string}
+	 * @memberof StopPlaceEmbedded
+	 */
+	evaNumber: string;
+	/**
+	 * Name for stop-place [Haltestelle] in fixed language \'DE\'.
+	 * @type {string}
+	 * @memberof StopPlaceEmbedded
+	 */
+	name: string;
 }
 /**
  * Comprehensive stop-place [Haltestelle] information.
@@ -913,24 +913,24 @@ export interface StopPlaceEmbedded {
  * @interface StopPlaceEmbeddedWithCancel
  */
 export interface StopPlaceEmbeddedWithCancel {
-  /**
-   * Eva number of stop-place [Haltestelle].
-   * @type {string}
-   * @memberof StopPlaceEmbeddedWithCancel
-   */
-  evaNumber: string;
-  /**
-   * Name for stop-place [Haltestelle] in fixed language \'DE\'.
-   * @type {string}
-   * @memberof StopPlaceEmbeddedWithCancel
-   */
-  name: string;
-  /**
-   * Indicates whether the stop ie departure / arrival has been cancelled [Haltausfall].
-   * @type {boolean}
-   * @memberof StopPlaceEmbeddedWithCancel
-   */
-  cancelled?: boolean;
+	/**
+	 * Eva number of stop-place [Haltestelle].
+	 * @type {string}
+	 * @memberof StopPlaceEmbeddedWithCancel
+	 */
+	evaNumber: string;
+	/**
+	 * Name for stop-place [Haltestelle] in fixed language \'DE\'.
+	 * @type {string}
+	 * @memberof StopPlaceEmbeddedWithCancel
+	 */
+	name: string;
+	/**
+	 * Indicates whether the stop ie departure / arrival has been cancelled [Haltausfall].
+	 * @type {boolean}
+	 * @memberof StopPlaceEmbeddedWithCancel
+	 */
+	cancelled?: boolean;
 }
 /**
  * Stop-place [Haltestelle] information for a stop-place a transport [Verkehrsart / Verkehrsmittel] departs / arrives at.
@@ -938,24 +938,24 @@ export interface StopPlaceEmbeddedWithCancel {
  * @interface StopPlaceInJourney
  */
 export interface StopPlaceInJourney {
-  /**
-   * Eva number of stop-place [Haltestelle].
-   * @type {string}
-   * @memberof StopPlaceInJourney
-   */
-  evaNumber: string;
-  /**
-   * Name for stop-place [Haltestelle] in fixed language \'DE\'.
-   * @type {string}
-   * @memberof StopPlaceInJourney
-   */
-  name: string;
-  /**
-   *
-   * @type {StopPlaceDifferingInJourney}
-   * @memberof StopPlaceInJourney
-   */
-  differingStopPlace?: StopPlaceDifferingInJourney;
+	/**
+	 * Eva number of stop-place [Haltestelle].
+	 * @type {string}
+	 * @memberof StopPlaceInJourney
+	 */
+	evaNumber: string;
+	/**
+	 * Name for stop-place [Haltestelle] in fixed language \'DE\'.
+	 * @type {string}
+	 * @memberof StopPlaceInJourney
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {StopPlaceDifferingInJourney}
+	 * @memberof StopPlaceInJourney
+	 */
+	differingStopPlace?: StopPlaceDifferingInJourney;
 }
 /**
  * Transport [Verkehrsart / Verkehrsmittel] information.
@@ -963,42 +963,42 @@ export interface StopPlaceInJourney {
  * @interface Transport
  */
 export interface Transport {
-  /**
-   * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof Transport
-   */
-  type: string;
-  /**
-   * Category of the transport [externe Fahrtgattung].
-   * @type {string}
-   * @memberof Transport
-   */
-  category: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof Transport
-   */
-  journeyNumber: number;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof Transport
-   */
-  line?: string;
-  /**
-   * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof Transport
-   */
-  label?: string;
-  /**
-   *
-   * @type {Administration}
-   * @memberof Transport
-   */
-  administration: Administration;
+	/**
+	 * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {string}
+	 * @memberof Transport
+	 */
+	type: string;
+	/**
+	 * Category of the transport [externe Fahrtgattung].
+	 * @type {string}
+	 * @memberof Transport
+	 */
+	category: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof Transport
+	 */
+	journeyNumber: number;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof Transport
+	 */
+	line?: string;
+	/**
+	 * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof Transport
+	 */
+	label?: string;
+	/**
+	 *
+	 * @type {Administration}
+	 * @memberof Transport
+	 */
+	administration: Administration;
 }
 /**
  * Public transport [Oeffentlicher Transport] with (scheduled) destination [Ziel] and differing destination [abweichender Zielhalt] for coupled transports [vereinigte Züge].
@@ -1006,60 +1006,60 @@ export interface Transport {
  * @interface TransportDestinationPortionWorkingRef
  */
 export interface TransportDestinationPortionWorkingRef {
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  journeyID: string;
-  /**
-   * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  type: string;
-  /**
-   * Category of the transport [externe Fahrtgattung].
-   * @type {string}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  category: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  journeyNumber: number;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  line?: string;
-  /**
-   * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  label?: string;
-  /**
-   *
-   * @type {StopPlaceEmbeddedWithCancel}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  destination: StopPlaceEmbeddedWithCancel;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  differingDestination?: StopPlaceEmbedded;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof TransportDestinationPortionWorkingRef
-   */
-  separationAt?: StopPlaceEmbedded;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	journeyID: string;
+	/**
+	 * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {string}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	type: string;
+	/**
+	 * Category of the transport [externe Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	category: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	journeyNumber: number;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	line?: string;
+	/**
+	 * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	label?: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbeddedWithCancel}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	destination: StopPlaceEmbeddedWithCancel;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	differingDestination?: StopPlaceEmbedded;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof TransportDestinationPortionWorkingRef
+	 */
+	separationAt?: StopPlaceEmbedded;
 }
 /**
  * Transport [Verkehrsart / Verkehrsmittel] information for journey references with destination.
@@ -1067,54 +1067,54 @@ export interface TransportDestinationPortionWorkingRef {
  * @interface TransportDestinationRef
  */
 export interface TransportDestinationRef {
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportDestinationRef
-   */
-  journeyID: string;
-  /**
-   * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof TransportDestinationRef
-   */
-  type: string;
-  /**
-   * Category of the transport [externe Fahrtgattung].
-   * @type {string}
-   * @memberof TransportDestinationRef
-   */
-  category: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportDestinationRef
-   */
-  journeyNumber: number;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportDestinationRef
-   */
-  line?: string;
-  /**
-   * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportDestinationRef
-   */
-  label?: string;
-  /**
-   *
-   * @type {StopPlaceEmbeddedWithCancel}
-   * @memberof TransportDestinationRef
-   */
-  destination: StopPlaceEmbeddedWithCancel;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof TransportDestinationRef
-   */
-  differingDestination?: StopPlaceEmbedded;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportDestinationRef
+	 */
+	journeyID: string;
+	/**
+	 * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {string}
+	 * @memberof TransportDestinationRef
+	 */
+	type: string;
+	/**
+	 * Category of the transport [externe Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportDestinationRef
+	 */
+	category: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportDestinationRef
+	 */
+	journeyNumber: number;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportDestinationRef
+	 */
+	line?: string;
+	/**
+	 * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportDestinationRef
+	 */
+	label?: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbeddedWithCancel}
+	 * @memberof TransportDestinationRef
+	 */
+	destination: StopPlaceEmbeddedWithCancel;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof TransportDestinationRef
+	 */
+	differingDestination?: StopPlaceEmbedded;
 }
 /**
  * Transport [Verkehrsart / Verkehrsmittel] information for journey references with origin.
@@ -1122,54 +1122,54 @@ export interface TransportDestinationRef {
  * @interface TransportOriginRef
  */
 export interface TransportOriginRef {
-  /**
-   * ID of journey [FahrtID].
-   * @type {string}
-   * @memberof TransportOriginRef
-   */
-  journeyID: string;
-  /**
-   * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof TransportOriginRef
-   */
-  type: string;
-  /**
-   * Category of the transport [externe Fahrtgattung].
-   * @type {string}
-   * @memberof TransportOriginRef
-   */
-  category: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportOriginRef
-   */
-  journeyNumber: number;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportOriginRef
-   */
-  line?: string;
-  /**
-   * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportOriginRef
-   */
-  label?: string;
-  /**
-   *
-   * @type {StopPlaceEmbeddedWithCancel}
-   * @memberof TransportOriginRef
-   */
-  origin: StopPlaceEmbeddedWithCancel;
-  /**
-   *
-   * @type {StopPlaceEmbedded}
-   * @memberof TransportOriginRef
-   */
-  differingOrigin?: StopPlaceEmbedded;
+	/**
+	 * ID of journey [FahrtID].
+	 * @type {string}
+	 * @memberof TransportOriginRef
+	 */
+	journeyID: string;
+	/**
+	 * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {string}
+	 * @memberof TransportOriginRef
+	 */
+	type: string;
+	/**
+	 * Category of the transport [externe Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportOriginRef
+	 */
+	category: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportOriginRef
+	 */
+	journeyNumber: number;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportOriginRef
+	 */
+	line?: string;
+	/**
+	 * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportOriginRef
+	 */
+	label?: string;
+	/**
+	 *
+	 * @type {StopPlaceEmbeddedWithCancel}
+	 * @memberof TransportOriginRef
+	 */
+	origin: StopPlaceEmbeddedWithCancel;
+	/**
+	 *
+	 * @type {StopPlaceEmbedded}
+	 * @memberof TransportOriginRef
+	 */
+	differingOrigin?: StopPlaceEmbedded;
 }
 /**
  * Transport [Verkehrsart / Verkehrsmittel] information.
@@ -1177,636 +1177,633 @@ export interface TransportOriginRef {
  * @interface TransportWithDirection
  */
 export interface TransportWithDirection {
-  /**
-   * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {string}
-   * @memberof TransportWithDirection
-   */
-  type: string;
-  /**
-   * Category of the transport [externe Fahrtgattung].
-   * @type {string}
-   * @memberof TransportWithDirection
-   */
-  category: string;
-  /**
-   * Number of the transport [Fahrtnummer].
-   * @type {number}
-   * @memberof TransportWithDirection
-   */
-  journeyNumber: number;
-  /**
-   * Line of the transport [Linie].
-   * @type {string}
-   * @memberof TransportWithDirection
-   */
-  line?: string;
-  /**
-   * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
-   * @type {string}
-   * @memberof TransportWithDirection
-   */
-  label?: string;
-  /**
-   *
-   * @type {ReplacementTransport}
-   * @memberof TransportWithDirection
-   */
-  replacementTransport?: ReplacementTransport;
-  /**
-   *
-   * @type {DirectionInfo}
-   * @memberof TransportWithDirection
-   */
-  direction?: DirectionInfo;
-  /**
-   *
-   * @type {Administration}
-   * @memberof TransportWithDirection
-   */
-  administration: Administration;
+	/**
+	 * Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {string}
+	 * @memberof TransportWithDirection
+	 */
+	type: string;
+	/**
+	 * Category of the transport [externe Fahrtgattung].
+	 * @type {string}
+	 * @memberof TransportWithDirection
+	 */
+	category: string;
+	/**
+	 * Number of the transport [Fahrtnummer].
+	 * @type {number}
+	 * @memberof TransportWithDirection
+	 */
+	journeyNumber: number;
+	/**
+	 * Line of the transport [Linie].
+	 * @type {string}
+	 * @memberof TransportWithDirection
+	 */
+	line?: string;
+	/**
+	 * Marketing or product name of the transport, for instance \'Sprinter\' or \'Schwarzwaldexpress\' etc. [Marketing Name / Produkt Name].
+	 * @type {string}
+	 * @memberof TransportWithDirection
+	 */
+	label?: string;
+	/**
+	 *
+	 * @type {ReplacementTransport}
+	 * @memberof TransportWithDirection
+	 */
+	replacementTransport?: ReplacementTransport;
+	/**
+	 *
+	 * @type {DirectionInfo}
+	 * @memberof TransportWithDirection
+	 */
+	direction?: DirectionInfo;
+	/**
+	 *
+	 * @type {Administration}
+	 * @memberof TransportWithDirection
+	 */
+	administration: Administration;
 }
 
 /**
  * JourneysApi - axios parameter creator
  * @export
  */
-export const JourneysApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
-     * @summary Finds a journey by its relation
-     * @param {string} startCategory category [externe Fahrtgattung] at scheduled start stop-place [Geplanter Starthalt]
-     * @param {number} startJourneyNumber number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
-     * @param {string} startTime scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
-     * @param {string} startEvaNumber eva number of scheduled start stop-place [Geplanter Starthalt]
-     * @param {string} [startAdministrationID] id of the start-administration [Start-Verwaltung] at scheduled start stop-place [Geplanter Starthalt] (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
-     * @param {string} [headerAdministrationID] id of the header-administration [Kopf-Verwaltung] of journey (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
-     * @param {string} [endTime] scheduled end time [Geplante Zielzeit] at scheduled end stop-place [Geplanter Zielhalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
-     * @param {string} [endEvaNumber] eva number of scheduled end stop-place [Geplanter Zielhalt]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    byRelation: async (
-      startCategory: string,
-      startJourneyNumber: number,
-      startTime: string,
-      startEvaNumber: string,
-      startAdministrationID?: string,
-      headerAdministrationID?: string,
-      endTime?: string,
-      endEvaNumber?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'startCategory' is not null or undefined
-      assertParamExists('byRelation', 'startCategory', startCategory);
-      // verify required parameter 'startJourneyNumber' is not null or undefined
-      assertParamExists('byRelation', 'startJourneyNumber', startJourneyNumber);
-      // verify required parameter 'startTime' is not null or undefined
-      assertParamExists('byRelation', 'startTime', startTime);
-      // verify required parameter 'startEvaNumber' is not null or undefined
-      assertParamExists('byRelation', 'startEvaNumber', startEvaNumber);
-      const localVarPath = `/by-relation`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const JourneysApiAxiosParamCreator = (
+	configuration?: Configuration,
+) => ({
+	/**
+	 * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
+	 * @summary Finds a journey by its relation
+	 * @param {string} startCategory category [externe Fahrtgattung] at scheduled start stop-place [Geplanter Starthalt]
+	 * @param {number} startJourneyNumber number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
+	 * @param {string} startTime scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+	 * @param {string} startEvaNumber eva number of scheduled start stop-place [Geplanter Starthalt]
+	 * @param {string} [startAdministrationID] id of the start-administration [Start-Verwaltung] at scheduled start stop-place [Geplanter Starthalt] (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
+	 * @param {string} [headerAdministrationID] id of the header-administration [Kopf-Verwaltung] of journey (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
+	 * @param {string} [endTime] scheduled end time [Geplante Zielzeit] at scheduled end stop-place [Geplanter Zielhalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+	 * @param {string} [endEvaNumber] eva number of scheduled end stop-place [Geplanter Zielhalt]
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	byRelation: async (
+		startCategory: string,
+		startJourneyNumber: number,
+		startTime: string,
+		startEvaNumber: string,
+		startAdministrationID?: string,
+		headerAdministrationID?: string,
+		endTime?: string,
+		endEvaNumber?: string,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		// verify required parameter 'startCategory' is not null or undefined
+		assertParamExists('byRelation', 'startCategory', startCategory);
+		// verify required parameter 'startJourneyNumber' is not null or undefined
+		assertParamExists('byRelation', 'startJourneyNumber', startJourneyNumber);
+		// verify required parameter 'startTime' is not null or undefined
+		assertParamExists('byRelation', 'startTime', startTime);
+		// verify required parameter 'startEvaNumber' is not null or undefined
+		assertParamExists('byRelation', 'startEvaNumber', startEvaNumber);
+		const localVarPath = `/by-relation`;
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      if (startAdministrationID !== undefined) {
-        localVarQueryParameter['startAdministrationID'] = startAdministrationID;
-      }
+		if (startAdministrationID !== undefined) {
+			localVarQueryParameter['startAdministrationID'] = startAdministrationID;
+		}
 
-      if (headerAdministrationID !== undefined) {
-        localVarQueryParameter['headerAdministrationID'] =
-          headerAdministrationID;
-      }
+		if (headerAdministrationID !== undefined) {
+			localVarQueryParameter['headerAdministrationID'] = headerAdministrationID;
+		}
 
-      if (startCategory !== undefined) {
-        localVarQueryParameter['startCategory'] = startCategory;
-      }
+		if (startCategory !== undefined) {
+			localVarQueryParameter['startCategory'] = startCategory;
+		}
 
-      if (startJourneyNumber !== undefined) {
-        localVarQueryParameter['startJourneyNumber'] = startJourneyNumber;
-      }
+		if (startJourneyNumber !== undefined) {
+			localVarQueryParameter['startJourneyNumber'] = startJourneyNumber;
+		}
 
-      if (startTime !== undefined) {
-        localVarQueryParameter['startTime'] =
-          (startTime as any) instanceof Date
-            ? (startTime as any).toISOString()
-            : startTime;
-      }
+		if (startTime !== undefined) {
+			localVarQueryParameter['startTime'] =
+				(startTime as any) instanceof Date
+					? (startTime as any).toISOString()
+					: startTime;
+		}
 
-      if (startEvaNumber !== undefined) {
-        localVarQueryParameter['startEvaNumber'] = startEvaNumber;
-      }
+		if (startEvaNumber !== undefined) {
+			localVarQueryParameter['startEvaNumber'] = startEvaNumber;
+		}
 
-      if (endTime !== undefined) {
-        localVarQueryParameter['endTime'] =
-          (endTime as any) instanceof Date
-            ? (endTime as any).toISOString()
-            : endTime;
-      }
+		if (endTime !== undefined) {
+			localVarQueryParameter['endTime'] =
+				(endTime as any) instanceof Date
+					? (endTime as any).toISOString()
+					: endTime;
+		}
 
-      if (endEvaNumber !== undefined) {
-        localVarQueryParameter['endEvaNumber'] = endEvaNumber;
-      }
+		if (endEvaNumber !== undefined) {
+			localVarQueryParameter['endEvaNumber'] = endEvaNumber;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
-     * @summary Finds journeys
-     * @param {string} [date] date (yyyy-MM-dd) of journey-event [Fahrtereignis] at timezone \&#39;Europe/Berlin\&#39;, if omitted defaults to today (max of 7 days in the past is allowed)
-     * @param {number} [journeyNumber] journey-number [Fahrtnummer] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
-     * @param {string} [administrationID] administration-id [Verwaltungs-ID]
-     * @param {string} [category] category of journey [externe Fahrtgattung nach Ausgabensteuerung]
-     * @param {string} [line] line of journey [Linie] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
-     * @param {Array<string>} [transportTypes] transport-types [Produktklassen] that should be returned, possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-     * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
-     * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 20
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    find: async (
-      date?: string,
-      journeyNumber?: number,
-      administrationID?: string,
-      category?: string,
-      line?: string,
-      transportTypes?: Array<string>,
-      offset?: number,
-      limit?: number,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/find`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+	/**
+	 * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
+	 * @summary Finds journeys
+	 * @param {string} [date] date (yyyy-MM-dd) of journey-event [Fahrtereignis] at timezone \&#39;Europe/Berlin\&#39;, if omitted defaults to today (max of 7 days in the past is allowed)
+	 * @param {number} [journeyNumber] journey-number [Fahrtnummer] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
+	 * @param {string} [administrationID] administration-id [Verwaltungs-ID]
+	 * @param {string} [category] category of journey [externe Fahrtgattung nach Ausgabensteuerung]
+	 * @param {string} [line] line of journey [Linie] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
+	 * @param {Array<string>} [transportTypes] transport-types [Produktklassen] that should be returned, possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
+	 * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 20
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	find: async (
+		date?: string,
+		journeyNumber?: number,
+		administrationID?: string,
+		category?: string,
+		line?: string,
+		transportTypes?: Array<string>,
+		offset?: number,
+		limit?: number,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		const localVarPath = `/find`;
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      if (date !== undefined) {
-        localVarQueryParameter['date'] =
-          (date as any) instanceof Date
-            ? (date as any).toISOString().substring(0, 10)
-            : date;
-      }
+		if (date !== undefined) {
+			localVarQueryParameter['date'] =
+				(date as any) instanceof Date
+					? (date as any).toISOString().substring(0, 10)
+					: date;
+		}
 
-      if (journeyNumber !== undefined) {
-        localVarQueryParameter['journeyNumber'] = journeyNumber;
-      }
+		if (journeyNumber !== undefined) {
+			localVarQueryParameter['journeyNumber'] = journeyNumber;
+		}
 
-      if (administrationID !== undefined) {
-        localVarQueryParameter['administrationID'] = administrationID;
-      }
+		if (administrationID !== undefined) {
+			localVarQueryParameter['administrationID'] = administrationID;
+		}
 
-      if (category !== undefined) {
-        localVarQueryParameter['category'] = category;
-      }
+		if (category !== undefined) {
+			localVarQueryParameter['category'] = category;
+		}
 
-      if (line !== undefined) {
-        localVarQueryParameter['line'] = line;
-      }
+		if (line !== undefined) {
+			localVarQueryParameter['line'] = line;
+		}
 
-      if (transportTypes) {
-        localVarQueryParameter['transportTypes'] = transportTypes;
-      }
+		if (transportTypes) {
+			localVarQueryParameter['transportTypes'] = transportTypes;
+		}
 
-      if (offset !== undefined) {
-        localVarQueryParameter['offset'] = offset;
-      }
+		if (offset !== undefined) {
+			localVarQueryParameter['offset'] = offset;
+		}
 
-      if (limit !== undefined) {
-        localVarQueryParameter['limit'] = limit;
-      }
+		if (limit !== undefined) {
+			localVarQueryParameter['limit'] = limit;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @summary Returns a list of journeys
-     * @param {JourneyBatchRequest} journeyBatchRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeyEventBasedBatch: async (
-      journeyBatchRequest: JourneyBatchRequest,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'journeyBatchRequest' is not null or undefined
-      assertParamExists(
-        'journeyEventBasedBatch',
-        'journeyBatchRequest',
-        journeyBatchRequest,
-      );
-      const localVarPath = `/batch`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+	/**
+	 * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+	 * @summary Returns a list of journeys
+	 * @param {JourneyBatchRequest} journeyBatchRequest
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	journeyEventBasedBatch: async (
+		journeyBatchRequest: JourneyBatchRequest,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		// verify required parameter 'journeyBatchRequest' is not null or undefined
+		assertParamExists(
+			'journeyEventBasedBatch',
+			'journeyBatchRequest',
+			journeyBatchRequest,
+		);
+		const localVarPath = `/batch`;
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'POST',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+		localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        journeyBatchRequest,
-        localVarRequestOptions,
-        configuration,
-      );
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
+		localVarRequestOptions.data = serializeDataIfNeeded(
+			journeyBatchRequest,
+			localVarRequestOptions,
+			configuration,
+		);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @summary Returns a journey
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung]
-     * @param {boolean} [separateCancelled] separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \&#39;eventsCancelled\&#39;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeyEventBasedById: async (
-      journeyID: string,
-      includeReferences?: boolean,
-      separateCancelled?: boolean,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'journeyID' is not null or undefined
-      assertParamExists('journeyEventBasedById', 'journeyID', journeyID);
-      const localVarPath = `/{journeyID}`.replace(
-        `{${'journeyID'}}`,
-        encodeURIComponent(String(journeyID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+	/**
+	 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+	 * @summary Returns a journey
+	 * @param {string} journeyID id of journey [FahrtID]
+	 * @param {boolean} [includeReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung]
+	 * @param {boolean} [separateCancelled] separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \&#39;eventsCancelled\&#39;
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 */
+	journeyEventBasedById: async (
+		journeyID: string,
+		includeReferences?: boolean,
+		separateCancelled?: boolean,
+		options: AxiosRequestConfig = {},
+	): Promise<RequestArgs> => {
+		// verify required parameter 'journeyID' is not null or undefined
+		assertParamExists('journeyEventBasedById', 'journeyID', journeyID);
+		const localVarPath = `/{journeyID}`.replace(
+			`{${'journeyID'}}`,
+			encodeURIComponent(String(journeyID)),
+		);
+		// use dummy base URL string because the URL constructor only accepts absolute URLs.
+		const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+		let baseOptions;
+		if (configuration) {
+			baseOptions = configuration.baseOptions;
+		}
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+		const localVarRequestOptions = {
+			method: 'GET',
+			...baseOptions,
+			...options,
+		};
+		const localVarHeaderParameter = {} as any;
+		const localVarQueryParameter = {} as any;
 
-      if (includeReferences !== undefined) {
-        localVarQueryParameter['includeReferences'] = includeReferences;
-      }
+		if (includeReferences !== undefined) {
+			localVarQueryParameter['includeReferences'] = includeReferences;
+		}
 
-      if (separateCancelled !== undefined) {
-        localVarQueryParameter['separateCancelled'] = separateCancelled;
-      }
+		if (separateCancelled !== undefined) {
+			localVarQueryParameter['separateCancelled'] = separateCancelled;
+		}
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+		setSearchParams(localVarUrlObj, localVarQueryParameter);
+		const headersFromBaseOptions =
+			baseOptions && baseOptions.headers ? baseOptions.headers : {};
+		localVarRequestOptions.headers = {
+			...localVarHeaderParameter,
+			...headersFromBaseOptions,
+			...options.headers,
+		};
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+		return {
+			url: toPathString(localVarUrlObj),
+			options: localVarRequestOptions,
+		};
+	},
+});
 
 /**
  * JourneysApi - functional programming interface
  * @export
  */
-export const JourneysApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = JourneysApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
-     * @summary Finds a journey by its relation
-     * @param {string} startCategory category [externe Fahrtgattung] at scheduled start stop-place [Geplanter Starthalt]
-     * @param {number} startJourneyNumber number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
-     * @param {string} startTime scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
-     * @param {string} startEvaNumber eva number of scheduled start stop-place [Geplanter Starthalt]
-     * @param {string} [startAdministrationID] id of the start-administration [Start-Verwaltung] at scheduled start stop-place [Geplanter Starthalt] (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
-     * @param {string} [headerAdministrationID] id of the header-administration [Kopf-Verwaltung] of journey (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
-     * @param {string} [endTime] scheduled end time [Geplante Zielzeit] at scheduled end stop-place [Geplanter Zielhalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
-     * @param {string} [endEvaNumber] eva number of scheduled end stop-place [Geplanter Zielhalt]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async byRelation(
-      startCategory: string,
-      startJourneyNumber: number,
-      startTime: string,
-      startEvaNumber: string,
-      startAdministrationID?: string,
-      headerAdministrationID?: string,
-      endTime?: string,
-      endEvaNumber?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<JourneyByRelationResults>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byRelation(
-        startCategory,
-        startJourneyNumber,
-        startTime,
-        startEvaNumber,
-        startAdministrationID,
-        headerAdministrationID,
-        endTime,
-        endEvaNumber,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
-     * @summary Finds journeys
-     * @param {string} [date] date (yyyy-MM-dd) of journey-event [Fahrtereignis] at timezone \&#39;Europe/Berlin\&#39;, if omitted defaults to today (max of 7 days in the past is allowed)
-     * @param {number} [journeyNumber] journey-number [Fahrtnummer] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
-     * @param {string} [administrationID] administration-id [Verwaltungs-ID]
-     * @param {string} [category] category of journey [externe Fahrtgattung nach Ausgabensteuerung]
-     * @param {string} [line] line of journey [Linie] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
-     * @param {Array<string>} [transportTypes] transport-types [Produktklassen] that should be returned, possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-     * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
-     * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 20
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async find(
-      date?: string,
-      journeyNumber?: number,
-      administrationID?: string,
-      category?: string,
-      line?: string,
-      transportTypes?: Array<string>,
-      offset?: number,
-      limit?: number,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<JourneyFindResults>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.find(
-        date,
-        journeyNumber,
-        administrationID,
-        category,
-        line,
-        transportTypes,
-        offset,
-        limit,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @summary Returns a list of journeys
-     * @param {JourneyBatchRequest} journeyBatchRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async journeyEventBasedBatch(
-      journeyBatchRequest: JourneyBatchRequest,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<JourneyBatchResponse>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.journeyEventBasedBatch(
-          journeyBatchRequest,
-          options,
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @summary Returns a journey
-     * @param {string} journeyID id of journey [FahrtID]
-     * @param {boolean} [includeReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung]
-     * @param {boolean} [separateCancelled] separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \&#39;eventsCancelled\&#39;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async journeyEventBasedById(
-      journeyID: string,
-      includeReferences?: boolean,
-      separateCancelled?: boolean,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<JourneyEventBased>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.journeyEventBasedById(
-          journeyID,
-          includeReferences,
-          separateCancelled,
-          options,
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-  };
+export const JourneysApiFp = (configuration?: Configuration) => {
+	const localVarAxiosParamCreator = JourneysApiAxiosParamCreator(configuration);
+	return {
+		/**
+		 * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
+		 * @summary Finds a journey by its relation
+		 * @param {string} startCategory category [externe Fahrtgattung] at scheduled start stop-place [Geplanter Starthalt]
+		 * @param {number} startJourneyNumber number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
+		 * @param {string} startTime scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+		 * @param {string} startEvaNumber eva number of scheduled start stop-place [Geplanter Starthalt]
+		 * @param {string} [startAdministrationID] id of the start-administration [Start-Verwaltung] at scheduled start stop-place [Geplanter Starthalt] (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
+		 * @param {string} [headerAdministrationID] id of the header-administration [Kopf-Verwaltung] of journey (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
+		 * @param {string} [endTime] scheduled end time [Geplante Zielzeit] at scheduled end stop-place [Geplanter Zielhalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+		 * @param {string} [endEvaNumber] eva number of scheduled end stop-place [Geplanter Zielhalt]
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async byRelation(
+			startCategory: string,
+			startJourneyNumber: number,
+			startTime: string,
+			startEvaNumber: string,
+			startAdministrationID?: string,
+			headerAdministrationID?: string,
+			endTime?: string,
+			endEvaNumber?: string,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<JourneyByRelationResults>
+		> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.byRelation(
+				startCategory,
+				startJourneyNumber,
+				startTime,
+				startEvaNumber,
+				startAdministrationID,
+				headerAdministrationID,
+				endTime,
+				endEvaNumber,
+				options,
+			);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+		/**
+		 * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
+		 * @summary Finds journeys
+		 * @param {string} [date] date (yyyy-MM-dd) of journey-event [Fahrtereignis] at timezone \&#39;Europe/Berlin\&#39;, if omitted defaults to today (max of 7 days in the past is allowed)
+		 * @param {number} [journeyNumber] journey-number [Fahrtnummer] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
+		 * @param {string} [administrationID] administration-id [Verwaltungs-ID]
+		 * @param {string} [category] category of journey [externe Fahrtgattung nach Ausgabensteuerung]
+		 * @param {string} [line] line of journey [Linie] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
+		 * @param {Array<string>} [transportTypes] transport-types [Produktklassen] that should be returned, possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+		 * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
+		 * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 20
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async find(
+			date?: string,
+			journeyNumber?: number,
+			administrationID?: string,
+			category?: string,
+			line?: string,
+			transportTypes?: Array<string>,
+			offset?: number,
+			limit?: number,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<JourneyFindResults>
+		> {
+			const localVarAxiosArgs = await localVarAxiosParamCreator.find(
+				date,
+				journeyNumber,
+				administrationID,
+				category,
+				line,
+				transportTypes,
+				offset,
+				limit,
+				options,
+			);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+		/**
+		 * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+		 * @summary Returns a list of journeys
+		 * @param {JourneyBatchRequest} journeyBatchRequest
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async journeyEventBasedBatch(
+			journeyBatchRequest: JourneyBatchRequest,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<JourneyBatchResponse>
+		> {
+			const localVarAxiosArgs =
+				await localVarAxiosParamCreator.journeyEventBasedBatch(
+					journeyBatchRequest,
+					options,
+				);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+		/**
+		 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+		 * @summary Returns a journey
+		 * @param {string} journeyID id of journey [FahrtID]
+		 * @param {boolean} [includeReferences] include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung]
+		 * @param {boolean} [separateCancelled] separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \&#39;eventsCancelled\&#39;
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		async journeyEventBasedById(
+			journeyID: string,
+			includeReferences?: boolean,
+			separateCancelled?: boolean,
+			options?: AxiosRequestConfig,
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string,
+			) => AxiosPromise<JourneyEventBased>
+		> {
+			const localVarAxiosArgs =
+				await localVarAxiosParamCreator.journeyEventBasedById(
+					journeyID,
+					includeReferences,
+					separateCancelled,
+					options,
+				);
+			return createRequestFunction(
+				localVarAxiosArgs,
+				globalAxios,
+				BASE_PATH,
+				configuration,
+			);
+		},
+	};
 };
 
 /**
  * JourneysApi - factory interface
  * @export
  */
-export const JourneysApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance,
-) {
-  const localVarFp = JourneysApiFp(configuration);
-  return {
-    /**
-     * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
-     * @summary Finds a journey by its relation
-     * @param {JourneysApiByRelationRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    byRelation(
-      requestParameters: JourneysApiByRelationRequest,
-      options?: AxiosRequestConfig,
-    ): AxiosPromise<JourneyByRelationResults> {
-      return localVarFp
-        .byRelation(
-          requestParameters.startCategory,
-          requestParameters.startJourneyNumber,
-          requestParameters.startTime,
-          requestParameters.startEvaNumber,
-          requestParameters.startAdministrationID,
-          requestParameters.headerAdministrationID,
-          requestParameters.endTime,
-          requestParameters.endEvaNumber,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
-     * @summary Finds journeys
-     * @param {JourneysApiFindRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    find(
-      requestParameters: JourneysApiFindRequest = {},
-      options?: AxiosRequestConfig,
-    ): AxiosPromise<JourneyFindResults> {
-      return localVarFp
-        .find(
-          requestParameters.date,
-          requestParameters.journeyNumber,
-          requestParameters.administrationID,
-          requestParameters.category,
-          requestParameters.line,
-          requestParameters.transportTypes,
-          requestParameters.offset,
-          requestParameters.limit,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @summary Returns a list of journeys
-     * @param {JourneysApiJourneyEventBasedBatchRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeyEventBasedBatch(
-      requestParameters: JourneysApiJourneyEventBasedBatchRequest,
-      options?: AxiosRequestConfig,
-    ): AxiosPromise<JourneyBatchResponse> {
-      return localVarFp
-        .journeyEventBasedBatch(requestParameters.journeyBatchRequest, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-     * @summary Returns a journey
-     * @param {JourneysApiJourneyEventBasedByIdRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    journeyEventBasedById(
-      requestParameters: JourneysApiJourneyEventBasedByIdRequest,
-      options?: AxiosRequestConfig,
-    ): AxiosPromise<JourneyEventBased> {
-      return localVarFp
-        .journeyEventBasedById(
-          requestParameters.journeyID,
-          requestParameters.includeReferences,
-          requestParameters.separateCancelled,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const JourneysApiFactory = (
+	configuration?: Configuration,
+	basePath?: string,
+	axios?: AxiosInstance,
+) => {
+	const localVarFp = JourneysApiFp(configuration);
+	return {
+		/**
+		 * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
+		 * @summary Finds a journey by its relation
+		 * @param {JourneysApiByRelationRequest} requestParameters Request parameters.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		byRelation(
+			requestParameters: JourneysApiByRelationRequest,
+			options?: AxiosRequestConfig,
+		): AxiosPromise<JourneyByRelationResults> {
+			return localVarFp
+				.byRelation(
+					requestParameters.startCategory,
+					requestParameters.startJourneyNumber,
+					requestParameters.startTime,
+					requestParameters.startEvaNumber,
+					requestParameters.startAdministrationID,
+					requestParameters.headerAdministrationID,
+					requestParameters.endTime,
+					requestParameters.endEvaNumber,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
+		 * @summary Finds journeys
+		 * @param {JourneysApiFindRequest} requestParameters Request parameters.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		find(
+			requestParameters: JourneysApiFindRequest = {},
+			options?: AxiosRequestConfig,
+		): AxiosPromise<JourneyFindResults> {
+			return localVarFp
+				.find(
+					requestParameters.date,
+					requestParameters.journeyNumber,
+					requestParameters.administrationID,
+					requestParameters.category,
+					requestParameters.line,
+					requestParameters.transportTypes,
+					requestParameters.offset,
+					requestParameters.limit,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+		 * @summary Returns a list of journeys
+		 * @param {JourneysApiJourneyEventBasedBatchRequest} requestParameters Request parameters.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		journeyEventBasedBatch(
+			requestParameters: JourneysApiJourneyEventBasedBatchRequest,
+			options?: AxiosRequestConfig,
+		): AxiosPromise<JourneyBatchResponse> {
+			return localVarFp
+				.journeyEventBasedBatch(requestParameters.journeyBatchRequest, options)
+				.then((request) => request(axios, basePath));
+		},
+		/**
+		 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+		 * @summary Returns a journey
+		 * @param {JourneysApiJourneyEventBasedByIdRequest} requestParameters Request parameters.
+		 * @param {*} [options] Override http request option.
+		 * @throws {RequiredError}
+		 */
+		journeyEventBasedById(
+			requestParameters: JourneysApiJourneyEventBasedByIdRequest,
+			options?: AxiosRequestConfig,
+		): AxiosPromise<JourneyEventBased> {
+			return localVarFp
+				.journeyEventBasedById(
+					requestParameters.journeyID,
+					requestParameters.includeReferences,
+					requestParameters.separateCancelled,
+					options,
+				)
+				.then((request) => request(axios, basePath));
+		},
+	};
 };
 
 /**
@@ -1815,61 +1812,61 @@ export const JourneysApiFactory = function (
  * @interface JourneysApiByRelationRequest
  */
 export interface JourneysApiByRelationRequest {
-  /**
-   * category [externe Fahrtgattung] at scheduled start stop-place [Geplanter Starthalt]
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly startCategory: string;
+	/**
+	 * category [externe Fahrtgattung] at scheduled start stop-place [Geplanter Starthalt]
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly startCategory: string;
 
-  /**
-   * number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
-   * @type {number}
-   * @memberof JourneysApiByRelation
-   */
-  readonly startJourneyNumber: number;
+	/**
+	 * number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
+	 * @type {number}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly startJourneyNumber: number;
 
-  /**
-   * scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly startTime: string;
+	/**
+	 * scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly startTime: string;
 
-  /**
-   * eva number of scheduled start stop-place [Geplanter Starthalt]
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly startEvaNumber: string;
+	/**
+	 * eva number of scheduled start stop-place [Geplanter Starthalt]
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly startEvaNumber: string;
 
-  /**
-   * id of the start-administration [Start-Verwaltung] at scheduled start stop-place [Geplanter Starthalt] (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly startAdministrationID?: string;
+	/**
+	 * id of the start-administration [Start-Verwaltung] at scheduled start stop-place [Geplanter Starthalt] (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly startAdministrationID?: string;
 
-  /**
-   * id of the header-administration [Kopf-Verwaltung] of journey (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly headerAdministrationID?: string;
+	/**
+	 * id of the header-administration [Kopf-Verwaltung] of journey (ensure that at least one of \&#39;startAdministrationID\&#39; or \&#39;headerAdministrationID\&#39; is provided)
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly headerAdministrationID?: string;
 
-  /**
-   * scheduled end time [Geplante Zielzeit] at scheduled end stop-place [Geplanter Zielhalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly endTime?: string;
+	/**
+	 * scheduled end time [Geplante Zielzeit] at scheduled end stop-place [Geplanter Zielhalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly endTime?: string;
 
-  /**
-   * eva number of scheduled end stop-place [Geplanter Zielhalt]
-   * @type {string}
-   * @memberof JourneysApiByRelation
-   */
-  readonly endEvaNumber?: string;
+	/**
+	 * eva number of scheduled end stop-place [Geplanter Zielhalt]
+	 * @type {string}
+	 * @memberof JourneysApiByRelation
+	 */
+	readonly endEvaNumber?: string;
 }
 
 /**
@@ -1878,61 +1875,61 @@ export interface JourneysApiByRelationRequest {
  * @interface JourneysApiFindRequest
  */
 export interface JourneysApiFindRequest {
-  /**
-   * date (yyyy-MM-dd) of journey-event [Fahrtereignis] at timezone \&#39;Europe/Berlin\&#39;, if omitted defaults to today (max of 7 days in the past is allowed)
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly date?: string;
+	/**
+	 * date (yyyy-MM-dd) of journey-event [Fahrtereignis] at timezone \&#39;Europe/Berlin\&#39;, if omitted defaults to today (max of 7 days in the past is allowed)
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly date?: string;
 
-  /**
-   * journey-number [Fahrtnummer] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
-   * @type {number}
-   * @memberof JourneysApiFind
-   */
-  readonly journeyNumber?: number;
+	/**
+	 * journey-number [Fahrtnummer] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
+	 * @type {number}
+	 * @memberof JourneysApiFind
+	 */
+	readonly journeyNumber?: number;
 
-  /**
-   * administration-id [Verwaltungs-ID]
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly administrationID?: string;
+	/**
+	 * administration-id [Verwaltungs-ID]
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly administrationID?: string;
 
-  /**
-   * category of journey [externe Fahrtgattung nach Ausgabensteuerung]
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly category?: string;
+	/**
+	 * category of journey [externe Fahrtgattung nach Ausgabensteuerung]
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly category?: string;
 
-  /**
-   * line of journey [Linie] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
-   * @type {string}
-   * @memberof JourneysApiFind
-   */
-  readonly line?: string;
+	/**
+	 * line of journey [Linie] (at least \&#39;number\&#39; or \&#39;line\&#39; has to be provided)
+	 * @type {string}
+	 * @memberof JourneysApiFind
+	 */
+	readonly line?: string;
 
-  /**
-   * transport-types [Produktklassen] that should be returned, possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
-   * @type {Array<string>}
-   * @memberof JourneysApiFind
-   */
-  readonly transportTypes?: Array<string>;
+	/**
+	 * transport-types [Produktklassen] that should be returned, possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)
+	 * @type {Array<string>}
+	 * @memberof JourneysApiFind
+	 */
+	readonly transportTypes?: Array<string>;
 
-  /**
-   * pagination offset parameter in order to navigate through result list, defaults to 0
-   * @type {number}
-   * @memberof JourneysApiFind
-   */
-  readonly offset?: number;
+	/**
+	 * pagination offset parameter in order to navigate through result list, defaults to 0
+	 * @type {number}
+	 * @memberof JourneysApiFind
+	 */
+	readonly offset?: number;
 
-  /**
-   * pagination limit parameter in order to limit total amount of results, defaults to 20
-   * @type {number}
-   * @memberof JourneysApiFind
-   */
-  readonly limit?: number;
+	/**
+	 * pagination limit parameter in order to limit total amount of results, defaults to 20
+	 * @type {number}
+	 * @memberof JourneysApiFind
+	 */
+	readonly limit?: number;
 }
 
 /**
@@ -1941,12 +1938,12 @@ export interface JourneysApiFindRequest {
  * @interface JourneysApiJourneyEventBasedBatchRequest
  */
 export interface JourneysApiJourneyEventBasedBatchRequest {
-  /**
-   *
-   * @type {JourneyBatchRequest}
-   * @memberof JourneysApiJourneyEventBasedBatch
-   */
-  readonly journeyBatchRequest: JourneyBatchRequest;
+	/**
+	 *
+	 * @type {JourneyBatchRequest}
+	 * @memberof JourneysApiJourneyEventBasedBatch
+	 */
+	readonly journeyBatchRequest: JourneyBatchRequest;
 }
 
 /**
@@ -1955,26 +1952,26 @@ export interface JourneysApiJourneyEventBasedBatchRequest {
  * @interface JourneysApiJourneyEventBasedByIdRequest
  */
 export interface JourneysApiJourneyEventBasedByIdRequest {
-  /**
-   * id of journey [FahrtID]
-   * @type {string}
-   * @memberof JourneysApiJourneyEventBasedById
-   */
-  readonly journeyID: string;
+	/**
+	 * id of journey [FahrtID]
+	 * @type {string}
+	 * @memberof JourneysApiJourneyEventBasedById
+	 */
+	readonly journeyID: string;
 
-  /**
-   * include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung]
-   * @type {boolean}
-   * @memberof JourneysApiJourneyEventBasedById
-   */
-  readonly includeReferences?: boolean;
+	/**
+	 * include journey references like relief [Entlastung], replace [Ersatz], continuation [Durchbindung] and travels-with [Vereinigung / Fluegelung]
+	 * @type {boolean}
+	 * @memberof JourneysApiJourneyEventBasedById
+	 */
+	readonly includeReferences?: boolean;
 
-  /**
-   * separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \&#39;eventsCancelled\&#39;
-   * @type {boolean}
-   * @memberof JourneysApiJourneyEventBasedById
-   */
-  readonly separateCancelled?: boolean;
+	/**
+	 * separate cancelled events [ausgefallene Fahrtereignisse] in dedicated collection \&#39;eventsCancelled\&#39;
+	 * @type {boolean}
+	 * @memberof JourneysApiJourneyEventBasedById
+	 */
+	readonly separateCancelled?: boolean;
 }
 
 /**
@@ -1984,96 +1981,96 @@ export interface JourneysApiJourneyEventBasedByIdRequest {
  * @extends {BaseAPI}
  */
 export class JourneysApi extends BaseAPI {
-  /**
-   * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
-   * @summary Finds a journey by its relation
-   * @param {JourneysApiByRelationRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public byRelation(
-    requestParameters: JourneysApiByRelationRequest,
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .byRelation(
-        requestParameters.startCategory,
-        requestParameters.startJourneyNumber,
-        requestParameters.startTime,
-        requestParameters.startEvaNumber,
-        requestParameters.startAdministrationID,
-        requestParameters.headerAdministrationID,
-        requestParameters.endTime,
-        requestParameters.endEvaNumber,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Finds a journey [Fahrtverlauf] by its journey-relation [Fahrtrelation].
+	 * @summary Finds a journey by its relation
+	 * @param {JourneysApiByRelationRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public byRelation(
+		requestParameters: JourneysApiByRelationRequest,
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.byRelation(
+				requestParameters.startCategory,
+				requestParameters.startJourneyNumber,
+				requestParameters.startTime,
+				requestParameters.startEvaNumber,
+				requestParameters.startAdministrationID,
+				requestParameters.headerAdministrationID,
+				requestParameters.endTime,
+				requestParameters.endEvaNumber,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
-   * @summary Finds journeys
-   * @param {JourneysApiFindRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public find(
-    requestParameters: JourneysApiFindRequest = {},
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .find(
-        requestParameters.date,
-        requestParameters.journeyNumber,
-        requestParameters.administrationID,
-        requestParameters.category,
-        requestParameters.line,
-        requestParameters.transportTypes,
-        requestParameters.offset,
-        requestParameters.limit,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Finds journeys that match the provided search criterias. A journey matches the search criterias in case at least one journey-event [Fahrtereignis] of the journey matches. For instance: - search for \'12\' will return \'ICE 12\', \'IC 12, \'Bus 12\', \'S 12\' etc. - search for \'IC 12\' will also return \'ICE 12\' that starts as an \'ICE\' but changes its category to \'IC\' within its stops - search for administration [Verwaltung] \'80\' will also return journeys that have other additional administrations than \'80\' within their stops [z.B. Wechsel der Verwaltung an der Grenze] - search for \'RE 74\' at \'2023-07-12\' will return the \'RE 74\' that starts at \'2023-07-11 23:55:00\' and travels the rest of its journey at \'2023-07-12\' but will also return the \'RE 74\' that starts at \'2023-07-12 23:55:00\' that travels the rest of its journey at \'2023-07-13\' [Fahrten über die Datumsgrenze]   Take care that at least \'number\' or \'line\' has to be provided.
+	 * @summary Finds journeys
+	 * @param {JourneysApiFindRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public find(
+		requestParameters: JourneysApiFindRequest = {},
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.find(
+				requestParameters.date,
+				requestParameters.journeyNumber,
+				requestParameters.administrationID,
+				requestParameters.category,
+				requestParameters.line,
+				requestParameters.transportTypes,
+				requestParameters.offset,
+				requestParameters.limit,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-   * @summary Returns a list of journeys
-   * @param {JourneysApiJourneyEventBasedBatchRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public journeyEventBasedBatch(
-    requestParameters: JourneysApiJourneyEventBasedBatchRequest,
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .journeyEventBasedBatch(requestParameters.journeyBatchRequest, options)
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Returns a list of journeys [Fahrtverläufe] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+	 * @summary Returns a list of journeys
+	 * @param {JourneysApiJourneyEventBasedBatchRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public journeyEventBasedBatch(
+		requestParameters: JourneysApiJourneyEventBasedBatchRequest,
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.journeyEventBasedBatch(requestParameters.journeyBatchRequest, options)
+			.then((request) => request(this.axios, this.basePath));
+	}
 
-  /**
-   * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
-   * @summary Returns a journey
-   * @param {JourneysApiJourneyEventBasedByIdRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof JourneysApi
-   */
-  public journeyEventBasedById(
-    requestParameters: JourneysApiJourneyEventBasedByIdRequest,
-    options?: AxiosRequestConfig,
-  ) {
-    return JourneysApiFp(this.configuration)
-      .journeyEventBasedById(
-        requestParameters.journeyID,
-        requestParameters.includeReferences,
-        requestParameters.separateCancelled,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
+	/**
+	 * Returns a journey [Fahrtverlauf] with all its segments [Fahrtabschnitte], arrivals [Ankünfte] and departures [Abfahrten] for the requested id. Event based [Fahrtereignisbasiert] view.
+	 * @summary Returns a journey
+	 * @param {JourneysApiJourneyEventBasedByIdRequest} requestParameters Request parameters.
+	 * @param {*} [options] Override http request option.
+	 * @throws {RequiredError}
+	 * @memberof JourneysApi
+	 */
+	public journeyEventBasedById(
+		requestParameters: JourneysApiJourneyEventBasedByIdRequest,
+		options?: AxiosRequestConfig,
+	) {
+		return JourneysApiFp(this.configuration)
+			.journeyEventBasedById(
+				requestParameters.journeyID,
+				requestParameters.includeReferences,
+				requestParameters.separateCancelled,
+				options,
+			)
+			.then((request) => request(this.axios, this.basePath));
+	}
 }
