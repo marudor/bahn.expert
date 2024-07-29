@@ -23,8 +23,6 @@ export default (
 		delay = time && scheduledTime && differenceInMinutes(time, scheduledTime);
 	}
 
-	console.log(a);
-
 	return {
 		scheduledPlatform: a.aPlatfR && a.aPlatfS,
 		platform: a.aPlatfR || a.aPlatfS,
