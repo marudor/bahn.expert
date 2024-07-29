@@ -11,8 +11,8 @@ interface Props {
 export const TravelsWith: FC<Props> = ({ joinsWith, splitsWith, stopEva }) => {
 	const joins = joinsWith?.map((j) => (
 		<span key={j.journeyID}>
-			Vereinigung mit <TransportName transport={j} /> bis{' '}
-			{j.differingDestination?.name || j.destination.name}
+			Vereinigung mit <TransportName transport={j} />
+			{j.separationAt && ` bis ${j.separationAt.name}`}
 		</span>
 	));
 	const splits = splitsWith?.map((j) => {
