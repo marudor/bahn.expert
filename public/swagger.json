@@ -326,6 +326,51 @@
 				"type": "object",
 				"additionalProperties": true
 			},
+			"TransportDestinationRef": {
+				"description": "Transport [Verkehrsart / Verkehrsmittel] information for journey references with destination.",
+				"properties": {
+					"journeyID": {
+						"type": "string",
+						"description": "ID of journey [FahrtID]."
+					},
+					"type": {
+						"type": "string",
+						"description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
+					},
+					"category": {
+						"type": "string",
+						"description": "Category of the transport [externe Fahrtgattung]."
+					},
+					"journeyNumber": {
+						"type": "number",
+						"format": "double",
+						"description": "Number of the transport [Fahrtnummer]."
+					},
+					"line": {
+						"type": "string",
+						"description": "Line of the transport [Linie]."
+					},
+					"label": {
+						"type": "string",
+						"description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
+					},
+					"destination": {
+						"$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
+					},
+					"differingDestination": {
+						"$ref": "#/components/schemas/StopPlaceEmbedded"
+					}
+				},
+				"required": [
+					"journeyID",
+					"type",
+					"category",
+					"journeyNumber",
+					"destination"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
 			"RouteStop": {
 				"properties": {
 					"arrival": {
@@ -367,6 +412,18 @@
 					"splitsWith": {
 						"items": {
 							"$ref": "#/components/schemas/TransportDestinationPortionWorkingRef"
+						},
+						"type": "array"
+					},
+					"replacedBy": {
+						"items": {
+							"$ref": "#/components/schemas/TransportDestinationRef"
+						},
+						"type": "array"
+					},
+					"replacementFor": {
+						"items": {
+							"$ref": "#/components/schemas/TransportDestinationRef"
 						},
 						"type": "array"
 					}
@@ -818,51 +875,6 @@
 					}
 				},
 				"required": ["airlineCode", "flightnumber"],
-				"type": "object",
-				"additionalProperties": true
-			},
-			"TransportDestinationRef": {
-				"description": "Transport [Verkehrsart / Verkehrsmittel] information for journey references with destination.",
-				"properties": {
-					"journeyID": {
-						"type": "string",
-						"description": "ID of journey [FahrtID]."
-					},
-					"type": {
-						"type": "string",
-						"description": "Type of transport. Possible values are: - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - SHUTTLE (Shuttle [Ruftaxi]) - FLIGHT (Flight [Flug]) - UNKNOWN (Unknown)"
-					},
-					"category": {
-						"type": "string",
-						"description": "Category of the transport [externe Fahrtgattung]."
-					},
-					"journeyNumber": {
-						"type": "number",
-						"format": "double",
-						"description": "Number of the transport [Fahrtnummer]."
-					},
-					"line": {
-						"type": "string",
-						"description": "Line of the transport [Linie]."
-					},
-					"label": {
-						"type": "string",
-						"description": "Marketing or product name of the transport, for instance \\'Sprinter\\' or \\'Schwarzwaldexpress\\' etc. [Marketing Name / Produkt Name]."
-					},
-					"destination": {
-						"$ref": "#/components/schemas/StopPlaceEmbeddedWithCancel"
-					},
-					"differingDestination": {
-						"$ref": "#/components/schemas/StopPlaceEmbedded"
-					}
-				},
-				"required": [
-					"journeyID",
-					"type",
-					"category",
-					"journeyNumber",
-					"destination"
-				],
 				"type": "object",
 				"additionalProperties": true
 			},
@@ -1994,6 +2006,18 @@
 					},
 					"polyline": {
 						"$ref": "#/components/schemas/ParsedPolyline"
+					},
+					"replacementFor": {
+						"items": {
+							"$ref": "#/components/schemas/TransportDestinationRef"
+						},
+						"type": "array"
+					},
+					"replacedBy": {
+						"items": {
+							"$ref": "#/components/schemas/TransportDestinationRef"
+						},
+						"type": "array"
 					}
 				},
 				"required": [

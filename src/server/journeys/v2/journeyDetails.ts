@@ -1,8 +1,8 @@
-import { TransportType } from '@/external/generated/risJourneys';
 import { EventType } from '@/external/generated/risJourneysV2';
 import type {
 	JourneyEvent,
 	TransportDestinationPortionWorkingRef,
+	TransportDestinationRef,
 } from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneysV2';
 import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
@@ -23,6 +23,8 @@ import {
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
 	travelsWith?: TransportDestinationPortionWorkingRef[];
+	replacedBy?: TransportDestinationRef[];
+	replacementFor?: TransportDestinationRef[];
 }
 
 function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
@@ -47,6 +49,8 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
 		isRealTime: e.timeType === 'REAL' || undefined,
 		noPassengerChange: e.noPassengerChange,
 		travelsWith: e.travelsWith,
+		replacedBy: e.replacedBy,
+		replacementFor: e.replacementFor,
 	};
 }
 
@@ -113,6 +117,9 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 		}),
 	);
 
+	const seenReplacedBy: string[] = [];
+	const seenReplacementFor: string[] = [];
+
 	for (const s of stops) {
 		if (
 			(s.arrival?.cancelled || !s.arrival) &&
@@ -127,8 +134,60 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 			s.additional = true;
 		}
 
-		// mapTravelsWith to split/join
+		if (s.arrival?.replacedBy) {
+			s.arrival.replacedBy = s.arrival.replacedBy.filter(
+				(r) => !seenReplacedBy.includes(r.journeyID),
+			);
+			for (const replacedBy of s.arrival.replacedBy) {
+				seenReplacedBy.push(replacedBy.journeyID);
+			}
+		}
+		if (s.departure?.replacedBy) {
+			s.departure.replacedBy = s.departure.replacedBy.filter(
+				(r) => !seenReplacedBy.includes(r.journeyID),
+			);
+			for (const replacedBy of s.departure.replacedBy) {
+				seenReplacedBy.push(replacedBy.journeyID);
+			}
+		}
+
+		if (s.arrival?.replacedBy || s.departure?.replacedBy) {
+			s.replacedBy = [
+				...(s.arrival?.replacedBy || []),
+				...(s.departure?.replacedBy || []),
+			];
+		}
+		delete s.arrival?.replacedBy;
+		delete s.departure?.replacedBy;
+
+		if (s.arrival?.replacementFor) {
+			s.arrival.replacementFor = s.arrival.replacementFor.filter(
+				(r) => !seenReplacementFor.includes(r.journeyID),
+			);
+			for (const replacementFor of s.arrival.replacementFor) {
+				seenReplacementFor.push(replacementFor.journeyID);
+			}
+		}
+		if (s.departure?.replacementFor) {
+			s.departure.replacementFor = s.departure.replacementFor.filter(
+				(r) => !seenReplacementFor.includes(r.journeyID),
+			);
+			for (const replacementFor of s.departure.replacementFor) {
+				seenReplacementFor.push(replacementFor.journeyID);
+			}
+		}
+
+		if (s.arrival?.replacementFor || s.departure?.replacementFor) {
+			s.replacementFor = [
+				...(s.arrival?.replacementFor || []),
+				...(s.departure?.replacementFor || []),
+			];
+		}
+		delete s.arrival?.replacementFor;
+		delete s.departure?.replacementFor;
+
 		if (s.arrival?.travelsWith) {
+			// mapTravelsWith to split/join
 			for (const travelsWith of s.arrival.travelsWith) {
 				if (
 					!s.departure?.travelsWith?.some(
@@ -152,6 +211,7 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 				}
 			}
 		}
+
 		delete s.departure?.travelsWith;
 		delete s.arrival?.travelsWith;
 	}

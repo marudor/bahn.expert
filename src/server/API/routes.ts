@@ -182,6 +182,21 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportDestinationRef": {
+        "dataType": "refObject",
+        "properties": {
+            "journeyID": {"dataType":"string","required":true},
+            "type": {"dataType":"string","required":true},
+            "category": {"dataType":"string","required":true},
+            "journeyNumber": {"dataType":"double","required":true},
+            "line": {"dataType":"string"},
+            "label": {"dataType":"string"},
+            "destination": {"ref":"StopPlaceEmbeddedWithCancel","required":true},
+            "differingDestination": {"ref":"StopPlaceEmbedded"},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "RouteStop": {
         "dataType": "refObject",
         "properties": {
@@ -195,6 +210,8 @@ const models: TsoaRoute.Models = {
             "irisMessages": {"dataType":"array","array":{"dataType":"refAlias","ref":"Message"}},
             "joinsWith": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationPortionWorkingRef"}},
             "splitsWith": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationPortionWorkingRef"}},
+            "replacedBy": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationRef"}},
+            "replacementFor": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationRef"}},
         },
         "additionalProperties": true,
     },
@@ -390,21 +407,6 @@ const models: TsoaRoute.Models = {
         "properties": {
             "airlineCode": {"dataType":"string","required":true},
             "flightnumber": {"dataType":"double","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TransportDestinationRef": {
-        "dataType": "refObject",
-        "properties": {
-            "journeyID": {"dataType":"string","required":true},
-            "type": {"dataType":"string","required":true},
-            "category": {"dataType":"string","required":true},
-            "journeyNumber": {"dataType":"double","required":true},
-            "line": {"dataType":"string"},
-            "label": {"dataType":"string"},
-            "destination": {"ref":"StopPlaceEmbeddedWithCancel","required":true},
-            "differingDestination": {"ref":"StopPlaceEmbedded"},
         },
         "additionalProperties": true,
     },
@@ -812,6 +814,8 @@ const models: TsoaRoute.Models = {
             "himMessages": {"dataType":"array","array":{"dataType":"refObject","ref":"HimIrisMessage"}},
             "currentStop": {"ref":"RouteStop"},
             "polyline": {"ref":"ParsedPolyline"},
+            "replacementFor": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationRef"}},
+            "replacedBy": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationRef"}},
         },
         "additionalProperties": true,
     },

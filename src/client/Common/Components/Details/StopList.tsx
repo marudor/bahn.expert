@@ -1,13 +1,21 @@
+import { ReferenceSummary } from '@/client/Common/Components/Details/ReferenceSummary';
 import { Stop } from '@/client/Common/Components/Details/Stop';
-import { TravelsWithSummary } from '@/client/Common/Components/Details/TravelsWithSummary';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import type { RouteStop } from '@/types/routing';
 import { Error } from '@mui/icons-material';
 import { Stack, css, styled } from '@mui/material';
 import type { AxiosError } from 'axios';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC } from 'react';
 import { Loading } from '../Loading';
+
+const SummaryContainer = styled('div')(({ theme }) => ({
+	display: 'flex',
+	flexDirection: 'column',
+	margin: '0.65em',
+	padding: '0.65em',
+	border: `1px ${theme.vars.palette.text.primary} solid`,
+}));
 
 function getErrorText(error: AxiosError) {
 	if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
@@ -95,7 +103,7 @@ export const StopList: FC = () => {
 
 	return (
 		<Stack>
-			<TravelsWithSummary stops={details.stops} />
+			<ReferenceSummary stops={details.stops} />
 			{detailsStops}
 		</Stack>
 	);

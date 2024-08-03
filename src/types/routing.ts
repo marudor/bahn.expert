@@ -1,4 +1,7 @@
-import type { TransportDestinationPortionWorkingRef } from '@/external/generated/risJourneysV2';
+import type {
+	TransportDestinationPortionWorkingRef,
+	TransportDestinationRef,
+} from '@/external/generated/risJourneysV2';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type {
 	CommonStopInfo,
@@ -21,6 +24,8 @@ export interface RouteStop {
 	irisMessages?: Message[];
 	joinsWith?: TransportDestinationPortionWorkingRef[];
 	splitsWith?: TransportDestinationPortionWorkingRef[];
+	replacedBy?: TransportDestinationRef[];
+	replacementFor?: TransportDestinationRef[];
 }
 export type RouteJourneySegment =
 	| RouteJourneySegmentTrain
