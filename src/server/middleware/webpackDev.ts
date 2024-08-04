@@ -53,6 +53,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 		});
 		const hotMiddleware = webpackHotMiddleware(compiler);
 
+		koa.use(middleware);
 		koa.use((ctx, next) => {
 			return new Promise((resolve, reject) => {
 				hotMiddleware(ctx.req, ctx.res, (err) => {
@@ -61,7 +62,6 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 				});
 			});
 		});
-		koa.use(middleware);
 
 		resolve();
 	});

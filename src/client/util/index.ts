@@ -1,7 +1,15 @@
 export * from './minMax';
 export * from './configSanitize';
 
-export const uniqBy = <T>(array: T[], identifier: keyof T): T[] => {
+export function uniqBy<T>(array: undefined, identifier: keyof T): undefined;
+export function uniqBy<T>(array: T[], identifier: keyof T): T[];
+export function uniqBy<T>(
+	array: T[] | undefined,
+	identifier: keyof T,
+): T[] | undefined {
+	if (!array) {
+		return undefined;
+	}
 	const seen: unknown[] = [];
 	return array.filter((item) => {
 		if (!seen.includes(item[identifier])) {
@@ -10,7 +18,7 @@ export const uniqBy = <T>(array: T[], identifier: keyof T): T[] => {
 		}
 		return false;
 	});
-};
+}
 
 export const partition = <T>(array: T[], partitionSize: number): T[][] => {
 	const arrayCopy = [...array];
