@@ -5,7 +5,7 @@ import type { RouteStop } from '@/types/routing';
 import { Error } from '@mui/icons-material';
 import { Stack, css, styled } from '@mui/material';
 import type { AxiosError } from 'axios';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC } from 'react';
 import { Loading } from '../Loading';
 

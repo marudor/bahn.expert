@@ -1,4 +1,3 @@
-import nock from 'nock';
 import type { FC, PropsWithChildren } from 'react';
 
 declare global {

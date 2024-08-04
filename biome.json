@@ -23,6 +23,9 @@
 			},
 			"performance": {
 				"noDelete": "off"
+			},
+			"correctness": {
+				"noUnusedImports": "error"
 			}
 		}
 	},

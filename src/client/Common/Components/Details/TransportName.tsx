@@ -1,5 +1,4 @@
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import type { TransportPublicDestinationPortionWorking } from '@/external/generated/risJourneys';
 import type { TransportDestinationPortionWorkingRef } from '@/external/generated/risJourneysV2';
 import type { FC } from 'react';
 
