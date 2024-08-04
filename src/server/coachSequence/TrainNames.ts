@@ -231,9 +231,13 @@ const naming: Record<number, string> = {
 	2871: 'Leipziger Neuseenland',
 	2874: 'Oberer Neckar',
 	2875: 'Magdeburger Börde',
+	4893: 'Bodetal',
+	4898: 'Lahntal',
 	//
 	// Intercity2 KISS - BR 4110
+	4102: 'Naturpark Schönbuch',
 	4103: 'Allgäu',
+	4108: 'Hegau',
 	4111: 'Gäu',
 	4114: 'Dresden Elbland',
 	4117: 'Mecklenburgische Ostseeküste',
@@ -272,7 +276,9 @@ const naming: Record<number, string> = {
 	9046: 'Female ICE',
 	9050: 'Metropole Ruhr',
 	9202: 'Schleswig-Holstein',
+	9208: 'Nationalpark Bayerischer Wald',
 	9212: 'Fan-Hauptstadt Hamburg',
+	9234: 'Ruhr',
 	9237: 'Spree',
 	9457: 'Bundesrepublik Deutschland',
 	9481: 'Rheinland-Pfalz',
