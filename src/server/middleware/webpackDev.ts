@@ -55,6 +55,9 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 
 		koa.use(middleware);
 		koa.use((ctx, next) => {
+			if (ctx.status === 200 && typeof Buffer.isBuffer(ctx.body)) {
+				return;
+			}
 			return new Promise((resolve, reject) => {
 				hotMiddleware(ctx.req, ctx.res, (err) => {
 					if (err) reject(err);
