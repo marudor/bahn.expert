@@ -33,7 +33,6 @@ export async function DBCoachSequence(
 	const formattedDate = formatDate(date);
 
 	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${stopEva}`;
-	console.log(cacheKey);
 	const cached = await coachSequenceCache.get(cacheKey);
 	if (cached) {
 		return cached;
