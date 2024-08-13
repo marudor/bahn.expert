@@ -11,6 +11,7 @@ const dbCoachSequenceTimeout =
 
 const bahndeAxios = Axios.create({
 	timeout: dbCoachSequenceTimeout,
+	family: process.env.FORCE_v6_IF_NEEDED ? 6 : undefined,
 });
 
 export async function getNewDBCoachSequence(
