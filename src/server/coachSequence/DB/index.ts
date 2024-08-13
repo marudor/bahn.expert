@@ -1,7 +1,6 @@
 import { isWithin20Hours } from '@/external/coachSequence';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { getNewDBCoachSequence } from '@/server/coachSequence/DB/bahnDe';
-import { getBahnhofLiveSequence } from '@/server/coachSequence/DB/bahnhofLive';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import { format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
@@ -34,18 +33,10 @@ export async function DBCoachSequence(
 	const formattedDate = formatDate(date);
 
 	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${stopEva}`;
+	console.log(cacheKey);
 	const cached = await coachSequenceCache.get(cacheKey);
 	if (cached) {
 		return cached;
-	}
-
-	const bahnhofLiveSequence = await getBahnhofLiveSequence(
-		trainNumber,
-		formattedDate,
-	);
-	if (bahnhofLiveSequence) {
-		void coachSequenceCache.set(cacheKey, bahnhofLiveSequence);
-		return bahnhofLiveSequence;
 	}
 
 	if (plannedStartDate && trainCategory && stopEva) {

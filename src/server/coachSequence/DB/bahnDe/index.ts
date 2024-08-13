@@ -35,6 +35,9 @@ export async function getNewDBCoachSequence(
 						evaNumber,
 						number: trainNumber,
 					},
+					headers: {
+						'User-Agent': '',
+					},
 				},
 			)
 		).data;
