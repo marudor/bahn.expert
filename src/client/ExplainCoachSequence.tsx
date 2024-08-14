@@ -4,7 +4,7 @@ import { type FC, useCallback, useState } from 'react';
 
 export const ExplainCoachSequence: FC = () => {
 	const storage = useStorage();
-	const seen = storage.get('seenCoachSequence') ?? true;
+	const seen = !storage.get('seenCoachSequence');
 	const [open, setOpen] = useState(seen);
 	const setClose = useCallback(() => {
 		storage.set('seenCoachSequence', true);
