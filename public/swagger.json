@@ -4128,7 +4128,14 @@
 				"properties": {
 					"source": {
 						"type": "string",
-						"enum": ["OEBB", "DB-noncd", "DB-plan", "DB-bahnde", "SBB"]
+						"enum": [
+							"OEBB",
+							"DB-noncd",
+							"DB-plan",
+							"DB-bahnde",
+							"SBB",
+							"DB-risTransports"
+						]
 					},
 					"stop": {
 						"$ref": "#/components/schemas/CoachSequenceStop"

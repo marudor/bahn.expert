@@ -1650,7 +1650,7 @@ const models: TsoaRoute.Models = {
     "CoachSequenceInformation": {
         "dataType": "refObject",
         "properties": {
-            "source": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["OEBB"]},{"dataType":"enum","enums":["DB-noncd"]},{"dataType":"enum","enums":["DB-plan"]},{"dataType":"enum","enums":["DB-bahnde"]},{"dataType":"enum","enums":["SBB"]}],"required":true},
+            "source": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["OEBB"]},{"dataType":"enum","enums":["DB-noncd"]},{"dataType":"enum","enums":["DB-plan"]},{"dataType":"enum","enums":["DB-bahnde"]},{"dataType":"enum","enums":["SBB"]},{"dataType":"enum","enums":["DB-risTransports"]}],"required":true},
             "stop": {"ref":"CoachSequenceStop","required":true},
             "product": {"ref":"CoachSequenceProduct","required":true},
             "sequence": {"ref":"CoachSequence","required":true},

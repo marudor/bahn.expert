@@ -1,6 +1,8 @@
-import { Configuration as CoachSequenceConfiguration } from '@/external/generated/coachSequence';
-import { TransportsApi } from '@/external/generated/coachSequence';
-import type { VehicleSequenceDeparture } from '@/external/generated/coachSequence';
+import {
+	Configuration,
+	VehicleSequencesApi,
+} from '@/external/generated/risTransports';
+import type { VehicleSequenceDeparture } from '@/external/generated/risTransports';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { logger } from '@/server/logger';
@@ -12,25 +14,30 @@ import {
 	isWithinInterval,
 	subHours,
 } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
-const coachSequenceConfiguration = new CoachSequenceConfiguration({
+const risTransportsConfiguration = new Configuration({
 	basePath: process.env.COACH_SEQUENCE_URL,
 	baseOptions: {
 		headers: {
 			'DB-Api-Key': process.env.COACH_SEQUENCE_CLIENT_SECRET,
 			'DB-Client-Id': process.env.COACH_SEQUENCE_CLIENT_ID,
+			'User-Agent': 'bahn.expert',
 		},
 	},
 });
+
+const formatDate = (date?: Date) =>
+	date ? format(toZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm') : undefined;
 
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
 });
 
-axiosUpstreamInterceptor(axiosWithTimeout, 'coachSequence-newDB');
+axiosUpstreamInterceptor(axiosWithTimeout, 'coachSequence-risTransports');
 
-const coachSequenceClient = new TransportsApi(
-	coachSequenceConfiguration,
+const vehicleSequenceClient = new VehicleSequencesApi(
+	risTransportsConfiguration,
 	undefined,
 	axiosWithTimeout,
 );
@@ -56,19 +63,21 @@ export async function getDepartureSequence(
 	if (!isWithin20Hours(plannedDepartureDate)) {
 		return undefined;
 	}
-	const cacheKey = `${trainCategory}${trainNumber}${evaNumber}${plannedDepartureDate.toISOString()}${initialDepartureDate.toISOString()}`;
+	const formattedDate = formatDate(initialDepartureDate);
+	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${evaNumber}`;
 	try {
 		const wasNotFound = await negativeHitCache.exists(cacheKey);
+		console.log('eh, was not found?');
 		if (wasNotFound) {
 			return undefined;
 		}
 		logger.debug('Trying new coachSequence');
-		const r = await coachSequenceClient.vehicleSequenceDepartureUnmatched({
+		const r = await vehicleSequenceClient.vehicleSequenceDepartureUnmatched({
 			category: trainCategory,
-			number: trainNumber,
+			journeyNumber: trainNumber,
 			evaNumber,
 			date: format(initialDepartureDate, 'yyyy-MM-dd'),
-			time: formatISO(plannedDepartureDate),
+			timeSchedule: formatISO(plannedDepartureDate),
 			includeAmenities: true,
 			includePosition: true,
 		});
