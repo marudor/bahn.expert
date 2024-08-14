@@ -72,16 +72,6 @@ export class CoachSequenceControllerV4 extends Controller {
 			// we ignore this
 		}
 
-		// if (trainNumber < 10000 && evaNumber) {
-		// 	const plannedSequence = await getPlannedSequence(
-		// 		trainNumber,
-		// 		initialDeparture ?? departure,
-		// 		evaNumber,
-		// 	);
-		// 	if (plannedSequence) {
-		// 		return plannedSequence;
-		// 	}
-		// }
 		return response(404);
 	}
 
