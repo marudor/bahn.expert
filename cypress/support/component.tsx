@@ -113,6 +113,7 @@ Cypress.Commands.add(
 		{ withNavigation, context, commonConfig, provider }: Options = {},
 	) => {
 		const cookies = new Cookies();
+		cookies.set('seenCoachSequence', true);
 		let result = (
 			<>
 				<GlobalCSS />
