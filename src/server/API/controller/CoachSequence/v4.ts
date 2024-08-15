@@ -1,5 +1,6 @@
 import { isAllowed } from '@/server/API/controller/journeys/v1';
 import { coachSequence } from '@/server/coachSequence';
+import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
 import { getTrainRunsByDate } from '@/server/coachSequence/DB/trainRuns';
 import type {
 	AvailableBR,
@@ -70,6 +71,17 @@ export class CoachSequenceControllerV4 extends Controller {
 			if (sequence) return sequence;
 		} catch {
 			// we ignore this
+		}
+
+		if (trainNumber < 10000 && evaNumber) {
+			const plannedSequence = await getPlannedSequence(
+				trainNumber,
+				initialDeparture ?? departure,
+				evaNumber,
+			);
+			if (plannedSequence) {
+				return plannedSequence;
+			}
 		}
 
 		return response(404);
