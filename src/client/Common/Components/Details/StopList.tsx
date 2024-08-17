@@ -62,7 +62,7 @@ export const StopList: FC = () => {
 		if (!details) return null;
 		let hadCurrent = false;
 
-		return details.stops.map((s) => {
+		return details.stops.map((s, i) => {
 			if (
 				details.currentStop?.station.evaNumber === s.station.evaNumber ||
 				!details.currentStop
@@ -74,6 +74,10 @@ export const StopList: FC = () => {
 				<Stop
 					onStopClick={onStopClick}
 					isPast={!hadCurrent}
+					continuationFor={i === 0 ? details.continuationFor : undefined}
+					continuationBy={
+						i === details.stops.length - 1 ? details.continuationBy : undefined
+					}
 					train={details.train}
 					stop={s}
 					key={s.station.evaNumber}

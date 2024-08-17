@@ -1,4 +1,7 @@
-import type { TransportDestinationRef } from '@/external/generated/risJourneysV2';
+import type {
+	TransportDestinationRef,
+	TransportOriginRef,
+} from '@/external/generated/risJourneysV2';
 import type { HimIrisMessage } from '@/types/iris';
 import type { RouteJourneySegmentTrain, RouteStop } from '@/types/routing';
 import type { Common, GenericHafasRequest, ParsedPolyline } from '.';
@@ -37,7 +40,6 @@ export interface ParsedSearchOnTripResponse extends RouteJourneySegmentTrain {
 	currentStop?: RouteStop;
 	polyline?: ParsedPolyline;
 
-	// RIS::Journeys only!
-	replacementFor?: TransportDestinationRef[];
-	replacedBy?: TransportDestinationRef[];
+	continuationFor?: TransportOriginRef[];
+	continuationBy?: TransportDestinationRef[];
 }

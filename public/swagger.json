@@ -2007,13 +2007,13 @@
 					"polyline": {
 						"$ref": "#/components/schemas/ParsedPolyline"
 					},
-					"replacementFor": {
+					"continuationFor": {
 						"items": {
-							"$ref": "#/components/schemas/TransportDestinationRef"
+							"$ref": "#/components/schemas/TransportOriginRef"
 						},
 						"type": "array"
 					},
-					"replacedBy": {
+					"continuationBy": {
 						"items": {
 							"$ref": "#/components/schemas/TransportDestinationRef"
 						},

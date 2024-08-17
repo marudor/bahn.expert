@@ -1,11 +1,16 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
+import { Continuation } from '@/client/Common/Components/Details/Continuation';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
 import { Platform } from '@/client/Common/Components/Platform';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import { themeMixins } from '@/client/Themes/mixins';
+import type {
+	TransportDestinationRef,
+	TransportOriginRef,
+} from '@/external/generated/risJourneysV2';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { RouteStop } from '@/types/routing';
 import { Stack, Tooltip, styled } from '@mui/material';
@@ -100,6 +105,8 @@ interface Props {
 	onStopClick?: (stop: RouteStop) => void;
 	doNotRenderOccupancy?: boolean;
 	lastArrivalEva?: string;
+	continuationFor?: TransportOriginRef[];
+	continuationBy?: TransportDestinationRef[];
 }
 export const Stop: FC<Props> = ({
 	stop,
@@ -110,6 +117,8 @@ export const Stop: FC<Props> = ({
 	onStopClick,
 	doNotRenderOccupancy,
 	lastArrivalEva,
+	continuationBy,
+	continuationFor,
 }) => {
 	const { urlPrefix, additionalInformation } = useDetails();
 	const occupancy = useMemo(
@@ -193,6 +202,10 @@ export const Stop: FC<Props> = ({
 			<DeparturePlatform {...platforms.departure} />
 			{!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
 			<Stack gridArea="tw" paddingLeft={1} width="fit-content">
+				<Continuation
+					continuationFor={continuationFor}
+					continuationBy={continuationBy}
+				/>
 				<TravelsWith
 					stopEva={stop.station.evaNumber}
 					joinsWith={stop.joinsWith}
