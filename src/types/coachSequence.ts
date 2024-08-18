@@ -2,6 +2,8 @@ import type { AuslastungsValue } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export interface CoachSequencePosition {
+	// if not set we default to the center
+	cubePosition?: number;
 	startPercent: number;
 	endPercent: number;
 }

@@ -1522,6 +1522,7 @@ const models: TsoaRoute.Models = {
     "CoachSequencePosition": {
         "dataType": "refObject",
         "properties": {
+            "cubePosition": {"dataType":"double"},
             "startPercent": {"dataType":"double","required":true},
             "endPercent": {"dataType":"double","required":true},
         },

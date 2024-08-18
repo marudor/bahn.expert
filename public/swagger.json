@@ -3863,6 +3863,10 @@
 			},
 			"CoachSequencePosition": {
 				"properties": {
+					"cubePosition": {
+						"type": "number",
+						"format": "double"
+					},
 					"startPercent": {
 						"type": "number",
 						"format": "double"

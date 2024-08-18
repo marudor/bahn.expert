@@ -28,6 +28,7 @@ function mapSectors(
 		sectors?.map((s) => ({
 			name: s.name,
 			position: {
+				cubePosition: s.cubePosition ? basePercent * s.cubePosition : undefined,
 				startPercent: basePercent * s.start,
 				endPercent: basePercent * s.end,
 			},

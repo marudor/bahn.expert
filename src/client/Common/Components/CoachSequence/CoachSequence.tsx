@@ -12,7 +12,7 @@ import { useEffect, useMemo } from 'react';
 import type { FC } from 'react';
 import { Explain } from './Explain';
 import { Group } from './Group';
-import { Sektor } from './Sektor';
+import { Sector } from './Sector';
 
 const ContainerWrap = styled('div')`
   overflow-x: auto;
@@ -164,7 +164,7 @@ export const CoachSequence: FC<Props> = ({
 			<Container style={mainStyle}>
 				<Sectors>
 					{sequence.stop.sectors.map((s) => (
-						<Sektor
+						<Sector
 							correctLeft={startPercent}
 							scale={scale}
 							key={s.name}
