@@ -28,7 +28,7 @@ export async function getRisTransportsCoachSequence(
 		);
 		return mappedSequence;
 	} catch (e) {
-		logger.error(e, 'failed bahnde Sequence');
+		logger.error(e, 'failed risTransports Sequence');
 		// fallback on error
 		return undefined;
 	}

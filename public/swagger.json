@@ -3863,6 +3863,10 @@
 			},
 			"CoachSequencePosition": {
 				"properties": {
+					"cubePosition": {
+						"type": "number",
+						"format": "double"
+					},
 					"startPercent": {
 						"type": "number",
 						"format": "double"
@@ -3951,6 +3955,21 @@
 						"type": "boolean"
 					},
 					"comfort": {
+						"type": "boolean"
+					},
+					"airConditioning": {
+						"type": "boolean"
+					},
+					"boardingAid": {
+						"type": "boolean"
+					},
+					"toilet": {
+						"type": "boolean"
+					},
+					"toiletWheelchair": {
+						"type": "boolean"
+					},
+					"multiPurpose": {
 						"type": "boolean"
 					}
 				},

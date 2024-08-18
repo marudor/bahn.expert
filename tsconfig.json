@@ -20,6 +20,7 @@
 		"emitDecoratorMetadata": false,
 		"resolveJsonModule": true,
 		"types": ["cypress", "@testing-library/cypress"],
+		"baseUrl": ".",
 		"paths": {
 			"@/client/*": ["./src/client/*"],
 			"@/external/*": ["./src/external/*"],

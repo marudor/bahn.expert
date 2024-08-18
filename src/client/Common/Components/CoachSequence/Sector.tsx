@@ -16,14 +16,20 @@ interface Props {
 	correctLeft: number;
 }
 
-export const Sektor: FC<Props> = ({ sector, correctLeft, scale }) => {
+export const Sector: FC<Props> = ({ sector, correctLeft, scale }) => {
 	const position = useMemo(() => {
-		const { startPercent, endPercent } = sector.position;
+		const { startPercent, endPercent, cubePosition } = sector.position;
 
+		if (cubePosition) {
+			return {
+				left: `${(cubePosition - correctLeft) * scale}%`,
+			};
+		}
 		return {
 			left: `${(startPercent - correctLeft) * scale}%`,
 			width: `${(endPercent - startPercent) * scale}%`,
 		};
 	}, [correctLeft, scale, sector.position]);
+
 	return <Container style={position}>{sector.name}</Container>;
 };

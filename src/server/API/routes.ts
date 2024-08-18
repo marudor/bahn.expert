@@ -1522,6 +1522,7 @@ const models: TsoaRoute.Models = {
     "CoachSequencePosition": {
         "dataType": "refObject",
         "properties": {
+            "cubePosition": {"dataType":"double"},
             "startPercent": {"dataType":"double","required":true},
             "endPercent": {"dataType":"double","required":true},
         },
@@ -1569,6 +1570,11 @@ const models: TsoaRoute.Models = {
             "toddler": {"dataType":"boolean"},
             "wifi": {"dataType":"boolean"},
             "comfort": {"dataType":"boolean"},
+            "airConditioning": {"dataType":"boolean"},
+            "boardingAid": {"dataType":"boolean"},
+            "toilet": {"dataType":"boolean"},
+            "toiletWheelchair": {"dataType":"boolean"},
+            "multiPurpose": {"dataType":"boolean"},
         },
         "additionalProperties": true,
     },

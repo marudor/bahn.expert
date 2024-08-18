@@ -5,6 +5,7 @@ import type {
 	CoachSequenceCoachFeatures,
 } from '@/types/coachSequence';
 import {
+	AcUnit,
 	Accessibility,
 	Accessible,
 	ChildCare,
@@ -13,6 +14,9 @@ import {
 	LocalDining,
 	NotificationsOff,
 	PedalBike,
+	SignalCellular4Bar,
+	Stroller,
+	WcOutlined,
 	WifiOutlined,
 } from '@mui/icons-material';
 import { styled } from '@mui/material';
@@ -34,6 +38,7 @@ export const icons: {
 } = {
 	wheelchair: DummyIcon.withComponent(Accessible),
 	bike: DummyIcon.withComponent(PedalBike),
+	multiPurpose: DummyIcon.withComponent(Stroller),
 	dining: DummyIcon.withComponent(LocalDining),
 	quiet: DummyIcon.withComponent(NotificationsOff),
 	toddler: DummyIcon.withComponent(ChildFriendly),
@@ -42,6 +47,11 @@ export const icons: {
 	info: DummyIcon.withComponent(InfoOutlined),
 	wifi: DummyIcon.withComponent(WifiOutlined),
 	comfort: null,
+	airConditioning: DummyIcon.withComponent(AcUnit),
+	boardingAid: DummyIcon.withComponent(SignalCellular4Bar),
+	// currently mainly wheelchair accessible toilets are known I can't really seperate them yet
+	toiletWheelchair: DummyIcon.withComponent(WcOutlined),
+	toilet: DummyIcon.withComponent(WcOutlined),
 };
 
 const Container = styled('div')<{
