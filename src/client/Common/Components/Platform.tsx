@@ -19,6 +19,7 @@ interface Props {
 	scheduled?: string;
 	real?: string;
 	className?: string;
+	'data-testid'?: string;
 }
 
 export const Platform: FC<Props> = ({
@@ -26,13 +27,14 @@ export const Platform: FC<Props> = ({
 	scheduled,
 	real,
 	className,
+	'data-testid': dataTestid = 'platform',
 }) => {
 	const changed = Boolean(scheduled && scheduled !== real);
 
 	return (
 		<Container
 			className={className}
-			data-testid="platform"
+			data-testid={dataTestid}
 			cancelled={cancelled}
 			changed={changed}
 		>

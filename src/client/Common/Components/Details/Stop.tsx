@@ -129,7 +129,7 @@ export const Stop: FC<Props> = ({
 	);
 	const depOrArrival = stop.departure || stop.arrival;
 
-	const [platforms, samePlatform] = useMemo(() => {
+	const [platforms, showArrivalPlatform] = useMemo(() => {
 		const platforms = {
 			arrival: {
 				real: stop.arrival?.platform,
@@ -137,17 +137,24 @@ export const Stop: FC<Props> = ({
 				cancelled: stop.arrival?.cancelled,
 			},
 			departure: {
-				real: stop.departure?.platform || stop.arrival?.platform,
-				scheduled:
-					stop.departure?.scheduledPlatform || stop.arrival?.scheduledPlatform,
-				cancelled: stop.departure?.cancelled || stop.arrival?.cancelled,
+				real: stop.departure?.platform,
+				scheduled: stop.departure?.scheduledPlatform,
+				cancelled: stop.departure?.cancelled,
 			},
 		};
-		return [
-			platforms,
+		const bothExist = stop.departure && stop.arrival;
+		const samePlatform =
 			platforms.arrival.scheduled === platforms.departure.scheduled &&
-				platforms.arrival.real === platforms.departure.real,
-		];
+			platforms.arrival.real === platforms.departure.real;
+
+		if (
+			(stop.arrival && !stop.departure) ||
+			(samePlatform && platforms.departure.cancelled)
+		) {
+			platforms.departure = platforms.arrival;
+		}
+
+		return [platforms, !bothExist || samePlatform];
 	}, [stop.arrival, stop.departure]);
 
 	const onClick = useCallback(
@@ -164,7 +171,7 @@ export const Stop: FC<Props> = ({
 			past={isPast}
 			data-testid={stop.station.evaNumber}
 			onClick={onClick}
-			samePlatform={samePlatform}
+			samePlatform={showArrivalPlatform}
 		>
 			<ScrollMarker id={stop.station.evaNumber} />
 			{stop.arrival && (
@@ -200,11 +207,12 @@ export const Stop: FC<Props> = ({
 				/>
 			)}
 			<DeparturePlatform
-				{...(platforms.departure.cancelled && !platforms.arrival.cancelled
-					? platforms.arrival
-					: platforms.departure)}
+				data-testid="departurePlatform"
+				{...platforms.departure}
 			/>
-			{!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
+			{!showArrivalPlatform && (
+				<ArrivalPlatform data-testid="arrivalPlatform" {...platforms.arrival} />
+			)}
 			<Stack gridArea="tw" paddingLeft={1} width="fit-content">
 				<Continuation
 					continuationFor={continuationFor}

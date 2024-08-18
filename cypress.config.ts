@@ -28,7 +28,7 @@ export default defineConfig({
 		supportFile: './cypress/support/component.tsx',
 		devServer: {
 			framework: 'react',
-			bundler: 'webpack',
+			bundler: 'vite',
 		},
 	},
 });

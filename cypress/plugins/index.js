@@ -16,12 +16,12 @@ const webpack = require('@cypress/webpack-preprocessor');
 export default (on, config) => {
 	const webpackOptions = {
 		resolve: {
-			extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
+			extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.mjs'],
 		},
 		module: {
 			rules: [
 				{
-					test: /\.(j|t)s$/,
+					test: /\.m?(j|t)s$/,
 					exclude: [/node_modules/],
 					use: [
 						{
