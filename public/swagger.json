@@ -3956,6 +3956,21 @@
 					},
 					"comfort": {
 						"type": "boolean"
+					},
+					"airConditioning": {
+						"type": "boolean"
+					},
+					"boardingAid": {
+						"type": "boolean"
+					},
+					"toilet": {
+						"type": "boolean"
+					},
+					"toiletWheelchair": {
+						"type": "boolean"
+					},
+					"multiPurpose": {
+						"type": "boolean"
 					}
 				},
 				"type": "object",

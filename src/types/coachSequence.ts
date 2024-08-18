@@ -41,6 +41,11 @@ export interface CoachSequenceCoachFeatures {
 	toddler?: boolean;
 	wifi?: boolean;
 	comfort?: boolean;
+	airConditioning?: boolean;
+	boardingAid?: boolean;
+	toilet?: boolean;
+	toiletWheelchair?: boolean;
+	multiPurpose?: boolean;
 }
 
 export interface CoachSequenceCoach {

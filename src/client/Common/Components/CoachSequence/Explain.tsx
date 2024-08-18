@@ -38,6 +38,7 @@ const ComfortIcon = styled('div')(({ theme }) => ({
 export const iconExplanation: { [K in keyof typeof icons]: string } = {
 	wheelchair: 'Rollstuhl Plätze',
 	bike: 'Fahrrad Stellplätze',
+	multiPurpose: 'Mehrzweckbereich',
 	dining: 'Bordbistro/Restaurant',
 	quiet: 'Ruheabteil',
 	toddler: 'Kleinkindabteil',
@@ -46,6 +47,10 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
 	info: 'Dienstabteil',
 	wifi: 'WLAN',
 	comfort: '',
+	airConditioning: 'Klimatisiert',
+	boardingAid: 'Einstiegshilfe',
+	toiletWheelchair: '(Rollstuhlgerechte) Toilette',
+	toilet: '',
 };
 
 export const Explain: FC = () => {
@@ -73,12 +78,14 @@ export const Explain: FC = () => {
 							// @ts-expect-error this is correct, it's exact!
 							(iconName: keyof typeof icons) => {
 								const Icon = icons[iconName];
+								const explanation = iconExplanation[iconName];
 
 								return (
-									Icon && (
+									Icon &&
+									explanation && (
 										<IconWrap data-testid={iconName} key={iconName}>
 											<Icon />
-											{iconExplanation[iconName]}
+											{explanation}
 										</IconWrap>
 									)
 								);

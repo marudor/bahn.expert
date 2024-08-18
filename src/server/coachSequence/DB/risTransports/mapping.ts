@@ -93,6 +93,22 @@ function mapFeatures(
 
 	for (const a of vehicle.amenities) {
 		switch (a.type) {
+			case 'TOILET': {
+				features.toilet = true;
+				break;
+			}
+			case 'TOILET_WHEELCHAIR': {
+				features.toiletWheelchair = true;
+				break;
+			}
+			case 'AIR_CONDITIONING': {
+				features.airConditioning = true;
+				break;
+			}
+			case 'BOARDING_AID': {
+				features.boardingAid = true;
+				break;
+			}
 			case 'BIKE_SPACE': {
 				features.bike = true;
 				break;
@@ -119,6 +135,10 @@ function mapFeatures(
 			}
 			case 'WIFI': {
 				features.wifi = true;
+				break;
+			}
+			case 'ZONE_MULTI_PURPOSE': {
+				features.multiPurpose = true;
 				break;
 			}
 			case 'ZONE_FAMILY': {
@@ -183,7 +203,7 @@ async function mapGroup(
 		name: group.name,
 		destinationName: group.destination.name,
 		originName: 'UNKNOWN',
-		number: journey?.info.headerJourneyNumber?.toString() || 'Unbekannt',
+		number: journey?.info?.headerJourneyNumber?.toString() || 'Unbekannt',
 		coaches: coaches as CoachSequenceCoach[],
 	};
 }
