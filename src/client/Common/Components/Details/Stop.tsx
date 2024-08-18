@@ -140,7 +140,7 @@ export const Stop: FC<Props> = ({
 				real: stop.departure?.platform || stop.arrival?.platform,
 				scheduled:
 					stop.departure?.scheduledPlatform || stop.arrival?.scheduledPlatform,
-				cancelled: stop.departure?.cancelled,
+				cancelled: stop.departure?.cancelled || stop.arrival?.cancelled,
 			},
 		};
 		return [
@@ -199,7 +199,11 @@ export const Stop: FC<Props> = ({
 					isPlan={stop.departure.isPlan}
 				/>
 			)}
-			<DeparturePlatform {...platforms.departure} />
+			<DeparturePlatform
+				{...(platforms.departure.cancelled && !platforms.arrival.cancelled
+					? platforms.arrival
+					: platforms.departure)}
+			/>
 			{!samePlatform && <ArrivalPlatform {...platforms.arrival} />}
 			<Stack gridArea="tw" paddingLeft={1} width="fit-content">
 				<Continuation
