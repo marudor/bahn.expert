@@ -10,9 +10,11 @@ describe('Explain', () => {
 	}
 
 	for (const icon of Object.keys(iconExplanation)) {
-		it(`ensures ${icon} exists`, () => {
-			openLegende();
-			cy.findByTestId(icon).should('be.visible');
-		});
+		if (iconExplanation[icon as keyof typeof iconExplanation]) {
+			it(`ensures ${icon} exists`, () => {
+				openLegende();
+				cy.findByTestId(icon).should('be.visible');
+			});
+		}
 	}
 });

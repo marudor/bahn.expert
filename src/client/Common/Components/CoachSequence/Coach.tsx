@@ -5,6 +5,7 @@ import type {
 	CoachSequenceCoachFeatures,
 } from '@/types/coachSequence';
 import {
+	AcUnit,
 	Accessibility,
 	Accessible,
 	ChildCare,
@@ -13,6 +14,7 @@ import {
 	LocalDining,
 	NotificationsOff,
 	PedalBike,
+	SignalCellular4Bar,
 	Stroller,
 	WcOutlined,
 	WifiOutlined,
@@ -45,10 +47,8 @@ export const icons: {
 	info: DummyIcon.withComponent(InfoOutlined),
 	wifi: DummyIcon.withComponent(WifiOutlined),
 	comfort: null,
-	// airConditioning is rarely in the data, not showing to reduce confusion
-	// airConditioning: DummyIcon.withComponent(AcUnit),
-	airConditioning: null,
-	boardingAid: null,
+	airConditioning: DummyIcon.withComponent(AcUnit),
+	boardingAid: DummyIcon.withComponent(SignalCellular4Bar),
 	// currently mainly wheelchair accessible toilets are known I can't really seperate them yet
 	toiletWheelchair: DummyIcon.withComponent(WcOutlined),
 	toilet: DummyIcon.withComponent(WcOutlined),

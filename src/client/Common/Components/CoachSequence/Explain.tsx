@@ -48,7 +48,7 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
 	wifi: 'WLAN',
 	comfort: '',
 	airConditioning: 'Klimatisiert',
-	boardingAid: 'Einstiegshilfe',
+	boardingAid: 'Einstiegshilfe (Meist Rampe)',
 	toiletWheelchair: '(Rollstuhlgerechte) Toilette',
 	toilet: '',
 };
