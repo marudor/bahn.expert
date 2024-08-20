@@ -4,7 +4,11 @@ import {
 	findJourneyHafasCompatible,
 	health,
 } from '@/external/risJourneys';
-import { getJourneyDetails } from '@/external/risJourneysV2';
+import {
+	findJourneyHafasCompatible as findJourneyHafasCompatibleV2,
+	findJourney as findJourneyV2,
+	getJourneyDetails,
+} from '@/external/risJourneysV2';
 import Detail from '@/server/HAFAS/Detail';
 import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
@@ -24,6 +28,7 @@ import {
 	Tags,
 } from '@tsoa/runtime';
 import type { TsoaResponse } from '@tsoa/runtime';
+import { differenceInHours } from 'date-fns';
 import type { Request as KoaRequest } from 'koa';
 
 const allowedReferer = ['https://bahn.expert', 'https://beta.bahn.expert'];
@@ -31,6 +36,52 @@ export function isAllowed(req: KoaRequest): boolean {
 	return (
 		process.env.NODE_ENV !== 'production' ||
 		allowedReferer.some((r) => req.headers.referer?.startsWith(r))
+	);
+}
+
+function findV1OrV2HafasCompatible(
+	trainNumber: number,
+	category?: string,
+	date?: Date,
+	onlyFv?: boolean,
+) {
+	const is20HoursOrMoreInFuture =
+		date && differenceInHours(date, Date.now()) >= 20;
+
+	if (is20HoursOrMoreInFuture) {
+		return findJourneyHafasCompatibleV2(trainNumber, category, date, onlyFv);
+	}
+	return findJourneyHafasCompatible(trainNumber, category, date, onlyFv);
+}
+
+function findJoureyV1OrV2(
+	trainNumber: number,
+	category?: string,
+	date?: Date,
+	onlyFv?: boolean,
+	originEvaNumber?: string,
+	administration?: string,
+) {
+	const is20HoursOrMoreInFuture =
+		date && differenceInHours(date, Date.now()) >= 20;
+
+	if (is20HoursOrMoreInFuture) {
+		return findJourneyV2(
+			trainNumber,
+			category,
+			date,
+			onlyFv,
+			originEvaNumber,
+			administration,
+		);
+	}
+	return findJourney(
+		trainNumber,
+		category,
+		date,
+		onlyFv,
+		originEvaNumber,
+		administration,
 	);
 }
 
@@ -68,7 +119,7 @@ export class JourneysV1Controller extends Controller {
 		}
 		let risPromise: Promise<ParsedJourneyMatchResponse[]> = Promise.resolve([]);
 		if (trainNumber) {
-			risPromise = findJourneyHafasCompatible(
+			risPromise = findV1OrV2HafasCompatible(
 				trainNumber,
 				undefined,
 				initialDepartureDate,
@@ -127,7 +178,7 @@ export class JourneysV1Controller extends Controller {
 		let risPromise: Promise<ParsedJourneyMatchResponse[]> = Promise.resolve([]);
 		const productDetails = getCategoryAndNumberFromName(trainName);
 		if (productDetails) {
-			risPromise = findJourneyHafasCompatible(
+			risPromise = findV1OrV2HafasCompatible(
 				productDetails.trainNumber,
 				productDetails.category,
 				initialDepartureDate,
@@ -227,7 +278,7 @@ export class JourneysV1Controller extends Controller {
 		if (!productDetails) {
 			return hafasFallback();
 		}
-		const possibleJourneys = await findJourney(
+		const possibleJourneys = await findJoureyV1OrV2(
 			productDetails.trainNumber,
 			productDetails.category,
 			initialDepartureDate,
@@ -239,11 +290,15 @@ export class JourneysV1Controller extends Controller {
 			return hafasFallback();
 		}
 		let foundJourney: ParsedSearchOnTripResponse | undefined;
+		const firstJourneyTransport =
+			'transport' in possibleJourneys[0]
+				? possibleJourneys[0].transport
+				: possibleJourneys[0].info.transportAtStart;
+
 		if (
 			(possibleJourneys.length > 1 ||
 				(productDetails.category &&
-					possibleJourneys[0].transport.category !==
-						productDetails.category)) &&
+					firstJourneyTransport.category !== productDetails.category)) &&
 			evaNumberAlongRoute
 		) {
 			const allJourneys = (

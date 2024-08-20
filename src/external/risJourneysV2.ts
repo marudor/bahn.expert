@@ -5,9 +5,11 @@ import {
 import type {
 	JourneyEventBased,
 	JourneyFindResult,
+	JourneyInfo,
 	StopPlaceEmbedded,
 	Transport,
 } from '@/external/generated/risJourneysV2';
+import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
@@ -77,6 +79,35 @@ function mapToParsedJourneyMatchResponse(
 		lastStop: mapStationShortToRouteStops(journeyFindResult.info.destination),
 	};
 }
+
+async function fixSingleStopIfNeeded(stop: StopPlaceEmbedded) {
+	if (!stop.name && stop.evaNumber) {
+		try {
+			const stopPlace = await getStopPlaceByEva(stop.evaNumber);
+			if (stopPlace) {
+				stop.name = stopPlace.name;
+			}
+		} catch {
+			// do nothing
+		}
+	}
+}
+
+async function fixSingleJourneyInfo(info: JourneyInfo) {
+	await Promise.all([
+		fixSingleStopIfNeeded(info.origin),
+		fixSingleStopIfNeeded(info.destination),
+	]);
+}
+
+async function fixJourneysFoundIfNeeded(
+	journeys: JourneyFindResult[],
+): Promise<void> {
+	await Promise.all(
+		journeys.flatMap(async (j) => fixSingleJourneyInfo(j.info)),
+	);
+}
+
 export async function findJourney(
 	trainNumber: number,
 	category?: string,
@@ -86,9 +117,9 @@ export async function findJourney(
 	administration?: string,
 ): Promise<JourneyFindResult[]> {
 	try {
-		const isWithin20Hours = date && differenceInHours(date, Date.now()) <= 20;
-		// some EVUs (Looking at you DB FV) might not be available for >20h, others are.
-		if (!isWithin20Hours) {
+		const notOlderThan7Days =
+			date && differenceInHours(date, Date.now()) >= 160;
+		if (!notOlderThan7Days) {
 			return [];
 		}
 
@@ -115,14 +146,11 @@ export async function findJourney(
 			);
 		}
 
-		if (isWithin20Hours) {
-			void journeyFindCache.set(
-				cacheKey,
-				result.data.journeys,
-				// empty resultsets are cached for one Hour. Sometimes journeys are found later, cache will also be live cleared
-				result.data.journeys.length === 0 ? 'PT1H' : undefined,
-			);
+		if (notOlderThan7Days) {
+			void journeyFindCache.set(cacheKey, result.data.journeys);
 		}
+
+		await fixJourneysFoundIfNeeded(result.data.journeys);
 
 		for (const j of result.data.journeys) {
 			void additionalJourneyInformation(
@@ -150,7 +178,7 @@ export async function findJourneyHafasCompatible(
 ): Promise<ParsedJourneyMatchResponse[]> {
 	const risReuslt = await findJourney(trainNumber, category, date, onlyFv);
 
-	return risReuslt.map(mapToParsedJourneyMatchResponse);
+	return Promise.all(risReuslt.map(mapToParsedJourneyMatchResponse));
 }
 
 export async function getJourneyDetails(
@@ -167,6 +195,14 @@ export async function getJourneyDetails(
 			journeyID: journeyId,
 			includeReferences: true,
 		});
+
+		if (r.data.events) {
+			await Promise.all(
+				r.data.events.map((e) => fixSingleStopIfNeeded(e.stopPlace)),
+			);
+
+			await fixSingleJourneyInfo(r.data.info);
+		}
 
 		if (!process.env.RIS_JOURNEYS_CACHE_DISABLED && r.data) {
 			void journeyCache.set(journeyId, r.data);

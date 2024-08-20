@@ -3,6 +3,7 @@ import type {
 	JourneyEvent,
 	TransportDestinationPortionWorkingRef,
 	TransportDestinationRef,
+	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneysV2';
 import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
@@ -25,6 +26,7 @@ interface StopInfoWithAdditional extends CommonStopInfo {
 	travelsWith?: TransportDestinationPortionWorkingRef[];
 	replacedBy?: TransportDestinationRef[];
 	replacementFor?: TransportDestinationRef[];
+	transport?: TransportWithDirection;
 }
 
 function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
@@ -51,6 +53,7 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
 		travelsWith: e.travelsWith,
 		replacedBy: e.replacedBy,
 		replacementFor: e.replacementFor,
+		transport: e.transport,
 	};
 }
 
@@ -116,6 +119,24 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 			}
 		}),
 	);
+
+	for (const stop of stops) {
+		const arrivalTransport = stop.arrival?.transport;
+		const departureTransport = stop.departure?.transport;
+
+		if (!arrivalTransport || !departureTransport) {
+			continue;
+		}
+
+		if (
+			arrivalTransport.category !== departureTransport.category ||
+			arrivalTransport.line !== departureTransport.line
+		) {
+			stop.newTransport = departureTransport;
+		}
+		delete stop.arrival?.transport;
+		delete stop.departure?.transport;
+	}
 
 	const seenReplacedBy: string[] = [];
 	const seenReplacementFor: string[] = [];
