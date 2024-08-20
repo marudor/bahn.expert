@@ -1,6 +1,7 @@
 import type {
 	TransportDestinationPortionWorkingRef,
 	TransportDestinationRef,
+	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type {
@@ -26,6 +27,8 @@ export interface RouteStop {
 	splitsWith?: TransportDestinationPortionWorkingRef[];
 	replacedBy?: TransportDestinationRef[];
 	replacementFor?: TransportDestinationRef[];
+	// if we change transports (Linien/Gattungswechsel)
+	newTransport?: TransportWithDirection;
 }
 export type RouteJourneySegment =
 	| RouteJourneySegmentTrain

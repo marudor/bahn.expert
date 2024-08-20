@@ -197,6 +197,48 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ReplacementTransport": {
+        "dataType": "refObject",
+        "properties": {
+            "realType": {"dataType":"string","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "DirectionInfo": {
+        "dataType": "refObject",
+        "properties": {
+            "text": {"dataType":"string"},
+            "stopPlaces": {"dataType":"array","array":{"dataType":"refObject","ref":"StopPlaceEmbedded"}},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Administration": {
+        "dataType": "refObject",
+        "properties": {
+            "administrationID": {"dataType":"string","required":true},
+            "operatorCode": {"dataType":"string","required":true},
+            "operatorName": {"dataType":"string","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportWithDirection": {
+        "dataType": "refObject",
+        "properties": {
+            "type": {"dataType":"string","required":true},
+            "category": {"dataType":"string","required":true},
+            "journeyNumber": {"dataType":"double","required":true},
+            "line": {"dataType":"string"},
+            "label": {"dataType":"string"},
+            "replacementTransport": {"ref":"ReplacementTransport"},
+            "direction": {"ref":"DirectionInfo"},
+            "administration": {"ref":"Administration","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "RouteStop": {
         "dataType": "refObject",
         "properties": {
@@ -212,6 +254,7 @@ const models: TsoaRoute.Models = {
             "splitsWith": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationPortionWorkingRef"}},
             "replacedBy": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationRef"}},
             "replacementFor": {"dataType":"array","array":{"dataType":"refObject","ref":"TransportDestinationRef"}},
+            "newTransport": {"ref":"TransportWithDirection"},
         },
         "additionalProperties": true,
     },
@@ -225,16 +268,6 @@ const models: TsoaRoute.Models = {
             "firstStop": {"ref":"RouteStop","required":true},
             "lastStop": {"ref":"RouteStop","required":true},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Administration": {
-        "dataType": "refObject",
-        "properties": {
-            "administrationID": {"dataType":"string","required":true},
-            "operatorCode": {"dataType":"string","required":true},
-            "operatorName": {"dataType":"string","required":true},
         },
         "additionalProperties": true,
     },
@@ -366,38 +399,6 @@ const models: TsoaRoute.Models = {
             "evaNumber": {"dataType":"string","required":true},
             "name": {"dataType":"string","required":true},
             "differingStopPlace": {"ref":"StopPlaceDifferingInJourney"},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ReplacementTransport": {
-        "dataType": "refObject",
-        "properties": {
-            "realType": {"dataType":"string","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "DirectionInfo": {
-        "dataType": "refObject",
-        "properties": {
-            "text": {"dataType":"string"},
-            "stopPlaces": {"dataType":"array","array":{"dataType":"refObject","ref":"StopPlaceEmbedded"}},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TransportWithDirection": {
-        "dataType": "refObject",
-        "properties": {
-            "type": {"dataType":"string","required":true},
-            "category": {"dataType":"string","required":true},
-            "journeyNumber": {"dataType":"double","required":true},
-            "line": {"dataType":"string"},
-            "label": {"dataType":"string"},
-            "replacementTransport": {"ref":"ReplacementTransport"},
-            "direction": {"ref":"DirectionInfo"},
-            "administration": {"ref":"Administration","required":true},
         },
         "additionalProperties": true,
     },

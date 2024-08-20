@@ -1,6 +1,7 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { Continuation } from '@/client/Common/Components/Details/Continuation';
+import { TransportName } from '@/client/Common/Components/Details/TransportName';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
 import { Platform } from '@/client/Common/Components/Platform';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
@@ -214,6 +215,13 @@ export const Stop: FC<Props> = ({
 				<ArrivalPlatform data-testid="arrivalPlatform" {...platforms.arrival} />
 			)}
 			<Stack gridArea="tw" paddingLeft={1} width="fit-content">
+				{stop.newTransport && (
+					<>
+						<span>
+							Fährt weiter als <TransportName transport={stop.newTransport} />
+						</span>
+					</>
+				)}
 				<Continuation
 					continuationFor={continuationFor}
 					continuationBy={continuationBy}

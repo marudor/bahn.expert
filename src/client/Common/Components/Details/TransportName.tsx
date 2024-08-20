@@ -5,8 +5,10 @@ import type { FC } from 'react';
 interface Props {
 	transport: Pick<
 		TransportDestinationPortionWorkingRef,
-		'journeyNumber' | 'category' | 'journeyID' | 'line'
-	>;
+		'journeyNumber' | 'category' | 'line'
+	> & {
+		journeyID?: string;
+	};
 }
 
 export const TransportName: FC<Props> = ({ transport }) => {

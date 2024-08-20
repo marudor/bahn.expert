@@ -155,9 +155,9 @@ export async function findJourneyHafasCompatible(
 	date?: Date,
 	onlyFv?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> {
-	const risReuslt = await findJourney(trainNumber, category, date, onlyFv);
+	const risResult = await findJourney(trainNumber, category, date, onlyFv);
 
-	return risReuslt.map(mapToParsedJourneyMatchResponse);
+	return risResult.map(mapToParsedJourneyMatchResponse);
 }
 
 export async function getJourneyDetails(
