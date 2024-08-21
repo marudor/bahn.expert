@@ -17,7 +17,7 @@ import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
-import { differenceInHours, format, isSameDay } from 'date-fns';
+import { format, isBefore, isSameDay, subDays } from 'date-fns';
 
 const risJourneysV2Configuration = new RisJourneysConfiguration({
 	basePath: process.env.RIS_JOURNEYS_V2_URL,
@@ -39,7 +39,9 @@ const client = new JourneysApi(
 	axiosWithTimeout,
 );
 
-const journeyFindCache = new Cache<JourneyFindResult[]>(CacheDatabase.Journey);
+const journeyFindCache = new Cache<JourneyFindResult[]>(
+	CacheDatabase.JourneyFindV2,
+);
 
 const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.JourneyV2);
 
@@ -117,10 +119,13 @@ export async function findJourney(
 	administration?: string,
 ): Promise<JourneyFindResult[]> {
 	try {
-		const notOlderThan7Days =
-			date && differenceInHours(date, Date.now()) >= 160;
-		if (!notOlderThan7Days) {
-			return [];
+		if (date) {
+			const sevenDaysAgo = subDays(new Date(), 7);
+			const olderThan7Days = isBefore(date, sevenDaysAgo);
+			console.log(date, sevenDaysAgo, olderThan7Days);
+			if (olderThan7Days) {
+				return [];
+			}
 		}
 
 		const cacheKey = `${trainNumber}|${category?.toUpperCase()}|${
@@ -146,9 +151,7 @@ export async function findJourney(
 			);
 		}
 
-		if (notOlderThan7Days) {
-			void journeyFindCache.set(cacheKey, result.data.journeys);
-		}
+		void journeyFindCache.set(cacheKey, result.data.journeys);
 
 		await fixJourneysFoundIfNeeded(result.data.journeys);
 
