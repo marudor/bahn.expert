@@ -30,8 +30,7 @@ export const AboutDisclaimer: FC = () => {
 				<br />
 				Hier gilt außerdem wie ihr unten gesehen haben werdet eine klare 0
 				Toleranz gegenüber Rechtsextremismus und Faschismus. Das inkludiert
-				insbesondere die AfD. Wenn ihr die symaptisch findet geht bitte woanders
-				hin!
+				insbesondere die AfD. Wenn ihr die sympathisch findet geht woanders hin!
 			</DialogContent>
 		</Dialog>
 	);
