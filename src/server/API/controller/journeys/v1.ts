@@ -13,6 +13,7 @@ import Detail from '@/server/HAFAS/Detail';
 import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
+import { logger } from '@/server/logger';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { EvaNumber } from '@/types/common';
@@ -28,7 +29,7 @@ import {
 	Tags,
 } from '@tsoa/runtime';
 import type { TsoaResponse } from '@tsoa/runtime';
-import { differenceInHours } from 'date-fns';
+import { isBefore, subDays } from 'date-fns';
 import type { Request as KoaRequest } from 'koa';
 
 const allowedReferer = ['https://bahn.expert', 'https://beta.bahn.expert'];
@@ -45,12 +46,21 @@ function findV1OrV2HafasCompatible(
 	date?: Date,
 	onlyFv?: boolean,
 ) {
-	const is20HoursOrMoreInFuture =
-		date && differenceInHours(date, Date.now()) >= 20;
+	let useV2 = true;
+	if (date) {
+		const fourDaysAgo = subDays(new Date(), 4);
+		const olderThan4Days = isBefore(date, fourDaysAgo);
+		console.log(date, fourDaysAgo, olderThan4Days);
+		if (olderThan4Days) {
+			useV2 = false;
+		}
+	}
 
-	if (is20HoursOrMoreInFuture) {
+	if (useV2) {
+		logger.debug('Using JourneysV2 (HAFAS compatible) find');
 		return findJourneyHafasCompatibleV2(trainNumber, category, date, onlyFv);
 	}
+	logger.debug('Using JourneysV1 (HAFAS compatible) find');
 	return findJourneyHafasCompatible(trainNumber, category, date, onlyFv);
 }
 
@@ -62,10 +72,17 @@ function findJoureyV1OrV2(
 	originEvaNumber?: string,
 	administration?: string,
 ) {
-	const is20HoursOrMoreInFuture =
-		date && differenceInHours(date, Date.now()) >= 20;
-
-	if (is20HoursOrMoreInFuture) {
+	let useV2 = true;
+	if (date) {
+		const fourDaysAgo = subDays(new Date(), 4);
+		const olderThan4Days = isBefore(date, fourDaysAgo);
+		console.log(date, fourDaysAgo, olderThan4Days);
+		if (olderThan4Days) {
+			useV2 = false;
+		}
+	}
+	if (useV2) {
+		logger.debug('Using JourneysV2 find');
 		return findJourneyV2(
 			trainNumber,
 			category,
@@ -75,6 +92,7 @@ function findJoureyV1OrV2(
 			administration,
 		);
 	}
+	logger.debug('Using JourneysV1 find');
 	return findJourney(
 		trainNumber,
 		category,
