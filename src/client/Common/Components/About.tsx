@@ -43,7 +43,7 @@ export const About: FC = () => {
 	return (
 		<>
 			<BaseHeader spacing={0.3}>About</BaseHeader>
-			<Stack margin="0 10px 0">
+			<Stack marginLeft={1} marginRight={1} spacing={0.5}>
 				<span>
 					Entwickelt von{' '}
 					<a
@@ -53,6 +53,13 @@ export const About: FC = () => {
 					>
 						@marudor@chaos.social
 					</a>
+				</span>
+				<span>
+					Diese Seite hat keinen Zusammenhang mit der Deutschen Bahn oder einem
+					anderen Verkehrsunternehmen. Es ist das Privatprojekt von mir und
+					spiegel niemals Meinungen der Deutschen Bahn oder anderen
+					Verkehrsunternehmen wieder. Alles was hier steht ist ohne Gewähr, wird
+					aber so gut ich kann gepflegt.
 				</span>
 				<span>
 					Featurewünsche und Bugreports sind mir am liebsten über Github. Dafür

@@ -13,7 +13,7 @@ export interface WebConfigMap extends CommonConfig, RoutingSettings {
 	readonly rfavs: RoutingFavs;
 	readonly defaultFilter: string[];
 	readonly timesPoliticSeenNew: number;
-	readonly seenCoachSequence: boolean;
+	readonly aboutDisclaimer: boolean;
 }
 
 // @ts-expect-error context without default is fine

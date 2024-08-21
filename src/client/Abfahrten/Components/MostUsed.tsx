@@ -1,3 +1,4 @@
+import { AboutDisclaimer } from '@/client/AboutDisclaimer';
 import type { FC } from 'react';
 import { FavEntry } from './FavEntry';
 
@@ -20,6 +21,7 @@ const mostUsed = [
 
 export const MostUsed: FC = () => (
 	<>
+		<AboutDisclaimer />
 		{mostUsed.map((m) => (
 			<FavEntry
 				data-testid="mostUsedEntry"
