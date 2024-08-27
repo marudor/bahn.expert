@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 22
+      - name: Use Node.js 22.6
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.6
       - name: install
         run: |
           corepack enable
@@ -91,10 +91,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 22
+      - name: Use Node.js 22.6
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.6
       - name: Install Deps
         run: |
           corepack enable
@@ -126,10 +126,10 @@ jobs:
       - e2e
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 22
+      - name: Use Node.js 22.6
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.6
       - name: finalize percy
         run: |
           corepack enable
