@@ -101,7 +101,7 @@ const useInnerDetails = ({
 									trainName,
 									details.journeyId,
 									initialDepartureDate,
-									evaNumberAlongRoute,
+									details.stops[details.stops.length - 1].station.evaNumber,
 								),
 							);
 						} catch {
