@@ -67,7 +67,6 @@ export async function getDepartureSequence(
 	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${evaNumber}`;
 	try {
 		const wasNotFound = await negativeHitCache.exists(cacheKey);
-		console.log('eh, was not found?');
 		if (wasNotFound) {
 			return undefined;
 		}

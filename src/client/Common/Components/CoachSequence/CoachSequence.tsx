@@ -195,7 +195,7 @@ export const CoachSequence: FC<Props> = ({
 				<Explain />
 				{(!sequence.isRealtime || process.env.NODE_ENV !== 'production') && (
 					<PlannedOnlyIndicator>
-						{!sequence.isRealtime && 'Plandaten, qualität unklar'}
+						{!sequence.isRealtime && 'Planwagenreihung, qualität unklar'}
 						<Source source={sequence.source} />
 					</PlannedOnlyIndicator>
 				)}
