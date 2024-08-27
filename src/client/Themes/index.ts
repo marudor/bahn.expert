@@ -8,8 +8,7 @@ import {
 	red,
 	yellow,
 } from '@mui/material/colors';
-import { darken, lighten } from '@mui/material/styles';
-import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { createTheme, darken, lighten } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 declare module '@mui/system' {
 	interface Shape {
@@ -18,9 +17,6 @@ declare module '@mui/system' {
 }
 
 declare module '@mui/material/styles' {
-	interface ColorSchemeOverrides {
-		black: true;
-	}
 	interface CommonColors {
 		pride: string;
 		red: string;
@@ -40,6 +36,7 @@ const headerSpacing = 3.5;
 const pride =
 	'linear-gradient(180deg, #FE0000 16.66%,#FD8C00 16.66%, 33.32%,#FFE500 33.32%, 49.98%,#119F0B 49.98%, 66.64%,#0644B3 66.64%, 83.3%,#C22EDC 83.3%);';
 
+<<<<<<< HEAD
 const darkShadedBackground = lighten('#303030', 0.2);
 const darkDoubleShadedBackground = lighten(darkShadedBackground, 0.2);
 
@@ -47,6 +44,12 @@ const lightShadedBackground = darken('#fafafa', 0.3);
 const lightDoubleShadedBackground = darken(lightShadedBackground, 0.3);
 
 export const theme = extendTheme({
+=======
+export const theme = createTheme({
+	cssVariables: {
+		colorSchemeSelector: 'class',
+	},
+>>>>>>> 1856c987 (chore: theme handling)
 	colorSchemes: {
 		dark: {
 			palette: {
@@ -73,30 +76,6 @@ export const theme = extendTheme({
 				},
 			},
 		},
-		// black: {
-		//   palette: {
-		//     common: {
-		//       pride,
-		//       red: red.A400,
-		//       green: lightGreen[600],
-		//       yellow: yellow[400],
-		//       orange: orange[400],
-		//       blue: blue[400],
-		//       shadedBackground: lighten('#000000', 0.2),
-		//       transparentBackground: 'rgba(0, 0, 0, 0.55)',
-		//     },
-		//     mode: 'dark',
-		//     background: {
-		//       default: '#000000',
-		//     },
-		//     primary: {
-		//       main: blue[800],
-		//     },
-		//     secondary: {
-		//       main: purple.A400,
-		//     },
-		//   },
-		// },
 		light: {
 			palette: {
 				common: {
@@ -158,43 +137,3 @@ export const theme = extendTheme({
 		},
 	},
 });
-
-// export const createTheme = (themeType: E<typeof ThemeType>): MuiTheme => {
-//   const mixins: MaruMixins = {
-//     cancelled: {
-//       textDecoration: 'line-through',
-//       textDecorationColor: mui.palette.text.primary,
-//     },
-//     delayed: {
-//       color: colors.red,
-//     },
-//     changed: {
-//       color: `${colors.red}!important`,
-//     },
-//     additional: {
-//       color: `${colors.green}!important`,
-//     },
-//     early: {
-//       color: colors.green,
-//     },
-//     singleLineText: {
-//       overflow: 'hidden',
-//       maxWidth: '100%',
-//       textOverflow: 'ellipsis',
-//       whiteSpace: 'nowrap',
-//     },
-//     stripe: {
-//       position: 'absolute',
-//       top: '-1.4em',
-//       height: '1.3em',
-//       left: -1,
-//       right: -1,
-//       opacity: 0.8,
-//     },
-//   };
-
-// const reducedMixins: Record<string, ReturnType<typeof css>> = {};
-
-// for (const mixinKey of Object.keys(mixins)) {
-//   reducedMixins[mixinKey] = css(mixins[mixinKey as keyof typeof mixins]);
-// }

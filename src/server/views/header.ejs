@@ -48,6 +48,14 @@
 </head>
 <body>
   <script>
+    var themeMode = localStorage.getItem('mui-mode');
+    if (!themeMode || themeMode === 'system') {
+        themeMode = 'dark';
+        localStorage.setItem('mui-mode', 'dark');
+    }
+    if (themeMode && document.body.parentElement) {
+      document.body.parentElement.setAttribute('class', themeMode);
+    }
     window.BASE_URL="<%- baseUrl %>"
     window.IMPRINT=<%- imprint %>
   </script>
