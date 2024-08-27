@@ -57,7 +57,7 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
 
 	const commonConfigOverride: Record<string, any> = {};
 	for (const key of Object.keys(query)) {
-		if (key in commonConfigOverride) {
+		if (key in commonConfigSanitize) {
 			commonConfigOverride[key] = commonConfigSanitize[
 				key as keyof CommonConfigSanitize
 				// @ts-expect-error query might be array, sanitize handles this
