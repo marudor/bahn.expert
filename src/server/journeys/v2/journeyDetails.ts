@@ -83,40 +83,33 @@ function newStopInfoIsAfter(stop: JourneyStop, event: JourneyEvent) {
 
 async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 	const stops: JourneyStop[] = [];
-	for (const e of events) {
-		const stopInfo = mapEventToCommonStopInfo(e);
-		const possibleStops = stops.filter(
-			(s) =>
-				s.station.evaNumber === e.stopPlace.evaNumber &&
-				newStopInfoIsAfter(s, e),
-		);
-		let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
+	await Promise.all(
+		events.map(async (e) => {
+			const stopPlace = await getStopPlaceByEva(e.stopPlace.evaNumber);
+			const stopInfo = mapEventToCommonStopInfo(e);
+			const possibleStops = stops.filter(
+				(s) =>
+					s.station.evaNumber === e.stopPlace.evaNumber &&
+					newStopInfoIsAfter(s, e),
+			);
+			let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
 
-		if (!stop || (stop.arrival && stop.departure)) {
-			stop = {
-				station: {
-					evaNumber: e.stopPlace.evaNumber,
-					name: e.stopPlace.name
-						.replaceAll('(', ' (')
-						.replaceAll(')', ') ')
-						.replaceAll('  ', ' ')
-						.trim(),
-				},
-			};
-			stops.push(stop);
-		}
-
-		stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
-	}
-
-	const rl100Promise = Promise.all(
-		stops.map(async (s) => {
-			try {
-				const stopPlace = await getStopPlaceByEva(s.station.evaNumber);
-				s.station.ril100 = stopPlace?.ril100;
-			} catch {
-				// we just ignore errors
+			if (!stop || (stop.arrival && stop.departure)) {
+				stop = {
+					station: {
+						evaNumber: e.stopPlace.evaNumber,
+						name: (stopPlace || e.stopPlace).name
+							.replaceAll('(', ' (')
+							.replaceAll(')', ') ')
+							.replaceAll('  ', ' ')
+							.trim(),
+						ril100: stopPlace?.ril100,
+					},
+				};
+				stops.push(stop);
 			}
+
+			stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
 		}),
 	);
 
@@ -236,8 +229,6 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 		delete s.departure?.travelsWith;
 		delete s.arrival?.travelsWith;
 	}
-
-	await rl100Promise;
 
 	return stops;
 }
