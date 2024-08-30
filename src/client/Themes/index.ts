@@ -30,6 +30,7 @@ declare module '@mui/material/styles' {
 		blue: string;
 		transparentBackground: string;
 		shadedBackground: string;
+		doubleShadedBackground: string;
 	}
 }
 
@@ -38,6 +39,12 @@ const headerSpacing = 3.5;
 
 const pride =
 	'linear-gradient(180deg, #FE0000 16.66%,#FD8C00 16.66%, 33.32%,#FFE500 33.32%, 49.98%,#119F0B 49.98%, 66.64%,#0644B3 66.64%, 83.3%,#C22EDC 83.3%);';
+
+const darkShadedBackground = lighten('#303030', 0.2);
+const darkDoubleShadedBackground = lighten(darkShadedBackground, 0.2);
+
+const lightShadedBackground = darken('#fafafa', 0.3);
+const lightDoubleShadedBackground = darken(lightShadedBackground, 0.3);
 
 export const theme = extendTheme({
 	colorSchemes: {
@@ -50,7 +57,8 @@ export const theme = extendTheme({
 					yellow: yellow[400],
 					orange: orange[400],
 					blue: blue[400],
-					shadedBackground: lighten('#303030', 0.2),
+					shadedBackground: darkShadedBackground,
+					doubleShadedBackground: darkDoubleShadedBackground,
 					transparentBackground: 'rgba(0, 0, 0, 0.55)',
 				},
 				mode: 'dark',
@@ -98,7 +106,8 @@ export const theme = extendTheme({
 					yellow: yellow[600],
 					orange: orange[400],
 					blue: indigo[800],
-					shadedBackground: darken('#fafafa', 0.3),
+					shadedBackground: lightShadedBackground,
+					doubleShadedBackground: lightDoubleShadedBackground,
 					transparentBackground: 'rgba(255, 255, 255, 0.55)',
 				},
 				mode: 'light',

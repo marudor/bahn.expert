@@ -233,6 +233,7 @@ export const mapInformation = async (
 		stop,
 		sequence,
 		direction: mapDirection(allCoaches),
+		journeyId: upstreamSequence.journeyID,
 	};
 	enrichCoachSequence(information);
 
