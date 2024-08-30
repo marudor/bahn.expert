@@ -76,6 +76,7 @@ export enum CacheDatabase {
 	ParsedCoachSequenceFound = 21,
 	JourneyFindV2 = 22,
 	JourneyV2 = 23,
+	CoachSequenceRemovedData = 24,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
@@ -112,6 +113,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 		process.env.RIS_JOURNEYS_CACHE_TTL,
 	),
 	[CacheDatabase.SBBTrip]: 'PT2H',
+	[CacheDatabase.CoachSequenceRemovedData]: 'PT24H',
 };
 
 const activeRedisCaches = new Set<Redis>();

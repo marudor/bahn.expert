@@ -7,6 +7,7 @@ import type {
 	VehicleType,
 } from '@/external/generated/risTransports';
 import { getJourneyDetails } from '@/external/risJourneysV2';
+import { fixRemovedData } from '@/server/coachSequence/DB/removedData';
 import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import { logger } from '@/server/logger';
@@ -260,7 +261,9 @@ export const mapInformation = async (
 		stop,
 		sequence,
 		direction: mapDirection(allCoaches),
+		journeyId: upstreamSequence.journeyID,
 	};
+	await fixRemovedData(information);
 	enrichCoachSequence(information);
 
 	return information;

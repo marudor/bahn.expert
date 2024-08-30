@@ -147,6 +147,6 @@ export interface CoachSequenceInformation {
 	 */
 	direction?: boolean;
 
-	// Only for DB-newApps
+	// only for DB stuff
 	journeyId?: string;
 }
