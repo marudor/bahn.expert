@@ -94,7 +94,13 @@ const Container = styled('div')<{
 		gridTemplateColumns: '4.8em 1fr max-content',
 	}),
 	({ theme, past }) =>
-		past && { backgroundColor: theme.vars.palette.common.shadedBackground },
+		past && {
+			backgroundColor: theme.vars.palette.common.shadedBackground,
+			'> *': {
+				'--mui-palette-common-shadedBackground':
+					theme.vars.palette.common.doubleShadedBackground,
+			},
+		},
 );
 
 interface Props {
