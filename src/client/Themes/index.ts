@@ -24,7 +24,6 @@ declare module '@mui/material/styles' {
 		changed: ReturnType<typeof css>;
 		early: ReturnType<typeof css>;
 		singleLineText: ReturnType<typeof css>;
-		stripe: ReturnType<typeof css>;
 	}
 	interface CommonColors {
 		pride: string;
@@ -77,14 +76,6 @@ export const theme = createTheme({
 			max-width: 100%;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-		`,
-		stripe: css`
-			position: absolute;
-			top: -1.4em;
-			height: 1.3em;
-			left: -1;
-			right: -1;
-			opacity: 0.8;
 		`,
 	},
 	colorSchemes: {
