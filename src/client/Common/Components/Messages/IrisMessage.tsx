@@ -1,12 +1,16 @@
-import { themeMixins } from '@/client/Themes/mixins';
 import type { IrisMessage as IrisMessageType } from '@/types/iris';
 import { styled } from '@mui/material';
 import { format } from 'date-fns';
 import type { FC } from 'react';
 
-const Container = styled('div')<{ superseded?: boolean }>(
-	({ theme, superseded }) => superseded && themeMixins.cancelled(theme),
-);
+const Container = styled('div')<{ superseded?: boolean }>({
+	variants: [
+		{
+			props: { superseded: true },
+			style: ({ theme }) => theme.mixins.cancelled,
+		},
+	],
+});
 
 interface Props {
 	message: IrisMessageType;

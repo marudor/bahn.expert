@@ -1,4 +1,3 @@
-import { themeMixins } from '@/client/Themes/mixins';
 import type { HimIrisMessage as HimIrisMessageType } from '@/types/iris';
 import {
 	Dialog,
@@ -17,7 +16,14 @@ const Container = styled('div')<{ superseded?: boolean }>(
 		textDecoration: 'underline',
 		cursor: 'pointer',
 	},
-	({ theme, superseded }) => superseded && themeMixins.cancelled(theme),
+	{
+		variants: [
+			{
+				props: { superseded: true },
+				style: ({ theme }) => theme.mixins.cancelled,
+			},
+		],
+	},
 );
 
 const SmallSpan = styled('span')`

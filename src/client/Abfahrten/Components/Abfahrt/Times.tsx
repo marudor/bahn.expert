@@ -1,6 +1,5 @@
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { Time } from '@/client/Common/Components/Time';
-import { themeMixins } from '@/client/Themes/mixins';
 import { styled } from '@mui/material';
 import type { FC } from 'react';
 
@@ -13,7 +12,14 @@ const TimeContainer = styled('div')<{ cancelled?: boolean }>(
 			whiteSpace: 'pre-wrap',
 		},
 	}),
-	({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
+	{
+		variants: [
+			{
+				props: { cancelled: true },
+				style: ({ theme }) => theme.mixins.cancelled,
+			},
+		],
+	},
 );
 
 export const Times: FC = () => {

@@ -1,7 +1,6 @@
 import { AuslastungsValue } from '@/types/routing';
 import { Close, Done, ErrorOutline, Help, Warning } from '@mui/icons-material';
 import { styled } from '@mui/material';
-import type { Theme } from '@mui/material';
 import type { FC } from 'react';
 
 function getIcon(auslastung?: AuslastungsValue) {
@@ -24,11 +23,6 @@ function getIcon(auslastung?: AuslastungsValue) {
 	}
 }
 
-const getColors = (backgroundColor: string, theme: Theme) => ({
-	backgroundColor,
-	color: theme.palette.getContrastText(backgroundColor),
-});
-
 const Container = styled('span')<{ auslastung?: AuslastungsValue }>(
 	{
 		fontSize: '.7em',
@@ -38,24 +32,37 @@ const Container = styled('span')<{ auslastung?: AuslastungsValue }>(
 		padding: '.2em',
 		lineHeight: 0,
 	},
-	({ theme, auslastung }) => {
-		switch (auslastung) {
-			case AuslastungsValue.Gering: {
-				return getColors(theme.palette.common.green, theme);
-			}
-			case AuslastungsValue.Hoch: {
-				return getColors(theme.palette.common.yellow, theme);
-			}
-			case AuslastungsValue.SehrHoch: {
-				return getColors(theme.palette.common.orange, theme);
-			}
-			case AuslastungsValue.Ausgebucht: {
-				return getColors(theme.palette.common.red, theme);
-			}
-			default: {
-				return {};
-			}
-		}
+	{
+		variants: [
+			{
+				props: ({ auslastung }) => auslastung === AuslastungsValue.Gering,
+				style: ({ theme }) => ({
+					backgroundColor: theme.palette.common.green,
+					color: theme.palette.getContrastText(theme.palette.common.green),
+				}),
+			},
+			{
+				props: ({ auslastung }) => auslastung === AuslastungsValue.Hoch,
+				style: ({ theme }) => ({
+					backgroundColor: theme.palette.common.yellow,
+					color: theme.palette.getContrastText(theme.palette.common.yellow),
+				}),
+			},
+			{
+				props: ({ auslastung }) => auslastung === AuslastungsValue.SehrHoch,
+				style: ({ theme }) => ({
+					backgroundColor: theme.palette.common.orange,
+					color: theme.palette.getContrastText(theme.palette.common.orange),
+				}),
+			},
+			{
+				props: ({ auslastung }) => auslastung === AuslastungsValue.Ausgebucht,
+				style: ({ theme }) => ({
+					backgroundColor: theme.palette.common.red,
+					color: theme.palette.getContrastText(theme.palette.common.red),
+				}),
+			},
+		],
 	},
 );
 

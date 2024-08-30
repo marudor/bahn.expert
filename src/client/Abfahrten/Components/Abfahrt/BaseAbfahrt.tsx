@@ -2,7 +2,7 @@ import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetail
 import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
 import type { Abfahrt } from '@/types/iris';
 import loadable from '@loadable/component';
-import { Paper, Stack, css, styled } from '@mui/material';
+import { Paper, Stack, styled } from '@mui/material';
 import { createContext, useCallback, useContext, useMemo } from 'react';
 import type { FC } from 'react';
 import { End } from './End';
@@ -23,14 +23,6 @@ export const AbfahrtContext = createContext<AbfahrtContextValues>();
 export const useAbfahrt = (): AbfahrtContextValues =>
 	useContext(AbfahrtContext);
 
-const wingStartEnd = (color: string) =>
-	css({
-		content: '" "',
-		borderLeft: `1em solid ${color}`,
-		position: 'absolute',
-		height: '1px',
-	});
-
 const Container = styled(Paper)`
   line-height: 1.2;
   flex-shrink: 0;
@@ -43,23 +35,45 @@ const Container = styled(Paper)`
 const WingIndicator = styled('span')<{
 	wingEnd?: boolean;
 	wingStart?: boolean;
-}>(({ wingEnd, wingStart, theme }) => ({
-	position: 'absolute',
-	borderLeft: `1px solid ${theme.vars.palette.text.primary}`,
-	content: '" "',
-	left: '.3em',
-	top: wingStart ? 0 : '-1em',
-	bottom: wingEnd ? '.3em' : 0,
-	'&::before': wingStart
-		? wingStartEnd(theme.vars.palette.text.primary)
-		: undefined,
-	'&::after': wingEnd
-		? css`
-        ${wingStartEnd(theme.vars.palette.text.primary)};
-        bottom: 0;
-      `
-		: undefined,
-}));
+}>(
+	{
+		variants: [
+			{
+				props: { wingStart: true },
+				style: ({ theme }) => ({
+					top: 0,
+					bottom: '.3em',
+					'&::before': {
+						content: '" "',
+						borderLeft: `1em solid ${theme.vars.palette.text.primary}`,
+						position: 'absolute',
+						height: '1px',
+					},
+				}),
+			},
+			{
+				props: { wingEnd: true },
+				style: ({ theme }) => ({
+					top: '-1em',
+					bottom: 0,
+					'&::after': {
+						content: '" "',
+						borderLeft: `1em solid ${theme.vars.palette.text.primary}`,
+						position: 'absolute',
+						height: '1px',
+						bottom: 0,
+					},
+				}),
+			},
+		],
+	},
+	({ theme }) => ({
+		position: 'absolute',
+		borderLeft: `1px solid ${theme.vars.palette.text.primary}`,
+		content: '" "',
+		left: '.3em',
+	}),
+);
 
 const Entry = styled('div')(({ theme }) => ({
 	overflow: 'hidden',

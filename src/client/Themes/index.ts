@@ -8,7 +8,7 @@ import {
 	red,
 	yellow,
 } from '@mui/material/colors';
-import { createTheme, darken, lighten } from '@mui/material/styles';
+import { createTheme, css, darken, lighten } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 declare module '@mui/system' {
 	interface Shape {
@@ -17,6 +17,15 @@ declare module '@mui/system' {
 }
 
 declare module '@mui/material/styles' {
+	interface Mixins {
+		additional: ReturnType<typeof css>;
+		cancelled: ReturnType<typeof css>;
+		delayed: ReturnType<typeof css>;
+		changed: ReturnType<typeof css>;
+		early: ReturnType<typeof css>;
+		singleLineText: ReturnType<typeof css>;
+		stripe: ReturnType<typeof css>;
+	}
 	interface CommonColors {
 		pride: string;
 		red: string;
@@ -36,20 +45,48 @@ const headerSpacing = 3.5;
 const pride =
 	'linear-gradient(180deg, #FE0000 16.66%,#FD8C00 16.66%, 33.32%,#FFE500 33.32%, 49.98%,#119F0B 49.98%, 66.64%,#0644B3 66.64%, 83.3%,#C22EDC 83.3%);';
 
-<<<<<<< HEAD
 const darkShadedBackground = lighten('#303030', 0.2);
 const darkDoubleShadedBackground = lighten(darkShadedBackground, 0.2);
 
 const lightShadedBackground = darken('#fafafa', 0.3);
 const lightDoubleShadedBackground = darken(lightShadedBackground, 0.3);
 
-export const theme = extendTheme({
-=======
 export const theme = createTheme({
 	cssVariables: {
 		colorSchemeSelector: 'class',
 	},
->>>>>>> 1856c987 (chore: theme handling)
+	mixins: {
+		additional: css`
+		color: var(--mui-palette-common-green) !important;
+		`,
+		early: css`
+			color: var(--mui-palette-common-green);
+		`,
+		cancelled: css`
+			text-decoration: line-through;
+			text-decoration-color: var(--mui-palette-text-primary);
+		`,
+		delayed: css`
+			color: var(--mui-palette-common-red);
+		`,
+		changed: css`
+			color: var(--mui-palette-common-red)!important;
+		`,
+		singleLineText: css`
+			overflow: hidden;
+			max-width: 100%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		`,
+		stripe: css`
+			position: absolute;
+			top: -1.4em;
+			height: 1.3em;
+			left: -1;
+			right: -1;
+			opacity: 0.8;
+		`,
+	},
 	colorSchemes: {
 		dark: {
 			palette: {

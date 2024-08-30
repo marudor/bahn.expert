@@ -1,17 +1,23 @@
 import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import { themeMixins } from '@/client/Themes/mixins';
 import { styled } from '@mui/material';
 import type { FC } from 'react';
 import { Info } from './Info';
 
-const Wrapper = styled('div')<{ detail: boolean }>(({ detail }) => ({
+const Wrapper = styled('div')<{ detail: boolean }>({
 	display: 'flex',
 	flexDirection: 'column',
 	flex: 1,
 	justifyContent: 'space-around',
 	overflow: 'hidden',
-	whiteSpace: detail ? undefined : 'nowrap',
-}));
+	variants: [
+		{
+			props: ({ detail }) => !detail,
+			style: {
+				whiteSpace: 'nowrap',
+			},
+		},
+	],
+});
 
 const Destination = styled('div')<{
 	cancelled?: boolean;
@@ -22,8 +28,18 @@ const Destination = styled('div')<{
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 	},
-	({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
-	({ theme, different }) => different && themeMixins.changed(theme),
+	{
+		variants: [
+			{
+				props: { cancelled: true },
+				style: ({ theme }) => theme.mixins.cancelled,
+			},
+			{
+				props: { different: true },
+				style: ({ theme }) => theme.mixins.changed,
+			},
+		],
+	},
 );
 
 export const Mid: FC = () => {
