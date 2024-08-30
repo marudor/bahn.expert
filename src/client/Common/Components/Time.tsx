@@ -26,7 +26,7 @@ const Container = styled(Stack, {
 				style: ({ theme }) => theme.mixins.delayed,
 			},
 			{
-				props: [{ cancelled: true }],
+				props: { cancelled: true },
 				style: ({ theme }) => theme.mixins.cancelled,
 			},
 			{
