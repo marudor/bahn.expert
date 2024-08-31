@@ -11,10 +11,6 @@ interface Props {
 	continuationBy?: TransportDestinationRef[];
 }
 
-interface SingleProps {
-	continuation?: TransportDestinationRef[] | TransportOriginRef[];
-}
-
 const ContinationBy: FC<{
 	continuation?: TransportDestinationRef[];
 }> = ({ continuation }) => {

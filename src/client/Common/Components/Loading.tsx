@@ -47,10 +47,16 @@ const Grid = styled('div')<{ absolute?: boolean }>(
 		'& > div:nth-of-type(8)': { animationDelay: '0.1s' },
 		'& > div:nth-of-type(9)': { animationDelay: '0.2s' },
 	}),
-	({ absolute }) =>
-		absolute && {
-			position: 'absolute',
-		},
+	{
+		variants: [
+			{
+				props: { absolute: true },
+				style: {
+					position: 'absolute',
+				},
+			},
+		],
+	},
 );
 
 const Dots = styled('div')(({ theme }) => ({

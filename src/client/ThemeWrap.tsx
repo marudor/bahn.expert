@@ -1,5 +1,4 @@
 import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
-import { ThemeProvider } from '@/client/Themes/Provider';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import type { EmotionCache } from '@emotion/react';
@@ -38,10 +37,8 @@ export const ThemeWrap = ({
 				localeText={customDeLocaleText}
 			>
 				<CacheProvider value={emotionCache}>
-					<ThemeProvider>
-						<ThemeHeaderTags />
-						{children}
-					</ThemeProvider>
+					<ThemeHeaderTags />
+					{children}
 				</CacheProvider>
 			</LocalizationProvider>
 		</StyledEngineProvider>
