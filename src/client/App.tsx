@@ -1,5 +1,6 @@
 import { Loading } from '@/client/Common/Components/Loading';
 import { Navigation } from '@/client/Common/Components/Navigation';
+import { BottomNav } from '@/client/Common/Components/Navigation/BottomNavigation';
 import { CoachSequenceProvider } from '@/client/Common/provider/CoachSequenceProvider';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
@@ -42,6 +43,9 @@ const globalStyles = (theme: Theme): any => ({
 		flexDirection: 'column',
 		height: '100%',
 	},
+	main: {
+		marginBottom: '60px',
+	},
 });
 
 export const GlobalCSS: FC = () => <GlobalStyles styles={globalStyles} />;
@@ -71,6 +75,7 @@ export const App: FC = () => {
 							</RoutingProvider>
 						</CoachSequenceProvider>
 					</Navigation>
+					<BottomNav />
 				</CommonConfigProvider>
 			</HeaderTagProvider>
 		</>
