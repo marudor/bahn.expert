@@ -12,7 +12,7 @@ export const BottomNav: FC = () => {
 	};
 
 	return (
-		<Paper css={{ position: 'fixed', bottom: 0, width: '100%' }}>
+		<Paper css={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 1 }}>
 			<BottomNavigation
 				showLabels
 				value={value}
