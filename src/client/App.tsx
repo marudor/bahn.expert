@@ -43,8 +43,8 @@ const globalStyles = (theme: Theme): any => ({
 		flexDirection: 'column',
 		height: '100%',
 	},
-	main: {
-		marginBottom: '60px',
+	'main, .MuiStack-root': {
+		marginBottom: '65px',
 	},
 });
 
