@@ -55,7 +55,7 @@ const WingIndicator = styled('span')<{
 				props: { wingEnd: true },
 				style: ({ theme }) => ({
 					top: '-1em',
-					bottom: 0,
+					bottom: '.3em',
 					'&::after': {
 						content: '" "',
 						borderLeft: `1em solid ${theme.vars.palette.text.primary}`,
