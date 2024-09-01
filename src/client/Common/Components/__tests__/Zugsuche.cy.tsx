@@ -27,12 +27,9 @@ describe('Zugsuche', () => {
 	});
 
 	it('Navigates to details', () => {
-		cy.trpcIntercept(
+		cy.trpc.journeys.findByNumber(
 			{
-				pathname: '/rpc/journeys.findByNumber',
-				query: {
-					trainNumber: 6,
-				},
+				trainNumber: 6,
 			},
 			{
 				body: [
