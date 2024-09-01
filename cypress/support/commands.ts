@@ -64,67 +64,59 @@ const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
 				interceptOptions.times = times;
 			}
 			return cy.intercept(interceptOptions, (req) => {
-				try {
-					const trpcInput = parse(JSON.parse(req.query.input as string));
-					if (typeof inputParameter === 'object') {
-						for (const queryKey of Object.keys(inputParameter)) {
-							if (
-								JSON.stringify(trpcInput[queryKey]) !==
-								JSON.stringify(inputParameter[queryKey])
-							) {
-								return;
-							}
-						}
-					} else if (typeof inputParameter === 'string') {
-						if (trpcInput !== inputParameter) {
+				const trpcInput = parse(JSON.parse(req.query.input as string));
+				if (typeof inputParameter === 'object') {
+					for (const queryKey of Object.keys(inputParameter)) {
+						if (
+							JSON.stringify(trpcInput[queryKey]) !==
+							JSON.stringify(inputParameter[queryKey])
+						) {
 							return;
 						}
-					} else {
+					}
+				} else if (typeof inputParameter === 'string') {
+					if (trpcInput !== inputParameter) {
 						return;
 					}
-					req.reply(resolvedOpts);
-				} catch (e) {
-					console.error('inner fishy', e);
+				} else {
+					return;
 				}
+				req.reply(resolvedOpts);
 			});
 		};
 
-		try {
-			if (cyHandler.statusCode && cyHandler.statusCode !== 200) {
-				const error = new TRPCError({
-					code: TRPC_ERROR_CODES_BY_HTTP[cyHandler.statusCode],
-				});
-				cyHandler.body = {
-					error: stringify({
-						message: error.message,
-						code: TRPC_ERROR_CODES_BY_KEY[error.code],
-						data: {
-							code: error.code,
-							httpStatus: cyHandler.statusCode,
-						},
-					}),
-				};
-			} else if (cyHandler.body) {
+		if (cyHandler.statusCode && cyHandler.statusCode !== 200) {
+			const error = new TRPCError({
+				code: TRPC_ERROR_CODES_BY_HTTP[cyHandler.statusCode],
+			});
+			cyHandler.body = {
+				error: stringify({
+					message: error.message,
+					code: TRPC_ERROR_CODES_BY_KEY[error.code],
+					data: {
+						code: error.code,
+						httpStatus: cyHandler.statusCode,
+					},
+				}),
+			};
+		} else if (cyHandler.body) {
+			cyHandler.body = {
+				result: {
+					data: stringify(dateReviver(cyHandler.body)),
+				},
+			};
+		}
+
+		if (cyHandler.fixture) {
+			return cy.fixture(cyHandler.fixture).then((f) => {
+				delete cyHandler.fixture;
 				cyHandler.body = {
 					result: {
-						data: stringify(dateReviver(cyHandler.body)),
+						data: stringify(dateReviver(f)),
 					},
 				};
-			}
-
-			if (cyHandler.fixture) {
-				return cy.fixture(cyHandler.fixture).then((f) => {
-					delete cyHandler.fixture;
-					cyHandler.body = {
-						result: {
-							data: stringify(dateReviver(f)),
-						},
-					};
-					return intercept(cyHandler);
-				});
-			}
-		} catch (e) {
-			console.error('fishy', e);
+				return intercept(cyHandler);
+			});
 		}
 
 		return intercept(cyHandler);
