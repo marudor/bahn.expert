@@ -28,7 +28,6 @@ function findV1OrV2HafasCompatible(
 	if (date) {
 		const fourDaysAgo = subDays(new Date(), 4);
 		const olderThan4Days = isBefore(date, fourDaysAgo);
-		console.log(date, fourDaysAgo, olderThan4Days);
 		if (olderThan4Days) {
 			useV2 = false;
 		}
@@ -54,7 +53,6 @@ function findJoureyV1OrV2(
 	if (date) {
 		const fourDaysAgo = subDays(new Date(), 4);
 		const olderThan4Days = isBefore(date, fourDaysAgo);
-		console.log(date, fourDaysAgo, olderThan4Days);
 		if (olderThan4Days) {
 			useV2 = false;
 		}
