@@ -1,14 +1,12 @@
 import { DirectionOfTravel } from '@/client/Common/Components/CoachSequence/DirectionOfTravel';
 import { Loading } from '@/client/Common/Components/Loading';
-import { sequenceId } from '@/client/Common/provider/CoachSequenceProvider';
 import {
-	useSequences,
-	useSequencesActions,
-} from '@/client/Common/provider/CoachSequenceProvider';
-import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
+	type FallbackTrainsForCoachSequence,
+	useCoachSequence,
+} from '@/client/Common/hooks/useCoachSequence';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { styled } from '@mui/material';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import type { FC } from 'react';
 import { Explain } from './Explain';
 import { Group } from './Group';
@@ -73,42 +71,22 @@ export const CoachSequence: FC<Props> = ({
 	initialDeparture,
 	fallbackWings: fallback,
 	trainCategory,
-	administration,
+	// administration,
 	loadHidden,
 	lastArrivalEva,
 }) => {
-	const sequences = useSequences();
-	const { getSequences } = useSequencesActions();
 	const { fahrzeugGruppe, showUIC, showCoachType } = useCommonConfig();
-	const sequence =
-		sequences[sequenceId(trainNumber, currentEvaNumber, scheduledDeparture)];
 	const trainNumberNumber = Number.parseInt(trainNumber);
 
-	useEffect(() => {
-		if (sequence === undefined) {
-			void getSequences(
-				trainNumber,
-				currentEvaNumber,
-				scheduledDeparture,
-				initialDeparture,
-				fallback,
-				trainCategory,
-				administration,
-				lastArrivalEva,
-			);
-		}
-	}, [
+	const sequence = useCoachSequence(
+		trainNumberNumber,
 		currentEvaNumber,
-		fallback,
-		getSequences,
-		initialDeparture,
-		sequence,
 		scheduledDeparture,
-		trainNumber,
+		initialDeparture,
+		fallback,
 		trainCategory,
-		administration,
 		lastArrivalEva,
-	]);
+	);
 
 	const [scale, startPercent] = useMemo(() => {
 		if (!sequence) return [1, 0];

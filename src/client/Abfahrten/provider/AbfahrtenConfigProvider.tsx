@@ -1,4 +1,5 @@
 import { useQuery } from '@/client/Common/hooks/useQuery';
+import type { trpc } from '@/client/RPC';
 import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
 import { useCallback, useState } from 'react';
@@ -42,7 +43,7 @@ const useFilter = (initialFilter: Filter) => {
 
 export interface AbfahrtenConfigProviderValue {
 	filter: Filter;
-	fetchApiUrl: string;
+	abfahrtenFetch: ReturnType<typeof trpc.useUtils>['iris']['abfahrten'];
 	urlPrefix: string;
 }
 
@@ -55,20 +56,20 @@ const useAbfahrtenConfigInner = ({
 
 	return {
 		filterConfig,
-		fetchApiUrl: initialState.fetchApiUrl,
+		abfahrtenFetch: initialState.abfahrtenFetch,
 		urlPrefix: initialState.urlPrefix,
 	};
 };
 
 export const [
 	InnerAbfahrtenConfigProvider,
-	useAbfahrtenFetchAPIUrl,
+	useAbfahrtenFetch,
 	useAbfahrtenUrlPrefix,
 	useAbfahrtenFilterOpen,
 	useAbfahrtenFilter,
 ] = constate(
 	useAbfahrtenConfigInner,
-	(v) => v.fetchApiUrl,
+	(v) => v.abfahrtenFetch,
 	(v) => v.urlPrefix,
 	(v) => v.filterConfig.setFilterOpen,
 	(v) => v.filterConfig,
@@ -76,12 +77,12 @@ export const [
 
 interface Props {
 	children: ReactNode;
-	fetchApiUrl: string;
+	abfahrtenFetch: AbfahrtenConfigProviderValue['abfahrtenFetch'];
 	urlPrefix: string;
 }
 export const AbfahrtenConfigProvider: FC<Props> = ({
 	children,
-	fetchApiUrl,
+	abfahrtenFetch,
 	urlPrefix,
 }) => {
 	const storage = useStorage();
@@ -97,7 +98,7 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
 		filter: {
 			products: Array.isArray(savedFilter) ? savedFilter : [],
 		},
-		fetchApiUrl,
+		abfahrtenFetch,
 		urlPrefix,
 	};
 

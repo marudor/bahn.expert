@@ -1,3 +1,4 @@
+import { trpc } from '@/client/RPC';
 import {
 	useRoutingConfig,
 	useRoutingConfigActions,
@@ -6,7 +7,6 @@ import {
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
 import { getRouteLink } from '@/client/Routing/util';
 import { uniqBy } from '@/client/util';
-import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { RoutingResult } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import Axios from 'axios';
@@ -27,6 +27,7 @@ export const useFetchRouting = () => {
 	const { updateFormattedDate } = useRoutingConfigActions();
 	const settings = useRoutingSettings();
 	const navigate = useNavigate();
+	const trpcUtils = trpc.useUtils();
 
 	const getRouteSettings = useCallback(
 		(commonStart = start, commonDestination = destination, commonVia = via) =>
@@ -37,17 +38,17 @@ export const useFetchRouting = () => {
 						start: {
 							evaNumber: commonStart?.evaNumber,
 							type: 'stopPlace',
-						},
+						} as const,
 						destination: {
 							evaNumber: commonDestination?.evaNumber,
 							type: 'stopPlace',
-						},
+						} as const,
 						via: commonVia.filter(Boolean).map((v) => ({
 							evaNumber: v.evaNumber,
 						})),
 						...settings,
-						maxChanges: settings.maxChanges || '-1',
-						transferTime: settings.transferTime || '0',
+						maxChanges: Number.parseInt(settings.maxChanges || '-1'),
+						transferTime: Number.parseInt(settings.transferTime || '0'),
 					}
 				: undefined,
 		[destination, settings, start, via],
@@ -66,24 +67,11 @@ export const useFetchRouting = () => {
 			setError(undefined);
 			setRoutes(undefined);
 			try {
-				const routingResult = (
-					await Axios.post<RoutingResult>(
-						'/api/hafas/v4/tripSearch',
-						{
-							time: touchedDate ? date : new Date(),
-							searchForDeparture: departureMode === 'ab',
-							...routeSettings,
-						},
-						{
-							params: {
-								profile:
-									routeSettings.hafasProfile === AllowedHafasProfile.OEBB
-										? routeSettings.hafasProfile
-										: undefined,
-							},
-						},
-					)
-				).data;
+				const routingResult = await trpcUtils.hafas.tripSearch.fetch({
+					time: touchedDate ? date : new Date(),
+					searchForDeparture: departureMode === 'ab',
+					...routeSettings,
+				});
 
 				setRoutes(routingResult.routes);
 				setEarlierContext(routingResult.context.earlier);
@@ -93,6 +81,7 @@ export const useFetchRouting = () => {
 			}
 		},
 		[
+			trpcUtils.hafas.tripSearch,
 			date,
 			setEarlierContext,
 			setError,

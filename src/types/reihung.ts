@@ -134,9 +134,6 @@ export interface BaseFahrzeug {
 export interface Fahrzeug extends BaseFahrzeug {
 	additionalInfo: AdditionalFahrzeugInfo;
 }
-/**
- * @tsoaModel
- */
 export interface Position {
 	endemeter: string;
 	endeprozent: string;

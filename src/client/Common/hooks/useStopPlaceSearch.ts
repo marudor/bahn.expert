@@ -1,10 +1,8 @@
-import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
+import { trpc } from '@/client/RPC';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';
 import { useCallback, useMemo, useRef, useState } from 'react';
-
-const debouncedStopPlacesFromAPI = debounce(getStopPlacesFromAPI, 200);
 
 interface UseStationSearchOptions {
 	maxSuggestions: number;
@@ -17,20 +15,23 @@ const itemToString = (s: MinimalStopPlace | null) => (s ? s.name : '');
 export const useStopPlaceSearch = ({
 	filterForIris,
 	maxSuggestions,
-	groupedBySales,
 }: UseStationSearchOptions) => {
 	const [suggestions, setSuggestions] = useState<MinimalStopPlace[]>([]);
 	const [loading, setLoading] = useState(false);
+	const trpcUtils = trpc.useUtils();
 
 	const stopPlaceFn = useMemo(
 		() =>
-			debouncedStopPlacesFromAPI.bind(
-				undefined,
-				filterForIris,
-				maxSuggestions,
-				groupedBySales,
+			debounce(
+				(searchTerm: string) =>
+					trpcUtils.stopPlace.byName.fetch({
+						searchTerm,
+						filterForIris,
+						max: maxSuggestions,
+					}),
+				200,
 			),
-		[filterForIris, groupedBySales, maxSuggestions],
+		[filterForIris, maxSuggestions, trpcUtils.stopPlace.byName],
 	);
 
 	const loadOptions = useCallback(

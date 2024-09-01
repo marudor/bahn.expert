@@ -1,9 +1,8 @@
 import {
-	useAbfahrtenFetchAPIUrl,
+	useAbfahrtenFetch,
 	useAbfahrtenFilter,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import {
-	fetchAbfahrten,
 	useAbfahrtenDepartures,
 	useCurrentAbfahrtenStopPlace,
 	useRawAbfahrten,
@@ -96,18 +95,19 @@ export const useRefreshCurrent = (visible = false) => {
 	const { setDepartures } = useRawAbfahrten();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { lookahead, lookbehind } = useCommonConfig();
-	const fetchApiUrl = useAbfahrtenFetchAPIUrl();
+	const abfahrtenFetch = useAbfahrtenFetch();
 
 	return useCallback(async () => {
 		if (currentStopPlace?.evaNumber) {
 			if (visible) {
 				setDepartures(undefined);
 			}
-			const r = await fetchAbfahrten(
-				`${fetchApiUrl}/${currentStopPlace.evaNumber}`,
-				lookahead,
-				lookbehind,
-			);
+			const r = await abfahrtenFetch.fetch({
+				// `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
+				evaNumber: currentStopPlace.evaNumber,
+				lookahead: Number.parseInt(lookahead),
+				lookbehind: Number.parseInt(lookbehind),
+			});
 
 			if (r) {
 				setDepartures(r);
@@ -115,7 +115,7 @@ export const useRefreshCurrent = (visible = false) => {
 		}
 	}, [
 		currentStopPlace,
-		fetchApiUrl,
+		abfahrtenFetch,
 		lookahead,
 		lookbehind,
 		setDepartures,

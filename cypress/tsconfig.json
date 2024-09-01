@@ -7,13 +7,16 @@
 		"strict": true,
 		"target": "es5",
 		"lib": ["es6", "dom", "esnext"],
-		"types": [
-			"cypress",
-			"@testing-library/cypress",
-			"../cypress/support/index",
-			"@percy/cypress"
-		]
+		"types": ["cypress", "@testing-library/cypress", "@percy/cypress"],
+		"paths": {
+			"@/devalue": ["../src/devalue/index"]
+		}
 	},
-	"include": ["**/*.ts", "support/index.ts", "plugins/index.js"],
+	"include": [
+		"**/*.ts",
+		"support/index.d.ts",
+		"plugins/index.js",
+		"../src/devalue/**/*"
+	],
 	"exclude": ["support/component.tsx"]
 }

@@ -39,14 +39,25 @@ describe('Homepage', () => {
 	});
 
 	it('Shows error on mainPage', () => {
-		cy.intercept('/api/iris/v2/abfahrten/8000105?*', {
-			statusCode: 500,
-			delayMs: 2000,
-			body: {},
-		}).intercept(
-			`/api/stopPlace/v1/search/${encodeURIComponent(
-				'Frankfurt (Main) Hbf',
-			)}?*`,
+		cy.trpcIntercept(
+			{
+				pathname: '/rpc/iris.abfahrten',
+				query: {
+					evaNumber: '8000105',
+				},
+			},
+			{
+				statusCode: 500,
+				delayMs: 500,
+			},
+		);
+		cy.trpcIntercept(
+			{
+				pathname: '/rpc/stopPlace.byName',
+				query: {
+					searchTerm: 'Frankfurt (Main) Hbf',
+				},
+			},
 			{
 				fixture: 'stopPlaceSearchFrankfurtHbf',
 			},
@@ -55,7 +66,6 @@ describe('Homepage', () => {
 		cy.navigateToStation('Frankfurt (Main) Hbf');
 		cy.findByTestId('loading').should('exist');
 		cy.findByTestId('error').should('exist');
-		cy.findByTestId('triedStation').should('have.text', 'Frankfurt (Main) Hbf');
 	});
 
 	it('shows favs from cookie', () => {

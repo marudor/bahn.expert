@@ -422,7 +422,6 @@ export interface JourneyEvent {
  * Event based [Fahrtereignisbasiert] information for a particular journey [Fahrtverlauf].
  * @export
  * @interface JourneyEventBased
- * @tsoaModel
  */
 export interface JourneyEventBased {
 	/**
@@ -528,7 +527,6 @@ export interface JourneyFindResults {
  * Comprehensive journey information.
  * @export
  * @interface JourneyInfo
- * @tsoaModel
  */
 export interface JourneyInfo {
 	/**
@@ -890,9 +888,6 @@ export interface StopPlaceDifferingInJourney {
 	 */
 	name: string;
 }
-/**
- * @tsoaModel
- */
 export interface StopPlaceEmbedded {
 	/**
 	 * Eva number of stop-place [Haltestelle].

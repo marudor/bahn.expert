@@ -3,23 +3,19 @@ describe('Details', () => {
 		cy.visit('/');
 	});
 	it('Can Render (with error)', () => {
-		cy.intercept(
-			{
-				pathname: '/api/journeys/v1/details/ICE70',
-			},
-			{
-				statusCode: 404,
-				response: {},
-			},
-		);
 		cy.visit('/details/ICE70');
-		cy.findByTestId('error').should('exist');
+		cy.findByTestId('error')
+			.should('exist')
+			.should('have.text', 'Unbekannter Zug');
 	});
 
 	it('can render & header height correct', () => {
-		cy.intercept(
+		cy.trpcIntercept(
 			{
-				pathname: '/api/journeys/v1/details/S30665',
+				pathname: '/rpc/journeys.details',
+				query: {
+					trainName: 'S30665',
+				},
 			},
 			{
 				fixture: 'details/S6',
@@ -30,9 +26,12 @@ describe('Details', () => {
 	});
 
 	it('renders train line & number for regional stuff', () => {
-		cy.intercept(
+		cy.trpcIntercept(
 			{
-				pathname: '/api/journeys/v1/details/S30665',
+				pathname: '/rpc/journeys.details',
+				query: {
+					trainName: 'S30665',
+				},
 			},
 			{
 				fixture: 'details/S6',
@@ -44,10 +43,11 @@ describe('Details', () => {
 	});
 
 	it('uses journeyId if provided', () => {
-		cy.intercept(
+		cy.trpcIntercept(
 			{
-				pathname: '/api/journeys/v1/details/S30665',
+				pathname: '/rpc/journeys.details',
 				query: {
+					trainName: 'S30665',
 					journeyId: 'jid',
 				},
 			},
@@ -61,9 +61,12 @@ describe('Details', () => {
 	});
 
 	it('goes to next & sets administration', () => {
-		cy.intercept(
+		cy.trpcIntercept(
 			{
-				pathname: '/api/journeys/v1/details/S30665',
+				pathname: '/rpc/journeys.details',
+				query: {
+					trainName: 'S30665',
+				},
 				times: 1,
 			},
 			{
@@ -79,9 +82,12 @@ describe('Details', () => {
 	});
 
 	it('goes to previous & shows arrows even if unknown', () => {
-		cy.intercept(
+		cy.trpcIntercept(
 			{
-				pathname: '/api/journeys/v1/details/S30665',
+				pathname: '/rpc/journeys.details',
+				query: {
+					trainName: 'S30665',
+				},
 				times: 1,
 			},
 			{

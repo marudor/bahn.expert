@@ -1,7 +1,85 @@
+import { parse, stringify } from '@/devalue';
 import '@testing-library/cypress/add-commands';
+import type {
+	RouteMatcherOptions,
+	StaticResponseWithOptions,
+} from 'cypress/types/net-stubbing';
+
+const isoDateRegex =
+	/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d*)(?:Z|([+-])([\d:|]*))?$/;
+
+export const dateReviver = (data: any) => {
+	try {
+		return JSON.parse(JSON.stringify(data), (_key, value) => {
+			if (typeof value === 'string' && isoDateRegex.test(value)) {
+				return new Date(value);
+			}
+			return value;
+		});
+	} catch {
+		// Ignoring
+	}
+	return data;
+};
+
+Cypress.Commands.add('trpcFixture', (fixtureName) =>
+	cy.fixture(fixtureName).then((f) => ({
+		result: {
+			data: stringify(dateReviver(f)),
+		},
+	})),
+);
+
+const BaseIntercept = (
+	options: Omit<RouteMatcherOptions, 'query'> & {
+		query: any;
+	},
+	handler: StaticResponseWithOptions,
+) => {
+	const query = options.query;
+	delete options.query;
+	return cy.intercept(options, (req) => {
+		const trpcInput = parse(JSON.parse(req.query.input as string));
+		if (typeof query === 'object') {
+			for (const queryKey of Object.keys(query)) {
+				if (
+					JSON.stringify(trpcInput[queryKey]) !==
+					JSON.stringify(query[queryKey])
+				) {
+					return;
+				}
+			}
+		} else if (typeof query === 'string') {
+			if (trpcInput !== query) {
+				return;
+			}
+		} else {
+			return;
+		}
+		req.reply(handler);
+	});
+};
+
+Cypress.Commands.add('trpcIntercept', (options, handler) => {
+	if (handler.fixture) {
+		return cy.trpcFixture(handler.fixture).then((body) => {
+			delete handler.fixture;
+			handler.body = body;
+			return BaseIntercept(options, handler);
+		});
+	}
+	if (handler.body) {
+		handler.body = {
+			result: {
+				data: stringify(dateReviver(handler.body)),
+			},
+		};
+	}
+	return BaseIntercept(options, handler);
+});
 
 Cypress.Commands.add('force404', () => {
-	cy.intercept('/api/**', { statusCode: 404, body: 'unmocked disallowed' });
+	cy.intercept('/rpc/**', { statusCode: 404, body: 'unmocked disallowed' });
 });
 
 Cypress.Commands.add(
@@ -51,24 +129,28 @@ function mockStopPlace({
 	startTime?: Date;
 	id: string;
 }) {
-	cy.intercept(
+	cy.trpcIntercept(
 		{
-			url: `/api/iris/v2/abfahrten/${id}?*`,
+			pathname: '/rpc/iris.abfahrten',
 			query: {
-				lookahead: lookahead.toString(),
-				lookbehind: lookbehind.toString(),
-				...(startTime && {
-					startTime: startTime.toISOString(),
-				}),
+				evaNumber: id,
+				lookahead,
+				lookbehind,
+				startTime,
 			},
 		},
 		{
-			delayMs: delay,
+			delay,
 			fixture: `abfahrten${fixture}`,
 		},
-	).intercept(
+	);
+
+	cy.trpcIntercept(
 		{
-			url: `/api/stopPlace/v1/search/${encodeURIComponent(name)}?*`,
+			pathname: '/rpc/stopPlace.byName',
+			query: {
+				searchTerm: name,
+			},
 		},
 		{
 			fixture: `stopPlaceSearch${fixture}`,

@@ -6,12 +6,22 @@ function searchInput(id: string, value: string) {
 
 describe('Routing', () => {
 	beforeEach(() => {
-		cy.intercept(
-			`/api/stopPlace/v1/search/${encodeURIComponent('Frankfurt Hbf')}?*`,
+		cy.trpcIntercept(
+			{
+				pathname: '/rpc/stopPlace.byName',
+				query: {
+					searchTerm: 'Frankfurt Hbf',
+				},
+			},
 			{ fixture: 'stopPlaceSearchFrankfurtHbf' },
 		);
-		cy.intercept(
-			`/api/stopPlace/v1/search/${encodeURIComponent('Hamburg Hbf')}?*`,
+		cy.trpcIntercept(
+			{
+				pathname: '/rpc/stopPlace.byName',
+				query: {
+					searchTerm: 'Hamburg Hbf',
+				},
+			},
 			{
 				fixture: 'stopPlaceSearchHamburgHbf',
 			},
@@ -59,15 +69,33 @@ describe('Routing', () => {
 
 	describe('url based', () => {
 		beforeEach(() => {
-			cy.intercept('/api/stopPlace/v1/8000105', {
-				fixture: 'stopPlace/8000105',
-			});
-			cy.intercept('/api/stopPlace/v1/8002549', {
-				fixture: 'stopPlace/8002549',
-			});
-			cy.intercept('/api/stopPlace/v1/8000244', {
-				fixture: 'stopPlace/8000244',
-			});
+			cy.trpcIntercept(
+				{
+					pathname: '/rpc/stopPlace.byKey',
+					query: '8000105',
+				},
+				{
+					fixture: 'stopPlace/8000105',
+				},
+			);
+			cy.trpcIntercept(
+				{
+					pathname: '/rpc/stopPlace.byKey',
+					query: '8002549',
+				},
+				{
+					fixture: 'stopPlace/8002549',
+				},
+			);
+			cy.trpcIntercept(
+				{
+					pathname: '/rpc/stopPlace.byKey',
+					query: '8000244',
+				},
+				{
+					fixture: 'stopPlace/8000244',
+				},
+			);
 		});
 
 		it('with start', () => {

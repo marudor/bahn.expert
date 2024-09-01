@@ -25,12 +25,13 @@ describe('Abfahrten Settings', () => {
 
 		describe('CoachSequence', () => {
 			beforeEach(() => {
-				cy.intercept(
+				cy.trpcIntercept(
 					{
-						url: '/api/coachSequence/v4/wagen/371?*',
+						pathname: '/rpc/coachSequence.sequence',
 						query: {
+							trainNumber: 371,
 							evaNumber: '8000105',
-							departure: '2019-08-07T12:50:00.000Z',
+							departure: new Date('2019-08-07T12:50:00.000Z'),
 						},
 					},
 					{

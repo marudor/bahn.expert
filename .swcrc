@@ -44,11 +44,7 @@
 		},
 		"baseUrl": ".",
 		"paths": {
-			"@/client/*": ["src/client/*"],
-			"@/external/*": ["src/external/*"],
-			"@/oebb/*": ["src/oebb/*"],
-			"@/server/*": ["src/server/*"],
-			"@/types/*": ["src/types/*"],
+			"@/*": ["src/*"],
 			"@/fixtures/*": ["cypress/fixtures/*"],
 			"@mui/material/css": ["src/swcWorkarounds/css"],
 			"@mui/material/styled": ["src/swcWorkarounds/styled"],

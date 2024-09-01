@@ -1,8 +1,5 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import {
-	getAdditionalJourneyInformation,
-	getDetails,
-} from '@/client/Common/service/details';
+import { trpc } from '@/client/RPC';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
@@ -42,6 +39,7 @@ const useInnerDetails = ({
 		useState<AdditionalJourneyInformation>();
 	const [error, setError] = useState<AxiosError>();
 	const navigate = useNavigate();
+	const trpcUtils = trpc.useUtils();
 
 	const initialDepartureDate = useMemo(() => {
 		if (!initialDepartureDateString) return new Date();
@@ -83,26 +81,28 @@ const useInnerDetails = ({
 				setDetails(undefined);
 				setAdditionalInformation(undefined);
 			}
-			getDetails(
-				trainName,
-				initialDepartureDate,
-				evaNumberAlongRoute,
-				journeyId,
-				administration,
-				jid,
-			)
+			trpcUtils.journeys.details
+				.fetch({
+					trainName,
+					initialDepartureDate,
+					evaNumberAlongRoute,
+					journeyId,
+					administration,
+					jid,
+				})
 				.then(async (details) => {
 					setDetails(details);
 					// its a RIS thing, lets get extra information
 					if (details.journeyId) {
 						try {
 							setAdditionalInformation(
-								await getAdditionalJourneyInformation(
+								await trpcUtils.hafas.additionalInformation.fetch({
 									trainName,
-									details.journeyId,
+									journeyId: details.journeyId,
 									initialDepartureDate,
-									details.stops[details.stops.length - 1].station.evaNumber,
-								),
+									evaNumberAlongRoute:
+										details.stops[details.stops.length - 1].station.evaNumber,
+								}),
 							);
 						} catch {
 							// ignoring this
@@ -127,6 +127,8 @@ const useInnerDetails = ({
 				});
 		},
 		[
+			trpcUtils.journeys.details,
+			trpcUtils.hafas.additionalInformation,
 			trainName,
 			initialDepartureDate,
 			evaNumberAlongRoute,

@@ -1,14 +1,12 @@
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
-import { journeyNumberFind } from '@/client/Common/service/details';
+import { trpc } from '@/client/RPC';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import { MenuItem, Paper, TextField, styled } from '@mui/material';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
-
-const debouncedJourneyNumberFind = debounce(journeyNumberFind, 200);
 
 const Container = styled('div')`
   position: relative;
@@ -16,10 +14,12 @@ const Container = styled('div')`
 
   input[type='number'] {
     -moz-appearance: textfield;
+		appearance: textfield;
   }
   input[type='number']:hover,
   input[type='number']:focus {
     -moz-appearance: number-input;
+		appearance: number-input;
   }
 `;
 
@@ -50,6 +50,11 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 		[],
 	);
 	const [loading, setLoading] = useState(0);
+	const trpcUtils = trpc.useUtils();
+	const debouncedFindByNumer = useMemo(
+		() => debounce(trpcUtils.journeys.findByNumber.fetch, 200),
+		[trpcUtils.journeys.findByNumber],
+	);
 	const loadOptions = useCallback(
 		async (value: string) => {
 			const enteredNumber = Number.parseInt(value);
@@ -58,13 +63,11 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 			}
 			setLoading((old) => old + 1);
 			try {
-				const suggestions = await debouncedJourneyNumberFind(
-					enteredNumber,
-					initialDeparture,
-					undefined,
+				const suggestions = await debouncedFindByNumer({
+					trainNumber: enteredNumber,
+					initialDepartureDate: initialDeparture,
 					filtered,
-					'zugsuche',
-				);
+				});
 
 				setSuggestions(suggestions);
 			} catch (e) {
@@ -74,7 +77,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 			}
 			setLoading((old) => old - 1);
 		},
-		[initialDeparture, filtered],
+		[initialDeparture, filtered, debouncedFindByNumer],
 	);
 
 	return (

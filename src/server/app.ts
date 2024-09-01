@@ -23,11 +23,11 @@ export function createApp(): Koa {
 
 	app.use(blockMiddleware);
 
-	let apiRoutes = require('./API').default;
 	let serverRender = require('./render').default;
 	let seoController = require('./seo').default;
 	let errorHandler = require('./errorHandler').default;
 	let normalizePathMiddleware = require('./middleware/normalizePath').default;
+	let rpcRouter = require('./rpc').rpcRouter;
 
 	let devPromise = Promise.resolve();
 
@@ -45,8 +45,8 @@ export function createApp(): Koa {
 						require('./middleware/normalizePath').default;
 					errorHandler = require('./errorHandler').default;
 					serverRender = require('./render').default;
-					apiRoutes = require('./API').default;
 					seoController = require('./seo').default;
+					rpcRouter = require('./rpc').rpcRouter;
 					ctx.loadableStats = JSON.parse(
 						ctx.state.webpack.devMiddleware.outputFileSystem.readFileSync(
 							path.resolve(`${distFolder}/client/loadable-stats.json`),
@@ -65,7 +65,7 @@ export function createApp(): Koa {
 		for (const m of middlewares) app.use(m);
 		app.use(KoaBodyparser());
 
-		app.use(hotHelper(() => apiRoutes.routes()));
+		app.use(hotHelper(() => rpcRouter));
 
 		app.use(
 			koaStatic(
