@@ -1,33 +1,24 @@
 describe('Regional', () => {
 	it('can navigate to Details Page', () => {
-		cy.trpcIntercept(
+		cy.trpc.stopPlace.byName(
 			{
-				pathname: '/rpc/stopPlace.byName',
-				query: {
-					searchTerm: 'Poststraße, Karlsruhe',
-				},
+				searchTerm: 'Poststraße, Karlsruhe',
 			},
 			{
 				fixture: 'regional/stopPlaceSearchPoststrasse',
 			},
 		);
-		cy.trpcIntercept(
+		cy.trpc.hafas.irisAbfahrten(
 			{
-				pathname: '/rpc/hafas.irisAbfahrten',
-				query: {
-					evaNumber: '0723869',
-				},
+				evaNumber: '0723869',
 			},
 			{ fixture: 'regional/departurePostStrasse' },
 		);
-		cy.trpcIntercept(
+		cy.trpc.journeys.details(
 			{
-				pathname: '/rpc/journeys.details',
-				query: {
-					trainName: 'STR 1761',
-					evaNumberAlongRoute: '723870',
-					initialDepartureDate: new Date('2020-05-02T17:54:00.000Z'),
-				},
+				trainName: 'STR 1761',
+				evaNumberAlongRoute: '723870',
+				initialDepartureDate: new Date('2020-05-02T17:54:00.000Z'),
 			},
 			{ fixture: 'regional/detailsStr1761' },
 		);
@@ -47,21 +38,15 @@ describe('Regional', () => {
 	});
 
 	it('can handle slashes', () => {
-		cy.trpcIntercept(
+		cy.trpc.stopPlace.byName(
 			{
-				pathname: '/rpc/stopPlace.byName',
-				query: {
-					searchTerm: 'Arndt-/Spittastraße, Stuttgart',
-				},
+				searchTerm: 'Arndt-/Spittastraße, Stuttgart',
 			},
 			{ fixture: 'regional/stopPlaceSearchArndtSpittastrasse' },
 		);
-		cy.trpcIntercept(
+		cy.trpc.hafas.irisAbfahrten(
 			{
-				pathname: '/rpc/hafas.irisAbfahrten',
-				query: {
-					evaNumber: '0369218',
-				},
+				evaNumber: '0369218',
 			},
 			{ fixture: 'regional/departureArndtSpittastrasse' },
 		);

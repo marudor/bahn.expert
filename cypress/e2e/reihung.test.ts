@@ -3,17 +3,14 @@ describe('CoachSequence', () => {
 		beforeEach(() => {
 			cy.mockFrankfurt();
 			cy.visit('/');
-			cy.trpcIntercept(
+			cy.trpc.coachSequence.sequence(
 				{
-					pathname: '/rpc/coachSequence.sequence',
-					query: {
-						evaNumber: '8000105',
-						departure: new Date('2019-08-07T12:50:00.000Z'),
-						initialDeparture: new Date('2019-08-07T07:46:00.000Z'),
-						lastArrivalEva: undefined,
-						trainNumber: 371,
-						category: 'ICE',
-					},
+					evaNumber: '8000105',
+					departure: new Date('2019-08-07T12:50:00.000Z'),
+					initialDeparture: new Date('2019-08-07T07:46:00.000Z'),
+					lastArrivalEva: undefined,
+					trainNumber: 371,
+					category: 'ICE',
 				},
 				{
 					fixture: 'sequence/genericICE1',
@@ -61,10 +58,9 @@ describe('CoachSequence', () => {
 			cy.mockHannover();
 			cy.visit('/');
 			cy.navigateToStation('Hannover Hbf');
-			cy.trpcIntercept(
-				{
-					pathname: '/rpc/coachSequence.sequence',
-					query: {
+			cy.trpc.coachSequence
+				.sequence(
+					{
 						evaNumber: '8000152',
 						departure: new Date('2020-02-22T11:26:00.000Z'),
 						initialDeparture: new Date('2020-02-22T10:15:00.000Z'),
@@ -72,15 +68,14 @@ describe('CoachSequence', () => {
 						trainNumber: 537,
 						category: 'ICE',
 					},
-				},
-				{
-					fixture: 'sequence/537Wing',
-				},
-			).as('537');
-			cy.trpcIntercept(
-				{
-					pathname: '/rpc/coachSequence.sequence',
-					query: {
+					{
+						fixture: 'sequence/537Wing',
+					},
+				)
+				.as('537');
+			cy.trpc.coachSequence
+				.sequence(
+					{
 						trainNumber: 587,
 						category: 'ICE',
 						evaNumber: '8000152',
@@ -88,11 +83,11 @@ describe('CoachSequence', () => {
 						initialDeparture: new Date('2020-02-22T10:15:00.000Z'),
 						lastArrivalEva: undefined,
 					},
-				},
-				{
-					statusCode: 404,
-				},
-			).as('587');
+					{
+						statusCode: 404,
+					},
+				)
+				.as('587');
 		});
 		it('only loads coachSequence of selected train if available', () => {
 			cy.findByTestId('abfahrtICE537').click();

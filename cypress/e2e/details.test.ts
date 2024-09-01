@@ -10,69 +10,65 @@ describe('Details', () => {
 	});
 
 	it('can render & header height correct', () => {
-		cy.trpcIntercept(
-			{
-				pathname: '/rpc/journeys.details',
-				query: {
+		cy.trpc.journeys
+			.details(
+				{
 					trainName: 'S30665',
 				},
-			},
-			{
-				fixture: 'details/S6',
-			},
-		).as('details');
+				{
+					fixture: 'details/S6',
+				},
+			)
+			.as('details');
 		cy.visit('/details/S30665');
 		cy.wait('@details');
 	});
 
 	it('renders train line & number for regional stuff', () => {
-		cy.trpcIntercept(
-			{
-				pathname: '/rpc/journeys.details',
-				query: {
+		cy.trpc.journeys
+			.details(
+				{
 					trainName: 'S30665',
 				},
-			},
-			{
-				fixture: 'details/S6',
-			},
-		).as('details');
+				{
+					fixture: 'details/S6',
+				},
+			)
+			.as('details');
 		cy.visit('/details/S30665');
 		cy.wait('@details');
 		cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
 	});
 
 	it('uses journeyId if provided', () => {
-		cy.trpcIntercept(
-			{
-				pathname: '/rpc/journeys.details',
-				query: {
+		cy.trpc.journeys
+			.details(
+				{
 					trainName: 'S30665',
 					journeyId: 'jid',
 				},
-			},
-			{
-				fixture: 'details/S6',
-			},
-		).as('details');
+				{
+					fixture: 'details/S6',
+				},
+			)
+			.as('details');
 		cy.visit('/details/S30665?journeyId=jid');
 		cy.wait('@details');
 		cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
 	});
 
 	it('goes to next & sets administration', () => {
-		cy.trpcIntercept(
-			{
-				pathname: '/rpc/journeys.details',
-				query: {
+		cy.trpc.journeys
+			.details(
+				{
 					trainName: 'S30665',
 				},
-				times: 1,
-			},
-			{
-				fixture: 'details/S6',
-			},
-		).as('details');
+				{
+					times: 1,
+					fixture: 'details/S6',
+				},
+			)
+			.as('details');
 		cy.visit('/details/S30665');
 		cy.wait('@details');
 		cy.findByTestId('next').click();
@@ -82,18 +78,17 @@ describe('Details', () => {
 	});
 
 	it('goes to previous & shows arrows even if unknown', () => {
-		cy.trpcIntercept(
-			{
-				pathname: '/rpc/journeys.details',
-				query: {
+		cy.trpc.journeys
+			.details(
+				{
 					trainName: 'S30665',
 				},
-				times: 1,
-			},
-			{
-				fixture: 'details/S6',
-			},
-		).as('details');
+				{
+					times: 1,
+					fixture: 'details/S6',
+				},
+			)
+			.as('details');
 		cy.visit('/details/S30665');
 		cy.wait('@details');
 		cy.findByTestId('previous').click();

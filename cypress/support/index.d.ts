@@ -1,7 +1,4 @@
-import type {
-	RouteMatcherOptions,
-	StaticResponseWithOptions,
-} from 'cypress/types/net-stubbing';
+import type {} from 'cypress/types/net-stubbing';
 
 interface MockOptions {
 	lookahead?: number;
@@ -29,14 +26,6 @@ declare global {
 			openSettings(): void;
 			force404(): void;
 			theme(type: string): void;
-			trpcFixture(fixtureName: string): Chainable<any>;
-			trpcIntercept(
-				matcherOptions: Omit<RouteMatcherOptions, 'query'> & {
-					query: any;
-					pathname: string;
-				},
-				handler: StaticResponseWithOptions,
-			): ReturnType<typeof cy.intercept>;
 		}
 	}
 }

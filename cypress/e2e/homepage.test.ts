@@ -39,24 +39,18 @@ describe('Homepage', () => {
 	});
 
 	it('Shows error on mainPage', () => {
-		cy.trpcIntercept(
+		cy.trpc.iris.abfahrten(
 			{
-				pathname: '/rpc/iris.abfahrten',
-				query: {
-					evaNumber: '8000105',
-				},
+				evaNumber: '8000105',
 			},
 			{
 				statusCode: 500,
 				delayMs: 500,
 			},
 		);
-		cy.trpcIntercept(
+		cy.trpc.stopPlace.byName(
 			{
-				pathname: '/rpc/stopPlace.byName',
-				query: {
-					searchTerm: 'Frankfurt (Main) Hbf',
-				},
+				searchTerm: 'Frankfurt (Main) Hbf',
 			},
 			{
 				fixture: 'stopPlaceSearchFrankfurtHbf',

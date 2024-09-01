@@ -27,8 +27,8 @@ export const Error: FC<Props> = ({ error, context }) => {
 	}, [error, context]);
 
 	return (
-		<Stack css={ErrorStyle}>
-			<ErrorIcon css={ErrorStyle} data-testid="error" />
+		<Stack css={ErrorStyle} data-testid="error">
+			<ErrorIcon css={ErrorStyle} />
 			{errorText}
 		</Stack>
 	);

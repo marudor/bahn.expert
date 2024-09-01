@@ -35,19 +35,15 @@ describe('Auslastung', () => {
 	});
 
 	it('shows auslastung after loading', () => {
-		cy.trpcIntercept(
+		cy.trpc.hafas.occupancy(
 			{
-				pathname: '/rpc/hafas.occupancy',
-				query: {
-					start: mockAbfahrt.currentStopPlace.name,
-					destination: mockAbfahrt.destination,
-					trainNumber: mockAbfahrt.train.number,
-					plannedDepartureTime: mockAbfahrt.departure?.scheduledTime,
-					stopEva: mockAbfahrt.currentStopPlace.evaNumber,
-				},
+				start: mockAbfahrt.currentStopPlace.name,
+				destination: mockAbfahrt.destination,
+				trainNumber: mockAbfahrt.train.number,
+				plannedDepartureTime: mockAbfahrt.departure!.scheduledTime,
+				stopEva: mockAbfahrt.currentStopPlace.evaNumber,
 			},
 			{
-				statusCode: 200,
 				body: {
 					first: 1,
 					second: 2,
