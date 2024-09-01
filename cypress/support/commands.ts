@@ -64,66 +64,67 @@ const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
 				interceptOptions.times = times;
 			}
 			return cy.intercept(interceptOptions, (req) => {
-				const trpcInput = parse(JSON.parse(req.query.input as string));
-				if (typeof inputParameter === 'object') {
-					for (const queryKey of Object.keys(inputParameter)) {
-						if (
-							JSON.stringify(trpcInput[queryKey]) !==
-							JSON.stringify(inputParameter[queryKey])
-						) {
-							console.log(
-								'trpc mock mismatch',
-								queryKey,
-								trpcInput[queryKey],
-								inputParameter[queryKey],
-							);
+				try {
+					const trpcInput = parse(JSON.parse(req.query.input as string));
+					if (typeof inputParameter === 'object') {
+						for (const queryKey of Object.keys(inputParameter)) {
+							if (
+								JSON.stringify(trpcInput[queryKey]) !==
+								JSON.stringify(inputParameter[queryKey])
+							) {
+								return;
+							}
+						}
+					} else if (typeof inputParameter === 'string') {
+						if (trpcInput !== inputParameter) {
 							return;
 						}
-					}
-				} else if (typeof inputParameter === 'string') {
-					if (trpcInput !== inputParameter) {
-						console.log('trpc mock mismatch', trpcInput, inputParameter);
+					} else {
 						return;
 					}
-				} else {
-					return;
+					req.reply(resolvedOpts);
+				} catch (e) {
+					console.error('inner fishy', e);
 				}
-				req.reply(resolvedOpts);
 			});
 		};
 
-		if (cyHandler.statusCode && cyHandler.statusCode !== 200) {
-			const error = new TRPCError({
-				code: TRPC_ERROR_CODES_BY_HTTP[cyHandler.statusCode],
-			});
-			cyHandler.body = {
-				error: stringify({
-					message: error.message,
-					code: TRPC_ERROR_CODES_BY_KEY[error.code],
-					data: {
-						code: error.code,
-						httpStatus: cyHandler.statusCode,
-					},
-				}),
-			};
-		} else if (cyHandler.body) {
-			cyHandler.body = {
-				result: {
-					data: stringify(dateReviver(cyHandler.body)),
-				},
-			};
-		}
-
-		if (cyHandler.fixture) {
-			return cy.fixture(cyHandler.fixture).then((f) => {
-				delete cyHandler.fixture;
+		try {
+			if (cyHandler.statusCode && cyHandler.statusCode !== 200) {
+				const error = new TRPCError({
+					code: TRPC_ERROR_CODES_BY_HTTP[cyHandler.statusCode],
+				});
+				cyHandler.body = {
+					error: stringify({
+						message: error.message,
+						code: TRPC_ERROR_CODES_BY_KEY[error.code],
+						data: {
+							code: error.code,
+							httpStatus: cyHandler.statusCode,
+						},
+					}),
+				};
+			} else if (cyHandler.body) {
 				cyHandler.body = {
 					result: {
-						data: stringify(dateReviver(f)),
+						data: stringify(dateReviver(cyHandler.body)),
 					},
 				};
-				return intercept(cyHandler);
-			});
+			}
+
+			if (cyHandler.fixture) {
+				return cy.fixture(cyHandler.fixture).then((f) => {
+					delete cyHandler.fixture;
+					cyHandler.body = {
+						result: {
+							data: stringify(dateReviver(f)),
+						},
+					};
+					return intercept(cyHandler);
+				});
+			}
+		} catch (e) {
+			console.error('fishy', e);
 		}
 
 		return intercept(cyHandler);
