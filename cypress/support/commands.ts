@@ -5,6 +5,9 @@ import {
 	type AnyProcedure,
 	type AnyRouter,
 	type RouterRecord,
+	TRPCError,
+	TRPC_ERROR_CODES_BY_KEY,
+	type TRPC_ERROR_CODE_KEY,
 	createFlatProxy,
 	createRecursiveProxy,
 	type inferProcedureInput,
@@ -40,6 +43,10 @@ type TRPCStub<
 					) => Cypress.Chainable
 				: never
 		: never;
+};
+
+const TRPC_ERROR_CODES_BY_HTTP: Record<number, TRPC_ERROR_CODE_KEY> = {
+	[404]: 'NOT_FOUND',
 };
 
 const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
@@ -78,7 +85,21 @@ const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
 			});
 		};
 
-		if (cyHandler.body) {
+		if (cyHandler.statusCode && cyHandler.statusCode !== 200) {
+			const error = new TRPCError({
+				code: TRPC_ERROR_CODES_BY_HTTP[cyHandler.statusCode],
+			});
+			cyHandler.body = {
+				error: stringify({
+					message: error.message,
+					code: TRPC_ERROR_CODES_BY_KEY[error.code],
+					data: {
+						code: error.code,
+						httpStatus: cyHandler.statusCode,
+					},
+				}),
+			};
+		} else if (cyHandler.body) {
 			cyHandler.body = {
 				result: {
 					data: stringify(dateReviver(cyHandler.body)),

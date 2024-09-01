@@ -4,6 +4,14 @@ describe('Details', () => {
 	});
 	it('Can Render (with error)', () => {
 		cy.visit('/details/ICE70');
+		cy.trpc.journeys.details(
+			{
+				trainName: 'ICE70',
+			},
+			{
+				statusCode: 404,
+			},
+		);
 		cy.findByTestId('error')
 			.should('exist')
 			.should('have.text', 'Unbekannter Zug');
