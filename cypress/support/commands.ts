@@ -67,17 +67,22 @@ const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
 				const trpcInput = parse(JSON.parse(req.query.input as string));
 				if (typeof inputParameter === 'object') {
 					for (const queryKey of Object.keys(inputParameter)) {
-						// Debug for a specific chrome e2e test - if it works with this we keep it for now
-						console.log(queryKey);
 						if (
 							JSON.stringify(trpcInput[queryKey]) !==
 							JSON.stringify(inputParameter[queryKey])
 						) {
+							console.log(
+								'trpc mock mismatch',
+								queryKey,
+								trpcInput[queryKey],
+								inputParameter[queryKey],
+							);
 							return;
 						}
 					}
 				} else if (typeof inputParameter === 'string') {
 					if (trpcInput !== inputParameter) {
+						console.log('trpc mock mismatch', trpcInput, inputParameter);
 						return;
 					}
 				} else {
