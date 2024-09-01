@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 require('./scripts/adjustSwcrc.cjs');
 
@@ -72,12 +71,6 @@ if (isDev) {
 	);
 	entry.push('webpack-hot-middleware/client');
 } else {
-	plugins.push(
-		new WorkboxPlugin.GenerateSW({
-			clientsClaim: true,
-			skipWaiting: true,
-		}),
-	);
 	optimization.minimizer = [
 		new TerserPlugin({
 			parallel: true,
