@@ -1,30 +1,12 @@
 import { ReferenceSummary } from '@/client/Common/Components/Details/ReferenceSummary';
 import { Stop } from '@/client/Common/Components/Details/Stop';
+import { Error } from '@/client/Common/Error';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import type { RouteStop } from '@/types/routing';
-import { Error } from '@mui/icons-material';
 import { Stack, css, styled } from '@mui/material';
-import type { AxiosError } from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC } from 'react';
 import { Loading } from '../Loading';
-
-const SummaryContainer = styled('div')(({ theme }) => ({
-	display: 'flex',
-	flexDirection: 'column',
-	margin: '0.65em',
-	padding: '0.65em',
-	border: `1px ${theme.vars.palette.text.primary} solid`,
-}));
-
-function getErrorText(error: AxiosError) {
-	if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
-	if (error.response?.status === 404) {
-		return 'Unbekannter Zug';
-	}
-
-	return 'Unbekannter Fehler';
-}
 
 const ErrorStyle = css`
   width: 80%;
@@ -94,11 +76,7 @@ export const StopList: FC = () => {
 	}, [details, currentSequenceStop, onStopClick, initialDepartureDate]);
 
 	if (error) {
-		return (
-			<Stack css={ErrorStyle}>
-				<ErrorIcon data-testid="error" /> {getErrorText(error)}
-			</Stack>
-		);
+		return <Error error={error} context="Zug" />;
 	}
 
 	if (!details) {

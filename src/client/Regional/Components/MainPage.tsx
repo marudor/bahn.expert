@@ -1,15 +1,12 @@
 import { FavEntryDisplay } from '@/client/Abfahrten/Components/FavEntry';
 import { FavList } from '@/client/Abfahrten/Components/FavList';
 import type { FC } from 'react';
-import type { StaticRouterContext } from 'react-router';
 
-interface Props {
-	staticContext?: StaticRouterContext;
-}
+interface Props {}
 
-export const RegionalMainPage: FC<Props> = ({ staticContext }) => (
+export const RegionalMainPage: FC<Props> = () => (
 	<>
-		<FavList staticContext={staticContext}>
+		<FavList>
 			<FavEntryDisplay nonClickable text="Nahverkehr Abfahrten" />
 		</FavList>
 	</>

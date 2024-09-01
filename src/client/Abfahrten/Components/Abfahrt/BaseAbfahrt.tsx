@@ -1,5 +1,5 @@
 import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
-import type { FallbackTrainsForCoachSequence } from '@/client/Common/provider/CoachSequenceProvider';
+import type { FallbackTrainsForCoachSequence } from '@/client/Common/hooks/useCoachSequence';
 import type { Abfahrt } from '@/types/iris';
 import loadable from '@loadable/component';
 import { Paper, Stack, styled } from '@mui/material';

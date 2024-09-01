@@ -1,11 +1,10 @@
 import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
-import { getStopPlaceFromAPI } from '@/client/Common/service/stopPlaceSearch';
+import { trpc } from '@/client/RPC';
 import {
 	useRoutingConfig,
 	useRoutingConfigActions,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
-import type { MinimalStopPlace } from '@/types/stopPlace';
 import { Delete } from '@mui/icons-material';
 import {
 	FavoriteBorder,
@@ -29,16 +28,6 @@ import { useCallback, useEffect, useMemo } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 import { useParams } from 'react-router';
 import { SettingsPanel } from './SettingsPanel';
-
-const setStopPlaceById = async (
-	evaNumber: string,
-	setAction: (station: MinimalStopPlace) => void,
-) => {
-	const stopPlace = await getStopPlaceFromAPI(evaNumber);
-	if (stopPlace) {
-		setAction(stopPlace);
-	}
-};
 
 const DateTimeContainer = styled(Stack)`
   flex-direction: row;
@@ -110,17 +99,22 @@ export const Search: FC = () => {
 	const { clearRoutes, fetchRoutesAndNavigate } = useFetchRouting();
 
 	const params = useParams<'start' | 'destination' | 'date' | 'via'>();
+	const trpcUtils = trpc.useUtils();
 
 	useEffect(() => {
 		if (params.start) {
-			void setStopPlaceById(params.start, setStart);
+			void trpcUtils.stopPlace.byKey
+				.fetch(params.start)
+				.then((stopPlace) => setStart(stopPlace));
 		}
-	}, [params.start, setStart]);
+	}, [params.start, setStart, trpcUtils.stopPlace.byKey]);
 	useEffect(() => {
 		if (params.destination) {
-			void setStopPlaceById(params.destination, setDestination);
+			void trpcUtils.stopPlace.byKey
+				.fetch(params.destination)
+				.then((stopPlace) => setDestination(stopPlace));
 		}
-	}, [params.destination, setDestination]);
+	}, [params.destination, setDestination, trpcUtils.stopPlace.byKey]);
 	useEffect(() => {
 		if (params.date && params.date !== '0') {
 			const dateNumber = +params.date;
@@ -131,13 +125,15 @@ export const Search: FC = () => {
 		if (params.via) {
 			const viaStations = params.via.split('|').filter(Boolean);
 
-			void Promise.all(viaStations.map(getStopPlaceFromAPI)).then(
-				(resolvedVias) => {
-					setVia(resolvedVias.filter(Boolean));
-				},
-			);
+			void Promise.all(
+				viaStations.map((viaNumber) =>
+					trpcUtils.stopPlace.byKey.fetch(viaNumber),
+				),
+			).then((resolvedVias) => {
+				setVia(resolvedVias.filter(Boolean));
+			});
 		}
-	}, [params.via, setVia]);
+	}, [params.via, setVia, trpcUtils.stopPlace.byKey]);
 
 	const swapOriginDest = useCallback(() => {
 		setDestination(start);

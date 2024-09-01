@@ -1,49 +1,44 @@
-import type { AvailableBR, AvailableIdentifier } from '@/types/coachSequence';
-import type { EvaNumber } from '@/types/common';
+import { trpc } from '@/client/RPC';
+import type {
+	AvailableBR,
+	AvailableIdentifierOnly,
+} from '@/types/coachSequence';
 import type { TrainRunWithBR } from '@/types/trainRuns';
-import Axios from 'axios';
 import constate from 'constate';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 
 const useInnerTrainRuns = (_p: PropsWithChildren<unknown>) => {
 	const [trainRuns, setTrainRuns] = useState<TrainRunWithBR[]>();
-	const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+	const [date, setDate] = useState(new Date());
+	const [baureihen, setBaureihen] = useState<AvailableBR[]>([]);
+	const [identifier, setIdentifier] = useState<AvailableIdentifierOnly[]>([]);
+	const trpcUtils = trpc.useUtils();
 
-	const fetchTrainRuns = useCallback(
-		async (
-			date: Date,
-			baureihen?: AvailableBR[],
-			identifier?: AvailableIdentifier[],
-			stopsAt?: EvaNumber[],
-		) => {
-			try {
-				setTrainRuns(undefined);
-				const runs = (
-					await Axios.get<TrainRunWithBR[]>(
-						`/api/coachSequence/v4/runsPerDate/${date.toISOString()}`,
-						{
-							params: {
-								baureihen,
-								identifier,
-								stopsAt,
-							},
-						},
-					)
-				).data;
-				setTrainRuns(runs);
-				setSelectedDate(date);
-			} catch {
-				// TODO: Error handling
-			}
-		},
-		[],
-	);
+	const fetchTrainRuns = useCallback(async () => {
+		setTrainRuns(undefined);
+		const trainRuns = await trpcUtils.coachSequence.trainRuns.fetch({
+			date,
+			baureihen,
+			identifier,
+		});
+		setTrainRuns(trainRuns);
+	}, [date, baureihen, identifier, trpcUtils]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		fetchTrainRuns();
+	}, []);
 
 	return {
 		trainRuns,
-		selectedDate,
 		fetchTrainRuns,
+		date,
+		setDate,
+		baureihen,
+		setBaureihen,
+		identifier,
+		setIdentifier,
 	};
 };
 

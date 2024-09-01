@@ -4,10 +4,7 @@ import {
 	AvailableBRConstant,
 	AvailableIdentifierConstant,
 } from '@/types/coachSequence';
-import type {
-	AvailableBR,
-	AvailableIdentifierOnly,
-} from '@/types/coachSequence';
+import type {} from '@/types/coachSequence';
 import { Info } from '@mui/icons-material';
 import {
 	Button,
@@ -21,7 +18,7 @@ import {
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import type { FC } from 'react';
 
 const FilterContainer = styled(Stack)`
@@ -43,15 +40,20 @@ const ButtonContainer = styled(Stack)`
 `;
 
 export const TrainRunFilter: FC = () => {
-	const { selectedDate, fetchTrainRuns } = useTrainRuns();
-	const [date, setDate] = useState(selectedDate);
-	const [baureihen, setBaureihen] = useState<AvailableBR[]>([]);
-	const [identifier, setIdentifier] = useState<AvailableIdentifierOnly[]>([]);
+	const {
+		date,
+		setDate,
+		baureihen,
+		setBaureihen,
+		identifier,
+		setIdentifier,
+		fetchTrainRuns,
+	} = useTrainRuns();
 
 	const resetFilter = useCallback(() => {
 		setBaureihen([]);
 		setIdentifier([]);
-	}, []);
+	}, [setBaureihen, setIdentifier]);
 
 	const handleBaureihenChange = useCallback(
 		(e: SelectChangeEvent<string | string[]>) => {
@@ -61,7 +63,7 @@ export const TrainRunFilter: FC = () => {
 			// @ts-expect-error this works
 			setBaureihen(typeof value === 'string' ? value.split(',') : value);
 		},
-		[],
+		[setBaureihen],
 	);
 
 	const handleIdentifierChange = useCallback(
@@ -72,18 +74,8 @@ export const TrainRunFilter: FC = () => {
 			// @ts-expect-error this works
 			setIdentifier(typeof value === 'string' ? value.split(',') : value);
 		},
-		[],
+		[setIdentifier],
 	);
-
-	const update = useCallback(
-		() => fetchTrainRuns(date, baureihen, identifier),
-		[date, baureihen, identifier, fetchTrainRuns],
-	);
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	useEffect(() => {
-		void update();
-	}, []);
 
 	return (
 		<div>
@@ -101,9 +93,8 @@ export const TrainRunFilter: FC = () => {
 							/>
 						),
 					}}
-					closeOnSelect
 					value={date}
-					onChange={setDate as any}
+					onAccept={setDate as any}
 				/>
 				<FormControl>
 					<InputLabel id="brLabel">Baureihen</InputLabel>
@@ -137,7 +128,7 @@ export const TrainRunFilter: FC = () => {
 				</FormControl>
 			</FilterContainer>
 			<ButtonContainer>
-				<Button variant="outlined" onClick={update}>
+				<Button variant="outlined" onClick={fetchTrainRuns}>
 					Suchen
 				</Button>
 				<Button color="warning" variant="outlined" onClick={resetFilter}>

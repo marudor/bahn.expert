@@ -1,6 +1,5 @@
 import { Loading } from '@/client/Common/Components/Loading';
 import { Navigation } from '@/client/Common/Components/Navigation';
-import { CoachSequenceProvider } from '@/client/Common/provider/CoachSequenceProvider';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
@@ -53,23 +52,21 @@ export const App: FC = () => {
 			<HeaderTagProvider>
 				<CommonConfigProvider>
 					<Navigation>
-						<CoachSequenceProvider>
-							<RoutingProvider>
-								<Routes>
-									<Route path="/about" element={<About />} />
-									{/* If you change this route also change hafasDetailsRedirect.ts */}
-									<Route
-										path="/details/:train/:initialDeparture/*"
-										element={<LazyDetails />}
-									/>
-									<Route path="/details/:train" element={<LazyDetails />} />
-									<Route path="/routing/*" element={<LazyRouting />} />
-									<Route path="/regional/*" element={<LazyRegional />} />
-									<Route path="/trainRuns/*" element={<LazyTrainRuns />} />
-									<Route path="/*" element={<LazyAbfahrten />} />
-								</Routes>
-							</RoutingProvider>
-						</CoachSequenceProvider>
+						<RoutingProvider>
+							<Routes>
+								<Route path="/about" element={<About />} />
+								{/* If you change this route also change hafasDetailsRedirect.ts */}
+								<Route
+									path="/details/:train/:initialDeparture/*"
+									element={<LazyDetails />}
+								/>
+								<Route path="/details/:train" element={<LazyDetails />} />
+								<Route path="/routing/*" element={<LazyRouting />} />
+								<Route path="/regional/*" element={<LazyRegional />} />
+								<Route path="/trainRuns/*" element={<LazyTrainRuns />} />
+								<Route path="/*" element={<LazyAbfahrten />} />
+							</Routes>
+						</RoutingProvider>
 					</Navigation>
 				</CommonConfigProvider>
 			</HeaderTagProvider>

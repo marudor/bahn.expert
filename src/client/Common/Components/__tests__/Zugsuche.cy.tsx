@@ -27,9 +27,9 @@ describe('Zugsuche', () => {
 	});
 
 	it('Navigates to details', () => {
-		cy.intercept(
+		cy.trpc.journeys.findByNumber(
 			{
-				url: '/api/journeys/v1/find/number/6?*',
+				trainNumber: 6,
 			},
 			{
 				body: [

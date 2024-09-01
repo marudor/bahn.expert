@@ -27,23 +27,6 @@ describe('Auslastung', () => {
 	};
 
 	it('shows loading first, nothing on error', () => {
-		cy.intercept(
-			{
-				url: encodeURI(
-					`/api/hafas/v3/occupancy/${mockAbfahrt.currentStopPlace.name}/${
-						mockAbfahrt.destination
-					}/${
-						mockAbfahrt.train.number
-					}/${mockAbfahrt.departure?.scheduledTime.toISOString()}/${
-						mockAbfahrt.currentStopPlace.evaNumber
-					}`,
-				),
-			},
-			{
-				statusCode: 500,
-				delay: 700,
-			},
-		);
 		renderAuslastung();
 		cy.findByTestId('auslastungDisplay').should('not.exist');
 		cy.findByTestId('loading').should('exist');
@@ -52,20 +35,15 @@ describe('Auslastung', () => {
 	});
 
 	it('shows auslastung after loading', () => {
-		cy.intercept(
+		cy.trpc.hafas.occupancy(
 			{
-				url: encodeURI(
-					`/api/hafas/v3/occupancy/${mockAbfahrt.currentStopPlace.name}/${
-						mockAbfahrt.destination
-					}/${
-						mockAbfahrt.train.number
-					}/${mockAbfahrt.departure?.scheduledTime.toISOString()}/${
-						mockAbfahrt.currentStopPlace.evaNumber
-					}`,
-				),
+				start: mockAbfahrt.currentStopPlace.name,
+				destination: mockAbfahrt.destination,
+				trainNumber: mockAbfahrt.train.number,
+				plannedDepartureTime: mockAbfahrt.departure!.scheduledTime,
+				stopEva: mockAbfahrt.currentStopPlace.evaNumber,
 			},
 			{
-				statusCode: 200,
 				body: {
 					first: 1,
 					second: 2,

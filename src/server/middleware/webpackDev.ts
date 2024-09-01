@@ -1,4 +1,3 @@
-import childProcess from 'node:child_process';
 import path from 'node:path';
 import chokidar from 'chokidar';
 import type Koa from 'koa';
@@ -29,16 +28,6 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 
 	watcher.on('change', (file: string[]) => {
 		if (file.includes('src/client')) return;
-		if (file.includes('src/server/API/controller/')) {
-			console.log('Rebuilding Routes & doc');
-			childProcess.exec('pnpm doc:build', (err, _, stderr) => {
-				if (err) {
-					console.error(stderr);
-				} else {
-					console.log('Done rebuilding');
-				}
-			});
-		}
 		for (const id of Object.keys(require.cache)) {
 			if (!id.includes('/node_modules/') && serverRegexp.test(id)) {
 				delete require.cache[id];

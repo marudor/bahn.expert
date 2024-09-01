@@ -1,30 +1,29 @@
 import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { FavProvider } from '@/client/Abfahrten/provider/FavProvider';
-import { MainWrap } from '@/client/Common/Components/MainWrap';
-import { getStopPlacesFromAPI } from '@/client/Common/service/stopPlaceSearch';
+import { trpc } from '@/client/RPC';
 import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
-import type { FC } from 'react';
-
-const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(
-	undefined,
-	false,
-	7,
-	true,
-);
+import { type FC, useMemo } from 'react';
 
 export const Regional: FC = () => {
+	const trpcUtils = trpc.useUtils();
+	const stopPlaceApiFunction = useMemo(
+		() => (searchTerm: string) =>
+			trpcUtils.stopPlace.byName.fetch({
+				searchTerm,
+				max: 1,
+			}),
+		[trpcUtils.stopPlace.byName],
+	);
 	return (
 		<AuslastungsProvider>
 			<AbfahrtenProvider
 				urlPrefix="/regional/"
-				fetchApiUrl="/api/hafas/v3/irisCompatibleAbfahrten"
-				stopPlaceApiFunction={regionalStopPlaceApiFunction}
+				abfahrtenFetch={trpcUtils.hafas.irisAbfahrten}
+				stopPlaceApiFunction={stopPlaceApiFunction}
 			>
 				<FavProvider storageKey="regionalFavs">
-					<MainWrap>
-						<RegionalRoutes />
-					</MainWrap>
+					<RegionalRoutes />
 				</FavProvider>
 			</AbfahrtenProvider>
 		</AuslastungsProvider>

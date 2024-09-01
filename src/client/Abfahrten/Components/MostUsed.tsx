@@ -19,16 +19,18 @@ const mostUsed = [
 	{ evaNumber: '8010085', name: 'Dresden Hbf' },
 ];
 
-export const MostUsed: FC = () => (
-	<>
-		<AboutDisclaimer />
-		{mostUsed.map((m) => (
-			<FavEntry
-				data-testid="mostUsedEntry"
-				noDelete
-				key={m.evaNumber}
-				fav={m}
-			/>
-		))}
-	</>
-);
+export const MostUsed: FC = () => {
+	return (
+		<>
+			<AboutDisclaimer />
+			{mostUsed.map((m) => (
+				<FavEntry
+					data-testid="mostUsedEntry"
+					noDelete
+					key={m.evaNumber}
+					fav={m}
+				/>
+			))}
+		</>
+	);
+};
