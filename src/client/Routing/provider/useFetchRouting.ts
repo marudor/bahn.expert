@@ -7,9 +7,7 @@ import {
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
 import { getRouteLink } from '@/client/Routing/util';
 import { uniqBy } from '@/client/util';
-import type { RoutingResult } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import Axios from 'axios';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -117,12 +115,10 @@ export const useFetchRouting = () => {
 			if (!routeSettings) return;
 
 			try {
-				const routingResult = (
-					await Axios.post<RoutingResult>('/api/hafas/v4/tripSearch', {
-						ctxScr: type === 'earlier' ? earlierContext : laterContext,
-						...routeSettings,
-					})
-				).data;
+				const routingResult = await trpcUtils.hafas.tripSearch.fetch({
+					ctxScr: type === 'earlier' ? earlierContext : laterContext,
+					...routeSettings,
+				});
 
 				setRoutes((oldRoutes = []) => {
 					const newRoutes =
@@ -143,6 +139,7 @@ export const useFetchRouting = () => {
 			}
 		},
 		[
+			trpcUtils.hafas.tripSearch,
 			getRouteSettings,
 			earlierContext,
 			laterContext,

@@ -156,6 +156,7 @@ export const hafasRpcRouter = rpcAppRouter({
 				searchForDeparture: z.boolean().optional(),
 				onlyRegional: z.boolean().optional(),
 				onlyNetzcard: z.boolean().optional(),
+				ctxScr: z.string().optional(),
 			}),
 		)
 		.query(({ input: { profile, ...options } }) => {
