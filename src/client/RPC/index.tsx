@@ -13,7 +13,10 @@ import { createTRPCReact } from '@trpc/react-query';
 
 export const trpc = createTRPCReact<AppRouter>();
 
-const link = process.env.NODE_ENV === 'production' ? httpBatchLink : httpLink;
+const link =
+	process.env.NODE_ENV === 'production' && !globalThis.Cypress
+		? httpBatchLink
+		: httpLink;
 
 const links = [
 	link({
@@ -47,7 +50,7 @@ export const RPCProvider: FCC = ({ children }) => {
 	return (
 		<trpc.Provider queryClient={clientQueryClient} client={clientTrpcClient}>
 			<QueryClientProvider client={clientQueryClient}>
-				{!global.Cypress && (
+				{!globalThis.Cypress && (
 					<NoSsr>
 						<ReactQueryDevtools />
 					</NoSsr>
