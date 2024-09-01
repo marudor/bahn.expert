@@ -67,11 +67,6 @@ const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
 				const trpcInput = parse(JSON.parse(req.query.input as string));
 				if (typeof inputParameter === 'object') {
 					for (const queryKey of Object.keys(inputParameter)) {
-						console.log(
-							queryKey,
-							trpcInput[queryKey],
-							inputParameter[queryKey],
-						);
 						if (
 							JSON.stringify(trpcInput[queryKey]) !==
 							JSON.stringify(inputParameter[queryKey])
