@@ -7,7 +7,6 @@ import { Platform } from '@/client/Common/Components/Platform';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import { themeMixins } from '@/client/Themes/mixins';
 import type {
 	TransportDestinationRef,
 	TransportOriginRef,
@@ -38,9 +37,18 @@ const StopName = styled('span')<{ stop: RouteStop }>(
 			color: 'inherit',
 		},
 	},
-	({ theme, stop: { additional } }) =>
-		additional && themeMixins.additional(theme),
-	({ theme, stop: { cancelled } }) => cancelled && themeMixins.cancelled(theme),
+	{
+		variants: [
+			{
+				props: ({ stop }) => stop.additional,
+				style: ({ theme }) => theme.mixins.additional,
+			},
+			{
+				props: ({ stop }) => stop.cancelled,
+				style: ({ theme }) => theme.mixins.cancelled,
+			},
+		],
+	},
 );
 
 const ScrollMarker = styled('div')`

@@ -6,12 +6,16 @@ function searchInput(id: string, value: string) {
 
 describe('Routing', () => {
 	beforeEach(() => {
-		cy.intercept(
-			`/api/stopPlace/v1/search/${encodeURIComponent('Frankfurt Hbf')}?*`,
+		cy.trpc.stopPlace.byName(
+			{
+				searchTerm: 'Frankfurt Hbf',
+			},
 			{ fixture: 'stopPlaceSearchFrankfurtHbf' },
 		);
-		cy.intercept(
-			`/api/stopPlace/v1/search/${encodeURIComponent('Hamburg Hbf')}?*`,
+		cy.trpc.stopPlace.byName(
+			{
+				searchTerm: 'Hamburg Hbf',
+			},
 			{
 				fixture: 'stopPlaceSearchHamburgHbf',
 			},
@@ -59,13 +63,13 @@ describe('Routing', () => {
 
 	describe('url based', () => {
 		beforeEach(() => {
-			cy.intercept('/api/stopPlace/v1/8000105', {
+			cy.trpc.stopPlace.byKey('8000105', {
 				fixture: 'stopPlace/8000105',
 			});
-			cy.intercept('/api/stopPlace/v1/8002549', {
+			cy.trpc.stopPlace.byKey('8002549', {
 				fixture: 'stopPlace/8002549',
 			});
-			cy.intercept('/api/stopPlace/v1/8000244', {
+			cy.trpc.stopPlace.byKey('8000244', {
 				fixture: 'stopPlace/8000244',
 			});
 		});

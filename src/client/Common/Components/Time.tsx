@@ -1,5 +1,4 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import { themeMixins } from '@/client/Themes/mixins';
 import { Stack, styled } from '@mui/material';
 import { format, subMinutes } from 'date-fns';
 import type { FC } from 'react';
@@ -16,10 +15,28 @@ const Container = styled(Stack, {
 	{
 		fontSize: '0.9em',
 	},
-	({ theme, early }) => early && themeMixins.early(theme),
-	({ theme, delayed }) => delayed && themeMixins.delayed(theme),
-	({ theme, cancelled }) => cancelled && themeMixins.cancelled(theme),
-	({ multiLine }) => !multiLine && { flexDirection: 'row' },
+	{
+		variants: [
+			{
+				props: { early: true },
+				style: ({ theme }) => theme.mixins.early,
+			},
+			{
+				props: { delayed: true },
+				style: ({ theme }) => theme.mixins.delayed,
+			},
+			{
+				props: { cancelled: true },
+				style: ({ theme }) => theme.mixins.cancelled,
+			},
+			{
+				props: ({ multiLine }) => !multiLine,
+				style: {
+					flexDirection: 'row',
+				},
+			},
+		],
+	},
 );
 
 const TimeContainer = styled('span')<{
@@ -28,16 +45,32 @@ const TimeContainer = styled('span')<{
 	delayed?: boolean;
 	multiLine?: boolean;
 	isPlan?: boolean;
-}>(
-	({ multiLine }) =>
-		!multiLine && {
-			marginRight: '.2em',
+}>({
+	variants: [
+		{
+			props: ({ multiLine }) => !multiLine,
+			style: {
+				marginRight: '.2em',
+			},
 		},
-	({ isRealTime }) => isRealTime && { fontWeight: 'bold' },
-	({ isPlan }) => isPlan && { fontStyle: 'italic' },
-	({ theme, early }) => early && themeMixins.early(theme),
-	({ theme, delayed }) => delayed && themeMixins.delayed(theme),
-);
+		{
+			props: { isRealTime: true },
+			style: { fontWeight: 'bold' },
+		},
+		{
+			props: { isPlan: true },
+			style: { fontStyle: 'italic' },
+		},
+		{
+			props: { early: true },
+			style: ({ theme }) => theme.mixins.early,
+		},
+		{
+			props: { delayed: true },
+			style: ({ theme }) => theme.mixins.delayed,
+		},
+	],
+});
 
 interface Props {
 	className?: string;

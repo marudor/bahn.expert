@@ -5,14 +5,14 @@ import { useTrainRuns } from '@/client/TrainRuns/provider/TrainRunProvider';
 import type { FC } from 'react';
 
 export const TrainRunsMain: FC = () => {
-	const { trainRuns, selectedDate } = useTrainRuns();
+	const { trainRuns, date } = useTrainRuns();
 
 	return (
 		<>
 			<TrainRunFilter />
 			<Loading check={trainRuns}>
 				{(trainRuns) => (
-					<TrainRunList trainRuns={trainRuns} selectedDate={selectedDate} />
+					<TrainRunList trainRuns={trainRuns} selectedDate={date} />
 				)}
 			</Loading>
 		</>

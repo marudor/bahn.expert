@@ -1,4 +1,5 @@
 import { getGroups } from '@/server/StopPlace/search';
+import { axiosDateTransformer } from '@/server/axiosDateTransformer';
 import {
 	getBRFromGroup,
 	planSequenceAxios,
@@ -34,7 +35,9 @@ export async function getTrainRunsByDate(
 ): Promise<TrainRunWithBR[]> {
 	try {
 		const trainRuns = (
-			await planSequenceAxios.get<TrainRun[]>(`/trains/${date.toISOString()}`)
+			await planSequenceAxios.get<TrainRun[]>(`/trains/${date.toISOString()}`, {
+				transformResponse: axiosDateTransformer,
+			})
 		).data;
 		let runs = trainRuns.map(calculateRunBR);
 		if (stopsAt) {
@@ -58,12 +61,12 @@ export async function getTrainRunsByDate(
 				return false;
 			});
 		}
-		if (brIdentifier) {
+		if (brIdentifier?.length) {
 			runs = runs.filter((r) =>
 				brIdentifier.some((i) => r.br?.identifier === i),
 			);
 		}
-		if (baureihen) {
+		if (baureihen?.length) {
 			runs = runs.filter((r) => baureihen.some((b) => r.br?.baureihe === b));
 		}
 

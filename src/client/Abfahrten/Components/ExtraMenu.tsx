@@ -1,10 +1,10 @@
-import { useLageplan } from '@/client/Abfahrten/hooks/useLageplan';
 import { useAbfahrtenFilterOpen } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
 	useFavActions,
 	useFavs,
 } from '@/client/Abfahrten/provider/FavProvider';
+import { trpc } from '@/client/RPC';
 import {
 	Favorite,
 	FavoriteBorder,
@@ -21,9 +21,15 @@ import { FilterModal } from './FilterModal';
 export const ExtraMenu: FC = () => {
 	const setFilterOpen = useAbfahrtenFilterOpen();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
-	const lageplan = useLageplan(
-		currentStopPlace?.name,
-		currentStopPlace?.evaNumber,
+	const { data: lageplan } = trpc.stopPlace.lageplan.useQuery(
+		{
+			evaNumber: currentStopPlace?.evaNumber!,
+			stopPlaceName: currentStopPlace?.name!,
+		},
+		{
+			enabled: Boolean(currentStopPlace),
+			staleTime: Number.POSITIVE_INFINITY,
+		},
 	);
 	const favs = useFavs();
 	const { fav, unfav } = useFavActions();

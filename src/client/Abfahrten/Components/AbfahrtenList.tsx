@@ -1,4 +1,3 @@
-import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import {
 	useAbfahrtenError,
 	useCurrentAbfahrtenStopPlace,
@@ -14,14 +13,14 @@ import {
 } from '@/client/Abfahrten/provider/SelectedDetailProvider';
 import { Loading } from '@/client/Common/Components/Loading';
 import { Streik } from '@/client/Common/Components/Streik';
-import { useSequencesActions } from '@/client/Common/provider/CoachSequenceProvider';
+import { Error } from '@/client/Common/Error';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import type { AbfahrtenResult } from '@/types/iris';
 import { Stack, styled } from '@mui/material';
 import { useEffect, useState } from 'react';
 import type { FC } from 'react';
-import { Navigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { Abfahrt } from './Abfahrt';
 
 const LookaheadMarker = styled('div')`
@@ -37,20 +36,18 @@ const Lookbehind = styled('div')(({ theme }) => ({
 }));
 
 const InnerAbfahrtenList = () => {
-	const { updateCurrentStopPlaceByString, setCurrentStopPlace, setError } =
+	const { updateCurrentStopPlaceByString, setCurrentStopPlace } =
 		useRawAbfahrten();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
-	const error = useAbfahrtenError();
 	const selectedDetail = useSelectedDetail();
-	const { clearSequences } = useSequencesActions();
 	const [scrolled, setScrolled] = useState(false);
 	const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
 	const paramStation = useParams().station;
 	const { autoUpdate } = useCommonConfig();
-	const urlPrefix = useAbfahrtenUrlPrefix();
 	const refreshCurrentAbfahrten = useRefreshCurrent();
 	const { updateTitle, updateDescription, updateKeywords } =
 		useHeaderTagsActions();
+	const abfahrtenError = useAbfahrtenError();
 
 	useEffect(() => {
 		if (currentStopPlace) {
@@ -67,9 +64,8 @@ const InnerAbfahrtenList = () => {
 	useEffect(() => {
 		return () => {
 			setCurrentStopPlace(undefined);
-			setError(undefined);
 		};
-	}, [setCurrentStopPlace, setError]);
+	}, [setCurrentStopPlace]);
 
 	useEffect(() => {
 		if (unfilteredAbfahrten) {
@@ -86,14 +82,13 @@ const InnerAbfahrtenList = () => {
 		if (autoUpdate) {
 			intervalId = setInterval(() => {
 				void refreshCurrentAbfahrten();
-				clearSequences();
 			}, autoUpdate * 1000);
 		} else {
 			cleanup();
 		}
 
 		return cleanup;
-	}, [clearSequences, autoUpdate, refreshCurrentAbfahrten]);
+	}, [autoUpdate, refreshCurrentAbfahrten]);
 
 	const [oldMatch, setOldMatch] = useState(paramStation);
 
@@ -138,15 +133,17 @@ const InnerAbfahrtenList = () => {
 		}
 	}, [unfilteredAbfahrten, scrolled, selectedDetail]);
 
+	if (abfahrtenError) {
+		return <Error error={abfahrtenError} context="Halt" />;
+	}
+
 	return (
-		<Loading check={unfilteredAbfahrten || error}>
+		<Loading check={unfilteredAbfahrten}>
 			{() => (
 				<Stack component="main">
-					{error ? (
-						<Navigate to={urlPrefix} />
-					) : filteredAbfahrten &&
-						(filteredAbfahrten.departures.length > 0 ||
-							filteredAbfahrten.lookbehind.length > 0) ? (
+					{filteredAbfahrten &&
+					(filteredAbfahrten.departures.length > 0 ||
+						filteredAbfahrten.lookbehind.length > 0) ? (
 						<>
 							{Boolean(
 								unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10,

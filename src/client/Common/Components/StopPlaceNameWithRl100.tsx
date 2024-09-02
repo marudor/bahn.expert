@@ -1,5 +1,5 @@
-import { useStopPlace } from '@/client/Common/hooks/useStopPlace';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
+import { trpc } from '@/client/RPC';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { FC } from 'react';
 
@@ -7,9 +7,11 @@ export const StopPlaceNameWithRl100: FC<{
 	stopPlace: MinimalStopPlace;
 }> = ({ stopPlace }) => {
 	const { showRl100 } = useCommonConfig();
-	const fetchedStopPlace = useStopPlace(
+	const { data: fetchedStopPlace } = trpc.stopPlace.byKey.useQuery(
 		stopPlace.evaNumber,
-		Boolean(stopPlace.ril100) || !showRl100,
+		{
+			enabled: !stopPlace.ril100 && showRl100,
+		},
 	);
 	const rl100 = stopPlace.ril100 || fetchedStopPlace?.ril100;
 

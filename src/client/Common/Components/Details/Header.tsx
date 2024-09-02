@@ -1,6 +1,5 @@
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import { themeMixins } from '@/client/Themes/mixins';
 import type { CommonProductInfo } from '@/types/HAFAS';
 import {
 	ArrowBackIos,
@@ -14,7 +13,9 @@ import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 import { BaseHeader } from '../BaseHeader';
 
-const SingleLineSpan = styled('span')(themeMixins.singleLineText);
+const SingleLineSpan = styled('span')(
+	({ theme }) => theme.mixins.singleLineText,
+);
 
 const Operator = styled(SingleLineSpan)`
   grid-area: o;

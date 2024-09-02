@@ -6,7 +6,6 @@ import {
 	useRoutingFavs,
 } from '@/client/Routing/provider/RoutingFavProvider';
 import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
-import { themeMixins } from '@/client/Themes/mixins';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { IconButton, styled } from '@mui/material';
@@ -36,13 +35,16 @@ const Container = styled('div')`
   align-items: center;
 `;
 
-const StartName = styled('span')(themeMixins.singleLineText, {
+const StartName = styled('span')(({ theme }) => theme.mixins.singleLineText, {
 	gridArea: 's',
 });
 
-const DestinationName = styled('span')(themeMixins.singleLineText, {
-	gridArea: 'd',
-});
+const DestinationName = styled('span')(
+	({ theme }) => theme.mixins.singleLineText,
+	{
+		gridArea: 'd',
+	},
+);
 
 const FavoriteButton = styled(IconButton)`
   grid-area: f;

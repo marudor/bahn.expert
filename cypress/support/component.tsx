@@ -6,7 +6,7 @@ import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfig
 import { ThemeWrap } from '@/client/ThemeWrap';
 import { theme } from '@/client/Themes';
 import { StorageContext } from '@/client/useStorage';
-import type { CssVarsTheme } from '@mui/material';
+import type { Theme } from '@mui/material';
 import { mount } from 'cypress/react18';
 import type { ReactElement } from 'react';
 import { HeadProvider } from 'react-head';
@@ -78,7 +78,7 @@ declare global {
 				component: ReactElement,
 				options?: Options,
 			) => ReturnType<typeof mount>;
-			getTheme: () => Chainable<CssVarsTheme>;
+			getTheme: () => Chainable<Theme>;
 		}
 	}
 

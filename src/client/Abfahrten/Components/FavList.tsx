@@ -1,4 +1,3 @@
-import { useAbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import type { AbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
 	useFavs,
@@ -8,11 +7,10 @@ import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { Stack } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
 import { Navigate } from 'react-router';
 import type { StaticRouterContext } from 'react-router';
-import { Link } from 'react-router-dom';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { MostUsed } from './MostUsed';
 
@@ -42,11 +40,10 @@ function getErrorText(
 }
 
 interface Props {
-	staticContext?: StaticRouterContext;
 	children?: ReactNode;
 }
 
-export const FavList: FC<Props> = ({ staticContext, children }) => {
+export const FavList: FC<Props> = ({ children }) => {
 	const favs = useFavs();
 	const MostUsedComponent = useMostUsedComponent();
 	const sortedFavs = useMemo(() => {
@@ -56,8 +53,6 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
 			.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
 			.map((fav) => <FavEntry key={fav.evaNumber} fav={fav} />);
 	}, [favs]);
-	const error = useAbfahrtenError();
-	const [savedError] = useState(error);
 	const { updateTitle, updateDescription, updateKeywords } =
 		useHeaderTagsActions();
 
@@ -72,23 +67,6 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
 		<Stack flex="1">
 			{children}
 			<Zugsuche />
-			{savedError && (
-				<>
-					<FavEntryDisplay
-						data-testid="error"
-						nonClickable
-						text={getErrorText(savedError, staticContext)}
-					/>
-					{savedError.station && (
-						<Link
-							data-testid="triedStation"
-							to={encodeURIComponent(savedError.station)}
-						>
-							<FavEntryDisplay text={savedError.station} />
-						</Link>
-					)}
-				</>
-			)}
 
 			{sortedFavs.length ? (
 				<>

@@ -1,5 +1,4 @@
 import { ClientStorage } from '@/client/Common/Storage';
-import { ThemeProvider } from '@/client/Themes/Provider';
 import { StorageContext } from '@/client/useStorage';
 import { loadableReady } from '@loadable/component';
 import Axios from 'axios';
@@ -11,6 +10,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeWrap } from './ThemeWrap';
 // 25s timeout
 Axios.defaults.timeout = 25000;
+import {} from '@/client/RPC';
+import { ThemeProvider } from '@/client/Themes/Provider';
+import {} from '@tanstack/react-query';
 
 const isoDateRegex =
 	/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d*)(?:Z|([+-])([\d:|]*))?$/;

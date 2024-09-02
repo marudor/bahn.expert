@@ -1,5 +1,5 @@
 import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
-import { ThemeProvider } from '@/client/Themes/Provider';
+import { RPCProvider } from '@/client/RPC';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import type { EmotionCache } from '@emotion/react';
@@ -31,19 +31,19 @@ export const ThemeWrap = ({
 	emotionCache = defaultEmotionCache,
 }: Props): ReactElement => {
 	return (
-		<StyledEngineProvider injectFirst>
-			<LocalizationProvider
-				dateAdapter={AdapterDateFns}
-				adapterLocale={deLocale}
-				localeText={customDeLocaleText}
-			>
-				<CacheProvider value={emotionCache}>
-					<ThemeProvider>
+		<RPCProvider>
+			<StyledEngineProvider injectFirst>
+				<LocalizationProvider
+					dateAdapter={AdapterDateFns}
+					adapterLocale={deLocale}
+					localeText={customDeLocaleText}
+				>
+					<CacheProvider value={emotionCache}>
 						<ThemeHeaderTags />
 						{children}
-					</ThemeProvider>
-				</CacheProvider>
-			</LocalizationProvider>
-		</StyledEngineProvider>
+					</CacheProvider>
+				</LocalizationProvider>
+			</StyledEngineProvider>
+		</RPCProvider>
 	);
 };

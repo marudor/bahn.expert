@@ -1,3 +1,5 @@
+import type {} from 'cypress/types/net-stubbing';
+
 interface MockOptions {
 	lookahead?: number;
 	lookbehind?: number;
@@ -27,5 +29,3 @@ declare global {
 		}
 	}
 }
-
-export type {};

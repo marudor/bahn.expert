@@ -1,23 +1,34 @@
-import { themeMixins } from '@/client/Themes/mixins';
 import type { Stop } from '@/types/iris';
-import { styled } from '@mui/material';
+import { css, styled } from '@mui/material';
 import { useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
 import { isHbf } from './index';
 
 export const StyledViaStop = styled('span', {
 	shouldForwardProp: (p) => p !== 'stop',
-})<{ stop: Stop }>(({ theme, stop }) => ({
-	color: theme.palette.text.primary,
-	...(isHbf(stop) && {
-		fontWeight: 'bold',
+})<{ stop: Stop }>(
+	({ theme, stop }) => ({
+		color: theme.palette.text.primary,
+		...(isHbf(stop) && {
+			fontWeight: 'bold',
+		}),
 	}),
-	...(stop.cancelled && {
-		...themeMixins.cancelled(theme),
-		...themeMixins.changed(theme),
-	}),
-	...(stop.additional && themeMixins.additional(theme)),
-}));
+	{
+		variants: [
+			{
+				props: ({ stop }) => stop.cancelled,
+				style: ({ theme }) => css`
+					${theme.mixins.cancelled}
+					${theme.mixins.changed}
+				`,
+			},
+			{
+				props: ({ stop }) => stop.additional,
+				style: ({ theme }) => theme.mixins.additional,
+			},
+		],
+	},
+);
 
 interface Props {
 	stops: Stop[];

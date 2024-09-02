@@ -1,49 +1,16 @@
 import {
 	AbfahrtenConfigProvider,
-	useAbfahrtenFetchAPIUrl,
+	useAbfahrtenFetch,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useAuslastung } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { AbfahrtenResult } from '@/types/iris';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import Axios from 'axios';
+import type { PropsFor } from '@mui/system';
 import type { AxiosError } from 'axios';
 import constate from 'constate';
 import { useCallback, useEffect, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
-
-let cancelGetAbfahrten = () => {};
-
-/**
- * Returns null for cancelled requests that should be ignored
- */
-export const fetchAbfahrten = async (
-	urlWithStationId: string,
-	lookahead: string,
-	lookbehind: string,
-	startTime?: Date,
-): Promise<AbfahrtenResult | null> => {
-	cancelGetAbfahrten();
-	try {
-		return (
-			await Axios.get<AbfahrtenResult>(urlWithStationId, {
-				cancelToken: new Axios.CancelToken((c) => {
-					cancelGetAbfahrten = c;
-				}),
-				params: {
-					lookahead,
-					lookbehind,
-					startTime,
-				},
-			})
-		).data;
-	} catch (e) {
-		if (Axios.isCancel(e)) {
-			return null;
-		}
-		throw e;
-	}
-};
 
 export type AbfahrtenError =
 	| AbfahrtenError$Redirect
@@ -71,8 +38,8 @@ const useAbfahrtenInner = ({
 }>) => {
 	const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
 	const [departures, setDepartures] = useState<AbfahrtenResult>();
-	const [error, setError] = useState<AbfahrtenError>();
-	const fetchApiUrl = useAbfahrtenFetchAPIUrl();
+	const [error, setError] = useState<unknown>();
+	const abfahrtenFetch = useAbfahrtenFetch();
 	const { fetchVRRAuslastungForEva } = useAuslastung();
 	const { startTime, lookahead, lookbehind } = useCommonConfig();
 
@@ -86,33 +53,28 @@ const useAbfahrtenInner = ({
 
 	const updateCurrentStopPlaceByString = useCallback(
 		async (stopPlaceName: string) => {
-			try {
-				setCurrentStopPlace((oldStopPlace) => {
-					if (oldStopPlace && oldStopPlace.name !== stopPlaceName) {
-						setDepartures(undefined);
-					}
+			setCurrentStopPlace((oldStopPlace) => {
+				if (oldStopPlace && oldStopPlace.name !== stopPlaceName) {
+					setDepartures(undefined);
+				}
 
-					return {
-						name: stopPlaceName,
-						evaNumber: '',
-						availableTransports: [],
-					};
-				});
+				return {
+					name: stopPlaceName,
+					evaNumber: '',
+					availableTransports: [],
+				};
+			});
+			try {
 				const stopPlaces = await searchFunction(stopPlaceName);
 
 				if (stopPlaces.length) {
 					setCurrentStopPlace(stopPlaces[0]);
 				} else {
-					throw {
-						errorType: '404',
-					};
+					setError({
+						code: 'NOT_FOUND',
+					});
 				}
-			} catch (e: any) {
-				e.station = stopPlaceName;
-
-				if (e.response && e.response.status === 404) {
-					e.errorType = '404';
-				}
+			} catch (e) {
 				setError(e);
 			}
 		},
@@ -122,65 +84,65 @@ const useAbfahrtenInner = ({
 	useEffect(() => {
 		if (!currentStopPlace?.evaNumber) {
 			setDepartures(undefined);
-
 			return;
 		}
-		fetchAbfahrten(
-			`${fetchApiUrl}/${currentStopPlace.evaNumber}`,
-			lookahead,
-			lookbehind,
-			startTime,
-		).then(
-			(deps) => {
+		setError(undefined);
+
+		abfahrtenFetch
+			.fetch({
+				evaNumber: currentStopPlace.evaNumber,
+				lookahead: Number.parseInt(lookahead),
+				lookbehind: Number.parseInt(lookbehind),
+				startTime,
+			})
+			.then((deps) => {
 				if (deps) {
 					setDepartures(deps);
 				}
-			},
-			(e) => {
-				e.station = currentStopPlace.name;
-				setError(e);
-			},
-		);
-	}, [currentStopPlace, fetchApiUrl, lookahead, lookbehind, startTime]);
+			})
+			.catch((e) => setError(e));
+	}, [currentStopPlace, lookahead, lookbehind, startTime, abfahrtenFetch]);
 
 	return {
+		error,
 		updateCurrentStopPlaceByString,
 		currentStopPlace,
 		setCurrentStopPlace,
 		departures,
 		setDepartures,
-		error,
-		setError,
 	};
 };
 
 export const [
 	InnerAbfahrtenProvider,
 	useAbfahrtenDepartures,
-	useAbfahrtenError,
 	useCurrentAbfahrtenStopPlace,
+	useAbfahrtenError,
 	useRawAbfahrten,
 ] = constate(
 	useAbfahrtenInner,
 	(v) => v.departures,
-	(v) => v.error,
 	(v) => v.currentStopPlace,
-	({ departures, error, currentStopPlace, ...r }) => r,
+	(v) => v.error,
+	({ departures, currentStopPlace, ...r }) => r,
 );
 
 interface Props {
 	children: ReactNode;
-	fetchApiUrl: string;
+	abfahrtenFetch: PropsFor<typeof AbfahrtenConfigProvider>['abfahrtenFetch'];
 	stopPlaceApiFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
 	urlPrefix: string;
 }
 export const AbfahrtenProvider: FC<Props> = ({
 	children,
-	fetchApiUrl,
+	abfahrtenFetch,
 	stopPlaceApiFunction,
 	urlPrefix,
 }) => (
-	<AbfahrtenConfigProvider urlPrefix={urlPrefix} fetchApiUrl={fetchApiUrl}>
+	<AbfahrtenConfigProvider
+		urlPrefix={urlPrefix}
+		abfahrtenFetch={abfahrtenFetch}
+	>
 		<InnerAbfahrtenProvider searchFunction={stopPlaceApiFunction}>
 			{children}
 		</InnerAbfahrtenProvider>

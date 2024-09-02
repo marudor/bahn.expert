@@ -64,24 +64,32 @@ const Container = styled('div')<{
 		border: `${theme.vars.palette.text.primary} 1px solid`,
 		boxSizing: 'border-box',
 	}),
-	({ theme, closed }) =>
-		closed && {
-			background: `repeating-linear-gradient(135deg, ${theme.vars.palette.common.shadedBackground}, ${theme.vars.palette.common.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
-		},
-	({ theme, wrongWing }) =>
-		wrongWing && {
-			background: theme.vars.palette.common.shadedBackground,
-			'&::after': {
-				content: '""',
-				top: -1,
-				left: -1,
-				right: -1,
-				bottom: '-3.7em',
-				pointerEvents: 'none',
-				zIndex: 5,
-				background: theme.vars.palette.common.transparentBackground,
+	{
+		variants: [
+			{
+				props: { closed: true },
+				style: ({ theme }) => ({
+					background: `repeating-linear-gradient(135deg, ${theme.vars.palette.common.shadedBackground}, ${theme.vars.palette.common.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
+				}),
 			},
-		},
+			{
+				props: { wrongWing: true },
+				style: ({ theme }) => ({
+					background: theme.vars.palette.common.shadedBackground,
+					'&::after': {
+						content: '""',
+						top: -1,
+						left: -1,
+						right: -1,
+						bottom: '-3.7em',
+						pointerEvents: 'none',
+						zIndex: 5,
+						background: theme.vars.palette.common.transparentBackground,
+					},
+				}),
+			},
+		],
+	},
 );
 
 const DoppelstockIndicator = styled('span')(({ theme }) => ({
@@ -95,57 +103,56 @@ const DoppelstockIndicator = styled('span')(({ theme }) => ({
 	backgroundRepeat: 'repeat-x',
 }));
 
-const Fahrzeugklasse = styled('span')<{ coach: CoachSequenceCoach }>(
+const Fahrzeugklasse = styled('span')<{
+	coachClass: CoachSequenceCoach['class'];
+}>(
 	{
 		bottom: 0,
 		right: 0,
 		position: 'absolute',
 	},
-	({ coach, theme }) => {
-		switch (coach.class) {
-			case 0: {
-				return {
-					'&::after': {
-						content: '"?"',
-					},
-				};
-			}
-			case 1: {
-				return {
+	{
+		variants: [
+			{
+				props: { coachClass: 1 },
+				style: ({ theme }) => ({
 					backgroundColor: theme.vars.palette.common.yellow,
 					color: theme.palette.getContrastText(theme.palette.common.yellow),
 					'&::after': {
 						content: '"1"',
 					},
-				};
-			}
-			case 2: {
-				return {
+				}),
+			},
+			{
+				props: { coachClass: 2 },
+				style: ({ theme }) => ({
 					backgroundColor: theme.vars.palette.common.red,
 					color: theme.palette.getContrastText(theme.palette.common.red),
 					'&::after': {
 						content: '"2"',
 					},
-				};
-			}
-			case 3: {
-				return {
+				}),
+			},
+			{
+				props: { coachClass: 3 },
+				style: ({ theme }) => ({
 					background: `linear-gradient(to right, ${theme.vars.palette.common.yellow}, ${theme.vars.palette.common.red})`,
 					'&::after': {
 						content: '"1/2"',
 					},
-				};
-			}
-			case 4: {
-				return {
+				}),
+			},
+			{
+				props: { coachClass: 4 },
+				style: {
 					right: '50%',
 					transform: 'translateX(50%)',
 					'&::after': {
 						content: '"LOK"',
 					},
-				};
-			}
-		}
+				},
+			},
+		],
 	},
 );
 
@@ -175,9 +182,22 @@ const ExtraInfoContainer = styled('span')<{ showCoachType: boolean }>(
 		width: '100%',
 		alignItems: 'center',
 	},
-	({ showCoachType }) => ({
-		top: showCoachType ? '150%' : '100%',
-	}),
+	{
+		variants: [
+			{
+				props: { showCoachType: true },
+				style: {
+					top: '150%',
+				},
+			},
+			{
+				props: { showCoachType: false },
+				style: {
+					top: '100%',
+				},
+			},
+		],
+	},
 );
 
 const PositionedSingleAuslastungsDisplay = styled(SingleAuslastungsDisplay)`
@@ -232,7 +252,7 @@ export const Coach: FC<Props> = ({
 			{fahrzeug.vehicleCategory.includes('DOUBLEDECK') && (
 				<DoppelstockIndicator />
 			)}
-			<Fahrzeugklasse coach={fahrzeug} />
+			<Fahrzeugklasse coachClass={fahrzeug.class} />
 			{fahrzeug.occupancy && (
 				<PositionedSingleAuslastungsDisplay auslastung={fahrzeug.occupancy} />
 			)}

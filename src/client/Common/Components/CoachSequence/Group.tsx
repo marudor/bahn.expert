@@ -1,11 +1,10 @@
 import { BRInfo } from '@/client/Common/Components/CoachSequence/BRInfo';
 import { PrideStripe } from '@/client/Common/Components/CoachSequence/Stripes/PrideStripe';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import { journeyNumberFind } from '@/client/Common/service/details';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import { trpc } from '@/client/RPC';
 import type { CoachSequenceGroup } from '@/types/coachSequence';
 import { Stack } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { FC } from 'react';
 import { Coach } from './Coach';
 import type { InheritedProps } from './Coach';
@@ -30,29 +29,21 @@ const ClickableTrainLink: FC<{
 	number: string;
 	scheduledDeparture: Date;
 }> = ({ type, number, scheduledDeparture }) => {
-	const [foundJourney, setFoundJourney] =
-		useState<ParsedJourneyMatchResponse>();
-	useEffect(() => {
-		async function getJourney() {
-			try {
-				const journeys = await journeyNumberFind(
-					Number.parseInt(number),
-					scheduledDeparture,
-					undefined,
-					undefined,
-					undefined,
-					3,
-				);
-				const relevantJourney = journeys.filter((j) => j.train.type === type);
-				if (relevantJourney.length) {
-					setFoundJourney(relevantJourney[0]);
-				}
-			} catch {
-				// we just ignore errors
-			}
-		}
-		void getJourney();
-	}, [number, scheduledDeparture, type]);
+	const { data: journeys } = trpc.journeys.findByNumber.useQuery(
+		{
+			trainNumber: Number.parseInt(number),
+			initialDepartureDate: scheduledDeparture,
+			limit: 3,
+			category: type,
+		},
+		{
+			staleTime: Number.POSITIVE_INFINITY,
+		},
+	);
+	const foundJourney = useMemo(
+		() => journeys?.find((j) => j.train.type === type),
+		[journeys, type],
+	);
 
 	if (foundJourney) {
 		return (

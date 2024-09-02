@@ -3,13 +3,14 @@ describe('CoachSequence', () => {
 		beforeEach(() => {
 			cy.mockFrankfurt();
 			cy.visit('/');
-			cy.intercept(
+			cy.trpc.coachSequence.sequence(
 				{
-					url: '/api/coachSequence/v4/wagen/371?*',
-					query: {
-						evaNumber: '8000105',
-						departure: '2019-08-07T12:50:00.000Z',
-					},
+					evaNumber: '8000105',
+					departure: new Date('2019-08-07T12:50:00.000Z'),
+					initialDeparture: new Date('2019-08-07T07:46:00.000Z'),
+					lastArrivalEva: undefined,
+					trainNumber: 371,
+					category: 'ICE',
 				},
 				{
 					fixture: 'sequence/genericICE1',
@@ -57,30 +58,36 @@ describe('CoachSequence', () => {
 			cy.mockHannover();
 			cy.visit('/');
 			cy.navigateToStation('Hannover Hbf');
-			cy.intercept(
-				{
-					url: '/api/coachSequence/v4/wagen/537?*',
-					query: {
+			cy.trpc.coachSequence
+				.sequence(
+					{
 						evaNumber: '8000152',
-						departure: '2020-02-22T11:26:00.000Z',
+						departure: new Date('2020-02-22T11:26:00.000Z'),
+						initialDeparture: new Date('2020-02-22T10:15:00.000Z'),
+						lastArrivalEva: undefined,
+						trainNumber: 537,
+						category: 'ICE',
 					},
-				},
-				{
-					fixture: 'sequence/537Wing',
-				},
-			).as('537');
-			cy.intercept(
-				{
-					url: '/api/coachSequence/v4/wagen/587?*',
-					query: {
+					{
+						fixture: 'sequence/537Wing',
+					},
+				)
+				.as('537');
+			cy.trpc.coachSequence
+				.sequence(
+					{
+						trainNumber: 587,
+						category: 'ICE',
 						evaNumber: '8000152',
-						departure: '2020-02-22T11:26:00.000Z',
+						departure: new Date('2020-02-22T11:26:00.000Z'),
+						initialDeparture: new Date('2020-02-22T10:15:00.000Z'),
+						lastArrivalEva: undefined,
 					},
-				},
-				{
-					statusCode: 404,
-				},
-			).as('587');
+					{
+						statusCode: 404,
+					},
+				)
+				.as('587');
 		});
 		it('only loads coachSequence of selected train if available', () => {
 			cy.findByTestId('abfahrtICE537').click();

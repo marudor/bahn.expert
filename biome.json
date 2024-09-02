@@ -13,7 +13,8 @@
 				"noConfusingVoidType": "off",
 				"noExplicitAny": "off",
 				"noArrayIndexKey": "off",
-				"noShadowRestrictedNames": "off"
+				"noShadowRestrictedNames": "off",
+				"noEmptyInterface": "off"
 			},
 			"a11y": {
 				"useKeyWithClickEvents": "off"

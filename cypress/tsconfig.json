@@ -1,19 +1,14 @@
 {
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"allowJs": true,
-		"noEmit": true,
-		"strict": true,
-		"target": "es5",
-		"lib": ["es6", "dom", "esnext"],
-		"types": [
-			"cypress",
-			"@testing-library/cypress",
-			"../cypress/support/index",
-			"@percy/cypress"
-		]
+		"types": ["cypress", "@testing-library/cypress", "@percy/cypress"]
 	},
-	"include": ["**/*.ts", "support/index.ts", "plugins/index.js"],
+	"include": [
+		"**/*.ts",
+		"support/index.d.ts",
+		"plugins/index.js",
+		"../@types",
+		"../src/server"
+	],
 	"exclude": ["support/component.tsx"]
 }

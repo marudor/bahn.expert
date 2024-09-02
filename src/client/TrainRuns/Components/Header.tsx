@@ -7,15 +7,15 @@ import { useEffect, useMemo } from 'react';
 import type { FC } from 'react';
 
 export const Header: FC = () => {
-	const { selectedDate } = useTrainRuns();
+	const { date } = useTrainRuns();
 	const { updateTitle } = useHeaderTagsActions();
 
 	const title = useMemo(
 		() =>
-			`Beta Zugläufe (${format(selectedDate, 'eeee, dd.MM.yyyy', {
+			`Beta Zugläufe (${format(date, 'eeee, dd.MM.yyyy', {
 				locale: de,
 			})})`,
-		[selectedDate],
+		[date],
 	);
 	useEffect(() => updateTitle(title), [title, updateTitle]);
 	return <BaseHeader>{title}</BaseHeader>;
