@@ -69,9 +69,7 @@ export function createApp(): Koa {
 
 		app.use(hotHelper(() => rpcRouter));
 
-		if (!process.env.CI) {
-			app.use(hotHelper(() => rpcHtppRouter));
-		}
+		app.use(hotHelper(() => rpcHtppRouter));
 
 		app.use(
 			koaStatic(

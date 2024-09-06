@@ -27,6 +27,8 @@ const rawRpcHttpRouter = createOpenApiHttpHandler({
 	router: mainRouter,
 });
 export const rpcHttpRouter = async (ctx: Context, next: Next) => {
-	await rawRpcHttpRouter(ctx.req, ctx.res);
+	if (ctx.url.startsWith('/api')) {
+		await rawRpcHttpRouter(ctx.req, ctx.res);
+	}
 	return next();
 };
