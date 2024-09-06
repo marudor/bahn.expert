@@ -102,7 +102,7 @@ export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
 					<WalkSegment segment={segment} />
 				)}
 			</Container>
-			{'changeDuration' in segment && (
+			{'changeDuration' in segment && segment.changeDuration && (
 				<span>{segment.changeDuration} Minuten Umsteigezeit</span>
 			)}
 		</>
