@@ -1,0 +1,90 @@
+diff --git a/dist/adapters/node-http/core.js b/dist/adapters/node-http/core.js
+index ad1b3e5d8fc9d5a9dcdcb5c719f2a3a66fc5f29a..d2e0c4e7f9e2fc1df101b6a9be96faee6852a045 100644
+--- a/dist/adapters/node-http/core.js
++++ b/dist/adapters/node-http/core.js
+@@ -1,7 +1,5 @@
+-"use strict";
+-var __importDefault = (this && this.__importDefault) || function (mod) {
+-    return (mod && mod.__esModule) ? mod : { "default": mod };
+-};
++
++var __importDefault = (this && this.__importDefault) || ((mod) => (mod && mod.__esModule) ? mod : { "default": mod });
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.createOpenApiNodeHttpHandler = void 0;
+ const server_1 = require("@trpc/server");
+@@ -109,7 +107,7 @@ const createOpenApiNodeHttpHandler = (opts) => {
+                 data: [data],
+                 errors: [error],
+             });
+-            const errorShape = router.getErrorShape({
++            const errorShape = router._def.errorFormatter({
+                 error,
+                 type: (_f = procedure === null || procedure === void 0 ? void 0 : procedure.type) !== null && _f !== void 0 ? _f : 'unknown',
+                 path: procedure === null || procedure === void 0 ? void 0 : procedure.path,
+diff --git a/dist/adapters/node-http/procedures.js b/dist/adapters/node-http/procedures.js
+index a785c0b1b325ad4b16b8dc25c4eec167df80b30c..49be88c25f00cd493bf218da73e6b540422be1e3 100644
+--- a/dist/adapters/node-http/procedures.js
++++ b/dist/adapters/node-http/procedures.js
+@@ -1,12 +1,11 @@
+-"use strict";
++
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.createProcedureCache = void 0;
+ const path_1 = require("../../utils/path");
+ const procedure_1 = require("../../utils/procedure");
+ const createProcedureCache = (router) => {
+     const procedureCache = new Map();
+-    const { queries, mutations } = router._def;
+-    (0, procedure_1.forEachOpenApiProcedure)(queries, ({ path: queryPath, procedure, openapi }) => {
++    (0, procedure_1.forEachOpenApiProcedure)(router._def.procedures, ({ path: queryPath, procedure, openapi }) => {
+         const { method } = openapi;
+         if (!procedureCache.has(method)) {
+             procedureCache.set(method, new Map());
+@@ -14,24 +13,12 @@ const createProcedureCache = (router) => {
+         const path = (0, path_1.normalizePath)(openapi.path);
+         const pathRegExp = (0, path_1.getPathRegExp)(path);
+         procedureCache.get(method).set(pathRegExp, {
+-            type: 'query',
++            type: procedure._def.type,
+             path: queryPath,
+             procedure,
+         });
+     });
+-    (0, procedure_1.forEachOpenApiProcedure)(mutations, ({ path: mutationPath, procedure, openapi }) => {
+-        const { method } = openapi;
+-        if (!procedureCache.has(method)) {
+-            procedureCache.set(method, new Map());
+-        }
+-        const path = (0, path_1.normalizePath)(openapi.path);
+-        const pathRegExp = (0, path_1.getPathRegExp)(path);
+-        procedureCache.get(method).set(pathRegExp, {
+-            type: 'mutation',
+-            path: mutationPath,
+-            procedure,
+-        });
+-    });
++
+     return (method, path) => {
+         var _a, _b;
+         const procedureMethodCache = procedureCache.get(method);
+diff --git a/dist/utils/procedure.js b/dist/utils/procedure.js
+index c838521e9c8d50febf7428a3c91060353bc0366e..8e471819466962564f92f5ef92b0beb8627dfe93 100644
+--- a/dist/utils/procedure.js
++++ b/dist/utils/procedure.js
+@@ -16,15 +16,7 @@ const getInputOutputParsers = (procedure) => {
+     };
+ };
+ exports.getInputOutputParsers = getInputOutputParsers;
+-const getProcedureType = (procedure) => {
+-    if (procedure._def.query)
+-        return 'query';
+-    if (procedure._def.mutation)
+-        return 'mutation';
+-    if (procedure._def.subscription)
+-        return 'subscription';
+-    throw new Error('Unknown procedure type');
+-};
++const getProcedureType = (procedure) => procedure._def.type;
+ const forEachOpenApiProcedure = (procedureRecord, callback) => {
+     var _a;
+     for (const [path, procedure] of Object.entries(procedureRecord)) {

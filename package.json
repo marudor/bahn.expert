@@ -156,6 +156,7 @@
 		"react-router": "^6.26.1",
 		"react-router-dom": "^6.26.1",
 		"trpc-koa-adapter": "^1.2.2",
+		"trpc-openapi": "^1.2.0",
 		"universal-cookie": "^7.2.0",
 		"uuid": "^10.0.0",
 		"zod": "^3.23.8"
@@ -178,7 +179,8 @@
 		},
 		"patchedDependencies": {
 			"@cypress/webpack-preprocessor@6.0.2": "patches/@cypress__webpack-preprocessor@6.0.2.patch",
-			"cypress@13.14.1": "patches/cypress@13.13.1.patch"
+			"cypress@13.14.1": "patches/cypress@13.13.1.patch",
+			"trpc-openapi@1.2.0": "patches/trpc-openapi@1.2.0.patch"
 		}
 	}
 }

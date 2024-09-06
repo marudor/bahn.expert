@@ -28,6 +28,7 @@ export function createApp(): Koa {
 	let errorHandler = require('./errorHandler').default;
 	let normalizePathMiddleware = require('./middleware/normalizePath').default;
 	let rpcRouter = require('./rpc').rpcRouter;
+	let rpcHtppRouter = require('./rpc').rpcHttpRouter;
 
 	let devPromise = Promise.resolve();
 
@@ -47,6 +48,7 @@ export function createApp(): Koa {
 					serverRender = require('./render').default;
 					seoController = require('./seo').default;
 					rpcRouter = require('./rpc').rpcRouter;
+					rpcHtppRouter = require('./rpc').rpcHttpRouter;
 					ctx.loadableStats = JSON.parse(
 						ctx.state.webpack.devMiddleware.outputFileSystem.readFileSync(
 							path.resolve(`${distFolder}/client/loadable-stats.json`),
@@ -66,6 +68,8 @@ export function createApp(): Koa {
 		app.use(KoaBodyparser());
 
 		app.use(hotHelper(() => rpcRouter));
+
+		app.use(hotHelper(() => rpcHtppRouter));
 
 		app.use(
 			koaStatic(
