@@ -115,25 +115,26 @@ export const journeysRpcRouter = rpcAppRouter({
 				}
 
 				const trainName = trainNumber.toString();
-				const hafasPromise = enrichedJourneyMatch({
-					onlyRT: true,
-					jnyFltrL: filtered
-						? [
-								{
-									mode: 'INC',
-									type: 'PROD',
-									value: '7',
-								},
-							]
-						: undefined,
-					trainName,
-					initialDepartureDate,
-					limit,
-				});
+				const hafasFallback = () =>
+					enrichedJourneyMatch({
+						onlyRT: true,
+						jnyFltrL: filtered
+							? [
+									{
+										mode: 'INC',
+										type: 'PROD',
+										value: '7',
+									},
+								]
+							: undefined,
+						trainName,
+						initialDepartureDate,
+						limit,
+					});
 
 				const risResult = await risPromise;
 
-				let result = risResult.length ? risResult : await hafasPromise;
+				let result = risResult.length ? risResult : await hafasFallback();
 				if (initialEvaNumber) {
 					result = result.filter(
 						(r) => r.firstStop.station.evaNumber === initialEvaNumber,
@@ -174,18 +175,17 @@ export const journeysRpcRouter = rpcAppRouter({
 					}
 					return journey;
 				}
-				const hafasDetailsPromise = Detail(
-					trainName,
-					undefined,
-					evaNumberAlongRoute,
-					initialDepartureDate,
-					undefined,
-					undefined,
-					administration,
-					jid,
-				);
 				const hafasFallback = async () => {
-					const hafasResult = await hafasDetailsPromise;
+					const hafasResult = await Detail(
+						trainName,
+						undefined,
+						evaNumberAlongRoute,
+						initialDepartureDate,
+						undefined,
+						undefined,
+						administration,
+						jid,
+					);
 					if (!hafasResult) {
 						throw new TRPCError({
 							code: 'NOT_FOUND',
