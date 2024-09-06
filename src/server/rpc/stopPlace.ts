@@ -4,6 +4,7 @@ import {
 	getStopPlaceByRl100,
 	searchStopPlace,
 } from '@/server/StopPlace/search';
+import { axiosUpstreamInterceptor } from '@/server/admin';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import { AuslastungsValue } from '@/types/routing';
 import type {
@@ -32,13 +33,16 @@ function mapVrrOccupancy(
 	}
 }
 
+const occupancyAxios = axios.create();
+axiosUpstreamInterceptor(occupancyAxios, 'vrrf-occupancy');
+
 export const stopPlaceRpcRouter = rpcAppRouter({
 	occupancy: rpcProcedure
 		.input(z.string())
 		.query(async ({ input: evaNumber }) => {
 			try {
 				const result = (
-					await axios.get<TrainOccupancy<VRRTrainOccupancy>>(
+					await occupancyAxios.get<TrainOccupancy<VRRTrainOccupancy>>(
 						`https://vrrf.finalrewind.org/_eva/occupancy-by-eva/${evaNumber}.json`,
 					)
 				).data;
