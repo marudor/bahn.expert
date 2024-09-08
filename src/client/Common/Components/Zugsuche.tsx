@@ -7,7 +7,6 @@ import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
-	FormControl,
 	FormControlLabel,
 	Switch,
 	TextField,
@@ -30,10 +29,9 @@ const Content = styled(DialogContent)`
   min-width: 40%;
 `;
 
-const StyledDialog = styled(Dialog)`
-  .MuiDialog-container {
-    height: initial;
-  }
+const StyledContent = styled(Content)`
+	display: flex;
+	flex-direction: column;
 `;
 
 const DateInputField = styled(TextField)`
@@ -48,10 +46,9 @@ const TodayIcon = TrainIcon.withComponent(Today);
 
 const InputContainer = styled('div')`
   position: relative;
-  display: flex;
-  justify-content: space-between;
   max-width: 240px;
   margin: 0 auto;
+	flex-shrink: 0;
 `;
 
 interface Props {
@@ -63,7 +60,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 	const { toggleDrawer } = useContext(NavigationContext);
 	const [open, setOpen] = useState(false);
 	const [date, setDate] = useState<Date | null>(subHours(new Date(), 1));
-	const [filtered, setFiltered] = useState<boolean>(true);
+	const [withOEV, setWithOEV] = useState<boolean>(false);
 	const toggleModal = useCallback(
 		(e?: SyntheticEvent) => {
 			e?.stopPropagation();
@@ -74,30 +71,42 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 	const submit = useCallback(
 		(match: ParsedJourneyMatchResponse | null) => {
 			if (match) {
+				toggleModal();
+				toggleDrawer();
+
 				const link = [
 					'',
 					'details',
 					`${match.train.type} ${match.train.number}`,
 				];
 
-				// istanbul ignore else
-				if (date) {
-					link.push(date.toISOString());
-				}
+				// HAFAS Result
+				if (match.jid.includes('#')) {
+					// istanbul ignore else
+					if (date) {
+						link.push(date.toISOString());
+					}
 
-				link.push(
-					qs.stringify(
-						{
-							profile: storage.get('hafasProfile'),
-							station: match.firstStop.station.evaNumber,
-						},
-						{ addQueryPrefix: true },
-					),
-				);
+					link.push(
+						qs.stringify(
+							{
+								profile: storage.get('hafasProfile'),
+								station: match.firstStop.station.evaNumber,
+							},
+							{ addQueryPrefix: true },
+						),
+					);
+				} else
+					link.push(
+						qs.stringify(
+							{
+								journeyId: match.jid,
+							},
+							{ addQueryPrefix: true },
+						),
+					);
 
 				navigate(link.join('/'));
-				toggleModal();
-				toggleDrawer();
 			}
 		},
 		[date, storage, toggleModal, toggleDrawer, navigate],
@@ -105,7 +114,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 
 	return (
 		<>
-			<StyledDialog
+			<Dialog
 				maxWidth="md"
 				open={open}
 				// @ts-expect-error stupid ts cant handle optional here
@@ -113,50 +122,52 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 				data-testid="Zugsuche"
 			>
 				<Title onClick={stopPropagation}>Zugsuche</Title>
-				<Content onClick={stopPropagation}>
-					<form>
-						<FormControl fullWidth component="fieldset">
-							<InputContainer>
-								<MobileDatePicker
-									closeOnSelect
-									slotProps={{
-										actionBar: {
-											actions: ['today', 'cancel', 'accept'],
-										},
-									}}
-									slots={{
-										textField: (props) => <DateInputField {...props} />,
-									}}
-									label="Datum"
-									value={date}
-									onChange={setDate}
+				<StyledContent onClick={stopPropagation}>
+					<InputContainer>
+						<MobileDatePicker
+							closeOnSelect
+							slotProps={{
+								actionBar: {
+									actions: ['today', 'cancel', 'accept'],
+								},
+							}}
+							slots={{
+								textField: (props) => <DateInputField {...props} />,
+							}}
+							label="Datum"
+							value={date}
+							onChange={setDate}
+						/>
+						<TodayIcon />
+					</InputContainer>
+					<InputContainer>
+						<FormControlLabel
+							control={
+								<Switch
+									checked={withOEV}
+									value="filtered"
+									onChange={(_e, checked) => setWithOEV(checked)}
 								/>
-								<TodayIcon />
-							</InputContainer>
-							<InputContainer>
-								<FormControlLabel
-									control={
-										<Switch
-											checked={filtered}
-											value="filtered"
-											onChange={(_e, checked) => setFiltered(checked)}
-										/>
-									}
-									label="Nur Fernverkehr, nur aktuelle Züge"
-								/>
-							</InputContainer>
-							<InputContainer>
-								<ZugsucheAutocomplete
-									filtered={filtered}
-									onChange={submit}
-									initialDeparture={date || undefined}
-								/>
-								<TrainIcon />
-							</InputContainer>
-						</FormControl>
-					</form>
-				</Content>
-			</StyledDialog>
+							}
+							label="ÖPNV berücksichtigen"
+						/>
+					</InputContainer>
+					<InputContainer
+						sx={{
+							flex: 1,
+							display: 'flex',
+							overflow: 'hidden',
+						}}
+					>
+						<ZugsucheAutocomplete
+							withOEV={withOEV}
+							onChange={submit}
+							initialDeparture={date || undefined}
+						/>
+						<TrainIcon />
+					</InputContainer>
+				</StyledContent>
+			</Dialog>
 			{children?.(toggleModal)}
 		</>
 	);

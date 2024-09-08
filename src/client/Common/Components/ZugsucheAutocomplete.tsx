@@ -2,15 +2,16 @@ import { Loading, LoadingType } from '@/client/Common/Components/Loading';
 import { trpc } from '@/client/RPC';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import { MenuItem, Paper, TextField, styled } from '@mui/material';
-import Axios from 'axios';
 import debounce from 'debounce-promise';
-import Downshift from 'downshift';
-import { useCallback, useMemo, useState } from 'react';
+import { useCombobox } from 'downshift';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 
 const Container = styled('div')`
   position: relative;
   margin: 20px;
+	display: flex;
+	flex-direction: column;
 
   input[type='number'] {
     -moz-appearance: textfield;
@@ -23,6 +24,10 @@ const Container = styled('div')`
   }
 `;
 
+const SuggestionContainer = styled(Paper)`
+	overflow-y: auto;
+`;
+
 const PositionedLoading = styled(Loading)`
   position: absolute;
   top: 0;
@@ -32,27 +37,28 @@ const PositionedLoading = styled(Loading)`
 
 const StyledMenuItem = styled(MenuItem)`
   white-space: initial;
-`;
+` as typeof MenuItem;
 
 interface Props {
 	initialDeparture?: Date;
-	filtered?: boolean;
+	withOEV?: boolean;
 	onChange: (match: ParsedJourneyMatchResponse | null) => any;
 }
 const itemToString = (j: ParsedJourneyMatchResponse | null) =>
 	j?.train.name || '';
 export const ZugsucheAutocomplete: FC<Props> = ({
 	initialDeparture = new Date(),
-	onChange,
-	filtered,
+	onChange: onSelectedItemChange,
+	withOEV,
 }) => {
 	const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
 		[],
 	);
+	const inputRef = useRef();
 	const [loading, setLoading] = useState(0);
 	const trpcUtils = trpc.useUtils();
-	const debouncedFindByNumer = useMemo(
-		() => debounce(trpcUtils.journeys.findByNumber.fetch, 200),
+	const debouncedFindByNumber = useMemo(
+		() => debounce(trpcUtils.journeys.findByNumber.fetch, 320),
 		[trpcUtils.journeys.findByNumber],
 	);
 	const loadOptions = useCallback(
@@ -62,118 +68,105 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 				return;
 			}
 			setLoading((old) => old + 1);
-			try {
-				const suggestions = await debouncedFindByNumer({
-					trainNumber: enteredNumber,
-					initialDepartureDate: initialDeparture,
-					filtered,
-				});
+			const suggestions = await debouncedFindByNumber({
+				trainNumber: enteredNumber,
+				initialDepartureDate: initialDeparture,
+				withOEV,
+			});
 
-				setSuggestions(suggestions);
-			} catch (e) {
-				if (!Axios.isCancel(e)) {
-					setSuggestions([]);
-				}
-			}
+			setSuggestions(suggestions);
 			setLoading((old) => old - 1);
 		},
-		[initialDeparture, filtered, debouncedFindByNumer],
+		[initialDeparture, withOEV, debouncedFindByNumber],
 	);
+
+	const {
+		openMenu,
+		isOpen,
+		getLabelProps,
+		getMenuProps,
+		getInputProps,
+		highlightedIndex,
+		getItemProps,
+	} = useCombobox({
+		items: suggestions,
+		defaultHighlightedIndex: 0,
+		itemToString,
+		onSelectedItemChange: (e) => onSelectedItemChange(e.selectedItem),
+	});
+
+	const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+		onChange: ((event) => {
+			if (event.target.value === '') {
+				setSuggestions([]);
+			} else {
+				void loadOptions(event.target.value);
+			}
+		}) as ChangeEventHandler<HTMLInputElement>,
+		onFocus: (() => {
+			if (suggestions.length) {
+				openMenu();
+			}
+		}) as FocusEventHandler<HTMLInputElement>,
+		onBlur: (() => {
+			openMenu();
+			// setSuggestions([]);
+		}) as FocusEventHandler<HTMLInputElement>,
+	});
 
 	return (
 		<Container>
-			<Downshift
-				onChange={onChange}
-				itemToString={itemToString}
-				defaultHighlightedIndex={0}
-			>
-				{({
-					clearSelection,
-					getInputProps,
-					getItemProps,
-					getLabelProps,
-					getMenuProps,
-					highlightedIndex,
-					isOpen,
-					openMenu,
-				}) => {
-					const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
-						onChange: ((event) => {
-							if (event.target.value === '') {
-								clearSelection();
-							} else {
-								void loadOptions(event.target.value);
-							}
-						}) as ChangeEventHandler<HTMLInputElement>,
-						onFocus: (() => {
-							if (suggestions.length) {
-								openMenu();
-							}
-						}) as FocusEventHandler<HTMLInputElement>,
-						onBlur: (() => {
-							openMenu();
-							setSuggestions([]);
-						}) as FocusEventHandler<HTMLInputElement>,
-					});
-
-					return (
-						<div>
-							<TextField
-								fullWidth
-								label="Zugnummer"
-								placeholder="z.B. 71"
-								InputLabelProps={getLabelProps({ shrink: true } as any)}
-								InputProps={{
-									onBlur,
-									onChange,
-									onFocus,
-									type: 'number',
-									autoFocus: true,
-								}}
-								inputProps={{
-									...inputProps,
-									'data-testid': 'zugsucheAutocompleteInput',
-									inputMode: 'numeric',
-								}}
-							/>
-
-							<div {...getMenuProps()}>
-								{isOpen && (
-									<Paper square>
-										{suggestions.length ? (
-											suggestions.map((suggestion, index) => {
-												const itemProps = getItemProps({
-													item: suggestion,
-												});
-												const highlighted = highlightedIndex === index;
-
-												return (
-													<StyledMenuItem
-														data-testid="zugsucheAutocompleteItem"
-														{...itemProps}
-														key={suggestion.jid}
-														selected={highlighted}
-														// @ts-expect-error ???
-														component="div"
-													>
-														{suggestion.train.name} -&gt;
-														<br />
-														{suggestion.lastStop.station.name}
-													</StyledMenuItem>
-												);
-											})
-										) : (
-											<StyledMenuItem key="loading">
-												{loading ? 'Loading...' : 'No Matching Trains'}
-											</StyledMenuItem>
-										)}
-									</Paper>
-								)}
-							</div>
-						</div>
-					);
+			<TextField
+				inputRef={inputRef}
+				fullWidth
+				label="Zugnummer"
+				placeholder="z.B. 71"
+				slotProps={{
+					inputLabel: getLabelProps({ shrink: true }),
+					input: {
+						onBlur,
+						onChange,
+						onFocus,
+						type: 'number',
+						autoFocus: true,
+					},
+					htmlInput: {
+						...inputProps,
+						'data-testid': 'zugsucheAutocompleteInput',
+						inputMode: 'numeric',
+					},
 				}}
-			</Downshift>
+			/>
+			{
+				<SuggestionContainer square {...getMenuProps()}>
+					{isOpen &&
+						(suggestions.length ? (
+							suggestions.map((suggestion, index) => {
+								const itemProps = getItemProps({
+									item: suggestion,
+								});
+								const highlighted = highlightedIndex === index;
+								return (
+									<StyledMenuItem
+										data-testid="zugsucheAutocompleteItem"
+										{...itemProps}
+										key={suggestion.jid}
+										selected={highlighted}
+										component="div"
+									>
+										{suggestion.train.name} -&gt;
+										<br key={suggestion.jid} />
+										{suggestion.lastStop.station.name}
+									</StyledMenuItem>
+								);
+							})
+						) : (
+							<StyledMenuItem key="loading">
+								{loading ? 'Loading...' : 'No Matching Trains'}
+							</StyledMenuItem>
+						))}
+				</SuggestionContainer>
+			}
 			{Boolean(loading) && <PositionedLoading type={LoadingType.dots} />}
 		</Container>
 	);
