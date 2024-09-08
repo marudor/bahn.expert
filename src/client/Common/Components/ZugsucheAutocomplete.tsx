@@ -5,7 +5,7 @@ import { MenuItem, Paper, TextField, styled } from '@mui/material';
 import debounce from 'debounce-promise';
 import { useCombobox } from 'downshift';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
+import type { ChangeEventHandler, FC } from 'react';
 
 const Container = styled('div')`
   position: relative;
@@ -92,10 +92,14 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 		items: suggestions,
 		defaultHighlightedIndex: 0,
 		itemToString,
-		onSelectedItemChange: (e) => onSelectedItemChange(e.selectedItem),
+		onSelectedItemChange: (e) => {
+			if (e.type !== '__input_blur__') {
+				onSelectedItemChange(e.selectedItem);
+			}
+		},
 	});
 
-	const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+	const { onChange, value, ...inputProps } = getInputProps({
 		onChange: ((event) => {
 			if (event.target.value === '') {
 				setSuggestions([]);
@@ -103,15 +107,6 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 				void loadOptions(event.target.value);
 			}
 		}) as ChangeEventHandler<HTMLInputElement>,
-		onFocus: (() => {
-			if (suggestions.length) {
-				openMenu();
-			}
-		}) as FocusEventHandler<HTMLInputElement>,
-		onBlur: (() => {
-			openMenu();
-			// setSuggestions([]);
-		}) as FocusEventHandler<HTMLInputElement>,
 	});
 
 	return (
@@ -124,14 +119,13 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 				slotProps={{
 					inputLabel: getLabelProps({ shrink: true }),
 					input: {
-						onBlur,
 						onChange,
-						onFocus,
 						type: 'number',
 						autoFocus: true,
 					},
 					htmlInput: {
 						...inputProps,
+						value,
 						'data-testid': 'zugsucheAutocompleteInput',
 						inputMode: 'numeric',
 					},
@@ -139,7 +133,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 			/>
 			{
 				<SuggestionContainer square {...getMenuProps()}>
-					{isOpen &&
+					{value &&
 						(suggestions.length ? (
 							suggestions.map((suggestion, index) => {
 								const itemProps = getItemProps({
