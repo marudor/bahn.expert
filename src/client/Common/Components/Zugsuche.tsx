@@ -80,20 +80,31 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 					`${match.train.type} ${match.train.number}`,
 				];
 
-				// istanbul ignore else
-				if (date) {
-					link.push(date.toISOString());
-				}
+				// HAFAS Result
+				if (match.jid.includes('#')) {
+					// istanbul ignore else
+					if (date) {
+						link.push(date.toISOString());
+					}
 
-				link.push(
-					qs.stringify(
-						{
-							profile: storage.get('hafasProfile'),
-							station: match.firstStop.station.evaNumber,
-						},
-						{ addQueryPrefix: true },
-					),
-				);
+					link.push(
+						qs.stringify(
+							{
+								profile: storage.get('hafasProfile'),
+								station: match.firstStop.station.evaNumber,
+							},
+							{ addQueryPrefix: true },
+						),
+					);
+				} else
+					link.push(
+						qs.stringify(
+							{
+								journeyId: match.jid,
+							},
+							{ addQueryPrefix: true },
+						),
+					);
 
 				navigate(link.join('/'));
 			}
