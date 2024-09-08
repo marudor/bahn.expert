@@ -1,7 +1,6 @@
 import { AbfahrtenRoutes } from '@/client/Abfahrten/AbfahrtenRoutes';
 import { MostUsed } from '@/client/Abfahrten/Components/MostUsed';
 import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { trpc } from '@/client/RPC';
 import { type FC, useMemo } from 'react';
 import { Header } from './Components/Header';
@@ -20,18 +19,16 @@ export const Abfahrten: FC = () => {
 	);
 
 	return (
-		<AuslastungsProvider>
-			<AbfahrtenProvider
-				urlPrefix="/"
-				abfahrtenFetch={trpcUtils.iris.abfahrten}
-				stopPlaceApiFunction={stopPlaceApiFunction}
-			>
-				<FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
-					<Header />
-					<AbfahrtenRoutes />
-				</FavProvider>
-			</AbfahrtenProvider>
-		</AuslastungsProvider>
+		<AbfahrtenProvider
+			urlPrefix="/"
+			abfahrtenFetch={trpcUtils.iris.abfahrten}
+			stopPlaceApiFunction={stopPlaceApiFunction}
+		>
+			<FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
+				<Header />
+				<AbfahrtenRoutes />
+			</FavProvider>
+		</AbfahrtenProvider>
 	);
 };
 export default Abfahrten;

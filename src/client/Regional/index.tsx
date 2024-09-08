@@ -1,5 +1,4 @@
 import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { FavProvider } from '@/client/Abfahrten/provider/FavProvider';
 import { trpc } from '@/client/RPC';
 import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
@@ -16,17 +15,15 @@ export const Regional: FC = () => {
 		[trpcUtils.stopPlace.byName],
 	);
 	return (
-		<AuslastungsProvider>
-			<AbfahrtenProvider
-				urlPrefix="/regional/"
-				abfahrtenFetch={trpcUtils.hafas.irisAbfahrten}
-				stopPlaceApiFunction={stopPlaceApiFunction}
-			>
-				<FavProvider storageKey="regionalFavs">
-					<RegionalRoutes />
-				</FavProvider>
-			</AbfahrtenProvider>
-		</AuslastungsProvider>
+		<AbfahrtenProvider
+			urlPrefix="/regional/"
+			abfahrtenFetch={trpcUtils.hafas.irisAbfahrten}
+			stopPlaceApiFunction={stopPlaceApiFunction}
+		>
+			<FavProvider storageKey="regionalFavs">
+				<RegionalRoutes />
+			</FavProvider>
+		</AbfahrtenProvider>
 	);
 };
 export default Regional;

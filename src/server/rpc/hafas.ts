@@ -2,6 +2,7 @@ import StationBoard from '@/server/HAFAS/StationBoard';
 import StationBoardToTimetables from '@/server/HAFAS/StationBoard/StationBoardToTimetables';
 import { tripSearch } from '@/server/HAFAS/TripSearch/TripSearch';
 import { stopOccupancy } from '@/server/HAFAS/occupancy';
+import { vrrOccupancy } from '@/server/StopPlace/vrrOccupancy';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import { AllowedHafasProfile } from '@/types/HAFAS';
@@ -71,7 +72,7 @@ export const hafasRpcRouter = rpcAppRouter({
 			z.object({
 				start: z.string(),
 				destination: z.string(),
-				plannedDepartureTime: z.date(),
+				plannedDepartureTime: z.date().optional(),
 				trainNumber: z.string(),
 				stopEva: z.string(),
 			}),
@@ -86,17 +87,24 @@ export const hafasRpcRouter = rpcAppRouter({
 					stopEva,
 				},
 			}) => {
-				const foundOccupancy = await stopOccupancy(
-					start,
-					destination,
-					trainNumber,
-					plannedDepartureTime,
-					stopEva,
-				);
+				const [foundOccupancy, foundVrrOccupancy] = await Promise.all([
+					plannedDepartureTime &&
+						stopOccupancy(
+							start,
+							destination,
+							trainNumber,
+							plannedDepartureTime,
+							stopEva,
+						),
+					vrrOccupancy(stopEva, trainNumber),
+				]);
 
-				if (foundOccupancy) {
-					return foundOccupancy;
+				const foundMixedOccupancy = foundOccupancy || foundVrrOccupancy;
+
+				if (foundMixedOccupancy) {
+					return foundMixedOccupancy;
 				}
+
 				throw new TRPCError({
 					code: 'NOT_FOUND',
 				});

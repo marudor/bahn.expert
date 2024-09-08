@@ -1,6 +1,5 @@
 import { Auslastung } from '@/client/Abfahrten/Components/Abfahrt/Auslastung';
 import { AbfahrtContext } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import { AuslastungsProvider } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import rawMockAbfahrt from '@/fixtures/mockAbfahrtAuslastung.json';
 import type { Abfahrt } from '@/types/iris';
 
@@ -11,11 +10,6 @@ const mockAbfahrt = globalThis.parseJson<Abfahrt>(
 describe('Auslastung', () => {
 	const renderAuslastung = () => {
 		cy.mount(<Auslastung />, {
-			provider: [
-				{
-					Provider: AuslastungsProvider,
-				},
-			],
 			context: [
 				{
 					...AbfahrtContext,

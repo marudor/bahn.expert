@@ -2,7 +2,6 @@ import {
 	AbfahrtenConfigProvider,
 	useAbfahrtenFetch,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { useAuslastung } from '@/client/Abfahrten/provider/AuslastungsProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { AbfahrtenResult } from '@/types/iris';
 import type { MinimalStopPlace } from '@/types/stopPlace';
@@ -40,16 +39,7 @@ const useAbfahrtenInner = ({
 	const [departures, setDepartures] = useState<AbfahrtenResult>();
 	const [error, setError] = useState<unknown>();
 	const abfahrtenFetch = useAbfahrtenFetch();
-	const { fetchVRRAuslastungForEva } = useAuslastung();
 	const { startTime, lookahead, lookbehind } = useCommonConfig();
-
-	useEffect(() => {
-		if (departures?.stopPlaces) {
-			for (const eva of departures.stopPlaces) {
-				void fetchVRRAuslastungForEva(eva);
-			}
-		}
-	}, [fetchVRRAuslastungForEva, departures]);
 
 	const updateCurrentStopPlaceByString = useCallback(
 		async (stopPlaceName: string) => {

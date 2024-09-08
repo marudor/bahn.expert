@@ -7,12 +7,7 @@ import {
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import { AuslastungsValue } from '@/types/routing';
-import type {
-	TrainOccupancy,
-	TrainOccupancyList,
-	VRRTrainOccupancy,
-	VRRTrainOccupancyValues,
-} from '@/types/stopPlace';
+import type { VRRTrainOccupancyValues } from '@/types/stopPlace';
 import { TRPCError } from '@trpc/server';
 import axios from 'axios';
 import { z } from 'zod';
@@ -37,35 +32,6 @@ const occupancyAxios = axios.create();
 axiosUpstreamInterceptor(occupancyAxios, 'vrrf-occupancy');
 
 export const stopPlaceRpcRouter = rpcAppRouter({
-	occupancy: rpcProcedure
-		.input(z.string())
-		.query(async ({ input: evaNumber }) => {
-			try {
-				const result = (
-					await occupancyAxios.get<TrainOccupancy<VRRTrainOccupancy>>(
-						`https://vrrf.finalrewind.org/_eva/occupancy-by-eva/${evaNumber}.json`,
-					)
-				).data;
-
-				const normalizedResult: TrainOccupancyList = {};
-				for (const [trainNumber, vrrOccupancy] of Object.entries(
-					result.train,
-				)) {
-					normalizedResult[trainNumber] = vrrOccupancy?.occupancy
-						? {
-								first: mapVrrOccupancy(vrrOccupancy.occupancy),
-								second: mapVrrOccupancy(vrrOccupancy.occupancy),
-							}
-						: null;
-				}
-
-				return normalizedResult;
-			} catch {
-				throw new TRPCError({
-					code: 'NOT_FOUND',
-				});
-			}
-		}),
 	lageplan: rpcProcedure
 		.input(
 			z.object({
