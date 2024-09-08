@@ -22,7 +22,7 @@ function findV1OrV2HafasCompatible(
 	trainNumber: number,
 	category?: string,
 	date?: Date,
-	onlyFv?: boolean,
+	withOEV?: boolean,
 ) {
 	let useV2 = true;
 	if (date) {
@@ -35,10 +35,10 @@ function findV1OrV2HafasCompatible(
 
 	if (useV2) {
 		logger.debug('Using JourneysV2 (HAFAS compatible) find');
-		return findJourneyHafasCompatibleV2(trainNumber, category, date, onlyFv);
+		return findJourneyHafasCompatibleV2(trainNumber, category, date, withOEV);
 	}
 	logger.debug('Using JourneysV1 (HAFAS compatible) find');
-	return findJourneyHafasCompatible(trainNumber, category, date, onlyFv);
+	return findJourneyHafasCompatible(trainNumber, category, date, withOEV);
 }
 
 function findJoureyV1OrV2(
@@ -86,7 +86,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				trainNumber: z.number(),
 				initialDepartureDate: z.date().optional(),
 				initialEvaNumber: z.string().optional(),
-				filtered: z.boolean().optional(),
+				withOEV: z.boolean().optional(),
 				limit: z.number().optional(),
 				category: z.string().optional(),
 			}),
@@ -97,7 +97,7 @@ export const journeysRpcRouter = rpcAppRouter({
 					trainNumber,
 					initialDepartureDate,
 					initialEvaNumber,
-					filtered,
+					withOEV,
 					limit,
 					category,
 				},
@@ -110,7 +110,7 @@ export const journeysRpcRouter = rpcAppRouter({
 						trainNumber,
 						category,
 						initialDepartureDate,
-						filtered,
+						withOEV,
 					);
 				}
 
@@ -118,15 +118,15 @@ export const journeysRpcRouter = rpcAppRouter({
 				const hafasFallback = () =>
 					enrichedJourneyMatch({
 						onlyRT: true,
-						jnyFltrL: filtered
-							? [
+						jnyFltrL: withOEV
+							? undefined
+							: [
 									{
 										mode: 'INC',
 										type: 'PROD',
-										value: '7',
+										value: '31',
 									},
-								]
-							: undefined,
+								],
 						trainName,
 						initialDepartureDate,
 						limit,

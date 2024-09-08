@@ -1,3 +1,4 @@
+import type { JourneyMatch } from '@/external/generated/risJourneys';
 import {
 	JourneysApi,
 	Configuration as RisJourneysConfiguration,
@@ -50,6 +51,12 @@ export const health = {
 };
 
 const longDistanceTypes: string[] = ['HIGH_SPEED_TRAIN', 'INTERCITY_TRAIN'];
+const trainTypes: string[] = [
+	...longDistanceTypes,
+	'INTER_REGIONAL_TRAIN',
+	'REGIONAL_TRAIN',
+	'CITY_TRAIN',
+];
 
 const mapTransportToTrain = (transport: Transport): ParsedProduct => ({
 	name: `${transport.category} ${
@@ -68,6 +75,58 @@ const mapStationShortToRouteStops = (
 ): RouteStop => ({
 	station,
 });
+
+function getPriorityByTransportType(transportType: string) {
+	switch (transportType) {
+		case 'HIGH_SPEED_TRAIN':
+			return 10;
+		case 'INTERCITY_TRAIN':
+			return 9;
+		case 'INTER_REGIONAL_TRAIN':
+			return 8;
+		case 'REGIONAL_TRAIN':
+			return 7;
+		case 'CITY_TRAIN':
+			return 6;
+		case 'SUBWAY':
+			return 5;
+		case 'TRAM':
+			return 4;
+		case 'BUS':
+			return 3;
+		case 'FERRY':
+			return 2;
+		case 'SHUTTLE':
+			return 1;
+		case 'FLIGHT':
+			return 0;
+	}
+	return 0;
+}
+
+export function sortJourneys(
+	a: JourneyFindResult,
+	b: JourneyFindResult,
+): number;
+export function sortJourneys(a: JourneyMatch, b: JourneyMatch): number;
+export function sortJourneys(
+	a: JourneyFindResult | JourneyMatch,
+	b: JourneyFindResult | JourneyMatch,
+) {
+	if ('info' in a && 'info' in b) {
+		return (
+			getPriorityByTransportType(b.info.transportAtStart.type) -
+			getPriorityByTransportType(a.info.transportAtStart.type)
+		);
+	}
+	if ('transport' in a && 'transport' in b) {
+		return (
+			getPriorityByTransportType(b.transport.type) -
+			getPriorityByTransportType(a.transport.type)
+		);
+	}
+	return 0;
+}
 
 function mapToParsedJourneyMatchResponse(
 	journeyFindResult: JourneyFindResult,
@@ -114,7 +173,7 @@ export async function findJourney(
 	trainNumber: number,
 	category?: string,
 	date?: Date,
-	onlyFv?: boolean,
+	withOEV?: boolean,
 	originEvaNumber?: string,
 	administration?: string,
 ): Promise<JourneyFindResult[]> {
@@ -122,7 +181,6 @@ export async function findJourney(
 		if (date) {
 			const sevenDaysAgo = subDays(new Date(), 7);
 			const olderThan7Days = isBefore(date, sevenDaysAgo);
-			console.log(date, sevenDaysAgo, olderThan7Days);
 			if (olderThan7Days) {
 				return [];
 			}
@@ -130,7 +188,7 @@ export async function findJourney(
 
 		const cacheKey = `${trainNumber}|${category?.toUpperCase()}|${
 			date && format(date, 'yyyy-MM-dd')
-		}|${onlyFv ?? false}|${originEvaNumber}`;
+		}|${withOEV ?? false}|${originEvaNumber}`;
 
 		const cacheHit = await journeyFindCache.get(cacheKey);
 		if (cacheHit) {
@@ -141,8 +199,9 @@ export async function findJourney(
 			journeyNumber: trainNumber,
 			category,
 			date: date && format(date, 'yyyy-MM-dd'),
-			transportTypes: onlyFv ? longDistanceTypes : undefined,
+			transportTypes: withOEV ? undefined : trainTypes,
 			administrationID: administration,
+			limit: 50,
 		});
 
 		if (date) {
@@ -151,9 +210,11 @@ export async function findJourney(
 			);
 		}
 
-		void journeyFindCache.set(cacheKey, result.data.journeys);
-
 		await fixJourneysFoundIfNeeded(result.data.journeys);
+
+		result.data.journeys.sort(sortJourneys);
+
+		void journeyFindCache.set(cacheKey, result.data.journeys);
 
 		for (const j of result.data.journeys) {
 			void additionalJourneyInformation(
@@ -177,9 +238,9 @@ export async function findJourneyHafasCompatible(
 	trainNumber: number,
 	category?: string,
 	date?: Date,
-	onlyFv?: boolean,
+	withOEV?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> {
-	const risReuslt = await findJourney(trainNumber, category, date, onlyFv);
+	const risReuslt = await findJourney(trainNumber, category, date, withOEV);
 
 	return Promise.all(risReuslt.map(mapToParsedJourneyMatchResponse));
 }

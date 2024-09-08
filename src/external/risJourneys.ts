@@ -6,6 +6,7 @@ import type {
 	TransportPublic,
 } from '@/external/generated/risJourneys';
 import type { StopPlaceEmbedded } from '@/external/generated/risJourneysV2';
+import { sortJourneys } from '@/external/risJourneysV2';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
@@ -48,6 +49,12 @@ const longDistanceTypes: TransportType[] = [
 	TransportType.HighSpeedTrain,
 	TransportType.IntercityTrain,
 ];
+const trainTypes: TransportType[] = [
+	...longDistanceTypes,
+	TransportType.InterRegionalTrain,
+	TransportType.RegionalTrain,
+	TransportType.CityTrain,
+];
 
 const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
 	name: `${transport.category} ${
@@ -83,7 +90,7 @@ export async function findJourney(
 	trainNumber: number,
 	category?: string,
 	date?: Date,
-	onlyFv?: boolean,
+	withOEV?: boolean,
 	originEvaNumber?: string,
 	administration?: string,
 ): Promise<JourneyMatch[]> {
@@ -96,7 +103,7 @@ export async function findJourney(
 
 		const cacheKey = `${trainNumber}|${category?.toUpperCase()}|${
 			date && format(date, 'yyyy-MM-dd')
-		}|${onlyFv ?? false}|${originEvaNumber}`;
+		}|${withOEV ?? false}|${originEvaNumber}`;
 
 		const cacheHit = await journeyFindCache.get(cacheKey);
 		if (cacheHit) {
@@ -108,7 +115,7 @@ export async function findJourney(
 			// Kategorie ist schwierig, wir filtern quasi optional
 			// category,
 			date: date && format(date, 'yyyy-MM-dd'),
-			transports: onlyFv ? longDistanceTypes : undefined,
+			transports: withOEV ? undefined : trainTypes,
 			originEvaNumber,
 			administrationID: administration,
 		});
@@ -121,6 +128,8 @@ export async function findJourney(
 				result.data.journeys = categoryFiltered;
 			}
 		}
+
+		result.data.journeys.sort(sortJourneys);
 
 		if (isWithin20Hours) {
 			void journeyFindCache.set(
