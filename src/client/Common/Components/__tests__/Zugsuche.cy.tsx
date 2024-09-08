@@ -27,6 +27,7 @@ describe('Zugsuche', () => {
 	});
 
 	it('Navigates to details', () => {
+		const journeyId = 'ee7b2fbd-1370-4585-8108-22938c252836';
 		cy.trpc.journeys.findByNumber(
 			{
 				trainNumber: 6,
@@ -34,7 +35,7 @@ describe('Zugsuche', () => {
 			{
 				body: [
 					{
-						jid: 'ee7b2fbd-1370-4585-8108-22938c252836',
+						jid: journeyId,
 						train: { name: 'EC 6', line: null, type: 'EC', number: '6' },
 						stops: [],
 						firstStop: {
@@ -52,6 +53,6 @@ describe('Zugsuche', () => {
 		cy.findByTestId('zugsucheAutocompleteItem').click();
 		cy.findByTestId('Zugsuche').should('not.exist');
 		cy.location('pathname').should('include', encodeURI('/details/EC 6'));
-		cy.location('search').should('include', 'station=6000');
+		cy.location('search').should('include', `journeyId=${journeyId}`);
 	});
 });
