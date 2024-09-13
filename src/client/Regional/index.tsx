@@ -1,5 +1,4 @@
 import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { FavProvider } from '@/client/Abfahrten/provider/FavProvider';
 import { trpc } from '@/client/RPC';
 import { RegionalRoutes } from '@/client/Regional/RegionalRoutes';
 import { type FC, useMemo } from 'react';
@@ -20,9 +19,7 @@ export const Regional: FC = () => {
 			abfahrtenFetch={trpcUtils.hafas.irisAbfahrten}
 			stopPlaceApiFunction={stopPlaceApiFunction}
 		>
-			<FavProvider storageKey="regionalFavs">
-				<RegionalRoutes />
-			</FavProvider>
+			<RegionalRoutes />
 		</AbfahrtenProvider>
 	);
 };

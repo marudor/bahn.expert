@@ -1,5 +1,4 @@
 import { ClientStorage } from '@/client/Common/Storage';
-import { StorageContext } from '@/client/useStorage';
 import { loadableReady } from '@loadable/component';
 import Axios from 'axios';
 import qs from 'qs';
@@ -13,6 +12,7 @@ Axios.defaults.timeout = 25000;
 import {} from '@/client/RPC';
 import { ThemeProvider } from '@/client/Themes/Provider';
 import {} from '@tanstack/react-query';
+import { CookiesProvider } from 'react-cookie';
 
 const isoDateRegex =
 	/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d*)(?:Z|([+-])([\d:|]*))?$/;
@@ -42,11 +42,11 @@ const storage = new ClientStorage();
 const renderApp = (App: ComponentType) => (
 	<HeadProvider>
 		<BrowserRouter>
-			<StorageContext.Provider value={storage}>
+			<CookiesProvider cookies={storage}>
 				<ThemeProvider>
 					<App />
 				</ThemeProvider>
-			</StorageContext.Provider>
+			</CookiesProvider>
 		</BrowserRouter>
 	</HeadProvider>
 );

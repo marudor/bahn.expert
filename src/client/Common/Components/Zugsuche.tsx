@@ -1,6 +1,5 @@
 import { ZugsucheAutocomplete } from '@/client/Common/Components/ZugsucheAutocomplete';
 import { stopPropagation } from '@/client/Common/stopPropagation';
-import { useStorage } from '@/client/useStorage';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import { Today, Train } from '@mui/icons-material';
 import {
@@ -56,7 +55,6 @@ interface Props {
 }
 export const Zugsuche: FC<Props> = ({ children }) => {
 	const navigate = useNavigate();
-	const storage = useStorage();
 	const { toggleDrawer } = useContext(NavigationContext);
 	const [open, setOpen] = useState(false);
 	const [date, setDate] = useState<Date | null>(subHours(new Date(), 1));
@@ -90,7 +88,6 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 					link.push(
 						qs.stringify(
 							{
-								profile: storage.get('hafasProfile'),
 								station: match.firstStop.station.evaNumber,
 							},
 							{ addQueryPrefix: true },
@@ -109,7 +106,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 				navigate(link.join('/'));
 			}
 		},
-		[date, storage, toggleModal, toggleDrawer, navigate],
+		[date, toggleModal, toggleDrawer, navigate],
 	);
 
 	return (

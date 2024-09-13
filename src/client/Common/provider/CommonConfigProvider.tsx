@@ -2,12 +2,16 @@ import type {
 	CommonConfig,
 	CommonConfigSanitize,
 } from '@/client/Common/config';
+import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import { useQuery } from '@/client/Common/hooks/useQuery';
-import { useStorage } from '@/client/useStorage';
 import { commonConfigSanitize } from '@/client/util';
 import constate from 'constate';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
+
+const commonConfigKeys: (keyof CommonConfigSanitize)[] = Object.keys(
+	commonConfigSanitize,
+) as any;
 
 const useCommonConfigInternal = ({
 	initialConfig,
@@ -16,13 +20,13 @@ const useCommonConfigInternal = ({
 }>) => {
 	const [config, setConfig] = useState(initialConfig);
 	const [configOpen, setConfigOpen] = useState(false);
-	const storage = useStorage();
+	const [_, setCookie] = useExpertCookies(commonConfigKeys);
 	const setCommonConfigKey = useCallback(
 		<K extends keyof CommonConfig>(key: K, value: CommonConfig[K]) => {
-			storage.set(key, value);
+			setCookie(key, value);
 			setConfig((oldConfig) => ({ ...oldConfig, [key]: value }));
 		},
-		[storage],
+		[setCookie],
 	);
 
 	return {
@@ -52,7 +56,7 @@ export const [
 );
 
 export const CommonConfigProvider: FC<Props> = ({ children }) => {
-	const storage = useStorage();
+	const [commmonConfig] = useExpertCookies(commonConfigKeys);
 	const query = useQuery();
 
 	const commonConfigOverride: Record<string, any> = {};
@@ -66,22 +70,20 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
 	}
 
 	const savedConfig: CommonConfig = {
-		autoUpdate: commonConfigSanitize.autoUpdate(
-			storage.get<string>('autoUpdate'),
-		),
-		showUIC: storage.get('showUIC') ?? false,
-		fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
-		showCoachType: storage.get('showCoachType') ?? false,
-		hideTravelynx: storage.get('hideTravelynx') ?? false,
-		lineAndNumber: storage.get('lineAndNumber') ?? false,
-		lookahead: storage.get('lookahead') ?? '150',
-		lookbehind: storage.get('lookbehind') ?? '10',
-		showCancelled: storage.get('showCancelled') ?? true,
-		sortByTime: storage.get('sortByTime') ?? false,
-		onlyDepartures: storage.get('onlyDepartures') ?? false,
-		delayTime: storage.get('delayTime') ?? false,
+		autoUpdate: commonConfigSanitize.autoUpdate(commmonConfig.autoUpdate),
+		showUIC: commmonConfig.showUIC ?? false,
+		fahrzeugGruppe: commmonConfig.fahrzeugGruppe ?? false,
+		showCoachType: commmonConfig.showCoachType ?? false,
+		hideTravelynx: commmonConfig.hideTravelynx ?? false,
+		lineAndNumber: commmonConfig.lineAndNumber ?? false,
+		lookahead: commmonConfig.lookahead ?? '150',
+		lookbehind: commmonConfig.lookbehind ?? '10',
+		showCancelled: commmonConfig.showCancelled ?? true,
+		sortByTime: commmonConfig.sortByTime ?? false,
+		onlyDepartures: commmonConfig.onlyDepartures ?? false,
+		delayTime: commmonConfig.delayTime ?? false,
 		startTime: undefined,
-		showRl100: storage.get('showRl100') ?? false,
+		showRl100: commmonConfig.showRl100 ?? false,
 		...commonConfigOverride,
 	};
 

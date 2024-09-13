@@ -1,4 +1,7 @@
-import type { WebConfigMap } from '@/client/useStorage';
+import type { Favs } from '@/client/Abfahrten/hooks/useFavs';
+import type { CommonConfig } from '@/client/Common/config';
+import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
+import type { RoutingFavs } from '@/client/Routing/provider/RoutingFavProvider';
 import Cookies from 'universal-cookie';
 import type { CookieGetOptions, CookieSetOptions } from 'universal-cookie';
 
@@ -9,7 +12,16 @@ const setCookieOptions: CookieSetOptions = {
 	sameSite: 'lax',
 };
 
-export interface StorageInterface {
+export interface WebConfigMap extends CommonConfig, RoutingSettings {
+	readonly selectedDetail: string;
+	readonly regionalFavs: Favs;
+	readonly favs: Favs;
+	readonly rfavs: RoutingFavs;
+	readonly defaultFilter: string[];
+	readonly timesPoliticSeenNew: number;
+}
+
+export interface StorageInterface extends Cookies {
 	get<K extends keyof WebConfigMap>(
 		name: K,
 		options?: CookieGetOptions,

@@ -5,7 +5,6 @@ import type { CommonConfig } from '@/client/Common/config';
 import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { ThemeWrap } from '@/client/ThemeWrap';
 import { theme } from '@/client/Themes';
-import { StorageContext } from '@/client/useStorage';
 import type { Theme } from '@mui/material';
 import { mount } from 'cypress/react18';
 import type { ReactElement } from 'react';
@@ -13,6 +12,7 @@ import { HeadProvider } from 'react-head';
 import Cookies from 'universal-cookie';
 import '@percy/cypress';
 import { ThemeProvider } from '@/client/Themes/Provider';
+import { CookiesProvider } from 'react-cookie';
 import { BrowserRouter } from 'react-router-dom';
 
 const hexToRgb = (hex: string) => {
@@ -158,11 +158,11 @@ Cypress.Commands.add(
 			<InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
 				<HeadProvider>
 					<BrowserRouter>
-						<StorageContext.Provider value={cookies}>
+						<CookiesProvider cookies={cookies}>
 							<ThemeProvider>
 								<ThemeWrap>{result}</ThemeWrap>
 							</ThemeProvider>
-						</StorageContext.Provider>
+						</CookiesProvider>
 					</BrowserRouter>
 				</HeadProvider>
 			</InnerCommonConfigProvider>

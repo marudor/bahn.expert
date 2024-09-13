@@ -1,8 +1,6 @@
+import { MostUsed } from '@/client/Abfahrten/Components/MostUsed';
+import { useFavs } from '@/client/Abfahrten/hooks/useFavs';
 import type { AbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import {
-	useFavs,
-	useMostUsedComponent,
-} from '@/client/Abfahrten/provider/FavProvider';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
@@ -12,7 +10,6 @@ import type { FC, ReactNode } from 'react';
 import { Navigate } from 'react-router';
 import type { StaticRouterContext } from 'react-router';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
-import { MostUsed } from './MostUsed';
 
 function getErrorText(
 	error: AbfahrtenError,
@@ -41,18 +38,19 @@ function getErrorText(
 
 interface Props {
 	children?: ReactNode;
+	favKey: 'regionalFavs' | 'favs';
+	mostUsed?: boolean;
 }
 
-export const FavList: FC<Props> = ({ children }) => {
-	const favs = useFavs();
-	const MostUsedComponent = useMostUsedComponent();
+export const FavList: FC<Props> = ({ children, favKey, mostUsed }) => {
+	const favs = useFavs(favKey);
 	const sortedFavs = useMemo(() => {
 		const values: MinimalStopPlace[] = Object.values(favs);
 
 		return values
 			.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
-			.map((fav) => <FavEntry key={fav.evaNumber} fav={fav} />);
-	}, [favs]);
+			.map((fav) => <FavEntry favKey={favKey} key={fav.evaNumber} fav={fav} />);
+	}, [favs, favKey]);
 	const { updateTitle, updateDescription, updateKeywords } =
 		useHeaderTagsActions();
 
@@ -82,7 +80,7 @@ export const FavList: FC<Props> = ({ children }) => {
 					/>
 				</>
 			)}
-			{MostUsedComponent && (
+			{mostUsed && (
 				<>
 					<FavEntryDisplay nonClickable text="Oft Gesucht" />
 					<MostUsed />

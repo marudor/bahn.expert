@@ -19,7 +19,9 @@ export interface CommonConfig {
 }
 
 type Sanitize<Config> = {
-	[K in keyof Config]: (input: string | string[] | undefined) => Config[K];
+	[K in keyof Config]: (
+		input: string | string[] | undefined | Config[K],
+	) => Config[K];
 };
 
 export type CommonConfigSanitize = Sanitize<CommonConfig>;

@@ -1,4 +1,4 @@
-import { useStorage } from '@/client/useStorage';
+import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import { Alert, Snackbar } from '@mui/material';
 import type { SnackbarOrigin } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -26,22 +26,25 @@ const anchorOrigin: SnackbarOrigin = {
 };
 
 export const PolitikBanner: FC = () => {
-	const storage = useStorage();
-	const timesSeen = storage.get('timesPoliticSeenNew') ?? 0;
-	const [open, setOpen] = useState(timesSeen < 14);
+	const [{ timesPoliticSeenNew }, setCookie, removeCookie] = useExpertCookies([
+		'timesPoliticSeenNew',
+	]);
+	const [open, setOpen] = useState(
+		!timesPoliticSeenNew || timesPoliticSeenNew < 14,
+	);
 	useEffect(() => {
 		if (Math.random() * 100 < 0.75) {
-			storage.remove('timesPoliticSeenNew');
+			removeCookie('timesPoliticSeenNew');
 		}
-	}, [storage]);
+	}, [removeCookie]);
 	const setClose = useCallback(() => {
-		let timesSeen = storage.get('timesPoliticSeenNew') ?? 0;
+		let timesSeen = timesPoliticSeenNew ?? 0;
 		if (typeof timesSeen !== 'number') {
 			timesSeen = 0;
 		}
-		storage.set('timesPoliticSeenNew', timesSeen + 1);
+		setCookie('timesPoliticSeenNew', timesSeen + 1);
 		setOpen(false);
-	}, [storage]);
+	}, [setCookie, timesPoliticSeenNew]);
 	const selectedText = useMemo(
 		() => possibleTexts[Math.floor(Math.random() * possibleTexts.length)],
 		[],
