@@ -67,7 +67,7 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
 					<Refresh />
 				</IconButton>
 			)}
-			<ExtraMenu />
+			<ExtraMenu favKey={regional ? 'regionalFavs' : 'favs'} />
 		</BaseHeader>
 	);
 };

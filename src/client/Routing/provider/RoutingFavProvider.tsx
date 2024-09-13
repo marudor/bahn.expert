@@ -1,4 +1,4 @@
-import { useStorage } from '@/client/useStorage';
+import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import constate from 'constate';
 import { useCallback, useState } from 'react';
@@ -25,16 +25,16 @@ function useRoutingFavStorage({
 	initialFavs,
 }: PropsWithChildren<InitialRoutingFavStorageProps>) {
 	const [favs, setFavs] = useState<RoutingFavs>(initialFavs || {});
-	const storage = useStorage();
+	const [_, setRoutingFav] = useExpertCookies(['rfavs']);
 	const updateFavs = useCallback(
 		(updateFn: (oldFavs: RoutingFavs) => RoutingFavs) => {
 			setFavs((oldFavs) => {
 				const newFavs = updateFn(oldFavs);
-				storage.set('rfavs', newFavs);
+				setRoutingFav('rfavs', newFavs);
 				return newFavs;
 			});
 		},
-		[storage],
+		[setRoutingFav],
 	);
 
 	const unfav = useCallback(
@@ -82,11 +82,10 @@ export const [InnerRoutingFavProvider, useRoutingFavs, useRoutingFavActions] =
 export const RoutingFavProvider: FC<PropsWithChildren<unknown>> = ({
 	children,
 }) => {
-	const storage = useStorage();
-	const savedRoutingFavs = storage.get('rfavs');
+	const [cookies] = useExpertCookies(['rfavs']);
 
 	return (
-		<InnerRoutingFavProvider initialFavs={savedRoutingFavs}>
+		<InnerRoutingFavProvider initialFavs={cookies.rfavs}>
 			{children}
 		</InnerRoutingFavProvider>
 	);

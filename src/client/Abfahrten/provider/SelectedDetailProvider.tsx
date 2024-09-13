@@ -1,4 +1,4 @@
-import { useStorage } from '@/client/useStorage';
+import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import constate from 'constate';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
@@ -11,7 +11,9 @@ const useSelectedDetailInternal = ({
 }: PropsWithChildren<{
 	initialSelectedDetail?: string;
 }>) => {
-	const storage = useStorage();
+	const [_, setCookie, removeCookie] = useExpertCookies([
+		selectedDetailCookieName,
+	]);
 	const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
 		initialSelectedDetail,
 	);
@@ -23,15 +25,15 @@ const useSelectedDetailInternal = ({
 					newSelected === oldSelectedDetail ? undefined : newSelected;
 
 				if (detailToSave) {
-					storage.set(selectedDetailCookieName, detailToSave);
+					setCookie(selectedDetailCookieName, detailToSave);
 				} else {
-					storage.remove(selectedDetailCookieName);
+					removeCookie(selectedDetailCookieName);
 				}
 
 				return detailToSave;
 			});
 		},
-		[storage],
+		[setCookie, removeCookie],
 	);
 
 	return {
@@ -53,14 +55,14 @@ export const [
 export const SelectedDetailProvider: FC<PropsWithChildren<unknown>> = ({
 	children,
 }) => {
-	const storage = useStorage();
-	const savedSelectedDetail = storage.get(selectedDetailCookieName, {
+	const [cookies, setCookie] = useExpertCookies([selectedDetailCookieName], {
 		doNotParse: true,
 	});
+	const savedSelectedDetail = cookies.selectedDetail;
 	const hash = useLocation().hash?.slice(1);
 	if (hash) {
 		window.location.href = '';
-		storage.set(selectedDetailCookieName, hash);
+		setCookie(selectedDetailCookieName, hash);
 	}
 
 	return (

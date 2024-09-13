@@ -1,6 +1,6 @@
+import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { trpc } from '@/client/RPC';
-import { useStorage } from '@/client/useStorage';
 import constate from 'constate';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
@@ -10,10 +10,10 @@ export interface Filter {
 	products: string[];
 }
 
-const filterCookieName = 'defaultFilter';
+const filterCookieName = 'defaultFilter' as const;
 
 const useFilter = (initialFilter: Filter) => {
-	const storage = useStorage();
+	const [_, setCookie] = useExpertCookies([filterCookieName]);
 	const [filterOpen, setFilterOpen] = useState(false);
 	const [onlyDepartures] = useState(initialFilter.onlyDepartures);
 	const [productFilter, setProductFilter] = useState(initialFilter.products);
@@ -28,8 +28,8 @@ const useFilter = (initialFilter: Filter) => {
 	}, []);
 
 	const saveProductFilter = useCallback(() => {
-		storage.set(filterCookieName, productFilter);
-	}, [productFilter, storage]);
+		setCookie(filterCookieName, productFilter);
+	}, [productFilter, setCookie]);
 
 	return {
 		onlyDepartures,
@@ -85,14 +85,14 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
 	abfahrtenFetch,
 	urlPrefix,
 }) => {
-	const storage = useStorage();
+	const [filterCookie] = useExpertCookies([filterCookieName]);
 	const query = useQuery();
 	const queryFilter = Array.isArray(query.filter)
 		? (query.filter as string[])
 		: typeof query.filter === 'string'
 			? query.filter.split(',')
 			: undefined;
-	const savedFilter = queryFilter || storage.get(filterCookieName);
+	const savedFilter = queryFilter || filterCookie;
 
 	const savedConfig: AbfahrtenConfigProviderValue = {
 		filter: {

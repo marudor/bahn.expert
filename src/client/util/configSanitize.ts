@@ -1,9 +1,10 @@
 import type { CommonConfigSanitize } from '@/client/Common/config';
 
-const booleanCheck = (value: string | string[] | undefined): boolean =>
-	value === 'true';
+const booleanCheck = (
+	value: string | string[] | undefined | boolean,
+): boolean => value === 'true' || value === true;
 const numberCheck = (
-	value: string | string[] | undefined,
+	value: string | string[] | undefined | number,
 	fallback: number,
 ): number => {
 	if (!value) return fallback;
@@ -14,7 +15,9 @@ const numberCheck = (
 	return n;
 };
 
-const dateCheck = (value: string | string[] | undefined): Date | undefined => {
+const dateCheck = (
+	value: string | string[] | undefined | Date,
+): Date | undefined => {
 	if (typeof value !== 'string') {
 		return undefined;
 	}

@@ -1,9 +1,10 @@
+import {
+	useFavAction,
+	useFavs,
+	useUnfavAction,
+} from '@/client/Abfahrten/hooks/useFavs';
 import { useAbfahrtenFilterOpen } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import {
-	useFavActions,
-	useFavs,
-} from '@/client/Abfahrten/provider/FavProvider';
 import { trpc } from '@/client/RPC';
 import {
 	Favorite,
@@ -18,7 +19,11 @@ import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 import { FilterModal } from './FilterModal';
 
-export const ExtraMenu: FC = () => {
+interface Props {
+	favKey: 'regionalFavs' | 'favs';
+}
+
+export const ExtraMenu: FC<Props> = ({ favKey }) => {
 	const setFilterOpen = useAbfahrtenFilterOpen();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { data: lageplan } = trpc.stopPlace.lageplan.useQuery(
@@ -31,8 +36,9 @@ export const ExtraMenu: FC = () => {
 			staleTime: Number.POSITIVE_INFINITY,
 		},
 	);
-	const favs = useFavs();
-	const { fav, unfav } = useFavActions();
+	const favs = useFavs(favKey);
+	const fav = useFavAction(favKey);
+	const unfav = useUnfavAction(favKey);
 	const isFaved = Boolean(currentStopPlace && favs[currentStopPlace.evaNumber]);
 	const [anchor, setAnchor] = useState<undefined | HTMLElement>();
 	const toggleFav = useCallback(() => {

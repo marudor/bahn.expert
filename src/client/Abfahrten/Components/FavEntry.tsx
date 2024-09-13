@@ -1,5 +1,5 @@
+import { useUnfavAction } from '@/client/Abfahrten/hooks/useFavs';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { useFavActions } from '@/client/Abfahrten/provider/FavProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { Delete } from '@mui/icons-material';
 import { IconButton, Paper, styled } from '@mui/material';
@@ -39,7 +39,7 @@ const UnclickablePaper = styled(BasePaper)`
 
 interface Props {
 	fav: MinimalStopPlace;
-	noDelete?: boolean;
+	favKey?: 'regionalFavs' | 'favs';
 	'data-testid'?: string;
 }
 
@@ -75,16 +75,16 @@ export const FavEntryDisplay: FC<FavEntryDisplayProps> = ({
 
 export const FavEntry: FC<Props> = ({
 	fav,
-	noDelete,
 	'data-testid': testid = 'favEntry',
+	favKey,
 }) => {
 	const urlPrefix = useAbfahrtenUrlPrefix();
-	const { unfav } = useFavActions();
+	const unfav = useUnfavAction(favKey);
 	const deleteFav = useCallback(
 		(e: MouseEvent) => {
 			e.stopPropagation();
 			e.preventDefault();
-			unfav(fav);
+			unfav?.(fav);
 		},
 		[fav, unfav],
 	);
@@ -97,7 +97,7 @@ export const FavEntry: FC<Props> = ({
 		>
 			<FavEntryDisplay
 				text={fav.name}
-				deleteFav={noDelete ? undefined : deleteFav}
+				deleteFav={favKey ? deleteFav : undefined}
 			/>
 		</Link>
 	);

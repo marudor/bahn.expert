@@ -6,7 +6,7 @@ interface Props {}
 
 export const RegionalMainPage: FC<Props> = () => (
 	<>
-		<FavList>
+		<FavList favKey="regionalFavs">
 			<FavEntryDisplay nonClickable text="Nahverkehr Abfahrten" />
 		</FavList>
 	</>

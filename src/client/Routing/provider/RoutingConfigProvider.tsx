@@ -1,4 +1,4 @@
-import { useStorage } from '@/client/useStorage';
+import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import constate from 'constate';
@@ -24,6 +24,13 @@ export interface RoutingSettings {
 	onlyNetzcard: boolean;
 	hafasProfile?: AllowedHafasProfile.DB | AllowedHafasProfile.OEBB;
 }
+const routingConfigKeys = [
+	'maxChanges',
+	'transferTime',
+	'onlyRegional',
+	'onlyNetzcard',
+	'hafasProfile',
+] as (keyof RoutingSettings)[];
 
 const useRoutingConfigInternal = ({
 	initialSettings,
@@ -38,7 +45,7 @@ const useRoutingConfigInternal = ({
 	const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
 	const [departureMode, setDepartureMode] = useState<'an' | 'ab'>('ab');
 	const [formattedDate, setFormattedDate] = useState('');
-	const storage = useStorage();
+	const [routingConfig, setRoutingConfig] = useExpertCookies(routingConfigKeys);
 
 	const updateFormattedDate = useCallback(() => {
 		if (!touchedDate) {
@@ -75,13 +82,13 @@ const useRoutingConfigInternal = ({
 
 	const updateSetting = useCallback(
 		<K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
-			storage.set(key, value);
+			setRoutingConfig(key, value);
 			setSettings((oldSettings) => ({
 				...oldSettings,
 				[key]: value,
 			}));
 		},
-		[storage],
+		[setRoutingConfig],
 	);
 
 	const updateVia = useCallback(
@@ -177,14 +184,14 @@ export const [
 export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
 	children,
 }) => {
-	const storage = useStorage();
+	const [routingConfig] = useExpertCookies(routingConfigKeys);
 
 	const savedRoutingSettings: RoutingSettings = {
-		maxChanges: storage.get('maxChanges')?.toString() ?? '-1',
-		transferTime: storage.get('transferTime')?.toString() ?? '0',
-		onlyRegional: storage.get('onlyRegional') ?? false,
-		onlyNetzcard: storage.get('onlyNetzcard') ?? false,
-		hafasProfile: storage.get('hafasProfile') ?? AllowedHafasProfile.DB,
+		maxChanges: routingConfig.maxChanges?.toString() ?? '-1',
+		transferTime: routingConfig.transferTime?.toString() ?? '0',
+		onlyRegional: routingConfig.onlyRegional ?? false,
+		onlyNetzcard: routingConfig.onlyNetzcard ?? false,
+		hafasProfile: routingConfig.hafasProfile ?? AllowedHafasProfile.DB,
 	};
 
 	return (
