@@ -1,6 +1,6 @@
+import { FullTrainName } from '@/client/Common/Components/FullTrainName';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import type { CommonProductInfo } from '@/types/HAFAS';
 import {
 	ArrowBackIos,
 	ArrowForwardIos,
@@ -59,25 +59,6 @@ const ArrowBack = styled(ArrowBackIos)`
 const ArrowForward = styled(ArrowBack.withComponent(ArrowForwardIos))`
   margin-left: 0.1em;
 `;
-
-interface FTNProps {
-	train?: CommonProductInfo;
-	fallback: string;
-}
-
-const FullTrainName: FC<FTNProps> = ({ train, fallback }) => {
-	if (!train) {
-		return <span>{fallback}</span>;
-	}
-	const usesNumberAsIdentification =
-		train?.number && train.name.endsWith(train.number);
-	return (
-		<span data-testid="detailsTrainName">
-			{train.name}
-			{!usesNumberAsIdentification && ` (${train.number})`}
-		</span>
-	);
-};
 
 export const Header: FC = () => {
 	const {

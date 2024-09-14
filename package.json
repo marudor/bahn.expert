@@ -41,7 +41,7 @@
 		"generate:risStations": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i ./src/business-hub/ris-stations-1.10.0.yaml -o src/external/generated/risStations -g typescript-axios"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.8.3",
+		"@biomejs/biome": "^1.9.0",
 		"@commitlint/cli": "^19.4.1",
 		"@commitlint/config-conventional": "^19.4.1",
 		"@cypress/webpack-preprocessor": "^6.0.2",

@@ -1,11 +1,14 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { trpc } from '@/client/RPC';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 export const StopPlaceNameWithRl100: FC<{
 	stopPlace: MinimalStopPlace;
-}> = ({ stopPlace }) => {
+	withAbfahrtenLink?: boolean;
+	className?: string;
+}> = ({ stopPlace, withAbfahrtenLink, className }) => {
 	const { showRl100 } = useCommonConfig();
 	const { data: fetchedStopPlace } = trpc.stopPlace.byKey.useQuery(
 		stopPlace.evaNumber,
@@ -15,12 +18,23 @@ export const StopPlaceNameWithRl100: FC<{
 	);
 	const rl100 = stopPlace.ril100 || fetchedStopPlace?.ril100;
 
+	let name: ReactNode;
 	if (!showRl100 || !rl100) {
-		return <>{stopPlace.name}</>;
+		name = stopPlace.name;
+	} else {
+		name = (
+			<>
+				{stopPlace.name} [{rl100}]
+			</>
+		);
 	}
-	return (
-		<>
-			{stopPlace.name} [{rl100}]
-		</>
-	);
+
+	if (withAbfahrtenLink) {
+		return (
+			<Link className={className} to={`/${stopPlace.name}`}>
+				{name}
+			</Link>
+		);
+	}
+	return name;
 };

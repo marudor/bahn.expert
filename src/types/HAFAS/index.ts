@@ -219,6 +219,10 @@ export interface CommonStopInfo {
 	cancelled?: boolean;
 	isRealTime?: boolean;
 	noPassengerChange?: boolean;
+	/**
+	 * Arrival/Departure ID
+	 */
+	id?: string;
 }
 
 export interface RemL {

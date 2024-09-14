@@ -54,6 +54,7 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
 		replacedBy: e.replacedBy,
 		replacementFor: e.replacementFor,
 		transport: e.transport,
+		id: e.arrivalOrDepartureID,
 	};
 }
 

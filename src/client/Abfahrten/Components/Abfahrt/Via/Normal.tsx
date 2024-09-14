@@ -6,7 +6,7 @@ import { isHbf } from './index';
 
 export const StyledViaStop = styled('span', {
 	shouldForwardProp: (p) => p !== 'stop',
-})<{ stop: Stop }>(
+})<{ stop: Pick<Stop, 'cancelled' | 'additional' | 'name'> }>(
 	({ theme, stop }) => ({
 		color: theme.palette.text.primary,
 		...(isHbf(stop) && {

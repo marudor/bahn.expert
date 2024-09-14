@@ -1,7 +1,7 @@
 import { AuslastungsValue } from '@/types/routing';
 import { Close, Done, ErrorOutline, Help, Warning } from '@mui/icons-material';
 import { styled } from '@mui/material';
-import type { FC } from 'react';
+import { type FC, type ForwardedRef, forwardRef } from 'react';
 
 function getIcon(auslastung?: AuslastungsValue) {
 	switch (auslastung) {
@@ -70,13 +70,17 @@ export interface Props {
 	auslastung?: AuslastungsValue;
 	className?: string;
 }
-export const SingleAuslastungsDisplay: FC<Props> = ({
-	auslastung,
-	className,
-}) => {
-	return (
-		<Container className={className} auslastung={auslastung}>
-			{getIcon(auslastung)}
-		</Container>
-	);
-};
+export const SingleAuslastungsDisplay: FC<Props> = forwardRef(
+	({ auslastung, className, ...props }, ref: ForwardedRef<HTMLSpanElement>) => {
+		return (
+			<Container
+				className={className}
+				auslastung={auslastung}
+				{...props}
+				ref={ref}
+			>
+				{getIcon(auslastung)}
+			</Container>
+		);
+	},
+);
