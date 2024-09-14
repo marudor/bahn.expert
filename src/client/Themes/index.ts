@@ -8,7 +8,13 @@ import {
 	red,
 	yellow,
 } from '@mui/material/colors';
-import { createTheme, css, darken, lighten } from '@mui/material/styles';
+import {
+	type Theme,
+	createTheme,
+	css,
+	darken,
+	lighten,
+} from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 declare module '@mui/system' {
 	interface Shape {
@@ -36,6 +42,12 @@ declare module '@mui/material/styles' {
 		shadedBackground: string;
 		doubleShadedBackground: string;
 	}
+}
+
+declare module '@mui/material' {
+	export function useMediaQuery(
+		queryInput: string | ((theme: Theme) => string),
+	): boolean;
 }
 
 // unit: em
@@ -134,6 +146,13 @@ export const theme = createTheme({
 		headerSpacing: `${headerSpacing}em`,
 	},
 	components: {
+		MuiDialog: {
+			styleOverrides: {
+				container: {
+					alignItems: 'flex-start',
+				},
+			},
+		},
 		MuiTextField: {
 			defaultProps: {
 				variant: 'standard',

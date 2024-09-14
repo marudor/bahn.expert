@@ -3,19 +3,10 @@ import { Stop } from '@/client/Common/Components/Details/Stop';
 import { Error } from '@/client/Common/Error';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import type { RouteStop } from '@/types/routing';
-import { Stack, css, styled } from '@mui/material';
+import { Stack } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC } from 'react';
 import { Loading } from '../Loading';
-
-const ErrorStyle = css`
-  width: 80%;
-  height: 80%;
-  margin: 0 auto;
-  text-align: center;
-`;
-
-const ErrorIcon = styled(Error)(ErrorStyle);
 
 export const StopList: FC = () => {
 	const { details, error, initialDepartureDate } = useDetails();
@@ -54,6 +45,7 @@ export const StopList: FC = () => {
 
 			return (
 				<Stop
+					journey={details}
 					onStopClick={onStopClick}
 					isPast={!hadCurrent}
 					continuationFor={i === 0 ? details.continuationFor : undefined}

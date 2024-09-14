@@ -1,5 +1,6 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
+import { ConnectionIcon } from '@/client/Common/Components/Connections/ConnectionIcon';
 import { Continuation } from '@/client/Common/Components/Details/Continuation';
 import { TransportName } from '@/client/Common/Components/Details/TransportName';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
@@ -12,6 +13,7 @@ import type {
 	TransportOriginRef,
 } from '@/external/generated/risJourneysV2';
 import type { ParsedProduct } from '@/types/HAFAS';
+import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
 import { Stack, Tooltip, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
@@ -76,11 +78,18 @@ const MessageContainer = styled('div')`
 `;
 
 const StyledTravelynxLink = styled(TravelynxLink)`
+	display: flex;
   grid-area: c;
+	transform: translateY(.15em);
 `;
 
 const StyledOccupancy = styled(AuslastungsDisplay)`
   grid-area: o;
+`;
+
+const StyledConnectionIcon = styled(ConnectionIcon)`
+	transform: scale(.85);
+	grid-area: con;
 `;
 
 const Container = styled('div')<{
@@ -93,13 +102,13 @@ const Container = styled('div')<{
 		display: 'grid',
 		gridGap: '0 .3em',
 		gridTemplateRows: '1fr',
-		gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} c" "dp ${
+		gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} con c" "dp ${
 			hasOccupancy ? 'o' : 't'
-		} depP c" "tw tw tw tw" "wr wr wr wr" "m m m m"`,
+		} depP con c" "tw tw tw tw tw" "wr wr wr wr wr" "m m m m m"`,
 		alignItems: 'center',
 		borderBottom: `1px solid ${theme.vars.palette.text.primary}`,
 		position: 'relative',
-		gridTemplateColumns: '4.8em 1fr max-content',
+		gridTemplateColumns: '4.8em 1fr max-content max-content',
 	}),
 	({ theme, past }) =>
 		past && {
@@ -112,6 +121,7 @@ const Container = styled('div')<{
 );
 
 interface Props {
+	journey?: ParsedSearchOnTripResponse;
 	stop: RouteStop;
 	train?: ParsedProduct;
 	showWR?: ParsedProduct;
@@ -124,6 +134,7 @@ interface Props {
 	continuationBy?: TransportDestinationRef[];
 }
 export const Stop: FC<Props> = ({
+	journey,
 	stop,
 	showWR,
 	train,
@@ -221,6 +232,9 @@ export const Stop: FC<Props> = ({
 					isPlan={stop.departure.isPlan}
 				/>
 			)}
+			{stop.arrival?.id && !stop.arrival.cancelled && (
+				<StyledConnectionIcon journey={journey} stop={stop} />
+			)}
 			<DeparturePlatform
 				data-testid="departurePlatform"
 				{...platforms.departure}
@@ -230,11 +244,9 @@ export const Stop: FC<Props> = ({
 			)}
 			<Stack gridArea="tw" paddingLeft={1} width="fit-content">
 				{stop.newTransport && (
-					<>
-						<span>
-							Fährt weiter als <TransportName transport={stop.newTransport} />
-						</span>
-					</>
+					<span>
+						Fährt weiter als <TransportName transport={stop.newTransport} />
+					</span>
 				)}
 				<Continuation
 					continuationFor={continuationFor}

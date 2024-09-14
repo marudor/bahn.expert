@@ -1,5 +1,6 @@
 import { rpcAppRouter } from '@/server/rpc/base';
 import { coachSequenceRpcRouter } from '@/server/rpc/coachSequence';
+import { connectionsRouter } from '@/server/rpc/connections';
 import { hafasRpcRouter } from '@/server/rpc/hafas';
 import { irisRpcRouter } from '@/server/rpc/iris';
 import { journeysRpcRouter } from '@/server/rpc/journeys';
@@ -14,6 +15,7 @@ const mainRouter = rpcAppRouter({
 	iris: irisRpcRouter,
 	hafas: hafasRpcRouter,
 	journeys: journeysRpcRouter,
+	connections: connectionsRouter,
 });
 
 export type AppRouter = typeof mainRouter;
