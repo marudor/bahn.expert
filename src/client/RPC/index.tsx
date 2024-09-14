@@ -6,14 +6,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
 	type TRPCLink,
 	createTRPCClient,
+	httpBatchLink,
 	httpLink,
-	unstable_httpBatchStreamLink,
 } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 
 export const trpc = createTRPCReact<AppRouter>();
 
-const link = !globalThis.Cypress ? unstable_httpBatchStreamLink : httpLink;
+const link = !globalThis.Cypress ? httpBatchLink : httpLink;
 
 const links = [
 	link({
