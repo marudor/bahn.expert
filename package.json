@@ -28,6 +28,7 @@
 		"build:server": "node scripts/buildServer.cjs",
 		"build": "run-s build:clean build:server build:client",
 		"dev": "SWCRC=1 node -r @swc-node/register src/server/index.ts",
+		"script": "SWCRC=1 node -r @swc-node/register",
 		"lint": "biome check",
 		"test": "run-p lint test:unit test:ts",
 		"test:unit": "vitest",

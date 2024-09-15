@@ -38,6 +38,6 @@
 		"src",
 		"cypress.config.ts",
 		"cypress/support/component.tsx",
-		"scripts/clearCorruptCache.ts"
+		"scripts/*.ts"
 	]
 }
