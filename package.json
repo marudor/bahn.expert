@@ -175,7 +175,7 @@
 	"homepage": "https://bahn.expert",
 	"pnpm": {
 		"overrides": {
-			"axios": "^1.6.2"
+			"axios": "^1.7.7"
 		},
 		"patchedDependencies": {
 			"@cypress/webpack-preprocessor@6.0.2": "patches/@cypress__webpack-preprocessor@6.0.2.patch",

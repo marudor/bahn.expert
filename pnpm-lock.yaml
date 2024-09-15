@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  axios: ^1.6.2
+  axios: ^1.7.7
 
 patchedDependencies:
   '@cypress/webpack-preprocessor@6.0.2':
@@ -1551,7 +1551,7 @@ packages:
     resolution: {integrity: sha512-Z6GuOUdNQjP7FX+OuV2Ybyamse+/e0BFdTWBX5JxpBDKA+YkdLynDgG6HTF04zy6e9zPa19UX0WA2VDoehwhXQ==}
     peerDependencies:
       '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-      axios: ^1.6.2
+      axios: ^1.7.7
       rxjs: ^6.0.0 || ^7.0.0
 
   '@nestjs/common@10.3.0':
