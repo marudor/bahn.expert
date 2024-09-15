@@ -5,6 +5,7 @@ import { stopOccupancy } from '@/server/HAFAS/occupancy';
 import { vrrOccupancy } from '@/server/StopPlace/vrrOccupancy';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
+import type { AbfahrtenRPCQuery } from '@/server/rpc/iris';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { ArrivalStationBoardEntry } from '@/types/stationBoard';
 import { TRPCError } from '@trpc/server';
@@ -66,7 +67,7 @@ export const hafasRpcRouter = rpcAppRouter({
 				wings: {},
 				stopPlaces: [evaNumber],
 			};
-		}),
+		}) as AbfahrtenRPCQuery,
 	occupancy: rpcProcedure
 		.input(
 			z.object({

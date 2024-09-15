@@ -2,9 +2,7 @@ import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { trpc } from '@/client/RPC';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteAuslastung, RouteStop } from '@/types/routing';
-import type { AxiosError } from 'axios';
 import constate from 'constate';
 import { addDays } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -34,13 +32,6 @@ const useInnerDetails = ({
 	const { autoUpdate } = useCommonConfig();
 	const [isMapDisplay, setIsMapDisplay] = useState(false);
 	const [showMarkers, setShowMarkers] = useState(false);
-	const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
-	const [additionalInformation, setAdditionalInformation] =
-		useState<AdditionalJourneyInformation>();
-	const [error, setError] = useState<AxiosError>();
-	const navigate = useNavigate();
-	const trpcUtils = trpc.useUtils();
-
 	const initialDepartureDate = useMemo(() => {
 		if (!initialDepartureDateString) return new Date();
 		const initialDepartureNumber = +initialDepartureDateString;
@@ -50,6 +41,24 @@ const useInnerDetails = ({
 				: initialDepartureNumber,
 		);
 	}, [initialDepartureDateString]);
+
+	const {
+		data: details,
+		refetch: refetchDetails,
+		error,
+	} = trpc.journeys.details.useQuery({
+		trainName,
+		initialDepartureDate,
+		evaNumberAlongRoute,
+		journeyId,
+		administration,
+		jid,
+	});
+
+	const [additionalInformation, setAdditionalInformation] =
+		useState<AdditionalJourneyInformation>();
+	const navigate = useNavigate();
+	const trpcUtils = trpc.useUtils();
 
 	const sameTrainDaysInFuture = useCallback(
 		(daysForward: number) => {
@@ -61,9 +70,7 @@ const useInnerDetails = ({
 					urlPrefix || '/'
 				}details/${trainName}/${newDate.toISOString()}?administration=${newAdministration}`,
 			);
-			setDetails(undefined);
 			setAdditionalInformation(undefined);
-			setError(undefined);
 		},
 		[
 			initialDepartureDate,
@@ -75,82 +82,59 @@ const useInnerDetails = ({
 		],
 	);
 
-	const refreshDetails = useCallback(
-		(isAutorefresh?: boolean) => {
-			if (!isAutorefresh) {
-				setDetails(undefined);
-				setAdditionalInformation(undefined);
-			}
-			trpcUtils.journeys.details
-				.fetch({
-					trainName,
-					initialDepartureDate,
-					evaNumberAlongRoute,
-					journeyId,
-					administration,
-					jid,
-				})
-				.then(async (details) => {
-					setDetails(details);
-					// its a RIS thing, lets get extra information
-					if (details.journeyId) {
-						try {
-							setAdditionalInformation(
-								await trpcUtils.hafas.additionalInformation.fetch({
-									trainName,
-									journeyId: details.journeyId,
-									initialDepartureDate,
-									evaNumberAlongRoute:
-										details.stops[details.stops.length - 1].station.evaNumber,
-								}),
-							);
-						} catch {
-							// ignoring this
-						}
-					} else {
-						const occupancy: Record<string, RouteAuslastung> = {};
-						for (const s of details.stops) {
-							if (s.auslastung) {
-								occupancy[s.station.evaNumber] = s.auslastung;
-							}
-						}
-						setAdditionalInformation({
-							occupancy,
-						});
+	useEffect(() => {
+		if (!details) {
+			return;
+		}
+		const fetchAdditional = async () => {
+			if (details.journeyId) {
+				try {
+					setAdditionalInformation(
+						await trpcUtils.hafas.additionalInformation.fetch(
+							{
+								trainName,
+								journeyId: details.journeyId,
+								initialDepartureDate,
+								evaNumberAlongRoute:
+									details.stops[details.stops.length - 1].station.evaNumber,
+							},
+							{
+								staleTime: Number.POSITIVE_INFINITY,
+							},
+						),
+					);
+				} catch {
+					// ignoring this
+				}
+			} else {
+				const occupancy: Record<string, RouteAuslastung> = {};
+				for (const s of details.stops) {
+					if (s.auslastung) {
+						occupancy[s.station.evaNumber] = s.auslastung;
 					}
-					setError(undefined);
-				})
-				.catch((e) => {
-					if (!isAutorefresh) {
-						setError(e);
-					}
+				}
+				setAdditionalInformation({
+					occupancy,
 				});
-		},
-		[
-			trpcUtils.journeys.details,
-			trpcUtils.hafas.additionalInformation,
-			trainName,
-			initialDepartureDate,
-			evaNumberAlongRoute,
-			journeyId,
-			administration,
-			jid,
-		],
-	);
+			}
+		};
+		fetchAdditional();
+	}, [details, trainName, initialDepartureDate, trpcUtils]);
 
 	useEffect(() => {
-		refreshDetails();
 		let intervalId: NodeJS.Timeout;
 		const cleanup = () => clearInterval(intervalId);
 		if (autoUpdate) {
 			intervalId = setInterval(() => {
-				refreshDetails(true);
+				refetchDetails({
+					throwOnError: false,
+				});
 			}, autoUpdate * 1000);
 		} else {
 			cleanup();
 		}
 		return cleanup;
-	}, [autoUpdate, refreshDetails]);
+	}, [autoUpdate, refetchDetails]);
 
 	const toggleMapDisplay = useCallback(
 		() => setIsMapDisplay((old) => !old),
@@ -193,7 +177,7 @@ const useInnerDetails = ({
 		additionalInformation,
 		error,
 		urlPrefix,
-		refreshDetails,
+		refreshDetails: refetchDetails,
 		polyline: matchedPolyline,
 		isMapDisplay,
 		toggleMapDisplay,

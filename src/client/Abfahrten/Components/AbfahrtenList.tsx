@@ -1,12 +1,10 @@
 import {
+	useAbfahrtenDepartures,
 	useAbfahrtenError,
 	useCurrentAbfahrtenStopPlace,
 	useRawAbfahrten,
 } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import {
-	useAbfahrten,
-	useRefreshCurrent,
-} from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import { useRefreshCurrent } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import {
 	SelectedDetailProvider,
 	useSelectedDetail,
@@ -41,7 +39,7 @@ const InnerAbfahrtenList = () => {
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const selectedDetail = useSelectedDetail();
 	const [scrolled, setScrolled] = useState(false);
-	const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
+	const { filteredDepartures, departures } = useAbfahrtenDepartures();
 	const paramStation = useParams().station;
 	const { autoUpdate } = useCommonConfig();
 	const refreshCurrentAbfahrten = useRefreshCurrent();
@@ -68,10 +66,10 @@ const InnerAbfahrtenList = () => {
 	}, [setCurrentStopPlace]);
 
 	useEffect(() => {
-		if (unfilteredAbfahrten) {
+		if (departures) {
 			setScrolled(false);
 		}
-	}, [unfilteredAbfahrten]);
+	}, [departures]);
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout;
@@ -110,13 +108,13 @@ const InnerAbfahrtenList = () => {
 		if (scrolled) {
 			return;
 		}
-		if (unfilteredAbfahrten) {
+		if (departures) {
 			let scrollDom: HTMLElement | null = null;
 
 			if (selectedDetail) {
 				scrollDom = document.getElementById(selectedDetail);
 			}
-			if (!scrollDom && unfilteredAbfahrten.lookbehind.length > 0) {
+			if (!scrollDom && departures.lookbehind.length > 0) {
 				scrollDom = document.querySelector('#lookaheadMarker');
 			}
 			if (scrollDom) {
@@ -131,39 +129,39 @@ const InnerAbfahrtenList = () => {
 			}
 			setScrolled(true);
 		}
-	}, [unfilteredAbfahrten, scrolled, selectedDetail]);
+	}, [departures, scrolled, selectedDetail]);
 
 	if (abfahrtenError) {
 		return <Error error={abfahrtenError} context="Halt" />;
 	}
 
 	return (
-		<Loading check={unfilteredAbfahrten}>
+		<Loading check={departures}>
 			{() => (
 				<Stack component="main">
-					{filteredAbfahrten &&
-					(filteredAbfahrten.departures.length > 0 ||
-						filteredAbfahrten.lookbehind.length > 0) ? (
+					{filteredDepartures &&
+					(filteredDepartures.departures.length > 0 ||
+						filteredDepartures.lookbehind.length > 0) ? (
 						<>
-							{Boolean(
-								unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10,
-							) && <Streik />}
-							{filteredAbfahrten.lookbehind.length > 0 && (
+							{Boolean(departures?.strike && departures.strike > 10) && (
+								<Streik />
+							)}
+							{filteredDepartures.lookbehind.length > 0 && (
 								<Lookbehind id="lookbehind" data-testid="lookbehind">
-									{filteredAbfahrten.lookbehind.map((a) => (
+									{filteredDepartures.lookbehind.map((a) => (
 										<Abfahrt abfahrt={a} key={a.rawId} />
 									))}
 									<LookaheadMarker id="lookaheadMarker" />
 								</Lookbehind>
 							)}
 							<div id="lookahead" data-testid="lookahead">
-								{filteredAbfahrten.departures.map((a) => (
+								{filteredDepartures.departures.map((a) => (
 									<Abfahrt abfahrt={a} key={a.rawId} />
 								))}
 							</div>
 						</>
 					) : (
-						<NothingFound unfilteredAbfahrten={unfilteredAbfahrten} />
+						<NothingFound unfilteredAbfahrten={departures} />
 					)}
 				</Stack>
 			)}

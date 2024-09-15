@@ -52,7 +52,7 @@ export const ConnectionDisplay: FC<Props> = ({
 			<PositionedCloseButton onClick={toggle}>
 				<Close />
 			</PositionedCloseButton>
-			<DialogTitle sx={{ fontSize: '.9em' }}>
+			<DialogTitle sx={{ fontSize: '.9em', marginRight: '1em' }}>
 				Anschlüsse für <FullTrainName train={journey.train} /> in{' '}
 				{stop.station.name} Ankunft {formatDate(stop.arrival.time, 'HH:mm')} an
 				Gleis {stop.arrival.platform}

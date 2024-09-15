@@ -20,7 +20,7 @@ const useCommonConfigInternal = ({
 }>) => {
 	const [config, setConfig] = useState(initialConfig);
 	const [configOpen, setConfigOpen] = useState(false);
-	const [_, setCookie] = useExpertCookies(commonConfigKeys);
+	const [, setCookie] = useExpertCookies(commonConfigKeys);
 	const setCommonConfigKey = useCallback(
 		<K extends keyof CommonConfig>(key: K, value: CommonConfig[K]) => {
 			setCookie(key, value);

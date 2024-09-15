@@ -3,36 +3,28 @@ import type {
 	AvailableBR,
 	AvailableIdentifierOnly,
 } from '@/types/coachSequence';
-import type { TrainRunWithBR } from '@/types/trainRuns';
 import constate from 'constate';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 
 const useInnerTrainRuns = (_p: PropsWithChildren<unknown>) => {
-	const [trainRuns, setTrainRuns] = useState<TrainRunWithBR[]>();
 	const [date, setDate] = useState(new Date());
 	const [baureihen, setBaureihen] = useState<AvailableBR[]>([]);
 	const [identifier, setIdentifier] = useState<AvailableIdentifierOnly[]>([]);
-	const trpcUtils = trpc.useUtils();
 
-	const fetchTrainRuns = useCallback(async () => {
-		setTrainRuns(undefined);
-		const trainRuns = await trpcUtils.coachSequence.trainRuns.fetch({
+	const { data: trainRuns } = trpc.coachSequence.trainRuns.useQuery(
+		{
 			date,
 			baureihen,
 			identifier,
-		});
-		setTrainRuns(trainRuns);
-	}, [date, baureihen, identifier, trpcUtils]);
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	useEffect(() => {
-		fetchTrainRuns();
-	}, []);
+		},
+		{
+			staleTime: Number.POSITIVE_INFINITY,
+		},
+	);
 
 	return {
 		trainRuns,
-		fetchTrainRuns,
 		date,
 		setDate,
 		baureihen,
