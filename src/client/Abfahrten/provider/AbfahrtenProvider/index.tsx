@@ -40,7 +40,8 @@ const useAbfahrtenInner = ({
 	const [departures, setDepartures] = useState<AbfahrtenResult>();
 	const [error, setError] = useState<unknown>();
 	const abfahrtenFetch = useAbfahrtenFetch();
-	const { startTime, lookahead, lookbehind } = useCommonConfig();
+	const { startTime, lookahead, lookbehind, onlyDepartures, showCancelled } =
+		useCommonConfig();
 
 	const updateCurrentStopPlaceByString = useCallback(
 		async (stopPlaceName: string) => {
@@ -94,7 +95,7 @@ const useAbfahrtenInner = ({
 			.catch((e) => setError(e));
 	}, [currentStopPlace, lookahead, lookbehind, startTime, abfahrtenFetch]);
 
-	const { onlyDepartures, productFilter } = useAbfahrtenFilter();
+	const { productFilter } = useAbfahrtenFilter();
 
 	const filteredDepartures = useMemo(() => {
 		if (!departures) return departures;
@@ -114,6 +115,10 @@ const useAbfahrtenInner = ({
 			filterFunctions.push((a: Abfahrt) => Boolean(a.departure));
 		}
 
+		if (!showCancelled) {
+			filterFunctions.push((a) => !a.cancelled);
+		}
+
 		if (filterFunctions.length) {
 			const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
 
@@ -122,7 +127,7 @@ const useAbfahrtenInner = ({
 		}
 
 		return filtered;
-	}, [departures, onlyDepartures, productFilter]);
+	}, [departures, onlyDepartures, productFilter, showCancelled]);
 
 	return {
 		error,

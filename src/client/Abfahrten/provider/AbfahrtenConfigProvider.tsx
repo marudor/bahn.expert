@@ -6,7 +6,6 @@ import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 export interface Filter {
-	onlyDepartures?: boolean;
 	products: string[];
 }
 
@@ -15,7 +14,6 @@ const filterCookieName = 'defaultFilter' as const;
 const useFilter = (initialFilter: Filter) => {
 	const [_, setCookie] = useExpertCookies([filterCookieName]);
 	const [filterOpen, setFilterOpen] = useState(false);
-	const [onlyDepartures] = useState(initialFilter.onlyDepartures);
 	const [productFilter, setProductFilter] = useState(initialFilter.products);
 	const toggleProduct = useCallback((product: string) => {
 		setProductFilter((oldProducts) => {
@@ -32,7 +30,6 @@ const useFilter = (initialFilter: Filter) => {
 	}, [productFilter, setCookie]);
 
 	return {
-		onlyDepartures,
 		productFilter,
 		toggleProduct,
 		saveProductFilter,
