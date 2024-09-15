@@ -40,15 +40,8 @@ const ButtonContainer = styled(Stack)`
 `;
 
 export const TrainRunFilter: FC = () => {
-	const {
-		date,
-		setDate,
-		baureihen,
-		setBaureihen,
-		identifier,
-		setIdentifier,
-		fetchTrainRuns,
-	} = useTrainRuns();
+	const { date, setDate, baureihen, setBaureihen, identifier, setIdentifier } =
+		useTrainRuns();
 
 	const resetFilter = useCallback(() => {
 		setBaureihen([]);
@@ -128,9 +121,6 @@ export const TrainRunFilter: FC = () => {
 				</FormControl>
 			</FilterContainer>
 			<ButtonContainer>
-				<Button variant="outlined" onClick={fetchTrainRuns}>
-					Suchen
-				</Button>
 				<Button color="warning" variant="outlined" onClick={resetFilter}>
 					Reset BR/Identifier
 				</Button>
