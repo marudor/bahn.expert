@@ -1,7 +1,4 @@
-import {
-	useAbfahrtenFetch,
-	useAbfahrtenFilter,
-} from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrtenFetch } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import {
 	useAbfahrtenDepartures,
 	useCurrentAbfahrtenStopPlace,
@@ -11,65 +8,10 @@ import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { Abfahrt } from '@/types/iris';
 import { useCallback, useMemo } from 'react';
 
-function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
-	const aTime = (a.departure?.time || a.arrival?.time)!;
-	const bTime = (b.departure?.time || b.arrival?.time)!;
-	return aTime > bTime ? 1 : -1;
-}
-
-export const useAbfahrten = () => {
-	const departures = useAbfahrtenDepartures();
-	const { showCancelled, sortByTime, onlyDepartures } = useCommonConfig();
-	const { productFilter } = useAbfahrtenFilter();
-
-	return {
-		filteredAbfahrten: useMemo(() => {
-			if (!departures) return departures;
-			const filtered = {
-				departures: departures.departures,
-				lookbehind: departures.lookbehind,
-			};
-
-			const filterFunctions: ((a: Abfahrt) => boolean)[] = [];
-
-			if (productFilter.length) {
-				filterFunctions.push(
-					(a: Abfahrt) => !productFilter.includes(a.train.type),
-				);
-			}
-			if (onlyDepartures) {
-				filterFunctions.push((a: Abfahrt) => Boolean(a.departure));
-			}
-			if (!showCancelled) {
-				filterFunctions.push((a) => !a.cancelled);
-			}
-
-			if (filterFunctions.length) {
-				const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
-
-				filtered.departures = filtered.departures.filter(f);
-				filtered.lookbehind = filtered.lookbehind.filter(f);
-			}
-
-			if (sortByTime) {
-				filtered.departures = [...filtered.departures].sort(
-					sortAbfahrtenByTime,
-				);
-				filtered.lookbehind = [...filtered.lookbehind].sort(
-					sortAbfahrtenByTime,
-				);
-			}
-
-			return filtered;
-		}, [departures, onlyDepartures, productFilter, showCancelled, sortByTime]),
-		unfilteredAbfahrten: departures,
-	};
-};
-
 const defaultTypes = ['ICE', 'IC', 'EC', 'RE', 'RB', 'S'];
 
 export const useAllTrainTypes = () => {
-	const departures = useAbfahrtenDepartures();
+	const { departures } = useAbfahrtenDepartures();
 
 	return useMemo(() => {
 		const typeSet = new Set(defaultTypes);
@@ -124,7 +66,7 @@ export const useRefreshCurrent = (visible = false) => {
 };
 
 export const useWings = (abfahrt: Abfahrt) => {
-	const departures = useAbfahrtenDepartures();
+	const { departures } = useAbfahrtenDepartures();
 	const wings = departures?.wings;
 
 	return useMemo(() => {

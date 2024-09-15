@@ -1,14 +1,15 @@
 import {
 	AbfahrtenConfigProvider,
 	useAbfahrtenFetch,
+	useAbfahrtenFilter,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import type { AbfahrtenResult } from '@/types/iris';
+import type { Abfahrt, AbfahrtenResult } from '@/types/iris';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { PropsFor } from '@mui/system';
 import type { AxiosError } from 'axios';
 import constate from 'constate';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 export type AbfahrtenError =
@@ -93,12 +94,43 @@ const useAbfahrtenInner = ({
 			.catch((e) => setError(e));
 	}, [currentStopPlace, lookahead, lookbehind, startTime, abfahrtenFetch]);
 
+	const { onlyDepartures, productFilter } = useAbfahrtenFilter();
+
+	const filteredDepartures = useMemo(() => {
+		if (!departures) return departures;
+		const filtered = {
+			departures: departures.departures,
+			lookbehind: departures.lookbehind,
+		};
+
+		const filterFunctions: ((a: Abfahrt) => boolean)[] = [];
+
+		if (productFilter.length) {
+			filterFunctions.push(
+				(a: Abfahrt) => !productFilter.includes(a.train.type),
+			);
+		}
+		if (onlyDepartures) {
+			filterFunctions.push((a: Abfahrt) => Boolean(a.departure));
+		}
+
+		if (filterFunctions.length) {
+			const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
+
+			filtered.departures = filtered.departures.filter(f);
+			filtered.lookbehind = filtered.lookbehind.filter(f);
+		}
+
+		return filtered;
+	}, [departures, onlyDepartures, productFilter]);
+
 	return {
 		error,
 		updateCurrentStopPlaceByString,
 		currentStopPlace,
 		setCurrentStopPlace,
 		departures,
+		filteredDepartures,
 		setDepartures,
 	};
 };
@@ -111,7 +143,10 @@ export const [
 	useRawAbfahrten,
 ] = constate(
 	useAbfahrtenInner,
-	(v) => v.departures,
+	(v) => ({
+		filteredDepartures: v.filteredDepartures,
+		departures: v.departures,
+	}),
 	(v) => v.currentStopPlace,
 	(v) => v.error,
 	({ departures, currentStopPlace, ...r }) => r,
