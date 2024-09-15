@@ -1,9 +1,7 @@
-import v8 from 'node:v8';
 import { checkSecrets } from '@/server/checkSecret';
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
-import { LRUCache } from 'lru-cache';
 
 export function parseCacheTTL(
 	defaultTTL: string,
@@ -127,34 +125,23 @@ export function disconnectRedis(): void {
 }
 
 export class Cache<V> {
-	private lruCache?: LRUCache<string, Buffer>;
 	private redisCache?: Redis;
 	private ttl: number;
-	constructor(
-		database: CacheDatabase,
-		maxEntries = 1000000,
-		{ skipMemory, skipRedis }: { skipMemory?: boolean; skipRedis?: boolean } = {
-			skipRedis: !redisSettings,
-			skipMemory: Boolean(redisSettings),
-		},
-	) {
+	constructor(database: CacheDatabase) {
 		this.ttl = Temporal.Duration.from(CacheTTLs[database]).total('second');
 		logger.info(
 			`Using ${CacheTTLs[database]} as TTL for ${CacheDatabase[database]}`,
 		);
-		this.lruCache = skipMemory
-			? undefined
-			: new LRUCache({
-					/** in ms */
-					ttl: (this.ttl / 2) * 1000,
-					max: maxEntries / 500,
-				});
-		if (!skipRedis) {
+		if (redisSettings) {
 			this.redisCache = new Redis({
 				...redisSettings,
 				db: database,
 			});
 			activeRedisCaches.add(this.redisCache);
+		} else {
+			if (process.env.NODE_ENV !== 'test') {
+				console.error('WARNING, RUNNING WITHOUT CACHE!');
+			}
 		}
 	}
 	private redisSerialize(raw: unknown) {
@@ -167,26 +154,10 @@ export class Cache<V> {
 
 		return JSON.parse(raw, dateDeserialze);
 	}
-	private memorySet(key: string, value: V) {
-		this.lruCache?.set(key, v8.serialize(value));
-	}
 	async get(key: string): Promise<V | undefined> {
-		if (this.lruCache?.has(key)) {
-			const cached = this.lruCache?.get(key);
-			if (cached) {
-				return v8.deserialize(cached);
-			}
-		}
 		try {
 			const redisCached = await this.redisCache?.get(key);
 			const deserialized = this.redisDeserialize(redisCached);
-			try {
-				if (deserialized) {
-					this.memorySet(key, deserialized);
-				}
-			} catch {
-				// we ignore this, memory set just failed
-			}
 			return deserialized;
 		} catch (e) {
 			logger.error(e, 'Redis get failed');
@@ -197,7 +168,6 @@ export class Cache<V> {
 		value: V,
 		rawTTL: number | string = this.ttl,
 	): Promise<void> {
-		this.memorySet(key, value);
 		const ttl =
 			typeof rawTTL === 'number'
 				? rawTTL
@@ -209,24 +179,16 @@ export class Cache<V> {
 		}
 	}
 	async delete(key: string): Promise<number> {
-		this.lruCache?.delete(key);
 		return this.redisCache?.del(key) ?? Promise.resolve(0);
 	}
 	async exists(key: string): Promise<boolean> {
-		if (this.lruCache?.has(key)) {
-			return true;
-		}
 		return Boolean(await this.redisCache?.exists(key));
 	}
 	async clearAll(): Promise<void> {
-		this.lruCache?.clear();
 		await this.redisCache?.flushall();
 	}
 	async getAll(): Promise<[string, V][]> {
 		let keys: string[] = [];
-		if (this.lruCache) {
-			keys = [...this.lruCache.keys()];
-		}
 		if (this.redisCache) {
 			keys = await this.redisCache.keys('*');
 		}
