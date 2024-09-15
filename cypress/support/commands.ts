@@ -160,7 +160,7 @@ Cypress.Commands.add(
 		const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
 
 		baseFind.findByTestId('stopPlaceSearchInput').type(value);
-		cy.findAllByTestId('stopPlaceSearchMenuItem').first().click();
+		cy.findAllByTestId('stopPlaceSearchMenuItem').first().click().wait(100);
 	},
 );
 

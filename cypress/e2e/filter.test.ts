@@ -23,13 +23,14 @@ describe('Filter', () => {
 	it('Type Filter default', () => {
 		cy.visit('/');
 		cy.navigateToStation('Frankfurt (Main) Hbf');
-		cy.findByTestId('abfahrtS35744').should('exist');
+		cy.findByTestId('abfahrtS35744').should('be.visible');
 		openFilter();
 		cy.findByTestId('filterS').click();
 		cy.findByTestId('filterSubmit').click();
 		cy.findByTestId('abfahrtS35744').should('not.exist');
 		cy.visit('/');
 		cy.navigateToStation('Frankfurt (Main) Hbf');
+
 		cy.findByTestId('abfahrtS35744').should('not.exist');
 	});
 

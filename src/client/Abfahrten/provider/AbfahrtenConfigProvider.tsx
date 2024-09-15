@@ -92,7 +92,7 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
 		: typeof query.filter === 'string'
 			? query.filter.split(',')
 			: undefined;
-	const savedFilter = queryFilter || filterCookie;
+	const savedFilter = queryFilter || filterCookie.defaultFilter;
 
 	const savedConfig: AbfahrtenConfigProviderValue = {
 		filter: {
