@@ -216,8 +216,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(@swc/core@1.7.26(@swc/helpers@0.5.12))(chokidar@4.0.0)
       '@swc/plugin-emotion':
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.1
+        version: 4.0.1
       '@swc/plugin-loadable-components':
         specifier: ^2.0.1
         version: 2.0.1
@@ -2039,8 +2039,8 @@ packages:
   '@swc/helpers@0.5.12':
     resolution: {integrity: sha512-KMZNXiGibsW9kvZAO1Pam2JPTDBm+KSHMMHWdsyI/1DbIZjT2A6Gy3hblVXUMEDvUAKq+e0vL0X0o54owWji7g==}
 
-  '@swc/plugin-emotion@4.0.0':
-    resolution: {integrity: sha512-lfsFPrOz0CHAV+n1ienEHL2nC3shJbN1t95eSvJWTGzf6Sues+Y0LF6Uo3Lc5/GXj1GaasmcagdqHBY9P0m73A==}
+  '@swc/plugin-emotion@4.0.1':
+    resolution: {integrity: sha512-SZWuzxzrPRpZUXMk4wsN5t5FEmzmAIWa1NTTqezxQWQ/Dt81rzYszonxrhjVDvyWpt0XC2ExsVx3ypED0v88ug==}
 
   '@swc/plugin-loadable-components@2.0.1':
     resolution: {integrity: sha512-mLlyHvn7x1RDM+moadLcA+dvL8iEFd2qMGpn7ypbWsIIkNTe8auMIdfVpVmAWrpbutuoP9JRvTUYTTNFcH2vrQ==}
@@ -7870,7 +7870,7 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  '@swc/plugin-emotion@4.0.0':
+  '@swc/plugin-emotion@4.0.1':
     dependencies:
       '@swc/counter': 0.1.3
 

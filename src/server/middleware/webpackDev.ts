@@ -24,7 +24,9 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 		}
 		delete require.cache[path.resolve('src/server/render.tsx')];
 	});
-	const watcher = chokidar.watch(path.resolve('./src/**'));
+	const watcher = chokidar.watch(path.resolve('./src'), {
+		depth: 99,
+	});
 
 	watcher.on('change', (file: string[]) => {
 		if (file.includes('src/client')) return;
