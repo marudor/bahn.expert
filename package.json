@@ -143,7 +143,6 @@
 		"koa-static": "^5.0.0",
 		"leaflet": "^1.9.4",
 		"libxmljs2": "^0.35.0",
-		"lru-cache": "^11.0.0",
 		"pino": "^9.3.2",
 		"pino-pretty": "^11.2.2",
 		"pino-std-serializers": "^7.0.0",
