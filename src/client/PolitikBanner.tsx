@@ -1,4 +1,5 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
+import { Feedback } from '@/client/Feedback';
 import { Alert, Snackbar } from '@mui/material';
 import type { SnackbarOrigin } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -29,9 +30,8 @@ export const PolitikBanner: FC = () => {
 	const [{ timesPoliticSeenNew }, setCookie, removeCookie] = useExpertCookies([
 		'timesPoliticSeenNew',
 	]);
-	const [open, setOpen] = useState(
-		!timesPoliticSeenNew || timesPoliticSeenNew < 14,
-	);
+	const initialOpen = !timesPoliticSeenNew || timesPoliticSeenNew < 14;
+	const [open, setOpen] = useState(initialOpen);
 	useEffect(() => {
 		if (Math.random() * 100 < 0.75) {
 			removeCookie('timesPoliticSeenNew');
@@ -51,16 +51,19 @@ export const PolitikBanner: FC = () => {
 	);
 
 	return (
-		<Snackbar
-			open={open}
-			onClick={setClose}
-			onClose={setClose}
-			autoHideDuration={17500}
-			anchorOrigin={anchorOrigin}
-		>
-			<Alert severity="info" icon={false}>
-				{selectedText}
-			</Alert>
-		</Snackbar>
+		<>
+			{!initialOpen && <Feedback />}
+			<Snackbar
+				open={open}
+				onClick={setClose}
+				onClose={setClose}
+				autoHideDuration={17500}
+				anchorOrigin={anchorOrigin}
+			>
+				<Alert severity="info" icon={false}>
+					{selectedText}
+				</Alert>
+			</Snackbar>
+		</>
 	);
 };

@@ -19,6 +19,7 @@ export interface WebConfigMap extends CommonConfig, RoutingSettings {
 	readonly rfavs: RoutingFavs;
 	readonly defaultFilter: string[];
 	readonly timesPoliticSeenNew: number;
+	readonly timesFeedback: number;
 }
 
 export interface StorageInterface extends Cookies {
