@@ -27,8 +27,8 @@ export const Feedback: FC = () => {
 			anchorOrigin={anchorOrigin}
 		>
 			<Alert severity="info" icon={false}>
-				Wenn ihr diese Seite im Bahn Betrieb nutzt: bitte schickt mir feedback
-				and feedback@bahn.expert! Danke!
+				Wenn ihr diese Seite im Bahnbetrieb nutzt: bitte schickt mir feedback an
+				feedback@bahn.expert! Danke!
 			</Alert>
 		</Snackbar>
 	);
