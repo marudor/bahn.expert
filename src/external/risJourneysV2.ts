@@ -240,9 +240,10 @@ export async function findJourneyHafasCompatible(
 	date?: Date,
 	withOEV?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> {
-	const risReuslt = await findJourney(trainNumber, category, date, withOEV);
+	const risResult = await findJourney(trainNumber, category, date, withOEV);
+	console.log(risResult);
 
-	return Promise.all(risReuslt.map(mapToParsedJourneyMatchResponse));
+	return Promise.all(risResult.map(mapToParsedJourneyMatchResponse));
 }
 
 export async function getJourneyDetails(

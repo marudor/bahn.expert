@@ -41,7 +41,7 @@ function findV1OrV2HafasCompatible(
 	return findJourneyHafasCompatible(trainNumber, category, date, withOEV);
 }
 
-function findJoureyV1OrV2(
+function findJourneyV1OrV2(
 	trainNumber: number,
 	category?: string,
 	date?: Date,
@@ -197,7 +197,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				if (!productDetails) {
 					return hafasFallback();
 				}
-				const possibleJourneys = await findJoureyV1OrV2(
+				const possibleJourneys = await findJourneyV1OrV2(
 					productDetails.trainNumber,
 					productDetails.category,
 					initialDepartureDate,

@@ -1,26 +1,29 @@
 import { Cache, CacheDatabase } from '@/server/cache';
 
 const cachesThatMightBeBroken = [
-	CacheDatabase.StopPlaceSearch,
-	CacheDatabase.StopPlaceSalesSearch,
-	CacheDatabase.StopPlaceByEva,
-	CacheDatabase.StopPlaceByRil,
+	// CacheDatabase.StopPlaceSearch,
+	// CacheDatabase.StopPlaceSalesSearch,
+	// CacheDatabase.StopPlaceByEva,
+	// CacheDatabase.StopPlaceByRil,
+	CacheDatabase.JourneyFind,
+	CacheDatabase.JourneyFindV2,
 ].map((cacheNumber) => {
 	return new Cache(cacheNumber);
 });
 
 async function doStuff() {
-	for (const c of cachesThatMightBeBroken) {
-		const allEntries = await c.getAll();
-		for (const [key, value] of allEntries) {
-			if (!value || (Array.isArray(value) && !value.length)) {
-				console.log(`key: ${key} isEmpty, removing`);
-				await c.delete(key);
-			}
+	for (const cache of cachesThatMightBeBroken) {
+		const allEntries = await cache.getAll();
+		const relevantEntries = allEntries.filter(
+			([, value]) => !value || (Array.isArray(value) && !value.length),
+		);
+		console.log(`clearing ${relevantEntries.length}`);
+		for (const [key] of relevantEntries) {
+			await cache.delete(key);
 		}
 	}
 }
 
-void doStuff().then(() => {
+doStuff().then(() => {
 	process.exit(0);
 });
