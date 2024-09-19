@@ -31,6 +31,12 @@ interface AbfahrtenError$Default extends AxiosError {
 	station?: string;
 }
 
+function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
+	const aTime = (a.departure?.time || a.arrival?.time)!;
+	const bTime = (b.departure?.time || b.arrival?.time)!;
+	return aTime > bTime ? 1 : -1;
+}
+
 const useAbfahrtenInner = ({
 	searchFunction,
 }: PropsWithChildren<{
@@ -40,8 +46,14 @@ const useAbfahrtenInner = ({
 	const [departures, setDepartures] = useState<AbfahrtenResult>();
 	const [error, setError] = useState<unknown>();
 	const abfahrtenFetch = useAbfahrtenFetch();
-	const { startTime, lookahead, lookbehind, onlyDepartures, showCancelled } =
-		useCommonConfig();
+	const {
+		startTime,
+		lookahead,
+		lookbehind,
+		onlyDepartures,
+		showCancelled,
+		sortByTime,
+	} = useCommonConfig();
 	const [scrolled, setScrolled] = useState(false);
 
 	const updateCurrentStopPlaceByString = useCallback(
@@ -101,6 +113,7 @@ const useAbfahrtenInner = ({
 
 	const filteredDepartures = useMemo(() => {
 		if (!departures) return departures;
+
 		const filtered = {
 			departures: departures.departures,
 			lookbehind: departures.lookbehind,
@@ -128,8 +141,13 @@ const useAbfahrtenInner = ({
 			filtered.lookbehind = filtered.lookbehind.filter(f);
 		}
 
+		if (sortByTime) {
+			filtered.departures = [...filtered.departures].sort(sortAbfahrtenByTime);
+			filtered.lookbehind = [...filtered.lookbehind].sort(sortAbfahrtenByTime);
+		}
+
 		return filtered;
-	}, [departures, onlyDepartures, productFilter, showCancelled]);
+	}, [departures, onlyDepartures, productFilter, showCancelled, sortByTime]);
 
 	return {
 		error,
