@@ -42,6 +42,7 @@ const useAbfahrtenInner = ({
 	const abfahrtenFetch = useAbfahrtenFetch();
 	const { startTime, lookahead, lookbehind, onlyDepartures, showCancelled } =
 		useCommonConfig();
+	const [scrolled, setScrolled] = useState(false);
 
 	const updateCurrentStopPlaceByString = useCallback(
 		async (stopPlaceName: string) => {
@@ -89,6 +90,7 @@ const useAbfahrtenInner = ({
 			})
 			.then((deps) => {
 				if (deps) {
+					setScrolled(false);
 					setDepartures(deps);
 				}
 			})
@@ -137,6 +139,8 @@ const useAbfahrtenInner = ({
 		departures,
 		filteredDepartures,
 		setDepartures,
+		scrolled,
+		setScrolled,
 	};
 };
 

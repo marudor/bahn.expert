@@ -34,7 +34,7 @@ export const useAllTrainTypes = () => {
 };
 
 export const useRefreshCurrent = (visible = false) => {
-	const { setDepartures } = useRawAbfahrten();
+	const { setDepartures, setScrolled } = useRawAbfahrten();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { lookahead, lookbehind } = useCommonConfig();
 	const abfahrtenFetch = useAbfahrtenFetch();
@@ -42,10 +42,10 @@ export const useRefreshCurrent = (visible = false) => {
 	return useCallback(async () => {
 		if (currentStopPlace?.evaNumber) {
 			if (visible) {
+				setScrolled(false);
 				setDepartures(undefined);
 			}
 			const r = await abfahrtenFetch.fetch({
-				// `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
 				evaNumber: currentStopPlace.evaNumber,
 				lookahead: Number.parseInt(lookahead),
 				lookbehind: Number.parseInt(lookbehind),
@@ -62,6 +62,7 @@ export const useRefreshCurrent = (visible = false) => {
 		lookbehind,
 		setDepartures,
 		visible,
+		setScrolled,
 	]);
 };
 

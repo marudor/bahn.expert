@@ -34,11 +34,14 @@ const Lookbehind = styled('div')(({ theme }) => ({
 }));
 
 const InnerAbfahrtenList = () => {
-	const { updateCurrentStopPlaceByString, setCurrentStopPlace } =
-		useRawAbfahrten();
+	const {
+		updateCurrentStopPlaceByString,
+		setCurrentStopPlace,
+		scrolled,
+		setScrolled,
+	} = useRawAbfahrten();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const selectedDetail = useSelectedDetail();
-	const [scrolled, setScrolled] = useState(false);
 	const { filteredDepartures, departures } = useAbfahrtenDepartures();
 	const paramStation = useParams().station;
 	const { autoUpdate } = useCommonConfig();
@@ -64,12 +67,6 @@ const InnerAbfahrtenList = () => {
 			setCurrentStopPlace(undefined);
 		};
 	}, [setCurrentStopPlace]);
-
-	useEffect(() => {
-		if (departures) {
-			setScrolled(false);
-		}
-	}, [departures]);
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout;
@@ -129,7 +126,7 @@ const InnerAbfahrtenList = () => {
 			}
 			setScrolled(true);
 		}
-	}, [departures, scrolled, selectedDetail]);
+	}, [departures, scrolled, selectedDetail, setScrolled]);
 
 	if (abfahrtenError) {
 		return <Error error={abfahrtenError} context="Halt" />;
