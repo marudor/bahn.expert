@@ -171,6 +171,3 @@ Cypress.Commands.add(
 		return mount(wrappedComp);
 	},
 );
-
-// Example use:
-// cy.mount(<MyComponent />)

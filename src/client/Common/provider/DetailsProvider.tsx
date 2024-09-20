@@ -45,6 +45,7 @@ const useInnerDetails = ({
 	const {
 		data: details,
 		refetch: refetchDetails,
+		isFetching,
 		error,
 	} = trpc.journeys.details.useQuery({
 		trainName,
@@ -174,6 +175,7 @@ const useInnerDetails = ({
 		initialDepartureDate,
 		trainName,
 		details,
+		isFetching,
 		additionalInformation,
 		error,
 		urlPrefix,

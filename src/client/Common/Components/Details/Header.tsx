@@ -1,12 +1,8 @@
 import { FullTrainName } from '@/client/Common/Components/FullTrainName';
+import { RefreshIconWithSpin } from '@/client/Common/Components/RefreshIconWithSpin';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import {
-	ArrowBackIos,
-	ArrowForwardIos,
-	Map,
-	Refresh,
-} from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos, Map } from '@mui/icons-material';
 import { IconButton, styled } from '@mui/material';
 import { format } from 'date-fns';
 import { useCallback, useMemo } from 'react';
@@ -70,6 +66,7 @@ export const Header: FC = () => {
 		toggleMapDisplay,
 		initialDepartureDate,
 		sameTrainDaysInFuture,
+		isFetching,
 	} = useDetails();
 	const refresh = useCallback(() => refreshDetails(), [refreshDetails]);
 	const dateForward = useCallback(() => {
@@ -126,7 +123,10 @@ export const Header: FC = () => {
 				aria-label="refresh"
 				color="inherit"
 			>
-				<Refresh />
+				<RefreshIconWithSpin
+					data-testid={isFetching ? 'refreshIconLoading' : 'refreshIcon'}
+					loading={isFetching}
+				/>
 			</IconButton>
 		</BaseHeader>
 	);
