@@ -1,5 +1,6 @@
 import Detail from '@/server/HAFAS/Detail';
 import { Cache, CacheDatabase } from '@/server/cache';
+import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import { getOccupancy } from '@/server/sbb/occupancy';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { EvaNumber } from '@/types/common';
@@ -22,46 +23,52 @@ export async function additionalJourneyInformation(
 	if (await additionalInformationCache.exists(journeyId)) {
 		return await additionalInformationCache.get(journeyId);
 	}
-	const journeyDetails = await Detail(
+	const risJourneyDetails = await journeyDetails(journeyId);
+	const firstUncancelledStop = risJourneyDetails?.stops.find(
+		(s) => !s.departure?.cancelled,
+	);
+	console.log(firstUncancelledStop);
+	const hafasJourneyDetails = await Detail(
 		trainName,
 		undefined,
-		evaNumberAlongRoute,
-		initialDepartureDate,
+		firstUncancelledStop?.station.evaNumber || evaNumberAlongRoute,
+		firstUncancelledStop?.departure?.scheduledTime || initialDepartureDate,
 		true,
 	);
-	if (!journeyDetails) {
+	console.log(hafasJourneyDetails);
+	if (!hafasJourneyDetails) {
 		return;
 	}
 
 	let sbbOccupancy = {};
 
 	if (
-		journeyDetails.segmentStart.evaNumber.startsWith('85') ||
-		journeyDetails.segmentDestination.evaNumber.startsWith('85') ||
-		journeyDetails.train.operator?.name.startsWith('SBB')
+		hafasJourneyDetails.segmentStart.evaNumber.startsWith('85') ||
+		hafasJourneyDetails.segmentDestination.evaNumber.startsWith('85') ||
+		hafasJourneyDetails.train.operator?.name.startsWith('SBB')
 	) {
 		sbbOccupancy = await getOccupancy(
-			journeyDetails.segmentStart,
-			journeyDetails.segmentDestination,
-			journeyDetails.train.number!,
-			journeyDetails.departure.scheduledTime,
+			hafasJourneyDetails.segmentStart,
+			hafasJourneyDetails.segmentDestination,
+			hafasJourneyDetails.train.number!,
+			hafasJourneyDetails.departure.scheduledTime,
 		);
 	}
 
 	const occupancy: Record<EvaNumber, RouteAuslastung> = {
 		...sbbOccupancy,
 	};
-	for (const stop of journeyDetails.stops) {
+	for (const stop of hafasJourneyDetails.stops) {
 		if (stop.auslastung) {
 			occupancy[stop.station.evaNumber] = stop.auslastung;
 		}
 	}
-	if (journeyDetails.train.operator || Object.keys(occupancy).length) {
+	if (hafasJourneyDetails.train.operator || Object.keys(occupancy).length) {
 		const result: AdditionalJourneyInformation = {
-			jid: journeyDetails.jid,
+			jid: hafasJourneyDetails.jid,
 			occupancy,
-			operatorName: journeyDetails.train.operator?.name,
-			polyline: journeyDetails.polyline,
+			operatorName: hafasJourneyDetails.train.operator?.name,
+			polyline: hafasJourneyDetails.polyline,
 		};
 
 		void additionalInformationCache.set(journeyId, result);

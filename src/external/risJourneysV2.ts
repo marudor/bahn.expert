@@ -241,7 +241,6 @@ export async function findJourneyHafasCompatible(
 	withOEV?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> {
 	const risResult = await findJourney(trainNumber, category, date, withOEV);
-	console.log(risResult);
 
 	return Promise.all(risResult.map(mapToParsedJourneyMatchResponse));
 }

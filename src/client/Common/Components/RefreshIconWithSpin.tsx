@@ -10,7 +10,9 @@ const spinKeyframe = keyframes`
 	}
 `;
 
-export const RefreshIconWithSpin = styled(Refresh)<{ loading?: boolean }>({
+export const RefreshIconWithSpin = styled(Refresh, {
+	shouldForwardProp: (p) => p !== 'loading',
+})<{ loading?: boolean }>({
 	variants: [
 		{
 			props: { loading: true },
