@@ -1,4 +1,6 @@
+import { VehicleMapDialog } from '@/client/Common/Components/VehicleMap/VehicleMapDialog';
 import { stopPropagation } from '@/client/Common/stopPropagation';
+import { trpc } from '@/client/RPC';
 import type {
 	AvailableIdentifier,
 	CoachSequenceCoach,
@@ -46,6 +48,14 @@ const allowedTypes = new Set(['IC', 'ICE']);
 const seriesRegex = /\.S(\d)/;
 
 export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
+	const { data: vehicleLayout } = trpc.coachSequence.vehicleLayout.useQuery(
+		fahrzeug.uic!,
+		{
+			enabled: Boolean(fahrzeug.uic) && Boolean(fahrzeug.identificationNumber),
+			staleTime: Number.POSITIVE_INFINITY,
+		},
+	);
+
 	const imageName = useMemo(() => {
 		if (
 			!allowedTypes.has(type) ||
@@ -79,6 +89,14 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
 			return relevantUIC;
 		}
 	}, [fahrzeug.vehicleCategory, fahrzeug.type, fahrzeug.uic, identifier, type]);
+
+	if (vehicleLayout && fahrzeug.orientation) {
+		return (
+			<VehicleMapDialog vehicleLayout={vehicleLayout} fahrzeug={fahrzeug}>
+				{fahrzeug.type}
+			</VehicleMapDialog>
+		);
+	}
 
 	if (!imageName) {
 		return (

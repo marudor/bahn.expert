@@ -68,6 +68,7 @@ export interface CoachSequenceCoach {
 	features: CoachSequenceCoachFeatures;
 	seats?: CoachSequenceCoachSeats;
 	occupancy?: AuslastungsValue;
+	orientation?: string;
 }
 
 export const AvailableBRConstant = [

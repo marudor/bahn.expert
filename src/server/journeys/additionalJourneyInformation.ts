@@ -27,7 +27,6 @@ export async function additionalJourneyInformation(
 	const firstUncancelledStop = risJourneyDetails?.stops.find(
 		(s) => !s.departure?.cancelled,
 	);
-	console.log(firstUncancelledStop);
 	const hafasJourneyDetails = await Detail(
 		trainName,
 		undefined,
@@ -35,7 +34,6 @@ export async function additionalJourneyInformation(
 		firstUncancelledStop?.departure?.scheduledTime || initialDepartureDate,
 		true,
 	);
-	console.log(hafasJourneyDetails);
 	if (!hafasJourneyDetails) {
 		return;
 	}
