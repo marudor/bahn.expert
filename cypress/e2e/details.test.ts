@@ -17,6 +17,33 @@ describe('Details', () => {
 			.should('have.text', 'Unbekannter Zug');
 	});
 
+	it('icon spins on reload', () => {
+		cy.trpc.journeys
+			.details(
+				{
+					trainName: 'S30665',
+				},
+				{
+					fixture: 'details/S6',
+					delay: 1000,
+				},
+			)
+			.as('details');
+		cy.visit('/details/S30665');
+		cy.findByTestId('loading').should('exist');
+		cy.findByTestId('refreshIconLoading').should('be.visible');
+		cy.findByTestId('refreshIcon').should('not.exist');
+		cy.wait('@details');
+		cy.findByTestId('loading').should('not.exist');
+		cy.findByTestId('refreshIconLoading').should('not.exist');
+		cy.findByTestId('refreshIcon').should('be.visible').click();
+		cy.findByTestId('refreshIconLoading').should('be.visible');
+		cy.findByTestId('loading').should('not.exist');
+		cy.wait('@details');
+		cy.findByTestId('loading').should('not.exist');
+		cy.findByTestId('refreshIconLoading').should('not.exist');
+	});
+
 	it('can render & header height correct', () => {
 		cy.trpc.journeys
 			.details(
