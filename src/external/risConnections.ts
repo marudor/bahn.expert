@@ -28,8 +28,6 @@ const connectionsClient = new ConnectionsApi(
 	axiosWithTimeout,
 );
 
-const importantRegex = /(HB$|Hbf|Centraal|Flughafen)/;
-
 export async function getRisConnections(journeyID: string, arrivalID: string) {
 	const rawConnections = (
 		await connectionsClient.connectionsArrival({

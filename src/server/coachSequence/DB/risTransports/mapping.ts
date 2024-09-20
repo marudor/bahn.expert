@@ -186,6 +186,7 @@ function mapVehicle(
 			endPercent: basePercent * vehicle.platformPosition.end,
 		},
 		features: mapFeatures(vehicle),
+		orientation: vehicle.orientation,
 	};
 }
 

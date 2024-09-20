@@ -1,3 +1,4 @@
+import { getVehicleLayout } from '@/external/risMaps';
 import { coachSequence } from '@/server/coachSequence';
 import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
 import { getTrainRunsByDate } from '@/server/coachSequence/DB/trainRuns';
@@ -74,4 +75,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 		.query(({ input: { date, baureihen, identifier, stopsAt } }) => {
 			return getTrainRunsByDate(date, baureihen, identifier, stopsAt);
 		}),
+	vehicleLayout: rpcProcedure.input(z.string()).query(({ input }) => {
+		return getVehicleLayout(input);
+	}),
 });

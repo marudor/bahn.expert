@@ -76,6 +76,7 @@ export enum CacheDatabase {
 	JourneyV2 = 23,
 	CoachSequenceRemovedData = 24,
 	VRROccupancy = 25,
+	VehicleLayoutsMaps = 26,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
@@ -114,6 +115,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.SBBTrip]: 'PT2H',
 	[CacheDatabase.CoachSequenceRemovedData]: 'PT24H',
 	[CacheDatabase.VRROccupancy]: 'PT60M',
+	[CacheDatabase.VehicleLayoutsMaps]: 'P1D',
 };
 
 const activeRedisCaches = new Set<Redis>();
