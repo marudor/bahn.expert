@@ -19,6 +19,10 @@ const possibleTexts = [
 	'Trans rights or riot nights',
 	'Die Brandmauer ist überall. Auch auf der Drehscheibe!',
 	'#EisenbahnerAntifa',
+	'Nazis morden, der Staat schiebt ab – das ist das gleiche Rassistenpack',
+	'AfDler verpisst euch – keiner vermisst euch',
+	'Seenotrettung ist kein Verbrechen',
+	'Nein heißt Nein, No means No, wer das sagt der meints auch so',
 ];
 
 const anchorOrigin: SnackbarOrigin = {
@@ -27,24 +31,24 @@ const anchorOrigin: SnackbarOrigin = {
 };
 
 export const PolitikBanner: FC = () => {
-	const [{ timesPoliticSeenNew }, setCookie, removeCookie] = useExpertCookies([
-		'timesPoliticSeenNew',
+	const [{ timesPoliticSeen2 }, setCookie, removeCookie] = useExpertCookies([
+		'timesPoliticSeen2',
 	]);
-	const initialOpen = !timesPoliticSeenNew || timesPoliticSeenNew < 14;
+	const initialOpen = !timesPoliticSeen2 || timesPoliticSeen2 < 20;
 	const [open, setOpen] = useState(initialOpen);
 	useEffect(() => {
 		if (Math.random() * 100 < 0.75) {
-			removeCookie('timesPoliticSeenNew');
+			removeCookie('timesPoliticSeen2');
 		}
 	}, [removeCookie]);
 	const setClose = useCallback(() => {
-		let timesSeen = timesPoliticSeenNew ?? 0;
+		let timesSeen = timesPoliticSeen2 ?? 0;
 		if (typeof timesSeen !== 'number') {
 			timesSeen = 0;
 		}
-		setCookie('timesPoliticSeenNew', timesSeen + 1);
+		setCookie('timesPoliticSeen2', timesSeen + 1);
 		setOpen(false);
-	}, [setCookie, timesPoliticSeenNew]);
+	}, [setCookie, timesPoliticSeen2]);
 	const selectedText = useMemo(
 		() => possibleTexts[Math.floor(Math.random() * possibleTexts.length)],
 		[],
