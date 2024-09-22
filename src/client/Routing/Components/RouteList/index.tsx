@@ -10,13 +10,18 @@ import { Route } from './Route';
 import { RouteHeader } from './RouteHeader';
 
 const translateError = (e: any) => {
-	if (e?.response?.data) {
-		switch (e.response.data.errorCode) {
+	if (e?.message) {
+		switch (e.message) {
 			case 'H9380': {
-				return 'Du bist schon da. Hör auf zu suchen!';
+				return 'Du bist schon da. Hör auf zu suchen! (Start/Ziel ist equivalent für den Router)';
+			}
+			case 'H890': {
+				return 'Für diese Suche gibt es kein Ergebnis. Filter überprüfen?';
 			}
 			default: {
-				return `${e} (Hafas Code: ${e.response.data.errorCode})`;
+				if (e.message.startsWith('H')) {
+					return `Hafas Fehler Code: ${e.message}`;
+				}
 			}
 		}
 	}

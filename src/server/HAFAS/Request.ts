@@ -34,6 +34,7 @@ import type {
 	TripSearchRequest,
 	TripSearchResponse,
 } from '@/types/HAFAS/TripSearch';
+import { TRPCError } from '@trpc/server';
 import Axios from 'axios';
 import { parseLocL } from './helper/parseLocL';
 import parseProduct from './helper/parseProduct';
@@ -75,7 +76,7 @@ async function parseCommon(common: Common): Promise<ParsedCommon> {
 	};
 }
 
-export class HafasError extends Error {
+export class HafasError extends TRPCError {
 	customError = true;
 	data: {
 		request: SingleHafasRequest;
@@ -88,10 +89,14 @@ export class HafasError extends Error {
 		response: HafasResponse<any>,
 		profile: AllowedHafasProfile,
 	) {
-		super(`${request.meth} HAFAS Error`);
+		super({
+			message: `${request.meth} HAFAS Error`,
+			code: 'INTERNAL_SERVER_ERROR',
+		});
 		Error.captureStackTrace(this, HafasError);
 		if (response?.svcResL?.length) {
 			this.errorCode = response.svcResL[0].err;
+			this.message = response.svcResL[0].err;
 		}
 		this.data = {
 			request,

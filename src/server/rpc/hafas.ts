@@ -168,7 +168,7 @@ export const hafasRpcRouter = rpcAppRouter({
 				ctxScr: z.string().optional(),
 			}),
 		)
-		.query(({ input: { profile, ...options } }) => {
-			return tripSearch(options, profile);
+		.query(async ({ input: { profile, ...options } }) => {
+			return await tripSearch(options, profile);
 		}),
 });
