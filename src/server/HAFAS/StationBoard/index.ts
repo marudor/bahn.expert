@@ -6,7 +6,8 @@ import type {
 	DepartureStationBoardEntry,
 	StationBoardEntry,
 } from '@/types/stationBoard';
-import { format } from 'date-fns-tz';
+import { tz } from '@date-fns/tz';
+import { format } from 'date-fns';
 import parse from './parse';
 
 interface Options {
@@ -38,10 +39,10 @@ function stationBoard(
 			maxJny: 250,
 			jnyFltrL: filter,
 			date: format(date, 'yyyyMMdd', {
-				timeZone: 'Europe/Berlin',
+				in: tz('Europe/Berlin'),
 			}),
 			time: format(date, 'HHmmss', {
-				timeZone: 'Europe/Berlin',
+				in: tz('Europe/Berlin'),
 			}),
 			stbLoc: {
 				lid: `A=1@L=${station}`,

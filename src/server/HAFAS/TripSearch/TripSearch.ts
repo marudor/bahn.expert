@@ -11,7 +11,8 @@ import type {
 	TripSearchRequest,
 } from '@/types/HAFAS/TripSearch';
 import type { RoutingResult } from '@/types/routing';
-import { format } from 'date-fns-tz';
+import { tz } from '@date-fns/tz';
+import { format } from 'date-fns';
 import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';
 
@@ -103,10 +104,10 @@ export function tripSearch(
 	if (time) {
 		requestTypeSpecific = {
 			outDate: format(time, 'yyyyMMdd', {
-				timeZone: 'Europe/Berlin',
+				in: tz('Europe/Berlin'),
 			}),
 			outTime: format(time, 'HHmmss', {
-				timeZone: 'Europe/Berlin',
+				in: tz('Europe/Berlin'),
 			}),
 		};
 	} else if (ctxScr) {

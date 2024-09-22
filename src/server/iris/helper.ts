@@ -1,9 +1,9 @@
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import type { Stop } from '@/types/iris';
+import { tz } from '@date-fns/tz';
 import Axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { isValid, parse } from 'date-fns';
-import { fromZonedTime } from 'date-fns-tz';
 import type { Element } from 'libxmljs2';
 
 const noncdRequest = Axios.create({
@@ -93,9 +93,11 @@ export function getBoolAttr(node: null | Element, name: string): boolean {
 export function parseTs(ts?: string): undefined | Date {
 	if (ts) {
 		const format = ts.includes('-') ? 'yy-MM-dd HH:mm:ss.SSS' : 'yyMMddHHmm';
-		const parsedDate = parse(ts, format, Date.now());
+		const parsedDate = parse(ts, format, Date.now(), {
+			in: tz('Europe/Berlin'),
+		});
 		if (isValid(parsedDate)) {
-			return fromZonedTime(parsedDate, 'Europe/Berlin');
+			return parsedDate;
 		}
 	}
 }

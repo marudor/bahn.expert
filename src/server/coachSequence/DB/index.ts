@@ -4,10 +4,9 @@ import { getNewDBCoachSequence } from '@/server/coachSequence/DB/bahnDe';
 import { getRisTransportsCoachSequence } from '@/server/coachSequence/DB/risTransports';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import { format } from 'date-fns';
-import { toZonedTime } from 'date-fns-tz';
 
 const formatDate = (date?: Date) =>
-	date ? format(toZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm') : undefined;
+	date ? format(date, 'yyyyMMddHHmm') : undefined;
 // const formatPlannedDate = (date?: Date) =>
 //   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 

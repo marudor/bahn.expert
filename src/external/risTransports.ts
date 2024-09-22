@@ -14,7 +14,6 @@ import {
 	isWithinInterval,
 	subHours,
 } from 'date-fns';
-import { toZonedTime } from 'date-fns-tz';
 
 const risTransportsConfiguration = new Configuration({
 	basePath: process.env.COACH_SEQUENCE_URL,
@@ -28,7 +27,7 @@ const risTransportsConfiguration = new Configuration({
 });
 
 const formatDate = (date?: Date) =>
-	date ? format(toZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm') : undefined;
+	date ? format(date, 'yyyyMMddHHmm') : undefined;
 
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
