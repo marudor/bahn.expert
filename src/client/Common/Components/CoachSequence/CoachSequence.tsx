@@ -51,7 +51,6 @@ interface Props {
 	administration?: string;
 	withLegend?: boolean;
 	loadHidden?: boolean;
-	lastArrivalEva?: string;
 }
 
 const Source: FC<{
@@ -71,9 +70,8 @@ export const CoachSequence: FC<Props> = ({
 	initialDeparture,
 	fallbackWings: fallback,
 	trainCategory,
-	// administration,
+	administration,
 	loadHidden,
-	lastArrivalEva,
 }) => {
 	const { fahrzeugGruppe, showUIC, showCoachType } = useCommonConfig();
 	const trainNumberNumber = Number.parseInt(trainNumber);
@@ -85,7 +83,7 @@ export const CoachSequence: FC<Props> = ({
 		initialDeparture,
 		fallback,
 		trainCategory,
-		lastArrivalEva,
+		administration,
 	);
 
 	const [scale, startPercent] = useMemo(() => {
@@ -147,6 +145,7 @@ export const CoachSequence: FC<Props> = ({
 							scale={scale}
 							key={s.name}
 							sector={s}
+							reverse={!sequence.direction}
 						/>
 					))}
 				</Sectors>
@@ -163,6 +162,7 @@ export const CoachSequence: FC<Props> = ({
 							showDestination={
 								sequence.multipleDestinations && g.coaches.length > 1
 							}
+							reverse={!sequence.direction}
 							scheduledDeparture={scheduledDeparture}
 							showGruppenZugnummer={sequence.multipleTrainNumbers}
 							gruppe={g}
@@ -177,9 +177,7 @@ export const CoachSequence: FC<Props> = ({
 						<Source source={sequence.source} />
 					</PlannedOnlyIndicator>
 				)}
-				{sequence.direction != null && (
-					<DirectionOfTravel reversed={!sequence.direction} />
-				)}
+				{sequence.direction != null && <DirectionOfTravel />}
 			</Container>
 		</ContainerWrap>
 	);

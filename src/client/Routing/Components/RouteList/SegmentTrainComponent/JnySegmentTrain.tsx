@@ -46,7 +46,11 @@ export const JnySegmentTrain: FC<Props> = ({
 					{segment.finalDestination}
 				</span>
 				{segment.auslastung && (
-					<AuslastungsDisplay auslastung={segment.auslastung} />
+					<AuslastungsDisplay
+						auslastung={{
+							occupancy: segment.auslastung,
+						}}
+					/>
 				)}
 			</div>
 			{detail && (

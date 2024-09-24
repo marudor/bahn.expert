@@ -1,10 +1,10 @@
+import { DateSelectForDetail } from '@/client/Common/Components/Details/DateSelectForDetail';
 import { FullTrainName } from '@/client/Common/Components/FullTrainName';
 import { RefreshIconWithSpin } from '@/client/Common/Components/RefreshIconWithSpin';
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import { ArrowBackIos, ArrowForwardIos, Map } from '@mui/icons-material';
 import { IconButton, styled } from '@mui/material';
-import { format } from 'date-fns';
 import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 import { BaseHeader } from '../BaseHeader';
@@ -92,10 +92,9 @@ export const Header: FC = () => {
 					{operatorName && <Operator>{operatorName}</Operator>}
 					<DateDisplay>
 						<ArrowBack data-testid="previous" onClick={dateBack} />
-						{format(
-							details?.departure.time || initialDepartureDate,
-							'dd.MM.yyyy',
-						)}
+						<DateSelectForDetail
+							date={details?.departure.time || initialDepartureDate}
+						/>
 						<ArrowForward data-testid="next" onClick={dateForward} />
 					</DateDisplay>
 					{/** Displayed as longer arrow, thanks safari that I need a single utf8 */}

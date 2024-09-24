@@ -29,23 +29,14 @@ const LeftArrow = styled(Arrow)`
   transform: rotate(135deg);
 `;
 
-const RightArrow = styled(Arrow)`
-  right: 0;
-  transform: rotate(315deg);
-`;
-
 interface Props {
 	reversed?: boolean;
 }
 
-export const DirectionOfTravel: FC<Props> = ({ reversed }) => {
+export const DirectionOfTravel: FC<Props> = () => {
 	return (
 		<Container data-testid="direction">
-			{reversed ? (
-				<RightArrow data-testid="right" />
-			) : (
-				<LeftArrow data-testid="left" />
-			)}
+			<LeftArrow data-testid="left" />
 		</Container>
 	);
 };

@@ -84,35 +84,33 @@ function newStopInfoIsAfter(stop: JourneyStop, event: JourneyEvent) {
 
 async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 	const stops: JourneyStop[] = [];
-	await Promise.all(
-		events.map(async (e) => {
-			const stopPlace = await getStopPlaceByEva(e.stopPlace.evaNumber);
-			const stopInfo = mapEventToCommonStopInfo(e);
-			const possibleStops = stops.filter(
-				(s) =>
-					s.station.evaNumber === e.stopPlace.evaNumber &&
-					newStopInfoIsAfter(s, e),
-			);
-			let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
+	for (const e of events) {
+		const stopPlace = await getStopPlaceByEva(e.stopPlace.evaNumber);
+		const stopInfo = mapEventToCommonStopInfo(e);
+		const possibleStops = stops.filter(
+			(s) =>
+				s.station.evaNumber === e.stopPlace.evaNumber &&
+				newStopInfoIsAfter(s, e),
+		);
+		let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
 
-			if (!stop || (stop.arrival && stop.departure)) {
-				stop = {
-					station: {
-						evaNumber: e.stopPlace.evaNumber,
-						name: (stopPlace || e.stopPlace).name
-							.replaceAll('(', ' (')
-							.replaceAll(')', ') ')
-							.replaceAll('  ', ' ')
-							.trim(),
-						ril100: stopPlace?.ril100,
-					},
-				};
-				stops.push(stop);
-			}
+		if (!stop || (stop.arrival && stop.departure)) {
+			stop = {
+				station: {
+					evaNumber: e.stopPlace.evaNumber,
+					name: (stopPlace || e.stopPlace).name
+						.replaceAll('(', ' (')
+						.replaceAll(')', ') ')
+						.replaceAll('  ', ' ')
+						.trim(),
+					ril100: stopPlace?.ril100,
+				},
+			};
+			stops.push(stop);
+		}
 
-			stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
-		}),
-	);
+		stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
+	}
 
 	for (const stop of stops) {
 		const arrivalTransport = stop.arrival?.transport;
@@ -255,6 +253,10 @@ export async function journeyDetails(
 			journey.events.map((e) => e.transport.administration.operatorName),
 		),
 	].join(', ');
+
+	// if (!firstStop.departure || !lastStop.arrival) {
+	// 	return;
+	// }
 
 	const result: ParsedSearchOnTripResponse = {
 		stops,

@@ -14,7 +14,8 @@
 				"noExplicitAny": "off",
 				"noArrayIndexKey": "off",
 				"noShadowRestrictedNames": "off",
-				"noEmptyInterface": "off"
+				"noEmptyInterface": "off",
+				"noConsoleLog": "error"
 			},
 			"a11y": {
 				"useKeyWithClickEvents": "off"

@@ -1,4 +1,4 @@
-import { getDepartureSequence } from '@/external/risTransports';
+import { getDepartureSequence } from '@/external/risTransports/sequence';
 import { mapInformation } from '@/server/coachSequence/DB/risTransports/mapping';
 import { logger } from '@/server/logger';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
@@ -10,7 +10,8 @@ export async function getRisTransportsCoachSequence(
 	evaNumber: string,
 	plannedDepartureDate: Date,
 	initialDepartureDate: Date,
-): Promise<CoachSequenceInformation | undefined> {
+	administration?: string,
+): Promise<CoachSequenceInformation | undefined | null> {
 	try {
 		const sequence = await getDepartureSequence(
 			trainCategory,
@@ -18,6 +19,7 @@ export async function getRisTransportsCoachSequence(
 			evaNumber,
 			plannedDepartureDate,
 			initialDepartureDate,
+			administration,
 		);
 
 		const mappedSequence = await mapInformation(

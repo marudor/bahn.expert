@@ -38,7 +38,7 @@ type TRPCStub<
 			? TRPCStub<TRouter, $Value>
 			: $Value extends AnyProcedure
 				? (
-						input: inferProcedureInput<$Value>,
+						input: Partial<inferProcedureInput<$Value>>,
 						handlerOptions: CyHandlerWithInput,
 					) => Cypress.Chainable
 				: never

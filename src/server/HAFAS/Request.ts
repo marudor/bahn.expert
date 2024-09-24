@@ -137,7 +137,9 @@ async function makeRequest<
 	const { data, extraParam } = createRequest(hafasRequest, profile);
 
 	if (process.env.NODE_ENV === 'test') {
+		// biome-ignore lint/suspicious/noConsoleLog: test
 		console.log(JSON.stringify(hafasRequest));
+		// biome-ignore lint/suspicious/noConsoleLog: test
 		console.log(extraParam);
 	}
 	UpstreamApiRequestMetric.inc({

@@ -16,6 +16,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 	// Throw away the cached client modules and let them be re-required next time
 	// see https://github.com/glenjamin/ultimate-hot-reloading-example
 	compiler.hooks.done.tap('CacheBusting', () => {
+		// biome-ignore lint/suspicious/noConsoleLog: debug
 		console.log('Clearing webpack module cache from server');
 		for (const id of Object.keys(require.cache)) {
 			if (clientRegexp.test(id)) {

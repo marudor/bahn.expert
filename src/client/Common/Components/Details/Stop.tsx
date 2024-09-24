@@ -129,7 +129,6 @@ interface Props {
 	initialDepartureDate?: Date;
 	onStopClick?: (stop: RouteStop) => void;
 	doNotRenderOccupancy?: boolean;
-	lastArrivalEva?: string;
 	continuationFor?: TransportOriginRef[];
 	continuationBy?: TransportDestinationRef[];
 }
@@ -142,7 +141,6 @@ export const Stop: FC<Props> = ({
 	initialDepartureDate,
 	onStopClick,
 	doNotRenderOccupancy,
-	lastArrivalEva,
 	continuationBy,
 	continuationFor,
 }) => {
@@ -213,7 +211,12 @@ export const Stop: FC<Props> = ({
 				<StopPlaceLink stopPlace={stop.station} urlPrefix={urlPrefix} />
 			</StopName>
 			{!doNotRenderOccupancy && occupancy && (
-				<StyledOccupancy oneLine auslastung={occupancy} />
+				<StyledOccupancy
+					oneLine
+					auslastung={{
+						occupancy,
+					}}
+				/>
 			)}
 			{train && (
 				<StyledTravelynxLink
@@ -268,7 +271,6 @@ export const Stop: FC<Props> = ({
 						currentEvaNumber={stop.station.evaNumber}
 						scheduledDeparture={depOrArrival.scheduledTime}
 						initialDeparture={initialDepartureDate}
-						lastArrivalEva={lastArrivalEva}
 						administration={train?.admin}
 						loadHidden={!depOrArrival?.reihung}
 					/>

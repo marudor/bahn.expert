@@ -1,4 +1,3 @@
-import { checkSecrets } from '@/server/checkSecret';
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
@@ -35,8 +34,6 @@ function dateDeserialze(_key: string, value: any): any {
 	return value;
 }
 
-checkSecrets(process.env.REDIS_HOST);
-
 const redisSettings =
 	process.env.REDIS_HOST && process.env.NODE_ENV !== 'test'
 		? {
@@ -44,13 +41,11 @@ const redisSettings =
 				port: process.env.REDIS_PORT
 					? Number.parseInt(process.env.REDIS_PORT, 10)
 					: 6379,
-				password: process.env.REDIS_PASSWORD,
-				// dropBufferSupport: true,
 			}
 		: undefined;
 
 export enum CacheDatabase {
-	Station = 0,
+	IrisTTSStation = 0,
 	TimetableParsedWithWings = 1,
 	DBLageplan = 2,
 	LocMatch = 3,
@@ -65,12 +60,11 @@ export enum CacheDatabase {
 	StopPlaceSalesSearch = 12,
 	JourneyFind = 13,
 	NegativeNewSequence = 14,
-	SBBStopPlaces = 15,
+	TransportsOccupancy = 15,
 	HafasStopOccupancy = 16,
 	AdditionalJourneyInformation = 17,
 	HAFASJourneyMatch = 18,
 	Journey = 19,
-	SBBTrip = 20,
 	ParsedCoachSequenceFound = 21,
 	JourneyFindV2 = 22,
 	JourneyV2 = 23,
@@ -80,7 +74,7 @@ export enum CacheDatabase {
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
-	[CacheDatabase.Station]: 'PT24H',
+	[CacheDatabase.IrisTTSStation]: 'PT24H',
 	[CacheDatabase.TimetableParsedWithWings]: 'PT24H',
 	[CacheDatabase.DBLageplan]: 'PT48H',
 	[CacheDatabase.LocMatch]: 'PT24H',
@@ -99,7 +93,6 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.StopPlaceSalesSearch]: 'P2D',
 	[CacheDatabase.HAFASJourneyMatch]: 'PT6H',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
-	[CacheDatabase.SBBStopPlaces]: 'P1D',
 	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
 	[CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
 	[CacheDatabase.JourneyFind]: 'PT12H',
@@ -112,10 +105,10 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 		'PT5M',
 		process.env.RIS_JOURNEYS_CACHE_TTL,
 	),
-	[CacheDatabase.SBBTrip]: 'PT2H',
 	[CacheDatabase.CoachSequenceRemovedData]: 'PT24H',
 	[CacheDatabase.VRROccupancy]: 'PT60M',
 	[CacheDatabase.VehicleLayoutsMaps]: 'P1D',
+	[CacheDatabase.TransportsOccupancy]: 'P1D',
 };
 
 const activeRedisCaches = new Set<Redis>();
@@ -129,14 +122,14 @@ export function disconnectRedis(): void {
 export class Cache<V> {
 	private redisCache?: Redis;
 	private ttl: number;
-	constructor(database: CacheDatabase) {
+	constructor(database: CacheDatabase, providedRedisSettings = redisSettings) {
 		this.ttl = Temporal.Duration.from(CacheTTLs[database]).total('second');
 		logger.info(
 			`Using ${CacheTTLs[database]} as TTL for ${CacheDatabase[database]}`,
 		);
-		if (redisSettings) {
+		if (providedRedisSettings) {
 			this.redisCache = new Redis({
-				...redisSettings,
+				...providedRedisSettings,
 				db: database,
 			});
 			activeRedisCaches.add(this.redisCache);
@@ -183,6 +176,11 @@ export class Cache<V> {
 	async delete(key: string): Promise<number> {
 		return this.redisCache?.del(key) ?? Promise.resolve(0);
 	}
+	async deleteAll(keys: string[]): Promise<number | undefined> {
+		if (keys.length) {
+			return this.redisCache?.del(keys);
+		}
+	}
 	async exists(key: string): Promise<boolean> {
 		return Boolean(await this.redisCache?.exists(key));
 	}
@@ -199,5 +197,11 @@ export class Cache<V> {
 			await Promise.all(keys.map(async (k) => [k, await this.get(k)]))
 		).filter(([_, value]) => Boolean(value));
 		return entries;
+	}
+	async keys(pattern: string): Promise<string[]> {
+		if (this.redisCache) {
+			return this.redisCache.keys(pattern);
+		}
+		return [];
 	}
 }

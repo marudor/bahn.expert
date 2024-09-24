@@ -1,36 +1,22 @@
-import {
-	Configuration,
-	VehicleSequencesApi,
-} from '@/external/generated/risTransports';
+import { VehicleSequencesApi } from '@/external/generated/risTransports';
 import type { VehicleSequenceDeparture } from '@/external/generated/risTransports';
+import {
+	isWithin20Hours,
+	risTransportsConfiguration,
+} from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { logger } from '@/server/logger';
+import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
-import {
-	addHours,
-	format,
-	formatISO,
-	isWithinInterval,
-	subHours,
-} from 'date-fns';
-
-const risTransportsConfiguration = new Configuration({
-	basePath: process.env.COACH_SEQUENCE_URL,
-	baseOptions: {
-		headers: {
-			'DB-Api-Key': process.env.COACH_SEQUENCE_CLIENT_SECRET,
-			'DB-Client-Id': process.env.COACH_SEQUENCE_CLIENT_ID,
-			'User-Agent': 'bahn.expert',
-		},
-	},
-});
+import { format, formatISO } from 'date-fns';
 
 const formatDate = (date?: Date) =>
 	date ? format(date, 'yyyyMMddHHmm') : undefined;
 
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
+	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'coachSequence-risTransports');
@@ -41,16 +27,27 @@ const vehicleSequenceClient = new VehicleSequencesApi(
 	axiosWithTimeout,
 );
 
-const negativeHitCache = new Cache<boolean>(CacheDatabase.NegativeNewSequence);
+let allowedAdministrations: string[] = [];
 
-export function isWithin20Hours(date: Date): boolean {
-	const start = subHours(new Date(), 20);
-	const end = addHours(new Date(), 20);
-	return isWithinInterval(date, {
-		start,
-		end,
-	});
+async function fetchAllowedAdministrations() {
+	try {
+		allowedAdministrations = (
+			await vehicleSequenceClient.vehicleSequenceAdministrations()
+		).data.administrations.map((a) => a.administrationID);
+	} catch {
+		// ignored
+	}
 }
+
+if (process.env.NODE_ENV !== 'test') {
+	void fetchAllowedAdministrations();
+	setInterval(
+		fetchAllowedAdministrations,
+		Temporal.Duration.from('P1D').total('millisecond'),
+	);
+}
+
+const negativeHitCache = new Cache<boolean>(CacheDatabase.NegativeNewSequence);
 
 export async function getDepartureSequence(
 	trainCategory: string,
@@ -58,9 +55,15 @@ export async function getDepartureSequence(
 	evaNumber: string,
 	plannedDepartureDate: Date,
 	initialDepartureDate: Date,
-): Promise<VehicleSequenceDeparture | undefined> {
+	administration?: string,
+): Promise<VehicleSequenceDeparture | undefined | null> {
 	if (!isWithin20Hours(plannedDepartureDate)) {
 		return undefined;
+	}
+	if (administration && allowedAdministrations.length) {
+		if (!allowedAdministrations.includes(administration)) {
+			return null;
+		}
 	}
 	const formattedDate = formatDate(initialDepartureDate);
 	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${evaNumber}`;

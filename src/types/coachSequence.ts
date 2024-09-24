@@ -127,13 +127,7 @@ export interface CoachSequence {
 }
 
 export interface CoachSequenceInformation {
-	source:
-		| 'OEBB'
-		| 'DB-noncd'
-		| 'DB-plan'
-		| 'DB-bahnde'
-		| 'SBB'
-		| 'DB-risTransports';
+	source: 'DB-plan' | 'DB-bahnde' | 'DB-risTransports';
 	stop: CoachSequenceStop;
 	product: CoachSequenceProduct;
 	sequence: CoachSequence;

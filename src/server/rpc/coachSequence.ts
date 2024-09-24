@@ -1,4 +1,5 @@
 import { getVehicleLayout } from '@/external/risMaps';
+import { getJourneyOccupancy } from '@/external/risTransports/occupancy';
 import { coachSequence } from '@/server/coachSequence';
 import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
 import { getTrainRunsByDate } from '@/server/coachSequence/DB/trainRuns';
@@ -19,7 +20,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 				evaNumber: z.string().optional(),
 				initialDeparture: z.date().optional(),
 				category: z.string().optional(),
-				lastArrivalEva: z.string().optional(),
+				administration: z.string().optional(),
 			}),
 		)
 		.query(
@@ -30,7 +31,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 					evaNumber,
 					initialDeparture,
 					category,
-					lastArrivalEva,
+					administration,
 				},
 			}) => {
 				try {
@@ -40,7 +41,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 						evaNumber,
 						initialDeparture,
 						category,
-						lastArrivalEva,
+						administration,
 					);
 					if (sequence) return sequence;
 				} catch {
@@ -78,4 +79,15 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 	vehicleLayout: rpcProcedure.input(z.string()).query(({ input }) => {
 		return getVehicleLayout(input);
 	}),
+	occupancy: rpcProcedure
+		.input(
+			z.object({
+				journeyId: z.string(),
+			}),
+		)
+		.query(({ input: { journeyId } }) => {
+			return getJourneyOccupancy({
+				journeyId,
+			});
+		}),
 });

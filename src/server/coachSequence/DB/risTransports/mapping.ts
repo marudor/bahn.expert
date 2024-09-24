@@ -231,13 +231,13 @@ async function mapSequence(
 }
 
 export const mapInformation = async (
-	upstreamSequence: VehicleSequenceDeparture | undefined,
+	upstreamSequence: VehicleSequenceDeparture | undefined | null,
 	trainCategory: string,
 	trainNumber: string,
 	evaNumber: string,
-): Promise<CoachSequenceInformation | undefined> => {
+): Promise<CoachSequenceInformation | undefined | null> => {
 	if (!upstreamSequence) {
-		return undefined;
+		return upstreamSequence;
 	}
 	const [stop, basePercent] = mapStop(evaNumber, upstreamSequence.platform);
 	if (!stop) {

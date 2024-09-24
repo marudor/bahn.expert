@@ -21,32 +21,49 @@ describe('Auslastung', () => {
 	};
 
 	it('shows loading first, nothing on error', () => {
+		cy.trpc.hafas
+			.occupancy(
+				{},
+				{
+					delay: 200,
+					statusCode: 404,
+				},
+			)
+			.as('auslastung');
 		renderAuslastung();
 		cy.findByTestId('auslastungDisplay').should('not.exist');
 		cy.findByTestId('loading').should('exist');
+		cy.wait('@auslastung');
 		cy.findByTestId('loading').should('not.exist');
 		cy.findByTestId('auslastungDisplay').should('not.exist');
 	});
 
 	it('shows auslastung after loading', () => {
-		cy.trpc.hafas.occupancy(
-			{
-				start: mockAbfahrt.currentStopPlace.name,
-				destination: mockAbfahrt.destination,
-				trainNumber: mockAbfahrt.train.number,
-				plannedDepartureTime: mockAbfahrt.departure!.scheduledTime,
-				stopEva: mockAbfahrt.currentStopPlace.evaNumber,
-			},
-			{
-				body: {
-					first: 1,
-					second: 2,
+		cy.trpc.hafas
+			.occupancy(
+				{
+					start: mockAbfahrt.currentStopPlace.name,
+					destination: mockAbfahrt.destination,
+					trainNumber: mockAbfahrt.train.number,
+					plannedDepartureTime: mockAbfahrt.departure!.scheduledTime,
+					stopEva: mockAbfahrt.currentStopPlace.evaNumber,
 				},
-			},
-		);
+				{
+					delay: 200,
+					body: {
+						source: 'test',
+						occupancy: {
+							first: 1,
+							second: 2,
+						},
+					},
+				},
+			)
+			.as('auslastung');
 
 		renderAuslastung();
 		cy.findByTestId('loading').should('exist');
+		cy.wait('@auslastung');
 		cy.findByTestId('auslastungDisplay').should('exist');
 	});
 });

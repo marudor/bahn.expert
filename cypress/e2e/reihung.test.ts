@@ -8,7 +8,6 @@ describe('CoachSequence', () => {
 					evaNumber: '8000105',
 					departure: new Date('2019-08-07T12:50:00.000Z'),
 					initialDeparture: new Date('2019-08-07T07:46:00.000Z'),
-					lastArrivalEva: undefined,
 					trainNumber: 371,
 					category: 'ICE',
 				},
@@ -64,7 +63,6 @@ describe('CoachSequence', () => {
 						evaNumber: '8000152',
 						departure: new Date('2020-02-22T11:26:00.000Z'),
 						initialDeparture: new Date('2020-02-22T10:15:00.000Z'),
-						lastArrivalEva: undefined,
 						trainNumber: 537,
 						category: 'ICE',
 					},
@@ -81,7 +79,6 @@ describe('CoachSequence', () => {
 						evaNumber: '8000152',
 						departure: new Date('2020-02-22T11:26:00.000Z'),
 						initialDeparture: new Date('2020-02-22T10:15:00.000Z'),
-						lastArrivalEva: undefined,
 					},
 					{
 						statusCode: 404,
@@ -93,7 +90,7 @@ describe('CoachSequence', () => {
 			cy.findByTestId('abfahrtICE537').click();
 			cy.wait('@537');
 			cy.findByTestId('direction').within(() => {
-				cy.findByTestId('right').should('exist');
+				cy.findByTestId('left').should('exist');
 			});
 		});
 

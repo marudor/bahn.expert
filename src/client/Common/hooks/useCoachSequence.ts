@@ -13,24 +13,25 @@ export const useCoachSequence = (
 	initialDeparture?: Date,
 	fallback: FallbackTrainsForCoachSequence[] = [],
 	trainCategory?: string,
-	lastArrivalEva?: string,
+	administration?: string,
 ) => {
 	const baseOptions = {
 		evaNumber: currentEvaNumber,
 		departure: scheduledDeparture,
 		initialDeparture,
-		lastArrivalEva,
 	};
 	const mainSequence = trpc.coachSequence.sequence.useQuery({
 		...baseOptions,
 		trainNumber,
 		category: trainCategory,
+		administration,
 	});
 
 	const fallbackSequences = fallback.map((f) =>
 		trpc.coachSequence.sequence.useQuery({
 			trainNumber: Number.parseInt(f.number),
 			category: f.type,
+			administration: f.admin,
 			...baseOptions,
 		}),
 	);

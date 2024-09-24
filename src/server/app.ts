@@ -130,8 +130,8 @@ export default (): http.Server => {
 
 	server.addListener('request', app.callback());
 	server.listen(port);
-	// istanbul ignore next
 	if (process.env.NODE_ENV !== 'production') {
+		// biome-ignore lint/suspicious/noConsoleLog: debug
 		console.log('running in DEV mode!');
 	}
 	createAdmin();
