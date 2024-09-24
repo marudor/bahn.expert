@@ -19,7 +19,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 				evaNumber: z.string().optional(),
 				initialDeparture: z.date().optional(),
 				category: z.string().optional(),
-				lastArrivalEva: z.string().optional(),
+				administration: z.string().optional(),
 			}),
 		)
 		.query(
@@ -30,7 +30,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 					evaNumber,
 					initialDeparture,
 					category,
-					lastArrivalEva,
+					administration,
 				},
 			}) => {
 				try {
@@ -40,7 +40,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 						evaNumber,
 						initialDeparture,
 						category,
-						lastArrivalEva,
+						administration,
 					);
 					if (sequence) return sequence;
 				} catch {

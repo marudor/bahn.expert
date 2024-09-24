@@ -14,7 +14,7 @@ export async function coachSequence(
 	evaNumber?: EvaNumber,
 	initialDeparture?: Date,
 	trainCategory?: string,
-	_arrivalEva?: string,
+	administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
 	if (
 		!isWithinInterval(departure, {
@@ -24,26 +24,6 @@ export async function coachSequence(
 	) {
 		return;
 	}
-
-	// if (evaNumber?.startsWith('85') && arrivalEva) {
-	// 	const sbbSequence = await SBBCoachSequence(
-	// 		evaNumber,
-	// 		trainNumber,
-	// 		departure,
-	// 		arrivalEva,
-	// 	);
-
-	// 	return sbbSequence;
-	// }
-
-	// if (evaNumber && initialDeparture && !evaNumber.startsWith('80')) {
-	// 	const oebbSequence = await OEBBCoachSequence(
-	// 		trainNumber,
-	// 		evaNumber,
-	// 		initialDeparture,
-	// 	);
-	// 	if (oebbSequence) return oebbSequence;
-	// }
 
 	// no need to check for stuff more than 24 hours in the future, we dont have that
 	if (differenceInHours(departure, new Date()) >= 24) {
@@ -56,5 +36,6 @@ export async function coachSequence(
 		initialDeparture,
 		trainCategory,
 		evaNumber,
+		administration,
 	);
 }

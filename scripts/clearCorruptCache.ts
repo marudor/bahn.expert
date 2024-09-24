@@ -17,6 +17,7 @@ async function doStuff() {
 		const relevantEntries = allEntries.filter(
 			([, value]) => !value || (Array.isArray(value) && !value.length),
 		);
+		// biome-ignore lint/suspicious/noConsoleLog: script
 		console.log(`clearing ${relevantEntries.length}`);
 		for (const [key] of relevantEntries) {
 			await cache.delete(key);

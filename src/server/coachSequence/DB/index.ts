@@ -22,6 +22,7 @@ export async function DBCoachSequence(
 	plannedStartDate?: Date,
 	trainCategory?: string,
 	stopEva?: string,
+	administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
 	if (trainCategory && blockedCategories.has(trainCategory)) {
 		return undefined;
@@ -45,7 +46,12 @@ export async function DBCoachSequence(
 			stopEva,
 			date,
 			plannedStartDate,
+			administration,
 		);
+		// hacky way for administration skip
+		if (risTransportsSequence === null) {
+			return;
+		}
 		if (risTransportsSequence) {
 			void coachSequenceCache.set(cacheKey, risTransportsSequence);
 			return risTransportsSequence;

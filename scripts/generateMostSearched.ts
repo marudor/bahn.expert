@@ -28,6 +28,7 @@ async function fetch() {
 		)
 	).flatMap((s) => s[0]);
 
+	// biome-ignore lint/suspicious/noConsoleLog: script
 	console.log(
 		JSON.stringify(
 			resolvedStopPlaces.map((s) => ({

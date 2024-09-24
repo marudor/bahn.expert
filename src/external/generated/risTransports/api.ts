@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * RIS::Transports
- * ## Info  * powered by DB Systel - [doServices Sirius](https://db.de/do-services-sirius) * powered by [DB Reisendeninformation](https://db-planet.deutschebahn.com/pages/reisendeninformation/apps/content/willkommen) * member of the [RIS-API](https://db.de/ris-api) family, the building kit for traveller informations * for details check out [RIS::Transports](https://api-portal.hub.db.de/db/apis/product/ris-transports) in the DB API Portal   ## Capabilities  ### Vehicle-Sequences  Returns the vehicle-sequence [Wagenreihung] for a departure [Abfahrt] or an arrival [Ankunft] within a journey [Fahrt], meaning:  * the vehicle groups that travel together [Vereinigung], their names and destinations * the sequence of the vehicles and the vehicle type (control car, dining car, passenger car etc.) * the position of the vehicles at the platform / track / sector [Plattform / Gleis / Sektor] and according platform information * existing equipment features [Ausstattungsmerkmale] (boarding aid, toilet, etc.) * flag that indicates whether sequence matches schedule [Bitte beachten Sie die geänderte Wagenreihung] * changes for vehicles within vehicle-sequences [Stärkung, Schwächung, Parktausch etc.]  Additionally, all administration IDs [Verwaltungs ID / Code] the system is able to provide vehicle-sequences for can be queried.  ### Occupancies  Provides occupancy information [Auslastungsinformation] for a journey [Fahrt] and its departures [Abfahrten], if available.  This information can therefore be used to:  * let the travellers know the occupancy of a particular journey [Fahrt] at a particular departure [Abfahrt] * let the travellers know where to stand at the platform in order to board the train at the emptiest vehicle [Fahrgastlenkung beim Einstieg]  ### Vehicles by vehicle-id  Returns all journeys [Fahrten] a vehicle [Fahrzeug] with a particular vehicle-id [usually the UIC-number] travels in for a specific date:  * enables consumers to find the journey a traveller is currently travelling with by the uic-number of a vehicle * can be used to match a particular train to its journey [Zugtaufe]  ### Asynchronous change-notifications  The RIS-API event-system [RIS::Events](https://db-planet.deutschebahn.com/pages/reisendeninformation-ris-api/apps/content/events) can be used to get push-notifications in case information within RIS::Transports changes. This enables use-cases like:  * refreshing ui in case information changes * doing something in your backend in case information changes * caching information and invalidate cache in case information changes  ## Limitations / Known Issues  * vehicle-sequences are limited to 22h ahead and are usually ready at about ~22:30 o\'clock for the next day * vehicle-amenity status is only working for bike spaces for DB Regio Baden-Württemberg, all other amenities don\'t have a status at all * the field `vehicleGroupName` sometimes can contain a string with two vehicle group names splitted by a semicolon e.g RPF200009;RPF47041, instead of one vehicle group name  ## Getting Started  * visit our [documentation](https://ris-api.gitpages.tech.rz.db.de), learn how to [get started with openapi](https://developer-docs.deutschebahn.com/doku/apis/openapi.html) or how to [get started with asyncapi](https://developer-docs.deutschebahn.com/doku/apis/asyncapi.html) and check out our [coding-examples](https://developer-docs.deutschebahn.com/doku/apis) * bounty hunter, bug finder or just idea creator, we are thirsty to hear from you - get in touch with us by using [DB AnwenderEcho](https://anwenderecho.extranet.deutschebahn.com/ris-api/) or write an [email](mailto:ris-api@deutschebahn.com) 
+ * ## Info  * powered by DB Systel - [doServices Sirius](https://db.de/do-services-sirius) * powered by [DB Reisendeninformation](https://db-planet.deutschebahn.com/pages/reisendeninformation/apps/content/willkommen) * member of the [RIS-API](https://db.de/ris-api) family, the building kit for traveller information * for details check out [RIS::Transports](https://api-portal.hub.db.de/db/apis/product/ris-transports) in the DB API Portal   ## Capabilities  ### Vehicle-Sequences  Returns the vehicle-sequence [Wagenreihung] for a departure [Abfahrt] or an arrival [Ankunft] within a journey [Fahrt], meaning:  * the vehicle groups that travel together [Vereinigung], their names and destinations * the sequence of the vehicles and the vehicle type (control car, dining car, passenger car etc.) * the position of the vehicles at the platform / track / sector [Plattform / Gleis / Sektor] and according platform information * existing equipment features [Ausstattungsmerkmale] (boarding aid, toilet, etc.) * flag that indicates whether sequence matches schedule [Bitte beachten Sie die geänderte Wagenreihung] * changes for vehicles within vehicle-sequences [Stärkung, Schwächung, Parktausch etc.]  Additionally, all administration IDs [Verwaltungs ID / Code] the system is able to provide vehicle-sequences for can be queried.  ### Occupancies  Provides occupancy information [Auslastungsinformation] for a journey [Fahrt] and its departures [Abfahrten], if available.  This information can therefore be used to:  * let the travellers know the occupancy of a particular journey [Fahrt] at a particular departure [Abfahrt] * let the travellers know where to stand at the platform in order to board the train at the emptiest vehicle [Fahrgastlenkung beim Einstieg]  ### Vehicles by vehicle-id  Returns all journeys [Fahrten] a vehicle [Fahrzeug] with a particular vehicle-id [usually the UIC-number] travels in for a specific date:  * enables consumers to find the journey a traveller is currently travelling with by the uic-number of a vehicle * can be used to match a particular train to its journey [Zugtaufe]  ### Asynchronous change-notifications  The RIS-API event-system [RIS::Events](https://db-planet.deutschebahn.com/pages/reisendeninformation-ris-api/apps/content/events) can be used to get push-notifications in case information within RIS::Transports changes. This enables use-cases like:  * refreshing ui in case information changes * doing something in your backend in case information changes * caching information and invalidate cache in case information changes  ## Limitations / Known Issues  * vehicle-sequences are limited to 22h ahead and are usually ready at about ~22:30 o\'clock for the next day * vehicle-amenity status is only working for bike spaces for DB Regio Baden-Württemberg, all other amenities don\'t have a status at all * the field `vehicleGroupName` sometimes can contain a string with two vehicle group names splitted by a semicolon e.g RPF200009;RPF47041, instead of one vehicle group name  ## Getting Started  * visit our [documentation](https://ris-api.gitpages.tech.rz.db.de), learn how to [get started with openapi](https://developer-docs.deutschebahn.com/doku/apis/openapi.html) or how to [get started with asyncapi](https://developer-docs.deutschebahn.com/doku/apis/asyncapi.html) and check out our [coding-examples](https://developer-docs.deutschebahn.com/doku/apis) * bounty hunter, bug finder or just idea creator, we are thirsty to hear from you - get in touch with us by using [DB AnwenderEcho](https://anwenderecho.extranet.deutschebahn.com/ris-api/) or write an [email](mailto:ris-api@deutschebahn.com) ## Changelog  <details>  ### 3.4.0  #### Added  * barrierFreeAccess in arrival and departure sequences  ### 3.3.1  #### Fixed  * set maxLength of departureID in JourneyOccupancyRequest to 12  ### 3.3.0  ### Added  * added endpoints `/vehicle-sequences/departures/{journeyID}` and `/vehicle-sequences/arrivals/{journeyID}` in order to get all sequences of a particular journey  #### Changed  * fixed wrong length for `departureID` and `arrivalID` from `10` to `12` * refactored `/occupancies/` to `/occupancies`  </details> 
  *
- * The version of the OpenAPI document: 3.2.0
+ * The version of the OpenAPI document: 3.4.0
  * Contact: doServices.Sirius.Team@deutschebahn.com
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -847,6 +847,12 @@ export interface VehicleInGroupArrival {
      */
     'orientation': string;
     /**
+     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicle [Fahrzeug] to platform [Gleis, Bahnsteig, Plattform] and vice versa. Access to vehicles stopping at platform positions with different heights are considered as not impossible. - STEP_FREE (vehicle [Fahrzeug] has the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either the vehicle [Fahrzeug] or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the vehicle) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
+     * @type {string}
+     * @memberof VehicleInGroupArrival
+     */
+    'barrierFreeAccess': string;
+    /**
      * 
      * @type {VehiclePlatformPosition}
      * @memberof VehicleInGroupArrival
@@ -895,6 +901,12 @@ export interface VehicleInGroupDeparture {
      * @memberof VehicleInGroupDeparture
      */
     'orientation': string;
+    /**
+     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicle [Fahrzeug] to platform [Gleis, Bahnsteig, Plattform] and vice versa. Access to vehicles stopping at platform positions with different heights are considered as not impossible. - STEP_FREE (vehicle [Fahrzeug] has the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either the vehicle [Fahrzeug] or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the vehicle) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
+     * @type {string}
+     * @memberof VehicleInGroupDeparture
+     */
+    'barrierFreeAccess': string;
     /**
      * 
      * @type {VehiclePlatformPosition}
@@ -970,6 +982,12 @@ export interface VehicleSequenceArrival {
      */
     'sequenceStatus': string;
     /**
+     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
+     * @type {string}
+     * @memberof VehicleSequenceArrival
+     */
+    'barrierFreeAccess': string;
+    /**
      * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
      * @type {Array<VehicleGroupInSequenceArrival>}
      * @memberof VehicleSequenceArrival
@@ -1007,11 +1025,30 @@ export interface VehicleSequenceArrivalUnmatched {
      */
     'sequenceStatus': string;
     /**
+     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
+     * @type {string}
+     * @memberof VehicleSequenceArrivalUnmatched
+     */
+    'barrierFreeAccess': string;
+    /**
      * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
      * @type {Array<VehicleGroupInSequenceArrivalUnmatched>}
      * @memberof VehicleSequenceArrivalUnmatched
      */
     'groups': Array<VehicleGroupInSequenceArrivalUnmatched>;
+}
+/**
+ * Vehicle-sequences [Wagenreihung] for transports at a all of its arrivals.
+ * @export
+ * @interface VehicleSequenceArrivals
+ */
+export interface VehicleSequenceArrivals {
+    /**
+     * List of vehicle-sequences [Wagenreihung] for journey.
+     * @type {Array<VehicleSequenceArrival>}
+     * @memberof VehicleSequenceArrivals
+     */
+    'sequences': Array<VehicleSequenceArrival>;
 }
 /**
  * Administrations [Verwaltung] that provide vehicle-sequences [Wagenreihungen].
@@ -1063,6 +1100,12 @@ export interface VehicleSequenceDeparture {
      */
     'sequenceChange': string;
     /**
+     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
+     * @type {string}
+     * @memberof VehicleSequenceDeparture
+     */
+    'barrierFreeAccess': string;
+    /**
      * 
      * @type {Occupancy}
      * @memberof VehicleSequenceDeparture
@@ -1112,6 +1155,12 @@ export interface VehicleSequenceDepartureUnmatched {
      */
     'sequenceChange': string;
     /**
+     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
+     * @type {string}
+     * @memberof VehicleSequenceDepartureUnmatched
+     */
+    'barrierFreeAccess': string;
+    /**
      * 
      * @type {Occupancy}
      * @memberof VehicleSequenceDepartureUnmatched
@@ -1123,6 +1172,19 @@ export interface VehicleSequenceDepartureUnmatched {
      * @memberof VehicleSequenceDepartureUnmatched
      */
     'groups': Array<VehicleGroupInSequenceDepartureUnmatched>;
+}
+/**
+ * Vehicle-sequences [Wagenreihung] for transports at a all of its departure.
+ * @export
+ * @interface VehicleSequenceDepartures
+ */
+export interface VehicleSequenceDepartures {
+    /**
+     * List of vehicle-sequences [Wagenreihung] for journey.
+     * @type {Array<VehicleSequenceDeparture>}
+     * @memberof VehicleSequenceDepartures
+     */
+    'sequences': Array<VehicleSequenceDeparture>;
 }
 /**
  * Detailed information on the vehicle [Fahrzeug] type.
@@ -1178,7 +1240,7 @@ export const OccupanciesApiAxiosParamCreator = function (configuration?: Configu
         occupancies: async (journeyOccupanciesRequest: JourneyOccupanciesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'journeyOccupanciesRequest' is not null or undefined
             assertParamExists('occupancies', 'journeyOccupanciesRequest', journeyOccupanciesRequest)
-            const localVarPath = `/occupancies/`;
+            const localVarPath = `/occupancies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1587,6 +1649,50 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
+         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
+         * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
+         * @param {string} journeyID id of journey [Fahrt-ID]
+         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
+         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        vehicleSequenceArrivals: async (journeyID: string, includePosition?: boolean, includeAmenities?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'journeyID' is not null or undefined
+            assertParamExists('vehicleSequenceArrivals', 'journeyID', journeyID)
+            const localVarPath = `/vehicle-sequences/arrivals/{journeyID}`
+                .replace(`{${"journeyID"}}`, encodeURIComponent(String(journeyID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (includePosition !== undefined) {
+                localVarQueryParameter['includePosition'] = includePosition;
+            }
+
+            if (includeAmenities !== undefined) {
+                localVarQueryParameter['includeAmenities'] = includeAmenities;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
          * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
          * @param {string} journeyID id of journey [Fahrt-ID]
@@ -1719,6 +1825,55 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
+         * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
+         * @param {string} journeyID id of journey [Fahrt-ID]
+         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
+         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
+         * @param {string} [includeOccupancy] include occupancy [Auslastung] for vehicles at departure, if omitted \&#39;OVERALL\&#39; occupancy will be returned - NONE (return no occupancy [Auslastung]) - OVERALL (return only overall occupancy [Auslastung] on a first / economy class level)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        vehicleSequenceDepartures: async (journeyID: string, includePosition?: boolean, includeAmenities?: boolean, includeOccupancy?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'journeyID' is not null or undefined
+            assertParamExists('vehicleSequenceDepartures', 'journeyID', journeyID)
+            const localVarPath = `/vehicle-sequences/departures/{journeyID}`
+                .replace(`{${"journeyID"}}`, encodeURIComponent(String(journeyID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (includePosition !== undefined) {
+                localVarQueryParameter['includePosition'] = includePosition;
+            }
+
+            if (includeAmenities !== undefined) {
+                localVarQueryParameter['includeAmenities'] = includeAmenities;
+            }
+
+            if (includeOccupancy !== undefined) {
+                localVarQueryParameter['includeOccupancy'] = includeOccupancy;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1771,6 +1926,19 @@ export const VehicleSequencesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
+         * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
+         * @param {string} journeyID id of journey [Fahrt-ID]
+         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
+         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async vehicleSequenceArrivals(journeyID: string, includePosition?: boolean, includeAmenities?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VehicleSequenceArrivals>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vehicleSequenceArrivals(journeyID, includePosition, includeAmenities, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
          * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
          * @param {string} journeyID id of journey [Fahrt-ID]
@@ -1801,6 +1969,20 @@ export const VehicleSequencesApiFp = function(configuration?: Configuration) {
          */
         async vehicleSequenceDepartureUnmatched(date: string, journeyNumber: number, category: string, evaNumber: string, timeSchedule?: string, includePosition?: boolean, includeAmenities?: boolean, includeOccupancy?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VehicleSequenceDepartureUnmatched>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.vehicleSequenceDepartureUnmatched(date, journeyNumber, category, evaNumber, timeSchedule, includePosition, includeAmenities, includeOccupancy, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
+         * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
+         * @param {string} journeyID id of journey [Fahrt-ID]
+         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
+         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
+         * @param {string} [includeOccupancy] include occupancy [Auslastung] for vehicles at departure, if omitted \&#39;OVERALL\&#39; occupancy will be returned - NONE (return no occupancy [Auslastung]) - OVERALL (return only overall occupancy [Auslastung] on a first / economy class level)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async vehicleSequenceDepartures(journeyID: string, includePosition?: boolean, includeAmenities?: boolean, includeOccupancy?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VehicleSequenceDepartures>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vehicleSequenceDepartures(journeyID, includePosition, includeAmenities, includeOccupancy, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1843,6 +2025,16 @@ export const VehicleSequencesApiFactory = function (configuration?: Configuratio
             return localVarFp.vehicleSequenceArrivalUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, requestParameters.includePosition, requestParameters.includeAmenities, options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
+         * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
+         * @param {VehicleSequencesApiVehicleSequenceArrivalsRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        vehicleSequenceArrivals(requestParameters: VehicleSequencesApiVehicleSequenceArrivalsRequest, options?: AxiosRequestConfig): AxiosPromise<VehicleSequenceArrivals> {
+            return localVarFp.vehicleSequenceArrivals(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
          * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
          * @param {VehicleSequencesApiVehicleSequenceDepartureRequest} requestParameters Request parameters.
@@ -1861,6 +2053,16 @@ export const VehicleSequencesApiFactory = function (configuration?: Configuratio
          */
         vehicleSequenceDepartureUnmatched(requestParameters: VehicleSequencesApiVehicleSequenceDepartureUnmatchedRequest, options?: AxiosRequestConfig): AxiosPromise<VehicleSequenceDepartureUnmatched> {
             return localVarFp.vehicleSequenceDepartureUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
+         * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
+         * @param {VehicleSequencesApiVehicleSequenceDeparturesRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        vehicleSequenceDepartures(requestParameters: VehicleSequencesApiVehicleSequenceDeparturesRequest, options?: AxiosRequestConfig): AxiosPromise<VehicleSequenceDepartures> {
+            return localVarFp.vehicleSequenceDepartures(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1952,6 +2154,34 @@ export interface VehicleSequencesApiVehicleSequenceArrivalUnmatchedRequest {
      * include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
      * @type {boolean}
      * @memberof VehicleSequencesApiVehicleSequenceArrivalUnmatched
+     */
+    readonly includeAmenities?: boolean
+}
+
+/**
+ * Request parameters for vehicleSequenceArrivals operation in VehicleSequencesApi.
+ * @export
+ * @interface VehicleSequencesApiVehicleSequenceArrivalsRequest
+ */
+export interface VehicleSequencesApiVehicleSequenceArrivalsRequest {
+    /**
+     * id of journey [Fahrt-ID]
+     * @type {string}
+     * @memberof VehicleSequencesApiVehicleSequenceArrivals
+     */
+    readonly journeyID: string
+
+    /**
+     * include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
+     * @type {boolean}
+     * @memberof VehicleSequencesApiVehicleSequenceArrivals
+     */
+    readonly includePosition?: boolean
+
+    /**
+     * include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
+     * @type {boolean}
+     * @memberof VehicleSequencesApiVehicleSequenceArrivals
      */
     readonly includeAmenities?: boolean
 }
@@ -2062,6 +2292,41 @@ export interface VehicleSequencesApiVehicleSequenceDepartureUnmatchedRequest {
 }
 
 /**
+ * Request parameters for vehicleSequenceDepartures operation in VehicleSequencesApi.
+ * @export
+ * @interface VehicleSequencesApiVehicleSequenceDeparturesRequest
+ */
+export interface VehicleSequencesApiVehicleSequenceDeparturesRequest {
+    /**
+     * id of journey [Fahrt-ID]
+     * @type {string}
+     * @memberof VehicleSequencesApiVehicleSequenceDepartures
+     */
+    readonly journeyID: string
+
+    /**
+     * include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
+     * @type {boolean}
+     * @memberof VehicleSequencesApiVehicleSequenceDepartures
+     */
+    readonly includePosition?: boolean
+
+    /**
+     * include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
+     * @type {boolean}
+     * @memberof VehicleSequencesApiVehicleSequenceDepartures
+     */
+    readonly includeAmenities?: boolean
+
+    /**
+     * include occupancy [Auslastung] for vehicles at departure, if omitted \&#39;OVERALL\&#39; occupancy will be returned - NONE (return no occupancy [Auslastung]) - OVERALL (return only overall occupancy [Auslastung] on a first / economy class level)
+     * @type {string}
+     * @memberof VehicleSequencesApiVehicleSequenceDepartures
+     */
+    readonly includeOccupancy?: string
+}
+
+/**
  * VehicleSequencesApi - object-oriented interface
  * @export
  * @class VehicleSequencesApi
@@ -2104,6 +2369,18 @@ export class VehicleSequencesApi extends BaseAPI {
     }
 
     /**
+     * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
+     * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
+     * @param {VehicleSequencesApiVehicleSequenceArrivalsRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VehicleSequencesApi
+     */
+    public vehicleSequenceArrivals(requestParameters: VehicleSequencesApiVehicleSequenceArrivalsRequest, options?: AxiosRequestConfig) {
+        return VehicleSequencesApiFp(this.configuration).vehicleSequenceArrivals(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
      * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
      * @param {VehicleSequencesApiVehicleSequenceDepartureRequest} requestParameters Request parameters.
@@ -2125,6 +2402,18 @@ export class VehicleSequencesApi extends BaseAPI {
      */
     public vehicleSequenceDepartureUnmatched(requestParameters: VehicleSequencesApiVehicleSequenceDepartureUnmatchedRequest, options?: AxiosRequestConfig) {
         return VehicleSequencesApiFp(this.configuration).vehicleSequenceDepartureUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
+     * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
+     * @param {VehicleSequencesApiVehicleSequenceDeparturesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VehicleSequencesApi
+     */
+    public vehicleSequenceDepartures(requestParameters: VehicleSequencesApiVehicleSequenceDeparturesRequest, options?: AxiosRequestConfig) {
+        return VehicleSequencesApiFp(this.configuration).vehicleSequenceDepartures(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -6,6 +6,7 @@ import type { VehicleSequenceDeparture } from '@/external/generated/risTransport
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { logger } from '@/server/logger';
+import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
 import {
 	addHours,
@@ -31,6 +32,7 @@ const formatDate = (date?: Date) =>
 
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
+	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'coachSequence-risTransports');
@@ -40,6 +42,26 @@ const vehicleSequenceClient = new VehicleSequencesApi(
 	undefined,
 	axiosWithTimeout,
 );
+
+let allowedAdministrations: string[] = [];
+
+async function fetchAllowedAdministrations() {
+	try {
+		allowedAdministrations = (
+			await vehicleSequenceClient.vehicleSequenceAdministrations()
+		).data.administrations.map((a) => a.administrationID);
+	} catch {
+		// ignored
+	}
+}
+
+if (process.env.NODE_ENV !== 'test') {
+	void fetchAllowedAdministrations();
+	setInterval(
+		fetchAllowedAdministrations,
+		Temporal.Duration.from('P1D').total('millisecond'),
+	);
+}
 
 const negativeHitCache = new Cache<boolean>(CacheDatabase.NegativeNewSequence);
 
@@ -58,9 +80,15 @@ export async function getDepartureSequence(
 	evaNumber: string,
 	plannedDepartureDate: Date,
 	initialDepartureDate: Date,
-): Promise<VehicleSequenceDeparture | undefined> {
+	administration?: string,
+): Promise<VehicleSequenceDeparture | undefined | null> {
 	if (!isWithin20Hours(plannedDepartureDate)) {
 		return undefined;
+	}
+	if (administration && allowedAdministrations.length) {
+		if (!allowedAdministrations.includes(administration)) {
+			return null;
+		}
 	}
 	const formattedDate = formatDate(initialDepartureDate);
 	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${evaNumber}`;

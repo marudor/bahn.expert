@@ -51,7 +51,6 @@ interface Props {
 	administration?: string;
 	withLegend?: boolean;
 	loadHidden?: boolean;
-	lastArrivalEva?: string;
 }
 
 const Source: FC<{
@@ -71,9 +70,8 @@ export const CoachSequence: FC<Props> = ({
 	initialDeparture,
 	fallbackWings: fallback,
 	trainCategory,
-	// administration,
+	administration,
 	loadHidden,
-	lastArrivalEva,
 }) => {
 	const { fahrzeugGruppe, showUIC, showCoachType } = useCommonConfig();
 	const trainNumberNumber = Number.parseInt(trainNumber);
@@ -85,7 +83,7 @@ export const CoachSequence: FC<Props> = ({
 		initialDeparture,
 		fallback,
 		trainCategory,
-		lastArrivalEva,
+		administration,
 	);
 
 	const [scale, startPercent] = useMemo(() => {
