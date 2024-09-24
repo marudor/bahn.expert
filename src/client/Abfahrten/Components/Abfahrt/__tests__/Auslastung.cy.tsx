@@ -21,13 +21,15 @@ describe('Auslastung', () => {
 	};
 
 	it('shows loading first, nothing on error', () => {
-		cy.trpc.hafas.occupancy(
-			{},
-			{
-				delay: 200,
-				statusCode: 404,
-			},
-		);
+		cy.trpc.hafas
+			.occupancy(
+				{},
+				{
+					delay: 200,
+					statusCode: 404,
+				},
+			)
+			.as('auslastung');
 		renderAuslastung();
 		cy.findByTestId('auslastungDisplay').should('not.exist');
 		cy.findByTestId('loading').should('exist');
