@@ -90,7 +90,7 @@ describe('CoachSequence', () => {
 			cy.findByTestId('abfahrtICE537').click();
 			cy.wait('@537');
 			cy.findByTestId('direction').within(() => {
-				cy.findByTestId('right').should('exist');
+				cy.findByTestId('left').should('exist');
 			});
 		});
 
