@@ -18,6 +18,7 @@ interface Props extends InheritedProps {
 	showUIC: boolean;
 	showCoachType: boolean;
 	scheduledDeparture: Date;
+	type: string;
 }
 
 const RPFRegex = /(RP)(F\d)(\d{5})/;
@@ -82,6 +83,7 @@ export const Group: FC<Props> = ({
 	type,
 	showCoachType,
 	showUIC,
+	reverse,
 }) => {
 	const gruppenPos = useMemo(() => {
 		const groupStart = Math.min(
@@ -112,15 +114,14 @@ export const Group: FC<Props> = ({
 		return gruppe.coaches.map((c) => {
 			return (
 				<Coach
-					type={type}
 					showCoachType={showCoachType}
 					showUIC={showUIC}
 					scale={scale}
 					correctLeft={correctLeft}
 					Stripe={StripeElement}
-					identifier={gruppe.baureihe?.identifier}
 					wrongWing={wrongWing}
 					key={`${c.uic}${c.position.startPercent}`}
+					reverse={reverse}
 					fahrzeug={c}
 				/>
 			);
@@ -128,11 +129,11 @@ export const Group: FC<Props> = ({
 	}, [
 		gruppe,
 		originalTrainNumber,
-		type,
 		showCoachType,
 		showUIC,
 		scale,
 		correctLeft,
+		reverse,
 	]);
 
 	return (

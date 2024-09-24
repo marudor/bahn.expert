@@ -14,22 +14,24 @@ interface Props {
 	sector: CoachSequenceSector;
 	scale: number;
 	correctLeft: number;
+	reverse: boolean;
 }
 
-export const Sector: FC<Props> = ({ sector, correctLeft, scale }) => {
+export const Sector: FC<Props> = ({ sector, correctLeft, scale, reverse }) => {
 	const position = useMemo(() => {
 		const { startPercent, endPercent, cubePosition } = sector.position;
+		const cssName = reverse ? 'right' : 'left';
 
 		if (cubePosition) {
 			return {
-				left: `${(cubePosition - correctLeft) * scale}%`,
+				[cssName]: `${(cubePosition - correctLeft) * scale}%`,
 			};
 		}
 		return {
-			left: `${(startPercent - correctLeft) * scale}%`,
+			[cssName]: `${(startPercent - correctLeft) * scale}%`,
 			width: `${(endPercent - startPercent) * scale}%`,
 		};
-	}, [correctLeft, scale, sector.position]);
+	}, [correctLeft, scale, sector.position, reverse]);
 
 	return <Container style={position}>{sector.name}</Container>;
 };

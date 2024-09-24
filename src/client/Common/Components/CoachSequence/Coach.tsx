@@ -1,6 +1,5 @@
 import { SingleAuslastungsDisplay } from '@/client/Common/Components/SingleAuslastungsDisplay';
 import type {
-	AvailableIdentifier,
 	CoachSequenceCoach,
 	CoachSequenceCoachFeatures,
 } from '@/types/coachSequence';
@@ -20,7 +19,7 @@ import {
 	WifiOutlined,
 } from '@mui/icons-material';
 import { styled } from '@mui/material';
-import type { ComponentType, FC } from 'react';
+import { type ComponentType, type FC, useMemo } from 'react';
 import { SitzplatzInfo } from './SitzplatzInfo';
 import { UIC } from './UIC';
 import { WagenLink } from './WagenLink';
@@ -209,11 +208,10 @@ const PositionedSingleAuslastungsDisplay = styled(SingleAuslastungsDisplay)`
 export interface InheritedProps {
 	scale: number;
 	correctLeft: number;
-	type: string;
+	reverse: boolean;
 }
 
 export interface Props extends InheritedProps {
-	identifier?: AvailableIdentifier;
 	fahrzeug: CoachSequenceCoach;
 	destination?: string;
 	wrongWing?: boolean;
@@ -230,16 +228,18 @@ export const Coach: FC<Props> = ({
 	correctLeft,
 	showUIC,
 	showCoachType,
-	identifier,
-	type,
+	reverse,
 	Stripe,
 }) => {
 	const { startPercent, endPercent } = fahrzeug.position;
 
-	const position = {
-		left: `${(startPercent - correctLeft) * scale}%`,
-		width: `${(endPercent - startPercent) * scale}%`,
-	};
+	const position = useMemo(() => {
+		const cssName = reverse ? 'right' : 'left';
+		return {
+			[cssName]: `${(startPercent - correctLeft) * scale}%`,
+			width: `${(endPercent - startPercent) * scale}%`,
+		};
+	}, [reverse, startPercent, correctLeft, scale, endPercent]);
 
 	return (
 		<Container
@@ -276,9 +276,7 @@ export const Coach: FC<Props> = ({
 					})}
 			</span>
 			{fahrzeug.features.comfort && <ComfortIcon />}
-			{showCoachType && (
-				<WagenLink fahrzeug={fahrzeug} identifier={identifier} type={type} />
-			)}
+			{showCoachType && <WagenLink fahrzeug={fahrzeug} />}
 			<ExtraInfoContainer showCoachType={showCoachType}>
 				{showUIC && <UIC uic={fahrzeug.uic} />}
 				<SitzplatzInfo

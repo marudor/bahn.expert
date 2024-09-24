@@ -145,6 +145,7 @@ export const CoachSequence: FC<Props> = ({
 							scale={scale}
 							key={s.name}
 							sector={s}
+							reverse={!sequence.direction}
 						/>
 					))}
 				</Sectors>
@@ -161,6 +162,7 @@ export const CoachSequence: FC<Props> = ({
 							showDestination={
 								sequence.multipleDestinations && g.coaches.length > 1
 							}
+							reverse={!sequence.direction}
 							scheduledDeparture={scheduledDeparture}
 							showGruppenZugnummer={sequence.multipleTrainNumbers}
 							gruppe={g}
@@ -175,9 +177,7 @@ export const CoachSequence: FC<Props> = ({
 						<Source source={sequence.source} />
 					</PlannedOnlyIndicator>
 				)}
-				{sequence.direction != null && (
-					<DirectionOfTravel reversed={!sequence.direction} />
-				)}
+				{sequence.direction != null && <DirectionOfTravel />}
 			</Container>
 		</ContainerWrap>
 	);
