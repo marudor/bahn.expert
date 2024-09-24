@@ -31,6 +31,7 @@ describe('Auslastung', () => {
 		renderAuslastung();
 		cy.findByTestId('auslastungDisplay').should('not.exist');
 		cy.findByTestId('loading').should('exist');
+		cy.wait('@auslastung');
 		cy.findByTestId('loading').should('not.exist');
 		cy.findByTestId('auslastungDisplay').should('not.exist');
 	});
