@@ -1,4 +1,4 @@
-import { getDepartureSequence } from '@/external/risTransports';
+import { getDepartureSequence } from '@/external/risTransports/sequence';
 import { mapInformation } from '@/server/coachSequence/DB/risTransports/mapping';
 import { logger } from '@/server/logger';
 import type { CoachSequenceInformation } from '@/types/coachSequence';

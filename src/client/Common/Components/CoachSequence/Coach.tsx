@@ -262,16 +262,18 @@ export const Coach: FC<Props> = ({
 				</IdentificationNumber>
 			)}
 			<span>
-				{Object.entries(fahrzeug.features).map(([key, enabled]) => {
-					if (enabled) {
-						// @ts-expect-error this is correct, it's exact!
-						const SpecificIcon = icons[key];
-						if (!SpecificIcon) return null;
-						return <SpecificIcon key={key} />;
-					}
+				{Object.entries(fahrzeug.features)
+					.sort()
+					.map(([key, enabled]) => {
+						if (enabled) {
+							// @ts-expect-error this is correct, it's exact!
+							const SpecificIcon = icons[key];
+							if (!SpecificIcon) return null;
+							return <SpecificIcon key={key} />;
+						}
 
-					return null;
-				})}
+						return null;
+					})}
 			</span>
 			{fahrzeug.features.comfort && <ComfortIcon />}
 			{showCoachType && (

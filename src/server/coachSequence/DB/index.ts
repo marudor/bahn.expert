@@ -1,4 +1,4 @@
-import { isWithin20Hours } from '@/external/risTransports';
+import { isWithin20Hours } from '@/external/risTransports/config';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { getNewDBCoachSequence } from '@/server/coachSequence/DB/bahnDe';
 import { getRisTransportsCoachSequence } from '@/server/coachSequence/DB/risTransports';
@@ -14,8 +14,6 @@ const coachSequenceCache = new Cache<CoachSequenceInformation>(
 	CacheDatabase.ParsedCoachSequenceFound,
 );
 
-const blockedCategories = new Set(['TRAM', 'STR', 'BUS', 'BSV', 'FLUG']);
-
 export async function DBCoachSequence(
 	trainNumber: string,
 	date: Date,
@@ -24,9 +22,6 @@ export async function DBCoachSequence(
 	stopEva?: string,
 	administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
-	if (trainCategory && blockedCategories.has(trainCategory)) {
-		return undefined;
-	}
 	if (!isWithin20Hours(date)) {
 		return undefined;
 	}

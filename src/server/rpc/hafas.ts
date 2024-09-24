@@ -3,6 +3,7 @@ import StationBoardToTimetables from '@/server/HAFAS/StationBoard/StationBoardTo
 import { tripSearch } from '@/server/HAFAS/TripSearch/TripSearch';
 import { stopOccupancy } from '@/server/HAFAS/occupancy';
 import { vrrOccupancy } from '@/server/StopPlace/vrrOccupancy';
+import { getOccupancy } from '@/server/coachSequence/occupancy';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import type { AbfahrtenRPCQuery } from '@/server/rpc/iris';
@@ -76,6 +77,7 @@ export const hafasRpcRouter = rpcAppRouter({
 				plannedDepartureTime: z.date().optional(),
 				trainNumber: z.string(),
 				stopEva: z.string(),
+				journeyId: z.string().optional(),
 			}),
 		)
 		.query(
@@ -86,21 +88,29 @@ export const hafasRpcRouter = rpcAppRouter({
 					plannedDepartureTime,
 					trainNumber,
 					stopEva,
+					journeyId,
 				},
 			}) => {
-				const [foundOccupancy, foundVrrOccupancy] = await Promise.all([
-					plannedDepartureTime &&
-						stopOccupancy(
-							start,
-							destination,
-							trainNumber,
-							plannedDepartureTime,
-							stopEva,
-						),
-					vrrOccupancy(stopEva, trainNumber),
-				]);
+				const [foundOccupancy, foundVrrOccupancy, foundTransportsOccupancy] =
+					await Promise.all([
+						plannedDepartureTime &&
+							stopOccupancy(
+								start,
+								destination,
+								trainNumber,
+								plannedDepartureTime,
+								stopEva,
+							),
+						vrrOccupancy(stopEva, trainNumber),
+						journeyId ? getOccupancy(journeyId) : undefined,
+					]);
 
-				const foundMixedOccupancy = foundOccupancy || foundVrrOccupancy;
+				const foundTransportsStopOccupancy = foundTransportsOccupancy
+					? foundTransportsOccupancy[stopEva]
+					: undefined;
+
+				const foundMixedOccupancy =
+					foundTransportsStopOccupancy || foundOccupancy || foundVrrOccupancy;
 
 				if (foundMixedOccupancy) {
 					return foundMixedOccupancy;

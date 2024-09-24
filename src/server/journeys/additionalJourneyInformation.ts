@@ -1,13 +1,26 @@
 import Detail from '@/server/HAFAS/Detail';
 import { Cache, CacheDatabase } from '@/server/cache';
+import { getOccupancy } from '@/server/coachSequence/occupancy';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
+import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { EvaNumber } from '@/types/common';
 import type { RouteAuslastung } from '@/types/routing';
 
 const additionalInformationCache = new Cache<
 	AdditionalJourneyInformation | undefined
 >(CacheDatabase.AdditionalJourneyInformation);
+
+async function enrichTransportOccupancy(
+	journeyId: string,
+	additionalInformation: AdditionalJourneyInformation,
+	providedJourneyDetails?: ParsedSearchOnTripResponse,
+) {
+	const occupancy = await getOccupancy(journeyId, providedJourneyDetails);
+	if (occupancy) {
+		additionalInformation.occupancy = occupancy;
+	}
+}
 
 /**
  * This currently queries HAFAS to get operatorNames & occupancy
@@ -19,7 +32,12 @@ export async function additionalJourneyInformation(
 	initialDepartureDate?: Date,
 ): Promise<AdditionalJourneyInformation | undefined> {
 	if (await additionalInformationCache.exists(journeyId)) {
-		return await additionalInformationCache.get(journeyId);
+		const additionalInformation =
+			await additionalInformationCache.get(journeyId);
+		if (additionalInformation) {
+			await enrichTransportOccupancy(journeyId, additionalInformation);
+		}
+		return additionalInformation;
 	}
 	const risJourneyDetails = await journeyDetails(journeyId);
 	const firstUncancelledStop = risJourneyDetails?.stops.find(
@@ -42,15 +60,13 @@ export async function additionalJourneyInformation(
 			occupancy[stop.station.evaNumber] = stop.auslastung;
 		}
 	}
-	if (hafasJourneyDetails.train.operator || Object.keys(occupancy).length) {
-		const result: AdditionalJourneyInformation = {
-			jid: hafasJourneyDetails.jid,
-			occupancy,
-			operatorName: hafasJourneyDetails.train.operator?.name,
-			polyline: hafasJourneyDetails.polyline,
-		};
-
-		void additionalInformationCache.set(journeyId, result);
-		return result;
-	}
+	const result: AdditionalJourneyInformation = {
+		jid: hafasJourneyDetails.jid,
+		occupancy,
+		operatorName: hafasJourneyDetails.train.operator?.name,
+		polyline: hafasJourneyDetails.polyline,
+	};
+	void additionalInformationCache.set(journeyId, result);
+	await enrichTransportOccupancy(journeyId, result, risJourneyDetails);
+	return result;
 }

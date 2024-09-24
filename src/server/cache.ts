@@ -65,6 +65,7 @@ export enum CacheDatabase {
 	StopPlaceSalesSearch = 12,
 	JourneyFind = 13,
 	NegativeNewSequence = 14,
+	TransportsOccupancy = 15,
 	HafasStopOccupancy = 16,
 	AdditionalJourneyInformation = 17,
 	HAFASJourneyMatch = 18,
@@ -112,6 +113,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.CoachSequenceRemovedData]: 'PT24H',
 	[CacheDatabase.VRROccupancy]: 'PT60M',
 	[CacheDatabase.VehicleLayoutsMaps]: 'P1D',
+	[CacheDatabase.TransportsOccupancy]: 'P1D',
 };
 
 const activeRedisCaches = new Set<Redis>();
@@ -179,6 +181,11 @@ export class Cache<V> {
 	async delete(key: string): Promise<number> {
 		return this.redisCache?.del(key) ?? Promise.resolve(0);
 	}
+	async deleteAll(keys: string[]): Promise<number | undefined> {
+		if (keys.length) {
+			return this.redisCache?.del(keys);
+		}
+	}
 	async exists(key: string): Promise<boolean> {
 		return Boolean(await this.redisCache?.exists(key));
 	}
@@ -195,5 +202,11 @@ export class Cache<V> {
 			await Promise.all(keys.map(async (k) => [k, await this.get(k)]))
 		).filter(([_, value]) => Boolean(value));
 		return entries;
+	}
+	async keys(pattern: string): Promise<string[]> {
+		if (this.redisCache) {
+			return this.redisCache.keys(pattern);
+		}
+		return [];
 	}
 }

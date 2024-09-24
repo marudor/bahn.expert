@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * RIS::Transports
- * ## Info  * powered by DB Systel - [doServices Sirius](https://db.de/do-services-sirius) * powered by [DB Reisendeninformation](https://db-planet.deutschebahn.com/pages/reisendeninformation/apps/content/willkommen) * member of the [RIS-API](https://db.de/ris-api) family, the building kit for traveller information * for details check out [RIS::Transports](https://api-portal.hub.db.de/db/apis/product/ris-transports) in the DB API Portal   ## Capabilities  ### Vehicle-Sequences  Returns the vehicle-sequence [Wagenreihung] for a departure [Abfahrt] or an arrival [Ankunft] within a journey [Fahrt], meaning:  * the vehicle groups that travel together [Vereinigung], their names and destinations * the sequence of the vehicles and the vehicle type (control car, dining car, passenger car etc.) * the position of the vehicles at the platform / track / sector [Plattform / Gleis / Sektor] and according platform information * existing equipment features [Ausstattungsmerkmale] (boarding aid, toilet, etc.) * flag that indicates whether sequence matches schedule [Bitte beachten Sie die geänderte Wagenreihung] * changes for vehicles within vehicle-sequences [Stärkung, Schwächung, Parktausch etc.]  Additionally, all administration IDs [Verwaltungs ID / Code] the system is able to provide vehicle-sequences for can be queried.  ### Occupancies  Provides occupancy information [Auslastungsinformation] for a journey [Fahrt] and its departures [Abfahrten], if available.  This information can therefore be used to:  * let the travellers know the occupancy of a particular journey [Fahrt] at a particular departure [Abfahrt] * let the travellers know where to stand at the platform in order to board the train at the emptiest vehicle [Fahrgastlenkung beim Einstieg]  ### Vehicles by vehicle-id  Returns all journeys [Fahrten] a vehicle [Fahrzeug] with a particular vehicle-id [usually the UIC-number] travels in for a specific date:  * enables consumers to find the journey a traveller is currently travelling with by the uic-number of a vehicle * can be used to match a particular train to its journey [Zugtaufe]  ### Asynchronous change-notifications  The RIS-API event-system [RIS::Events](https://db-planet.deutschebahn.com/pages/reisendeninformation-ris-api/apps/content/events) can be used to get push-notifications in case information within RIS::Transports changes. This enables use-cases like:  * refreshing ui in case information changes * doing something in your backend in case information changes * caching information and invalidate cache in case information changes  ## Limitations / Known Issues  * vehicle-sequences are limited to 22h ahead and are usually ready at about ~22:30 o\'clock for the next day * vehicle-amenity status is only working for bike spaces for DB Regio Baden-Württemberg, all other amenities don\'t have a status at all * the field `vehicleGroupName` sometimes can contain a string with two vehicle group names splitted by a semicolon e.g RPF200009;RPF47041, instead of one vehicle group name  ## Getting Started  * visit our [documentation](https://ris-api.gitpages.tech.rz.db.de), learn how to [get started with openapi](https://developer-docs.deutschebahn.com/doku/apis/openapi.html) or how to [get started with asyncapi](https://developer-docs.deutschebahn.com/doku/apis/asyncapi.html) and check out our [coding-examples](https://developer-docs.deutschebahn.com/doku/apis) * bounty hunter, bug finder or just idea creator, we are thirsty to hear from you - get in touch with us by using [DB AnwenderEcho](https://anwenderecho.extranet.deutschebahn.com/ris-api/) or write an [email](mailto:ris-api@deutschebahn.com) ## Changelog  <details>  ### 3.4.0  #### Added  * barrierFreeAccess in arrival and departure sequences  ### 3.3.1  #### Fixed  * set maxLength of departureID in JourneyOccupancyRequest to 12  ### 3.3.0  ### Added  * added endpoints `/vehicle-sequences/departures/{journeyID}` and `/vehicle-sequences/arrivals/{journeyID}` in order to get all sequences of a particular journey  #### Changed  * fixed wrong length for `departureID` and `arrivalID` from `10` to `12` * refactored `/occupancies/` to `/occupancies`  </details> 
+ * ## Info  * powered by DB Systel - [doServices Sirius](https://db.de/do-services-sirius) * powered by [DB Reisendeninformation](https://db-planet.deutschebahn.com/pages/reisendeninformation/apps/content/willkommen) * member of the [RIS-API](https://db.de/ris-api) family, the building kit for traveller informations * for details check out [RIS::Transports](https://api-portal.hub.db.de/db/apis/product/ris-transports) in the DB API Portal   ## Capabilities  ### Vehicle-Sequences  Returns the vehicle-sequence [Wagenreihung] for a departure [Abfahrt] or an arrival [Ankunft] within a journey [Fahrt], meaning:  * the vehicle groups that travel together [Vereinigung], their names and destinations * the sequence of the vehicles and the vehicle type (control car, dining car, passenger car etc.) * the position of the vehicles at the platform / track / sector [Plattform / Gleis / Sektor] and according platform information * existing equipment features [Ausstattungsmerkmale] (boarding aid, toilet, etc.) * flag that indicates whether sequence matches schedule [Bitte beachten Sie die geänderte Wagenreihung] * changes for vehicles within vehicle-sequences [Stärkung, Schwächung, Parktausch etc.]  Additionally, all administration IDs [Verwaltungs ID / Code] the system is able to provide vehicle-sequences for can be queried.  ### Occupancies  Provides occupancy information [Auslastungsinformation] for a journey [Fahrt] and its departures [Abfahrten], if available.  This information can therefore be used to:  * let the travellers know the occupancy of a particular journey [Fahrt] at a particular departure [Abfahrt] * let the travellers know where to stand at the platform in order to board the train at the emptiest vehicle [Fahrgastlenkung beim Einstieg]  ### Vehicles by vehicle-id  Returns all journeys [Fahrten] a vehicle [Fahrzeug] with a particular vehicle-id [usually the UIC-number] travels in for a specific date:  * enables consumers to find the journey a traveller is currently travelling with by the uic-number of a vehicle * can be used to match a particular train to its journey [Zugtaufe]  ### Asynchronous change-notifications  The RIS-API event-system [RIS::Events](https://db-planet.deutschebahn.com/pages/reisendeninformation-ris-api/apps/content/events) can be used to get push-notifications in case information within RIS::Transports changes. This enables use-cases like:  * refreshing ui in case information changes * doing something in your backend in case information changes * caching information and invalidate cache in case information changes  ## Limitations / Known Issues  * vehicle-sequences are limited to 22h ahead and are usually ready at about ~22:30 o\'clock for the next day * vehicle-amenity status is only working for bike spaces for DB Regio Baden-Württemberg, all other amenities don\'t have a status at all * the field `vehicleGroupName` sometimes can contain a string with two vehicle group names splitted by a semicolon e.g RPF200009;RPF47041, instead of one vehicle group name  ## Getting Started  * visit our [documentation](https://ris-api.gitpages.tech.rz.db.de), learn how to [get started with openapi](https://developer-docs.deutschebahn.com/doku/apis/openapi.html)   or how to [get started with asyncapi](https://developer-docs.deutschebahn.com/doku/apis/asyncapi.html) and check out our [coding-examples](https://developer-docs.deutschebahn.com/doku/apis) * bounty hunter, bug finder or just idea creator, we are thirsty to hear from you - get in touch with us by using [DB AnwenderEcho](https://anwenderecho.extranet.deutschebahn.com/ris-api/) or write an [email](mailto:ris-api@deutschebahn.com) 
  *
- * The version of the OpenAPI document: 3.4.0
+ * The version of the OpenAPI document: 3.1.1-6
  * Contact: doServices.Sirius.Team@deutschebahn.com
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -41,7 +41,7 @@ export type AccessibilityStatus = typeof AccessibilityStatus[keyof typeof Access
 
 
 /**
- * Information on the operator [Betreiber] and the administration [Verwaltung].
+ * Information on the operator [Betreiber] and the administration [Verwaltung] of the journey.
  * @export
  * @interface Administration
  */
@@ -91,17 +91,17 @@ export interface DepartureRelation {
  */
 export interface ErrorDetail {
     /**
+     * Detailed information for error.
+     * @type {string}
+     * @memberof ErrorDetail
+     */
+    'detail': string;
+    /**
      * Unique code that identifies error.
      * @type {string}
      * @memberof ErrorDetail
      */
     'errorCode'?: string;
-    /**
-     * Common description of error.
-     * @type {string}
-     * @memberof ErrorDetail
-     */
-    'title': string;
     /**
      * Name of field / element that raised the error.
      * @type {string}
@@ -109,11 +109,11 @@ export interface ErrorDetail {
      */
     'field': string;
     /**
-     * Detailed information for error.
+     * Common description of error.
      * @type {string}
      * @memberof ErrorDetail
      */
-    'detail': string;
+    'title': string;
 }
 /**
  * API error object according to RFC7807.
@@ -122,29 +122,23 @@ export interface ErrorDetail {
  */
 export interface ErrorResponse {
     /**
-     * Unique code that identifies error.
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    'errorCode'?: string;
-    /**
-     * Common description of error.
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    'title': string;
-    /**
      * Detailed information for error.
      * @type {string}
      * @memberof ErrorResponse
      */
     'detail': string;
     /**
-     * Http status for error origin.
+     * Unique code that identifies error.
      * @type {string}
      * @memberof ErrorResponse
      */
-    'status'?: string;
+    'errorCode'?: string;
+    /**
+     * List of detailed errors in case multiple errors have lead to the surrounding error.
+     * @type {Array<ErrorDetail>}
+     * @memberof ErrorResponse
+     */
+    'errors'?: Array<ErrorDetail>;
     /**
      * Unique identifier for instance that raised the error.
      * @type {string}
@@ -152,11 +146,17 @@ export interface ErrorResponse {
      */
     'instanceId'?: string;
     /**
-     * List of detailed errors in case multiple errors have lead to the surrounding error.
-     * @type {Array<ErrorDetail>}
+     * Http status for error origin.
+     * @type {string}
      * @memberof ErrorResponse
      */
-    'errors'?: Array<ErrorDetail>;
+    'status'?: string;
+    /**
+     * Common description of error.
+     * @type {string}
+     * @memberof ErrorResponse
+     */
+    'title': string;
 }
 /**
  * Occupancy [Auslastung] information for a journeys departure [Abfahrt].
@@ -184,12 +184,6 @@ export interface JourneyDepartureOccupancy {
  */
 export interface JourneyDepartureOccupancyUnmatched {
     /**
-     * ID of departure [Abfahrt-ID].
-     * @type {string}
-     * @memberof JourneyDepartureOccupancyUnmatched
-     */
-    'departureID': string;
-    /**
      * 
      * @type {DepartureRelation}
      * @memberof JourneyDepartureOccupancyUnmatched
@@ -203,94 +197,23 @@ export interface JourneyDepartureOccupancyUnmatched {
     'occupancy': Occupancy;
 }
 /**
- * Request for occupancies [Auslastungen] for a list of journeys [Fahrten].
- * @export
- * @interface JourneyOccupanciesRequest
- */
-export interface JourneyOccupanciesRequest {
-    /**
-     * List of journeys [Fahrten] to return occupancies [Auslastungen] for.
-     * @type {Array<JourneyOccupancyRequest>}
-     * @memberof JourneyOccupanciesRequest
-     */
-    'journeys': Array<JourneyOccupancyRequest>;
-}
-/**
- * Response for occupancies [Auslastungen] for a list of journeys [Fahrten].
- * @export
- * @interface JourneyOccupanciesResponse
- */
-export interface JourneyOccupanciesResponse {
-    /**
-     * List of occupancies [Auslastungen] for requested journeys [Fahrten].
-     * @type {Array<JourneyOccupancy>}
-     * @memberof JourneyOccupanciesResponse
-     */
-    'occupancies': Array<JourneyOccupancy>;
-}
-/**
- * Request for occupancies [Auslastungen] for a list of unmatchd journeys [Fahrten].
- * @export
- * @interface JourneyOccupanciesUnmatchedRequest
- */
-export interface JourneyOccupanciesUnmatchedRequest {
-    /**
-     * List of journeys [Fahrten] to return occupancies [Auslastungen] for.
-     * @type {Array<JourneyOccupancyUnmatchedRequest>}
-     * @memberof JourneyOccupanciesUnmatchedRequest
-     */
-    'journeys': Array<JourneyOccupancyUnmatchedRequest>;
-}
-/**
- * Response for occupancies [Auslastungen] for a list of unmatched journeys [Fahrten].
- * @export
- * @interface JourneyOccupanciesUnmatchedResponse
- */
-export interface JourneyOccupanciesUnmatchedResponse {
-    /**
-     * List of occupancies [Auslastungen] for requested journeys [Fahrten].
-     * @type {Array<JourneyOccupancyUnmatched>}
-     * @memberof JourneyOccupanciesUnmatchedResponse
-     */
-    'occupancies': Array<JourneyOccupancyUnmatched>;
-}
-/**
  * Occupancy [Auslastung] information for a journey [Fahrt] and its departures [Abfahrten].
  * @export
  * @interface JourneyOccupancy
  */
 export interface JourneyOccupancy {
     /**
-     * ID of journey [FahrtID].
-     * @type {string}
-     * @memberof JourneyOccupancy
-     */
-    'journeyID': string;
-    /**
      * List of occupancy information for journey departures [Abfahrten]. Please note that some departures may be missing in case no occupancy information is available.
      * @type {Array<JourneyDepartureOccupancy>}
      * @memberof JourneyOccupancy
      */
-    'departures': Array<JourneyDepartureOccupancy>;
-}
-/**
- * Request for occupancy [Auslastung] for a particular journey [Fahrt].
- * @export
- * @interface JourneyOccupancyRequest
- */
-export interface JourneyOccupancyRequest {
+    'departures'?: Array<JourneyDepartureOccupancy>;
     /**
      * ID of journey [FahrtID].
      * @type {string}
-     * @memberof JourneyOccupancyRequest
+     * @memberof JourneyOccupancy
      */
     'journeyID': string;
-    /**
-     * Optional ID of departure [Abfahrt-ID]. If omitted, all departures will be returned.
-     * @type {string}
-     * @memberof JourneyOccupancyRequest
-     */
-    'departureID'?: string;
 }
 /**
  * Occupancy [Auslastung] information for a journey [Fahrt] and its departures [Abfahrten]. Unmatched version.
@@ -299,42 +222,17 @@ export interface JourneyOccupancyRequest {
  */
 export interface JourneyOccupancyUnmatched {
     /**
-     * ID of journey [FahrtID].
-     * @type {string}
-     * @memberof JourneyOccupancyUnmatched
-     */
-    'journeyID': string;
-    /**
-     * 
-     * @type {JourneyRelationWithoutHead}
-     * @memberof JourneyOccupancyUnmatched
-     */
-    'journeyRelation': JourneyRelationWithoutHead;
-    /**
      * List of occupancy information for journey departures [Abfahrten]. Please note that some departures may be missing in case no occupancy information is available.
      * @type {Array<JourneyDepartureOccupancyUnmatched>}
      * @memberof JourneyOccupancyUnmatched
      */
-    'departures': Array<JourneyDepartureOccupancyUnmatched>;
-}
-/**
- * Request for occupancy [Auslastung] for a particular unmatched journey [Fahrt].
- * @export
- * @interface JourneyOccupancyUnmatchedRequest
- */
-export interface JourneyOccupancyUnmatchedRequest {
+    'departures'?: Array<JourneyDepartureOccupancyUnmatched>;
     /**
      * 
      * @type {JourneyRelationWithoutHead}
-     * @memberof JourneyOccupancyUnmatchedRequest
+     * @memberof JourneyOccupancyUnmatched
      */
     'journeyRelation': JourneyRelationWithoutHead;
-    /**
-     * 
-     * @type {DepartureRelation}
-     * @memberof JourneyOccupancyUnmatchedRequest
-     */
-    'departureRelation'?: DepartureRelation;
 }
 /**
  * Description of a journey [Fahrt] by key attributes, that are summarized as journey relation [Fahrtrelation] without header information.
@@ -342,18 +240,6 @@ export interface JourneyOccupancyUnmatchedRequest {
  * @interface JourneyRelationWithoutHead
  */
 export interface JourneyRelationWithoutHead {
-    /**
-     * Scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset).
-     * @type {string}
-     * @memberof JourneyRelationWithoutHead
-     */
-    'startTime': string;
-    /**
-     * Eva number of scheduled start stop-place [Geplanter Starthalt].
-     * @type {string}
-     * @memberof JourneyRelationWithoutHead
-     */
-    'startEvaNumber': string;
     /**
      * Unique id of the administration [Verwaltung] at scheduled start stop-place [Geplanter Starthalt].
      * @type {string}
@@ -367,11 +253,23 @@ export interface JourneyRelationWithoutHead {
      */
     'startCategory': string;
     /**
+     * Eva number of scheduled start stop-place [Geplanter Starthalt].
+     * @type {string}
+     * @memberof JourneyRelationWithoutHead
+     */
+    'startEvaNumber': string;
+    /**
      * Number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt].
      * @type {number}
      * @memberof JourneyRelationWithoutHead
      */
     'startJourneyNumber': number;
+    /**
+     * Scheduled start time [Geplante Startzeit] at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset).
+     * @type {string}
+     * @memberof JourneyRelationWithoutHead
+     */
+    'startTime': string;
 }
 /**
  * Journey [Fahrt] matching result for a particular journey-id.
@@ -405,17 +303,17 @@ export interface MatchVehicleID {
  */
 export interface MatchVehicleIDs {
     /**
-     * 
-     * @type {MatchVehicleInGroup}
-     * @memberof MatchVehicleIDs
-     */
-    'vehicle': MatchVehicleInGroup;
-    /**
      * List of matched journeys [Fahrten].
      * @type {Array<MatchVehicleID>}
      * @memberof MatchVehicleIDs
      */
     'journeys': Array<MatchVehicleID>;
+    /**
+     * 
+     * @type {MatchVehicleInGroup}
+     * @memberof MatchVehicleIDs
+     */
+    'vehicle': MatchVehicleInGroup;
 }
 /**
  * Vehicle [Fahrzeug] matching result for vehicle within vehicle-group [Fahrzeuggruppe].
@@ -423,12 +321,6 @@ export interface MatchVehicleIDs {
  * @interface MatchVehicleInGroup
  */
 export interface MatchVehicleInGroup {
-    /**
-     * ID of the vehicle [Fahrzeug] (for rail vehicles usually the UIC identification nunmber).
-     * @type {string}
-     * @memberof MatchVehicleInGroup
-     */
-    'vehicleID': string;
     /**
      * 
      * @type {VehicleType}
@@ -441,6 +333,12 @@ export interface MatchVehicleInGroup {
      * @memberof MatchVehicleInGroup
      */
     'vehicleGroupName'?: string;
+    /**
+     * ID of the vehicle [Fahrzeug] (for rail vehicles usually the UIC identification nunmber).
+     * @type {string}
+     * @memberof MatchVehicleInGroup
+     */
+    'vehicleID': string;
 }
 /**
  * Occupancy level [Auslastungsstufe] of a particular departure [Abfahrt] of a journey [Fahrt]. Occupancy may refer to the whole vehicle sequence [Formation], a vehicle group [Fahrzeuggruppe], a single vehicle [Fahrzeug] or to specific parts of those entities.
@@ -449,30 +347,17 @@ export interface MatchVehicleInGroup {
  */
 export interface Occupancy {
     /**
-     * Occupancy level indicator for first class, may be null in case there is no first class. Possible values are: - OVERCROWDED (occupancy is considered as overcrowded) - HIGH (occupancy is considered as high) - MIDDLE (occupancy is considered as middle) - LOW (occupancy is considered as low)
-     * @type {string}
-     * @memberof Occupancy
-     */
-    'levelFirstClass'?: string;
-    /**
      * Occupancy level indicator for economy class, may be null in case there is no first class. Possible values are: - OVERCROWDED (occupancy is considered as overcrowded) - HIGH (occupancy is considered as high) - MIDDLE (occupancy is considered as middle) - LOW (occupancy is considered as low)
      * @type {string}
      * @memberof Occupancy
      */
     'levelEconomyClass'?: string;
-}
-/**
- * Administrations [Verwaltung] that provide occupancies [Auslastungen].
- * @export
- * @interface OccupancyAvailableAdministrations
- */
-export interface OccupancyAvailableAdministrations {
     /**
-     * List of administrations [Verwaltungen].
-     * @type {Array<Administration>}
-     * @memberof OccupancyAvailableAdministrations
+     * Occupancy level indicator for first class, may be null in case there is no first class. Possible values are: - OVERCROWDED (occupancy is considered as overcrowded) - HIGH (occupancy is considered as high) - MIDDLE (occupancy is considered as middle) - LOW (occupancy is considered as low)
+     * @type {string}
+     * @memberof Occupancy
      */
-    'administrations': Array<Administration>;
+    'levelFirstClass'?: string;
 }
 /**
  * Platform [Gleis, Bahnsteig, Plattform] information in the context of vehicle-sequences [Wagenreihungsinformationen].
@@ -481,11 +366,11 @@ export interface OccupancyAvailableAdministrations {
  */
 export interface Platform {
     /**
-     * Name of the scheduled departure / arrival platform [Gleis, Bahnsteig, Plattform - Soll].
-     * @type {string}
+     * 
+     * @type {PlatformDetails}
      * @memberof Platform
      */
-    'platformSchedule'?: string;
+    'details'?: PlatformDetails;
     /**
      * Name of the current departure / arrival platform [Gleis, Bahnsteig, Plattform - Vorschau]. Note that there might be no information on the estimated platform (due to various reasons); in this case the attribute details will also be empty.
      * @type {string}
@@ -493,11 +378,11 @@ export interface Platform {
      */
     'platform'?: string;
     /**
-     * 
-     * @type {PlatformDetails}
+     * Name of the scheduled departure / arrival platform [Gleis, Bahnsteig, Plattform - Soll].
+     * @type {string}
      * @memberof Platform
      */
-    'details'?: PlatformDetails;
+    'platformSchedule'?: string;
 }
 /**
  * Accessibility [Barrierefreiheit] information for a particular platform [Gleis, Bahnsteig, Plattform].
@@ -516,12 +401,6 @@ export interface PlatformAccessibility {
      * @type {AccessibilityStatus}
      * @memberof PlatformAccessibility
      */
-    'standardPlatformHeight'?: AccessibilityStatus;
-    /**
-     * 
-     * @type {AccessibilityStatus}
-     * @memberof PlatformAccessibility
-     */
     'platformSign'?: AccessibilityStatus;
     /**
      * 
@@ -529,6 +408,12 @@ export interface PlatformAccessibility {
      * @memberof PlatformAccessibility
      */
     'stairsMarking'?: AccessibilityStatus;
+    /**
+     * 
+     * @type {AccessibilityStatus}
+     * @memberof PlatformAccessibility
+     */
+    'standardPlatformHeight'?: AccessibilityStatus;
     /**
      * 
      * @type {AccessibilityStatus}
@@ -557,17 +442,11 @@ export interface PlatformAccessibility {
  */
 export interface PlatformDetails {
     /**
-     * Name of the platform (12, 1a, Nord, Süd etc.).
-     * @type {string}
+     * 
+     * @type {PlatformAccessibility}
      * @memberof PlatformDetails
      */
-    'name': string;
-    /**
-     * Start of the usable part of the platform given in meter in local coordinates. This value may differ from zero and may be positive as well as negative.
-     * @type {number}
-     * @memberof PlatformDetails
-     */
-    'start'?: number;
+    'accessibility'?: PlatformAccessibility;
     /**
      * End of the usable part of the platform given in meter in local coordinates.
      * @type {number}
@@ -575,17 +454,23 @@ export interface PlatformDetails {
      */
     'end'?: number;
     /**
+     * Name of the platform (12, 1a, Nord, Süd etc.).
+     * @type {string}
+     * @memberof PlatformDetails
+     */
+    'name': string;
+    /**
      * List of sectors [Sektoren] that belong to the platform.
      * @type {Array<Sector>}
      * @memberof PlatformDetails
      */
     'sectors'?: Array<Sector>;
     /**
-     * 
-     * @type {PlatformAccessibility}
+     * Start of the usable part of the platform given in meter in local coordinates. This value may differ from zero and may be positive as well as negative.
+     * @type {number}
      * @memberof PlatformDetails
      */
-    'accessibility'?: PlatformAccessibility;
+    'start'?: number;
 }
 /**
  * Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information for vehicle-sequences [Wagenreihungsinformationen].
@@ -593,6 +478,18 @@ export interface PlatformDetails {
  * @interface Sector
  */
 export interface Sector {
+    /**
+     * Position of the cube [Sektorwürfel] given in meters in local coordinates.
+     * @type {number}
+     * @memberof Sector
+     */
+    'cubePosition'?: number;
+    /**
+     * End of the sector given in meters in local coordinates.
+     * @type {number}
+     * @memberof Sector
+     */
+    'end': number;
     /**
      * Name of the sector [Sektor / Mast etc.].
      * @type {string}
@@ -605,18 +502,6 @@ export interface Sector {
      * @memberof Sector
      */
     'start': number;
-    /**
-     * End of the sector given in meters in local coordinates.
-     * @type {number}
-     * @memberof Sector
-     */
-    'end': number;
-    /**
-     * Position of the cube [Sektorwürfel] given in meters in local coordinates.
-     * @type {number}
-     * @memberof Sector
-     */
-    'cubePosition'?: number;
 }
 /**
  * Comprehensive stop-place [Haltestelle] information.
@@ -644,12 +529,6 @@ export interface StopPlaceEmbedded {
  */
 export interface VehicleAmenity {
     /**
-     * Type of vehicle amenity [Ausstattungsmerkmal des Fahrzeugs]. - BISTRO (Bordbistro) - AIR_CONDITION (Klimaanlage) - BIKE_SPACE (Fahrradstellplätze) - TOILET (Toilette) - WHEELCHAIR_SPACE (Rollstuhlstellplätze) - TOILET_WHEELCHAIR (Rollstuhlgängige Toilette) - BOARDING_AID (Einstiegshilfe) - CABIN_INFANT (Kleinkindabteil) - ZONE_MULTI_PURPOSE (Mehrzweckbereich) - ZONE_QUIET (Ruhebereich) - ZONE_FAMILY (Familienbereich) - INFO (Info-Abteil) - SEATS_SEVERELY_DISABLED (Plätze für Schwerbehinderte) - SEATS_BAHN_BONUS (Plätze für Bahn.Bonus-Kunden) - SEATS_LUFTHANSA_EXPRESS_RAIL (Plätze für LH-Codeshare) - WIFI (WLAN-Hotspot)
-     * @type {string}
-     * @memberof VehicleAmenity
-     */
-    'type': string;
-    /**
      * Amount of amenity.
      * @type {number}
      * @memberof VehicleAmenity
@@ -661,6 +540,12 @@ export interface VehicleAmenity {
      * @memberof VehicleAmenity
      */
     'status': string;
+    /**
+     * Type of vehicle amenity [Ausstattungsmerkmal des Fahrzeugs]. - BISTRO (Bordbistro) - AIR_CONDITION (Klimaanlage) - BIKE_SPACE (Fahrradstellplätze) - TOILET (Toilette) - WHEELCHAIR_SPACE (Rollstuhlstellplätze) - TOILET_WHEELCHAIR (Rollstuhlgängige Toilette) - BOARDING_AID (Einstiegshilfe) - CABIN_INFANT (Kleinkindabteil) - ZONE_MULTI_PURPOSE (Mehrzweckbereich) - ZONE_QUIET (Ruhebereich) - ZONE_FAMILY (Familienbereich) - INFO (Info-Abteil) - SEATS_SEVERELY_DISABLED (Plätze für Schwerbehinderte) - SEATS_BAHN_BONUS (Plätze für Bahn.Bonus-Kunden) - SEATS_LUFTHANSA_EXPRESS_RAIL (Plätze für LH-Codeshare) - WIFI (WLAN-Hotspot)
+     * @type {string}
+     * @memberof VehicleAmenity
+     */
+    'type': string;
 }
 /**
  * Vehicle-group [Fahrzeuggruppe] within the vehicle-sequence [Wagenreihung] containing at least one vehicle [Fahrzeug] for arrival [Ankunft].
@@ -669,11 +554,11 @@ export interface VehicleAmenity {
  */
 export interface VehicleGroupInSequenceArrival {
     /**
-     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
-     * @type {string}
+     * 
+     * @type {StopPlaceEmbedded}
      * @memberof VehicleGroupInSequenceArrival
      */
-    'name': string;
+    'destination': StopPlaceEmbedded;
     /**
      * ID of journey [FahrtID] for this vehicle-group [Fahrzeuggruppe].
      * @type {string}
@@ -681,11 +566,11 @@ export interface VehicleGroupInSequenceArrival {
      */
     'journeyID': string;
     /**
-     * 
-     * @type {StopPlaceEmbedded}
+     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
+     * @type {string}
      * @memberof VehicleGroupInSequenceArrival
      */
-    'destination': StopPlaceEmbedded;
+    'name': string;
     /**
      * Vehicles within the group ordered in direction of travel, including informations only valid within the sequence.
      * @type {Array<VehicleInGroupArrival>}
@@ -700,11 +585,11 @@ export interface VehicleGroupInSequenceArrival {
  */
 export interface VehicleGroupInSequenceArrivalUnmatched {
     /**
-     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
-     * @type {string}
+     * 
+     * @type {StopPlaceEmbedded}
      * @memberof VehicleGroupInSequenceArrivalUnmatched
      */
-    'name': string;
+    'destination': StopPlaceEmbedded;
     /**
      * ID of journey [FahrtID] for this vehicle-group [Fahrzeuggruppe].
      * @type {string}
@@ -718,11 +603,11 @@ export interface VehicleGroupInSequenceArrivalUnmatched {
      */
     'journeyRelation': JourneyRelationWithoutHead;
     /**
-     * 
-     * @type {StopPlaceEmbedded}
+     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
+     * @type {string}
      * @memberof VehicleGroupInSequenceArrivalUnmatched
      */
-    'destination': StopPlaceEmbedded;
+    'name': string;
     /**
      * Vehicles within the group ordered in direction of travel, including informations only valid within the sequence.
      * @type {Array<VehicleInGroupArrival>}
@@ -737,11 +622,11 @@ export interface VehicleGroupInSequenceArrivalUnmatched {
  */
 export interface VehicleGroupInSequenceDeparture {
     /**
-     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
-     * @type {string}
+     * 
+     * @type {StopPlaceEmbedded}
      * @memberof VehicleGroupInSequenceDeparture
      */
-    'name': string;
+    'destination': StopPlaceEmbedded;
     /**
      * ID of journey [FahrtID] for this vehicle-group [Fahrzeuggruppe].
      * @type {string}
@@ -749,11 +634,11 @@ export interface VehicleGroupInSequenceDeparture {
      */
     'journeyID': string;
     /**
-     * 
-     * @type {StopPlaceEmbedded}
+     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
+     * @type {string}
      * @memberof VehicleGroupInSequenceDeparture
      */
-    'destination': StopPlaceEmbedded;
+    'name': string;
     /**
      * 
      * @type {Occupancy}
@@ -774,11 +659,11 @@ export interface VehicleGroupInSequenceDeparture {
  */
 export interface VehicleGroupInSequenceDepartureUnmatched {
     /**
-     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
-     * @type {string}
+     * 
+     * @type {StopPlaceEmbedded}
      * @memberof VehicleGroupInSequenceDepartureUnmatched
      */
-    'name': string;
+    'destination': StopPlaceEmbedded;
     /**
      * ID of journey [FahrtID] for this vehicle-group [Fahrzeuggruppe].
      * @type {string}
@@ -792,11 +677,11 @@ export interface VehicleGroupInSequenceDepartureUnmatched {
      */
     'journeyRelation': JourneyRelationWithoutHead;
     /**
-     * 
-     * @type {StopPlaceEmbedded}
+     * Name of the vehicle-group [Fahrzeuggruppe] within the sequence.
+     * @type {string}
      * @memberof VehicleGroupInSequenceDepartureUnmatched
      */
-    'destination': StopPlaceEmbedded;
+    'name': string;
     /**
      * 
      * @type {Occupancy}
@@ -817,29 +702,11 @@ export interface VehicleGroupInSequenceDepartureUnmatched {
  */
 export interface VehicleInGroupArrival {
     /**
-     * ID of the vehicle [Fahrzeug] (for rail vehicles usually the UIC identification nunmber).
-     * @type {string}
+     * Amount and status of vehicle-amenities [Ausstattungsmerkmale].
+     * @type {Array<VehicleAmenity>}
      * @memberof VehicleInGroupArrival
      */
-    'vehicleID': string;
-    /**
-     * 
-     * @type {VehicleType}
-     * @memberof VehicleInGroupArrival
-     */
-    'type': VehicleType;
-    /**
-     * Wagon identification number [Ordnungsnummer] of the vehicle [Fahrzeug]. May be empty, if no unique identification of a wagon is needed.
-     * @type {number}
-     * @memberof VehicleInGroupArrival
-     */
-    'wagonIdentificationNumber'?: number;
-    /**
-     * Status of vehicle [Fahrzeug] with respect to accessibility for passengers. - OPEN (vehicle is open [Offen] - CLOSED (vehicle is closed [Geschlossen]
-     * @type {string}
-     * @memberof VehicleInGroupArrival
-     */
-    'status': string;
+    'amenities': Array<VehicleAmenity>;
     /**
      * Orientation of vehicle [Fahrzeug] within vehicle-sequence [Wagenreihung] in direction of travel.  - FORWARDS (relative orientation forwards [vorwärts])  - BACKWARDS (relative orientation backwards [rückwaerts])  - UNDEFINED (undefined orientation)
      * @type {string}
@@ -847,23 +714,35 @@ export interface VehicleInGroupArrival {
      */
     'orientation': string;
     /**
-     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicle [Fahrzeug] to platform [Gleis, Bahnsteig, Plattform] and vice versa. Access to vehicles stopping at platform positions with different heights are considered as not impossible. - STEP_FREE (vehicle [Fahrzeug] has the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either the vehicle [Fahrzeug] or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the vehicle) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
-     * @type {string}
-     * @memberof VehicleInGroupArrival
-     */
-    'barrierFreeAccess': string;
-    /**
      * 
      * @type {VehiclePlatformPosition}
      * @memberof VehicleInGroupArrival
      */
     'platformPosition'?: VehiclePlatformPosition;
     /**
-     * Amount and status of vehicle-amenities [Ausstattungsmerkmale].
-     * @type {Array<VehicleAmenity>}
+     * Status of vehicle [Fahrzeug] with respect to accessibility for passengers. - OPEN (vehicle is open [Offen] - CLOSED (vehicle is closed [Geschlossen]
+     * @type {string}
      * @memberof VehicleInGroupArrival
      */
-    'amenities': Array<VehicleAmenity>;
+    'status': string;
+    /**
+     * 
+     * @type {VehicleType}
+     * @memberof VehicleInGroupArrival
+     */
+    'type': VehicleType;
+    /**
+     * ID of the vehicle [Fahrzeug] (for rail vehicles usually the UIC identification nunmber).
+     * @type {string}
+     * @memberof VehicleInGroupArrival
+     */
+    'vehicleID': string;
+    /**
+     * Wagon identification number [Ordnungsnummer] of the vehicle [Fahrzeug]. May be empty, if no unique identification of a wagon is needed.
+     * @type {number}
+     * @memberof VehicleInGroupArrival
+     */
+    'wagonIdentificationNumber'?: number;
 }
 /**
  * Information for a vehicle [Fahrzeug] within a vehicle-group [Fahrzeuggruppe] within a vehicle-sequence [Wagenreihung].
@@ -871,48 +750,6 @@ export interface VehicleInGroupArrival {
  * @interface VehicleInGroupDeparture
  */
 export interface VehicleInGroupDeparture {
-    /**
-     * ID of the vehicle [Fahrzeug] (for rail vehicles usually the UIC identification nunmber).
-     * @type {string}
-     * @memberof VehicleInGroupDeparture
-     */
-    'vehicleID': string;
-    /**
-     * 
-     * @type {VehicleType}
-     * @memberof VehicleInGroupDeparture
-     */
-    'type': VehicleType;
-    /**
-     * Wagon identification number [Ordnungsnummer] of the vehicle [Fahrzeug]. May be empty, if no unique identification of a wagon is needed.
-     * @type {number}
-     * @memberof VehicleInGroupDeparture
-     */
-    'wagonIdentificationNumber'?: number;
-    /**
-     * Status of vehicle [Fahrzeug] with respect to accessibility for passengers. - OPEN (vehicle is open [Offen] - CLOSED (vehicle is closed [Geschlossen]
-     * @type {string}
-     * @memberof VehicleInGroupDeparture
-     */
-    'status': string;
-    /**
-     * Orientation of vehicle [Fahrzeug] within vehicle-sequence [Wagenreihung] in direction of travel.  - FORWARDS (relative orientation forwards [vorwärts])  - BACKWARDS (relative orientation backwards [rückwaerts])  - UNDEFINED (undefined orientation)
-     * @type {string}
-     * @memberof VehicleInGroupDeparture
-     */
-    'orientation': string;
-    /**
-     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicle [Fahrzeug] to platform [Gleis, Bahnsteig, Plattform] and vice versa. Access to vehicles stopping at platform positions with different heights are considered as not impossible. - STEP_FREE (vehicle [Fahrzeug] has the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either the vehicle [Fahrzeug] or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the vehicle) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
-     * @type {string}
-     * @memberof VehicleInGroupDeparture
-     */
-    'barrierFreeAccess': string;
-    /**
-     * 
-     * @type {VehiclePlatformPosition}
-     * @memberof VehicleInGroupDeparture
-     */
-    'platformPosition'?: VehiclePlatformPosition;
     /**
      * Amount and status of vehicle-amenities [Ausstattungsmerkmale].
      * @type {Array<VehicleAmenity>}
@@ -925,6 +762,42 @@ export interface VehicleInGroupDeparture {
      * @memberof VehicleInGroupDeparture
      */
     'occupancy'?: Occupancy;
+    /**
+     * Orientation of vehicle [Fahrzeug] within vehicle-sequence [Wagenreihung] in direction of travel.  - FORWARDS (relative orientation forwards [vorwärts])  - BACKWARDS (relative orientation backwards [rückwaerts])  - UNDEFINED (undefined orientation)
+     * @type {string}
+     * @memberof VehicleInGroupDeparture
+     */
+    'orientation': string;
+    /**
+     * 
+     * @type {VehiclePlatformPosition}
+     * @memberof VehicleInGroupDeparture
+     */
+    'platformPosition'?: VehiclePlatformPosition;
+    /**
+     * Status of vehicle [Fahrzeug] with respect to accessibility for passengers. - OPEN (vehicle is open [Offen] - CLOSED (vehicle is closed [Geschlossen]
+     * @type {string}
+     * @memberof VehicleInGroupDeparture
+     */
+    'status': string;
+    /**
+     * 
+     * @type {VehicleType}
+     * @memberof VehicleInGroupDeparture
+     */
+    'type': VehicleType;
+    /**
+     * ID of the vehicle [Fahrzeug] (for rail vehicles usually the UIC identification nunmber).
+     * @type {string}
+     * @memberof VehicleInGroupDeparture
+     */
+    'vehicleID': string;
+    /**
+     * Wagon identification number [Ordnungsnummer] of the vehicle [Fahrzeug]. May be empty, if no unique identification of a wagon is needed.
+     * @type {number}
+     * @memberof VehicleInGroupDeparture
+     */
+    'wagonIdentificationNumber'?: number;
 }
 /**
  * Position of a vehicle [Fahrzeug] at platform [Gleis, Bahnsteig, Plattform].
@@ -932,12 +805,6 @@ export interface VehicleInGroupDeparture {
  * @interface VehiclePlatformPosition
  */
 export interface VehiclePlatformPosition {
-    /**
-     * Start position [Beginn Meter] at the platform given in meters in local coordinates.
-     * @type {number}
-     * @memberof VehiclePlatformPosition
-     */
-    'start': number;
     /**
      * End position [Ende Meter] at the platform given in meters in local coordinates.
      * @type {number}
@@ -950,6 +817,12 @@ export interface VehiclePlatformPosition {
      * @memberof VehiclePlatformPosition
      */
     'sector'?: string;
+    /**
+     * Start position [Beginn Meter] at the platform given in meters in local coordinates.
+     * @type {number}
+     * @memberof VehiclePlatformPosition
+     */
+    'start': number;
 }
 /**
  * Vehicle-sequence [Wagenreihung] for transports at a particular arrival.
@@ -958,17 +831,23 @@ export interface VehiclePlatformPosition {
  */
 export interface VehicleSequenceArrival {
     /**
-     * ID of the requested journey [FahrtID].
-     * @type {string}
-     * @memberof VehicleSequenceArrival
-     */
-    'journeyID': string;
-    /**
      * ID of the requested arrival [AnkunftID].
      * @type {string}
      * @memberof VehicleSequenceArrival
      */
     'arrivalID': string;
+    /**
+     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
+     * @type {Array<VehicleGroupInSequenceArrival>}
+     * @memberof VehicleSequenceArrival
+     */
+    'groups': Array<VehicleGroupInSequenceArrival>;
+    /**
+     * ID of the requested journey [FahrtID].
+     * @type {string}
+     * @memberof VehicleSequenceArrival
+     */
+    'journeyID': string;
     /**
      * 
      * @type {Platform}
@@ -981,18 +860,6 @@ export interface VehicleSequenceArrival {
      * @memberof VehicleSequenceArrival
      */
     'sequenceStatus': string;
-    /**
-     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
-     * @type {string}
-     * @memberof VehicleSequenceArrival
-     */
-    'barrierFreeAccess': string;
-    /**
-     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
-     * @type {Array<VehicleGroupInSequenceArrival>}
-     * @memberof VehicleSequenceArrival
-     */
-    'groups': Array<VehicleGroupInSequenceArrival>;
 }
 /**
  * Vehicle-sequence [Wagenreihung] for transports at a particular arrival.
@@ -1001,17 +868,23 @@ export interface VehicleSequenceArrival {
  */
 export interface VehicleSequenceArrivalUnmatched {
     /**
-     * ID of the requested journey [FahrtID].
-     * @type {string}
-     * @memberof VehicleSequenceArrivalUnmatched
-     */
-    'journeyID': string;
-    /**
      * ID of the requested arrival [AnkunftID].
      * @type {string}
      * @memberof VehicleSequenceArrivalUnmatched
      */
     'arrivalID': string;
+    /**
+     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
+     * @type {Array<VehicleGroupInSequenceArrivalUnmatched>}
+     * @memberof VehicleSequenceArrivalUnmatched
+     */
+    'groups': Array<VehicleGroupInSequenceArrivalUnmatched>;
+    /**
+     * ID of the requested journey [FahrtID].
+     * @type {string}
+     * @memberof VehicleSequenceArrivalUnmatched
+     */
+    'journeyID': string;
     /**
      * 
      * @type {Platform}
@@ -1024,31 +897,6 @@ export interface VehicleSequenceArrivalUnmatched {
      * @memberof VehicleSequenceArrivalUnmatched
      */
     'sequenceStatus': string;
-    /**
-     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
-     * @type {string}
-     * @memberof VehicleSequenceArrivalUnmatched
-     */
-    'barrierFreeAccess': string;
-    /**
-     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
-     * @type {Array<VehicleGroupInSequenceArrivalUnmatched>}
-     * @memberof VehicleSequenceArrivalUnmatched
-     */
-    'groups': Array<VehicleGroupInSequenceArrivalUnmatched>;
-}
-/**
- * Vehicle-sequences [Wagenreihung] for transports at a all of its arrivals.
- * @export
- * @interface VehicleSequenceArrivals
- */
-export interface VehicleSequenceArrivals {
-    /**
-     * List of vehicle-sequences [Wagenreihung] for journey.
-     * @type {Array<VehicleSequenceArrival>}
-     * @memberof VehicleSequenceArrivals
-     */
-    'sequences': Array<VehicleSequenceArrival>;
 }
 /**
  * Administrations [Verwaltung] that provide vehicle-sequences [Wagenreihungen].
@@ -1070,41 +918,23 @@ export interface VehicleSequenceAvailableAdministrations {
  */
 export interface VehicleSequenceDeparture {
     /**
-     * ID of the requested journey [FahrtID].
-     * @type {string}
-     * @memberof VehicleSequenceDeparture
-     */
-    'journeyID': string;
-    /**
      * ID of the requested departure [AbfahrtID].
      * @type {string}
      * @memberof VehicleSequenceDeparture
      */
     'departureID': string;
     /**
-     * 
-     * @type {Platform}
+     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
+     * @type {Array<VehicleGroupInSequenceDeparture>}
      * @memberof VehicleSequenceDeparture
      */
-    'platform': Platform;
+    'groups': Array<VehicleGroupInSequenceDeparture>;
     /**
-     * Reflects vehicle-sequence [Wagenreihung] status with respect to order of first and economy class. - MATCHES_SCHEDULE (the current sequence matches the scheduled order.) - DIFFERS_FROM_SCHEDULE (the current sequence differs from the scheduled order [abweichende Wagenreihung].) - NO_SCHEDULE (there is no scheduled sequence.)
+     * ID of the requested journey [FahrtID].
      * @type {string}
      * @memberof VehicleSequenceDeparture
      */
-    'sequenceStatus': string;
-    /**
-     * Reflects vehicle-sequence [Wagenreihung] change [Änderung] of a departure [Abfahrt] in comparison to its preceeding arrival [Ankunft]. - VEHICLES_ADDED (some vehicles have been added [Stärkung]) - VEHICLES_REMOVED (some vehicles have been removed [Schwächung]) - VEHICLES_TOTAL_REPLACEMENT (all vehicles haven been replaced by other vehicles [Parktausch]) - OTHER_CHANGE (other change, like adding 2 new vehicles and removing 3 from the vehicle sequence) - NO_CHANGE (no change) - UNDEFINED (no information available)
-     * @type {string}
-     * @memberof VehicleSequenceDeparture
-     */
-    'sequenceChange': string;
-    /**
-     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
-     * @type {string}
-     * @memberof VehicleSequenceDeparture
-     */
-    'barrierFreeAccess': string;
+    'journeyID': string;
     /**
      * 
      * @type {Occupancy}
@@ -1112,11 +942,23 @@ export interface VehicleSequenceDeparture {
      */
     'occupancy'?: Occupancy;
     /**
-     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
-     * @type {Array<VehicleGroupInSequenceDeparture>}
+     * 
+     * @type {Platform}
      * @memberof VehicleSequenceDeparture
      */
-    'groups': Array<VehicleGroupInSequenceDeparture>;
+    'platform': Platform;
+    /**
+     * Reflects vehicle-sequence [Wagenreihung] change [Änderung] of a departure [Abfahrt] in comparisson to its preceeding arrival [Ankunft]. - VEHICLES_ADDED (some vehicles have been added [Stärkung]) - VEHICLES_REMOVED (some vehicles have been removed [Schwächung]) - VEHICLES_REPLACEMENT (all vehicles haven been replaced by other vehicles [Parktausch]) - OTHER_CHANGE (other change, like replacing 2 of 8 vehicles with new ones) - NO_CHANGE (no change) - UNDEFINED (no information available)
+     * @type {string}
+     * @memberof VehicleSequenceDeparture
+     */
+    'sequenceChange': string;
+    /**
+     * Reflects vehicle-sequence [Wagenreihung] status with respect to order of first and economy class. - MATCHES_SCHEDULE (the current sequence matches the scheduled order.) - DIFFERS_FROM_SCHEDULE (the current sequence differs from the scheduled order [abweichende Wagenreihung].) - NO_SCHEDULE (there is no scheduled sequence.)
+     * @type {string}
+     * @memberof VehicleSequenceDeparture
+     */
+    'sequenceStatus': string;
 }
 /**
  * Vehicle-sequence [Wagenreihung] for transports at a particular departure.
@@ -1125,41 +967,23 @@ export interface VehicleSequenceDeparture {
  */
 export interface VehicleSequenceDepartureUnmatched {
     /**
-     * ID of the requested journey [FahrtID].
-     * @type {string}
-     * @memberof VehicleSequenceDepartureUnmatched
-     */
-    'journeyID': string;
-    /**
      * ID of the requested departure [AbfahrtID].
      * @type {string}
      * @memberof VehicleSequenceDepartureUnmatched
      */
     'departureID': string;
     /**
-     * 
-     * @type {Platform}
+     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
+     * @type {Array<VehicleGroupInSequenceDepartureUnmatched>}
      * @memberof VehicleSequenceDepartureUnmatched
      */
-    'platform': Platform;
+    'groups': Array<VehicleGroupInSequenceDepartureUnmatched>;
     /**
-     * Reflects vehicle-sequence [Wagenreihung] status with respect to order of first and economy class. - MATCHES_SCHEDULE (the current sequence matches the scheduled order.) - DIFFERS_FROM_SCHEDULE (the current sequence differs from the scheduled order [abweichende Wagenreihung].) - NO_SCHEDULE (there is no scheduled sequence.)
+     * ID of the requested journey [FahrtID].
      * @type {string}
      * @memberof VehicleSequenceDepartureUnmatched
      */
-    'sequenceStatus': string;
-    /**
-     * Reflects vehicle-sequence [Wagenreihung] change [Änderung] of a departure [Abfahrt] in comparison to its preceeding arrival [Ankunft]. - VEHICLES_ADDED (some vehicles have been added [Stärkung]) - VEHICLES_REMOVED (some vehicles have been removed [Schwächung]) - VEHICLES_TOTAL_REPLACEMENT (all vehicles haven been replaced by other vehicles [Parktausch]) - OTHER_CHANGE (other change, like adding 2 new vehicles and removing 3 from the vehicle sequence) - NO_CHANGE (no change) - UNDEFINED (no information available)
-     * @type {string}
-     * @memberof VehicleSequenceDepartureUnmatched
-     */
-    'sequenceChange': string;
-    /**
-     * Type of barrier-free access [barrierefreier Einstieg / Ausstieg] from vehicles [Fahrzeuge] to platform [Gleis, Bahnsteig, Plattform] and vice versa. - STEP_FREE (all vehicles [Fahrzeuge] of the transport have the same floor and entry height as the platform [Gleis, Bahnsteig, Plattform] at all positions the transports stops at the platform (note: a platform may not have the same heights on all parts)) - PARTIAL_STEP_FREE (at least one vehicle [Fahrzeug] of the transport has the same floor and entry height as the the platform [Gleis, Bahnsteig, Plattform] at the position the vehicle stops at the platform) - BOARDING_AID (either at least one vehicle [Fahrzeug] of the transport or the platform [Gleis, Bahnsteig, Plattform] has a boarding-aid that can be used to board the transport) - NOT_POSSIBLE (neither a step-free access [stuefenloser Einstieg / Ausstieg] is possible nor a boarding-aid [Einstiegshilfe] is available)
-     * @type {string}
-     * @memberof VehicleSequenceDepartureUnmatched
-     */
-    'barrierFreeAccess': string;
+    'journeyID': string;
     /**
      * 
      * @type {Occupancy}
@@ -1167,24 +991,23 @@ export interface VehicleSequenceDepartureUnmatched {
      */
     'occupancy'?: Occupancy;
     /**
-     * Vehicle-groups [Fahrzeuggruppen] of the transport ordered in direction of travel.
-     * @type {Array<VehicleGroupInSequenceDepartureUnmatched>}
+     * 
+     * @type {Platform}
      * @memberof VehicleSequenceDepartureUnmatched
      */
-    'groups': Array<VehicleGroupInSequenceDepartureUnmatched>;
-}
-/**
- * Vehicle-sequences [Wagenreihung] for transports at a all of its departure.
- * @export
- * @interface VehicleSequenceDepartures
- */
-export interface VehicleSequenceDepartures {
+    'platform': Platform;
     /**
-     * List of vehicle-sequences [Wagenreihung] for journey.
-     * @type {Array<VehicleSequenceDeparture>}
-     * @memberof VehicleSequenceDepartures
+     * Reflects vehicle-sequence [Wagenreihung] change [Änderung] of a departure [Abfahrt] in comparisson to its preceeding arrival [Ankunft]. - VEHICLES_ADDED (some vehicles have been added [Stärkung]) - VEHICLES_REMOVED (some vehicles have been removed [Schwächung]) - VEHICLES_REPLACEMENT (all vehicles haven been replaced by other vehicles [Parktausch]) - OTHER_CHANGE (other change, like replacing 2 of 8 vehicles with new ones) - NO_CHANGE (no change) - UNDEFINED (no information available)
+     * @type {string}
+     * @memberof VehicleSequenceDepartureUnmatched
      */
-    'sequences': Array<VehicleSequenceDeparture>;
+    'sequenceChange': string;
+    /**
+     * Reflects vehicle-sequence [Wagenreihung] status with respect to order of first and economy class. - MATCHES_SCHEDULE (the current sequence matches the scheduled order.) - DIFFERS_FROM_SCHEDULE (the current sequence differs from the scheduled order [abweichende Wagenreihung].) - NO_SCHEDULE (there is no scheduled sequence.)
+     * @type {string}
+     * @memberof VehicleSequenceDepartureUnmatched
+     */
+    'sequenceStatus': string;
 }
 /**
  * Detailed information on the vehicle [Fahrzeug] type.
@@ -1205,11 +1028,11 @@ export interface VehicleType {
      */
     'constructionType': string;
     /**
-     * ID of layout [Redesign, modernisiert, 2. Bauserie etc.] of the vehicle type, for instance \'403.1.BS\' or \'403.2.BS\'.
-     * @type {string}
+     * Indicates if the vehicle [Fahrzeug] has economy class seats.
+     * @type {boolean}
      * @memberof VehicleType
      */
-    'layoutID'?: string;
+    'hasEconomyClass'?: boolean;
     /**
      * Indicates if the vehicle [Fahrzeug] has first class seats.
      * @type {boolean}
@@ -1217,11 +1040,11 @@ export interface VehicleType {
      */
     'hasFirstClass'?: boolean;
     /**
-     * Indicates if the vehicle [Fahrzeug] has economy class seats.
-     * @type {boolean}
+     * ID of layout [Redesign, modernisiert, 2. Bauserie etc.] of the vehicle type, for instance \'403.1.BS\' or \'403.2.BS\'.
+     * @type {string}
      * @memberof VehicleType
      */
-    'hasEconomyClass'?: boolean;
+    'layoutID'?: string;
 }
 
 /**
@@ -1231,85 +1054,26 @@ export interface VehicleType {
 export const OccupanciesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-         * @summary Returns occupancies for a list of journeys
-         * @param {JourneyOccupanciesRequest} journeyOccupanciesRequest 
+         * Returns occupancies [Auslastung] for a particular departrue [Abfahrt] within a journey [Fahrt]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+         * @summary Returns occupancies for a departure within a journey
+         * @param {string} date calendar date [Kalendertag] of transports departure as date (\&#39;YYYY-MM-dd\&#39;) at time-zone of departure (usually \&#39;Europe/Berlin\&#39;) 
+         * @param {number} journeyNumber number of journey [Fahrtnummer] at departure
+         * @param {string} category category [Fahrtgattung] of transport at departure
+         * @param {string} evaNumber eva number of departure stop-place [Haltestelle]
+         * @param {string} [timeSchedule] scheduled departure time [Geplante Abfahrtzeit] (\&#39;HH:mm:ss\&#39;) at stop-place [Haltestelle] as time-zone of departure (usually \&#39;Europe/Berlin\&#39;) only necessary to identify multiple stops at the same stop-place within a particular journey [Schleifenfahrten]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        occupancies: async (journeyOccupanciesRequest: JourneyOccupanciesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'journeyOccupanciesRequest' is not null or undefined
-            assertParamExists('occupancies', 'journeyOccupanciesRequest', journeyOccupanciesRequest)
-            const localVarPath = `/occupancies`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(journeyOccupanciesRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-         * @summary Returns occupancies for a list of journeys
-         * @param {JourneyOccupanciesUnmatchedRequest} journeyOccupanciesUnmatchedRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        occupanciesUnmatched: async (journeyOccupanciesUnmatchedRequest: JourneyOccupanciesUnmatchedRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'journeyOccupanciesUnmatchedRequest' is not null or undefined
-            assertParamExists('occupanciesUnmatched', 'journeyOccupanciesUnmatchedRequest', journeyOccupanciesUnmatchedRequest)
-            const localVarPath = `/occupancies/unmatched`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(journeyOccupanciesUnmatchedRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns all administrations [Verwaltungen] that provide occupancies [Auslastung].
-         * @summary Returns all administrations that provide occupancies
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        occupancyAdministrations: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/occupancies/administrations`;
+        occupancyByDepartureUnmatched: async (date: string, journeyNumber: number, category: string, evaNumber: string, timeSchedule?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'date' is not null or undefined
+            assertParamExists('occupancyByDepartureUnmatched', 'date', date)
+            // verify required parameter 'journeyNumber' is not null or undefined
+            assertParamExists('occupancyByDepartureUnmatched', 'journeyNumber', journeyNumber)
+            // verify required parameter 'category' is not null or undefined
+            assertParamExists('occupancyByDepartureUnmatched', 'category', category)
+            // verify required parameter 'evaNumber' is not null or undefined
+            assertParamExists('occupancyByDepartureUnmatched', 'evaNumber', evaNumber)
+            const localVarPath = `/occupancies/departures/unmatched`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1320,6 +1084,148 @@ export const OccupanciesApiAxiosParamCreator = function (configuration?: Configu
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
+
+            if (date !== undefined) {
+                localVarQueryParameter['date'] = (date as any instanceof Date) ?
+                    (date as any).toISOString().substring(0,10) :
+                    date;
+            }
+
+            if (journeyNumber !== undefined) {
+                localVarQueryParameter['journeyNumber'] = journeyNumber;
+            }
+
+            if (category !== undefined) {
+                localVarQueryParameter['category'] = category;
+            }
+
+            if (evaNumber !== undefined) {
+                localVarQueryParameter['evaNumber'] = evaNumber;
+            }
+
+            if (timeSchedule !== undefined) {
+                localVarQueryParameter['timeSchedule'] = timeSchedule;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns occupancies [Auslastung] for a particular journey [Fahrt].
+         * @summary Returns occupancies for a journey
+         * @param {string} journeyID id of journey [Fahrt-ID]
+         * @param {string} [departureID] id of departure [Abfahrt-ID], if omitted all departures with occupancy information are returned
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        occupancyByJourneyId: async (journeyID: string, departureID?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'journeyID' is not null or undefined
+            assertParamExists('occupancyByJourneyId', 'journeyID', journeyID)
+            const localVarPath = `/occupancies/{journeyID}`
+                .replace(`{${"journeyID"}}`, encodeURIComponent(String(journeyID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
+
+            if (departureID !== undefined) {
+                localVarQueryParameter['departureID'] = departureID;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns occupancies [Auslastung] for a particular journey [Fahrt] and all its departures [Abfahrten]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+         * @summary Returns occupancies for a journey
+         * @param {string} startTime scheduled start time [Geplante Startzeit] of transport at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+         * @param {string} startCategory category [Fahrtgattung] of transport at scheduled start stop-place [Geplanter Starthalt]
+         * @param {number} startJourneyNumber number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
+         * @param {string} [startEvaNumber] eva number of scheduled start stop-place [Geplanter Starthalt] of transport
+         * @param {string} [startAdministrationID] id of the administration [Verwaltung] of transport at scheduled start stop-place [Geplanter Starthalt]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        occupancyByJourneyUnmatched: async (startTime: string, startCategory: string, startJourneyNumber: number, startEvaNumber?: string, startAdministrationID?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'startTime' is not null or undefined
+            assertParamExists('occupancyByJourneyUnmatched', 'startTime', startTime)
+            // verify required parameter 'startCategory' is not null or undefined
+            assertParamExists('occupancyByJourneyUnmatched', 'startCategory', startCategory)
+            // verify required parameter 'startJourneyNumber' is not null or undefined
+            assertParamExists('occupancyByJourneyUnmatched', 'startJourneyNumber', startJourneyNumber)
+            const localVarPath = `/occupancies/unmatched`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
+
+            if (startTime !== undefined) {
+                localVarQueryParameter['startTime'] = (startTime as any instanceof Date) ?
+                    (startTime as any).toISOString() :
+                    startTime;
+            }
+
+            if (startEvaNumber !== undefined) {
+                localVarQueryParameter['startEvaNumber'] = startEvaNumber;
+            }
+
+            if (startAdministrationID !== undefined) {
+                localVarQueryParameter['startAdministrationID'] = startAdministrationID;
+            }
+
+            if (startCategory !== undefined) {
+                localVarQueryParameter['startCategory'] = startCategory;
+            }
+
+            if (startJourneyNumber !== undefined) {
+                localVarQueryParameter['startJourneyNumber'] = startJourneyNumber;
+            }
 
 
     
@@ -1343,35 +1249,45 @@ export const OccupanciesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OccupanciesApiAxiosParamCreator(configuration)
     return {
         /**
-         * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-         * @summary Returns occupancies for a list of journeys
-         * @param {JourneyOccupanciesRequest} journeyOccupanciesRequest 
+         * Returns occupancies [Auslastung] for a particular departrue [Abfahrt] within a journey [Fahrt]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+         * @summary Returns occupancies for a departure within a journey
+         * @param {string} date calendar date [Kalendertag] of transports departure as date (\&#39;YYYY-MM-dd\&#39;) at time-zone of departure (usually \&#39;Europe/Berlin\&#39;) 
+         * @param {number} journeyNumber number of journey [Fahrtnummer] at departure
+         * @param {string} category category [Fahrtgattung] of transport at departure
+         * @param {string} evaNumber eva number of departure stop-place [Haltestelle]
+         * @param {string} [timeSchedule] scheduled departure time [Geplante Abfahrtzeit] (\&#39;HH:mm:ss\&#39;) at stop-place [Haltestelle] as time-zone of departure (usually \&#39;Europe/Berlin\&#39;) only necessary to identify multiple stops at the same stop-place within a particular journey [Schleifenfahrten]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async occupancies(journeyOccupanciesRequest: JourneyOccupanciesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyOccupanciesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.occupancies(journeyOccupanciesRequest, options);
+        async occupancyByDepartureUnmatched(date: string, journeyNumber: number, category: string, evaNumber: string, timeSchedule?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyOccupancyUnmatched>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.occupancyByDepartureUnmatched(date, journeyNumber, category, evaNumber, timeSchedule, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-         * @summary Returns occupancies for a list of journeys
-         * @param {JourneyOccupanciesUnmatchedRequest} journeyOccupanciesUnmatchedRequest 
+         * Returns occupancies [Auslastung] for a particular journey [Fahrt].
+         * @summary Returns occupancies for a journey
+         * @param {string} journeyID id of journey [Fahrt-ID]
+         * @param {string} [departureID] id of departure [Abfahrt-ID], if omitted all departures with occupancy information are returned
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async occupanciesUnmatched(journeyOccupanciesUnmatchedRequest: JourneyOccupanciesUnmatchedRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyOccupanciesUnmatchedResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.occupanciesUnmatched(journeyOccupanciesUnmatchedRequest, options);
+        async occupancyByJourneyId(journeyID: string, departureID?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyOccupancy>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.occupancyByJourneyId(journeyID, departureID, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns all administrations [Verwaltungen] that provide occupancies [Auslastung].
-         * @summary Returns all administrations that provide occupancies
+         * Returns occupancies [Auslastung] for a particular journey [Fahrt] and all its departures [Abfahrten]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+         * @summary Returns occupancies for a journey
+         * @param {string} startTime scheduled start time [Geplante Startzeit] of transport at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+         * @param {string} startCategory category [Fahrtgattung] of transport at scheduled start stop-place [Geplanter Starthalt]
+         * @param {number} startJourneyNumber number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
+         * @param {string} [startEvaNumber] eva number of scheduled start stop-place [Geplanter Starthalt] of transport
+         * @param {string} [startAdministrationID] id of the administration [Verwaltung] of transport at scheduled start stop-place [Geplanter Starthalt]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async occupancyAdministrations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OccupancyAvailableAdministrations>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.occupancyAdministrations(options);
+        async occupancyByJourneyUnmatched(startTime: string, startCategory: string, startJourneyNumber: number, startEvaNumber?: string, startAdministrationID?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JourneyOccupancyUnmatched>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.occupancyByJourneyUnmatched(startTime, startCategory, startJourneyNumber, startEvaNumber, startAdministrationID, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1385,63 +1301,141 @@ export const OccupanciesApiFactory = function (configuration?: Configuration, ba
     const localVarFp = OccupanciesApiFp(configuration)
     return {
         /**
-         * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-         * @summary Returns occupancies for a list of journeys
-         * @param {OccupanciesApiOccupanciesRequest} requestParameters Request parameters.
+         * Returns occupancies [Auslastung] for a particular departrue [Abfahrt] within a journey [Fahrt]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+         * @summary Returns occupancies for a departure within a journey
+         * @param {OccupanciesApiOccupancyByDepartureUnmatchedRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        occupancies(requestParameters: OccupanciesApiOccupanciesRequest, options?: AxiosRequestConfig): AxiosPromise<JourneyOccupanciesResponse> {
-            return localVarFp.occupancies(requestParameters.journeyOccupanciesRequest, options).then((request) => request(axios, basePath));
+        occupancyByDepartureUnmatched(requestParameters: OccupanciesApiOccupancyByDepartureUnmatchedRequest, options?: AxiosRequestConfig): AxiosPromise<JourneyOccupancyUnmatched> {
+            return localVarFp.occupancyByDepartureUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-         * @summary Returns occupancies for a list of journeys
-         * @param {OccupanciesApiOccupanciesUnmatchedRequest} requestParameters Request parameters.
+         * Returns occupancies [Auslastung] for a particular journey [Fahrt].
+         * @summary Returns occupancies for a journey
+         * @param {OccupanciesApiOccupancyByJourneyIdRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        occupanciesUnmatched(requestParameters: OccupanciesApiOccupanciesUnmatchedRequest, options?: AxiosRequestConfig): AxiosPromise<JourneyOccupanciesUnmatchedResponse> {
-            return localVarFp.occupanciesUnmatched(requestParameters.journeyOccupanciesUnmatchedRequest, options).then((request) => request(axios, basePath));
+        occupancyByJourneyId(requestParameters: OccupanciesApiOccupancyByJourneyIdRequest, options?: AxiosRequestConfig): AxiosPromise<JourneyOccupancy> {
+            return localVarFp.occupancyByJourneyId(requestParameters.journeyID, requestParameters.departureID, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns all administrations [Verwaltungen] that provide occupancies [Auslastung].
-         * @summary Returns all administrations that provide occupancies
+         * Returns occupancies [Auslastung] for a particular journey [Fahrt] and all its departures [Abfahrten]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+         * @summary Returns occupancies for a journey
+         * @param {OccupanciesApiOccupancyByJourneyUnmatchedRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        occupancyAdministrations(options?: AxiosRequestConfig): AxiosPromise<OccupancyAvailableAdministrations> {
-            return localVarFp.occupancyAdministrations(options).then((request) => request(axios, basePath));
+        occupancyByJourneyUnmatched(requestParameters: OccupanciesApiOccupancyByJourneyUnmatchedRequest, options?: AxiosRequestConfig): AxiosPromise<JourneyOccupancyUnmatched> {
+            return localVarFp.occupancyByJourneyUnmatched(requestParameters.startTime, requestParameters.startCategory, requestParameters.startJourneyNumber, requestParameters.startEvaNumber, requestParameters.startAdministrationID, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for occupancies operation in OccupanciesApi.
+ * Request parameters for occupancyByDepartureUnmatched operation in OccupanciesApi.
  * @export
- * @interface OccupanciesApiOccupanciesRequest
+ * @interface OccupanciesApiOccupancyByDepartureUnmatchedRequest
  */
-export interface OccupanciesApiOccupanciesRequest {
+export interface OccupanciesApiOccupancyByDepartureUnmatchedRequest {
     /**
-     * 
-     * @type {JourneyOccupanciesRequest}
-     * @memberof OccupanciesApiOccupancies
+     * calendar date [Kalendertag] of transports departure as date (\&#39;YYYY-MM-dd\&#39;) at time-zone of departure (usually \&#39;Europe/Berlin\&#39;) 
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByDepartureUnmatched
      */
-    readonly journeyOccupanciesRequest: JourneyOccupanciesRequest
+    readonly date: string
+
+    /**
+     * number of journey [Fahrtnummer] at departure
+     * @type {number}
+     * @memberof OccupanciesApiOccupancyByDepartureUnmatched
+     */
+    readonly journeyNumber: number
+
+    /**
+     * category [Fahrtgattung] of transport at departure
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByDepartureUnmatched
+     */
+    readonly category: string
+
+    /**
+     * eva number of departure stop-place [Haltestelle]
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByDepartureUnmatched
+     */
+    readonly evaNumber: string
+
+    /**
+     * scheduled departure time [Geplante Abfahrtzeit] (\&#39;HH:mm:ss\&#39;) at stop-place [Haltestelle] as time-zone of departure (usually \&#39;Europe/Berlin\&#39;) only necessary to identify multiple stops at the same stop-place within a particular journey [Schleifenfahrten]
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByDepartureUnmatched
+     */
+    readonly timeSchedule?: string
 }
 
 /**
- * Request parameters for occupanciesUnmatched operation in OccupanciesApi.
+ * Request parameters for occupancyByJourneyId operation in OccupanciesApi.
  * @export
- * @interface OccupanciesApiOccupanciesUnmatchedRequest
+ * @interface OccupanciesApiOccupancyByJourneyIdRequest
  */
-export interface OccupanciesApiOccupanciesUnmatchedRequest {
+export interface OccupanciesApiOccupancyByJourneyIdRequest {
     /**
-     * 
-     * @type {JourneyOccupanciesUnmatchedRequest}
-     * @memberof OccupanciesApiOccupanciesUnmatched
+     * id of journey [Fahrt-ID]
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByJourneyId
      */
-    readonly journeyOccupanciesUnmatchedRequest: JourneyOccupanciesUnmatchedRequest
+    readonly journeyID: string
+
+    /**
+     * id of departure [Abfahrt-ID], if omitted all departures with occupancy information are returned
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByJourneyId
+     */
+    readonly departureID?: string
+}
+
+/**
+ * Request parameters for occupancyByJourneyUnmatched operation in OccupanciesApi.
+ * @export
+ * @interface OccupanciesApiOccupancyByJourneyUnmatchedRequest
+ */
+export interface OccupanciesApiOccupancyByJourneyUnmatchedRequest {
+    /**
+     * scheduled start time [Geplante Startzeit] of transport at scheduled start stop-place [Geplanter Starthalt] as fully-qualified-date (ISO-8601 with time-zone or offset)
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByJourneyUnmatched
+     */
+    readonly startTime: string
+
+    /**
+     * category [Fahrtgattung] of transport at scheduled start stop-place [Geplanter Starthalt]
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByJourneyUnmatched
+     */
+    readonly startCategory: string
+
+    /**
+     * number of journey [Fahrtnummer] at scheduled start stop-place [Geplanter Starthalt]
+     * @type {number}
+     * @memberof OccupanciesApiOccupancyByJourneyUnmatched
+     */
+    readonly startJourneyNumber: number
+
+    /**
+     * eva number of scheduled start stop-place [Geplanter Starthalt] of transport
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByJourneyUnmatched
+     */
+    readonly startEvaNumber?: string
+
+    /**
+     * id of the administration [Verwaltung] of transport at scheduled start stop-place [Geplanter Starthalt]
+     * @type {string}
+     * @memberof OccupanciesApiOccupancyByJourneyUnmatched
+     */
+    readonly startAdministrationID?: string
 }
 
 /**
@@ -1452,38 +1446,39 @@ export interface OccupanciesApiOccupanciesUnmatchedRequest {
  */
 export class OccupanciesApi extends BaseAPI {
     /**
-     * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-     * @summary Returns occupancies for a list of journeys
-     * @param {OccupanciesApiOccupanciesRequest} requestParameters Request parameters.
+     * Returns occupancies [Auslastung] for a particular departrue [Abfahrt] within a journey [Fahrt]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+     * @summary Returns occupancies for a departure within a journey
+     * @param {OccupanciesApiOccupancyByDepartureUnmatchedRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OccupanciesApi
      */
-    public occupancies(requestParameters: OccupanciesApiOccupanciesRequest, options?: AxiosRequestConfig) {
-        return OccupanciesApiFp(this.configuration).occupancies(requestParameters.journeyOccupanciesRequest, options).then((request) => request(this.axios, this.basePath));
+    public occupancyByDepartureUnmatched(requestParameters: OccupanciesApiOccupancyByDepartureUnmatchedRequest, options?: AxiosRequestConfig) {
+        return OccupanciesApiFp(this.configuration).occupancyByDepartureUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns occupancies [Auslastungen] for a list of journeys [Fahrten].
-     * @summary Returns occupancies for a list of journeys
-     * @param {OccupanciesApiOccupanciesUnmatchedRequest} requestParameters Request parameters.
+     * Returns occupancies [Auslastung] for a particular journey [Fahrt].
+     * @summary Returns occupancies for a journey
+     * @param {OccupanciesApiOccupancyByJourneyIdRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OccupanciesApi
      */
-    public occupanciesUnmatched(requestParameters: OccupanciesApiOccupanciesUnmatchedRequest, options?: AxiosRequestConfig) {
-        return OccupanciesApiFp(this.configuration).occupanciesUnmatched(requestParameters.journeyOccupanciesUnmatchedRequest, options).then((request) => request(this.axios, this.basePath));
+    public occupancyByJourneyId(requestParameters: OccupanciesApiOccupancyByJourneyIdRequest, options?: AxiosRequestConfig) {
+        return OccupanciesApiFp(this.configuration).occupancyByJourneyId(requestParameters.journeyID, requestParameters.departureID, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns all administrations [Verwaltungen] that provide occupancies [Auslastung].
-     * @summary Returns all administrations that provide occupancies
+     * Returns occupancies [Auslastung] for a particular journey [Fahrt] and all its departures [Abfahrten]. This is the unmatched entrypoint in case the caller is not aware of the particular \'journeyID\' and \'departureID\'. Be aware that in case the combination of filters, that are used to identify the journey or its departure, doesn\'t result in a unique match that an exception is thrown. 
+     * @summary Returns occupancies for a journey
+     * @param {OccupanciesApiOccupancyByJourneyUnmatchedRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OccupanciesApi
      */
-    public occupancyAdministrations(options?: AxiosRequestConfig) {
-        return OccupanciesApiFp(this.configuration).occupancyAdministrations(options).then((request) => request(this.axios, this.basePath));
+    public occupancyByJourneyUnmatched(requestParameters: OccupanciesApiOccupancyByJourneyUnmatchedRequest, options?: AxiosRequestConfig) {
+        return OccupanciesApiFp(this.configuration).occupancyByJourneyUnmatched(requestParameters.startTime, requestParameters.startCategory, requestParameters.startJourneyNumber, requestParameters.startEvaNumber, requestParameters.startAdministrationID, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1513,6 +1508,12 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
 
 
     
@@ -1553,6 +1554,12 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
 
             if (includePosition !== undefined) {
                 localVarQueryParameter['includePosition'] = includePosition;
@@ -1607,6 +1614,12 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
+
             if (date !== undefined) {
                 localVarQueryParameter['date'] = (date as any instanceof Date) ?
                     (date as any).toISOString().substring(0,10) :
@@ -1628,50 +1641,6 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             if (timeSchedule !== undefined) {
                 localVarQueryParameter['timeSchedule'] = timeSchedule;
             }
-
-            if (includePosition !== undefined) {
-                localVarQueryParameter['includePosition'] = includePosition;
-            }
-
-            if (includeAmenities !== undefined) {
-                localVarQueryParameter['includeAmenities'] = includeAmenities;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
-         * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
-         * @param {string} journeyID id of journey [Fahrt-ID]
-         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
-         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        vehicleSequenceArrivals: async (journeyID: string, includePosition?: boolean, includeAmenities?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'journeyID' is not null or undefined
-            assertParamExists('vehicleSequenceArrivals', 'journeyID', journeyID)
-            const localVarPath = `/vehicle-sequences/arrivals/{journeyID}`
-                .replace(`{${"journeyID"}}`, encodeURIComponent(String(journeyID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
 
             if (includePosition !== undefined) {
                 localVarQueryParameter['includePosition'] = includePosition;
@@ -1721,6 +1690,12 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
 
             if (includePosition !== undefined) {
                 localVarQueryParameter['includePosition'] = includePosition;
@@ -1780,6 +1755,12 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
+
             if (date !== undefined) {
                 localVarQueryParameter['date'] = (date as any instanceof Date) ?
                     (date as any).toISOString().substring(0,10) :
@@ -1801,55 +1782,6 @@ export const VehicleSequencesApiAxiosParamCreator = function (configuration?: Co
             if (timeSchedule !== undefined) {
                 localVarQueryParameter['timeSchedule'] = timeSchedule;
             }
-
-            if (includePosition !== undefined) {
-                localVarQueryParameter['includePosition'] = includePosition;
-            }
-
-            if (includeAmenities !== undefined) {
-                localVarQueryParameter['includeAmenities'] = includeAmenities;
-            }
-
-            if (includeOccupancy !== undefined) {
-                localVarQueryParameter['includeOccupancy'] = includeOccupancy;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
-         * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
-         * @param {string} journeyID id of journey [Fahrt-ID]
-         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
-         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
-         * @param {string} [includeOccupancy] include occupancy [Auslastung] for vehicles at departure, if omitted \&#39;OVERALL\&#39; occupancy will be returned - NONE (return no occupancy [Auslastung]) - OVERALL (return only overall occupancy [Auslastung] on a first / economy class level)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        vehicleSequenceDepartures: async (journeyID: string, includePosition?: boolean, includeAmenities?: boolean, includeOccupancy?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'journeyID' is not null or undefined
-            assertParamExists('vehicleSequenceDepartures', 'journeyID', journeyID)
-            const localVarPath = `/vehicle-sequences/departures/{journeyID}`
-                .replace(`{${"journeyID"}}`, encodeURIComponent(String(journeyID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
 
             if (includePosition !== undefined) {
                 localVarQueryParameter['includePosition'] = includePosition;
@@ -1926,19 +1858,6 @@ export const VehicleSequencesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
-         * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
-         * @param {string} journeyID id of journey [Fahrt-ID]
-         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
-         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async vehicleSequenceArrivals(journeyID: string, includePosition?: boolean, includeAmenities?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VehicleSequenceArrivals>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vehicleSequenceArrivals(journeyID, includePosition, includeAmenities, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
          * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
          * @param {string} journeyID id of journey [Fahrt-ID]
@@ -1969,20 +1888,6 @@ export const VehicleSequencesApiFp = function(configuration?: Configuration) {
          */
         async vehicleSequenceDepartureUnmatched(date: string, journeyNumber: number, category: string, evaNumber: string, timeSchedule?: string, includePosition?: boolean, includeAmenities?: boolean, includeOccupancy?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VehicleSequenceDepartureUnmatched>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.vehicleSequenceDepartureUnmatched(date, journeyNumber, category, evaNumber, timeSchedule, includePosition, includeAmenities, includeOccupancy, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
-         * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
-         * @param {string} journeyID id of journey [Fahrt-ID]
-         * @param {boolean} [includePosition] include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
-         * @param {boolean} [includeAmenities] include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
-         * @param {string} [includeOccupancy] include occupancy [Auslastung] for vehicles at departure, if omitted \&#39;OVERALL\&#39; occupancy will be returned - NONE (return no occupancy [Auslastung]) - OVERALL (return only overall occupancy [Auslastung] on a first / economy class level)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async vehicleSequenceDepartures(journeyID: string, includePosition?: boolean, includeAmenities?: boolean, includeOccupancy?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VehicleSequenceDepartures>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vehicleSequenceDepartures(journeyID, includePosition, includeAmenities, includeOccupancy, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -2025,16 +1930,6 @@ export const VehicleSequencesApiFactory = function (configuration?: Configuratio
             return localVarFp.vehicleSequenceArrivalUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, requestParameters.includePosition, requestParameters.includeAmenities, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
-         * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
-         * @param {VehicleSequencesApiVehicleSequenceArrivalsRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        vehicleSequenceArrivals(requestParameters: VehicleSequencesApiVehicleSequenceArrivalsRequest, options?: AxiosRequestConfig): AxiosPromise<VehicleSequenceArrivals> {
-            return localVarFp.vehicleSequenceArrivals(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
          * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
          * @param {VehicleSequencesApiVehicleSequenceDepartureRequest} requestParameters Request parameters.
@@ -2053,16 +1948,6 @@ export const VehicleSequencesApiFactory = function (configuration?: Configuratio
          */
         vehicleSequenceDepartureUnmatched(requestParameters: VehicleSequencesApiVehicleSequenceDepartureUnmatchedRequest, options?: AxiosRequestConfig): AxiosPromise<VehicleSequenceDepartureUnmatched> {
             return localVarFp.vehicleSequenceDepartureUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
-         * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
-         * @param {VehicleSequencesApiVehicleSequenceDeparturesRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        vehicleSequenceDepartures(requestParameters: VehicleSequencesApiVehicleSequenceDeparturesRequest, options?: AxiosRequestConfig): AxiosPromise<VehicleSequenceDepartures> {
-            return localVarFp.vehicleSequenceDepartures(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2154,34 +2039,6 @@ export interface VehicleSequencesApiVehicleSequenceArrivalUnmatchedRequest {
      * include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
      * @type {boolean}
      * @memberof VehicleSequencesApiVehicleSequenceArrivalUnmatched
-     */
-    readonly includeAmenities?: boolean
-}
-
-/**
- * Request parameters for vehicleSequenceArrivals operation in VehicleSequencesApi.
- * @export
- * @interface VehicleSequencesApiVehicleSequenceArrivalsRequest
- */
-export interface VehicleSequencesApiVehicleSequenceArrivalsRequest {
-    /**
-     * id of journey [Fahrt-ID]
-     * @type {string}
-     * @memberof VehicleSequencesApiVehicleSequenceArrivals
-     */
-    readonly journeyID: string
-
-    /**
-     * include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
-     * @type {boolean}
-     * @memberof VehicleSequencesApiVehicleSequenceArrivals
-     */
-    readonly includePosition?: boolean
-
-    /**
-     * include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
-     * @type {boolean}
-     * @memberof VehicleSequencesApiVehicleSequenceArrivals
      */
     readonly includeAmenities?: boolean
 }
@@ -2292,41 +2149,6 @@ export interface VehicleSequencesApiVehicleSequenceDepartureUnmatchedRequest {
 }
 
 /**
- * Request parameters for vehicleSequenceDepartures operation in VehicleSequencesApi.
- * @export
- * @interface VehicleSequencesApiVehicleSequenceDeparturesRequest
- */
-export interface VehicleSequencesApiVehicleSequenceDeparturesRequest {
-    /**
-     * id of journey [Fahrt-ID]
-     * @type {string}
-     * @memberof VehicleSequencesApiVehicleSequenceDepartures
-     */
-    readonly journeyID: string
-
-    /**
-     * include position at platform [Gleis, Bahnsteig, Plattform], if omitted or false no platform and no position information per vehicle will be returned, may be empty
-     * @type {boolean}
-     * @memberof VehicleSequencesApiVehicleSequenceDepartures
-     */
-    readonly includePosition?: boolean
-
-    /**
-     * include amenities [Ausstatungsmerkmale] like WC, WLAN, boarding aids etc. on a vehicle base, if omitted or false no amenities will be returned
-     * @type {boolean}
-     * @memberof VehicleSequencesApiVehicleSequenceDepartures
-     */
-    readonly includeAmenities?: boolean
-
-    /**
-     * include occupancy [Auslastung] for vehicles at departure, if omitted \&#39;OVERALL\&#39; occupancy will be returned - NONE (return no occupancy [Auslastung]) - OVERALL (return only overall occupancy [Auslastung] on a first / economy class level)
-     * @type {string}
-     * @memberof VehicleSequencesApiVehicleSequenceDepartures
-     */
-    readonly includeOccupancy?: string
-}
-
-/**
  * VehicleSequencesApi - object-oriented interface
  * @export
  * @class VehicleSequencesApi
@@ -2369,18 +2191,6 @@ export class VehicleSequencesApi extends BaseAPI {
     }
 
     /**
-     * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all arrivals.
-     * @summary Returns transports arrial vehicle-sequences, positions at platform, amenities and occupacies
-     * @param {VehicleSequencesApiVehicleSequenceArrivalsRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof VehicleSequencesApi
-     */
-    public vehicleSequenceArrivals(requestParameters: VehicleSequencesApiVehicleSequenceArrivalsRequest, options?: AxiosRequestConfig) {
-        return VehicleSequencesApiFp(this.configuration).vehicleSequenceArrivals(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Returns a transports vehicle-sequence [Wagenreihung] with position at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancy [Auslastung] for a particular departure.
      * @summary Returns transports departure vehicle-sequence, position at platform, amenities and occupacy
      * @param {VehicleSequencesApiVehicleSequenceDepartureRequest} requestParameters Request parameters.
@@ -2402,18 +2212,6 @@ export class VehicleSequencesApi extends BaseAPI {
      */
     public vehicleSequenceDepartureUnmatched(requestParameters: VehicleSequencesApiVehicleSequenceDepartureUnmatchedRequest, options?: AxiosRequestConfig) {
         return VehicleSequencesApiFp(this.configuration).vehicleSequenceDepartureUnmatched(requestParameters.date, requestParameters.journeyNumber, requestParameters.category, requestParameters.evaNumber, requestParameters.timeSchedule, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns a transports vehicle-sequences [Wagenreihung] with positions at platform [Positionierung am Gleis], amenities [Ausstattungsmerkmalen], barrier-free [Barrierefreiheit] information and occupancies [Auslastung] for all departures.
-     * @summary Returns transports departure vehicle-sequences, positions at platform, amenities and occupacies
-     * @param {VehicleSequencesApiVehicleSequenceDeparturesRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof VehicleSequencesApi
-     */
-    public vehicleSequenceDepartures(requestParameters: VehicleSequencesApiVehicleSequenceDeparturesRequest, options?: AxiosRequestConfig) {
-        return VehicleSequencesApiFp(this.configuration).vehicleSequenceDepartures(requestParameters.journeyID, requestParameters.includePosition, requestParameters.includeAmenities, requestParameters.includeOccupancy, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2448,6 +2246,12 @@ export const VehiclesApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication ClientSecret required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Api-Key", configuration)
+
+            // authentication ClientID required
+            await setApiKeyToObject(localVarHeaderParameter, "DB-Client-ID", configuration)
 
             if (date !== undefined) {
                 localVarQueryParameter['date'] = (date as any instanceof Date) ?

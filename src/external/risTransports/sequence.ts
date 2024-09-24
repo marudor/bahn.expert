@@ -1,31 +1,15 @@
-import {
-	Configuration,
-	VehicleSequencesApi,
-} from '@/external/generated/risTransports';
+import { VehicleSequencesApi } from '@/external/generated/risTransports';
 import type { VehicleSequenceDeparture } from '@/external/generated/risTransports';
+import {
+	isWithin20Hours,
+	risTransportsConfiguration,
+} from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
-import {
-	addHours,
-	format,
-	formatISO,
-	isWithinInterval,
-	subHours,
-} from 'date-fns';
-
-const risTransportsConfiguration = new Configuration({
-	basePath: process.env.COACH_SEQUENCE_URL,
-	baseOptions: {
-		headers: {
-			'DB-Api-Key': process.env.COACH_SEQUENCE_CLIENT_SECRET,
-			'DB-Client-Id': process.env.COACH_SEQUENCE_CLIENT_ID,
-			'User-Agent': 'bahn.expert',
-		},
-	},
-});
+import { format, formatISO } from 'date-fns';
 
 const formatDate = (date?: Date) =>
 	date ? format(date, 'yyyyMMddHHmm') : undefined;
@@ -64,15 +48,6 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 const negativeHitCache = new Cache<boolean>(CacheDatabase.NegativeNewSequence);
-
-export function isWithin20Hours(date: Date): boolean {
-	const start = subHours(new Date(), 20);
-	const end = addHours(new Date(), 20);
-	return isWithinInterval(date, {
-		start,
-		end,
-	});
-}
 
 export async function getDepartureSequence(
 	trainCategory: string,

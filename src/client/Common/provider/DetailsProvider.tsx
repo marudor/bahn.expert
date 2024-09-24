@@ -56,6 +56,15 @@ const useInnerDetails = ({
 		jid,
 	});
 
+	const { data: occupancy } = trpc.coachSequence.occupancy.useQuery(
+		{
+			journeyId: journeyId!,
+		},
+		{
+			enabled: Boolean(journeyId),
+		},
+	);
+
 	const [additionalInformation, setAdditionalInformation] =
 		useState<AdditionalJourneyInformation>();
 	const navigate = useNavigate();

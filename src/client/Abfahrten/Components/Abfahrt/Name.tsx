@@ -32,7 +32,6 @@ export const Name: FC<Props> = ({ withLink }) => {
 				train={abfahrt.previousTrain || abfahrt.train}
 				evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
 				initialDeparture={abfahrt.initialDeparture}
-				journeyId={abfahrt.journeyId}
 			>
 				{trainName}
 			</DetailsLink>
