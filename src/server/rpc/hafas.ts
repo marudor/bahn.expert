@@ -8,6 +8,7 @@ import { additionalJourneyInformation } from '@/server/journeys/additionalJourne
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import type { AbfahrtenRPCQuery } from '@/server/rpc/iris';
 import { AllowedHafasProfile } from '@/types/HAFAS';
+import type { RouteAuslastungWithSource } from '@/types/routing';
 import type { ArrivalStationBoardEntry } from '@/types/stationBoard';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
@@ -105,15 +106,24 @@ export const hafasRpcRouter = rpcAppRouter({
 						journeyId ? getOccupancy(journeyId) : undefined,
 					]);
 
-				const foundTransportsStopOccupancy = foundTransportsOccupancy
-					? foundTransportsOccupancy[stopEva]
-					: undefined;
+				if (foundTransportsOccupancy?.[stopEva]) {
+					return {
+						source: 'Transports',
+						occupancy: foundTransportsOccupancy[stopEva],
+					} as RouteAuslastungWithSource;
+				}
 
-				const foundMixedOccupancy =
-					foundTransportsStopOccupancy || foundOccupancy || foundVrrOccupancy;
-
-				if (foundMixedOccupancy) {
-					return foundMixedOccupancy;
+				if (foundOccupancy) {
+					return {
+						source: 'HAFAS',
+						occupancy: foundOccupancy,
+					} as RouteAuslastungWithSource;
+				}
+				if (foundVrrOccupancy) {
+					return {
+						source: 'VRR',
+						occupancy: foundVrrOccupancy,
+					} as RouteAuslastungWithSource;
 				}
 
 				throw new TRPCError({

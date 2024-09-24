@@ -49,6 +49,10 @@ export interface RouteAuslastung {
 	first?: AuslastungsValue;
 	second?: AuslastungsValue;
 }
+export interface RouteAuslastungWithSource {
+	source?: 'HAFAS' | 'VRR' | 'Transports';
+	occupancy: RouteAuslastung;
+}
 export interface RouteJourney {
 	cancelled?: boolean;
 	changeDuration?: number;

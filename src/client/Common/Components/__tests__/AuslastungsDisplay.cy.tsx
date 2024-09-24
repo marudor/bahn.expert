@@ -1,12 +1,18 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
-import { AuslastungsValue } from '@/types/routing';
+import {
+	AuslastungsValue,
+	type RouteAuslastungWithSource,
+} from '@/types/routing';
 
 const createAuslastung = (
 	first: AuslastungsValue,
 	second: AuslastungsValue,
-) => ({
-	first,
-	second,
+): RouteAuslastungWithSource => ({
+	source: 'HAFAS',
+	occupancy: {
+		first,
+		second,
+	},
 });
 const iconTestId: Record<AuslastungsValue, string> = {
 	[AuslastungsValue.Ausgebucht]: 'CloseIcon',

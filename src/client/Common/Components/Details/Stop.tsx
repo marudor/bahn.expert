@@ -211,7 +211,12 @@ export const Stop: FC<Props> = ({
 				<StopPlaceLink stopPlace={stop.station} urlPrefix={urlPrefix} />
 			</StopName>
 			{!doNotRenderOccupancy && occupancy && (
-				<StyledOccupancy oneLine auslastung={occupancy} />
+				<StyledOccupancy
+					oneLine
+					auslastung={{
+						occupancy,
+					}}
+				/>
 			)}
 			{train && (
 				<StyledTravelynxLink

@@ -30,24 +30,26 @@ export async function getOccupancy(
 	journeyId: string,
 	providedJourneyDetails?: ParsedSearchOnTripResponse,
 ) {
+	const risTransportsOccupancy = await getJourneyOccupancy({
+		journeyId,
+	});
+	if (!risTransportsOccupancy?.departures?.length) {
+		return;
+	}
 	const journeyDetails =
 		providedJourneyDetails || (await fetchJourneyDetails(journeyId));
 	if (!journeyDetails) {
 		return;
 	}
-	const risTransportsOccupancy = await getJourneyOccupancy({
-		journeyId,
-	});
-	if (risTransportsOccupancy?.departures?.length) {
-		const occupancy: Record<string, RouteAuslastung> = {};
-		for (const stop of risTransportsOccupancy.departures) {
-			const journeyStop = journeyDetails.stops.find(
-				(s) => s.departure?.id === stop.departureID,
-			);
-			if (journeyStop) {
-				occupancy[journeyStop.station.evaNumber] = mapOccupancy(stop.occupancy);
-			}
+
+	const occupancy: Record<string, RouteAuslastung> = {};
+	for (const stop of risTransportsOccupancy.departures) {
+		const journeyStop = journeyDetails.stops.find(
+			(s) => s.departure?.id === stop.departureID,
+		);
+		if (journeyStop) {
+			occupancy[journeyStop.station.evaNumber] = mapOccupancy(stop.occupancy);
 		}
-		return occupancy;
 	}
+	return occupancy;
 }
