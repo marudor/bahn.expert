@@ -1,4 +1,3 @@
-import { checkSecrets } from '@/server/checkSecret';
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
@@ -35,8 +34,6 @@ function dateDeserialze(_key: string, value: any): any {
 	return value;
 }
 
-checkSecrets(process.env.REDIS_HOST);
-
 const redisSettings =
 	process.env.REDIS_HOST && process.env.NODE_ENV !== 'test'
 		? {
@@ -44,13 +41,11 @@ const redisSettings =
 				port: process.env.REDIS_PORT
 					? Number.parseInt(process.env.REDIS_PORT, 10)
 					: 6379,
-				password: process.env.REDIS_PASSWORD,
-				// dropBufferSupport: true,
 			}
 		: undefined;
 
 export enum CacheDatabase {
-	Station = 0,
+	IrisTTSStation = 0,
 	TimetableParsedWithWings = 1,
 	DBLageplan = 2,
 	LocMatch = 3,
@@ -79,7 +74,7 @@ export enum CacheDatabase {
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
-	[CacheDatabase.Station]: 'PT24H',
+	[CacheDatabase.IrisTTSStation]: 'PT24H',
 	[CacheDatabase.TimetableParsedWithWings]: 'PT24H',
 	[CacheDatabase.DBLageplan]: 'PT48H',
 	[CacheDatabase.LocMatch]: 'PT24H',
@@ -127,14 +122,14 @@ export function disconnectRedis(): void {
 export class Cache<V> {
 	private redisCache?: Redis;
 	private ttl: number;
-	constructor(database: CacheDatabase) {
+	constructor(database: CacheDatabase, providedRedisSettings = redisSettings) {
 		this.ttl = Temporal.Duration.from(CacheTTLs[database]).total('second');
 		logger.info(
 			`Using ${CacheTTLs[database]} as TTL for ${CacheDatabase[database]}`,
 		);
-		if (redisSettings) {
+		if (providedRedisSettings) {
 			this.redisCache = new Redis({
-				...redisSettings,
+				...providedRedisSettings,
 				db: database,
 			});
 			activeRedisCaches.add(this.redisCache);
