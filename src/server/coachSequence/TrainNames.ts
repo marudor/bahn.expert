@@ -265,6 +265,7 @@ const naming: Record<number, string> = {
 	// ICE 3neo - BR 408
 	8007: 'Rheinland',
 	8022: 'Waldecker Land',
+	8029: 'Europa/Europe',
 	//
 	// ICE 4 - BR 412
 	9006: 'Martin Luther',

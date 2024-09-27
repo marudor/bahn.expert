@@ -290,5 +290,7 @@ export async function getGroups(
 	if (cached) {
 		return cached;
 	}
-	return groups(evaNumber);
+	const result = await groups(evaNumber);
+	stopPlaceGroupCache.set(evaNumber, result);
+	return result;
 }

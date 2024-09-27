@@ -8,6 +8,7 @@ import parseDuration from '@/server/HAFAS/helper/parseDuration';
 import parseMessages from '@/server/HAFAS/helper/parseMessages';
 import parseStop from '@/server/HAFAS/helper/parseStop';
 import parseTarif from '@/server/HAFAS/helper/parseTarif';
+import { getGroups } from '@/server/StopPlace/search';
 import type {
 	CommonStop,
 	CommonStopInfo,
@@ -33,6 +34,14 @@ import { differenceInMilliseconds, parse } from 'date-fns';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
+
+async function isSameSalesGroup(eva1: string, eva2: string) {
+	const [groupsOf1, groupsOf2] = await Promise.all([
+		getGroups(eva1),
+		getGroups(eva2),
+	]);
+	return groupsOf1.STATION?.includes(eva2) && groupsOf2.STATION?.includes(eva1);
+}
 
 function parseFullStation(fullStation: string): MinimalStopPlace {
 	const titleMatch = nameRegex.exec(fullStation);
@@ -88,11 +97,14 @@ export class Journey {
 	) {
 		this.date = parse(raw.date, 'yyyyMMdd', new Date());
 	}
-	parseJourney = (): Promise<SingleRoute> => {
-		const allSegments = this.raw.secL
-			.filter((leg) => AllowedLegTypes.has(leg.type))
-			.map(this.parseSegment)
-			.filter<RouteJourneySegment>(Boolean as any);
+	parseJourney = async (): Promise<SingleRoute> => {
+		const allSegments = (
+			await Promise.all(
+				this.raw.secL
+					.filter((leg) => AllowedLegTypes.has(leg.type))
+					.map(this.parseSegment),
+			)
+		).filter(Boolean);
 
 		const segments = mergeSegments(allSegments);
 
@@ -148,7 +160,9 @@ export class Journey {
 			messages: parseMessages(jny.msgL, this.common),
 		};
 	};
-	private parseSegment = (t: SecL): undefined | RouteJourneySegment => {
+	private parseSegment = async (
+		t: SecL,
+	): Promise<undefined | RouteJourneySegment> => {
 		switch (t.type) {
 			case 'JNY': {
 				const arrival = parseCommonArrival(
@@ -186,6 +200,19 @@ export class Journey {
 			}
 			case 'TRSF':
 			case 'WALK': {
+				const segmentStart = this.common.locL[t.dep.locX];
+				const segmentDestination = this.common.locL[t.arr.locX];
+
+				// same sales group = same Station
+				if (
+					await isSameSalesGroup(
+						segmentStart.evaNumber,
+						segmentDestination.evaNumber,
+					)
+				) {
+					return;
+				}
+
 				return {
 					type: 'WALK',
 					train: {
