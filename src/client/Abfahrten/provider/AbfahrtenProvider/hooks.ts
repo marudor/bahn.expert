@@ -45,11 +45,21 @@ export const useRefreshCurrent = (visible = false) => {
 				setScrolled(false);
 				setDepartures(undefined);
 			}
-			const r = await abfahrtenFetch.fetch({
-				evaNumber: currentStopPlace.evaNumber,
-				lookahead: Number.parseInt(lookahead),
-				lookbehind: Number.parseInt(lookbehind),
-			});
+			const r = await abfahrtenFetch.fetch(
+				{
+					evaNumber: currentStopPlace.evaNumber,
+					lookahead: Number.parseInt(lookahead),
+					lookbehind: Number.parseInt(lookbehind),
+				},
+				{
+					// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+					trpc: {
+						context: {
+							skipBatch: true,
+						},
+					},
+				},
+			);
 
 			if (r) {
 				setDepartures(r);

@@ -65,11 +65,21 @@ export const useFetchRouting = () => {
 			setError(undefined);
 			setRoutes(undefined);
 			try {
-				const routingResult = await trpcUtils.hafas.tripSearch.fetch({
-					time: touchedDate ? date : new Date(),
-					searchForDeparture: departureMode === 'ab',
-					...routeSettings,
-				});
+				const routingResult = await trpcUtils.hafas.tripSearch.fetch(
+					{
+						time: touchedDate ? date : new Date(),
+						searchForDeparture: departureMode === 'ab',
+						...routeSettings,
+					},
+					{
+						// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+						trpc: {
+							context: {
+								skipBatch: true,
+							},
+						},
+					},
+				);
 
 				setRoutes(routingResult.routes);
 				setEarlierContext(routingResult.context.earlier);
@@ -115,10 +125,20 @@ export const useFetchRouting = () => {
 			if (!routeSettings) return;
 
 			try {
-				const routingResult = await trpcUtils.hafas.tripSearch.fetch({
-					ctxScr: type === 'earlier' ? earlierContext : laterContext,
-					...routeSettings,
-				});
+				const routingResult = await trpcUtils.hafas.tripSearch.fetch(
+					{
+						ctxScr: type === 'earlier' ? earlierContext : laterContext,
+						...routeSettings,
+					},
+					{
+						// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+						trpc: {
+							context: {
+								skipBatch: true,
+							},
+						},
+					},
+				);
 
 				setRoutes((oldRoutes = []) => {
 					const newRoutes =

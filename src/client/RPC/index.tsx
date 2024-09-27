@@ -8,21 +8,28 @@ import {
 	createTRPCClient,
 	httpBatchLink,
 	httpLink,
+	splitLink,
 } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 
 export const trpc = createTRPCReact<AppRouter>();
 
-const link = !globalThis.Cypress ? httpBatchLink : httpLink;
+const httpLinkOptions = {
+	url: '/rpc',
+	transformer: {
+		deserialize: parse,
+		serialize: stringify,
+	},
+};
 
 const links = [
-	link({
-		url: '/rpc',
-		transformer: {
-			deserialize: parse,
-			serialize: stringify,
-		},
-	}),
+	!globalThis.Cypress
+		? splitLink({
+				condition: (op) => op.context.skipBatch === true,
+				true: httpLink(httpLinkOptions),
+				false: httpBatchLink(httpLinkOptions),
+			})
+		: httpLink(httpLinkOptions),
 ] satisfies TRPCLink<AppRouter>[];
 
 export const trpcClient = createTRPCClient<AppRouter>({

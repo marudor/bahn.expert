@@ -4,12 +4,17 @@ import { initTRPC } from '@trpc/server';
 import { getHTTPStatusCodeFromError } from '@trpc/server/unstable-core-do-not-import';
 import type { OpenApiMeta } from 'trpc-openapi';
 
-const t = initTRPC.meta<OpenApiMeta>().create({
-	transformer: {
-		deserialize: parse,
-		serialize: stringify,
-	},
-});
+const t = initTRPC
+	.context<{
+		skipBatch?: boolean;
+	}>()
+	.meta<OpenApiMeta>()
+	.create({
+		transformer: {
+			deserialize: parse,
+			serialize: stringify,
+		},
+	});
 
 export const rpcAppRouter = t.router;
 export const rpcProcedure = t.procedure.use(async (opts) => {
