@@ -1,5 +1,6 @@
 import { getVehicleLayout } from '@/external/risMaps';
 import { getJourneyOccupancy } from '@/external/risTransports/occupancy';
+import { getUmlauf } from '@/external/risTransports/vehicles';
 import { coachSequence } from '@/server/coachSequence';
 import { getPlannedSequence } from '@/server/coachSequence/DB/plannedSequence';
 import { getTrainRunsByDate } from '@/server/coachSequence/DB/trainRuns';
@@ -89,5 +90,15 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 			return getJourneyOccupancy({
 				journeyId,
 			});
+		}),
+	umlauf: rpcProcedure
+		.input(
+			z.object({
+				journeyId: z.string(),
+				vehicleIds: z.array(z.string()),
+			}),
+		)
+		.query(({ input: { journeyId, vehicleIds } }) => {
+			return getUmlauf(journeyId, vehicleIds);
 		}),
 });

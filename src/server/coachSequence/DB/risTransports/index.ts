@@ -1,8 +1,14 @@
+import type { MatchVehicleID } from '@/external/generated/risTransports';
 import { getDepartureSequence } from '@/external/risTransports/sequence';
+import { Cache, CacheDatabase } from '@/server/cache';
 import { mapInformation } from '@/server/coachSequence/DB/risTransports/mapping';
 import { logger } from '@/server/logger';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import {} from 'date-fns';
+
+const journeyForVehiclesCache = new Cache<MatchVehicleID[]>(
+	CacheDatabase.JourneysForVehicle,
+);
 
 export async function getRisTransportsCoachSequence(
 	trainCategory: string,

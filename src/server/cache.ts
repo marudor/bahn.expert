@@ -65,6 +65,7 @@ export enum CacheDatabase {
 	AdditionalJourneyInformation = 17,
 	HAFASJourneyMatch = 18,
 	Journey = 19,
+	JourneysForVehicle = 20,
 	ParsedCoachSequenceFound = 21,
 	JourneyFindV2 = 22,
 	JourneyV2 = 23,
@@ -109,6 +110,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.VRROccupancy]: 'PT60M',
 	[CacheDatabase.VehicleLayoutsMaps]: 'P1D',
 	[CacheDatabase.TransportsOccupancy]: 'P1D',
+	[CacheDatabase.JourneysForVehicle]: 'P1D',
 };
 
 const activeRedisCaches = new Set<Redis>();

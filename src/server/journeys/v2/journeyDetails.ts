@@ -5,9 +5,11 @@ import type {
 	TransportDestinationRef,
 	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
+import type { MatchVehicleID } from '@/external/generated/risTransports';
 import { getJourneyDetails } from '@/external/risJourneysV2';
 import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
+import { Cache, CacheDatabase } from '@/server/cache';
 import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import type { CommonStopInfo } from '@/types/HAFAS';
@@ -20,6 +22,10 @@ import {
 	parseISO,
 	subHours,
 } from 'date-fns';
+
+const journeyForVehiclesCache = new Cache<MatchVehicleID[]>(
+	CacheDatabase.JourneysForVehicle,
+);
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
@@ -232,6 +238,22 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 	return stops;
 }
 
+async function getNextPreviousJourney(
+	journeyId: string,
+): Promise<[MatchVehicleID | undefined, MatchVehicleID | undefined]> {
+	const nextJourneys = await journeyForVehiclesCache.get(journeyId);
+	if (!nextJourneys) {
+		return [undefined, undefined];
+	}
+	const currentJourneyIndex = nextJourneys.findIndex(
+		(j) => j.journeyID === journeyId,
+	);
+	return [
+		nextJourneys.at(currentJourneyIndex - 1),
+		nextJourneys.at(currentJourneyIndex + 1),
+	];
+}
+
 export async function journeyDetails(
 	journeyId: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> {
@@ -253,10 +275,6 @@ export async function journeyDetails(
 			journey.events.map((e) => e.transport.administration.operatorName),
 		),
 	].join(', ');
-
-	// if (!firstStop.departure || !lastStop.arrival) {
-	// 	return;
-	// }
 
 	const result: ParsedSearchOnTripResponse = {
 		stops,
