@@ -36,20 +36,11 @@ const useSelectedDetailInternal = ({
 		[setCookie, removeCookie],
 	);
 
-	return {
-		selectedDetail,
-		setSelectedDetail,
-	};
+	return [selectedDetail, setSelectedDetail] as const;
 };
 
-export const [
-	InnerSelectedDetailProvider,
-	useSelectedDetail,
-	useSetSelectedDetail,
-] = constate(
+export const [InnerSelectedDetailProvider, useSelectedDetail] = constate(
 	useSelectedDetailInternal,
-	(v) => v.selectedDetail,
-	(v) => v.setSelectedDetail,
 );
 
 export const SelectedDetailProvider: FC<PropsWithChildren<unknown>> = ({

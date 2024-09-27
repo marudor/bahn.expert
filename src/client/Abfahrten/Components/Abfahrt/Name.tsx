@@ -1,4 +1,4 @@
-import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';

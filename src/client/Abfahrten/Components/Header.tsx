@@ -1,6 +1,8 @@
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { useRefreshCurrent } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import {
+	useCurrentAbfahrtenStopPlace,
+	useRefreshCurrent,
+} from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
 import { useQuery } from '@/client/Common/hooks/useQuery';

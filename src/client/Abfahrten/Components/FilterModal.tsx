@@ -1,5 +1,5 @@
 import { useAbfahrtenFilter } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { useAllTrainTypes } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import { useAllTrainTypes } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import {
 	Button,
 	Dialog,

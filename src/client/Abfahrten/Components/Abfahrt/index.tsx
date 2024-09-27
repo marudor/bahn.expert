@@ -1,4 +1,4 @@
-import { useWings } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import { useWings } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { useSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
 import type { Abfahrt as AbfahrtType } from '@/types/iris';
 import { useMemo } from 'react';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Abfahrt: FC<Props> = ({ abfahrt }) => {
-	const selectedDetail = useSelectedDetail();
+	const [selectedDetail] = useSelectedDetail();
 	const wings = useWings(abfahrt);
 
 	const sameTrainWing = useMemo(

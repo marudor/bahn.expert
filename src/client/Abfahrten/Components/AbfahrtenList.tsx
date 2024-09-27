@@ -3,8 +3,8 @@ import {
 	useAbfahrtenError,
 	useCurrentAbfahrtenStopPlace,
 	useRawAbfahrten,
+	useRefreshCurrent,
 } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { useRefreshCurrent } from '@/client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import {
 	SelectedDetailProvider,
 	useSelectedDetail,
@@ -41,7 +41,7 @@ const InnerAbfahrtenList = () => {
 		setScrolled,
 	} = useRawAbfahrten();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
-	const selectedDetail = useSelectedDetail();
+	const [selectedDetail] = useSelectedDetail();
 	const { filteredDepartures, departures } = useAbfahrtenDepartures();
 	const paramStation = useParams().station;
 	const { autoUpdate } = useCommonConfig();

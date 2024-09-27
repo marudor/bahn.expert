@@ -1,6 +1,6 @@
 import { Auslastung } from '@/client/Abfahrten/Components/Abfahrt/Auslastung';
-import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { Name } from '@/client/Abfahrten/Components/Abfahrt/Name';
+import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { Stack, styled } from '@mui/material';
 import type { FC } from 'react';

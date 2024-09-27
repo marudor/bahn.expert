@@ -1,9 +1,10 @@
-import { useSetSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
+import { AbfahrtProvider } from '@/client/Abfahrten/provider/AbfahrtProvider';
+import { useSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
 import type { FallbackTrainsForCoachSequence } from '@/client/Common/hooks/useCoachSequence';
 import type { Abfahrt } from '@/types/iris';
 import loadable from '@loadable/component';
 import { Paper, Stack, styled } from '@mui/material';
-import { createContext, useCallback, useContext, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 import { End } from './End';
 import { Mid } from './Mid';
@@ -17,11 +18,6 @@ interface AbfahrtContextValues {
 	abfahrt: Abfahrt;
 	detail: boolean;
 }
-
-// @ts-expect-error default context not needed
-export const AbfahrtContext = createContext<AbfahrtContextValues>();
-export const useAbfahrt = (): AbfahrtContextValues =>
-	useContext(AbfahrtContext);
 
 const Container = styled(Paper)`
   line-height: 1.2;
@@ -112,20 +108,13 @@ export const BaseAbfahrt: FC<Props> = ({
 		() => wings?.filter((wn) => wn.number !== abfahrt.train.number),
 		[wings, abfahrt.train.number],
 	);
-	const setSelectedDetail = useSetSelectedDetail();
+	const [, setSelectedDetail] = useSelectedDetail();
 	const handleClick = useCallback(() => {
 		setSelectedDetail(abfahrt.id);
 	}, [abfahrt.id, setSelectedDetail]);
-	const contextValue = useMemo(
-		() => ({
-			detail,
-			abfahrt,
-		}),
-		[detail, abfahrt],
-	);
 
 	return (
-		<AbfahrtContext.Provider value={contextValue}>
+		<AbfahrtProvider abfahrt={abfahrt} detail={detail}>
 			<Container square id={`${abfahrt.id}container`} onClick={handleClick}>
 				{wings && <WingIndicator wingEnd={wingEnd} wingStart={wingStart} />}
 				<Entry
@@ -152,6 +141,6 @@ export const BaseAbfahrt: FC<Props> = ({
 					)}
 				</Entry>
 			</Container>
-		</AbfahrtContext.Provider>
+		</AbfahrtProvider>
 	);
 };

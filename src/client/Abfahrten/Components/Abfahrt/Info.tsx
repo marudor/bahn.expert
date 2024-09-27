@@ -1,4 +1,4 @@
-import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { DetailMessages } from '@/client/Common/Components/Messages/Detail';
 import { NormalMessages } from '@/client/Common/Components/Messages/Normal';
 import { styled } from '@mui/material';

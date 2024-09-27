@@ -1,4 +1,4 @@
-import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { Loading } from '@/client/Common/Components/Loading';
 import { trpc } from '@/client/RPC';

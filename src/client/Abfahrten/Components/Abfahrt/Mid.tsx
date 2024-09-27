@@ -1,4 +1,4 @@
-import { useAbfahrt } from '@/client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { styled } from '@mui/material';
 import type { FC } from 'react';
 import { Info } from './Info';
