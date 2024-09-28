@@ -73,6 +73,7 @@ describe('Details', () => {
 		cy.visit('/details/S30665');
 		cy.wait('@details');
 		cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
+		cy.percySnapshot();
 	});
 
 	it('uses journeyId if provided', () => {
