@@ -132,4 +132,53 @@ describe('Details', () => {
 		cy.findByTestId('previous');
 		cy.findByTestId('next');
 	});
+
+	describe('umläufe', () => {
+		beforeEach(() => {
+			cy.trpc.journeys
+				.details(
+					{
+						trainName: 'ICE720',
+					},
+					{
+						fixture: 'details/ICE720',
+					},
+				)
+				.as('details');
+		});
+		it('no Umlauf', () => {
+			cy.visit('/details/ICE720');
+			cy.wait('@details');
+			cy.findAllByTestId('umlauf').should('not.exist');
+		});
+
+		it('nextUmlauf', () => {
+			cy.trpc.coachSequence
+				.sequence(
+					{
+						trainNumber: 720,
+						category: 'ICE',
+						evaNumber: '8000261',
+					},
+					{
+						fixture: 'sequence/ICE720First',
+					},
+				)
+				.as('firstSequence');
+			cy.trpc.coachSequence.umlauf(
+				{
+					journeyId: '20240928-c25b8377-72f6-31b9-bc4c-e5fb374da779',
+				},
+				{
+					fixture: 'sequence/ICE720Umlauf',
+				},
+			);
+			cy.visit('/details/ICE720');
+			cy.wait('@details');
+			cy.findAllByTestId('umlauf')
+				.should('have.length', 1)
+				.and('include.text', 'ICE 727');
+			cy.percySnapshot();
+		});
+	});
 });

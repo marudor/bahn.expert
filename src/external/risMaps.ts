@@ -45,6 +45,6 @@ export async function getVehicleLayout(vehicleId: string) {
 
 		return geoJson;
 	} catch {
-		return undefined;
+		return null;
 	}
 }

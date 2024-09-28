@@ -12,6 +12,7 @@ interface Props {
 	urlPrefix?: string;
 	jid?: string;
 	className?: string;
+	'data-testid'?: string;
 }
 export const DetailsLink: FC<PropsWithChildren<Props>> = ({
 	train,

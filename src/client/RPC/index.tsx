@@ -23,7 +23,7 @@ const httpLinkOptions = {
 };
 
 const links = [
-	!globalThis.Cypress
+	!globalThis.Cypress && process.env.NODE_ENV === 'production'
 		? splitLink({
 				condition: (op) => op.context.skipBatch === true,
 				true: httpLink(httpLinkOptions),

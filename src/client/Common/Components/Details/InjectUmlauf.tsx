@@ -27,10 +27,11 @@ const Umlauf: FCC<Props> = ({ children, prevNext }) => {
 		return null;
 	}
 	return (
-		<Stack direction="row" gap={0.5}>
+		<Stack direction="row" gap={0.5} data-testid="umlauf">
 			{children}
 			{prevNext.map((p) => (
 				<TransportName
+					data-testid={p.journeyID}
 					key={p.journeyID}
 					initialDeparture={new Date(p.journeyRelation.startTime)}
 					transport={{
@@ -44,6 +45,10 @@ const Umlauf: FCC<Props> = ({ children, prevNext }) => {
 	);
 };
 
+const transportTypesWithUmlauf = new Set<string | undefined>([
+	'HIGH_SPEED_TRAIN',
+	'INTERCITY_TRAIN',
+]);
 export const InjectUmlauf: FCC = ({ children }) => {
 	const { details } = useDetails();
 	const firstDepartureStop = useMemo(
@@ -62,7 +67,9 @@ export const InjectUmlauf: FCC = ({ children }) => {
 		},
 		{
 			enabled: Boolean(
-				firstDepartureStop && isWithin20Hours(details?.departure.scheduledTime),
+				firstDepartureStop &&
+					isWithin20Hours(details?.departure.scheduledTime) &&
+					transportTypesWithUmlauf.has(details?.train.transportType),
 			),
 		},
 	);
@@ -72,6 +79,7 @@ export const InjectUmlauf: FCC = ({ children }) => {
 			vehicleIds:
 				firstSequence?.sequence?.groups
 					.filter((g) => g.number === details?.train.number)
+					// .map((g) => g.coaches[2]?.uic)
 					.map((g) => g.coaches.find((c) => !c.closed)?.uic)
 					.filter(Boolean) || [],
 		},

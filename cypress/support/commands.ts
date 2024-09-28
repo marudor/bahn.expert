@@ -110,6 +110,17 @@ const trpcStub = createFlatProxy<TRPCStub<AppRouter>>((key) =>
 		if (cyHandler.fixture) {
 			return cy.fixture(cyHandler.fixture).then((f) => {
 				delete cyHandler.fixture;
+				const parsedJson = dateReviver(f);
+				if (parsedJson?.result?.data) {
+					cyHandler.body = parsedJson;
+				} else {
+					cyHandler.body = {
+						result: {
+							data: stringify(parsedJson),
+						},
+					};
+				}
+
 				cyHandler.body = {
 					result: {
 						data: stringify(dateReviver(f)),

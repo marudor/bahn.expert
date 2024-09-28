@@ -7,7 +7,7 @@ import { risTransportsConfiguration } from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
 import Axios from 'axios';
-import { addDays, format, isBefore } from 'date-fns';
+import { addDays, format, isBefore, subDays } from 'date-fns';
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
 	adapter: 'fetch',
@@ -31,17 +31,23 @@ const vehiclesClient = new VehiclesApi(
 
 async function getJourneysForVehicle(vehicleId: string) {
 	try {
-		const [today, tomorrow] = await Promise.all([
-			vehiclesClient.journeysByVehicleId({
-				vehicleID: vehicleId,
-			}),
-			vehiclesClient.journeysByVehicleId({
-				vehicleID: vehicleId,
-				date: format(addDays(new Date(), 1), 'yyyy-MM-dd'),
-			}),
-		]);
+		const journeys = (
+			await Promise.allSettled([
+				vehiclesClient.journeysByVehicleId({
+					vehicleID: vehicleId,
+					date: format(subDays(new Date(), 1), 'yyyy-MM-dd'),
+				}),
+				vehiclesClient.journeysByVehicleId({
+					vehicleID: vehicleId,
+				}),
+				vehiclesClient.journeysByVehicleId({
+					vehicleID: vehicleId,
+					date: format(addDays(new Date(), 1), 'yyyy-MM-dd'),
+				}),
+			])
+		).flatMap((r) => (r.status === 'fulfilled' ? r.value.data.journeys : []));
 
-		return [...today.data.journeys, ...tomorrow.data.journeys].sort((a, b) =>
+		return journeys.sort((a, b) =>
 			isBefore(
 				new Date(a.journeyRelation.startTime),
 				new Date(b.journeyRelation.startTime),
@@ -49,7 +55,7 @@ async function getJourneysForVehicle(vehicleId: string) {
 				? -1
 				: 1,
 		);
-	} catch {
+	} catch (e) {
 		// failed
 		return [];
 	}
@@ -78,6 +84,7 @@ export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
 	const prevNext = await Promise.all(
 		vehicleIds.map((v) => getPreviousNext(journeyId, v)),
 	);
+
 	const next = prevNext.map((p) => p.nextJourney).filter(Boolean);
 	const previous = prevNext.map((p) => p.previousJourney).filter(Boolean);
 
