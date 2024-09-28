@@ -1,4 +1,5 @@
 import type {
+	CodeShare,
 	TransportDestinationPortionWorkingRef,
 	TransportDestinationRef,
 	TransportWithDirection,
@@ -27,6 +28,7 @@ export interface RouteStop {
 	splitsWith?: TransportDestinationPortionWorkingRef[];
 	replacedBy?: TransportDestinationRef[];
 	replacementFor?: TransportDestinationRef[];
+	codeShares?: CodeShare[];
 	// if we change transports (Linien/Gattungswechsel)
 	newTransport?: TransportWithDirection;
 }

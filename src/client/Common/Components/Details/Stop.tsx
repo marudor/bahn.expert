@@ -1,6 +1,7 @@
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { TravelynxLink } from '@/client/Common/Components/CheckInLink/TravelynxLink';
 import { ConnectionIcon } from '@/client/Common/Components/Connections/ConnectionIcon';
+import { CodeShares } from '@/client/Common/Components/Details/CodeShares';
 import { Continuation } from '@/client/Common/Components/Details/Continuation';
 import { TransportName } from '@/client/Common/Components/Details/TransportName';
 import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
@@ -104,7 +105,7 @@ const Container = styled('div')<{
 		gridTemplateRows: '1fr',
 		gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} con c" "dp ${
 			hasOccupancy ? 'o' : 't'
-		} depP con c" "tw tw tw tw tw" "wr wr wr wr wr" "m m m m m"`,
+		} depP con c" "tw tw tw tw tw" "m m m m m" "wr wr wr wr wr"`,
 		alignItems: 'center',
 		borderBottom: `1px solid ${theme.vars.palette.text.primary}`,
 		position: 'relative',
@@ -268,7 +269,6 @@ export const Stop: FC<Props> = ({
 				/>
 				<AllowEntry arrival={stop.arrival} departure={stop.departure} />
 			</Stack>
-			{/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
 			<CoachSequenceContainer>
 				{showWR?.number && depOrArrival && (
 					<CoachSequence
@@ -283,6 +283,7 @@ export const Stop: FC<Props> = ({
 				)}
 			</CoachSequenceContainer>
 			<MessageContainer>
+				<CodeShares codeShares={stop.codeShares} />
 				{stop.irisMessages && <DetailMessages messages={stop.irisMessages} />}
 				<Messages messages={stop.messages} />
 			</MessageContainer>
