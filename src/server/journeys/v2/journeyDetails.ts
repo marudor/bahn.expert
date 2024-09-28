@@ -267,8 +267,12 @@ export async function journeyDetails(
 	if (!stops.length) {
 		return undefined;
 	}
-	const firstStop = stops[0];
-	const lastStop = stops.at(-1)!;
+	const firstStop = stops.at(0);
+	const lastStop = stops.at(-1);
+
+	if (!firstStop?.departure || !lastStop?.arrival) {
+		return;
+	}
 
 	const operatorNames = [
 		...new Set(
@@ -281,8 +285,8 @@ export async function journeyDetails(
 		segmentStart: firstStop.station,
 		segmentDestination: lastStop.station,
 		journeyId: journey.journeyID,
-		arrival: lastStop.arrival!,
-		departure: firstStop.departure!,
+		arrival: lastStop.arrival,
+		departure: firstStop.departure,
 		finalDestination: journey.info.destination.name,
 		train: {
 			type: firstEvent.transport.category,
