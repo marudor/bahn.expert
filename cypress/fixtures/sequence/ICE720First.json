@@ -1,0 +1,397 @@
+{
+	"source": "DB-risTransports",
+	"product": {
+		"number": "720",
+		"type": "ICE",
+		"line": "41"
+	},
+	"isRealtime": true,
+	"stop": {
+		"stopPlace": {
+			"evaNumber": "8000261",
+			"name": ""
+		},
+		"sectors": [
+			{
+				"name": "A",
+				"position": {
+					"cubePosition": 15.758687922926944,
+					"startPercent": 0,
+					"endPercent": 20.225943342126392
+				}
+			},
+			{
+				"name": "B",
+				"position": {
+					"cubePosition": 24.693198761325842,
+					"startPercent": 20.225943342126392,
+					"endPercent": 30.65145085445579
+				}
+			},
+			{
+				"name": "C",
+				"position": {
+					"cubePosition": 36.60970294758573,
+					"startPercent": 30.65145085445579,
+					"endPercent": 41.380892304163325
+				}
+			},
+			{
+				"name": "D",
+				"position": {
+					"cubePosition": 46.15208166074091,
+					"startPercent": 41.380892304163325,
+					"endPercent": 51.817869021676806
+				}
+			},
+			{
+				"name": "E",
+				"position": {
+					"cubePosition": 57.483656382612686,
+					"startPercent": 51.817869021676806,
+					"endPercent": 63.017547883931655
+				}
+			},
+			{
+				"name": "F",
+				"position": {
+					"cubePosition": 68.55143938525062,
+					"startPercent": 63.017547883931655,
+					"endPercent": 73.56348205069389
+				}
+			},
+			{
+				"name": "G",
+				"position": {
+					"cubePosition": 78.57552471613718,
+					"startPercent": 73.56348205069389,
+					"endPercent": 100
+				}
+			}
+		]
+	},
+	"sequence": {
+		"groups": [
+			{
+				"name": "ICE0325",
+				"destinationName": "Düsseldorf Hbf",
+				"originName": "UNKNOWN",
+				"number": "720",
+				"coaches": [
+					{
+						"identificationNumber": "29",
+						"uic": "938054030250",
+						"type": "Apmzf",
+						"class": 1,
+						"vehicleCategory": "CONTROLCAR_FIRST_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 90.49317582291548,
+							"endPercent": 96.48812937263448
+						},
+						"features": {
+							"quiet": true
+						},
+						"orientation": "BACKWARDS"
+					},
+					{
+						"identificationNumber": "28",
+						"uic": "938054031258",
+						"type": "Avmz",
+						"class": 1,
+						"vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 84.81018465420347,
+							"endPercent": 90.49317582291548
+						},
+						"features": {
+							"comfort": true,
+							"disabled": true,
+							"quiet": true
+						},
+						"orientation": "FORWARDS",
+						"seats": {
+							"comfort": "12-26",
+							"disabled": "64, 66"
+						}
+					},
+					{
+						"identificationNumber": "27",
+						"uic": "938054032140",
+						"type": "Bvmz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 79.12719348549146,
+							"endPercent": 84.81018465420347
+						},
+						"features": {
+							"comfort": true,
+							"disabled": true
+						},
+						"orientation": "BACKWARDS",
+						"seats": {
+							"comfort": "11-37",
+							"disabled": "106, 108"
+						}
+					},
+					{
+						"identificationNumber": "26",
+						"uic": "938054033213",
+						"type": "WRmz",
+						"class": 2,
+						"vehicleCategory": "DININGCAR",
+						"closed": false,
+						"position": {
+							"startPercent": 73.44420231677945,
+							"endPercent": 79.12719348549146
+						},
+						"features": {
+							"info": true,
+							"dining": true
+						},
+						"orientation": "BACKWARDS"
+					},
+					{
+						"identificationNumber": "25",
+						"uic": "938054038253",
+						"type": "Bpmbz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 67.76121114806743,
+							"endPercent": 73.44420231677945
+						},
+						"features": {
+							"disabled": true,
+							"family": true,
+							"toddler": true,
+							"toiletWheelchair": true,
+							"wheelchair": true
+						},
+						"orientation": "FORWARDS",
+						"seats": {
+							"disabled": "61, 63, 65, 67",
+							"family": "11-28"
+						}
+					},
+					{
+						"identificationNumber": "23",
+						"uic": "938054037255",
+						"type": "Bpmz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 62.07821997935543,
+							"endPercent": 67.76121114806743
+						},
+						"features": {},
+						"orientation": "FORWARDS"
+					},
+					{
+						"identificationNumber": "22",
+						"uic": "938054036257",
+						"type": "Bpmz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 56.395228810643424,
+							"endPercent": 62.07821997935543
+						},
+						"features": {},
+						"orientation": "BACKWARDS"
+					},
+					{
+						"identificationNumber": "21",
+						"uic": "938054035259",
+						"type": "Bpmzf",
+						"class": 2,
+						"vehicleCategory": "CONTROLCAR_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 50.53790572313339,
+							"endPercent": 56.395228810643424
+						},
+						"features": {
+							"quiet": true
+						},
+						"orientation": "FORWARDS"
+					}
+				],
+				"trainName": "Ravensburg",
+				"baureihe": {
+					"baureihe": "403",
+					"identifier": "403.R",
+					"name": "ICE 3 (BR403)"
+				}
+			},
+			{
+				"name": "ICE0307",
+				"destinationName": "Oberhausen Hbf",
+				"originName": "UNKNOWN",
+				"number": "1224",
+				"coaches": [
+					{
+						"identificationNumber": "31",
+						"uic": "938054035077",
+						"type": "Bpmzf",
+						"class": 2,
+						"vehicleCategory": "CONTROLCAR_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 44.68058263562335,
+							"endPercent": 50.53790572313339
+						},
+						"features": {
+							"quiet": true
+						},
+						"orientation": "BACKWARDS"
+					},
+					{
+						"identificationNumber": "32",
+						"uic": "938054036075",
+						"type": "Bpmz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 38.997591466911345,
+							"endPercent": 44.68058263562335
+						},
+						"features": {},
+						"orientation": "FORWARDS"
+					},
+					{
+						"identificationNumber": "33",
+						"uic": "938054037073",
+						"type": "Bpmz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 33.31460029819934,
+							"endPercent": 38.997591466911345
+						},
+						"features": {},
+						"orientation": "BACKWARDS"
+					},
+					{
+						"identificationNumber": "35",
+						"uic": "938054038071",
+						"type": "Bpmbz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 27.631609129487327,
+							"endPercent": 33.31460029819934
+						},
+						"features": {
+							"disabled": true,
+							"family": true,
+							"toddler": true,
+							"toiletWheelchair": true,
+							"wheelchair": true
+						},
+						"orientation": "BACKWARDS",
+						"seats": {
+							"disabled": "61, 63, 65, 67",
+							"family": "11-28"
+						}
+					},
+					{
+						"identificationNumber": "36",
+						"uic": "938054033072",
+						"type": "WRmz",
+						"class": 2,
+						"vehicleCategory": "DININGCAR",
+						"closed": false,
+						"position": {
+							"startPercent": 21.94861796077532,
+							"endPercent": 27.631609129487327
+						},
+						"features": {
+							"info": true,
+							"dining": true
+						},
+						"orientation": "FORWARDS"
+					},
+					{
+						"identificationNumber": "37",
+						"uic": "938054032074",
+						"type": "Bvmz",
+						"class": 2,
+						"vehicleCategory": "PASSENGERCARRIAGE_ECONOMY_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 16.265626792063312,
+							"endPercent": 21.94861796077532
+						},
+						"features": {
+							"comfort": true,
+							"disabled": true
+						},
+						"orientation": "FORWARDS",
+						"seats": {
+							"comfort": "11-37",
+							"disabled": "106, 108"
+						}
+					},
+					{
+						"identificationNumber": "38",
+						"uic": "938054031076",
+						"type": "Avmz",
+						"class": 1,
+						"vehicleCategory": "PASSENGERCARRIAGE_FIRST_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 10.582635623351303,
+							"endPercent": 16.265626792063312
+						},
+						"features": {
+							"comfort": true,
+							"disabled": true,
+							"quiet": true
+						},
+						"orientation": "BACKWARDS",
+						"seats": {
+							"comfort": "12-26",
+							"disabled": "64, 66"
+						}
+					},
+					{
+						"identificationNumber": "39",
+						"uic": "938054030078",
+						"type": "Apmzf",
+						"class": 1,
+						"vehicleCategory": "CONTROLCAR_FIRST_CLASS",
+						"closed": false,
+						"position": {
+							"startPercent": 4.587682073632298,
+							"endPercent": 10.582635623351303
+						},
+						"features": {
+							"quiet": true
+						},
+						"orientation": "FORWARDS"
+					}
+				],
+				"trainName": "Oberhausen",
+				"baureihe": {
+					"baureihe": "403",
+					"identifier": "403.R",
+					"name": "ICE 3 (BR403)"
+				}
+			}
+		]
+	},
+	"direction": false,
+	"journeyId": "20240928-c25b8377-72f6-31b9-bc4c-e5fb374da779",
+	"multipleDestinations": true,
+	"multipleTrainNumbers": true
+}

@@ -92,11 +92,12 @@ export const Group: FC<Props> = ({
 		const groupEnd = Math.max(
 			...gruppe.coaches.map((c) => c.position.endPercent),
 		);
+		const cssName = reverse ? 'right' : 'left';
 		return {
-			left: `${(groupStart - correctLeft) * scale}%`,
+			[cssName]: `${(groupStart - correctLeft) * scale}%`,
 			width: `${(groupEnd - groupStart) * scale}%`,
 		};
-	}, [gruppe.coaches, correctLeft, scale]);
+	}, [gruppe.coaches, correctLeft, scale, reverse]);
 
 	const extraInfoLine = Boolean(
 		showFahrzeugGruppe ||

@@ -9,16 +9,20 @@ interface Props {
 	> & {
 		journeyID?: string;
 	};
+	initialDeparture?: Date;
 }
 
-export const TransportName: FC<Props> = ({ transport }) => {
+export const TransportName: FC<Props> = ({
+	transport,
+	initialDeparture = new Date(),
+}) => {
 	return (
 		<DetailsLink
 			train={{
 				number: transport.journeyNumber.toString(),
 				type: transport.category,
 			}}
-			initialDeparture={new Date()}
+			initialDeparture={initialDeparture}
 			journeyId={transport.journeyID}
 		>
 			{transport.category}{' '}

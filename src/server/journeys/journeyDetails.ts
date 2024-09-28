@@ -237,8 +237,11 @@ export async function journeyDetails(
 	if (!stops.length) {
 		return undefined;
 	}
-	const firstStop = stops[0];
-	const lastStop = stops.at(-1)!;
+	const firstStop = stops.at(0);
+	const lastStop = stops.at(-1);
+	if (!firstStop || !lastStop) {
+		return;
+	}
 
 	const operatorNames = [
 		...new Set(journey.events.map((e) => e.administration.operatorName)),

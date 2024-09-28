@@ -1,0 +1,461 @@
+{
+	"stops": [
+		{
+			"station": {
+				"evaNumber": "8000261",
+				"name": "München Hbf",
+				"ril100": "MH"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T08:48:00.000Z",
+				"time": "2024-09-28T08:50:21.000Z",
+				"delay": 2,
+				"scheduledPlatform": "23",
+				"platform": "23",
+				"isRealTime": true,
+				"transport": {
+					"type": "HIGH_SPEED_TRAIN",
+					"category": "ICE",
+					"journeyNumber": 720,
+					"label": "",
+					"direction": {
+						"stopPlaces": [
+							{
+								"evaNumber": "8000085",
+								"name": "Düsseldorf Hbf"
+							}
+						]
+					},
+					"administration": {
+						"administrationID": "80",
+						"operatorCode": "---",
+						"operatorName": "DB"
+					}
+				},
+				"id": "8000261_D_1"
+			},
+			"joinsWith": [
+				{
+					"journeyID": "20240928-8b94d576-6fd4-3670-884d-57f10d79e95d",
+					"type": "HIGH_SPEED_TRAIN",
+					"category": "ICE",
+					"journeyNumber": 1224,
+					"label": "Westfalen",
+					"destination": {
+						"evaNumber": "8000286",
+						"name": "Oberhausen Hbf"
+					},
+					"separationAt": {
+						"evaNumber": "8000260",
+						"name": "Würzburg Hbf"
+					}
+				}
+			]
+		},
+		{
+			"station": {
+				"evaNumber": "8000284",
+				"name": "Nürnberg Hbf",
+				"ril100": "NN"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T09:54:00.000Z",
+				"time": "2024-09-28T09:52:13.000Z",
+				"delay": -2,
+				"scheduledPlatform": "6",
+				"platform": "6",
+				"isRealTime": true,
+				"id": "8000284_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T09:57:00.000Z",
+				"time": "2024-09-28T09:58:39.000Z",
+				"delay": 1,
+				"scheduledPlatform": "6",
+				"platform": "6",
+				"isRealTime": true,
+				"id": "8000284_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8000260",
+				"name": "Würzburg Hbf",
+				"ril100": "NWH"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T10:52:00.000Z",
+				"time": "2024-09-28T10:50:00.000Z",
+				"delay": -2,
+				"scheduledPlatform": "6",
+				"platform": "6",
+				"id": "8000260_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T10:56:00.000Z",
+				"time": "2024-09-28T10:56:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "6",
+				"platform": "6",
+				"id": "8000260_D_1"
+			},
+			"splitsWith": [
+				{
+					"journeyID": "20240928-8b94d576-6fd4-3670-884d-57f10d79e95d",
+					"type": "HIGH_SPEED_TRAIN",
+					"category": "ICE",
+					"journeyNumber": 1224,
+					"label": "Westfalen",
+					"destination": {
+						"evaNumber": "8000286",
+						"name": "Oberhausen Hbf"
+					},
+					"separationAt": {
+						"evaNumber": "8000260",
+						"name": "Würzburg Hbf"
+					}
+				}
+			],
+			"irisMessages": [
+				{
+					"superseded": true,
+					"text": "Andere Reihenfolge der Wagen",
+					"timestamp": "2024-09-28T08:33:26.906Z",
+					"value": 80
+				},
+				{
+					"text": "Zug verkehrt richtig gereiht",
+					"timestamp": "2024-09-28T08:33:26.906Z",
+					"value": 84
+				}
+			]
+		},
+		{
+			"station": {
+				"evaNumber": "8000010",
+				"name": "Aschaffenburg Hbf",
+				"ril100": "NAH"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T11:32:00.000Z",
+				"time": "2024-09-28T11:30:00.000Z",
+				"delay": -2,
+				"scheduledPlatform": "8",
+				"platform": "8",
+				"id": "8000010_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T11:33:00.000Z",
+				"time": "2024-09-28T11:33:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "8",
+				"platform": "8",
+				"id": "8000010_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8000105",
+				"name": "Frankfurt (Main) Hbf",
+				"ril100": "FF"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T12:04:00.000Z",
+				"time": "2024-09-28T12:04:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "7",
+				"platform": "7",
+				"id": "8000105_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T12:09:00.000Z",
+				"time": "2024-09-28T12:11:00.000Z",
+				"delay": 2,
+				"scheduledPlatform": "7",
+				"platform": "7",
+				"id": "8000105_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8070003",
+				"name": "Frankfurt (M) Flughafen Fernbf",
+				"ril100": "FFLF"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T12:20:00.000Z",
+				"time": "2024-09-28T12:23:00.000Z",
+				"delay": 3,
+				"scheduledPlatform": "Fern 7",
+				"platform": "Fern 7",
+				"id": "8070003_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T12:23:00.000Z",
+				"time": "2024-09-28T12:23:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "Fern 7",
+				"platform": "Fern 7",
+				"id": "8070003_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8003680",
+				"name": "Limburg Süd",
+				"ril100": "FLIS"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T12:40:00.000Z",
+				"time": "2024-09-28T12:40:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "4",
+				"platform": "4",
+				"id": "8003680_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T12:50:00.000Z",
+				"time": "2024-09-28T12:50:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "4",
+				"platform": "4",
+				"id": "8003680_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8000667",
+				"name": "Montabaur",
+				"ril100": "FMT"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T12:59:00.000Z",
+				"time": "2024-09-28T12:59:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "4",
+				"platform": "4",
+				"id": "8000667_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T13:01:00.000Z",
+				"time": "2024-09-28T13:01:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "4",
+				"platform": "4",
+				"id": "8000667_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8005556",
+				"name": "Siegburg/Bonn",
+				"ril100": "KSIB"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T13:19:00.000Z",
+				"time": "2024-09-28T13:18:00.000Z",
+				"delay": -1,
+				"scheduledPlatform": "3",
+				"platform": "3",
+				"id": "8005556_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T13:21:00.000Z",
+				"time": "2024-09-28T13:21:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "3",
+				"platform": "3",
+				"id": "8005556_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8073368",
+				"name": "Köln Messe/Deutz Gl.11-12",
+				"ril100": "KKDT"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T13:33:00.000Z",
+				"time": "2024-09-28T13:33:00.000Z",
+				"delay": 0,
+				"scheduledPlatform": "12",
+				"platform": "12",
+				"id": "8073368_A_1"
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T13:35:00.000Z",
+				"time": "2024-09-28T13:38:00.000Z",
+				"delay": 3,
+				"scheduledPlatform": "12",
+				"platform": "12",
+				"id": "8073368_D_1"
+			}
+		},
+		{
+			"station": {
+				"evaNumber": "8000085",
+				"name": "Düsseldorf Hbf",
+				"ril100": "KD"
+			},
+			"arrival": {
+				"scheduledTime": "2024-09-28T13:53:00.000Z",
+				"time": "2024-09-28T13:57:00.000Z",
+				"delay": 4,
+				"scheduledPlatform": "17",
+				"platform": "17",
+				"transport": {
+					"type": "HIGH_SPEED_TRAIN",
+					"category": "ICE",
+					"journeyNumber": 720,
+					"label": "",
+					"direction": {
+						"stopPlaces": [
+							{
+								"evaNumber": "8000085",
+								"name": "Düsseldorf Hbf"
+							}
+						]
+					},
+					"administration": {
+						"administrationID": "80",
+						"operatorCode": "---",
+						"operatorName": "DB"
+					}
+				},
+				"id": "8000085_A_1"
+			}
+		}
+	],
+	"segmentStart": {
+		"evaNumber": "8000261",
+		"name": "München Hbf",
+		"ril100": "MH"
+	},
+	"segmentDestination": {
+		"evaNumber": "8000085",
+		"name": "Düsseldorf Hbf",
+		"ril100": "KD"
+	},
+	"journeyId": "20240928-c25b8377-72f6-31b9-bc4c-e5fb374da779",
+	"arrival": {
+		"scheduledTime": "2024-09-28T13:53:00.000Z",
+		"time": "2024-09-28T13:57:00.000Z",
+		"delay": 4,
+		"scheduledPlatform": "17",
+		"platform": "17",
+		"transport": {
+			"type": "HIGH_SPEED_TRAIN",
+			"category": "ICE",
+			"journeyNumber": 720,
+			"label": "",
+			"direction": {
+				"stopPlaces": [
+					{
+						"evaNumber": "8000085",
+						"name": "Düsseldorf Hbf"
+					}
+				]
+			},
+			"administration": {
+				"administrationID": "80",
+				"operatorCode": "---",
+				"operatorName": "DB"
+			}
+		},
+		"id": "8000085_A_1"
+	},
+	"departure": {
+		"scheduledTime": "2024-09-28T08:48:00.000Z",
+		"time": "2024-09-28T08:50:21.000Z",
+		"delay": 2,
+		"scheduledPlatform": "23",
+		"platform": "23",
+		"isRealTime": true,
+		"transport": {
+			"type": "HIGH_SPEED_TRAIN",
+			"category": "ICE",
+			"journeyNumber": 720,
+			"label": "",
+			"direction": {
+				"stopPlaces": [
+					{
+						"evaNumber": "8000085",
+						"name": "Düsseldorf Hbf"
+					}
+				]
+			},
+			"administration": {
+				"administrationID": "80",
+				"operatorCode": "---",
+				"operatorName": "DB"
+			}
+		},
+		"id": "8000261_D_1"
+	},
+	"finalDestination": "Düsseldorf Hbf",
+	"train": {
+		"type": "ICE",
+		"number": "720",
+		"name": "ICE 720",
+		"admin": "80",
+		"line": "41",
+		"transportType": "HIGH_SPEED_TRAIN",
+		"operator": {
+			"name": "DB"
+		}
+	},
+	"type": "JNY",
+	"currentStop": {
+		"station": {
+			"evaNumber": "8000260",
+			"name": "Würzburg Hbf",
+			"ril100": "NWH"
+		},
+		"arrival": {
+			"scheduledTime": "2024-09-28T10:52:00.000Z",
+			"time": "2024-09-28T10:50:00.000Z",
+			"delay": -2,
+			"scheduledPlatform": "6",
+			"platform": "6",
+			"id": "8000260_A_1"
+		},
+		"departure": {
+			"scheduledTime": "2024-09-28T10:56:00.000Z",
+			"time": "2024-09-28T10:56:00.000Z",
+			"delay": 0,
+			"scheduledPlatform": "6",
+			"platform": "6",
+			"id": "8000260_D_1"
+		},
+		"splitsWith": [
+			{
+				"journeyID": "20240928-8b94d576-6fd4-3670-884d-57f10d79e95d",
+				"type": "HIGH_SPEED_TRAIN",
+				"category": "ICE",
+				"journeyNumber": 1224,
+				"label": "Westfalen",
+				"destination": {
+					"evaNumber": "8000286",
+					"name": "Oberhausen Hbf"
+				},
+				"separationAt": {
+					"evaNumber": "8000260",
+					"name": "Würzburg Hbf"
+				}
+			}
+		],
+		"irisMessages": [
+			{
+				"superseded": true,
+				"text": "Andere Reihenfolge der Wagen",
+				"timestamp": "2024-09-28T08:33:26.906Z",
+				"value": 80
+			},
+			{
+				"text": "Zug verkehrt richtig gereiht",
+				"timestamp": "2024-09-28T08:33:26.906Z",
+				"value": 84
+			}
+		]
+	}
+}
