@@ -1,5 +1,6 @@
 import { EventType } from '@/external/generated/risJourneysV2';
 import type {
+	CodeShare,
 	JourneyEvent,
 	TransportDestinationPortionWorkingRef,
 	TransportDestinationRef,
@@ -33,6 +34,7 @@ interface StopInfoWithAdditional extends CommonStopInfo {
 	replacedBy?: TransportDestinationRef[];
 	replacementFor?: TransportDestinationRef[];
 	transport?: TransportWithDirection;
+	codeShares?: CodeShare[];
 }
 
 function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
@@ -59,6 +61,7 @@ function mapEventToCommonStopInfo(e: JourneyEvent): StopInfoWithAdditional {
 		travelsWith: e.travelsWith,
 		replacedBy: e.replacedBy,
 		replacementFor: e.replacementFor,
+		codeShares: e.codeshares,
 		transport: e.transport,
 		id: e.arrivalOrDepartureID,
 	};
@@ -140,6 +143,8 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 	const seenReplacementFor: string[] = [];
 
 	for (const s of stops) {
+		s.codeShares = s.departure?.codeShares;
+
 		if (
 			(s.arrival?.cancelled || !s.arrival) &&
 			(s.departure?.cancelled || !s.departure)
@@ -236,22 +241,6 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 	}
 
 	return stops;
-}
-
-async function getNextPreviousJourney(
-	journeyId: string,
-): Promise<[MatchVehicleID | undefined, MatchVehicleID | undefined]> {
-	const nextJourneys = await journeyForVehiclesCache.get(journeyId);
-	if (!nextJourneys) {
-		return [undefined, undefined];
-	}
-	const currentJourneyIndex = nextJourneys.findIndex(
-		(j) => j.journeyID === journeyId,
-	);
-	return [
-		nextJourneys.at(currentJourneyIndex - 1),
-		nextJourneys.at(currentJourneyIndex + 1),
-	];
 }
 
 export async function journeyDetails(
