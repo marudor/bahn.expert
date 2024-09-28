@@ -108,16 +108,22 @@ const Container = styled('div')<{
 		alignItems: 'center',
 		borderBottom: `1px solid ${theme.vars.palette.text.primary}`,
 		position: 'relative',
-		gridTemplateColumns: '4.8em 1fr max-content max-content',
+		gridTemplateColumns: '4.8em 1fr max-content max-content max-content',
 	}),
-	({ theme, past }) =>
-		past && {
-			backgroundColor: theme.vars.palette.common.shadedBackground,
-			'> *': {
-				'--mui-palette-common-shadedBackground':
-					theme.vars.palette.common.doubleShadedBackground,
+	{
+		variants: [
+			{
+				props: { past: true },
+				style: ({ theme }) => ({
+					backgroundColor: theme.vars.palette.common.shadedBackground,
+					'> *': {
+						'--mui-palette-common-shadedBackground':
+							theme.vars.palette.common.doubleShadedBackground,
+					},
+				}),
 			},
-		},
+		],
+	},
 );
 
 interface Props {
