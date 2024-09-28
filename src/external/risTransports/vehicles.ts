@@ -3,9 +3,13 @@ import {
 	type MatchVehicleID,
 	VehiclesApi,
 } from '@/external/generated/risTransports';
-import { risTransportsConfiguration } from '@/external/risTransports/config';
+import {
+	isWithin20Hours,
+	risTransportsConfiguration,
+} from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
+import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import Axios from 'axios';
 import { addDays, format, isBefore, subDays } from 'date-fns';
 const axiosWithTimeout = Axios.create({
@@ -76,9 +80,16 @@ async function getPreviousNext(journeyId: string, vehicleId: string) {
 }
 
 export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
+	if (!vehicleIds.length) {
+		return;
+	}
 	const cacheKey = `${journeyId}-${vehicleIds.join('-')}`;
-	if (await journeyForVehiclesCache.get(cacheKey)) {
+	if (await journeyForVehiclesCache.exists(cacheKey)) {
 		return journeyForVehiclesCache.get(cacheKey);
+	}
+	const journey = await journeyDetails(journeyId);
+	if (!isWithin20Hours(journey?.departure.scheduledTime)) {
+		return;
 	}
 
 	const prevNext = await Promise.all(
@@ -92,6 +103,6 @@ export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
 		previousJourneys: uniqBy(previous, 'journeyID'),
 		nextJourneys: uniqBy(next, 'journeyID'),
 	};
-	void journeyForVehiclesCache.set(cacheKey, umlauf);
+	journeyForVehiclesCache.set(cacheKey, umlauf);
 	return umlauf;
 }

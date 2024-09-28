@@ -12,7 +12,10 @@ export const risTransportsConfiguration = new Configuration({
 	},
 });
 
-export function isWithin20Hours(date: Date): boolean {
+export function isWithin20Hours(date?: Date): boolean {
+	if (!date) {
+		return false;
+	}
 	const start = subHours(new Date(), 20);
 	const end = addHours(new Date(), 20);
 	return isWithinInterval(date, {

@@ -95,7 +95,7 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 		.input(
 			z.object({
 				journeyId: z.string(),
-				vehicleIds: z.array(z.string()),
+				vehicleIds: z.array(z.string()).min(1),
 			}),
 		)
 		.query(({ input: { journeyId, vehicleIds } }) => {
