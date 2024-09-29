@@ -145,6 +145,7 @@ export const BaseAbfahrt: FC<Props> = ({
 					</Stack>
 					{detail && abfahrt.departure && (
 						<LazyCoachSequence
+							transportType={abfahrt.train.transportType}
 							trainNumber={abfahrt.train.number}
 							trainCategory={abfahrt.train.type}
 							currentEvaNumber={abfahrt.currentStopPlace.evaNumber}
