@@ -5,6 +5,9 @@ const heavyMetalTypes = [
 	'REGIONAL_TRAIN',
 	'CITY_TRAIN',
 ];
-export function isHeavyMetal(transportType: string) {
+export function isHeavyMetal(transportType?: string) {
+	if (!transportType) {
+		return false;
+	}
 	return heavyMetalTypes.includes(transportType);
 }

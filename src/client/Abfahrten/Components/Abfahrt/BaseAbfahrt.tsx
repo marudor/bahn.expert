@@ -14,11 +14,6 @@ const LazyCoachSequence = loadable(
 	() => import('../../../Common/Components/CoachSequence/CoachSequence'),
 );
 
-interface AbfahrtContextValues {
-	abfahrt: Abfahrt;
-	detail: boolean;
-}
-
 const Container = styled(Paper)`
   line-height: 1.2;
   flex-shrink: 0;

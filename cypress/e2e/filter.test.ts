@@ -5,7 +5,12 @@ function openFilter() {
 
 describe('Filter', () => {
 	beforeEach(() => {
-		cy.mockFrankfurt();
+		cy.mockDepartures({
+			name: 'Frankfurt (Main) Hbf',
+			evaNumber: '8000105',
+			stopPlaceFixture: 'stopPlaceSearchFrankfurtHbf',
+			departureFixture: 'abfahrtenFrankfurtHbf',
+		});
 	});
 	it('Type Filter Temporary', () => {
 		cy.visit('/');
@@ -51,7 +56,12 @@ describe('Filter', () => {
 		cy.findByTestId('showCancelled').click();
 		cy.closeModal();
 		cy.findByTestId('abfahrtRB15663').should('not.exist');
-		cy.mockFrankfurt();
+		cy.mockDepartures({
+			name: 'Frankfurt (Main) Hbf',
+			evaNumber: '8000105',
+			stopPlaceFixture: 'stopPlaceSearchFrankfurtHbf',
+			departureFixture: 'abfahrtenFrankfurtHbf',
+		});
 		cy.navigateToStation('Frankfurt (Main) Hbf');
 		cy.findByTestId('abfahrtRB15663').should('not.exist');
 	});

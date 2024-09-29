@@ -6,7 +6,12 @@ describe('Abfahrten Settings', () => {
 	describe('on Abfahrten Page', () => {
 		beforeEach(() => {
 			cy.visit('/');
-			cy.mockFrankfurt();
+			cy.mockDepartures({
+				name: 'Frankfurt (Main) Hbf',
+				evaNumber: '8000105',
+				stopPlaceFixture: 'stopPlaceSearchFrankfurtHbf',
+				departureFixture: 'abfahrtenFrankfurtHbf',
+			});
 			cy.navigateToStation('Frankfurt (Main) Hbf');
 		});
 

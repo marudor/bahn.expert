@@ -1,7 +1,12 @@
 describe('CoachSequence', () => {
 	describe('Frankfurt Hbf', () => {
 		beforeEach(() => {
-			cy.mockFrankfurt();
+			cy.mockDepartures({
+				name: 'Frankfurt (Main) Hbf',
+				evaNumber: '8000105',
+				stopPlaceFixture: 'stopPlaceSearchFrankfurtHbf',
+				departureFixture: 'abfahrtenFrankfurtHbf',
+			});
 			cy.visit('/');
 			cy.trpc.coachSequence.sequence(
 				{
@@ -54,7 +59,12 @@ describe('CoachSequence', () => {
 
 	describe('Hannover Hbf', () => {
 		beforeEach(() => {
-			cy.mockHannover();
+			cy.mockDepartures({
+				name: 'Hannover Hbf',
+				evaNumber: '8000152',
+				stopPlaceFixture: 'stopPlaceSearchHannoverHbf',
+				departureFixture: 'abfahrtenHannoverHbf',
+			});
 			cy.visit('/');
 			cy.navigateToStation('Hannover Hbf');
 			cy.trpc.coachSequence
