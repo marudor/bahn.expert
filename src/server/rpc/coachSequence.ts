@@ -1,4 +1,5 @@
 import { getVehicleLayout } from '@/external/risMaps';
+import { isWithin20Hours } from '@/external/risTransports/config';
 import { getJourneyOccupancy } from '@/external/risTransports/occupancy';
 import { getUmlauf } from '@/external/risTransports/vehicles';
 import { coachSequence } from '@/server/coachSequence';
@@ -96,9 +97,12 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 			z.object({
 				journeyId: z.string(),
 				vehicleIds: z.array(z.string()).min(1),
+				initialDeparture: z.date(),
 			}),
 		)
-		.query(({ input: { journeyId, vehicleIds } }) => {
-			return getUmlauf(journeyId, vehicleIds);
+		.query(({ input: { journeyId, vehicleIds, initialDeparture } }) => {
+			if (isWithin20Hours(initialDeparture)) {
+				return getUmlauf(journeyId, vehicleIds);
+			}
 		}),
 });

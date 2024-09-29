@@ -61,10 +61,9 @@ describe('Abfahrten', () => {
 		});
 		cy.mockDepartures({
 			name: 'Hamburg Hbf',
-			evaNumber: '8000105',
+			evaNumber: '8002549',
 			stopPlaceFixture: 'stopPlaceSearchHamburgHbf',
 			departureFixture: 'abfahrtenHamburgHbf',
-			delay: 500,
 		});
 		cy.visit('/');
 		cy.navigateToStation('Frankfurt (Main) Hbf');
@@ -78,10 +77,9 @@ describe('Abfahrten', () => {
 	it('cancelled not strike through', () => {
 		cy.mockDepartures({
 			name: 'Hamburg Hbf',
-			evaNumber: '8000105',
+			evaNumber: '8002549',
 			stopPlaceFixture: 'stopPlaceSearchHamburgHbf',
 			departureFixture: 'abfahrtenHamburgHbf',
-			delay: 500,
 		});
 		cy.visit('/');
 		cy.navigateToStation('Hamburg Hbf');
