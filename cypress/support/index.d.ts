@@ -6,6 +6,17 @@ interface MockOptions {
 	startTime?: Date;
 	delay?: number;
 }
+
+interface MockStopPlaceOptions {
+	lookbehind?: number;
+	lookahead?: number;
+	delay?: number;
+	name: string;
+	stopPlaceFixture: string;
+	departureFixture: string;
+	startTime?: Date;
+	evaNumber: string;
+}
 declare global {
 	namespace Cypress {
 		interface Chainable<Subject = any> {
@@ -20,9 +31,7 @@ declare global {
 				},
 			): void;
 			closeModal(): void;
-			mockFrankfurt(options?: MockOptions): void;
-			mockHamburg(options?: MockOptions): void;
-			mockHannover(options?: MockOptions): void;
+			mockDepartures(options: MockStopPlaceOptions): void;
 			openSettings(): void;
 			force404(): void;
 			theme(type: string): void;

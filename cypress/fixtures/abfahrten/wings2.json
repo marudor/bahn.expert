@@ -1,0 +1,2842 @@
+{
+	"departures": [
+		{
+			"o": "GAIRE",
+			"initialDeparture": "2024-09-29T19:32:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:25:00.000Z",
+				"time": "2024-09-29T20:25:00.000Z",
+				"platform": "9",
+				"scheduledPlatform": "9",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "6927557681531621104",
+			"rawId": "6927557681531621104-2409292132-7",
+			"mediumId": "6927557681531621104-2409292132",
+			"train": {
+				"name": "IRE 1",
+				"number": "19032",
+				"line": "1",
+				"type": "IRE",
+				"admin": "GAIRE"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Stuttgart Hbf" },
+				{ "name": "Vaihingen (Enz)" },
+				{ "name": "Mühlacker" },
+				{ "name": "Pforzheim Hbf" },
+				{ "name": "Wilferdingen-Singen" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "9",
+			"scheduledPlatform": "9",
+			"initialStopPlace": "8000096"
+		},
+		{
+			"o": "800520",
+			"initialDeparture": "2024-09-29T19:49:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:27:00.000Z",
+				"time": "2024-09-29T20:27:00.000Z",
+				"platform": "2",
+				"scheduledPlatform": "2",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "4554337820540180658",
+			"rawId": "4554337820540180658-2409292149-11",
+			"mediumId": "4554337820540180658-2409292149",
+			"train": {
+				"name": "RB 52",
+				"number": "81482",
+				"line": "52",
+				"type": "RB",
+				"admin": "800520"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Lauterbourg" },
+				{ "name": "Berg (Pfalz)" },
+				{ "name": "Neuburg (Rhein)" },
+				{ "name": "Hagenbach" },
+				{ "name": "Maximiliansau-Im Rüsten" },
+				{ "name": "Wörth (Rhein)" },
+				{ "name": "Maximiliansau West" },
+				{ "name": "Karlsruhe-Knielingen" },
+				{ "name": "Karlsruhe-Mühlburg" },
+				{ "name": "Karlsruhe West" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "2",
+			"scheduledPlatform": "2",
+			"initialStopPlace": "8700353"
+		},
+		{
+			"o": "A6S32",
+			"initialDeparture": "2024-09-29T20:28:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:28:00.000Z",
+				"time": "2024-09-29T20:28:00.000Z",
+				"wingIds": ["2642423590997661561-2409292228"],
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Menzingen (Baden)",
+			"id": "6387694264478521940",
+			"rawId": "6387694264478521940-2409292228-1",
+			"mediumId": "6387694264478521940-2409292228",
+			"train": {
+				"name": "S 32",
+				"number": "85166",
+				"line": "32",
+				"type": "S",
+				"admin": "A6S32"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Weingarten (Baden)", "showVia": true },
+				{ "name": "Untergrombach", "showVia": true },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Ubstadt Salzbrunnenstr" },
+				{ "name": "Unteröwisheim M.-Luther-Str." },
+				{ "name": "Unteröwisheim Bf" },
+				{ "name": "Oberöwisheim" },
+				{ "name": "Münzesheim" },
+				{ "name": "Münzesheim Ost" },
+				{ "name": "Gochsheim (Baden)" },
+				{ "name": "Bahnbrücken" },
+				{ "name": "Menzingen (Baden)" }
+			],
+			"destination": "Menzingen (Baden)",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "801518",
+			"initialDeparture": "2024-09-29T20:28:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:28:00.000Z",
+				"time": "2024-09-29T20:28:00.000Z",
+				"platform": "1",
+				"scheduledPlatform": "1",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Mannheim Hbf",
+			"id": "8367144300631248484",
+			"rawId": "-8367144300631248484-2409292228-1",
+			"mediumId": "8367144300631248484-2409292228",
+			"train": {
+				"name": "S 9",
+				"number": "38988",
+				"line": "9",
+				"type": "S",
+				"admin": "801518"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Hagsfeld", "showVia": true },
+				{ "name": "Blankenloch", "showVia": true },
+				{ "name": "Friedrichstal (Baden)", "showVia": true },
+				{ "name": "Graben-Neudorf" },
+				{ "name": "Wiesental" },
+				{ "name": "Waghäusel" },
+				{ "name": "Neulußheim" },
+				{ "name": "Hockenheim" },
+				{ "name": "Oftersheim" },
+				{ "name": "Schwetzingen" },
+				{ "name": "Schwetzingen-Hirschacker" },
+				{ "name": "Mannheim-Rheinau" },
+				{ "name": "Mannheim-Neckarau" },
+				{ "name": "Mannheim Hbf" }
+			],
+			"destination": "Mannheim Hbf",
+			"platform": "1",
+			"scheduledPlatform": "1",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "A6S7",
+			"initialDeparture": "2024-09-29T20:17:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:30:00.000Z",
+				"time": "2024-09-29T20:30:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T20:31:00.000Z",
+				"time": "2024-09-29T20:31:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Rastatt",
+			"id": "7195370620246111698",
+			"rawId": "7195370620246111698-2409292217-10",
+			"mediumId": "7195370620246111698-2409292217",
+			"train": {
+				"name": "S 7",
+				"number": "85597",
+				"line": "7",
+				"type": "S",
+				"admin": "A6S7"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Tullastraße/Alter Schlachthof, Karlsruhe" },
+				{ "name": "Gottesauer Platz/BGV, Karlsruhe" },
+				{ "name": "Durlacher Tor/KIT-Campus Süd  (U) , Karlsruhe" },
+				{ "name": "Kronenplatz  (U) , Karlsruhe" },
+				{ "name": "Marktplatz  (Pyramide U) , Karlsruhe" },
+				{ "name": "Ettlinger Tor/Staatstheater  (U) , Karlsruhe" },
+				{ "name": "Kongresszentrum  (U) , Karlsruhe" },
+				{ "name": "Augartenstraße, Karlsruhe" },
+				{ "name": "Poststraße, Karlsruhe" },
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Karlsruhe Albtalbahnhof", "showVia": true },
+				{ "name": "Forchheim (b Karlsruhe)", "showVia": true },
+				{ "name": "Durmersheim Nord", "showVia": true },
+				{ "name": "Durmersheim" },
+				{ "name": "Bietigheim (Baden)" },
+				{ "name": "Ötigheim" },
+				{ "name": "Rastatt" }
+			],
+			"destination": "Rastatt",
+			"platform": "",
+			"scheduledPlatform": ""
+		},
+		{
+			"o": "A6S32",
+			"initialDeparture": "2024-09-29T19:40:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:32:00.000Z",
+				"time": "2024-09-29T20:32:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "3012561259537856666",
+			"rawId": "3012561259537856666-2409292140-18",
+			"mediumId": "3012561259537856666-2409292140",
+			"train": {
+				"name": "S 32",
+				"number": "85269",
+				"line": "32",
+				"type": "S",
+				"admin": "A6S32"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Menzingen (Baden)" },
+				{ "name": "Bahnbrücken" },
+				{ "name": "Gochsheim (Baden)" },
+				{ "name": "Münzesheim Ost" },
+				{ "name": "Münzesheim" },
+				{ "name": "Oberöwisheim" },
+				{ "name": "Unteröwisheim Bf" },
+				{ "name": "Unteröwisheim M.-Luther-Str." },
+				{ "name": "Ubstadt Salzbrunnenstr" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Untergrombach" },
+				{ "name": "Weingarten (Baden)" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8007145"
+		},
+		{
+			"o": "A6S31",
+			"initialDeparture": "2024-09-29T19:43:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:32:00.000Z",
+				"time": "2024-09-29T20:32:00.000Z",
+				"wingIds": ["3012561259537856666-2409292140"],
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "7394899874976613159",
+			"rawId": "7394899874976613159-2409292143-16",
+			"mediumId": "7394899874976613159-2409292143",
+			"train": {
+				"name": "S 31",
+				"number": "85169",
+				"line": "31",
+				"type": "S",
+				"admin": "A6S31"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Odenheim Bf" },
+				{ "name": "Odenheim West" },
+				{ "name": "Zeutern Ost" },
+				{ "name": "Zeutern Bf" },
+				{ "name": "Zeutern Sportplatz" },
+				{ "name": "Stettfeld (Baden)" },
+				{ "name": "Ubstadt Uhlandstr." },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Untergrombach" },
+				{ "name": "Weingarten (Baden)" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8007138"
+		},
+		{
+			"o": "GAIRE",
+			"initialDeparture": "2024-09-29T20:32:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:32:00.000Z",
+				"time": "2024-09-29T20:32:00.000Z",
+				"platform": "11",
+				"scheduledPlatform": "11",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Stuttgart Hbf",
+			"id": "7934218757381223951",
+			"rawId": "-7934218757381223951-2409292232-1",
+			"mediumId": "7934218757381223951-2409292232",
+			"train": {
+				"name": "IRE 1",
+				"number": "19035",
+				"line": "1",
+				"type": "IRE",
+				"admin": "GAIRE"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Vaihingen (Enz)", "showVia": true },
+				{ "name": "Stuttgart Hbf" }
+			],
+			"destination": "Stuttgart Hbf",
+			"platform": "11",
+			"scheduledPlatform": "11",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "A6S4",
+			"initialDeparture": "2024-09-29T20:35:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:36:00.000Z",
+				"time": "2024-09-29T20:36:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T20:37:00.000Z",
+				"time": "2024-09-29T20:37:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Gölshausen",
+			"id": "7632245858760804895",
+			"rawId": "-7632245858760804895-2409292235-2",
+			"mediumId": "7632245858760804895-2409292235",
+			"train": {
+				"name": "S 4",
+				"number": "85537",
+				"line": "4",
+				"type": "S",
+				"admin": "A6S4"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Albtalbahnhof" },
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Poststraße, Karlsruhe", "showVia": true },
+				{ "name": "Augartenstraße, Karlsruhe", "showVia": true },
+				{ "name": "Kongresszentrum  (U) , Karlsruhe", "showVia": true },
+				{ "name": "Ettlinger Tor/Staatstheater  (U) , Karlsruhe" },
+				{ "name": "Marktplatz  (Pyramide U) , Karlsruhe" },
+				{ "name": "Kronenplatz  (U) , Karlsruhe" },
+				{ "name": "Durlacher Tor/KIT-Campus Süd  (U) , Karlsruhe" },
+				{ "name": "Gottesauer Platz/BGV, Karlsruhe" },
+				{ "name": "Tullastraße/Alter Schlachthof, Karlsruhe" },
+				{ "name": "Weinweg, Karlsruhe" },
+				{ "name": "Durlach Untermühlstraße, Karlsruhe" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Grötzingen" },
+				{ "name": "Grötzingen Oberausstraße" },
+				{ "name": "Berghausen Hummelberg" },
+				{ "name": "Jöhlingen West" },
+				{ "name": "Jöhlingen" },
+				{ "name": "Wössingen" },
+				{ "name": "Wössingen Ost" },
+				{ "name": "Dürrenbüchig" },
+				{ "name": "Rinklingen" },
+				{ "name": "Bretten" },
+				{ "name": "Bretten Stadtmitte" },
+				{ "name": "Bretten Wannenweg" },
+				{ "name": "Bretten Schulzentrum" },
+				{ "name": "Bretten Kupferhälde" },
+				{ "name": "Gölshausen" }
+			],
+			"destination": "Gölshausen",
+			"platform": "",
+			"scheduledPlatform": "",
+			"initialStopPlace": "8079045"
+		},
+		{
+			"o": "A6S4",
+			"initialDeparture": "2024-09-29T19:28:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:40:00.000Z",
+				"time": "2024-09-29T20:40:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T20:41:00.000Z",
+				"time": "2024-09-29T20:41:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Karlsruhe Albtalbahnhof",
+			"id": "2619555571099000661",
+			"rawId": "-2619555571099000661-2409292128-36",
+			"mediumId": "2619555571099000661-2409292128",
+			"train": {
+				"name": "S 4",
+				"number": "85466",
+				"line": "4",
+				"type": "S",
+				"admin": "A6S4"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Eppingen" },
+				{ "name": "Eppingen West" },
+				{ "name": "Sulzfeld (Baden)" },
+				{ "name": "Zaisenhausen" },
+				{ "name": "Flehingen" },
+				{ "name": "Oberderdingen-Flehingen" },
+				{ "name": "Bauerbach" },
+				{ "name": "Gölshausen Industriegebiet" },
+				{ "name": "Gölshausen" },
+				{ "name": "Bretten Kupferhälde" },
+				{ "name": "Bretten Schulzentrum" },
+				{ "name": "Bretten Wannenweg" },
+				{ "name": "Bretten Stadtmitte" },
+				{ "name": "Bretten" },
+				{ "name": "Rinklingen" },
+				{ "name": "Dürrenbüchig" },
+				{ "name": "Wössingen Ost" },
+				{ "name": "Wössingen" },
+				{ "name": "Jöhlingen" },
+				{ "name": "Jöhlingen West" },
+				{ "name": "Berghausen Hummelberg" },
+				{ "name": "Grötzingen Oberausstraße" },
+				{ "name": "Grötzingen" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Durlach Untermühlstraße, Karlsruhe" },
+				{ "name": "Weinweg, Karlsruhe" },
+				{ "name": "Tullastraße/Alter Schlachthof, Karlsruhe" },
+				{ "name": "Gottesauer Platz/BGV, Karlsruhe" },
+				{ "name": "Durlacher Tor/KIT-Campus Süd  (U) , Karlsruhe" },
+				{ "name": "Kronenplatz  (U) , Karlsruhe" },
+				{ "name": "Marktplatz  (Pyramide U) , Karlsruhe" },
+				{ "name": "Ettlinger Tor/Staatstheater  (U) , Karlsruhe" },
+				{ "name": "Kongresszentrum  (U) , Karlsruhe" },
+				{ "name": "Augartenstraße, Karlsruhe" },
+				{ "name": "Poststraße, Karlsruhe" },
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Karlsruhe Albtalbahnhof" }
+			],
+			"destination": "Karlsruhe Albtalbahnhof",
+			"platform": "",
+			"scheduledPlatform": "",
+			"initialStopPlace": "8000373"
+		},
+		{
+			"o": "A6S32",
+			"initialDeparture": "2024-09-29T20:43:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:43:00.000Z",
+				"time": "2024-09-29T20:43:00.000Z",
+				"wingIds": ["7979293782499504079-2409292243"],
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Menzingen (Baden)",
+			"id": "6660232240784319246",
+			"rawId": "-6660232240784319246-2409292243-1",
+			"mediumId": "6660232240784319246-2409292243",
+			"train": {
+				"name": "S 32",
+				"number": "85168",
+				"line": "32",
+				"type": "S",
+				"admin": "A6S32"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Weingarten (Baden)", "showVia": true },
+				{ "name": "Untergrombach", "showVia": true },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Ubstadt Salzbrunnenstr" },
+				{ "name": "Unteröwisheim M.-Luther-Str." },
+				{ "name": "Unteröwisheim Bf" },
+				{ "name": "Oberöwisheim" },
+				{ "name": "Münzesheim" },
+				{ "name": "Münzesheim Ost" },
+				{ "name": "Gochsheim (Baden)" },
+				{ "name": "Bahnbrücken" },
+				{ "name": "Menzingen (Baden)" }
+			],
+			"destination": "Menzingen (Baden)",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "800571",
+			"initialDeparture": "2024-09-29T19:59:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:47:00.000Z",
+				"time": "2024-09-29T20:47:00.000Z",
+				"platform": "10",
+				"scheduledPlatform": "10",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "4153998222618739303",
+			"rawId": "4153998222618739303-2409292159-11",
+			"mediumId": "4153998222618739303-2409292159",
+			"train": {
+				"name": "RE 45",
+				"number": "15864",
+				"line": "45",
+				"type": "RE",
+				"admin": "800571"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Eppingen" },
+				{ "name": "Sulzfeld (Baden)" },
+				{ "name": "Zaisenhausen" },
+				{ "name": "Oberderdingen-Flehingen" },
+				{ "name": "Gölshausen" },
+				{ "name": "Bretten Stadtmitte" },
+				{ "name": "Bretten" },
+				{ "name": "Wössingen Ost" },
+				{ "name": "Jöhlingen West" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "10",
+			"scheduledPlatform": "10",
+			"initialStopPlace": "8000373"
+		},
+		{
+			"o": "800647",
+			"initialDeparture": "2024-09-29T17:39:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:49:00.000Z",
+				"time": "2024-09-29T20:49:00.000Z",
+				"platform": "11",
+				"scheduledPlatform": "11",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "682737022119058919",
+			"rawId": "682737022119058919-2409291939-20",
+			"mediumId": "682737022119058919-2409291939",
+			"train": {
+				"name": "RE 2",
+				"number": "4740",
+				"line": "2",
+				"type": "RE",
+				"admin": "800647"
+			},
+			"messages": {
+				"delay": [],
+				"qos": [],
+				"him": [
+					{
+						"timestamp": "2024-09-28T21:16:12.475Z",
+						"head": "Information",
+						"text": "Der Aufzug an den Gleisen 1 und 2 in Offenburg ist derzeit außer Betrieb. Mobilitätseingeschränkte Reisende können sich an die Mobilitätsservice-Zentrale der Deutschen Bahn wenden (Telefon: 030 65212888; Fax: 030 65212899; E-Mail: msz@deutschebahn.com).",
+						"source": "Region BaWü",
+						"raw": {
+							"hid": "2278994",
+							"act": true,
+							"head": "Information",
+							"lead": "Der Aufzug an den Gleisen 1 und 2 in Offenburg ist derzeit außer Betrieb. Mobilitätseingeschränkte Reisende können sich an die Mobilitätsservice-Zentrale der Deutschen Bahn wenden (Telefon: 030 65212888; Fax: 030 65212899; E-Mail: msz@deutschebahn.com).",
+							"text": "Der Aufzug an den Gleisen 1 und 2 in Offenburg ist derzeit außer Betrieb. Mobilitätseingeschränkte Reisende können sich an die Mobilitätsservice-Zentrale der Deutschen Bahn wenden (Telefon: 030 65212888; Fax: 030 65212899; E-Mail: msz@deutschebahn.com).",
+							"icoX": 9,
+							"prio": 100,
+							"fLocX": 417,
+							"tLocX": 417,
+							"prod": 8,
+							"lModDate": "20240926",
+							"lModTime": "101421",
+							"sDate": "20240916",
+							"sTime": "000000",
+							"eDate": "20241006",
+							"eTime": "235900",
+							"comp": "Region BaWü",
+							"cat": 0,
+							"pubChL": [
+								{
+									"name": "NVS",
+									"fDate": "20240926",
+									"fTime": "101400",
+									"tDate": "20241006",
+									"tTime": "235900"
+								},
+								{
+									"name": "NVS_INTERN",
+									"fDate": "20240926",
+									"fTime": "101400",
+									"tDate": "20241006",
+									"tTime": "235900"
+								},
+								{
+									"name": "TIMETABLE",
+									"fDate": "20240926",
+									"fTime": "101400",
+									"tDate": "20241006",
+									"tTime": "235900"
+								}
+							],
+							"affectedProducts": [],
+							"startTime": "2024-09-15T22:00:00.000Z",
+							"endTime": "2024-10-06T21:59:00.000Z",
+							"fromStopPlace": {
+								"evaNumber": "8000290",
+								"name": "Offenburg",
+								"coordinates": { "lng": 7.94677, "lat": 48.476506 },
+								"ril100": "RO"
+							},
+							"toStopPlace": {
+								"evaNumber": "8000290",
+								"name": "Offenburg",
+								"coordinates": { "lng": 7.94677, "lat": 48.476506 },
+								"ril100": "RO"
+							}
+						},
+						"stopPlaceInfo": "Offenburg"
+					}
+				]
+			},
+			"ref": null,
+			"cancelled": null,
+			"route": [
+				{ "name": "Konstanz" },
+				{ "name": "Konstanz-Petershausen" },
+				{ "name": "Allensbach" },
+				{ "name": "Radolfzell" },
+				{ "name": "Singen (Hohentwiel)" },
+				{ "name": "Engen" },
+				{ "name": "Immendingen" },
+				{ "name": "Donaueschingen" },
+				{ "name": "Villingen (Schwarzw)" },
+				{ "name": "St Georgen (Schwarzw)" },
+				{ "name": "Triberg" },
+				{ "name": "Hornberg (Schwarzw)" },
+				{ "name": "Hausach" },
+				{ "name": "Haslach" },
+				{ "name": "Biberach (Baden)" },
+				{ "name": "Offenburg" },
+				{ "name": "Bühl (Baden)" },
+				{ "name": "Baden-Baden" },
+				{ "name": "Rastatt" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "11",
+			"scheduledPlatform": "11",
+			"initialStopPlace": "8003400"
+		},
+		{
+			"o": "800572",
+			"initialDeparture": "2024-09-29T20:02:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:49:00.000Z",
+				"time": "2024-09-29T20:49:00.000Z",
+				"platform": "5",
+				"scheduledPlatform": "5",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "1906005855819430367",
+			"rawId": "-1906005855819430367-2409292202-7",
+			"mediumId": "1906005855819430367-2409292202",
+			"train": {
+				"name": "RE 73",
+				"number": "26157",
+				"line": "73",
+				"type": "RE",
+				"admin": "800572"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Mannheim Hbf" },
+				{ "name": "Heidelberg Hbf" },
+				{ "name": "Wiesloch-Walldorf" },
+				{ "name": "Bad Schönborn-Kronau" },
+				{ "name": "Bruchsal" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "5",
+			"scheduledPlatform": "5",
+			"initialStopPlace": "8000244"
+		},
+		{
+			"o": "A6S71",
+			"initialDeparture": "2024-09-29T20:49:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:49:00.000Z",
+				"time": "2024-09-29T20:49:00.000Z",
+				"platform": "4",
+				"scheduledPlatform": "4",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Rastatt",
+			"id": "7449132218869447532",
+			"rawId": "-7449132218869447532-2409292249-1",
+			"mediumId": "7449132218869447532-2409292249",
+			"train": {
+				"name": "S 71",
+				"number": "85593",
+				"line": "71",
+				"type": "S",
+				"admin": "A6S71"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Ettlingen West", "showVia": true },
+				{ "name": "Bruchhausen (b Ettlingen)", "showVia": true },
+				{ "name": "Malsch", "showVia": true },
+				{ "name": "Malsch Süd" },
+				{ "name": "Muggensturm Badesee" },
+				{ "name": "Muggensturm" },
+				{ "name": "Rastatt" }
+			],
+			"destination": "Rastatt",
+			"platform": "4",
+			"scheduledPlatform": "4",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "rabRAB",
+			"initialDeparture": "2024-09-29T20:52:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:52:00.000Z",
+				"time": "2024-09-29T20:52:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"currentStopPlace": {
+				"name": "Karlsruhe Hbf Südausgang",
+				"evaNumber": "8089390"
+			},
+			"scheduledDestination": "Bahnhof/Niederwaldstraße, Rastatt",
+			"id": "8905370507120152841",
+			"rawId": "8905370507120152841-2409292252-1",
+			"mediumId": "8905370507120152841-2409292252",
+			"train": {
+				"name": "Bus RE7",
+				"number": "15958",
+				"line": "RE7",
+				"type": "Bus",
+				"admin": "rabRAB"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{
+					"name": "Karlsruhe Hbf Südausgang",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Bahnhof/Niederwaldstraße, Rastatt" }
+			],
+			"destination": "Bahnhof/Niederwaldstraße, Rastatt",
+			"platform": "",
+			"scheduledPlatform": "",
+			"initialStopPlace": "8089390"
+		},
+		{
+			"o": "800520",
+			"initialDeparture": "2024-09-29T20:05:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:54:00.000Z",
+				"time": "2024-09-29T20:54:00.000Z",
+				"platform": "102",
+				"scheduledPlatform": "102",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "2099070048472237485",
+			"rawId": "-2099070048472237485-2409292205-7",
+			"mediumId": "2099070048472237485-2409292205",
+			"train": {
+				"name": "RB 54",
+				"number": "12487",
+				"line": "54",
+				"type": "RB",
+				"admin": "800520"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Bad Bergzabern" },
+				{ "name": "Kapellen-Drusweiler" },
+				{ "name": "Barbelroth" },
+				{ "name": "Winden (Pfalz)" },
+				{ "name": "Kandel" },
+				{ "name": "Wörth (Rhein)" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "102",
+			"scheduledPlatform": "102",
+			"initialStopPlace": "8000691"
+		},
+		{
+			"o": "801539",
+			"initialDeparture": "2024-09-29T20:56:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:56:00.000Z",
+				"time": "2024-09-29T20:56:00.000Z",
+				"platform": "7",
+				"scheduledPlatform": "7",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Neustadt (Weinstr) Hbf",
+			"id": "7131878525973819330",
+			"rawId": "-7131878525973819330-2409292256-1",
+			"mediumId": "7131878525973819330-2409292256",
+			"train": {
+				"name": "S 2",
+				"number": "38260",
+				"line": "2",
+				"type": "S",
+				"admin": "801539"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Bruchsal" },
+				{ "name": "Ubstadt-Weiher" },
+				{ "name": "Bad Schönborn Süd" },
+				{ "name": "Bad Schönborn-Kronau" },
+				{ "name": "Rot-Malsch" },
+				{ "name": "Wiesloch-Walldorf" },
+				{ "name": "St Ilgen-Sandhausen" },
+				{ "name": "Heidelberg-Kirchheim/Rohrbach" },
+				{ "name": "Heidelberg Hbf", "showVia": true },
+				{ "name": "Heidelberg-Pfaffengrund/Wieblingen" },
+				{ "name": "Mannheim-Friedrichsfeld Süd" },
+				{ "name": "Mannheim-Seckenheim" },
+				{ "name": "Mannheim ARENA/Maimarkt" },
+				{ "name": "Mannheim Hbf", "showVia": true },
+				{ "name": "Ludwigshafen (Rhein)  Mitte" },
+				{ "name": "Ludwigshafen (Rh) Hbf" },
+				{ "name": "Ludwigshafen-Mundenheim" },
+				{ "name": "Ludwigshafen-Rheingönheim" },
+				{ "name": "Limburgerhof" },
+				{ "name": "Schifferstadt" },
+				{ "name": "Böhl-Iggelheim" },
+				{ "name": "Haßloch (Pfalz)" },
+				{ "name": "Neustadt-Böbig" },
+				{ "name": "Neustadt (Weinstr) Hbf" }
+			],
+			"destination": "Neustadt (Weinstr) Hbf",
+			"platform": "7",
+			"scheduledPlatform": "7",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "A6S8",
+			"initialDeparture": "2024-09-29T18:02:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:56:00.000Z",
+				"time": "2024-09-29T20:56:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T20:57:00.000Z",
+				"time": "2024-09-29T20:57:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Tullastraße/Alter Schlachthof, Karlsruhe",
+			"id": "1373163551456019876",
+			"rawId": "1373163551456019876-2409292002-53",
+			"mediumId": "1373163551456019876-2409292002",
+			"train": {
+				"name": "S 8",
+				"number": "85674",
+				"line": "8",
+				"type": "S",
+				"admin": "A6S8"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Bondorf (b Herrenberg)" },
+				{ "name": "Ergenzingen" },
+				{ "name": "Eutingen im Gäu" },
+				{ "name": "Eutingen Nord" },
+				{ "name": "Hochdorf (b Horb)" },
+				{ "name": "Horb-Heiligenfeld" },
+				{ "name": "Bittelbronn" },
+				{ "name": "Schopfloch (b Freudenstadt)" },
+				{ "name": "Dornstetten" },
+				{ "name": "Dornstetten-Aach" },
+				{ "name": "Grüntal-Wittlensweiler" },
+				{ "name": "Freudenstadt Hbf" },
+				{ "name": "Freudenstadt Industriegebiet" },
+				{ "name": "Freudenstadt Schulzentrum" },
+				{ "name": "Freudenstadt Stadt" },
+				{ "name": "Friedrichstal b Freudenstadt" },
+				{ "name": "Baiersbronn Bf" },
+				{ "name": "Baiersbronn Schule" },
+				{ "name": "Klosterreichenbach" },
+				{ "name": "Heselbach" },
+				{ "name": "Röt" },
+				{ "name": "Huzenbach" },
+				{ "name": "Schwarzenberg" },
+				{ "name": "Schönmünzach" },
+				{ "name": "Kirschbaumwasen" },
+				{ "name": "Raumünzach" },
+				{ "name": "Forbach (Schwarzw)" },
+				{ "name": "Gausbach" },
+				{ "name": "Langenbrand" },
+				{ "name": "Au im Murgtal" },
+				{ "name": "Weisenbach" },
+				{ "name": "Hilpertsau" },
+				{ "name": "Obertsrot" },
+				{ "name": "Gernsbach Mitte" },
+				{ "name": "Gernsbach Bf" },
+				{ "name": "Hörden" },
+				{ "name": "Ottenau" },
+				{ "name": "Gaggenau Mercedes-Benz Werk" },
+				{ "name": "Gaggenau Bf" },
+				{ "name": "Bad Rotenfels Weinbrennerstraße" },
+				{ "name": "Bad Rotenfels Bf" },
+				{ "name": "Bad Rotenfels Schloss" },
+				{ "name": "Bischweier" },
+				{ "name": "Kuppenheim" },
+				{ "name": "Rastatt Beinle" },
+				{ "name": "Rastatt" },
+				{ "name": "Ötigheim" },
+				{ "name": "Bietigheim (Baden)" },
+				{ "name": "Durmersheim" },
+				{ "name": "Durmersheim Nord" },
+				{ "name": "Forchheim (b Karlsruhe)" },
+				{ "name": "Karlsruhe Albtalbahnhof" },
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Poststraße, Karlsruhe", "showVia": true },
+				{ "name": "Augartenstraße, Karlsruhe", "showVia": true },
+				{ "name": "Kongresszentrum  (U) , Karlsruhe", "showVia": true },
+				{ "name": "Ettlinger Tor/Staatstheater  (U) , Karlsruhe" },
+				{ "name": "Marktplatz  (Pyramide U) , Karlsruhe" },
+				{ "name": "Kronenplatz  (U) , Karlsruhe" },
+				{ "name": "Durlacher Tor/KIT-Campus Süd  (U) , Karlsruhe" },
+				{ "name": "Gottesauer Platz/BGV, Karlsruhe" },
+				{ "name": "Tullastraße/Alter Schlachthof, Karlsruhe" }
+			],
+			"destination": "Tullastraße/Alter Schlachthof, Karlsruhe",
+			"platform": "",
+			"scheduledPlatform": "",
+			"initialStopPlace": "8001080"
+		},
+		{
+			"o": "80",
+			"initialDeparture": "2024-09-29T18:32:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:58:00.000Z",
+				"time": "2024-09-29T20:58:00.000Z",
+				"platform": "1",
+				"scheduledPlatform": "1",
+				"hidden": false
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "3138501715753509916",
+			"rawId": "-3138501715753509916-2409292032-4",
+			"mediumId": "3138501715753509916-2409292032",
+			"train": {
+				"name": "ICE 205",
+				"number": "205",
+				"line": "43",
+				"type": "ICE",
+				"admin": "80"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Siegburg/Bonn" },
+				{ "name": "Wiesbaden Hbf" },
+				{ "name": "Mannheim Hbf" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "1",
+			"scheduledPlatform": "1"
+		},
+		{
+			"o": "A6S51",
+			"initialDeparture": "2024-09-29T19:50:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T20:58:00.000Z",
+				"time": "2024-09-29T20:58:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T20:59:00.000Z",
+				"time": "2024-09-29T20:59:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Karlsruhe Albtalbahnhof",
+			"id": "6058636058437788121",
+			"rawId": "-6058636058437788121-2409292150-38",
+			"mediumId": "6058636058437788121-2409292150",
+			"train": {
+				"name": "S 51",
+				"number": "84941",
+				"line": "51",
+				"type": "S",
+				"admin": "A6S51"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Germersheim" },
+				{ "name": "Germersheim Mitte/Rhein" },
+				{ "name": "Germersheim Süd/Nolte" },
+				{ "name": "Sondernheim" },
+				{ "name": "Bellheim Am Mühlbuckel" },
+				{ "name": "Bellheim Bf" },
+				{ "name": "Rülzheim Bf" },
+				{ "name": "Rülzheim Freizeitzentrum" },
+				{ "name": "Rheinzabern Bf" },
+				{ "name": "Rheinzabern Rappengasse" },
+				{ "name": "Rheinzabern Alte Römerstraße" },
+				{ "name": "Jockgrim Bf" },
+				{ "name": "Wörth (Rhein)  Zügelstraße" },
+				{ "name": "Wörth (Rhein)" },
+				{ "name": "Maximiliansau West" },
+				{ "name": "Maximiliansau Eisenbahnstraße" },
+				{ "name": "Maxau" },
+				{ "name": "Karlsruhe-Kniel. Rheinbergstr." },
+				{ "name": "Knielingen Eggensteiner Straße, Karlsruhe" },
+				{ "name": "Knielingen Herweghstraße, Karlsruhe" },
+				{ "name": "Knielingen Siemens, Karlsruhe" },
+				{ "name": "Mühlburg West, Karlsruhe" },
+				{ "name": "Starckstraße, Karlsruhe" },
+				{ "name": "Lameyplatz, Karlsruhe" },
+				{ "name": "Entenfang, Karlsruhe" },
+				{ "name": "Kühler Krug, Karlsruhe" },
+				{ "name": "Weinbrennerplatz, Karlsruhe" },
+				{ "name": "Otto-Sachs-Straße, Karlsruhe" },
+				{ "name": "Mathystraße, Karlsruhe" },
+				{ "name": "Karlstor/Bundesgerichtshof, Karlsruhe" },
+				{ "name": "Karlstor/Bundesgerichtshof, Karlsruhe" },
+				{ "name": "Ettlinger Tor/Staatstheater, Karlsruhe" },
+				{ "name": "Rüppurrer Tor, Karlsruhe" },
+				{ "name": "Rüppurrer Tor, Karlsruhe" },
+				{ "name": "Werderstraße, Karlsruhe" },
+				{ "name": "Tivoli, Karlsruhe" },
+				{ "name": "Poststraße, Karlsruhe" },
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Karlsruhe Albtalbahnhof" }
+			],
+			"destination": "Karlsruhe Albtalbahnhof",
+			"platform": "",
+			"scheduledPlatform": "",
+			"initialStopPlace": "8000376"
+		},
+		{
+			"o": "80",
+			"initialDeparture": "2024-09-29T13:49:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:00:00.000Z",
+				"time": "2024-09-29T20:57:00.000Z",
+				"platform": "8",
+				"scheduledPlatform": "8",
+				"hidden": false,
+				"cancelled": false,
+				"delay": -3
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "2575238072703487164",
+			"rawId": "-2575238072703487164-2409291549-25",
+			"mediumId": "2575238072703487164-2409291549",
+			"train": {
+				"name": "IC 2060",
+				"number": "2060",
+				"line": "61",
+				"type": "IC",
+				"admin": "80"
+			},
+			"messages": { "delay": [], "qos": [], "him": [] },
+			"ref": null,
+			"cancelled": null,
+			"route": [
+				{ "name": "Leipzig Hbf" },
+				{ "name": "Weißenfels" },
+				{ "name": "Naumburg (Saale) Hbf" },
+				{ "name": "Jena Paradies" },
+				{ "name": "Jena-Göschwitz" },
+				{ "name": "Rudolstadt (Thür)" },
+				{ "name": "Saalfeld (Saale)" },
+				{ "name": "Ludwigsstadt" },
+				{ "name": "Kronach" },
+				{ "name": "Lichtenfels" },
+				{ "name": "Bamberg" },
+				{ "name": "Erlangen" },
+				{ "name": "Nürnberg Hbf" },
+				{ "name": "Ansbach" },
+				{ "name": "Crailsheim" },
+				{ "name": "Ellwangen" },
+				{ "name": "Aalen Hbf" },
+				{ "name": "Schwäbisch Gmünd" },
+				{ "name": "Schorndorf" },
+				{ "name": "Stuttgart Hbf" },
+				{ "name": "Vaihingen (Enz)" },
+				{ "name": "Mühlacker" },
+				{ "name": "Pforzheim Hbf" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "8",
+			"scheduledPlatform": "8",
+			"initialStopPlace": "8010205"
+		},
+		{
+			"o": "801518",
+			"initialDeparture": "2024-09-29T20:07:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:02:00.000Z",
+				"time": "2024-09-29T21:02:00.000Z",
+				"platform": "3",
+				"scheduledPlatform": "3",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "4546710666018916273",
+			"rawId": "-4546710666018916273-2409292207-15",
+			"mediumId": "4546710666018916273-2409292207",
+			"train": {
+				"name": "S 9",
+				"number": "38993",
+				"line": "9",
+				"type": "S",
+				"admin": "801518"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Mannheim Hbf" },
+				{ "name": "Mannheim-Neckarau" },
+				{ "name": "Mannheim-Rheinau" },
+				{ "name": "Schwetzingen-Hirschacker" },
+				{ "name": "Schwetzingen" },
+				{ "name": "Oftersheim" },
+				{ "name": "Hockenheim" },
+				{ "name": "Neulußheim" },
+				{ "name": "Waghäusel" },
+				{ "name": "Wiesental" },
+				{ "name": "Graben-Neudorf" },
+				{ "name": "Friedrichstal (Baden)" },
+				{ "name": "Blankenloch" },
+				{ "name": "Karlsruhe-Hagsfeld" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "3",
+			"scheduledPlatform": "3",
+			"initialStopPlace": "8000244"
+		},
+		{
+			"o": "800571",
+			"initialDeparture": "2024-09-29T20:09:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:02:00.000Z",
+				"time": "2024-09-29T21:02:00.000Z",
+				"platform": "11",
+				"scheduledPlatform": "11",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "2421113438191758366",
+			"rawId": "-2421113438191758366-2409292209-14",
+			"mediumId": "2421113438191758366-2409292209",
+			"train": {
+				"name": "RB 44",
+				"number": "15921",
+				"line": "44",
+				"type": "RB",
+				"admin": "800571"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Bühl (Baden)" },
+				{ "name": "Baden-Baden Rebland" },
+				{ "name": "Sinzheim" },
+				{ "name": "Sinzheim Nord" },
+				{ "name": "Baden-Baden" },
+				{ "name": "Baden-Baden Haueneberstein" },
+				{ "name": "Rastatt" },
+				{ "name": "Muggensturm" },
+				{ "name": "Muggensturm Badesee" },
+				{ "name": "Malsch Süd" },
+				{ "name": "Malsch" },
+				{ "name": "Bruchhausen (b Ettlingen)" },
+				{ "name": "Ettlingen West" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "11",
+			"scheduledPlatform": "11",
+			"initialStopPlace": "8001252"
+		},
+		{
+			"o": "85",
+			"initialDeparture": "2024-09-29T17:59:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:05:00.000Z",
+				"time": "2024-09-29T21:05:00.000Z",
+				"wingIds": [
+					"1961181705396261168-2409291959",
+					"7016804452829305661-2409291959",
+					"2494453527783146128-2409291959"
+				],
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": true
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T21:07:00.000Z",
+				"time": "2024-09-29T21:07:00.000Z",
+				"wingIds": [
+					"1961181705396261168-2409291959",
+					"7016804452829305661-2409291959",
+					"2494453527783146128-2409291959"
+				],
+				"platform": "10",
+				"scheduledPlatform": "6",
+				"hidden": false,
+				"cancelled": false,
+				"delay": 0
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Praha hl.n.",
+			"id": "5981134875112714787",
+			"rawId": "5981134875112714787-2409291959-6",
+			"mediumId": "5981134875112714787-2409291959",
+			"train": {
+				"name": "EC 459",
+				"number": "459",
+				"line": "12N",
+				"type": "EC",
+				"admin": "85"
+			},
+			"messages": { "delay": [], "qos": [], "him": [] },
+			"ref": null,
+			"cancelled": false,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Karlsruhe Hbf", "cancelled": false, "additional": null },
+				{ "name": "Darmstadt Hbf", "showVia": true },
+				{ "name": "Frankfurt (Main) Süd" },
+				{ "name": "Fulda" },
+				{ "name": "Leipzig Hbf", "showVia": true },
+				{ "name": "Riesa" },
+				{ "name": "Dresden-Neustadt" },
+				{ "name": "Dresden Hbf", "showVia": true },
+				{ "name": "Bad Schandau" },
+				{ "name": "Decin hl.n." },
+				{ "name": "Usti nad Labem hl.n." },
+				{ "name": "Praha-Holesovice" },
+				{ "name": "Praha hl.n." }
+			],
+			"destination": "Praha hl.n.",
+			"platform": "10",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8503000"
+		},
+		{
+			"o": "80",
+			"initialDeparture": "2024-09-29T15:25:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:09:00.000Z",
+				"time": "2024-09-29T21:09:00.000Z",
+				"platform": "1",
+				"scheduledPlatform": "1",
+				"hidden": false,
+				"cancelled": false,
+				"delay": 0
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "6084542420969462186",
+			"rawId": "6084542420969462186-2409291725-13",
+			"mediumId": "6084542420969462186-2409291725",
+			"train": {
+				"name": "ICE 273",
+				"number": "273",
+				"line": "20",
+				"type": "ICE",
+				"admin": "80"
+			},
+			"messages": {
+				"delay": [],
+				"qos": [
+					{
+						"superseded": null,
+						"text": "Defekte fahrzeuggebundene Einstiegshilfe",
+						"timestamp": "2024-09-28T22:54:24.826Z",
+						"priority": null,
+						"value": 83
+					}
+				],
+				"him": [
+					{
+						"timestamp": "2024-09-29T12:14:08.865Z",
+						"head": "Information",
+						"text": "Aufzug in Göttingen auf Gleis 4/5 außer Betrieb.",
+						"source": "DB InfraGO AG Nord",
+						"raw": {
+							"hid": "2287052",
+							"act": true,
+							"head": "Information",
+							"lead": "Aufzug in Göttingen auf Gleis 4/5 außer Betrieb.",
+							"text": "Aufzug in Göttingen auf Gleis 4/5 außer Betrieb.",
+							"icoX": 9,
+							"prio": 90,
+							"fLocX": 265,
+							"tLocX": 265,
+							"prod": 11,
+							"lModDate": "20240929",
+							"lModTime": "141352",
+							"sDate": "20240929",
+							"sTime": "143000",
+							"eDate": "20241003",
+							"eTime": "235900",
+							"comp": "DB InfraGO AG Nord",
+							"cat": 0,
+							"pubChL": [
+								{
+									"name": "NVS",
+									"fDate": "20240929",
+									"fTime": "141200",
+									"tDate": "20241003",
+									"tTime": "235900"
+								},
+								{
+									"name": "NVS_INTERN",
+									"fDate": "20240929",
+									"fTime": "141200",
+									"tDate": "20241003",
+									"tTime": "235900"
+								},
+								{
+									"name": "TIMETABLE",
+									"fDate": "20240929",
+									"fTime": "141200",
+									"tDate": "20241003",
+									"tTime": "235900"
+								}
+							],
+							"affectedProducts": [],
+							"startTime": "2024-09-29T12:30:00.000Z",
+							"endTime": "2024-10-03T21:59:00.000Z",
+							"fromStopPlace": {
+								"evaNumber": "8000128",
+								"name": "Göttingen",
+								"coordinates": { "lng": 9.926257, "lat": 51.536758 },
+								"ril100": "HG"
+							},
+							"toStopPlace": {
+								"evaNumber": "8000128",
+								"name": "Göttingen",
+								"coordinates": { "lng": 9.926257, "lat": 51.536758 },
+								"ril100": "HG"
+							}
+						},
+						"stopPlaceInfo": "Göttingen"
+					},
+					{
+						"timestamp": "2024-09-29T01:52:38.831Z",
+						"head": "Information",
+						"text": "Keine fahrzeuggebundene Einstiegshilfe. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
+						"source": "FV_VLS Disposition",
+						"raw": {
+							"hid": "2286807",
+							"act": true,
+							"head": "Information",
+							"lead": "Keine fahrzeuggebundene Einstiegshilfe. Bei erforderlichen Umbuchungen an Mobilitätsservice-Zentrale wenden.",
+							"text": "Keine fahrzeuggebundene Einstiegshilfe. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
+							"icoX": 9,
+							"prio": 65,
+							"fLocX": 2,
+							"tLocX": 330,
+							"prod": 1,
+							"lModDate": "20240929",
+							"lModTime": "035224",
+							"sDate": "20240929",
+							"sTime": "051000",
+							"eDate": "20240929",
+							"eTime": "232500",
+							"comp": "FV_VLS Disposition",
+							"cat": 0,
+							"pubChL": [
+								{
+									"name": "NVS",
+									"fDate": "20240929",
+									"fTime": "034800",
+									"tDate": "20240930",
+									"tTime": "012500"
+								},
+								{
+									"name": "NVS_INTERN",
+									"fDate": "20240929",
+									"fTime": "034800",
+									"tDate": "20240930",
+									"tTime": "012500"
+								},
+								{
+									"name": "TIMETABLE",
+									"fDate": "20240929",
+									"fTime": "034800",
+									"tDate": "20240930",
+									"tTime": "012500"
+								}
+							],
+							"edgeRefL": [342],
+							"affectedProducts": [],
+							"startTime": "2024-09-29T03:10:00.000Z",
+							"endTime": "2024-09-29T21:25:00.000Z",
+							"fromStopPlace": {
+								"evaNumber": "8000105",
+								"name": "Frankfurt (Main) Hbf",
+								"coordinates": { "lng": 8.663003, "lat": 50.106817 },
+								"ril100": "FF"
+							},
+							"toStopPlace": {
+								"evaNumber": "8800004",
+								"name": "Bruxelles Midi",
+								"coordinates": { "lng": 4.335695, "lat": 50.835375 },
+								"ril100": "XBB"
+							}
+						}
+					}
+				]
+			},
+			"ref": null,
+			"cancelled": null,
+			"route": [
+				{ "name": "Berlin Hbf" },
+				{ "name": "Berlin-Spandau" },
+				{ "name": "Stendal Hbf" },
+				{ "name": "Wolfsburg Hbf" },
+				{ "name": "Braunschweig Hbf" },
+				{ "name": "Hildesheim Hbf" },
+				{ "name": "Göttingen" },
+				{ "name": "Kassel-Wilhelmshöhe" },
+				{ "name": "Fulda" },
+				{ "name": "Hanau Hbf" },
+				{ "name": "Frankfurt (Main) Hbf" },
+				{ "name": "Darmstadt Hbf" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "1",
+			"scheduledPlatform": "1",
+			"initialStopPlace": "8098160"
+		},
+		{
+			"o": "A6S8",
+			"initialDeparture": "2024-09-29T20:57:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:10:00.000Z",
+				"time": "2024-09-29T21:10:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T21:11:00.000Z",
+				"time": "2024-09-29T21:11:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Forbach (Schwarzw)",
+			"id": "6491501838923030854",
+			"rawId": "-6491501838923030854-2409292257-10",
+			"mediumId": "6491501838923030854-2409292257",
+			"train": {
+				"name": "S 8",
+				"number": "85679",
+				"line": "8",
+				"type": "S",
+				"admin": "A6S8"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Tullastraße/Alter Schlachthof, Karlsruhe" },
+				{ "name": "Gottesauer Platz/BGV, Karlsruhe" },
+				{ "name": "Durlacher Tor/KIT-Campus Süd  (U) , Karlsruhe" },
+				{ "name": "Kronenplatz  (U) , Karlsruhe" },
+				{ "name": "Marktplatz  (Pyramide U) , Karlsruhe" },
+				{ "name": "Ettlinger Tor/Staatstheater  (U) , Karlsruhe" },
+				{ "name": "Kongresszentrum  (U) , Karlsruhe" },
+				{ "name": "Augartenstraße, Karlsruhe" },
+				{ "name": "Poststraße, Karlsruhe" },
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": null,
+					"additional": null
+				},
+				{ "name": "Karlsruhe Albtalbahnhof", "showVia": true },
+				{ "name": "Forchheim (b Karlsruhe)", "showVia": true },
+				{ "name": "Durmersheim Nord", "showVia": true },
+				{ "name": "Durmersheim" },
+				{ "name": "Bietigheim (Baden)" },
+				{ "name": "Ötigheim" },
+				{ "name": "Rastatt" },
+				{ "name": "Rastatt Beinle" },
+				{ "name": "Kuppenheim" },
+				{ "name": "Bischweier" },
+				{ "name": "Bad Rotenfels Schloss" },
+				{ "name": "Bad Rotenfels Bf" },
+				{ "name": "Bad Rotenfels Weinbrennerstraße" },
+				{ "name": "Gaggenau Bf" },
+				{ "name": "Gaggenau Mercedes-Benz Werk" },
+				{ "name": "Ottenau" },
+				{ "name": "Hörden" },
+				{ "name": "Gernsbach Bf" },
+				{ "name": "Gernsbach Mitte" },
+				{ "name": "Obertsrot" },
+				{ "name": "Hilpertsau" },
+				{ "name": "Weisenbach" },
+				{ "name": "Au im Murgtal" },
+				{ "name": "Langenbrand" },
+				{ "name": "Gausbach" },
+				{ "name": "Forbach (Schwarzw)" }
+			],
+			"destination": "Forbach (Schwarzw)",
+			"platform": "",
+			"scheduledPlatform": ""
+		},
+		{
+			"o": "GARE",
+			"initialDeparture": "2024-09-29T21:12:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T21:12:00.000Z",
+				"time": "2024-09-29T21:12:00.000Z",
+				"platform": "9",
+				"scheduledPlatform": "9",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Stuttgart Hbf",
+			"id": "7142163727799764498",
+			"rawId": "7142163727799764498-2409292312-1",
+			"mediumId": "7142163727799764498-2409292312",
+			"train": {
+				"name": "RE 1",
+				"number": "19037",
+				"line": "1",
+				"type": "RE",
+				"admin": "GARE"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Wilferdingen-Singen", "showVia": true },
+				{ "name": "Pforzheim Hbf", "showVia": true },
+				{ "name": "Mühlacker" },
+				{ "name": "Vaihingen (Enz)" },
+				{ "name": "Bietigheim-Bissingen" },
+				{ "name": "Ludwigsburg" },
+				{ "name": "Stuttgart Hbf" }
+			],
+			"destination": "Stuttgart Hbf",
+			"platform": "9",
+			"scheduledPlatform": "9",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "801539",
+			"initialDeparture": "2024-09-29T19:14:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:13:00.000Z",
+				"time": "2024-09-29T21:13:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Karlsruhe Hbf",
+			"id": "3370650207830632329",
+			"rawId": "3370650207830632329-2409292114-33",
+			"mediumId": "3370650207830632329-2409292114",
+			"train": {
+				"name": "S 3",
+				"number": "38375",
+				"line": "3",
+				"type": "S",
+				"admin": "801539"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Germersheim" },
+				{ "name": "Lingenfeld" },
+				{ "name": "Heiligenstein (Pfalz)" },
+				{ "name": "Berghausen (Pfalz)" },
+				{ "name": "Speyer Hbf" },
+				{ "name": "Speyer Nord-West" },
+				{ "name": "Schifferstadt Süd" },
+				{ "name": "Schifferstadt" },
+				{ "name": "Limburgerhof" },
+				{ "name": "Ludwigshafen-Rheingönheim" },
+				{ "name": "Ludwigshafen-Mundenheim" },
+				{ "name": "Ludwigshafen (Rh) Hbf" },
+				{ "name": "Ludwigshafen (Rhein)  Mitte" },
+				{ "name": "Mannheim Hbf" },
+				{ "name": "Mannheim ARENA/Maimarkt" },
+				{ "name": "Mannheim-Seckenheim" },
+				{ "name": "Mannheim-Friedrichsfeld Süd" },
+				{ "name": "Heidelberg-Pfaffengrund/Wieblingen" },
+				{ "name": "Heidelberg Hbf" },
+				{ "name": "Heidelberg-Kirchheim/Rohrbach" },
+				{ "name": "St Ilgen-Sandhausen" },
+				{ "name": "Wiesloch-Walldorf" },
+				{ "name": "Rot-Malsch" },
+				{ "name": "Bad Schönborn-Kronau" },
+				{ "name": "Bad Schönborn Süd" },
+				{ "name": "Stettfeld-Weiher" },
+				{ "name": "Ubstadt-Weiher" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Untergrombach" },
+				{ "name": "Weingarten (Baden)" },
+				{ "name": "Karlsruhe-Durlach" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null }
+			],
+			"destination": "Karlsruhe Hbf",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8000376"
+		},
+		{
+			"o": "800571",
+			"initialDeparture": "2024-09-29T21:15:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T21:15:00.000Z",
+				"time": "2024-09-29T21:15:00.000Z",
+				"platform": "10",
+				"scheduledPlatform": "10",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Eppingen",
+			"id": "7570589155907579882",
+			"rawId": "-7570589155907579882-2409292315-1",
+			"mediumId": "7570589155907579882-2409292315",
+			"train": {
+				"name": "RE 45",
+				"number": "15867",
+				"line": "45",
+				"type": "RE",
+				"admin": "800571"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Jöhlingen West", "showVia": true },
+				{ "name": "Wössingen Ost", "showVia": true },
+				{ "name": "Bretten" },
+				{ "name": "Bretten Stadtmitte" },
+				{ "name": "Gölshausen" },
+				{ "name": "Oberderdingen-Flehingen" },
+				{ "name": "Zaisenhausen" },
+				{ "name": "Sulzfeld (Baden)" },
+				{ "name": "Eppingen" }
+			],
+			"destination": "Eppingen",
+			"platform": "10",
+			"scheduledPlatform": "10",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "A6S4",
+			"initialDeparture": "2024-09-29T21:15:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:16:00.000Z",
+				"time": "2024-09-29T21:16:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false,
+				"cancelled": true,
+				"delay": 0
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T21:17:00.000Z",
+				"time": "2024-09-29T21:17:00.000Z",
+				"platform": "",
+				"scheduledPlatform": "",
+				"hidden": false,
+				"cancelled": true,
+				"delay": 0
+			},
+			"productClass": "S",
+			"currentStopPlace": {
+				"name": "Karlsruhe Bahnhofsvorplatz",
+				"evaNumber": "8079041"
+			},
+			"scheduledDestination": "Eppingen",
+			"id": "7113663931471534874",
+			"rawId": "-7113663931471534874-2409292315-2",
+			"mediumId": "7113663931471534874-2409292315",
+			"train": {
+				"name": "S 4",
+				"number": "85469",
+				"line": "4",
+				"type": "S",
+				"admin": "A6S4"
+			},
+			"messages": {
+				"delay": [
+					{
+						"superseded": null,
+						"text": "Betriebsstabilisierung",
+						"timestamp": "2024-09-27T23:49:12.316Z",
+						"priority": null,
+						"value": 23
+					}
+				],
+				"qos": [],
+				"him": []
+			},
+			"ref": null,
+			"cancelled": true,
+			"route": [
+				{
+					"name": "Karlsruhe Albtalbahnhof",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Karlsruhe Bahnhofsvorplatz",
+					"cancelled": true,
+					"additional": null
+				},
+				{
+					"name": "Poststraße, Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Augartenstraße, Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Kongresszentrum  (U) , Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Ettlinger Tor/Staatstheater  (U) , Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Marktplatz  (Pyramide U) , Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Kronenplatz  (U) , Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Durlacher Tor/KIT-Campus Süd  (U) , Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Gottesauer Platz/BGV, Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Tullastraße/Alter Schlachthof, Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Weinweg, Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Durlach Untermühlstraße, Karlsruhe",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Karlsruhe-Durlach",
+					"additional": null,
+					"cancelled": true
+				},
+				{ "name": "Grötzingen", "additional": null, "cancelled": true },
+				{
+					"name": "Grötzingen Oberausstraße",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Berghausen Hummelberg",
+					"additional": null,
+					"cancelled": true
+				},
+				{ "name": "Jöhlingen West", "additional": null, "cancelled": true },
+				{ "name": "Jöhlingen", "additional": null, "cancelled": true },
+				{ "name": "Wössingen", "additional": null, "cancelled": true },
+				{ "name": "Wössingen Ost", "additional": null, "cancelled": true },
+				{ "name": "Dürrenbüchig", "additional": null, "cancelled": true },
+				{ "name": "Rinklingen", "additional": null, "cancelled": true },
+				{ "name": "Bretten", "additional": null, "cancelled": true },
+				{
+					"name": "Bretten Stadtmitte",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Bretten Wannenweg",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Bretten Schulzentrum",
+					"additional": null,
+					"cancelled": true
+				},
+				{
+					"name": "Bretten Kupferhälde",
+					"additional": null,
+					"cancelled": true
+				},
+				{ "name": "Gölshausen", "additional": null, "cancelled": true },
+				{
+					"name": "Gölshausen Industriegebiet",
+					"additional": null,
+					"cancelled": true
+				},
+				{ "name": "Bauerbach", "additional": null, "cancelled": true },
+				{
+					"name": "Oberderdingen-Flehingen",
+					"additional": null,
+					"cancelled": true
+				},
+				{ "name": "Flehingen", "additional": null, "cancelled": true },
+				{ "name": "Zaisenhausen", "additional": null, "cancelled": true },
+				{ "name": "Sulzfeld (Baden)", "additional": null, "cancelled": true },
+				{ "name": "Eppingen West", "additional": null, "cancelled": true },
+				{ "name": "Eppingen", "additional": null, "cancelled": true }
+			],
+			"destination": "Eppingen",
+			"platform": "",
+			"scheduledPlatform": "",
+			"initialStopPlace": "8079045"
+		},
+		{
+			"o": "800572",
+			"initialDeparture": "2024-09-29T21:18:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T21:18:00.000Z",
+				"time": "2024-09-29T21:18:00.000Z",
+				"platform": "5",
+				"scheduledPlatform": "5",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Mannheim Hbf",
+			"id": "7545033626301143346",
+			"rawId": "-7545033626301143346-2409292318-1",
+			"mediumId": "7545033626301143346-2409292318",
+			"train": {
+				"name": "RE 73",
+				"number": "26158",
+				"line": "73",
+				"type": "RE",
+				"admin": "800572"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Bruchsal", "showVia": true },
+				{ "name": "Bad Schönborn-Kronau" },
+				{ "name": "Wiesloch-Walldorf" },
+				{ "name": "Heidelberg Hbf", "showVia": true },
+				{ "name": "Mannheim Hbf" }
+			],
+			"destination": "Mannheim Hbf",
+			"platform": "5",
+			"scheduledPlatform": "5",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "800520",
+			"initialDeparture": "2024-09-29T21:18:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T21:18:00.000Z",
+				"time": "2024-09-29T21:18:00.000Z",
+				"platform": "101",
+				"scheduledPlatform": "101",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Neustadt (Weinstr) Hbf",
+			"id": "5531726969354388854",
+			"rawId": "-5531726969354388854-2409292318-1",
+			"mediumId": "5531726969354388854-2409292318",
+			"train": {
+				"name": "RE 6",
+				"number": "12046",
+				"line": "6",
+				"type": "RE",
+				"admin": "800520"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Wörth (Rhein)", "showVia": true },
+				{ "name": "Kandel", "showVia": true },
+				{ "name": "Winden (Pfalz)" },
+				{ "name": "Landau (Pfalz) Hbf", "showVia": true },
+				{ "name": "Knöringen-Essingen" },
+				{ "name": "Edesheim (Pfalz)" },
+				{ "name": "Edenkoben" },
+				{ "name": "Maikammer-Kirrweiler" },
+				{ "name": "Neustadt (Weinstr) Hbf" }
+			],
+			"destination": "Neustadt (Weinstr) Hbf",
+			"platform": "101",
+			"scheduledPlatform": "101",
+			"initialStopPlace": "8000191"
+		},
+		{
+			"o": "800571",
+			"initialDeparture": "2024-09-29T21:19:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T21:19:00.000Z",
+				"time": "2024-09-29T21:19:00.000Z",
+				"platform": "11",
+				"scheduledPlatform": "11",
+				"hidden": false
+			},
+			"productClass": "N",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Rastatt",
+			"id": "1573778632600691382",
+			"rawId": "-1573778632600691382-2409292319-1",
+			"mediumId": "1573778632600691382-2409292319",
+			"train": {
+				"name": "RB 44",
+				"number": "15926",
+				"line": "44",
+				"type": "RB",
+				"admin": "800571"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Ettlingen West", "showVia": true },
+				{ "name": "Bruchhausen (b Ettlingen)", "showVia": true },
+				{ "name": "Malsch", "showVia": true },
+				{ "name": "Malsch Süd" },
+				{ "name": "Muggensturm Badesee" },
+				{ "name": "Muggensturm" },
+				{ "name": "Rastatt" }
+			],
+			"destination": "Rastatt",
+			"platform": "11",
+			"scheduledPlatform": "11",
+			"initialStopPlace": "8000191"
+		}
+	],
+	"lookbehind": [],
+	"wings": {
+		"2642423590997661561-2409292228": {
+			"o": "A6S31",
+			"initialDeparture": "2024-09-29T20:28:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:28:00.000Z",
+				"time": "2024-09-29T20:28:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Odenheim Bf",
+			"id": "2642423590997661561",
+			"rawId": "2642423590997661561-2409292228-1",
+			"mediumId": "2642423590997661561-2409292228",
+			"train": {
+				"name": "S 31",
+				"number": "85266",
+				"line": "31",
+				"type": "S",
+				"admin": "A6S31"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Weingarten (Baden)", "showVia": true },
+				{ "name": "Untergrombach", "showVia": true },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Ubstadt Uhlandstr." },
+				{ "name": "Stettfeld (Baden)" },
+				{ "name": "Zeutern Sportplatz" },
+				{ "name": "Zeutern Bf" },
+				{ "name": "Zeutern Ost" },
+				{ "name": "Odenheim West" },
+				{ "name": "Odenheim Bf" }
+			],
+			"destination": "Odenheim Bf",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8000191"
+		},
+		"7979293782499504079-2409292243": {
+			"o": "A6S31",
+			"initialDeparture": "2024-09-29T20:43:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T20:43:00.000Z",
+				"time": "2024-09-29T20:43:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Odenheim Bf",
+			"id": "7979293782499504079",
+			"rawId": "7979293782499504079-2409292243-1",
+			"mediumId": "7979293782499504079-2409292243",
+			"train": {
+				"name": "S 31",
+				"number": "85268",
+				"line": "31",
+				"type": "S",
+				"admin": "A6S31"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Weingarten (Baden)", "showVia": true },
+				{ "name": "Untergrombach", "showVia": true },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Ubstadt Uhlandstr." },
+				{ "name": "Stettfeld (Baden)" },
+				{ "name": "Zeutern Sportplatz" },
+				{ "name": "Zeutern Bf" },
+				{ "name": "Zeutern Ost" },
+				{ "name": "Odenheim West" },
+				{ "name": "Odenheim Bf" }
+			],
+			"destination": "Odenheim Bf",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8000191"
+		},
+		"4753870957390372842-2409291936": {
+			"o": "NZ",
+			"initialDeparture": "2024-09-29T17:36:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:36:00.000Z",
+				"time": "2024-09-29T21:36:00.000Z",
+				"platform": "3",
+				"scheduledPlatform": "3",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T23:21:00.000Z",
+				"time": "2024-09-29T23:21:00.000Z",
+				"platform": "3",
+				"scheduledPlatform": "3",
+				"hidden": false
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Amsterdam Centraal",
+			"id": "4753870957390372842",
+			"rawId": "4753870957390372842-2409291936-12",
+			"mediumId": "4753870957390372842-2409291936",
+			"train": {
+				"name": "IC 60402",
+				"number": "60402",
+				"type": "IC",
+				"admin": "NZ"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Baden (CH)" },
+				{ "name": "Brugg AG" },
+				{ "name": "Frick" },
+				{ "name": "Stein-Säckingen" },
+				{ "name": "Rheinfelden (CH)" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Baden-Baden" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Frankfurt (Main) Hbf", "showVia": true },
+				{ "name": "Koblenz Hbf", "showVia": true },
+				{ "name": "Köln Messe/Deutz Gl.11-12" },
+				{ "name": "Düsseldorf Hbf", "showVia": true },
+				{ "name": "Duisburg Hbf" },
+				{ "name": "Arnhem Centraal" },
+				{ "name": "Utrecht Centraal" },
+				{ "name": "Amsterdam Centraal" }
+			],
+			"destination": "Amsterdam Centraal",
+			"platform": "3",
+			"scheduledPlatform": "3",
+			"initialStopPlace": "8503000"
+		},
+		"5591597380485360579-2409291925": {
+			"o": "NZ",
+			"initialDeparture": "2024-09-29T17:25:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:18:00.000Z",
+				"time": "2024-09-29T21:18:00.000Z",
+				"platform": "8",
+				"scheduledPlatform": "8",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T22:19:00.000Z",
+				"time": "2024-09-29T22:19:00.000Z",
+				"platform": "8",
+				"scheduledPlatform": "8",
+				"hidden": false
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Hamburg-Altona",
+			"id": "5591597380485360579",
+			"rawId": "-5591597380485360579-2409291925-7",
+			"mediumId": "5591597380485360579-2409291925",
+			"train": {
+				"name": "IC 60470",
+				"number": "60470",
+				"type": "IC",
+				"admin": "NZ"
+			},
+			"messages": {
+				"delay": [],
+				"qos": [],
+				"him": [
+					{
+						"timestamp": "2024-09-29T12:14:08.865Z",
+						"head": "Information",
+						"text": "Aufzug in Göttingen auf Gleis 4/5 außer Betrieb.",
+						"source": "DB InfraGO AG Nord",
+						"raw": {
+							"hid": "2287052",
+							"act": true,
+							"head": "Information",
+							"lead": "Aufzug in Göttingen auf Gleis 4/5 außer Betrieb.",
+							"text": "Aufzug in Göttingen auf Gleis 4/5 außer Betrieb.",
+							"icoX": 9,
+							"prio": 90,
+							"fLocX": 265,
+							"tLocX": 265,
+							"prod": 11,
+							"lModDate": "20240929",
+							"lModTime": "141352",
+							"sDate": "20240929",
+							"sTime": "143000",
+							"eDate": "20241003",
+							"eTime": "235900",
+							"comp": "DB InfraGO AG Nord",
+							"cat": 0,
+							"pubChL": [
+								{
+									"name": "NVS",
+									"fDate": "20240929",
+									"fTime": "141200",
+									"tDate": "20241003",
+									"tTime": "235900"
+								},
+								{
+									"name": "NVS_INTERN",
+									"fDate": "20240929",
+									"fTime": "141200",
+									"tDate": "20241003",
+									"tTime": "235900"
+								},
+								{
+									"name": "TIMETABLE",
+									"fDate": "20240929",
+									"fTime": "141200",
+									"tDate": "20241003",
+									"tTime": "235900"
+								}
+							],
+							"affectedProducts": [],
+							"startTime": "2024-09-29T12:30:00.000Z",
+							"endTime": "2024-10-03T21:59:00.000Z",
+							"fromStopPlace": {
+								"evaNumber": "8000128",
+								"name": "Göttingen",
+								"coordinates": { "lng": 9.926257, "lat": 51.536758 },
+								"ril100": "HG"
+							},
+							"toStopPlace": {
+								"evaNumber": "8000128",
+								"name": "Göttingen",
+								"coordinates": { "lng": 9.926257, "lat": 51.536758 },
+								"ril100": "HG"
+							}
+						},
+						"stopPlaceInfo": "Göttingen"
+					},
+					{
+						"timestamp": "2024-09-28T21:16:12.598Z",
+						"head": "Information",
+						"text": "Aufzug in Nienburg(Weser) Gleis 3/4 außer Betrieb.",
+						"source": "DB InfraGO AG Nord",
+						"raw": {
+							"hid": "2284618",
+							"act": true,
+							"head": "Information",
+							"lead": "Aufzug in Nienburg(Weser) Gleis 3/4 außer Betrieb.",
+							"text": "Aufzug in Nienburg(Weser) Gleis 3/4 außer Betrieb.",
+							"icoX": 9,
+							"prio": 90,
+							"fLocX": 311,
+							"tLocX": 311,
+							"prod": 27,
+							"lModDate": "20240928",
+							"lModTime": "063842",
+							"sDate": "20240927",
+							"sTime": "000000",
+							"eDate": "20241010",
+							"eTime": "235900",
+							"comp": "DB InfraGO AG Nord",
+							"cat": 0,
+							"pubChL": [
+								{
+									"name": "NVS",
+									"fDate": "20240928",
+									"fTime": "063800",
+									"tDate": "20241010",
+									"tTime": "235900"
+								},
+								{
+									"name": "NVS_INTERN",
+									"fDate": "20240928",
+									"fTime": "063800",
+									"tDate": "20241010",
+									"tTime": "235900"
+								},
+								{
+									"name": "TIMETABLE",
+									"fDate": "20240928",
+									"fTime": "063800",
+									"tDate": "20241010",
+									"tTime": "235900"
+								}
+							],
+							"affectedProducts": [],
+							"startTime": "2024-09-26T22:00:00.000Z",
+							"endTime": "2024-10-10T21:59:00.000Z",
+							"fromStopPlace": {
+								"evaNumber": "8000279",
+								"name": "Nienburg (Weser)",
+								"coordinates": { "lng": 9.217692, "lat": 52.645371 }
+							},
+							"toStopPlace": {
+								"evaNumber": "8000279",
+								"name": "Nienburg (Weser)",
+								"coordinates": { "lng": 9.217692, "lat": 52.645371 }
+							}
+						},
+						"stopPlaceInfo": "Nienburg (Weser)"
+					}
+				]
+			},
+			"ref": null,
+			"cancelled": null,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Baden-Baden" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Bruchsal", "showVia": true },
+				{ "name": "Heidelberg Hbf", "showVia": true },
+				{ "name": "Darmstadt Hbf", "showVia": true },
+				{ "name": "Frankfurt (Main) Süd" },
+				{ "name": "Hanau Hbf" },
+				{ "name": "Göttingen" },
+				{ "name": "Hannover Hbf" },
+				{ "name": "Nienburg (Weser)" },
+				{ "name": "Verden (Aller)" },
+				{ "name": "Bremen Hbf" },
+				{ "name": "Hamburg-Harburg" },
+				{ "name": "Hamburg Hbf" },
+				{ "name": "Hamburg Dammtor" },
+				{ "name": "Hamburg-Altona" }
+			],
+			"destination": "Hamburg-Altona",
+			"platform": "8",
+			"scheduledPlatform": "8",
+			"initialStopPlace": "8503000"
+		},
+		"2494453527783146128-2409291959": {
+			"o": "NZ",
+			"initialDeparture": "2024-09-29T17:59:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:05:00.000Z",
+				"time": "2024-09-29T21:05:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T21:07:00.000Z",
+				"time": "2024-09-29T21:07:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Berlin Hbf",
+			"id": "2494453527783146128",
+			"rawId": "-2494453527783146128-2409291959-6",
+			"mediumId": "2494453527783146128-2409291959",
+			"train": {
+				"name": "IC 60409",
+				"number": "60409",
+				"type": "IC",
+				"admin": "NZ"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Darmstadt Hbf", "showVia": true },
+				{ "name": "Frankfurt (Main) Süd" },
+				{ "name": "Fulda" },
+				{ "name": "Leipzig Hbf", "showVia": true },
+				{ "name": "Bitterfeld" },
+				{ "name": "Lutherstadt Wittenberg Hbf", "showVia": true },
+				{ "name": "Berlin Hbf" }
+			],
+			"destination": "Berlin Hbf",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8503000"
+		},
+		"1961181705396261168-2409291959": {
+			"o": "81",
+			"initialDeparture": "2024-09-29T17:59:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:05:00.000Z",
+				"time": "2024-09-29T21:05:00.000Z",
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": true
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T21:07:00.000Z",
+				"time": "2024-09-29T21:07:00.000Z",
+				"platform": "10",
+				"scheduledPlatform": "6",
+				"hidden": false,
+				"cancelled": false,
+				"delay": 0
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Praha hl.n.",
+			"id": "1961181705396261168",
+			"rawId": "1961181705396261168-2409291959-6",
+			"mediumId": "1961181705396261168-2409291959",
+			"train": {
+				"name": "EN 40459",
+				"number": "40459",
+				"type": "EN",
+				"admin": "81"
+			},
+			"messages": { "delay": [], "qos": [], "him": [] },
+			"ref": null,
+			"cancelled": false,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Karlsruhe Hbf", "cancelled": false, "additional": null },
+				{ "name": "Darmstadt Hbf", "showVia": true },
+				{ "name": "Frankfurt (Main) Süd" },
+				{ "name": "Fulda" },
+				{ "name": "Leipzig Hbf", "showVia": true },
+				{ "name": "Riesa" },
+				{ "name": "Dresden-Neustadt" },
+				{ "name": "Dresden Hbf", "showVia": true },
+				{ "name": "Bad Schandau" },
+				{ "name": "Decin hl.n." },
+				{ "name": "Usti nad Labem hl.n." },
+				{ "name": "Praha-Holesovice" },
+				{ "name": "Praha hl.n." }
+			],
+			"destination": "Praha hl.n.",
+			"platform": "10",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8503000"
+		},
+		"7016804452829305661-2409291959": {
+			"o": "81",
+			"initialDeparture": "2024-09-29T17:59:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-29T21:05:00.000Z",
+				"time": "2024-09-29T21:05:00.000Z",
+				"wingIds": ["2494453527783146128-2409291959"],
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": true
+			},
+			"departure": {
+				"scheduledTime": "2024-09-29T21:07:00.000Z",
+				"time": "2024-09-29T21:07:00.000Z",
+				"wingIds": ["2494453527783146128-2409291959"],
+				"platform": "10",
+				"scheduledPlatform": "6",
+				"hidden": false,
+				"cancelled": false,
+				"delay": 0
+			},
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Berlin Hbf",
+			"id": "7016804452829305661",
+			"rawId": "7016804452829305661-2409291959-6",
+			"mediumId": "7016804452829305661-2409291959",
+			"train": {
+				"name": "NJ 409",
+				"number": "409",
+				"type": "NJ",
+				"admin": "81"
+			},
+			"messages": { "delay": [], "qos": [], "him": [] },
+			"ref": null,
+			"cancelled": false,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Karlsruhe Hbf", "cancelled": false, "additional": null },
+				{ "name": "Darmstadt Hbf", "showVia": true },
+				{ "name": "Frankfurt (Main) Süd" },
+				{ "name": "Fulda" },
+				{ "name": "Leipzig Hbf", "showVia": true },
+				{ "name": "Bitterfeld" },
+				{ "name": "Lutherstadt Wittenberg Hbf", "showVia": true },
+				{ "name": "Berlin Hbf" }
+			],
+			"destination": "Berlin Hbf",
+			"platform": "10",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8503000"
+		},
+		"4125516451080910602-2409292128": {
+			"o": "A6S31",
+			"initialDeparture": "2024-09-29T19:28:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T19:28:00.000Z",
+				"time": "2024-09-29T19:28:00.000Z",
+				"platform": "9",
+				"scheduledPlatform": "9",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Odenheim Bf",
+			"id": "4125516451080910602",
+			"rawId": "4125516451080910602-2409292128-1",
+			"mediumId": "4125516451080910602-2409292128",
+			"train": {
+				"name": "S 31",
+				"number": "85262",
+				"line": "31",
+				"type": "S",
+				"admin": "A6S31"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Weingarten (Baden)", "showVia": true },
+				{ "name": "Untergrombach", "showVia": true },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Ubstadt Uhlandstr." },
+				{ "name": "Stettfeld (Baden)" },
+				{ "name": "Zeutern Sportplatz" },
+				{ "name": "Zeutern Bf" },
+				{ "name": "Zeutern Ost" },
+				{ "name": "Odenheim West" },
+				{ "name": "Odenheim Bf" }
+			],
+			"destination": "Odenheim Bf",
+			"platform": "9",
+			"scheduledPlatform": "9",
+			"initialStopPlace": "8000191"
+		},
+		"3537308299759201695-2409292143": {
+			"o": "A6S31",
+			"initialDeparture": "2024-09-29T19:43:00.000Z",
+			"departure": {
+				"scheduledTime": "2024-09-29T19:43:00.000Z",
+				"time": "2024-09-29T19:43:00.000Z",
+				"platform": "8",
+				"scheduledPlatform": "8",
+				"hidden": false
+			},
+			"productClass": "S",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Odenheim Bf",
+			"id": "3537308299759201695",
+			"rawId": "-3537308299759201695-2409292143-1",
+			"mediumId": "3537308299759201695-2409292143",
+			"train": {
+				"name": "S 31",
+				"number": "85264",
+				"line": "31",
+				"type": "S",
+				"admin": "A6S31"
+			},
+			"messages": { "qos": [], "delay": [], "him": [] },
+			"cancelled": null,
+			"route": [
+				{ "name": "Karlsruhe Hbf", "cancelled": null, "additional": null },
+				{ "name": "Karlsruhe-Durlach", "showVia": true },
+				{ "name": "Weingarten (Baden)", "showVia": true },
+				{ "name": "Untergrombach", "showVia": true },
+				{ "name": "Bruchsal Bildungszentrum" },
+				{ "name": "Bruchsal" },
+				{ "name": "Bruchsal Schloßgarten" },
+				{ "name": "Bruchsal Stegwiesen" },
+				{ "name": "Ubstadt Ort" },
+				{ "name": "Ubstadt Uhlandstr." },
+				{ "name": "Stettfeld (Baden)" },
+				{ "name": "Zeutern Sportplatz" },
+				{ "name": "Zeutern Bf" },
+				{ "name": "Zeutern Ost" },
+				{ "name": "Odenheim West" },
+				{ "name": "Odenheim Bf" }
+			],
+			"destination": "Odenheim Bf",
+			"platform": "8",
+			"scheduledPlatform": "8",
+			"initialStopPlace": "8000191"
+		},
+		"1961181705396261168-2409281959": {
+			"o": "81",
+			"initialDeparture": "2024-09-28T17:59:00.000Z",
+			"arrival": {
+				"scheduledTime": "2024-09-28T21:05:00.000Z",
+				"time": "2024-09-28T21:30:00.000Z",
+				"wingIds": null,
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": true,
+				"transition": null,
+				"cancelled": false,
+				"delay": 25
+			},
+			"departure": {
+				"scheduledTime": "2024-09-28T21:07:00.000Z",
+				"time": "2024-09-28T21:38:00.000Z",
+				"wingIds": null,
+				"platform": "6",
+				"scheduledPlatform": "6",
+				"hidden": false,
+				"transition": null,
+				"cancelled": false,
+				"delay": 31
+			},
+			"productClass": "F",
+			"currentStopPlace": { "name": "Karlsruhe Hbf", "evaNumber": "8000191" },
+			"scheduledDestination": "Praha hl.n.",
+			"id": "1961181705396261168",
+			"rawId": "1961181705396261168-2409281959-6",
+			"mediumId": "1961181705396261168-2409281959",
+			"substitute": null,
+			"train": {
+				"name": "EN 40459",
+				"number": "40459",
+				"line": null,
+				"type": "EN",
+				"admin": "81"
+			},
+			"additional": true,
+			"messages": {
+				"delay": [
+					{
+						"superseded": null,
+						"text": "Verspätung im Ausland",
+						"timestamp": "2024-09-28T19:43:25.147Z",
+						"priority": null,
+						"value": 24
+					}
+				],
+				"qos": [],
+				"him": []
+			},
+			"ref": null,
+			"cancelled": false,
+			"route": [
+				{ "name": "Zürich HB" },
+				{ "name": "Basel SBB" },
+				{ "name": "Basel Bad Bf" },
+				{ "name": "Freiburg (Breisgau)  Hbf" },
+				{ "name": "Offenburg" },
+				{ "name": "Karlsruhe Hbf", "cancelled": false, "additional": true },
+				{ "name": "Darmstadt Hbf", "showVia": true },
+				{ "name": "Frankfurt (Main) Süd" },
+				{ "name": "Fulda" },
+				{ "name": "Leipzig Hbf", "showVia": true },
+				{ "name": "Riesa" },
+				{ "name": "Dresden-Neustadt" },
+				{ "name": "Dresden Hbf", "showVia": true },
+				{ "name": "Bad Schandau" },
+				{ "name": "Decin hl.n." },
+				{ "name": "Usti nad Labem hl.n." },
+				{ "name": "Praha-Holesovice" },
+				{ "name": "Praha hl.n." }
+			],
+			"destination": "Praha hl.n.",
+			"platform": "6",
+			"scheduledPlatform": "6",
+			"initialStopPlace": "8503000"
+		}
+	},
+	"stopPlaces": ["8000191", "150089", "8079041", "8089390"],
+	"strike": 0
+}
