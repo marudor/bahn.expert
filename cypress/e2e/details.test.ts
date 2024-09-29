@@ -153,7 +153,7 @@ describe('Details', () => {
 			cy.findAllByTestId('umlauf').should('not.exist');
 		});
 
-		it('nextUmlauf', () => {
+		it('next Umlauf', () => {
 			cy.trpc.coachSequence
 				.sequence(
 					{

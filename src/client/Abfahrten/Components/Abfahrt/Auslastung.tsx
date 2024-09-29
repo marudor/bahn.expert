@@ -2,6 +2,7 @@ import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { AuslastungsDisplay } from '@/client/Common/Components/AuslastungsDisplay';
 import { Loading } from '@/client/Common/Components/Loading';
 import { trpc } from '@/client/RPC';
+import { isHeavyMetal } from '@/client/utilities';
 import { styled } from '@mui/material';
 import type { FC } from 'react';
 
@@ -36,8 +37,11 @@ export const Auslastung: FC = () => {
 		},
 	);
 
-	const trainNumber = Number.parseInt(abfahrt.train.number);
-	if (auslastungQuery.isLoading && trainNumber < 3000 && abfahrt.departure) {
+	if (
+		auslastungQuery.isFetching &&
+		abfahrt.departure &&
+		isHeavyMetal(abfahrt.train.transportType)
+	) {
 		return <Loading type={1} />;
 	}
 

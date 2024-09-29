@@ -5,6 +5,7 @@ import {
 	useCoachSequence,
 } from '@/client/Common/hooks/useCoachSequence';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
+import { isHeavyMetal } from '@/client/utilities';
 import { styled } from '@mui/material';
 import { useMemo } from 'react';
 import type { FC } from 'react';
@@ -51,6 +52,7 @@ interface Props {
 	administration?: string;
 	withLegend?: boolean;
 	loadHidden?: boolean;
+	transportType?: string;
 }
 
 const Source: FC<{
@@ -72,6 +74,7 @@ export const CoachSequence: FC<Props> = ({
 	trainCategory,
 	administration,
 	loadHidden,
+	transportType,
 }) => {
 	const { fahrzeugGruppe, showUIC, showCoachType } = useCommonConfig();
 	const trainNumberNumber = Number.parseInt(trainNumber);
@@ -127,7 +130,7 @@ export const CoachSequence: FC<Props> = ({
 
 	if (
 		sequence === null ||
-		(!sequence && (loadHidden || trainNumberNumber > 3000))
+		(!sequence && (loadHidden || !isHeavyMetal(transportType)))
 	) {
 		return null;
 	}

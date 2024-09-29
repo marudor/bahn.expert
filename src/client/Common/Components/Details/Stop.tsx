@@ -102,7 +102,6 @@ const Container = styled('div')<{
 		padding: '.1em .3em',
 		display: 'grid',
 		gridGap: '0 .3em',
-		gridTemplateRows: '1fr',
 		gridTemplateAreas: `"ar t ${samePlatform ? 'depP' : 'arrP'} con c" "dp ${
 			hasOccupancy ? 'o' : 't'
 		} depP con c" "tw tw tw tw tw" "m m m m m" "wr wr wr wr wr"`,

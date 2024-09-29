@@ -28,7 +28,12 @@ describe('Homepage', () => {
 
 	it('Favorite', () => {
 		cy.findByTestId('noFav').should('be.visible');
-		cy.mockFrankfurt();
+		cy.mockDepartures({
+			name: 'Frankfurt (Main) Hbf',
+			evaNumber: '8000105',
+			stopPlaceFixture: 'stopPlaceSearchFrankfurtHbf',
+			departureFixture: 'abfahrtenFrankfurtHbf',
+		});
 		cy.navigateToStation('Frankfurt (Main) Hbf');
 		cy.findByTestId('menu').click();
 		cy.findByTestId('toggleFav').click();

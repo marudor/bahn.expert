@@ -3,23 +3,10 @@ import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import { trpc } from '@/client/RPC';
 import type { MatchVehicleID } from '@/external/generated/risTransports';
 import { Stack } from '@mui/material';
-import { addHours, isWithinInterval, subHours } from 'date-fns';
 import { useMemo } from 'react';
 
 interface Props {
 	prevNext: MatchVehicleID[];
-}
-
-function isWithin20Hours(date?: Date): boolean {
-	if (!date) {
-		return false;
-	}
-	const start = subHours(new Date(), 20);
-	const end = addHours(new Date(), 20);
-	return isWithinInterval(date, {
-		start,
-		end,
-	});
 }
 
 const Umlauf: FCC<Props> = ({ children, prevNext }) => {
@@ -68,7 +55,6 @@ export const InjectUmlauf: FCC = ({ children }) => {
 		{
 			enabled: Boolean(
 				firstDepartureStop &&
-					isWithin20Hours(details?.departure.scheduledTime) &&
 					transportTypesWithUmlauf.has(details?.train.transportType),
 			),
 		},
@@ -76,6 +62,7 @@ export const InjectUmlauf: FCC = ({ children }) => {
 	const { data: prevNext } = trpc.coachSequence.umlauf.useQuery(
 		{
 			journeyId: details?.journeyId!,
+			initialDeparture: details?.departure.scheduledTime!,
 			vehicleIds:
 				firstSequence?.sequence?.groups
 					.filter((g) => g.number === details?.train.number)

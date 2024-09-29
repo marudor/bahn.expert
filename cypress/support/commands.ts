@@ -187,89 +187,67 @@ Cypress.Commands.add('closeModal', () => {
 	cy.get('.MuiBackdrop-root').should('not.exist');
 });
 
-function mockStopPlace({
-	lookbehind,
-	lookahead,
-	delay,
-	name,
-	fixture,
-	startTime,
-	id,
-}: {
+export interface MockStopPlaceOptions {
 	lookbehind: number;
 	lookahead: number;
 	delay: number;
 	name: string;
-	fixture: string;
+	stopPlaceFixture: string;
+	departureFixture: string;
 	startTime?: Date;
 	id: string;
-}) {
-	cy.trpc.iris.abfahrten(
-		{
-			evaNumber: id,
-			lookahead,
-			lookbehind,
-			startTime,
-		},
-		{
-			delay,
-			fixture: `abfahrten${fixture}`,
-		},
-	);
-	cy.trpc.stopPlace.byName(
-		{
-			searchTerm: name,
-		},
-		{
-			fixture: `stopPlaceSearch${fixture}`,
-		},
-	);
 }
 
 Cypress.Commands.add(
-	'mockFrankfurt',
-	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
-		mockStopPlace({
-			lookahead,
-			lookbehind,
-			startTime,
-			delay,
-			name: 'Frankfurt (Main) Hbf',
-			id: '8000105',
-			fixture: 'FrankfurtHbf',
-		});
+	'mockDepartures',
+	({
+		lookahead = 150,
+		lookbehind = 10,
+		departureFixture,
+		stopPlaceFixture,
+		evaNumber,
+		name,
+		delay = 200,
+		startTime,
+	}) => {
+		cy.trpc.iris.abfahrten(
+			{
+				evaNumber,
+				lookahead,
+				lookbehind,
+				startTime,
+			},
+			{
+				delay,
+				fixture: departureFixture,
+			},
+		);
+		cy.trpc.stopPlace.byName(
+			{
+				searchTerm: name,
+			},
+			{
+				fixture: stopPlaceFixture,
+			},
+		);
 	},
 );
 
-Cypress.Commands.add(
-	'mockHamburg',
-	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
-		mockStopPlace({
-			lookahead,
-			lookbehind,
-			delay,
-			startTime,
-			name: 'Hamburg Hbf',
-			fixture: 'HamburgHbf',
-			id: '8002549',
-		});
-	},
-);
-
-Cypress.Commands.add(
-	'mockHannover',
-	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
-		mockStopPlace({
-			lookahead,
-			lookbehind,
-			delay,
-			startTime,
-			name: 'Hannover Hbf',
-			fixture: 'HannoverHbf',
-			id: '8000152',
-		});
-	},
-);
+// Cypress.Commands.add(
+// 	'mockHannover',
+// 	({ lookbehind = 10, lookahead = 150, delay = 0, startTime } = {}) => {
+// 		mockStopPlace({
+// 			lookahead,
+// 			lookbehind,
+// 			delay,
+// 			startTime,
+// 			name: 'Hannover Hbf',
+// 			stopPlaceFixture: 'stopPlaceSearchHannoverHbf',
+// 			departureFixture: 'abfahrtenHannoverHbf',
+// 			id: '8000152',
+// 		});
+// 	},
+// );
 
 Cypress.Commands.add('openSettings', () => {
 	cy.findByTestId('navToggle').click();

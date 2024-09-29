@@ -197,6 +197,10 @@ export const journeysRpcRouter = rpcAppRouter({
 				if (!productDetails) {
 					return hafasFallback();
 				}
+				let hafasResult: ParsedSearchOnTripResponse | undefined;
+				if (jid) {
+					hafasResult = await hafasFallback();
+				}
 				const possibleJourneys = await findJourneyV1OrV2(
 					productDetails.trainNumber,
 					productDetails.category,
@@ -214,12 +218,7 @@ export const journeysRpcRouter = rpcAppRouter({
 						? possibleJourneys[0].transport
 						: possibleJourneys[0].info.transportAtStart;
 
-				if (
-					(possibleJourneys.length > 1 ||
-						(productDetails.category &&
-							firstJourneyTransport.category !== productDetails.category)) &&
-					evaNumberAlongRoute
-				) {
+				if (evaNumberAlongRoute) {
 					const allJourneys = (
 						await Promise.all(
 							possibleJourneys.map((j) => journeyDetails(j.journeyID)),
@@ -235,6 +234,15 @@ export const journeysRpcRouter = rpcAppRouter({
 				}
 				if (!foundJourney) {
 					return hafasFallback();
+				}
+
+				if (hafasResult) {
+					if (
+						hafasResult.train.admin !== foundJourney.train.admin ||
+						hafasResult.train.type !== foundJourney.train.type
+					) {
+						return hafasResult;
+					}
 				}
 
 				return foundJourney;

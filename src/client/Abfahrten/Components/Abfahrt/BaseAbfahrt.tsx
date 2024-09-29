@@ -14,11 +14,6 @@ const LazyCoachSequence = loadable(
 	() => import('../../../Common/Components/CoachSequence/CoachSequence'),
 );
 
-interface AbfahrtContextValues {
-	abfahrt: Abfahrt;
-	detail: boolean;
-}
-
 const Container = styled(Paper)`
   line-height: 1.2;
   flex-shrink: 0;
@@ -35,11 +30,23 @@ const WingIndicator = styled('span')<{
 	{
 		variants: [
 			{
+				props: ({ wingStart, wingEnd }) => !wingStart && !wingEnd,
+				style: ({ theme }) => ({
+					top: '-.3em',
+					bottom: '-.3em',
+					'&:before': {
+						content: '" "',
+						borderLeft: `1em solid ${theme.vars.palette.text.primary}`,
+						position: 'absolute',
+					},
+				}),
+			},
+			{
 				props: { wingStart: true },
 				style: ({ theme }) => ({
 					top: 0,
-					bottom: '.3em',
-					'&::before': {
+					bottom: 0,
+					'&::after': {
 						content: '" "',
 						borderLeft: `1em solid ${theme.vars.palette.text.primary}`,
 						position: 'absolute',
@@ -50,7 +57,7 @@ const WingIndicator = styled('span')<{
 			{
 				props: { wingEnd: true },
 				style: ({ theme }) => ({
-					top: '-1em',
+					top: '-.5em',
 					bottom: '.3em',
 					'&::after': {
 						content: '" "',
@@ -116,7 +123,13 @@ export const BaseAbfahrt: FC<Props> = ({
 	return (
 		<AbfahrtProvider abfahrt={abfahrt} detail={detail}>
 			<Container square id={`${abfahrt.id}container`} onClick={handleClick}>
-				{wings && <WingIndicator wingEnd={wingEnd} wingStart={wingStart} />}
+				{wings && (
+					<WingIndicator
+						data-testid={`wingIndicator${abfahrt.train.type}${abfahrt.train.number}`}
+						wingEnd={wingEnd}
+						wingStart={wingStart}
+					/>
+				)}
 				<Entry
 					data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
 				>
@@ -127,6 +140,7 @@ export const BaseAbfahrt: FC<Props> = ({
 					</Stack>
 					{detail && abfahrt.departure && (
 						<LazyCoachSequence
+							transportType={abfahrt.train.transportType}
 							trainNumber={abfahrt.train.number}
 							trainCategory={abfahrt.train.type}
 							currentEvaNumber={abfahrt.currentStopPlace.evaNumber}

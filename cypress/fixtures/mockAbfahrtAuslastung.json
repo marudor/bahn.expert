@@ -34,7 +34,8 @@
 		"name": "IC 2326",
 		"number": "2326",
 		"trainCategory": "IC",
-		"type": "IC"
+		"type": "IC",
+		"transportType": "INTERCITY_TRAIN"
 	},
 	"messages": {
 		"delay": [
