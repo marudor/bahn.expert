@@ -17,12 +17,15 @@ export const StopList: FC = () => {
 	);
 
 	const onStopClick = useCallback((stop: RouteStop) => {
-		setCurrentSequenceStop(stop.station.evaNumber);
+		setCurrentSequenceStop(stop.departure?.id || stop.station.evaNumber);
 	}, []);
 
 	useEffect(() => {
 		if (details?.currentStop) {
-			setCurrentSequenceStop(details.currentStop.station.evaNumber);
+			setCurrentSequenceStop(
+				details.currentStop.departure?.id ||
+					details.currentStop.station.evaNumber,
+			);
 			const scrollDom = document.getElementById(
 				details.currentStop.station.evaNumber,
 			);
@@ -76,9 +79,10 @@ export const StopList: FC = () => {
 							}
 							train={details.train}
 							stop={s}
-							key={s.station.evaNumber}
+							key={`${s.station.evaNumber}${i}`}
 							showWR={
-								currentSequenceStop === s.station.evaNumber
+								currentSequenceStop === s.station.evaNumber ||
+								currentSequenceStop === s.departure?.id
 									? details.train
 									: undefined
 							}
