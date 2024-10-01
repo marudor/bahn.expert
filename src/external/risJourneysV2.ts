@@ -18,7 +18,7 @@ import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
-import { format, isBefore, isSameDay, subDays } from 'date-fns';
+import { format, isAfter, isBefore, isSameDay, subDays } from 'date-fns';
 
 const risJourneysV2Configuration = new RisJourneysConfiguration({
 	basePath: process.env.RIS_JOURNEYS_V2_URL,
@@ -169,6 +169,9 @@ async function fixJourneysFoundIfNeeded(
 	);
 }
 
+const newTimetableStarts = new Date('2024-12-15T02:00:00Z');
+const searchableFrom = new Date('2024-10-16T02:00:00Z');
+
 export async function findJourney(
 	trainNumber: number,
 	category?: string,
@@ -179,6 +182,12 @@ export async function findJourney(
 ): Promise<JourneyFindResult[]> {
 	try {
 		if (date) {
+			if (
+				isAfter(date, newTimetableStarts) &&
+				isBefore(new Date(), searchableFrom)
+			) {
+				return [];
+			}
 			const sevenDaysAgo = subDays(new Date(), 7);
 			const olderThan7Days = isBefore(date, sevenDaysAgo);
 			if (olderThan7Days) {
