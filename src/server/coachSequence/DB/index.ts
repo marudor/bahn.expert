@@ -40,7 +40,6 @@ export async function DBCoachSequence(
 			trainNumber,
 			stopEva,
 			date,
-			plannedStartDate,
 			administration,
 		);
 		// hacky way for administration skip

@@ -9,7 +9,6 @@ export async function getRisTransportsCoachSequence(
 	trainNumber: string,
 	evaNumber: string,
 	plannedDepartureDate: Date,
-	initialDepartureDate: Date,
 	administration?: string,
 ): Promise<CoachSequenceInformation | undefined | null> {
 	try {
@@ -18,7 +17,6 @@ export async function getRisTransportsCoachSequence(
 			Number.parseInt(trainNumber),
 			evaNumber,
 			plannedDepartureDate,
-			initialDepartureDate,
 			administration,
 		);
 

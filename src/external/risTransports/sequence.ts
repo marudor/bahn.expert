@@ -54,7 +54,6 @@ export async function getDepartureSequence(
 	trainNumber: number,
 	evaNumber: string,
 	plannedDepartureDate: Date,
-	initialDepartureDate: Date,
 	administration?: string,
 ): Promise<VehicleSequenceDeparture | undefined | null> {
 	if (!isWithin20Hours(plannedDepartureDate)) {
@@ -65,7 +64,7 @@ export async function getDepartureSequence(
 			return null;
 		}
 	}
-	const formattedDate = formatDate(initialDepartureDate);
+	const formattedDate = formatDate(plannedDepartureDate);
 	const cacheKey = `${trainNumber}-${formattedDate}-${trainCategory}-${evaNumber}`;
 	try {
 		const wasNotFound = await negativeHitCache.exists(cacheKey);
@@ -77,7 +76,7 @@ export async function getDepartureSequence(
 			category: trainCategory,
 			journeyNumber: trainNumber,
 			evaNumber,
-			date: format(initialDepartureDate, 'yyyy-MM-dd'),
+			date: format(plannedDepartureDate, 'yyyy-MM-dd'),
 			timeSchedule: formatISO(plannedDepartureDate),
 			includeAmenities: true,
 			includePosition: true,
