@@ -6,11 +6,9 @@ import type {
 	TransportDestinationRef,
 	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
-import type { MatchVehicleID } from '@/external/generated/risTransports';
 import { getJourneyDetails } from '@/external/risJourneysV2';
 import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import { Cache, CacheDatabase } from '@/server/cache';
 import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import type { CommonStopInfo } from '@/types/HAFAS';
@@ -23,10 +21,6 @@ import {
 	parseISO,
 	subHours,
 } from 'date-fns';
-
-const journeyForVehiclesCache = new Cache<MatchVehicleID[]>(
-	CacheDatabase.JourneysForVehicle,
-);
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
@@ -93,6 +87,7 @@ function newStopInfoIsAfter(stop: JourneyStop, event: JourneyEvent) {
 
 async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 	const stops: JourneyStop[] = [];
+	// debugger;
 	for (const e of events) {
 		const stopPlace = await getStopPlaceByEva(e.stopPlace.evaNumber);
 		const stopInfo = mapEventToCommonStopInfo(e);
@@ -103,7 +98,8 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 		);
 		let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
 
-		if (!stop || (stop.arrival && stop.departure)) {
+		const stopType = e.type === EventType.Arrival ? 'arrival' : 'departure';
+		if (!stop || stop[stopType]) {
 			stop = {
 				station: {
 					evaNumber: e.stopPlace.evaNumber,
@@ -118,7 +114,7 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 			stops.push(stop);
 		}
 
-		stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
+		stop[stopType] = stopInfo;
 	}
 
 	for (const stop of stops) {

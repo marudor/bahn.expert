@@ -1,3 +1,5 @@
+// Thanks to Spike for the inspiration for most of the "VehicleMap" Code
+
 import { useMediaQuery } from '@mui/material';
 import type { DrawFunction } from './UseCanvas';
 import useCanvas from './UseCanvas';

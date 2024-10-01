@@ -148,7 +148,8 @@ async function stopsFromEvents(
 		);
 		let stop = possibleStops.length ? possibleStops.at(-1) : undefined;
 
-		if (!stop || (stop.arrival && stop.departure)) {
+		const stopType = e.type === EventType.Arrival ? 'arrival' : 'departure';
+		if (!stop || stop[stopType]) {
 			stop = {
 				station: {
 					evaNumber: e.station.evaNumber,
@@ -162,7 +163,7 @@ async function stopsFromEvents(
 			stops.push(stop);
 		}
 
-		stop[e.type === EventType.Arrival ? 'arrival' : 'departure'] = stopInfo;
+		stop[stopType] = stopInfo;
 	}
 
 	const rl100Promise = Promise.all(

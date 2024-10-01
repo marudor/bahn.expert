@@ -269,7 +269,7 @@ export const Stop: FC<Props> = ({
 				<AllowEntry arrival={stop.arrival} departure={stop.departure} />
 			</Stack>
 			<CoachSequenceContainer>
-				{showWR?.number && depOrArrival && (
+				{showWR?.number && depOrArrival && !stop.cancelled && (
 					<CoachSequence
 						trainNumber={showWR.number}
 						trainCategory={showWR.type}
