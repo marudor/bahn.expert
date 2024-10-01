@@ -157,7 +157,6 @@ export const Stop: FC<Props> = ({
 			stop.auslastung,
 		[stop, additionalInformation],
 	);
-	const depOrArrival = stop.departure || stop.arrival;
 
 	const [platforms, showArrivalPlatform] = useMemo(() => {
 		const platforms = {
@@ -269,15 +268,15 @@ export const Stop: FC<Props> = ({
 				<AllowEntry arrival={stop.arrival} departure={stop.departure} />
 			</Stack>
 			<CoachSequenceContainer>
-				{showWR?.number && depOrArrival && !stop.cancelled && (
+				{showWR?.number && stop.departure && !stop.cancelled && (
 					<CoachSequence
 						trainNumber={showWR.number}
 						trainCategory={showWR.type}
 						currentEvaNumber={stop.station.evaNumber}
-						scheduledDeparture={depOrArrival.scheduledTime}
+						scheduledDeparture={stop.departure.scheduledTime}
 						initialDeparture={initialDepartureDate}
 						administration={train?.admin}
-						loadHidden={!depOrArrival?.reihung}
+						loadHidden={!stop.departure?.reihung}
 					/>
 				)}
 			</CoachSequenceContainer>
