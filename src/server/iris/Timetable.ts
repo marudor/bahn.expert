@@ -434,6 +434,7 @@ export class Timetable {
 			text: himMessage.text,
 			// short: himMessage.lead === himMessage.text ? undefined : himMessage.lead,
 			source: himMessage.comp,
+			endTime: himMessage.endTime,
 			// @ts-expect-error raw only in dev
 			raw: process.env.NODE_ENV === 'production' ? undefined : himMessage,
 		};

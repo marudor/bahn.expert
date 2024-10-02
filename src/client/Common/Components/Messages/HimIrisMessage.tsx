@@ -7,7 +7,7 @@ import {
 	Stack,
 	styled,
 } from '@mui/material';
-import { format, getDate } from 'date-fns';
+import { format, formatDate, getDate } from 'date-fns';
 import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 
@@ -30,6 +30,20 @@ const SmallSpan = styled('span')`
   font-size: 75%;
 `;
 
+interface ValidToProps {
+	endTime?: Date;
+}
+
+const ValidTo: FC<ValidToProps> = ({ endTime }) => {
+	if (!endTime) {
+		return null;
+	}
+
+	return (
+		<SmallSpan>Gültig bis: {formatDate(endTime, 'dd.MM.yyyy HH:mm')}</SmallSpan>
+	);
+};
+
 interface Props {
 	message: HimIrisMessageType;
 	today?: number;
@@ -49,6 +63,7 @@ export const HimIrisMessage: FC<Props> = ({
 	}, []);
 	const formattedDate =
 		message.timestamp &&
+		!message.endTime &&
 		format(
 			message.timestamp,
 			getDate(message.timestamp) === today ? 'HH:mm' : 'dd.MM HH:mm',
@@ -71,6 +86,7 @@ export const HimIrisMessage: FC<Props> = ({
 			<Dialog open={open} onClose={toggleOpen}>
 				<Stack component={DialogTitle}>
 					<span>{dateWithText}</span>
+					<ValidTo endTime={message.endTime} />
 					<SmallSpan>{message.stopPlaceInfo}</SmallSpan>
 				</Stack>
 				<DialogContent

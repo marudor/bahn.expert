@@ -105,6 +105,7 @@ export interface HimIrisMessage extends IrisMessage {
 	short?: string;
 	stopPlaceInfo?: string;
 	source?: string;
+	endTime?: Date;
 }
 
 export type Message = IrisMessage | HimIrisMessage;
