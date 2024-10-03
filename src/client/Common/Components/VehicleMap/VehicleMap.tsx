@@ -195,7 +195,7 @@ const VehicleContainer = styled('div')(({ theme }) => ({
 	display: 'flex',
 	flexFlow: 'column',
 	alignItems: 'center',
-	width: '85vw',
+	width: '80vw',
 	[theme.breakpoints.up('sm')]: {
 		alignItems: 'flex-start',
 	},

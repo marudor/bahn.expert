@@ -153,7 +153,7 @@ export class PoiComponent extends RenderComponent {
 				'50px DB Sans',
 				'black',
 				this.normalisationFactor,
-				-rotateDegrees,
+				rotateDegrees,
 			);
 		}
 

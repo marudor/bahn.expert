@@ -2,7 +2,6 @@ import RenderComponent from '@/client/Common/Components/VehicleMap/RenderCompone
 import {
 	drawMultiPolygon,
 	drawTextInBbox,
-	isCoordinatesWithinBbox,
 } from '@/client/Common/Components/VehicleMap/helpers/CanvasHelper';
 import type {
 	SeatFeature,
@@ -24,50 +23,6 @@ export class SeatComponent extends RenderComponent {
 
 	isDeck = (deck: 'UPPER' | 'LOWER' | 'DEFAULT') =>
 		this.isDeckBase(this.risMapsFeature as SeatFeature, deck);
-
-	onClick(
-		x: number,
-		y: number,
-		canvas: HTMLCanvasElement,
-		rotateDegrees: number,
-	): VehicleLayoutFeatureCollectionFeaturesInner | null {
-		const isInBbox = isCoordinatesWithinBbox(
-			this.risMapsFeature.bbox,
-			x,
-			y,
-			canvas,
-			this.normalisationFactor,
-			rotateDegrees,
-			this.isDoubleDeck,
-			this.isDeck,
-		);
-		if (isInBbox) {
-			return this.risMapsFeature;
-		}
-		return null;
-	}
-
-	onMouseMove(
-		x: number,
-		y: number,
-		canvas: HTMLCanvasElement,
-		rotateDegrees: number,
-	): VehicleLayoutFeatureCollectionFeaturesInner | null {
-		const isInBbox = isCoordinatesWithinBbox(
-			this.risMapsFeature.bbox,
-			x,
-			y,
-			canvas,
-			this.normalisationFactor,
-			rotateDegrees,
-			this.isDoubleDeck,
-			this.isDeck,
-		);
-		if (isInBbox) {
-			return this.risMapsFeature;
-		}
-		return null;
-	}
 
 	render(context: CanvasRenderingContext2D, rotateDegrees: number) {
 		context.save();
@@ -98,7 +53,7 @@ export class SeatComponent extends RenderComponent {
 				'bold 20px Roboto',
 				'black',
 				this.normalisationFactor,
-				-rotateDegrees,
+				rotateDegrees,
 			);
 		}
 
