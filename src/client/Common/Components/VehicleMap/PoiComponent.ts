@@ -150,7 +150,7 @@ export class PoiComponent extends RenderComponent {
 				context,
 				content,
 				this.risMapsFeature.bbox,
-				'50px DB Sans',
+				'50px Roboto',
 				'black',
 				this.normalisationFactor,
 				rotateDegrees,
