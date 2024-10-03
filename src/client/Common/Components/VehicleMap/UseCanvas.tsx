@@ -43,20 +43,14 @@ const useCanvas = (options: Options) => {
 
 		const render = () => {
 			frameCount++;
-			if (preDraw) {
-				preDraw(context, canvas);
-			}
+			preDraw?.(context, canvas);
 			draw(context, frameCount);
-			if (postDraw) {
-				postDraw(context);
-			}
-			animationFrameId = window.requestAnimationFrame(render);
+			postDraw?.(context);
 		};
 
 		render();
 
 		return () => {
-			window.cancelAnimationFrame(animationFrameId);
 			canvas.removeEventListener('click', innerClick);
 			canvas.removeEventListener('mousemove', innerMouseMove);
 			canvas.removeEventListener('mouseleave', innerMouseLeave);
