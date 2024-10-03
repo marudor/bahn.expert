@@ -107,7 +107,7 @@ export const Group: FC<Props> = ({
 			gruppe.baureihe,
 	);
 
-	const fahrzeuge = useMemo(() => {
+	const coaches = useMemo(() => {
 		const wrongWing =
 			originalTrainNumber !== gruppe.number &&
 			gruppe.coaches.some((f) => !f.closed);
@@ -139,7 +139,7 @@ export const Group: FC<Props> = ({
 
 	return (
 		<>
-			{fahrzeuge}
+			{coaches}
 			{extraInfoLine && (
 				<Stack
 					alignItems="center"
