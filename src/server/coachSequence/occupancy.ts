@@ -4,7 +4,9 @@ import { journeyDetails as fetchJourneyDetails } from '@/server/journeys/v2/jour
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import { AuslastungsValue, type RouteAuslastung } from '@/types/routing';
 
-function mapSingleOccupancy(occupancy?: string): AuslastungsValue | undefined {
+export function mapSingleOccupancy(
+	occupancy?: string,
+): AuslastungsValue | undefined {
 	switch (occupancy) {
 		case 'OVERCROWDED':
 			return AuslastungsValue.Ausgebucht;

@@ -9,6 +9,7 @@ import type {
 import { getJourneyDetails } from '@/external/risJourneysV2';
 import { fixRemovedData } from '@/server/coachSequence/DB/removedData';
 import { enrichCoachSequence } from '@/server/coachSequence/commonMapping';
+import { mapSingleOccupancy } from '@/server/coachSequence/occupancy';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import { logger } from '@/server/logger';
 import type {
@@ -172,6 +173,7 @@ function mapVehicle(
 		return undefined;
 	}
 	return {
+		occupancy: mapSingleOccupancy(vehicle.occupancy?.levelEconomyClass),
 		identificationNumber: vehicle.wagonIdentificationNumber?.toString(),
 		uic: vehicle.vehicleID,
 		type: vehicle.type.constructionType,
