@@ -8,9 +8,10 @@ export const connectionsRouter = rpcAppRouter({
 			z.object({
 				journeyId: z.string(),
 				arrivalId: z.string(),
+				evaNumber: z.string(),
 			}),
 		)
-		.query(async ({ input: { journeyId, arrivalId } }) => {
-			return getRisConnections(journeyId, arrivalId);
+		.query(async ({ input: { journeyId, arrivalId, evaNumber } }) => {
+			return getRisConnections(journeyId, arrivalId, evaNumber);
 		}),
 });

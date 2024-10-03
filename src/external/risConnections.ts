@@ -18,6 +18,7 @@ const risConnectionsConfiguration = new Configuration({
 
 const axiosWithTimeout = axios.create({
 	timeout: 10000,
+	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'ris-connections');
@@ -28,7 +29,11 @@ const connectionsClient = new ConnectionsApi(
 	axiosWithTimeout,
 );
 
-export async function getRisConnections(journeyID: string, arrivalID: string) {
+export async function getRisConnections(
+	journeyID: string,
+	arrivalID: string,
+	evaNumber: string,
+) {
 	const rawConnections = (
 		await connectionsClient.connectionsArrival({
 			journeyID,
@@ -49,6 +54,13 @@ export async function getRisConnections(journeyID: string, arrivalID: string) {
 
 	if (rawConnections.connections) {
 		for (const connection of rawConnections.connections) {
+			if (
+				(connection.platformHint === 'SAME_PLATFORM' ||
+					connection.platformHint === 'SAME_PHYSICAL_PLATFORM') &&
+				evaNumber !== connection.station.evaNumber
+			) {
+				connection.platformHint = 'DIFFERING_PLATFORM';
+			}
 			connection.transport.via = connection.transport.via
 				.sort((a, b) => a.displayPriority - b.displayPriority)
 				.slice(0, 3);

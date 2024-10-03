@@ -213,10 +213,6 @@ export const journeysRpcRouter = rpcAppRouter({
 					return hafasFallback();
 				}
 				let foundJourney: ParsedSearchOnTripResponse | undefined;
-				const firstJourneyTransport =
-					'transport' in possibleJourneys[0]
-						? possibleJourneys[0].transport
-						: possibleJourneys[0].info.transportAtStart;
 
 				if (evaNumberAlongRoute) {
 					const allJourneys = (

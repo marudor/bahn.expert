@@ -41,6 +41,7 @@ export const ConnectionDisplay: FC<Props> = ({
 		{
 			journeyId: journey.journeyId!,
 			arrivalId: stop.arrival.id!,
+			evaNumber: stop.station.evaNumber,
 		},
 		{
 			enabled: Boolean(open && journey.journeyId && stop.arrival.id),
