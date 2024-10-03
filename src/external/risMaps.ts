@@ -35,7 +35,8 @@ const cache = new Cache<VehicleLayoutFeatureCollection>(
 
 export async function getVehicleLayout(vehicleId: string) {
 	if (await cache.exists(vehicleId)) {
-		return await cache.get(vehicleId);
+		const r = await cache.get(vehicleId);
+		return r;
 	}
 	try {
 		const geoJson = (await mapsClient.byVehicleID({ vehicleID: vehicleId }))

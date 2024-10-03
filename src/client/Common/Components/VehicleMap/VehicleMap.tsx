@@ -20,7 +20,7 @@ import type {
 } from '@/external/generated/risMaps';
 import { useTheme } from '@mui/material';
 import { styled, useMediaQuery } from '@mui/system';
-import { type FC, useMemo } from 'react';
+import { type FC, useCallback, useMemo } from 'react';
 
 interface Props {
 	layout: VehicleLayoutFeatureCollection;
@@ -212,7 +212,7 @@ export const VehicleMap: FC<Props> = ({ layout, orientation }) => {
 			layout,
 			theme.vars.palette.text.primary,
 		);
-	}, [layout, theme]);
+	}, [layout, theme.vars.palette.text.primary]);
 
 	const vehicleWidth = bboxWidth(layout.bbox, NORMALISATION, SCALING);
 	const vehicleHeight = bboxHeight(layout.bbox, NORMALISATION, SCALING);
@@ -253,12 +253,17 @@ export const VehicleMap: FC<Props> = ({ layout, orientation }) => {
 	// 	}
 	// };
 
+	const draw = useCallback(
+		(ctx: CanvasRenderingContext2D | null) => {
+			drawVehicle(ctx, orientation, vehicleComponents, rotateDegrees);
+		},
+		[orientation, vehicleComponents, rotateDegrees],
+	);
+
 	return (
 		<VehicleContainer>
 			<Canvas
-				draw={(ctx) => {
-					drawVehicle(ctx, orientation, vehicleComponents, rotateDegrees);
-				}}
+				draw={draw}
 				width={canvasDimensions.width + 10}
 				height={canvasDimensions.height + 10}
 			/>

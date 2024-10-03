@@ -143,6 +143,7 @@ export const drawTextInBbox = (
 		bbox[1] * normalisationFactor + height / 2,
 	);
 	context.rotate((rotationDegrees * Math.PI) / 180);
+	context.scale(1, -1);
 	context.fillText(text, 0, 0);
 	context.restore();
 };

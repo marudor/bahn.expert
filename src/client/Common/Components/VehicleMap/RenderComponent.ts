@@ -1,4 +1,3 @@
-import { drawBbox } from '@/client/Common/Components/VehicleMap/helpers/CanvasHelper';
 import { getCentroid } from '@/client/Common/Components/VehicleMap/helpers/GeometryHelpers';
 import type {
 	AreaFeature,
@@ -10,7 +9,7 @@ import type {
 	ZoneFeature,
 } from '@/external/generated/risMaps';
 
-export class RenderComponent {
+export abstract class RenderComponent {
 	risMapsFeature: VehicleLayoutFeatureCollectionFeaturesInner;
 	normalisationFactor: number;
 	isDoubleDeck: boolean;
@@ -40,6 +39,7 @@ export class RenderComponent {
 
 	rotate(context: CanvasRenderingContext2D, rotateDegrees: number) {
 		context.rotate((rotateDegrees * Math.PI) / 180);
+		context.scale(1, -1);
 	}
 
 	isDeckBase(
@@ -104,19 +104,10 @@ export class RenderComponent {
 		return null;
 	}
 
-	render(context: CanvasRenderingContext2D, rotateDegrees: number) {
-		context.save();
-		this.rotate(context, rotateDegrees);
-		context.lineWidth = 0.25;
-		drawBbox(
-			context,
-			this.risMapsFeature.bbox,
-			this.normalisationFactor,
-			'yellow',
-			undefined,
-		);
-		context.restore();
-	}
+	abstract render(
+		context: CanvasRenderingContext2D,
+		rotateDegrees: number,
+	): void;
 }
 
 export default RenderComponent;
