@@ -21,6 +21,7 @@ import {
 	parseISO,
 	subHours,
 } from 'date-fns';
+import administrationNames from '../names.json';
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
@@ -261,7 +262,12 @@ export async function journeyDetails(
 
 	const operatorNames = [
 		...new Set(
-			journey.events.map((e) => e.transport.administration.operatorName),
+			journey.events.map(
+				(e) =>
+					// @ts-expect-error foo
+					administrationNames[e.transport.administration.administrationID] ||
+					e.transport.administration.operatorName,
+			),
 		),
 	].join(', ');
 
