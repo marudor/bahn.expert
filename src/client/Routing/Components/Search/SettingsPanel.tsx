@@ -1,3 +1,4 @@
+import { BC100Disclaimer } from '@/client/Routing/Components/Search/BC100Disclaimer';
 import { NetzcardDisclaimer } from '@/client/Routing/Components/Search/NetzcardDisclaimer';
 import {
 	useRoutingConfigActions,
@@ -59,6 +60,7 @@ const inputCss = css`
 export const SettingsPanel: FC = () => {
 	const settings = useRoutingSettings();
 	const [showNetzcardDisclaimer, setShowNetzcardDisclaimer] = useState(false);
+	const [showBC100Disclaimer, setShowBC100Disclaimer] = useState(false);
 	const { updateSettings } = useRoutingConfigActions();
 	const handleInputChange = useCallback(
 		(key: keyof RoutingSettings) => (e: ChangeEvent<HTMLInputElement>) =>
@@ -75,6 +77,14 @@ export const SettingsPanel: FC = () => {
 		(_: unknown, checked: boolean) => {
 			updateSettings('onlyNetzcard', checked);
 			setShowNetzcardDisclaimer(checked);
+		},
+		[updateSettings],
+	);
+
+	const handleBC100 = useCallback(
+		(_: unknown, checked: boolean) => {
+			updateSettings('onlyBC100', checked);
+			setShowBC100Disclaimer(checked);
 		},
 		[updateSettings],
 	);
@@ -105,10 +115,14 @@ export const SettingsPanel: FC = () => {
 	if (settings.onlyRegional) {
 		filterLabel = 'Nahverkehr';
 	}
+	if (settings.onlyBC100) {
+		filterLabel = 'BC100';
+	}
 
 	return (
 		<>
 			{showNetzcardDisclaimer && <NetzcardDisclaimer />}
+			{showBC100Disclaimer && <BC100Disclaimer />}
 			<StyledAccordion>
 				<StyledAccordionSummary
 					data-testid="routingSettingsPanel"
@@ -141,8 +155,10 @@ export const SettingsPanel: FC = () => {
 						control={
 							<TextField
 								css={inputCss}
-								inputProps={{
-									'data-testid': 'routingMaxChanges',
+								slotProps={{
+									htmlInput: {
+										'data-testid': 'routingMaxChanges',
+									},
 								}}
 								onChange={handleInputChange('maxChanges')}
 								value={settings.maxChanges}
@@ -157,7 +173,9 @@ export const SettingsPanel: FC = () => {
 						control={
 							<TextField
 								css={inputCss}
-								inputProps={{ step: 5, 'data-testid': 'routingTransferTime' }}
+								slotProps={{
+									htmlInput: { step: 5, 'data-testid': 'routingTransferTime' },
+								}}
 								onChange={handleInputChange('transferTime')}
 								value={settings.transferTime}
 								type="number"
@@ -209,6 +227,19 @@ export const SettingsPanel: FC = () => {
 							/>
 						}
 						label="Netzcard erlaubt"
+					/>
+
+					<FormLabel
+						labelPlacement="start"
+						control={
+							<Switch
+								css={inputCss}
+								onChange={handleBC100}
+								checked={settings.onlyBC100}
+								name="onlyBC100"
+							/>
+						}
+						label="BC100 erlaubt"
 					/>
 				</Stack>
 			</StyledAccordion>

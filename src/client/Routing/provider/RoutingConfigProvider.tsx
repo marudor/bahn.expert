@@ -22,6 +22,7 @@ export interface RoutingSettings {
 	transferTime: string;
 	onlyRegional: boolean;
 	onlyNetzcard: boolean;
+	onlyBC100: boolean;
 	hafasProfile?: AllowedHafasProfile.DB | AllowedHafasProfile.OEBB;
 }
 const routingConfigKeys = [
@@ -191,6 +192,7 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
 		transferTime: routingConfig.transferTime?.toString() ?? '0',
 		onlyRegional: routingConfig.onlyRegional ?? false,
 		onlyNetzcard: routingConfig.onlyNetzcard ?? false,
+		onlyBC100: routingConfig.onlyBC100 ?? false,
 		hafasProfile: routingConfig.hafasProfile ?? AllowedHafasProfile.DB,
 	};
 

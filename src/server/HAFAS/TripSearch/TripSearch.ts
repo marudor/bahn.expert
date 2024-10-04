@@ -22,6 +22,14 @@ const netzcardFilter: JourneyFilter[] = NetzcardBetreiber.map((betreiber) => ({
 	value: betreiber,
 }));
 
+const bc100Filter: JourneyFilter[] = [
+	{
+		mode: 'EXC',
+		type: 'ATTRJ',
+		value: 'DU',
+	},
+];
+
 const onlyRegionalFilter: JourneyFilter[] = [
 	{
 		value: '1016',
@@ -87,6 +95,7 @@ export function tripSearch(
 		ctxScr,
 		onlyRegional,
 		onlyNetzcard,
+		onlyBC100,
 		tarif,
 	}: TripSearchOptionsV3 | TripSearchOptionsV4,
 	profile?: AllowedHafasProfile,
@@ -124,6 +133,9 @@ export function tripSearch(
 	}
 	if (onlyNetzcard) {
 		journeyFilter.push(...netzcardFilter);
+	}
+	if (onlyBC100) {
+		journeyFilter.push(...bc100Filter);
 	}
 	const arrLoc = startDestinationMap(destination);
 	const depLoc = startDestinationMap(start);
