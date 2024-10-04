@@ -36,6 +36,8 @@ interface BaseTripSearchOptions extends SharedTripSearchOptions {
 	onlyRegional?: boolean;
 	// Experimental filter to only use stuff that Netzcard allows. Use at own risk!
 	onlyNetzcard?: boolean;
+	// Filters out Attribute "DU" - "DB Fahrsscheine gelten nicht"
+	onlyBC100?: boolean;
 	tarif?: TripSearchTarifRequest;
 }
 

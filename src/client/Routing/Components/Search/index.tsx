@@ -224,11 +224,14 @@ export const Search: FC = () => {
 							<DateTimePickerInput
 								{...props}
 								error={false}
-								inputProps={{
-									...props.inputProps,
-									'data-testid': 'routingDatePicker',
-									value: formattedDate,
-									required: false,
+								slotProps={{
+									...props.slotProps,
+									htmlInput: {
+										...props.inputProps,
+										'data-testid': 'routingDatePicker',
+										value: formattedDate,
+										required: false,
+									},
 								}}
 							/>
 						),
