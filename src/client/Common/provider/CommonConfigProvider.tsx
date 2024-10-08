@@ -73,7 +73,7 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
 		autoUpdate: commonConfigSanitize.autoUpdate(commmonConfig.autoUpdate),
 		showUIC: commmonConfig.showUIC ?? false,
 		fahrzeugGruppe: commmonConfig.fahrzeugGruppe ?? false,
-		showCoachType: commmonConfig.showCoachType ?? false,
+		showCoachType: commmonConfig.showCoachType ?? true,
 		hideTravelynx: commmonConfig.hideTravelynx ?? false,
 		lineAndNumber: commmonConfig.lineAndNumber ?? false,
 		lookahead: commmonConfig.lookahead ?? '150',
