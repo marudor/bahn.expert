@@ -2,14 +2,7 @@ import { SettingsModal } from '@/client/Common/Components/SettingsModal';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import { PolitikBanner } from '@/client/PolitikBanner';
-import {
-	AlarmOnOutlined,
-	Explore,
-	Info,
-	Search,
-	Settings,
-	Train,
-} from '@mui/icons-material';
+import { Info, Search, Settings } from '@mui/icons-material';
 import {
 	Drawer,
 	List,
@@ -71,30 +64,6 @@ export const Navigation: FC<Props> = ({ children }) => {
 				<Drawer open={open} onClose={toggleDrawer}>
 					<Headline>Bahn Experte</Headline>
 					<DrawerContent onClick={toggleDrawer}>
-						<Link to="/">
-							<ListItemButton>
-								<ListItemIcon>
-									<AlarmOnOutlined />
-								</ListItemIcon>
-								<ListItemText primary="Abfahrten" />
-							</ListItemButton>
-						</Link>
-						<Link to="/regional">
-							<ListItemButton data-testid="regional">
-								<ListItemIcon>
-									<AlarmOnOutlined />
-								</ListItemIcon>
-								<ListItemText primary="Nahverkehr Abfahrten" />
-							</ListItemButton>
-						</Link>
-						<Link to="/routing">
-							<ListItemButton>
-								<ListItemIcon>
-									<Explore />
-								</ListItemIcon>
-								<ListItemText primary="Routing" />
-							</ListItemButton>
-						</Link>
 						<Zugsuche>
 							{(toggle) => (
 								<ListItemButton onClick={toggle}>
@@ -105,14 +74,6 @@ export const Navigation: FC<Props> = ({ children }) => {
 								</ListItemButton>
 							)}
 						</Zugsuche>
-						<Link to="/trainRuns">
-							<ListItemButton>
-								<ListItemIcon>
-									<Train />
-								</ListItemIcon>
-								<ListItemText primary="Zugläufe" />
-							</ListItemButton>
-						</Link>
 						<ListItemButton data-testid="openSettings" onClick={openSettingsCb}>
 							<ListItemIcon>
 								<Settings />
