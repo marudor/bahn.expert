@@ -15,6 +15,7 @@ import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import { TRPCError } from '@trpc/server';
+import type { QueryProcedure } from '@trpc/server/unstable-core-do-not-import';
 import { isBefore, subDays } from 'date-fns';
 import { z } from 'zod';
 
@@ -78,6 +79,18 @@ function findJourneyV1OrV2(
 		administration,
 	);
 }
+
+export type JourneyRPCQuery = QueryProcedure<{
+	input: {
+		trainName: string;
+		evaNumberAlongRoute?: string;
+		initialDepartureDate?: Date;
+		journeyId?: string;
+		jid?: string;
+		administration?: string;
+	};
+	output: ParsedSearchOnTripResponse | undefined | null;
+}>;
 
 export const journeysRpcRouter = rpcAppRouter({
 	findByNumber: rpcProcedure
@@ -145,6 +158,12 @@ export const journeysRpcRouter = rpcAppRouter({
 			},
 		),
 	details: rpcProcedure
+		.meta({
+			openapi: {
+				method: 'GET',
+				path: '/api/hafas/v2/details/{trainName}',
+			},
+		})
 		.input(
 			z.object({
 				trainName: z.string(),
@@ -155,6 +174,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				administration: z.string().optional(),
 			}),
 		)
+		.output(z.any())
 		.query(
 			async ({
 				input: {
@@ -243,5 +263,5 @@ export const journeysRpcRouter = rpcAppRouter({
 
 				return foundJourney;
 			},
-		),
+		) as JourneyRPCQuery,
 });
