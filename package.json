@@ -130,7 +130,7 @@
 		"@trpc/server": "11.0.0-rc.490",
 		"axios": "^1.7.7",
 		"constate": "^3.3.2",
-		"cookie": "^0.6.0",
+		"cookie": "^1.0.1",
 		"core-js": "^3.38.1",
 		"date-fns": "^4.1.0",
 		"debounce-promise": "^3.1.2",
