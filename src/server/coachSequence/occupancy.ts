@@ -32,15 +32,17 @@ export async function getOccupancy(
 	journeyId: string,
 	providedJourneyDetails?: ParsedSearchOnTripResponse,
 ) {
-	const risTransportsOccupancy = await getJourneyOccupancy({
-		journeyId,
-	});
-	if (!risTransportsOccupancy?.departures?.length) {
-		return;
-	}
 	const journeyDetails =
 		providedJourneyDetails || (await fetchJourneyDetails(journeyId));
 	if (!journeyDetails) {
+		return;
+	}
+
+	const risTransportsOccupancy = await getJourneyOccupancy({
+		journeyId,
+		administration: journeyDetails.train.admin,
+	});
+	if (!risTransportsOccupancy?.departures?.length) {
 		return;
 	}
 

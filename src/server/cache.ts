@@ -110,7 +110,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.VRROccupancy]: 'PT60M',
 	[CacheDatabase.VehicleLayoutsMaps]: 'P1D',
 	[CacheDatabase.TransportsOccupancy]: 'P1D',
-	[CacheDatabase.JourneysForVehicle]: 'PT12H',
+	[CacheDatabase.JourneysForVehicle]: 'PT1H',
 };
 
 const activeRedisCaches = new Set<Redis>();
