@@ -14,9 +14,9 @@ patchedDependencies:
   cypress:
     hash: cv2r65pzj3ppp6otyb2cnlnlkq
     path: patches/cypress@13.13.1.patch
-  trpc-openapi@1.2.0:
-    hash: st4pqhogngqbjozkgbzamrzau4
-    path: patches/trpc-openapi@1.2.0.patch
+  trpc-openapi:
+    hash: kqkdkaj6j4mojmh3bj5xfps3v4
+    path: patches/trpc-openapi.patch
 
 importers:
 
@@ -168,7 +168,7 @@ importers:
         version: 1.2.2(@trpc/server@11.0.0-rc.490)(koa@2.15.3)
       trpc-openapi:
         specifier: ^1.2.0
-        version: 1.2.0(patch_hash=st4pqhogngqbjozkgbzamrzau4)(@trpc/server@11.0.0-rc.490)(zod@3.23.8)
+        version: 1.2.0(patch_hash=kqkdkaj6j4mojmh3bj5xfps3v4)(@trpc/server@11.0.0-rc.490)(zod@3.23.8)
       universal-cookie:
         specifier: ^7.2.0
         version: 7.2.0
@@ -11615,7 +11615,7 @@ snapshots:
       '@trpc/server': 11.0.0-rc.490
       koa: 2.15.3
 
-  trpc-openapi@1.2.0(patch_hash=st4pqhogngqbjozkgbzamrzau4)(@trpc/server@11.0.0-rc.490)(zod@3.23.8):
+  trpc-openapi@1.2.0(patch_hash=kqkdkaj6j4mojmh3bj5xfps3v4)(@trpc/server@11.0.0-rc.490)(zod@3.23.8):
     dependencies:
       '@trpc/server': 11.0.0-rc.490
       co-body: 6.2.0

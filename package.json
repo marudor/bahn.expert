@@ -181,7 +181,7 @@
 		"patchedDependencies": {
 			"@cypress/webpack-preprocessor@6.0.2": "patches/@cypress__webpack-preprocessor@6.0.2.patch",
 			"cypress": "patches/cypress@13.13.1.patch",
-			"trpc-openapi@1.2.0": "patches/trpc-openapi@1.2.0.patch"
+			"trpc-openapi": "patches/trpc-openapi.patch"
 		}
 	}
 }
