@@ -32,10 +32,6 @@ const Umlauf: FCC<Props> = ({ children, prevNext }) => {
 	);
 };
 
-const transportTypesWithUmlauf = new Set<string | undefined>([
-	'HIGH_SPEED_TRAIN',
-	'INTERCITY_TRAIN',
-]);
 export const InjectUmlauf: FCC = ({ children }) => {
 	const { details } = useDetails();
 	const firstDepartureStop = useMemo(
@@ -53,10 +49,7 @@ export const InjectUmlauf: FCC = ({ children }) => {
 			category: details?.train.type!,
 		},
 		{
-			enabled: Boolean(
-				firstDepartureStop &&
-					transportTypesWithUmlauf.has(details?.train.transportType),
-			),
+			enabled: Boolean(firstDepartureStop),
 		},
 	);
 	const { data: prevNext } = trpc.coachSequence.umlauf.useQuery(
