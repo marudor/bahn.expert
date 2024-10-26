@@ -3,7 +3,7 @@ describe('Details', () => {
 		cy.visit('/');
 	});
 	it('Can Render (with error)', () => {
-		cy.trpc.journeys.details(
+		cy.trpc.journey.details(
 			{
 				trainName: 'ICE70',
 			},
@@ -18,7 +18,7 @@ describe('Details', () => {
 	});
 
 	it('icon spins on reload', () => {
-		cy.trpc.journeys
+		cy.trpc.journey
 			.details(
 				{
 					trainName: 'S30665',
@@ -45,7 +45,7 @@ describe('Details', () => {
 	});
 
 	it('can render & header height correct', () => {
-		cy.trpc.journeys
+		cy.trpc.journey
 			.details(
 				{
 					trainName: 'S30665',
@@ -60,7 +60,7 @@ describe('Details', () => {
 	});
 
 	it('renders train line & number for regional stuff', () => {
-		cy.trpc.journeys
+		cy.trpc.journey
 			.details(
 				{
 					trainName: 'S30665',
@@ -77,7 +77,7 @@ describe('Details', () => {
 	});
 
 	it('uses journeyId if provided', () => {
-		cy.trpc.journeys
+		cy.trpc.journey
 			.details(
 				{
 					trainName: 'S30665',
@@ -94,7 +94,7 @@ describe('Details', () => {
 	});
 
 	it('goes to next & sets administration', () => {
-		cy.trpc.journeys
+		cy.trpc.journey
 			.details(
 				{
 					trainName: 'S30665',
@@ -114,7 +114,7 @@ describe('Details', () => {
 	});
 
 	it('goes to previous & shows arrows even if unknown', () => {
-		cy.trpc.journeys
+		cy.trpc.journey
 			.details(
 				{
 					trainName: 'S30665',
@@ -136,7 +136,7 @@ describe('Details', () => {
 
 	describe('umläufe', () => {
 		beforeEach(() => {
-			cy.trpc.journeys
+			cy.trpc.journey
 				.details(
 					{
 						trainName: 'ICE720',
@@ -154,7 +154,7 @@ describe('Details', () => {
 		});
 
 		it('next Umlauf', () => {
-			cy.trpc.coachSequence
+			cy.trpc.coachSequences
 				.sequence(
 					{
 						trainNumber: 720,
@@ -166,7 +166,7 @@ describe('Details', () => {
 					},
 				)
 				.as('firstSequence');
-			cy.trpc.coachSequence.umlauf(
+			cy.trpc.coachSequences.umlauf(
 				{
 					journeyId: '20240928-c25b8377-72f6-31b9-bc4c-e5fb374da779',
 				},

@@ -14,7 +14,7 @@ describe('Regional', () => {
 			},
 			{ fixture: 'regional/departurePostStrasse' },
 		);
-		cy.trpc.journeys.details(
+		cy.trpc.journey.details(
 			{
 				trainName: 'STR 1761',
 				evaNumberAlongRoute: '723870',

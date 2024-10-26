@@ -10,11 +10,11 @@ import { createKoaMiddleware } from 'trpc-koa-adapter';
 import { createOpenApiHttpHandler } from 'trpc-openapi';
 
 const mainRouter = rpcAppRouter({
-	coachSequence: coachSequenceRpcRouter,
+	coachSequences: coachSequenceRpcRouter,
 	stopPlace: stopPlaceRpcRouter,
 	iris: irisRpcRouter,
 	hafas: hafasRpcRouter,
-	journeys: journeysRpcRouter,
+	journey: journeysRpcRouter,
 	connections: connectionsRouter,
 });
 

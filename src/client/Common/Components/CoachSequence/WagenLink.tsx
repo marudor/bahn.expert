@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const WagenLink: FC<Props> = ({ fahrzeug }) => {
-	const { data: vehicleLayout } = trpc.coachSequence.vehicleLayout.useQuery(
+	const { data: vehicleLayout } = trpc.coachSequences.vehicleLayout.useQuery(
 		fahrzeug.uic!,
 		{
 			enabled: Boolean(fahrzeug.uic) && Boolean(fahrzeug.identificationNumber),

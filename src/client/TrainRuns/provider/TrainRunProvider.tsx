@@ -12,7 +12,7 @@ const useInnerTrainRuns = (_p: PropsWithChildren<unknown>) => {
 	const [baureihen, setBaureihen] = useState<AvailableBR[]>([]);
 	const [identifier, setIdentifier] = useState<AvailableIdentifierOnly[]>([]);
 
-	const { data: trainRuns } = trpc.coachSequence.trainRuns.useQuery(
+	const { data: trainRuns } = trpc.coachSequences.trainRuns.useQuery(
 		{
 			date,
 			baureihen,

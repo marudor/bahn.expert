@@ -30,7 +30,7 @@ const ClickableTrainLink: FC<{
 	number: string;
 	scheduledDeparture: Date;
 }> = ({ type, number, scheduledDeparture }) => {
-	const { data: journeys } = trpc.journeys.findByNumber.useQuery(
+	const { data: journeys } = trpc.journey.findByNumber.useQuery(
 		{
 			trainNumber: Number.parseInt(number),
 			initialDepartureDate: scheduledDeparture,
