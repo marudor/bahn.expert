@@ -1,6 +1,7 @@
 import { SettingsModal } from '@/client/Common/Components/SettingsModal';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
+import { Disruption } from '@/client/DisruptionBanner';
 import { PolitikBanner } from '@/client/PolitikBanner';
 import {
 	AlarmOnOutlined,
@@ -64,6 +65,7 @@ export const Navigation: FC<Props> = ({ children }) => {
 	return (
 		<>
 			<NoSsr>
+				<Disruption />
 				<PolitikBanner />
 			</NoSsr>
 			<SettingsModal />

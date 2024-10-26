@@ -1,5 +1,4 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import { Feedback } from '@/client/Feedback';
 import { Alert, Snackbar } from '@mui/material';
 import type { SnackbarOrigin } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -54,9 +53,12 @@ export const PolitikBanner: FC = () => {
 		[],
 	);
 
+	if (globalThis.DISRUPTION) {
+		return null;
+	}
+
 	return (
 		<>
-			{!initialOpen && <Feedback />}
 			<Snackbar
 				open={open}
 				onClick={setClose}

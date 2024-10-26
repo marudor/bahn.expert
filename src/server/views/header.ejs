@@ -48,6 +48,7 @@
 </head>
 <body>
   <script>
+    window.DISRUPTION="<%- disruption %>"
     var themeMode = localStorage.getItem('mui-mode');
     if (!themeMode || themeMode === 'system') {
         themeMode = 'dark';

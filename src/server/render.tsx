@@ -55,6 +55,7 @@ export default (ctx: Context): void => {
 		emotionCss: emotionStyleTags,
 		baseUrl: globalThis.BASE_URL,
 		rawBaseUrl: globalThis.RAW_BASE_URL,
+		disruption: globalThis.DISRUPTION,
 	});
 	ctx.body += app;
 

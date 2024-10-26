@@ -9,6 +9,7 @@ declare global {
 		};
 		declare var BASE_URL: string;
 		declare var RAW_BASE_URL: string;
+		declare var DISRUPTION: string | undefined;
 
 		// test only
 		declare var nock: nock.Scope;
