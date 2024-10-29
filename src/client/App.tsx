@@ -1,5 +1,6 @@
 import { Loading } from '@/client/Common/Components/Loading';
 import { Navigation } from '@/client/Common/Components/Navigation';
+import { BottomNav } from '@/client/Common/Components/Navigation/BottomNavigation';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
@@ -41,6 +42,9 @@ const globalStyles = (theme: Theme): any => ({
 		flexDirection: 'column',
 		height: '100%',
 	},
+	'main, .MuiStack-root': {
+		marginBottom: '65px',
+	},
 });
 
 export const GlobalCSS: FC = () => <GlobalStyles styles={globalStyles} />;
@@ -68,6 +72,7 @@ export const App: FC = () => {
 							</Routes>
 						</RoutingProvider>
 					</Navigation>
+					<BottomNav />
 				</CommonConfigProvider>
 			</HeaderTagProvider>
 		</>
