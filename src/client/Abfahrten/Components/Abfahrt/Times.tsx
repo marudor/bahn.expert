@@ -24,9 +24,15 @@ const TimeContainer = styled('div')<{ cancelled?: boolean }>(
 
 export const Times: FC = () => {
 	const {
-		abfahrt: { cancelled, arrival, departure },
+		abfahrt: { cancelled, arrival, departure, messages },
 		detail,
 	} = useAbfahrt();
+
+	const getDelayMessage = (time: typeof arrival | typeof departure) => {
+		if (!time) return null;
+		const delayMessages = messages.delay.filter(m => m.timestamp && m.timestamp <= time.time);
+		return delayMessages.length > 0 ? delayMessages[delayMessages.length - 1] : null;
+	};
 
 	return (
 		<div data-testid="times">
@@ -43,6 +49,7 @@ export const Times: FC = () => {
 								delay={arrival.delay}
 								real={arrival.time}
 								isRealTime={arrival.isRealTime}
+								delayMessage={getDelayMessage(arrival)}
 							/>
 						</TimeContainer>
 					)}
@@ -57,6 +64,7 @@ export const Times: FC = () => {
 								delay={departure.delay}
 								real={departure.time}
 								isRealTime={departure.isRealTime}
+								delayMessage={getDelayMessage(departure)}
 							/>
 						</TimeContainer>
 					)}
@@ -68,6 +76,7 @@ export const Times: FC = () => {
 					real={departure.time}
 					cancelled={cancelled}
 					isRealTime={departure.isRealTime}
+					delayMessage={getDelayMessage(departure)}
 				/>
 			) : (
 				arrival && (
@@ -77,6 +86,7 @@ export const Times: FC = () => {
 						real={arrival.time}
 						cancelled={cancelled}
 						isRealTime={arrival.isRealTime}
+						delayMessage={getDelayMessage(arrival)}
 					/>
 				)
 			)}
