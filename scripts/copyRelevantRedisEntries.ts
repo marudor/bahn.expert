@@ -2,10 +2,10 @@ import { exec } from 'node:child_process';
 import { Cache, CacheDatabase } from '@/server/cache';
 
 const relevantCaches = [
-	// CacheDatabase.StopPlaceByEva,
-	// CacheDatabase.StopPlaceIdentifier,
-	// CacheDatabase.IrisTTSStation,
-	// CacheDatabase.StopPlaceByRil,
+	CacheDatabase.StopPlaceByEva,
+	CacheDatabase.StopPlaceIdentifier,
+	CacheDatabase.IrisTTSStation,
+	CacheDatabase.StopPlaceByRil,
 	CacheDatabase.JourneysForVehicle,
 ];
 

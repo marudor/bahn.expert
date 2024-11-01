@@ -41,6 +41,9 @@ const globalStyles = (theme: Theme): any => ({
 		flexDirection: 'column',
 		height: '100%',
 	},
+	'.maplibregl-popup-content': {
+		color: 'black',
+	},
 });
 
 export const GlobalCSS: FC = () => <GlobalStyles styles={globalStyles} />;
