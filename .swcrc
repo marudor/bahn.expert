@@ -10,7 +10,7 @@
 	},
 	"sourceMaps": true,
 	"jsc": {
-		"externalHelpers": true,
+		"externalHelpers": false,
 		"loose": true,
 		"experimental": {
 			"plugins": [
