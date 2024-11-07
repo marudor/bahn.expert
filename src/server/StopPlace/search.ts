@@ -8,12 +8,15 @@ import type {
 import { searchWithHafas } from '@/server/StopPlace/hafasSearch';
 import { manualNameOverrides } from '@/server/StopPlace/manualNameOverrides';
 import { Cache, CacheDatabase } from '@/server/cache';
+import { logger } from '@/server/logger';
 import { getSingleStation } from '@/server/iris/station';
 import type { GroupedStopPlace, StopPlaceIdentifier } from '@/types/stopPlace';
 
 const stopPlaceStationSearchCache = new Cache<GroupedStopPlace[]>(
 	CacheDatabase.StopPlaceSearch,
 );
+
+const stopPlaceByNameCache = new Cache<GroupedStopPlace[]>(CacheDatabase.StopPlaceByName);
 const stopPlaceSalesSearchCache = new Cache<GroupedStopPlace[]>(
 	CacheDatabase.StopPlaceSalesSearch,
 );
@@ -186,9 +189,19 @@ async function searchStopPlaceRemote(
 	groupBySales?: boolean,
 ) {
 	const [risResult, rl100Result] = await Promise.all([
-		byName(searchTerm, undefined, groupBySales),
+		byName(searchTerm, undefined, groupBySales).then(async (result) => {
+			await stopPlaceByNameCache.set(searchTerm, result);
+			return result;
+		}),
+		byRl100WithSpaceHandling(searchTerm.toUpperCase())
 		byRl100WithSpaceHandling(searchTerm.toUpperCase()),
 	]);
+
+	const cachedResult = await stopPlaceByNameCache.get(searchTerm);
+	if (cachedResult) {
+		logger.info(`Using cached result for ${searchTerm}`);
+		return cachedResult;
+	}
 	const groupedStopPlaces = risResult.map(mapToGroupedStopPlace);
 	if (rl100Result) {
 		groupedStopPlaces.unshift(mapToGroupedStopPlace(rl100Result));

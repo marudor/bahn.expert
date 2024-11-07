@@ -1,8 +1,11 @@
+import { Cache, CacheDatabase } from '@/server/cache';
 import { trpc } from '@/client/RPC';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';
 import { useCallback, useMemo, useRef, useState } from 'react';
+
+const stopPlaceSearchCache = new Cache<MinimalStopPlace[]>(CacheDatabase.StopPlaceSearch);
 
 interface UseStationSearchOptions {
 	maxSuggestions: number;
@@ -34,7 +37,27 @@ export const useStopPlaceSearch = ({
 		[filterForIris, maxSuggestions, trpcUtils.stopPlace.byName],
 	);
 
-	const loadOptions = useCallback(
+const loadOptions = useCallback(
+	async (value: string) => {
+		setLoading(true);
+
+		const cached = await stopPlaceSearchCache.get(value);
+		if (cached) {
+			setSuggestions(cached);
+			setLoading(false);
+			return;
+		}
+
+		const currentSuggestions = await stopPlaceFn(value);
+
+		setSuggestions(currentSuggestions);
+		setLoading(false);
+
+		// Cache the results
+		void stopPlaceSearchCache.set(value, currentSuggestions);
+	},
+	[stopPlaceFn]
+);
 		async (value: string) => {
 			setLoading(true);
 

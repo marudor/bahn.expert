@@ -45,6 +45,8 @@ const redisSettings =
 		: undefined;
 
 export enum CacheDatabase {
+	// ... existing entries
+	StopPlaceByName = 27,
 	IrisTTSStation = 0,
 	TimetableParsedWithWings = 1,
 	DBLageplan = 2,
@@ -75,6 +77,8 @@ export enum CacheDatabase {
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
+	// ... existing entries
+	[CacheDatabase.StopPlaceByName]: 'P1D',
 	[CacheDatabase.IrisTTSStation]: 'PT48H',
 	[CacheDatabase.TimetableParsedWithWings]: 'PT48H',
 	[CacheDatabase.DBLageplan]: 'PT48H',
