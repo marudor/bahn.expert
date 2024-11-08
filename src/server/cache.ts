@@ -1,6 +1,6 @@
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
-import { Redis } from 'ioredis';
+import Redis from 'ioredis';
 
 export function parseCacheTTL(
 	defaultTTL: string,
@@ -33,6 +33,17 @@ function dateDeserialze(_key: string, value: any): any {
 	}
 	return value;
 }
+
+const redisSettings =
+	process.env.REDIS_HOST && process.env.NODE_ENV !== 'test'
+		? {
+				host: process.env.REDIS_HOST,
+				port: process.env.REDIS_PORT
+					? Number.parseInt(process.env.REDIS_PORT, 10)
+					: 6379,
+			}
+		: undefined;
+
 export enum CacheDatabase {
 	IrisTTSStation = 0,
 	TimetableParsedWithWings = 1,
@@ -110,30 +121,17 @@ export function disconnectRedis(): void {
 	}
 }
 
-let redisHosts: string[] | undefined;
-if (process.env.REDIS_HOSTS && process.env.NODE_ENV !== 'test') {
-	redisHosts = JSON.parse(process.env.REDIS_HOSTS);
-}
-if (!redisHosts && process.env.REDIS_HOST && process.env.REDIS_PORT) {
-	redisHosts = [`${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`];
-}
-
 export class Cache<V> {
 	private redisCache?: Redis;
 	private ttl: number;
-	constructor(database: CacheDatabase, providedRedisHosts = redisHosts) {
+	constructor(database: CacheDatabase, providedRedisSettings = redisSettings) {
 		this.ttl = Temporal.Duration.from(CacheTTLs[database]).total('second');
-		if (providedRedisHosts) {
-			const entryToUse = providedRedisHosts.at(
-				database % providedRedisHosts.length,
-			);
-			logger.info(
-				`Using ${CacheTTLs[database]} as TTL for ${CacheDatabase[database]} (${entryToUse})`,
-			);
-			if (!entryToUse) {
-				throw new Error('Can not happen');
-			}
-			this.redisCache = new Redis(entryToUse, {
+		logger.info(
+			`Using ${CacheTTLs[database]} as TTL for ${CacheDatabase[database]}`,
+		);
+		if (providedRedisSettings) {
+			this.redisCache = new Redis({
+				...providedRedisSettings,
 				db: database,
 			});
 			activeRedisCaches.add(this.redisCache);
