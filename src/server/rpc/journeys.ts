@@ -1,8 +1,11 @@
+import type { JourneyMatch } from '@/external/generated/risJourneys';
+import type { JourneyFindResult } from '@/external/generated/risJourneysV2';
 import {
 	findJourney,
 	findJourneyHafasCompatible,
 } from '@/external/risJourneys';
 import {
+	findJourneyBasedOnHafas,
 	findJourneyHafasCompatible as findJourneyHafasCompatibleV2,
 	findJourney as findJourneyV2,
 } from '@/external/risJourneysV2';
@@ -171,6 +174,9 @@ export const journeysRpcRouter = rpcAppRouter({
 					administration,
 				},
 			}) => {
+				if (evaNumberAlongRoute?.startsWith('0')) {
+					evaNumberAlongRoute = evaNumberAlongRoute.substring(1);
+				}
 				if (journeyId) {
 					const journey = await journeyDetails(journeyId);
 					if (!journey) {
@@ -203,16 +209,22 @@ export const journeysRpcRouter = rpcAppRouter({
 					return hafasFallback();
 				}
 				let hafasResult: ParsedSearchOnTripResponse | undefined;
+				let possibleJourneys: JourneyFindResult[] | JourneyMatch[] = [];
 				if (jid) {
 					hafasResult = await hafasFallback();
+					if (hafasResult) {
+						possibleJourneys = await findJourneyBasedOnHafas(hafasResult);
+					}
 				}
-				const possibleJourneys = await findJourneyV1OrV2(
-					productDetails.trainNumber,
-					initialDepartureDate,
-					productDetails.category,
-					true,
-					administration,
-				);
+				if (!possibleJourneys.length) {
+					possibleJourneys = await findJourneyV1OrV2(
+						productDetails.trainNumber,
+						initialDepartureDate,
+						productDetails.category,
+						true,
+						administration,
+					);
+				}
 				if (!possibleJourneys.length) {
 					return hafasFallback();
 				}
