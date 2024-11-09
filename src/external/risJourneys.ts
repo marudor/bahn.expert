@@ -86,12 +86,39 @@ function mapToParsedJourneyMatchResponse(
 		lastStop: mapStationShortToRouteStops(journeyMatch.destinationSchedule),
 	};
 }
+
+function findCategoryFilter(matches: JourneyMatch[], category?: string) {
+	if (category) {
+		const categoryFiltered = matches.filter(
+			(j) => j.transport.category.toLowerCase() === category.toLowerCase(),
+		);
+		if (categoryFiltered.length) {
+			return categoryFiltered;
+		}
+	}
+	return matches;
+}
+
+function findAdministrationFilter(
+	matches: JourneyMatch[],
+	administration?: string,
+) {
+	if (administration) {
+		const filtered = matches.filter(
+			(j) => j.administrationID === administration,
+		);
+		if (filtered.length) {
+			return filtered;
+		}
+	}
+	return matches;
+}
+
 export async function findJourney(
 	trainNumber: number,
+	date: Date,
 	category?: string,
-	date?: Date,
 	withOEV?: boolean,
-	originEvaNumber?: string,
 	administration?: string,
 ): Promise<JourneyMatch[]> {
 	try {
@@ -101,13 +128,11 @@ export async function findJourney(
 			return [];
 		}
 
-		const cacheKey = `${trainNumber}|${category?.toUpperCase()}|${
-			date && format(date, 'yyyy-MM-dd')
-		}|${withOEV ?? false}|${originEvaNumber}`;
+		const cacheKey = `${trainNumber}|${format(date, 'yyyy-MM-dd')}|${withOEV ?? false}`;
 
 		const cacheHit = await journeyFindCache.get(cacheKey);
 		if (cacheHit) {
-			return cacheHit;
+			return findCategoryFilter(cacheHit, category);
 		}
 
 		const result = await client.find({
@@ -116,18 +141,7 @@ export async function findJourney(
 			// category,
 			date: date && format(date, 'yyyy-MM-dd'),
 			transports: withOEV ? undefined : trainTypes,
-			originEvaNumber,
-			administrationID: administration,
 		});
-
-		if (category) {
-			const categoryFiltered = result.data.journeys.filter(
-				(j) => j.transport.category.toLowerCase() === category.toLowerCase(),
-			);
-			if (categoryFiltered.length) {
-				result.data.journeys = categoryFiltered;
-			}
-		}
 
 		result.data.journeys.sort(sortJourneys);
 
@@ -139,6 +153,12 @@ export async function findJourney(
 				result.data.journeys.length === 0 ? 'PT1H' : undefined,
 			);
 		}
+
+		result.data.journeys = findCategoryFilter(result.data.journeys, category);
+		result.data.journeys = findAdministrationFilter(
+			result.data.journeys,
+			administration,
+		);
 
 		for (const j of result.data.journeys) {
 			void additionalJourneyInformation(
@@ -157,11 +177,11 @@ export async function findJourney(
 
 export async function findJourneyHafasCompatible(
 	trainNumber: number,
+	date: Date,
 	category?: string,
-	date?: Date,
-	onlyFv?: boolean,
+	withOEV?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> {
-	const risResult = await findJourney(trainNumber, category, date, onlyFv);
+	const risResult = await findJourney(trainNumber, date, category, withOEV);
 
 	return risResult.map(mapToParsedJourneyMatchResponse);
 }

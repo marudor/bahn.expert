@@ -21,8 +21,8 @@ import { z } from 'zod';
 
 function findV1OrV2HafasCompatible(
 	trainNumber: number,
+	date: Date,
 	category?: string,
-	date?: Date,
 	withOEV?: boolean,
 ) {
 	let useV2 = true;
@@ -36,18 +36,17 @@ function findV1OrV2HafasCompatible(
 
 	if (useV2) {
 		logger.debug('Using JourneysV2 (HAFAS compatible) find');
-		return findJourneyHafasCompatibleV2(trainNumber, category, date, withOEV);
+		return findJourneyHafasCompatibleV2(trainNumber, date, category, withOEV);
 	}
 	logger.debug('Using JourneysV1 (HAFAS compatible) find');
-	return findJourneyHafasCompatible(trainNumber, category, date, withOEV);
+	return findJourneyHafasCompatible(trainNumber, date, category, withOEV);
 }
 
 function findJourneyV1OrV2(
 	trainNumber: number,
+	date: Date,
 	category?: string,
-	date?: Date,
-	onlyFv?: boolean,
-	originEvaNumber?: string,
+	withOEV?: boolean,
 	administration?: string,
 ) {
 	let useV2 = true;
@@ -60,24 +59,10 @@ function findJourneyV1OrV2(
 	}
 	if (useV2) {
 		logger.debug('Using JourneysV2 find');
-		return findJourneyV2(
-			trainNumber,
-			category,
-			date,
-			onlyFv,
-			originEvaNumber,
-			administration,
-		);
+		return findJourneyV2(trainNumber, date, category, withOEV, administration);
 	}
 	logger.debug('Using JourneysV1 find');
-	return findJourney(
-		trainNumber,
-		category,
-		date,
-		onlyFv,
-		originEvaNumber,
-		administration,
-	);
+	return findJourney(trainNumber, date, category, withOEV, administration);
 }
 
 export type JourneyRPCQuery = QueryProcedure<{
@@ -108,7 +93,7 @@ export const journeysRpcRouter = rpcAppRouter({
 			async ({
 				input: {
 					trainNumber,
-					initialDepartureDate,
+					initialDepartureDate = new Date(),
 					initialEvaNumber,
 					withOEV,
 					limit,
@@ -121,8 +106,8 @@ export const journeysRpcRouter = rpcAppRouter({
 				if (trainNumber) {
 					risPromise = findV1OrV2HafasCompatible(
 						trainNumber,
-						category,
 						initialDepartureDate,
+						category,
 						withOEV,
 					);
 				}
@@ -180,7 +165,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				input: {
 					trainName,
 					evaNumberAlongRoute,
-					initialDepartureDate,
+					initialDepartureDate = new Date(),
 					journeyId,
 					jid,
 					administration,
@@ -223,10 +208,9 @@ export const journeysRpcRouter = rpcAppRouter({
 				}
 				const possibleJourneys = await findJourneyV1OrV2(
 					productDetails.trainNumber,
-					productDetails.category,
 					initialDepartureDate,
+					productDetails.category,
 					false,
-					undefined,
 					administration,
 				);
 				if (!possibleJourneys.length) {
