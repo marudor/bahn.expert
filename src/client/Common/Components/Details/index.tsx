@@ -18,18 +18,21 @@ export const Details: FC = () => {
 		useDetails();
 
 	useEffect(() => {
+		let name = details?.train.name || trainName;
+		if (details?.train.number && !name.endsWith(details.train.number)) {
+			name = `${name} (${details.train.number})`;
+		}
 		if (details) {
-			updateTitle(
-				`${details.train.name} @ ${format(
-					details.departure.time,
-					'dd.MM.yyyy',
-				)}`,
-			);
-			updateKeywords([details.train.name]);
+			updateTitle(`${name} @ ${format(details.departure.time, 'dd.MM.yyyy')}`);
+			const codeshares = details.stops
+				.flatMap((d) => d.codeShares)
+				.filter(Boolean)
+				.map((c) => `${c.airlineCode}${c.flightnumber}`);
+			updateKeywords([details.train.name, ...codeshares]);
 		} else {
 			updateTitle(trainName);
 		}
-		let description = `Details zu ${trainName}`;
+		let description = `Details zu ${name}`;
 
 		if (initialDepartureDate) {
 			description += ` am ${format(initialDepartureDate, 'dd.MM.yyyy')}`;
