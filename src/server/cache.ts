@@ -1,3 +1,4 @@
+import os from 'node:os';
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
@@ -134,6 +135,11 @@ export class Cache<V> {
 				...providedRedisSettings,
 				db: database,
 			});
+			this.redisCache.call(
+				'client',
+				'setname',
+				`${CacheDatabase[database]}-${os.hostname()}`,
+			);
 			activeRedisCaches.add(this.redisCache);
 		} else {
 			if (process.env.NODE_ENV !== 'test') {
