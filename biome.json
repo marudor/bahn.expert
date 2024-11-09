@@ -27,7 +27,18 @@
 				"noDelete": "off"
 			},
 			"correctness": {
-				"noUnusedImports": "error"
+				"noUnusedImports": "error",
+				"useExhaustiveDependencies": {
+					"level": "error",
+					"options": {
+						"hooks": [
+							{
+								"name": "useSearchParams",
+								"stableResult": [1]
+							}
+						]
+					}
+				}
 			}
 		}
 	},
