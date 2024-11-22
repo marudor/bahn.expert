@@ -16,7 +16,6 @@ import { Cache, CacheDatabase } from '@/server/cache';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
 import { format, isBefore, isEqual, isSameDay, subDays } from 'date-fns';
@@ -39,10 +38,6 @@ const client = new JourneysApi(
 	risJourneysV2Configuration,
 	undefined,
 	axiosWithTimeout,
-);
-
-const journeyLineFindCache = new Cache<JourneyFindResult[]>(
-	CacheDatabase.JourneyLineFindV2,
 );
 
 const journeyFindCache = new Cache<JourneyFindResult[]>(
@@ -231,22 +226,18 @@ export async function findJourney(
 	return categoryFiltered;
 }
 
-function olderThan7Days(date?: Date) {
-	if (!date) {
-		return false;
-	}
-	const sevenDaysAgo = subDays(new Date(), 7);
-	return isBefore(date, sevenDaysAgo);
-}
-
 async function innerFindJourney(
 	trainNumber: number,
 	date: Date,
 	withOEV?: boolean,
 ): Promise<JourneyFindResult[]> {
 	try {
-		if (olderThan7Days(date)) {
-			return [];
+		if (date) {
+			const sevenDaysAgo = subDays(new Date(), 7);
+			const olderThan7Days = isBefore(date, sevenDaysAgo);
+			if (olderThan7Days) {
+				return [];
+			}
 		}
 
 		const cacheKey = `${trainNumber}|${format(date, 'yyyy-MM-dd')}|${withOEV ?? false}`;
@@ -290,53 +281,6 @@ async function innerFindJourney(
 		}
 		return [];
 	}
-}
-
-export async function findJourneyBasedOnHafas(
-	hafasResult: ParsedSearchOnTripResponse,
-) {
-	// we only want to handle missing trainNumbers!
-	if (hafasResult.train.number && hafasResult.train.number !== '0') {
-		return [];
-	}
-	if (
-		!hafasResult.train.line ||
-		!hafasResult.train.admin ||
-		!hafasResult.train.type
-	) {
-		return [];
-	}
-	const originalScheduledDeparture = hafasResult.departure.scheduledTime;
-
-	const cacheKey = `${hafasResult.segmentStart.evaNumber}|${hafasResult.train.admin}|${hafasResult.train.type}|${hafasResult.departure.scheduledTime.toISOString()}`;
-
-	const cacheHit = await journeyLineFindCache.get(cacheKey);
-	if (cacheHit) {
-		return cacheHit;
-	}
-
-	if (olderThan7Days(originalScheduledDeparture)) {
-		return [];
-	}
-
-	const result = await client.find({
-		administrationID: hafasResult.train.admin,
-		category: hafasResult.train.type,
-		line: hafasResult.train.line,
-		date: format(hafasResult.departure.scheduledTime, 'yyyy-MM-dd'),
-		limit: 2000,
-	});
-
-	result.data.journeys = result.data.journeys.filter((j) =>
-		isEqual(j.journeyRelation.startTime, hafasResult.departure.scheduledTime),
-	);
-
-	await fixJourneysFoundIfNeeded(result.data.journeys);
-	result.data.journeys.sort(sortJourneys);
-
-	void journeyLineFindCache.set(cacheKey, result.data.journeys);
-
-	return result.data.journeys;
 }
 
 export async function findJourneyHafasCompatible(

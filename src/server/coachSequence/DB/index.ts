@@ -1,5 +1,6 @@
 import { isWithin20Hours } from '@/external/risTransports/config';
 import { Cache, CacheDatabase } from '@/server/cache';
+import { getNewDBCoachSequence } from '@/server/coachSequence/DB/bahnDe';
 import { getRisTransportsCoachSequence } from '@/server/coachSequence/DB/risTransports';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import { format } from 'date-fns';
@@ -52,16 +53,16 @@ export async function DBCoachSequence(
 
 		// ris not found, lets try bahn.de - should never find something though
 
-		// const newDbSequence = await getNewDBCoachSequence(
-		// 	trainCategory,
-		// 	trainNumber,
-		// 	stopEva,
-		// 	date,
-		// 	plannedStartDate,
-		// );
-		// if (newDbSequence) {
-		// 	void coachSequenceCache.set(cacheKey, newDbSequence);
-		// 	return newDbSequence;
-		// }
+		const newDbSequence = await getNewDBCoachSequence(
+			trainCategory,
+			trainNumber,
+			stopEva,
+			date,
+			plannedStartDate,
+		);
+		if (newDbSequence) {
+			void coachSequenceCache.set(cacheKey, newDbSequence);
+			return newDbSequence;
+		}
 	}
 }
