@@ -56,6 +56,15 @@ const useInnerDetails = ({
 		jid,
 	});
 
+	const { data: occupancy } = trpc.coachSequences.occupancy.useQuery(
+		{
+			journeyId: journeyId!,
+		},
+		{
+			enabled: Boolean(journeyId),
+		},
+	);
+
 	const [additionalInformation, setAdditionalInformation] =
 		useState<AdditionalJourneyInformation>();
 	const navigate = useNavigate();
@@ -120,15 +129,6 @@ const useInnerDetails = ({
 			}
 		};
 		fetchAdditional();
-		if (details.journeyId) {
-			const newSearchParams = new URLSearchParams({
-				journeyId: details.journeyId,
-			});
-			const newUrl = [window.location.pathname, newSearchParams.toString()]
-				.filter(Boolean)
-				.join('?');
-			history.replaceState(null, '', newUrl);
-		}
 	}, [details, trainName, initialDepartureDate, trpcUtils]);
 
 	useEffect(() => {

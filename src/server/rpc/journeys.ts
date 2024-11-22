@@ -210,7 +210,7 @@ export const journeysRpcRouter = rpcAppRouter({
 					productDetails.trainNumber,
 					initialDepartureDate,
 					productDetails.category,
-					true,
+					false,
 					administration,
 				);
 				if (!possibleJourneys.length) {
