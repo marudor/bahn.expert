@@ -5,6 +5,7 @@ import type {
 	JourneyFilter,
 	OptionalLocL,
 } from '@/types/HAFAS';
+import { TripSearchType } from '@/types/HAFAS';
 import type {
 	TripSearchOptionsV3,
 	TripSearchOptionsV4,
@@ -97,6 +98,7 @@ export function tripSearch(
 		onlyNetzcard,
 		onlyBC100,
 		tarif,
+		type = TripSearchType.ANY,
 	}: TripSearchOptionsV3 | TripSearchOptionsV4,
 	profile?: AllowedHafasProfile,
 	raw?: boolean,
@@ -140,6 +142,20 @@ export function tripSearch(
 	const arrLoc = startDestinationMap(destination);
 	const depLoc = startDestinationMap(start);
 
+	let pt = undefined;
+	if (!ctxScr) {
+		switch (type) {
+			case TripSearchType.FIRST: {
+				pt = 'FRST';
+				break;
+			}
+			case TripSearchType.LAST: {
+				pt = 'LAST';
+				break;
+			}
+		}
+	}
+
 	const req: TripSearchRequest = {
 		req: {
 			jnyFltrL: journeyFilter.length ? journeyFilter : undefined,
@@ -175,6 +191,7 @@ export function tripSearch(
 						})),
 					}
 				: undefined,
+			pt
 		},
 		meth: 'TripSearch',
 		// @ts-expect-error spread works

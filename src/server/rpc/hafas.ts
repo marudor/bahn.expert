@@ -7,7 +7,7 @@ import { getOccupancy } from '@/server/coachSequence/occupancy';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import type { AbfahrtenRPCQuery } from '@/server/rpc/iris';
-import { AllowedHafasProfile } from '@/types/HAFAS';
+import { AllowedHafasProfile, TripSearchType } from '@/types/HAFAS';
 import type { RouteAuslastungWithSource } from '@/types/routing';
 import type { ArrivalStationBoardEntry } from '@/types/stationBoard';
 import { TRPCError } from '@trpc/server';
@@ -187,6 +187,7 @@ export const hafasRpcRouter = rpcAppRouter({
 				onlyNetzcard: z.boolean().optional(),
 				onlyBC100: z.boolean().optional(),
 				ctxScr: z.string().optional(),
+				type: z.nativeEnum(TripSearchType).default(TripSearchType.ANY),
 			}),
 		)
 		.query(async ({ input: { profile, ...options } }) => {

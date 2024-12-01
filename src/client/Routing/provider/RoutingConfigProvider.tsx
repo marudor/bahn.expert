@@ -1,5 +1,5 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import { AllowedHafasProfile } from '@/types/HAFAS';
+import { AllowedHafasProfile, TripSearchType } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import constate from 'constate';
 import {
@@ -24,6 +24,7 @@ export interface RoutingSettings {
 	onlyNetzcard: boolean;
 	onlyBC100: boolean;
 	hafasProfile?: AllowedHafasProfile.DB | AllowedHafasProfile.OEBB;
+	type?: TripSearchType;
 }
 const routingConfigKeys = [
 	'maxChanges',
@@ -194,6 +195,7 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
 		onlyNetzcard: routingConfig.onlyNetzcard ?? false,
 		onlyBC100: routingConfig.onlyBC100 ?? false,
 		hafasProfile: routingConfig.hafasProfile ?? AllowedHafasProfile.DB,
+		type: routingConfig.type ?? TripSearchType.ANY,
 	};
 
 	return (
