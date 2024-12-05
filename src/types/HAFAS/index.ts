@@ -253,6 +253,12 @@ export interface HafasStation extends MinimalStopPlace {
 	coordinates: HafasCoordinates;
 }
 
+export enum TripSearchType {
+	FIRST = 'first',
+	ANY = 'any',
+	LAST = 'last',
+}
+
 export enum AllowedHafasProfile {
 	DB = 'db',
 	OEBB = 'oebb',

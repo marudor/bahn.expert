@@ -1,5 +1,6 @@
 import type { Coordinate2D } from '@/external/types';
 import type { JnyCl, LoyalityCard, TravelerType } from '@/types/HAFAS/Tarif';
+import type { TripSearchType } from '@/types/HAFAS'
 import type { EvaNumber } from '@/types/common';
 import type {
 	Common,
@@ -39,6 +40,7 @@ interface BaseTripSearchOptions extends SharedTripSearchOptions {
 	// Filters out Attribute "DU" - "DB Fahrsscheine gelten nicht"
 	onlyBC100?: boolean;
 	tarif?: TripSearchTarifRequest;
+	type?: TripSearchType;
 }
 
 interface TripSearchViaV3 {
