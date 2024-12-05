@@ -30,7 +30,7 @@ describe('Abfahrten Settings', () => {
 
 		describe('CoachSequence', () => {
 			beforeEach(() => {
-				cy.trpc.coachSequences.sequence(
+				cy.trpc.coachSequence.sequence(
 					{
 						trainNumber: 371,
 						evaNumber: '8000105',

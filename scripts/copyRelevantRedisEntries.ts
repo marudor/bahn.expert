@@ -1,5 +1,4 @@
-import { exec } from 'node:child_process';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { Cache, CacheDatabase, disconnectRedis } from '@/server/cache';
 
 const relevantCaches = [
 	CacheDatabase.StopPlaceByEva,
@@ -9,31 +8,62 @@ const relevantCaches = [
 	CacheDatabase.JourneysForVehicle,
 ];
 
-async function doStuff() {
-	const cp = exec(
-		'kubectl port-forward service/redis 6380:6379 -n marudor --context marudor',
-	);
-	await new Promise((resolve) => setTimeout(resolve, 2500));
+// async function doStuff() {
+// 	for (const relevantCache of relevantCaches) {
+// const localCache = new Cache(relevantCache);
+// const remoteCache = new Cache(relevantCache, {
+// 	host: 'localhost',
+// 	port: 6380,
+// });
 
-	for (const relevantCache of relevantCaches) {
+// 		const allEntries = await remoteCache.getAll();
+// 		// biome-ignore lint/suspicious/noConsoleLog: script
+// 		console.log(
+// 			`migrating ${allEntries.length} entries for cache ${relevantCache}`,
+// 		);
+// 		for (const [key, value] of allEntries) {
+// 			await localCache.set(key, value);
+// 		}
+// 	}
+
+// 	process.exit(0);
+// }
+
+async function doStuff() {
+	for (const relevantCache of Object.values(CacheDatabase)) {
+		if (!Number.isInteger(relevantCache)) {
+			continue;
+		}
+		// @ts-expect-error workaround
 		const localCache = new Cache(relevantCache);
-		const remoteCache = new Cache(relevantCache, {
+		// @ts-expect-error workaround
+		const remoteCacheNew = new Cache(relevantCache, {
 			host: 'localhost',
 			port: 6380,
 		});
-
-		const allEntries = await remoteCache.getAll();
+		// @ts-expect-error workaround
+		const remoteCacheOld = new Cache(relevantCache, {
+			host: 'localhost',
+			port: 6381,
+		});
+		const allKeys = await remoteCacheOld.keys('*');
 		// biome-ignore lint/suspicious/noConsoleLog: script
 		console.log(
-			`migrating ${allEntries.length} entries for cache ${relevantCache}`,
+			// @ts-expect-error workaround
+			`migrating ${allKeys.length} entries for cache ${relevantCache}, ${CacheDatabase[relevantCache]}`,
 		);
-		for (const [key, value] of allEntries) {
-			await localCache.set(key, value);
+		for (const key of allKeys) {
+			if (!(await remoteCacheNew.exists(key))) {
+				const value = await remoteCacheOld.getDelete(key);
+				void remoteCacheNew.set(key, value);
+				void localCache.set(key, value);
+			} else {
+				void remoteCacheOld.delete(key);
+			}
 		}
 	}
-
-	cp.kill(9);
-	await new Promise((resolve) => setTimeout(resolve, 2500));
-	process.exit(0);
 }
-doStuff();
+
+doStuff().then(() => {
+	disconnectRedis();
+});
