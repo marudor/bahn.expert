@@ -1,14 +1,5 @@
 import { logger } from '@/server/logger';
 import Axios from 'axios';
-import { v4 } from 'uuid';
-
-declare module 'axios' {
-	interface InternalAxiosRequestConfig {
-		maru?: {
-			id: string;
-		};
-	}
-}
 
 if (!Array.isArray(Axios.defaults.transformRequest)) {
 	if (Axios.defaults.transformRequest) {
@@ -22,19 +13,18 @@ Axios.defaults.transformRequest.push(function (data, _headers) {
 	if (url?.startsWith('/')) {
 		url = `${this.baseURL}${url}`;
 	}
-	if (!this.maru) {
-		this.maru = {
-			id: v4(),
-		};
+	const logParams: Record<string, string | undefined> = {
+		method: this.method?.toUpperCase(),
+		url,
+	};
+	if (this.method?.toUpperCase() === 'POST') {
+		try {
+			logParams.hafasMethod = JSON.parse(data)?.svcReqL?.at(0)?.meth;
+		} catch {
+			//ignore - most likely json parse error
+		}
 	}
-	logger.debug(
-		{
-			id: this.maru.id,
-			method: this.method?.toUpperCase(),
-			url,
-		},
-		'Request',
-	);
+	logger.debug(logParams, 'Request');
 	if (data) {
 		return data;
 	}
@@ -56,7 +46,6 @@ Axios.defaults.transformResponse.push(function (data, _header, status) {
 	const logFn = (status === 200 ? logger.debug : logger.warn).bind(logger);
 	logFn(
 		{
-			id: this.maru?.id || 'unknown',
 			method: this.method?.toUpperCase(),
 			url,
 		},

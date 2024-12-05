@@ -39,9 +39,9 @@ export const InjectUmlauf: FCC = ({ children }) => {
 		[details],
 	);
 
-	const { data: firstSequence } = trpc.coachSequences.sequence.useQuery(
+	const { data: firstSequence } = trpc.coachSequence.sequence.useQuery(
 		{
-			evaNumber: firstDepartureStop?.station.evaNumber,
+			evaNumber: firstDepartureStop?.station.evaNumber!,
 			departure: firstDepartureStop?.departure?.scheduledTime!,
 			trainNumber: Number.parseInt(details?.train.number!),
 			administration: details?.train.admin,
@@ -52,7 +52,7 @@ export const InjectUmlauf: FCC = ({ children }) => {
 			enabled: Boolean(firstDepartureStop),
 		},
 	);
-	const { data: prevNext } = trpc.coachSequences.umlauf.useQuery(
+	const { data: prevNext } = trpc.coachSequence.umlauf.useQuery(
 		{
 			journeyId: details?.journeyId!,
 			initialDeparture: details?.departure.scheduledTime!,

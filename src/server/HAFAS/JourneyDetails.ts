@@ -48,7 +48,7 @@ export const parseJourneyDetails = (
 	return Promise.resolve(parsedJourney as ParsedJourneyDetails);
 };
 
-export default async (
+export const HafasJourneyDetails = async (
 	jid: string,
 	profile?: AllowedHafasProfile,
 	raw?: boolean,

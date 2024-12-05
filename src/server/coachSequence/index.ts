@@ -11,9 +11,8 @@ import {
 export async function coachSequence(
 	trainNumber: string,
 	departure: Date,
-	evaNumber?: EvaNumber,
-	initialDeparture?: Date,
-	trainCategory?: string,
+	evaNumber: EvaNumber,
+	trainCategory: string,
 	administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
 	if (
@@ -33,7 +32,6 @@ export async function coachSequence(
 	return await DBCoachSequence(
 		trainNumber,
 		departure,
-		initialDeparture,
 		trainCategory,
 		evaNumber,
 		administration,

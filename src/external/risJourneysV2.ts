@@ -13,7 +13,6 @@ import type {
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
-import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
@@ -264,15 +263,6 @@ async function innerFindJourney(
 		result.data.journeys.sort(sortJourneys);
 
 		void journeyFindCache.set(cacheKey, result.data.journeys);
-
-		for (const j of result.data.journeys) {
-			void additionalJourneyInformation(
-				`${j.journeyRelation.startCategory} ${j.journeyRelation.startJourneyNumber}`,
-				j.journeyID,
-				j.journeyRelation.startEvaNumber,
-				new Date(j.journeyRelation.startTime),
-			);
-		}
 
 		return result.data.journeys;
 	} catch (e) {

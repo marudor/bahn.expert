@@ -1,9 +1,9 @@
-import JourneyDetails from '@/server/HAFAS/JourneyDetails';
+import { HafasJourneyDetails } from '@/server/HAFAS/JourneyDetails';
 import JourneyMatch from '@/server/HAFAS/JourneyMatch';
 import createCtxRecon from '@/server/HAFAS/helper/createCtxRecon';
 import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
 import { AllowedHafasProfile } from '@/types/HAFAS';
-import type { JourneyFilter } from '@/types/HAFAS';
+import type { ParsedJourneyDetails } from '@/types/HAFAS/JourneyDetails';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
@@ -57,60 +57,49 @@ export default async (
 	administration?: string,
 	jid?: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
-	let relevantJid = jid;
-	if (!relevantJid) {
+	let journeyDetails: ParsedJourneyDetails | undefined;
+	if (!jid) {
 		let possibleTrains: ParsedJourneyMatchResponse[] = [];
 
+		possibleTrains = await JourneyMatch(
+			{
+				trainName,
+				initialDepartureDate: date,
+			},
+			hafasProfile,
+		);
+		possibleTrains = filterByAdministration(possibleTrains, administration);
+
+		if (!possibleTrains.length) {
+			return undefined;
+		}
+
 		if (station) {
-			try {
-				const jnyFltrL: JourneyFilter[] = [
-					{
-						type: 'STATIONS',
-						mode: 'INC',
-						value: station,
-					},
-				];
-				possibleTrains = await JourneyMatch(
-					{
-						trainName,
-						initialDepartureDate: date,
-						jnyFltrL,
-					},
+			while (!journeyDetails && possibleTrains.length) {
+				const currentTrain = possibleTrains.shift()!;
+				const maybeJourneyDetails = await HafasJourneyDetails(
+					currentTrain.jid,
 					hafasProfile,
 				);
-				possibleTrains = filterByAdministration(possibleTrains, administration);
-			} catch {
-				// ignore
+				if (!maybeJourneyDetails) {
+					break;
+				}
+				for (const stop of maybeJourneyDetails.stops) {
+					if (stop.station.evaNumber === station) {
+						journeyDetails = maybeJourneyDetails;
+						break;
+					}
+				}
 			}
-		}
-
-		if (!possibleTrains?.length) {
-			possibleTrains = await JourneyMatch(
-				{
-					trainName,
-					initialDepartureDate: date,
-				},
+		} else {
+			journeyDetails = await HafasJourneyDetails(
+				possibleTrains[0].jid,
 				hafasProfile,
 			);
-			possibleTrains = filterByAdministration(possibleTrains, administration);
 		}
-
-		// possibleTrains.sort(t1 =>
-		//   t1.firstStop.station.id.startsWith('80') ||
-		//   t1.lastStop.station.id.startsWith('80')
-		//     ? -1
-		//     : 1
-		// );
-		const train: ParsedJourneyMatchResponse | undefined = possibleTrains[0];
-
-		relevantJid = train?.jid;
+	} else {
+		journeyDetails = await HafasJourneyDetails(jid, hafasProfile);
 	}
-
-	if (!relevantJid) {
-		return;
-	}
-
-	const journeyDetails = await JourneyDetails(relevantJid, hafasProfile);
 
 	if (!journeyDetails) return undefined;
 
@@ -118,7 +107,7 @@ export default async (
 		type: 'JNY',
 		cancelled: journeyDetails.stops.every((s) => s.cancelled),
 		finalDestination: journeyDetails.lastStop.station.name,
-		jid: relevantJid,
+		jid: journeyDetails.jid,
 		train: journeyDetails.train,
 		segmentDestination: journeyDetails.lastStop.station,
 		segmentStart: journeyDetails.firstStop.station,

@@ -12,7 +12,7 @@ const Occupancy = styled(AuslastungsDisplay)`
 
 export const Auslastung: FC = () => {
 	const { abfahrt } = useAbfahrt();
-	const { data: journeyId, isFetching } = trpc.journey.findByNumber.useQuery(
+	const { data: journeyId, isFetching } = trpc.journeys.findByNumber.useQuery(
 		{
 			trainNumber: Number.parseInt(abfahrt.train.number),
 			category: abfahrt.train.type,

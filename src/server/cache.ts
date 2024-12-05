@@ -76,11 +76,11 @@ export enum CacheDatabase {
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
-	[CacheDatabase.IrisTTSStation]: 'PT48H',
-	[CacheDatabase.TimetableParsedWithWings]: 'PT24H',
-	[CacheDatabase.DBLageplan]: 'PT48H',
-	[CacheDatabase.LocMatch]: 'PT48H',
-	[CacheDatabase.HIMMessage]: 'PT48H',
+	[CacheDatabase.IrisTTSStation]: 'P2D',
+	[CacheDatabase.TimetableParsedWithWings]: 'P1D',
+	[CacheDatabase.DBLageplan]: 'P1D',
+	[CacheDatabase.LocMatch]: 'P1D',
+	[CacheDatabase.HIMMessage]: 'P1D',
 	[CacheDatabase.NAHSHLageplan]: 'P3D',
 	[CacheDatabase.StopPlaceSearch]: 'P3D',
 	[CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
@@ -93,7 +93,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.StopPlaceByRilGrouped]: 'P3D',
 	[CacheDatabase.StopPlaceGroups]: 'P3D',
 	[CacheDatabase.StopPlaceSalesSearch]: 'P3D',
-	[CacheDatabase.HAFASJourneyMatch]: 'PT6H',
+	[CacheDatabase.HAFASJourneyMatch]: 'P2D',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
 	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
 	[CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
@@ -166,6 +166,15 @@ export class Cache<V> {
 			logger.error(e, 'Redis get failed');
 		}
 	}
+	async getDelete(key: string): Promise<V | undefined> {
+		try {
+			const redisCached = await this.redisCache?.getdel(key);
+			const deserialized = this.redisDeserialize(redisCached);
+			return deserialized;
+		} catch (e) {
+			logger.error(e, 'Redis get failed');
+		}
+	}
 	async set(
 		key: string,
 		value: V,
@@ -200,10 +209,13 @@ export class Cache<V> {
 		if (this.redisCache) {
 			keys = await this.redisCache.keys('*');
 		}
-		// @ts-expect-error works
-		const entries: [string, V][] = (
-			await Promise.all(keys.map(async (k) => [k, await this.get(k)]))
-		).filter(([_, value]) => Boolean(value));
+		const entries: [string, V][] = [];
+		for (const key of keys) {
+			const value = await this.get(key);
+			if (value) {
+				entries.push([key, value]);
+			}
+		}
 		return entries;
 	}
 	async keys(pattern: string): Promise<string[]> {

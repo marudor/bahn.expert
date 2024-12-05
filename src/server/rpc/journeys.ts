@@ -115,16 +115,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				const trainName = trainNumber.toString();
 				const hafasFallback = () =>
 					enrichedJourneyMatch({
-						onlyRT: true,
-						jnyFltrL: withOEV
-							? undefined
-							: [
-									{
-										mode: 'INC',
-										type: 'PROD',
-										value: '31',
-									},
-								],
+						withOEV,
 						trainName,
 						initialDepartureDate,
 						limit,

@@ -58,8 +58,8 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 	const [loading, setLoading] = useState(0);
 	const trpcUtils = trpc.useUtils();
 	const debouncedFindByNumber = useMemo(
-		() => debounce(trpcUtils.journey.findByNumber.fetch, 320),
-		[trpcUtils.journey.findByNumber],
+		() => debounce(trpcUtils.journeys.findByNumber.fetch, 320),
+		[trpcUtils.journeys.findByNumber],
 	);
 	const loadOptions = useCallback(
 		async (value: string) => {

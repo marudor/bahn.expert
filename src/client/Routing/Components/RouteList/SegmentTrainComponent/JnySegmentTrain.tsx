@@ -55,7 +55,7 @@ export const JnySegmentTrain: FC<Props> = ({
 			</div>
 			{detail && (
 				<>
-					{segment.train.number && (
+					{segment.train.number && segment.train.type && (
 						<CoachSequence
 							css={segmentStyles.sequence}
 							trainNumber={segment.train.number}

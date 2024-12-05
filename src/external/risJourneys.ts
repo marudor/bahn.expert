@@ -9,7 +9,6 @@ import type { StopPlaceEmbedded } from '@/external/generated/risJourneysV2';
 import { sortJourneys } from '@/external/risJourneysV2';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
-import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { logger } from '@/server/logger';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
@@ -173,15 +172,6 @@ async function innerFindJourney(
 				result.data.journeys,
 				// empty resultsets are cached for one Hour. Sometimes journeys are found later
 				result.data.journeys.length === 0 ? 'PT1H' : undefined,
-			);
-		}
-
-		for (const j of result.data.journeys) {
-			void additionalJourneyInformation(
-				`${j.transport.category} ${j.transport.number}`,
-				j.journeyID,
-				j.originSchedule.evaNumber,
-				new Date(j.date),
 			);
 		}
 

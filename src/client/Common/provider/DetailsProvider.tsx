@@ -47,7 +47,7 @@ const useInnerDetails = ({
 		refetch: refetchDetails,
 		isFetching,
 		error,
-	} = trpc.journey.details.useQuery({
+	} = trpc.journeys.details.useQuery({
 		trainName,
 		initialDepartureDate,
 		evaNumberAlongRoute,
