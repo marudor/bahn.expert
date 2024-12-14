@@ -1,6 +1,7 @@
 import { mapFahrt } from '@/bahnde/journeyDetails/parseJourneyDetails';
 import { addRandomBrowserUseragent } from '@/bahnde/randomUseragent';
 import { axiosUpstreamInterceptor } from '@/server/admin';
+import { Cache, CacheDatabase } from '@/server/cache';
 import { logger } from '@/server/logger';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import axios from 'axios';
@@ -20,10 +21,18 @@ journeyDetailsAxios.interceptors.request.use((req) => {
 });
 axiosUpstreamInterceptor(journeyDetailsAxios, 'bahn.de-journeyDetails');
 
+const quickJourneyDetailsCache = new Cache<ParsedSearchOnTripResponse>(
+	CacheDatabase.BahnDEJourneyDetails,
+);
+
 export const bahnJourneyDetails = async (
 	jid: string,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
 	try {
+		if (await quickJourneyDetailsCache.exists(jid)) {
+			return quickJourneyDetailsCache.get(jid);
+		}
+
 		const rawResult = (
 			await journeyDetailsAxios.get('/fahrt', {
 				params: {
@@ -32,7 +41,11 @@ export const bahnJourneyDetails = async (
 			})
 		).data;
 
-		return mapFahrt(rawResult);
+		const parsed = await mapFahrt(rawResult);
+		if (parsed) {
+			void quickJourneyDetailsCache.set(jid, parsed);
+		}
+		return parsed;
 	} catch (e) {
 		logger.error(e);
 	}
