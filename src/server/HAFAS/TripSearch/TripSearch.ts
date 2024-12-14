@@ -1,5 +1,6 @@
 import makeRequest from '@/server/HAFAS/Request';
 import mapLoyalityCard from '@/server/HAFAS/TripSearch/mapLoyalityCard';
+import { timezone } from '@/timezone';
 import type {
 	AllowedHafasProfile,
 	JourneyFilter,
@@ -11,7 +12,6 @@ import type {
 	TripSearchRequest,
 } from '@/types/HAFAS/TripSearch';
 import type { RoutingResult } from '@/types/routing';
-import { tz } from '@date-fns/tz';
 import { format } from 'date-fns';
 import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';
@@ -113,10 +113,10 @@ export function tripSearch(
 	if (time) {
 		requestTypeSpecific = {
 			outDate: format(time, 'yyyyMMdd', {
-				in: tz('Europe/Berlin'),
+				in: timezone.europeBerlin,
 			}),
 			outTime: format(time, 'HHmmss', {
-				in: tz('Europe/Berlin'),
+				in: timezone.europeBerlin,
 			}),
 		};
 	} else if (ctxScr) {

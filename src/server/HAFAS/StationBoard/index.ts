@@ -1,4 +1,5 @@
 import makeRequest from '@/server/HAFAS/Request';
+import { timezone } from '@/timezone';
 import type { AllowedHafasProfile, JourneyFilter } from '@/types/HAFAS';
 import type { StationBoardRequest } from '@/types/HAFAS/StationBoard';
 import type {
@@ -6,7 +7,6 @@ import type {
 	DepartureStationBoardEntry,
 	StationBoardEntry,
 } from '@/types/stationBoard';
-import { tz } from '@date-fns/tz';
 import { format } from 'date-fns';
 import parse from './parse';
 
@@ -39,10 +39,10 @@ function stationBoard(
 			maxJny: 250,
 			jnyFltrL: filter,
 			date: format(date, 'yyyyMMdd', {
-				in: tz('Europe/Berlin'),
+				in: timezone.europeBerlin,
 			}),
 			time: format(date, 'HHmmss', {
-				in: tz('Europe/Berlin'),
+				in: timezone.europeBerlin,
 			}),
 			stbLoc: {
 				lid: `A=1@L=${station}`,

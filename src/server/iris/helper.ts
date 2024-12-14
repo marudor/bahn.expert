@@ -1,6 +1,6 @@
 import { axiosUpstreamInterceptor } from '@/server/admin';
+import { timezone } from '@/timezone';
 import type { Stop } from '@/types/iris';
-import { tz } from '@date-fns/tz';
 import Axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { isValid, parse } from 'date-fns';
@@ -94,7 +94,7 @@ export function parseTs(ts?: string): undefined | Date {
 	if (ts) {
 		const format = ts.includes('-') ? 'yy-MM-dd HH:mm:ss.SSS' : 'yyMMddHHmm';
 		const parsedDate = parse(ts, format, Date.now(), {
-			in: tz('Europe/Berlin'),
+			in: timezone.europeBerlin,
 		});
 		if (isValid(parsedDate)) {
 			return parsedDate;

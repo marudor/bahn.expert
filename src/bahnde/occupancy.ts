@@ -1,12 +1,12 @@
 import { routing } from '@/bahnde/routing/routing';
 import { searchStopPlace } from '@/server/StopPlace/search';
 import { Cache, CacheDatabase } from '@/server/cache';
+import { timezone } from '@/timezone';
 import type {
 	RouteAuslastung,
 	RoutingResult,
 	SingleRoute,
 } from '@/types/routing';
-import { tz } from '@date-fns/tz';
 import { formatISO } from 'date-fns';
 
 async function getRelevantTrip(
@@ -63,6 +63,14 @@ const stopOccupancyCache = new Cache<RouteAuslastung | undefined>(
 	CacheDatabase.HafasStopOccupancy,
 );
 
+const createBaseCacheKey = (
+	trainNumber: string,
+	initialDeparture: Date,
+	start: string,
+	destination: string,
+) =>
+	`${trainNumber}:${formatISO(initialDeparture, { in: timezone.utc })}:${start}-${destination}`;
+
 export function setOccupanciesOfRoutes(routes: RoutingResult['routes']) {
 	for (const route of routes) {
 		for (const segment of route.segments) {
@@ -72,7 +80,12 @@ export function setOccupanciesOfRoutes(routes: RoutingResult['routes']) {
 				segment.train.number !== '0' &&
 				segment.auslastung
 			) {
-				const baseKey = `${segment.segmentStart.name}:${segment.segmentDestination.name}:${segment.train.number}:${formatISO(segment.departure.scheduledTime, { in: tz('UTC') })}`;
+				const baseKey = createBaseCacheKey(
+					segment.train.number,
+					segment.departure.scheduledTime,
+					segment.segmentStart.name,
+					segment.segmentDestination.name,
+				);
 				for (const stop of segment.stops) {
 					if (stop.auslastung) {
 						void stopOccupancyCache.set(
@@ -87,18 +100,28 @@ export function setOccupanciesOfRoutes(routes: RoutingResult['routes']) {
 }
 
 export async function bahnDeOccupancy(
-	start: string,
-	destination: string,
+	startStopPlaceName: string,
+	destinationStopPlaceName: string,
 	trainNumber: string,
-	time: Date,
+	initialDepartureDate: Date,
 	stopEva: string,
 ): Promise<RouteAuslastung | undefined> {
-	const keyWithouEva = `${start}:${destination}:${trainNumber}:${formatISO(time, { in: tz('UTC') })}`;
+	const keyWithouEva = createBaseCacheKey(
+		trainNumber,
+		initialDepartureDate,
+		startStopPlaceName,
+		destinationStopPlaceName,
+	);
 	const key = `${keyWithouEva}:${stopEva}`;
 	if (await stopOccupancyCache.exists(key)) {
 		return await stopOccupancyCache.get(key);
 	}
-	await getRelevantTrip(start, destination, trainNumber, time);
+	await getRelevantTrip(
+		startStopPlaceName,
+		destinationStopPlaceName,
+		trainNumber,
+		initialDepartureDate,
+	);
 
 	return await stopOccupancyCache.get(key);
 }
