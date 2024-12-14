@@ -68,6 +68,10 @@ const mapProduct = (input: BahnDEVerkehrsmittel): ParsedProduct => {
 	};
 };
 
+function normalizeStopPlaceName(name: string) {
+	return name.replace('(', ' (').replace(')', ') ').trim();
+}
+
 const mapJourneySegment = async (
 	input: BahnDERoutingAbschnitt,
 ): Promise<RouteJourneySegmentTrain | undefined> => {
@@ -76,12 +80,14 @@ const mapJourneySegment = async (
 		evaNumber: input.abfahrtsOrtExtId,
 		name: input.abfahrtsOrt,
 	};
+	segmentStart.name = normalizeStopPlaceName(segmentStart.name);
 	const segmentDestination = (await getStopPlaceByEva(
 		input.ankunftsOrtExtId,
 	)) ?? {
 		evaNumber: input.ankunftsOrtExtId,
 		name: input.ankunftsOrt,
 	};
+	segmentDestination.name = normalizeStopPlaceName(segmentDestination.name);
 
 	const stops = await Promise.all(input.halte?.map(mapHalt) || []);
 

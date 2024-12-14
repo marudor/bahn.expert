@@ -1,7 +1,7 @@
+import { bahnDeOccupancy } from '@/bahnde/occupancy';
 import StationBoard from '@/server/HAFAS/StationBoard';
 import StationBoardToTimetables from '@/server/HAFAS/StationBoard/StationBoardToTimetables';
 import { tripSearch } from '@/server/HAFAS/TripSearch/TripSearch';
-import { stopOccupancy } from '@/server/HAFAS/occupancy';
 import { vrrOccupancy } from '@/server/StopPlace/vrrOccupancy';
 import { getOccupancy } from '@/server/coachSequence/occupancy';
 import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
@@ -95,7 +95,7 @@ export const hafasRpcRouter = rpcAppRouter({
 				const [foundOccupancy, foundVrrOccupancy, foundTransportsOccupancy] =
 					await Promise.all([
 						plannedDepartureTime &&
-							stopOccupancy(
+							bahnDeOccupancy(
 								start,
 								destination,
 								trainNumber,

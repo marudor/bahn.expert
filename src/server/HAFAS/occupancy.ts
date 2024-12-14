@@ -51,7 +51,7 @@ const stopOccupancyCache = new Cache<RouteAuslastung | undefined>(
 	CacheDatabase.HafasStopOccupancy,
 );
 
-export async function stopOccupancy(
+async function stopOccupancy(
 	start: string,
 	destination: string,
 	trainNumber: string,

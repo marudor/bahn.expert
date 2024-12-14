@@ -120,11 +120,18 @@ export function mapSegmentDeparture(
 	};
 }
 
+function normalizeStopPlaceName(name: string) {
+	return name.replace('(', ' (').replace(')', ') ').trim();
+}
+
 export const mapHalt = async (input: BahnDEHalt): Promise<RouteStop> => {
 	const stopPlace = await getStopPlaceByEva(input.extId);
+	if (stopPlace) {
+		stopPlace.name = normalizeStopPlaceName(stopPlace.name);
+	}
 	const hafasStopPlace: RouteStop['station'] = {
 		evaNumber: input.extId,
-		name: input.name,
+		name: normalizeStopPlaceName(input.name),
 	};
 	return {
 		station: stopPlace ?? hafasStopPlace,
