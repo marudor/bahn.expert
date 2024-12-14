@@ -214,15 +214,16 @@ export interface CommonStopInfo {
 	 * @isInt
 	 */
 	delay?: number;
-	reihung?: boolean;
 	messages?: RemL[];
 	cancelled?: boolean;
-	isRealTime?: boolean;
+	additional?: boolean;
 	noPassengerChange?: boolean;
 	/**
 	 * Arrival/Departure ID
 	 */
 	id?: string;
+	/** REPORTED Time */
+	isRealTime?: boolean;
 }
 
 export interface RemL {

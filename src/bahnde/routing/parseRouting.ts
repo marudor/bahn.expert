@@ -1,6 +1,7 @@
 import type {
 	BahnDEAuslastungsMeldung,
 	BahnDEHalt,
+	BahnDERISNotiz,
 	BahnDERoutingAbschnitt,
 	BahnDERoutingResult,
 	BahnDERoutingVerbindung,
@@ -71,10 +72,30 @@ const mapWalkSegmentStartDestination = async (
 	};
 };
 
-function mapSegmentArrival(input: BahnDERoutingAbschnitt): CommonStopInfo;
+function risAdditional(input?: BahnDERISNotiz[]) {
+	return (
+		input?.some((n) => n.key === 'text.realtime.stop.additional') || undefined
+	);
+}
+
+function risCancelled(input?: BahnDERISNotiz[]) {
+	return (
+		input?.some(
+			(n) =>
+				n.key === 'text.realtime.stop.cancelled' ||
+				n.key === 'text.realtime.connection.cancelled',
+		) || undefined
+	);
+}
+
+function mapSegmentArrival(
+	input: BahnDERoutingAbschnitt,
+	lastHalt?: CommonStopInfo,
+): CommonStopInfo;
 function mapSegmentArrival(input: BahnDEHalt): CommonStopInfo | undefined;
 function mapSegmentArrival(
 	input: BahnDERoutingAbschnitt | BahnDEHalt,
+	lastHalt?: CommonStopInfo,
 ): CommonStopInfo | undefined {
 	const scheduledTime = parseTime(input.ankunftsZeitpunkt);
 	const time = parseTime(input.ezAnkunftsZeitpunkt || input.ankunftsZeitpunkt);
@@ -88,26 +109,32 @@ function mapSegmentArrival(
 	let scheduledPlatform: string | undefined = undefined;
 
 	if ('gleis' in input) {
-		scheduledPlatform = input.ezGleis && input.gleis;
+		scheduledPlatform = input.gleis;
+		platform = input.gleis;
 	}
 	if ('ezGleis' in input) {
-		platform = input.ezGleis || input.gleis;
+		platform = input.ezGleis;
 	}
 
 	return {
 		time,
 		scheduledTime,
 		delay: delay != null ? delay : undefined,
-		cancelled: undefined,
-		platform,
-		scheduledPlatform,
+		cancelled: risCancelled(input.risNotizen),
+		additional: risAdditional(input.risNotizen),
+		platform: platform || lastHalt?.platform,
+		scheduledPlatform: scheduledPlatform || lastHalt?.scheduledPlatform,
 	};
 }
 
-function mapSegmentDeparture(input: BahnDERoutingAbschnitt): CommonStopInfo;
+function mapSegmentDeparture(
+	input: BahnDERoutingAbschnitt,
+	firstHalt?: CommonStopInfo,
+): CommonStopInfo;
 function mapSegmentDeparture(input: BahnDEHalt): CommonStopInfo | undefined;
 function mapSegmentDeparture(
 	input: BahnDERoutingAbschnitt | BahnDEHalt,
+	firstHalt?: CommonStopInfo,
 ): CommonStopInfo | undefined {
 	const scheduledTime = parseTime(input.abfahrtsZeitpunkt);
 	const time = parseTime(input.ezAbfahrtsZeitpunkt || input.abfahrtsZeitpunkt);
@@ -120,20 +147,20 @@ function mapSegmentDeparture(
 	let platform: string | undefined = undefined;
 	let scheduledPlatform: string | undefined = undefined;
 	if ('gleis' in input) {
-		scheduledPlatform = input.ezGleis && input.gleis;
+		scheduledPlatform = input.gleis;
+		platform = input.gleis;
 	}
 	if ('ezGleis' in input) {
-		platform = input.ezGleis || input.gleis;
+		platform = input.ezGleis;
 	}
 
 	return {
 		time,
 		scheduledTime,
 		delay: delay != null ? delay : undefined,
-		// TODO: cancelled
-		cancelled: undefined,
-		platform,
-		scheduledPlatform,
+		cancelled: risCancelled(input.risNotizen),
+		platform: platform || firstHalt?.platform,
+		scheduledPlatform: scheduledPlatform || firstHalt?.scheduledPlatform,
 	};
 }
 
@@ -188,17 +215,14 @@ const mapHalt = async (input: BahnDEHalt): Promise<RouteStop> => {
 		arrival: mapSegmentArrival(input),
 		departure: mapSegmentDeparture(input),
 		auslastung: mapAuslastung(input.auslastungsmeldungen),
-		cancelled:
-			input.risNotizen?.some((n) => n.key === 'text.realtime.stop.cancelled') ||
-			undefined,
+		cancelled: risCancelled(input.risNotizen),
+		additional: risAdditional(input.risNotizen),
 	};
 };
 
 const mapJourneySegment = async (
 	input: BahnDERoutingAbschnitt,
 ): Promise<RouteJourneySegmentTrain | undefined> => {
-	const arrival = mapSegmentArrival(input);
-	const departure = mapSegmentDeparture(input);
 	const product = mapProduct(input.verkehrsmittel);
 	const segmentStart = (await getStopPlaceByEva(input.abfahrtsOrtExtId)) ?? {
 		evaNumber: input.abfahrtsOrtExtId,
@@ -210,6 +234,11 @@ const mapJourneySegment = async (
 		evaNumber: input.ankunftsOrtExtId,
 		name: input.ankunftsOrt,
 	};
+
+	const stops = await Promise.all(input.halte?.map(mapHalt) || []);
+
+	const arrival = mapSegmentArrival(input, stops.at(-1)?.arrival!);
+	const departure = mapSegmentDeparture(input, stops.at(0)?.departure!);
 
 	if (!arrival || !departure) {
 		return undefined;
@@ -228,7 +257,9 @@ const mapJourneySegment = async (
 		finalDestination: input.verkehrsmittel.richtung,
 		segmentStart,
 		segmentDestination,
-		stops: await Promise.all(input.halte?.map(mapHalt) || []),
+		auslastung: mapAuslastung(input.auslastungsmeldungen),
+		cancelled: risCancelled(input.risNotizen),
+		stops,
 		train: product,
 		jid: input.journeyId,
 	};
@@ -292,7 +323,7 @@ const mapVerbindung = async (
 			(input.ezVerbindungsDauerInSeconds || input.verbindungsDauerInSeconds) *
 			1000,
 		date: firstJny.arrival.time,
-		isRideable: true,
+		isRideable: !risCancelled(input.risNotizen),
 		segmentTypes: segments
 			.map((s) => (s.type === 'JNY' ? s.train.type : s.train.name))
 			.filter(Boolean),

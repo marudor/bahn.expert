@@ -26,7 +26,7 @@ const parseJourneyMatch = (
 		d.svcResL[0].res.jnyL.map((j) => {
 			const date = parse(j.date, 'yyyyMMdd', new Date());
 			const train = common.prodL[j.prodX];
-			const stops = j.stopL.map((stop) => parseStop(stop, common, date, train));
+			const stops = j.stopL.map((stop) => parseStop(stop, common, date));
 
 			return {
 				train,

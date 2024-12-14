@@ -93,7 +93,7 @@ interface BahnDEPriorisierteMeldung {
 	text: string;
 }
 
-interface BahnDERISNotiz {
+export interface BahnDERISNotiz {
 	key: string;
 	value: string;
 }
@@ -149,7 +149,7 @@ export interface BahnDEVerkehrsmittel {
 }
 
 export interface BahnDERoutingAbschnitt {
-	risNotizen?: any[];
+	risNotizen?: BahnDERISNotiz[];
 	himMeldungen?: BahnDEHimMeldung[];
 	priorisierteMeldungen?: BahnDEPriorisierteMeldung[];
 	externeBahnhofsinfoIdOrigin?: string;
@@ -188,7 +188,7 @@ export interface BahnDERoutingVerbindung {
 	auslastungsmeldungen?: BahnDEAuslastungsMeldung[];
 	auslastungstexte?: any;
 	himMeldungen?: BahnDEHimMeldung[];
-	risNotizen?: any[];
+	risNotizen?: BahnDERISNotiz[];
 	priorisierteMeldungen?: BahnDEPriorisierteMeldung[];
 	reservierungsMeldungen?: any[];
 	isAngebotseinholungNachgelagert?: boolean;
