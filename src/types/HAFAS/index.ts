@@ -214,15 +214,16 @@ export interface CommonStopInfo {
 	 * @isInt
 	 */
 	delay?: number;
-	reihung?: boolean;
 	messages?: RemL[];
 	cancelled?: boolean;
-	isRealTime?: boolean;
+	additional?: boolean;
 	noPassengerChange?: boolean;
 	/**
 	 * Arrival/Departure ID
 	 */
 	id?: string;
+	/** REPORTED Time */
+	isRealTime?: boolean;
 }
 
 export interface RemL {
@@ -271,6 +272,8 @@ export enum AllowedHafasProfile {
 	DBRegio = 'dbregio',
 	DBSmartRBL = 'smartrbl',
 	VBN = 'vbn',
+	// Not a real hafas profile, used in routing for bahn.de stuff
+	BAHN = 'bahn',
 	// all = 'all',
 }
 
@@ -541,7 +544,7 @@ export type ParsedProduct = CommonProductInfo;
 export interface ParsedPolyline {
 	// Actually [number, number][]
 	points: number[][];
-	delta: boolean;
+	delta?: boolean;
 	locations: HafasStation[];
 }
 

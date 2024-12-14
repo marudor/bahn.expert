@@ -67,7 +67,7 @@ export const JnySegmentTrain: FC<Props> = ({
 									?.scheduledTime
 							}
 							administration={segment.train.admin}
-							loadHidden={!segment.departure.reihung}
+							loadHidden
 						/>
 					)}
 					<StopList stops={segment.stops} />

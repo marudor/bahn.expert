@@ -83,17 +83,15 @@ export const RouteList: FC = () => {
 				))}
 			{rideableRoutes.map((r, i) => {
 				return (
-					<Fragment key={r.checksum}>
+					<Fragment key={r.id}>
 						{(i === 0 ||
 							!isSameDay(
 								rideableRoutes[i - 1].date,
 								rideableRoutes[i].date,
 							)) && <RouteHeader date={r.date} />}
 						<Route
-							detail={detail === r.checksum}
-							onClick={() =>
-								setDetail(detail === r.checksum ? undefined : r.checksum)
-							}
+							detail={detail === r.id}
+							onClick={() => setDetail(detail === r.id ? undefined : r.id)}
 							route={r}
 						/>
 					</Fragment>

@@ -1,4 +1,4 @@
-import type { CommonStop, ParsedCommon, ParsedProduct } from '@/types/HAFAS';
+import type { CommonStop, ParsedCommon } from '@/types/HAFAS';
 import type { RouteStop } from '@/types/routing';
 import parseAuslastung from './parseAuslastung';
 import parseCommonArrival from './parseCommonArrival';
@@ -9,13 +9,12 @@ export default (
 	stop: CommonStop,
 	common: ParsedCommon,
 	date: Date,
-	train: ParsedProduct,
 ): RouteStop => {
 	const arrival = stop.aTimeS
-		? parseCommonArrival(stop, date, common, train)
+		? parseCommonArrival(stop, date, common)
 		: undefined;
 	const departure = stop.dTimeS
-		? parseCommonDeparture(stop, date, common, train)
+		? parseCommonDeparture(stop, date, common)
 		: undefined;
 
 	return {

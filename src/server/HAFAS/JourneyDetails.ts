@@ -27,9 +27,7 @@ export const parseJourneyDetails = (
 	if (!mainProduct.name) {
 		mainProduct.name = `${mainProduct.type} ${mainProduct.number}`;
 	}
-	const stops = journey.stopL.map((stop) =>
-		parseStop(stop, common, date, mainProduct),
-	);
+	const stops = journey.stopL.map((stop) => parseStop(stop, common, date));
 	if (!stops.length) {
 		return Promise.resolve(undefined);
 	}

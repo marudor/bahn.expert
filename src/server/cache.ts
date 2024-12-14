@@ -73,6 +73,7 @@ export enum CacheDatabase {
 	CoachSequenceRemovedData = 24,
 	VRROccupancy = 25,
 	VehicleLayoutsMaps = 26,
+	BahnDEJourneyDetails = 27,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
@@ -87,12 +88,12 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 		'PT15M',
 		process.env.COACH_SEQUENCE_CACHE_TTL,
 	),
-	[CacheDatabase.StopPlaceIdentifier]: 'P3D',
-	[CacheDatabase.StopPlaceByEva]: 'P3D',
-	[CacheDatabase.StopPlaceByRil]: 'P3D',
-	[CacheDatabase.StopPlaceByRilGrouped]: 'P3D',
-	[CacheDatabase.StopPlaceGroups]: 'P3D',
-	[CacheDatabase.StopPlaceSalesSearch]: 'P3D',
+	[CacheDatabase.StopPlaceIdentifier]: 'P5D',
+	[CacheDatabase.StopPlaceByEva]: 'P5D',
+	[CacheDatabase.StopPlaceByRil]: 'P5D',
+	[CacheDatabase.StopPlaceByRilGrouped]: 'P5D',
+	[CacheDatabase.StopPlaceGroups]: 'P5D',
+	[CacheDatabase.StopPlaceSalesSearch]: 'P5D',
 	[CacheDatabase.HAFASJourneyMatch]: 'P2D',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
 	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
@@ -112,6 +113,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.VehicleLayoutsMaps]: 'P10D',
 	[CacheDatabase.TransportsOccupancy]: 'P1D',
 	[CacheDatabase.JourneysForVehicle]: 'PT1H',
+	[CacheDatabase.BahnDEJourneyDetails]: 'PT4M',
 };
 
 const activeRedisCaches = new Set<Redis>();

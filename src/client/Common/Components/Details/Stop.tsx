@@ -279,7 +279,7 @@ export const Stop: FC<Props> = ({
 							scheduledDeparture={stop.departure.scheduledTime}
 							initialDeparture={initialDepartureDate}
 							administration={train?.admin}
-							loadHidden={!stop.departure?.reihung}
+							loadHidden
 						/>
 					)}
 			</CoachSequenceContainer>

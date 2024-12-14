@@ -14,6 +14,7 @@ export const BC100Disclaimer: FC = () => {
 		>
 			<DialogTitle>BC100 Disclaimer</DialogTitle>
 			<DialogContent>
+				Dieser Filter funktioniert NICHT mit "bahn.de" als Backend! <br />
 				Dieser Filter nimmt alle Fahrten raus welche mit "DB-Fahrscheine gelten
 				nicht" markiert sind. <br />
 				Ganz konkret basiert es auf dem Attribut "DU". Keine Garantie das nicht

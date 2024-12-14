@@ -14,7 +14,6 @@ import type {
 	CommonStopInfo,
 	HafasResponse,
 	ParsedCommon,
-	ParsedProduct,
 } from '@/types/HAFAS';
 import type {
 	Jny,
@@ -119,7 +118,7 @@ export class Journey {
 		adjustToLastTrain(arrival, segments);
 
 		return Promise.resolve({
-			checksum: this.raw.cksum,
+			id: this.raw.cksum,
 			cid: this.raw.cid,
 			date: this.date,
 			duration: parseDuration(this.raw.dur),
@@ -134,13 +133,10 @@ export class Journey {
 			tarifSet: parseTarif(this.raw.trfRes),
 		});
 	};
-	private parseStops = (
-		stops: CommonStop[] | undefined,
-		train: ParsedProduct,
-	): RouteStop[] => {
+	private parseStops = (stops: CommonStop[] | undefined): RouteStop[] => {
 		if (!stops) return [];
 
-		return stops.map((stop) => parseStop(stop, this.common, this.date, train));
+		return stops.map((stop) => parseStop(stop, this.common, this.date));
 	};
 	private parseSegmentJourney = (jny: Jny): RouteJourney => {
 		const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
@@ -153,7 +149,7 @@ export class Journey {
 			changeDuration: jny.chgDurR,
 			segmentStart: parseFullStation(fullStart),
 			segmentDestination: parseFullStation(fullDestination),
-			stops: this.parseStops(jny.stopL, product),
+			stops: this.parseStops(jny.stopL),
 			finalDestination: jny.dirTxt,
 			jid: jny.jid,
 			auslastung: parseAuslastung(jny.dTrnCmpSX, this.common.tcocL),
@@ -165,18 +161,8 @@ export class Journey {
 	): Promise<undefined | RouteJourneySegment> => {
 		switch (t.type) {
 			case 'JNY': {
-				const arrival = parseCommonArrival(
-					t.arr,
-					this.date,
-					this.common,
-					this.common.prodL[t.jny.prodX],
-				);
-				const departure = parseCommonDeparture(
-					t.dep,
-					this.date,
-					this.common,
-					this.common.prodL[t.jny.prodX],
-				);
+				const arrival = parseCommonArrival(t.arr, this.date, this.common);
+				const departure = parseCommonDeparture(t.dep, this.date, this.common);
 
 				return {
 					arrival,
