@@ -92,7 +92,7 @@ export const SettingsPanel: FC = () => {
 	const handleHafasProfile = useCallback(
 		(event: SelectChangeEvent) => {
 			// @ts-expect-error just sanitized
-			updateSettings('hafasProfile', event.target.value);
+			updateSettings('hafasProfileN', event.target.value);
 		},
 		[updateSettings],
 	);
@@ -201,7 +201,7 @@ export const SettingsPanel: FC = () => {
 							labelPlacement="start"
 							control={
 								<Select
-									value={settings.hafasProfile || ''}
+									value={settings.hafasProfileN || ''}
 									onChange={handleHafasProfile}
 								>
 									<MenuItem value={AllowedHafasProfile.BAHN}>bahn.de</MenuItem>

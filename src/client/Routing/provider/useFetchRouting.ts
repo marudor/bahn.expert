@@ -68,7 +68,7 @@ export const useFetchRouting = () => {
 			setRoutes(undefined);
 			let routingResult: RoutingResult;
 			try {
-				if (routeSettings.hafasProfile !== AllowedHafasProfile.BAHN) {
+				if (routeSettings.hafasProfileN !== AllowedHafasProfile.BAHN) {
 					routingResult = await trpcUtils.hafas.tripSearch.fetch(
 						{
 							time: touchedDate ? date : new Date(),
@@ -153,7 +153,7 @@ export const useFetchRouting = () => {
 			let routingResult: RoutingResult;
 
 			try {
-				if (routeSettings.hafasProfile === AllowedHafasProfile.BAHN) {
+				if (routeSettings.hafasProfileN === AllowedHafasProfile.BAHN) {
 					routingResult = await trpcUtils.bahn.routing.fetch(
 						{
 							time: touchedDate ? date : new Date(),
