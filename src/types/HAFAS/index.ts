@@ -271,6 +271,8 @@ export enum AllowedHafasProfile {
 	DBRegio = 'dbregio',
 	DBSmartRBL = 'smartrbl',
 	VBN = 'vbn',
+	// Not a real hafas profile, used in routing for bahn.de stuff
+	BAHN = 'bahn',
 	// all = 'all',
 }
 

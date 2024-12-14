@@ -204,8 +204,9 @@ export const SettingsPanel: FC = () => {
 									value={settings.hafasProfile || ''}
 									onChange={handleHafasProfile}
 								>
+									<MenuItem value={AllowedHafasProfile.BAHN}>Bahn.de</MenuItem>
 									<MenuItem value={AllowedHafasProfile.DB}>
-										DB Navigator
+										Business DB Navigator (Legacy)
 									</MenuItem>
 									<MenuItem value={AllowedHafasProfile.OEBB}>
 										OEBB Scotty

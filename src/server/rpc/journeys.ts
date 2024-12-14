@@ -194,8 +194,18 @@ export const journeysRpcRouter = rpcAppRouter({
 					return hafasFallback();
 				}
 				let hafasResult: ParsedSearchOnTripResponse | undefined;
-				if (jid) {
+				if (jid && productDetails.trainNumber === 0) {
+					// basierend auf Hafas versuchen, RIS::Journeys nur bei Bedarf
 					hafasResult = await hafasFallback();
+					if (hafasResult) {
+						if (hafasResult.train.number && hafasResult.train.number !== '0') {
+							productDetails.trainNumber = Number.parseInt(
+								hafasResult.train.number,
+							);
+						} else {
+							return hafasResult;
+						}
+					}
 				}
 				const possibleJourneys = await findJourneyV1OrV2(
 					productDetails.trainNumber,

@@ -1,8 +1,9 @@
 pre-commit:
   commands:
     biome:
-      glob: '*.{js,cjs,mjs,mts,ts,jsx,tsx,json}'
-      run: pnpm biome check --fix {staged_files} && git add {staged_files}
+      glob: "*.{js,cjs,mjs,mts,ts,jsx,tsx,json}"
+      run: pnpm biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off --fix
+      stage_fixed: true
 commit-msg:
   commands:
     lint-commit-msg:

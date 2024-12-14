@@ -92,7 +92,7 @@ export interface RouteJourneySegmentWalk {
 	arrival: WalkStopInfo;
 	departure: WalkStopInfo;
 	/**
-	 * @isInt
+	 * @isInt ms
 	 */
 	duration: number;
 	segmentStart: HafasStation;
@@ -120,7 +120,7 @@ export interface SingleRoute {
 	arrival: CommonStopInfo;
 	departure: CommonStopInfo;
 	isRideable: boolean;
-	checksum: string;
+	id: string;
 	cid: string;
 	date: Date;
 	/**

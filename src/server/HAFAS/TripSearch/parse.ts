@@ -119,7 +119,7 @@ export class Journey {
 		adjustToLastTrain(arrival, segments);
 
 		return Promise.resolve({
-			checksum: this.raw.cksum,
+			id: this.raw.cksum,
 			cid: this.raw.cid,
 			date: this.date,
 			duration: parseDuration(this.raw.dur),

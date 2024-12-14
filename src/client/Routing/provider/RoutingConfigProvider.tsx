@@ -23,7 +23,10 @@ export interface RoutingSettings {
 	onlyRegional: boolean;
 	onlyNetzcard: boolean;
 	onlyBC100: boolean;
-	hafasProfile?: AllowedHafasProfile.DB | AllowedHafasProfile.OEBB;
+	hafasProfile?:
+		| AllowedHafasProfile.DB
+		| AllowedHafasProfile.OEBB
+		| AllowedHafasProfile.BAHN;
 }
 const routingConfigKeys = [
 	'maxChanges',
@@ -193,7 +196,7 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
 		onlyRegional: routingConfig.onlyRegional ?? false,
 		onlyNetzcard: routingConfig.onlyNetzcard ?? false,
 		onlyBC100: routingConfig.onlyBC100 ?? false,
-		hafasProfile: routingConfig.hafasProfile ?? AllowedHafasProfile.DB,
+		hafasProfile: routingConfig.hafasProfile ?? AllowedHafasProfile.BAHN,
 	};
 
 	return (

@@ -121,6 +121,8 @@ export const db = {
 		},
 	},
 };
+// dummy;
+export const bahn = db;
 
 export const pkp = {
 	url: 'https://mobil.rozklad-pkp.pl:8019/bin/mgate.exe',
