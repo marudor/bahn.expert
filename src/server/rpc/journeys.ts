@@ -1,3 +1,4 @@
+import { bahnJourneyDetails } from '@/bahnde/journeyDetails/jourbeyDetails';
 import {
 	findJourney,
 	findJourneyHafasCompatible,
@@ -196,7 +197,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				let hafasResult: ParsedSearchOnTripResponse | undefined;
 				if (jid && productDetails.trainNumber === 0) {
 					// basierend auf Hafas versuchen, RIS::Journeys nur bei Bedarf
-					hafasResult = await hafasFallback();
+					hafasResult = await bahnJourneyDetails(jid);
 					if (hafasResult) {
 						if (hafasResult.train.number && hafasResult.train.number !== '0') {
 							productDetails.trainNumber = Number.parseInt(

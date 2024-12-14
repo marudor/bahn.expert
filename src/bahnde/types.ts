@@ -121,6 +121,12 @@ export interface BahnDEHalt {
 	ezAnkunftsZeitpunkt?: string;
 }
 
+export interface BahnDEFahrtHalt extends BahnDEHalt {
+	adminID?: string;
+	kategorie?: string;
+	nummer?: string;
+}
+
 interface BahnDEVerkehrsmittelAttribut {
 	kategorie: string;
 	key: string;
@@ -201,4 +207,31 @@ export interface BahnDERoutingVerbindung {
 	hinRueckPauschalpreis?: boolean;
 	isReservierungAusserhalbVorverkaufszeitraum?: boolean;
 	gesamtAngebotsbeziehungList?: any[];
+}
+
+export interface BahnDEFahrt {
+	/** ISO Date */
+	reisetag: string;
+	regulaereVerkehrstage: string;
+	irregulaereVerkehrstage: string;
+	zugName: string;
+	halte: BahnDEFahrtHalt[];
+	himMeldungen?: BahnDEHimMeldung[];
+	risNotizen?: BahnDERISNotiz[];
+	zugattribute?: BahnDEVerkehrsmittelAttribut[];
+	priorisierteMeldungen: BahnDEPriorisierteMeldung[];
+	abfahrtsZeitpunkt: string;
+	ezAbfahrtsZeitpunkt?: string;
+	ankunftsZeitpunkt: string;
+	ezAnkunftsZeitpunkt?: string;
+	cancelled?: boolean;
+	polylineGroup: {
+		polylineDescriptions: {
+			coordinates: {
+				lng: number;
+				lat: number;
+			}[];
+			delta?: boolean;
+		}[];
+	};
 }

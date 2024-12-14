@@ -1,7 +1,11 @@
+import {
+	mapAuslastung,
+	mapHalt,
+	mapSegmentArrival,
+	mapSegmentDeparture,
+	risCancelled,
+} from '@/bahnde/parsing';
 import type {
-	BahnDEAuslastungsMeldung,
-	BahnDEHalt,
-	BahnDERISNotiz,
 	BahnDERoutingAbschnitt,
 	BahnDERoutingResult,
 	BahnDERoutingVerbindung,
@@ -9,37 +13,15 @@ import type {
 } from '@/bahnde/types';
 import { TransportType } from '@/external/types';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
+import type { HafasStation, ParsedProduct } from '@/types/HAFAS';
 import type {
-	CommonStopInfo,
-	HafasStation,
-	ParsedProduct,
-} from '@/types/HAFAS';
-import {
-	AuslastungsValue,
-	type RouteAuslastung,
-	type RouteJourneySegment,
-	type RouteJourneySegmentTrain,
-	type RouteJourneySegmentWalk,
-	type RouteStop,
-	type RoutingResult,
-	type SingleRoute,
+	RouteJourneySegment,
+	RouteJourneySegmentTrain,
+	RouteJourneySegmentWalk,
+	RoutingResult,
+	SingleRoute,
 } from '@/types/routing';
-import { tz } from '@date-fns/tz';
-import {
-	differenceInMilliseconds,
-	differenceInMinutes,
-	parseISO,
-} from 'date-fns';
-
-const europeBerlin = tz('Europe/Berlin');
-
-const parseTime = (dateTime?: string) => {
-	if (dateTime) {
-		return parseISO(dateTime, {
-			in: europeBerlin,
-		});
-	}
-};
+import { differenceInMilliseconds, differenceInMinutes } from 'date-fns';
 
 const mapWalkSegmentStartDestination = async (
 	input: BahnDERoutingAbschnitt,
@@ -72,98 +54,6 @@ const mapWalkSegmentStartDestination = async (
 	};
 };
 
-function risAdditional(input?: BahnDERISNotiz[]) {
-	return (
-		input?.some((n) => n.key === 'text.realtime.stop.additional') || undefined
-	);
-}
-
-function risCancelled(input?: BahnDERISNotiz[]) {
-	return (
-		input?.some(
-			(n) =>
-				n.key === 'text.realtime.stop.cancelled' ||
-				n.key === 'text.realtime.connection.cancelled',
-		) || undefined
-	);
-}
-
-function mapSegmentArrival(
-	input: BahnDERoutingAbschnitt,
-	lastHalt?: CommonStopInfo,
-): CommonStopInfo;
-function mapSegmentArrival(input: BahnDEHalt): CommonStopInfo | undefined;
-function mapSegmentArrival(
-	input: BahnDERoutingAbschnitt | BahnDEHalt,
-	lastHalt?: CommonStopInfo,
-): CommonStopInfo | undefined {
-	const scheduledTime = parseTime(input.ankunftsZeitpunkt);
-	const time = parseTime(input.ezAnkunftsZeitpunkt || input.ankunftsZeitpunkt);
-	if (!scheduledTime || !time) {
-		return undefined;
-	}
-	const delay = input.ezAnkunftsZeitpunkt
-		? differenceInMinutes(time, scheduledTime)
-		: undefined;
-	let platform: string | undefined = undefined;
-	let scheduledPlatform: string | undefined = undefined;
-
-	if ('gleis' in input) {
-		scheduledPlatform = input.gleis;
-		platform = input.gleis;
-	}
-	if ('ezGleis' in input) {
-		platform = input.ezGleis;
-	}
-
-	return {
-		time,
-		scheduledTime,
-		delay: delay != null ? delay : undefined,
-		cancelled: risCancelled(input.risNotizen),
-		additional: risAdditional(input.risNotizen),
-		platform: platform || lastHalt?.platform,
-		scheduledPlatform: scheduledPlatform || lastHalt?.scheduledPlatform,
-	};
-}
-
-function mapSegmentDeparture(
-	input: BahnDERoutingAbschnitt,
-	firstHalt?: CommonStopInfo,
-): CommonStopInfo;
-function mapSegmentDeparture(input: BahnDEHalt): CommonStopInfo | undefined;
-function mapSegmentDeparture(
-	input: BahnDERoutingAbschnitt | BahnDEHalt,
-	firstHalt?: CommonStopInfo,
-): CommonStopInfo | undefined {
-	const scheduledTime = parseTime(input.abfahrtsZeitpunkt);
-	const time = parseTime(input.ezAbfahrtsZeitpunkt || input.abfahrtsZeitpunkt);
-	if (!scheduledTime || !time) {
-		return undefined;
-	}
-	const delay = input.ezAbfahrtsZeitpunkt
-		? differenceInMinutes(time, scheduledTime)
-		: undefined;
-	let platform: string | undefined = undefined;
-	let scheduledPlatform: string | undefined = undefined;
-	if ('gleis' in input) {
-		scheduledPlatform = input.gleis;
-		platform = input.gleis;
-	}
-	if ('ezGleis' in input) {
-		platform = input.ezGleis;
-	}
-
-	return {
-		time,
-		scheduledTime,
-		delay: delay != null ? delay : undefined,
-		cancelled: risCancelled(input.risNotizen),
-		platform: platform || firstHalt?.platform,
-		scheduledPlatform: scheduledPlatform || firstHalt?.scheduledPlatform,
-	};
-}
-
 const mapProduct = (input: BahnDEVerkehrsmittel): ParsedProduct => {
 	return {
 		name: input.langText || input.mittelText || input.name,
@@ -175,48 +65,6 @@ const mapProduct = (input: BahnDEVerkehrsmittel): ParsedProduct => {
 		operator: {
 			name: input.zugattribute?.filter((a) => a.key === 'BEF').join(', '),
 		},
-	};
-};
-
-const mapSingleAuslastung = (input?: number): AuslastungsValue | undefined => {
-	switch (input) {
-		case 1:
-			return AuslastungsValue.Gering;
-		case 2:
-			return AuslastungsValue.Hoch;
-		case 3:
-			return AuslastungsValue.SehrHoch;
-		case 4:
-		case 99:
-			return AuslastungsValue.Ausgebucht;
-	}
-};
-const mapAuslastung = (
-	input?: BahnDEAuslastungsMeldung[],
-): RouteAuslastung | undefined => {
-	const firstClassAuslastung = input?.find((i) => i.klasse === 'KLASSE_1');
-	const secondClassAuslastung = input?.find((i) => i.klasse === 'KLASSE_2');
-	if (firstClassAuslastung || secondClassAuslastung) {
-		return {
-			first: mapSingleAuslastung(firstClassAuslastung?.stufe),
-			second: mapSingleAuslastung(secondClassAuslastung?.stufe),
-		};
-	}
-};
-
-const mapHalt = async (input: BahnDEHalt): Promise<RouteStop> => {
-	const stopPlace = await getStopPlaceByEva(input.extId);
-	const hafasStopPlace: RouteStop['station'] = {
-		evaNumber: input.extId,
-		name: input.name,
-	};
-	return {
-		station: stopPlace ?? hafasStopPlace,
-		arrival: mapSegmentArrival(input),
-		departure: mapSegmentDeparture(input),
-		auslastung: mapAuslastung(input.auslastungsmeldungen),
-		cancelled: risCancelled(input.risNotizen),
-		additional: risAdditional(input.risNotizen),
 	};
 };
 
@@ -335,7 +183,13 @@ const mapVerbindung = async (
 
 export const parseBahnRouting = async (
 	input: BahnDERoutingResult,
-): Promise<RoutingResult> => ({
-	context: input.verbindungReference,
-	routes: await Promise.all(input.verbindungen.map(mapVerbindung)),
-});
+): Promise<RoutingResult> => {
+	try {
+		return {
+			context: input.verbindungReference,
+			routes: await Promise.all(input.verbindungen.map(mapVerbindung)),
+		};
+	} catch {
+		throw new Error('NOT_FOUND');
+	}
+};

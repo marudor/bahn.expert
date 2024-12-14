@@ -1,5 +1,6 @@
 import { routing } from '@/bahnde/routing/routing';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
+import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
 const locationType = z.object({
@@ -31,7 +32,10 @@ export const bahnRpcRouter = rpcAppRouter({
 			try {
 				return await routing(input);
 			} catch (e) {
-				return e;
+				throw new TRPCError({
+					code: 'INTERNAL_SERVER_ERROR',
+					message: e.message,
+				});
 			}
 		}),
 });
