@@ -97,9 +97,13 @@ export const SettingsPanel: FC = () => {
 		[updateSettings],
 	);
 
-	const handleTripType = useCallback((event: SelectChangeEvent) => {
-		updateSettings('type', event.target.value);
-	});
+	const handleTripType = useCallback(
+		(event: SelectChangeEvent) => {
+			// @ts-expect-error just sanitized
+			updateSettings('type', event.target.value);
+		},
+		[updateSettings],
+	);
 
 	const maxChangesBadeContent = useMemo(() => {
 		const numberMaxChange = Number.parseInt(settings.maxChanges, 10);
@@ -247,19 +251,25 @@ export const SettingsPanel: FC = () => {
 						label="BC100 erlaubt"
 					/>
 
-					<FormControl size="small">
-						<FormLabel
-							labelPlacement="start"
-							control={
-								<Select value={settings.type || ''} onChange={handleTripType}>
-									<MenuItem value={TripSearchType.FIRST}>Erste Route</MenuItem>
-									<MenuItem value={TripSearchType.ANY}>Jede Route</MenuItem>
-									<MenuItem value={TripSearchType.LAST}>Letzte Route</MenuItem>
-								</Select>
-							}
-							label="Routentyp"
-						/>
-					</FormControl>
+					{settings.hafasProfileN !== AllowedHafasProfile.BAHN && (
+						<FormControl size="small">
+							<FormLabel
+								labelPlacement="start"
+								control={
+									<Select value={settings.type || ''} onChange={handleTripType}>
+										<MenuItem value={TripSearchType.FIRST}>
+											Erste Route
+										</MenuItem>
+										<MenuItem value={TripSearchType.ANY}>Jede Route</MenuItem>
+										<MenuItem value={TripSearchType.LAST}>
+											Letzte Route
+										</MenuItem>
+									</Select>
+								}
+								label="Routentyp"
+							/>
+						</FormControl>
+					)}
 				</Stack>
 			</StyledAccordion>
 		</>
