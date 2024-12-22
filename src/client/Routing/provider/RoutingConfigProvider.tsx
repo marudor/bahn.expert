@@ -23,7 +23,10 @@ export interface RoutingSettings {
 	onlyRegional: boolean;
 	onlyNetzcard: boolean;
 	onlyBC100: boolean;
-	hafasProfile?: AllowedHafasProfile.DB | AllowedHafasProfile.OEBB;
+	hafasProfileN?:
+		| AllowedHafasProfile.DB
+		| AllowedHafasProfile.OEBB
+		| AllowedHafasProfile.BAHN;
 	type?: TripSearchType;
 }
 const routingConfigKeys = [
@@ -31,7 +34,7 @@ const routingConfigKeys = [
 	'transferTime',
 	'onlyRegional',
 	'onlyNetzcard',
-	'hafasProfile',
+	'hafasProfileN',
 ] as (keyof RoutingSettings)[];
 
 const useRoutingConfigInternal = ({
@@ -194,7 +197,7 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
 		onlyRegional: routingConfig.onlyRegional ?? false,
 		onlyNetzcard: routingConfig.onlyNetzcard ?? false,
 		onlyBC100: routingConfig.onlyBC100 ?? false,
-		hafasProfile: routingConfig.hafasProfile ?? AllowedHafasProfile.DB,
+		hafasProfileN: routingConfig.hafasProfileN ?? AllowedHafasProfile.BAHN,
 		type: routingConfig.type ?? TripSearchType.ANY,
 	};
 

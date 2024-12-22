@@ -1,8 +1,9 @@
 import type { Server } from 'node:http';
-import type {
-	AxiosInstance,
-	AxiosResponse,
-	InternalAxiosRequestConfig,
+import {
+	type AxiosInstance,
+	type AxiosResponse,
+	type InternalAxiosRequestConfig,
+	isAxiosError,
 } from 'axios';
 import Koa from 'koa';
 import PromClient, { Counter, Histogram } from 'prom-client';
@@ -44,6 +45,13 @@ function upstreamResponseApiCountInterceptor(
 	return res;
 }
 
+function upstreamErrorResponseApiCountInterceptor(apiName: string, error: any) {
+	if (isAxiosError(error) && error.status) {
+		UpstreamApiResponseMetric.inc({ api: apiName, code: error.status });
+	}
+	return error;
+}
+
 export function axiosUpstreamInterceptor(
 	axios: AxiosInstance,
 	apiName: string,
@@ -53,6 +61,7 @@ export function axiosUpstreamInterceptor(
 	);
 	axios.interceptors.response.use(
 		upstreamResponseApiCountInterceptor.bind(undefined, apiName),
+		upstreamErrorResponseApiCountInterceptor.bind(undefined, apiName),
 	);
 }
 

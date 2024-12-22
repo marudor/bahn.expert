@@ -9,13 +9,12 @@ import type { StopPlaceEmbedded } from '@/external/generated/risJourneysV2';
 import { sortJourneys } from '@/external/risJourneysV2';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
-import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { logger } from '@/server/logger';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
-import { differenceInHours, format } from 'date-fns';
+import { differenceInHours, format, isEqual } from 'date-fns';
 
 const risJourneysConfiguration = new RisJourneysConfiguration({
 	basePath: process.env.RIS_JOURNEYS_URL,
@@ -114,15 +113,37 @@ function findAdministrationFilter(
 	return matches;
 }
 
+function findDateTimeFilter(matches: JourneyMatch[], dateTime: Date) {
+	const filtered = matches.filter((m) => isEqual(m.date, dateTime));
+
+	return filtered.length ? filtered : matches;
+}
+
 export async function findJourney(
 	trainNumber: number,
 	date: Date,
 	category?: string,
 	withOEV?: boolean,
 	administration?: string,
+) {
+	const baseResult = await innerFindJourney(trainNumber, date, withOEV);
+	const administrationFiltered = findAdministrationFilter(
+		baseResult,
+		administration,
+	);
+	const dateTimeFiltered = findDateTimeFilter(administrationFiltered, date);
+	const categoryFiltered = findCategoryFilter(dateTimeFiltered, category);
+
+	return categoryFiltered;
+}
+
+async function innerFindJourney(
+	trainNumber: number,
+	date: Date,
+	withOEV?: boolean,
 ): Promise<JourneyMatch[]> {
 	try {
-		const isWithin20Hours = date && differenceInHours(date, Date.now()) <= 20;
+		const isWithin20Hours = differenceInHours(date, Date.now()) <= 20;
 		// some EVUs (Looking at you DB FV) might not be available for >20h, others are.
 		if (!isWithin20Hours) {
 			return [];
@@ -132,14 +153,14 @@ export async function findJourney(
 
 		const cacheHit = await journeyFindCache.get(cacheKey);
 		if (cacheHit) {
-			return findCategoryFilter(cacheHit, category);
+			return cacheHit;
 		}
 
 		const result = await client.find({
 			number: trainNumber,
 			// Kategorie ist schwierig, wir filtern quasi optional
 			// category,
-			date: date && format(date, 'yyyy-MM-dd'),
+			date: format(date, 'yyyy-MM-dd'),
 			transports: withOEV ? undefined : trainTypes,
 		});
 
@@ -151,21 +172,6 @@ export async function findJourney(
 				result.data.journeys,
 				// empty resultsets are cached for one Hour. Sometimes journeys are found later
 				result.data.journeys.length === 0 ? 'PT1H' : undefined,
-			);
-		}
-
-		result.data.journeys = findCategoryFilter(result.data.journeys, category);
-		result.data.journeys = findAdministrationFilter(
-			result.data.journeys,
-			administration,
-		);
-
-		for (const j of result.data.journeys) {
-			void additionalJourneyInformation(
-				`${j.transport.category} ${j.transport.number}`,
-				j.journeyID,
-				j.originSchedule.evaNumber,
-				new Date(j.date),
 			);
 		}
 

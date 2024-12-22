@@ -1,4 +1,4 @@
-import JourneyDetails from '@/server/HAFAS/JourneyDetails';
+import { HafasJourneyDetails } from '@/server/HAFAS/JourneyDetails';
 import { Cache, CacheDatabase } from '@/server/cache';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { HafasResponse, ParsedCommon } from '@/types/HAFAS';
@@ -26,7 +26,7 @@ const parseJourneyMatch = (
 		d.svcResL[0].res.jnyL.map((j) => {
 			const date = parse(j.date, 'yyyyMMdd', new Date());
 			const train = common.prodL[j.prodX];
-			const stops = j.stopL.map((stop) => parseStop(stop, common, date, train));
+			const stops = j.stopL.map((stop) => parseStop(stop, common, date));
 
 			return {
 				train,
@@ -41,23 +41,27 @@ const parseJourneyMatch = (
 };
 
 const JourneyMatch = async (
-	{ trainName, initialDepartureDate, jnyFltrL, onlyRT }: JourneyMatchOptions,
+	{
+		trainName,
+		initialDepartureDate,
+		withOEV,
+	}: Omit<JourneyMatchOptions, 'jnyFltrL'> & {
+		withOEV?: boolean;
+	},
 	profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 	raw?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> => {
+	let date = initialDepartureDate;
+
+	if (!date) {
+		const now = new Date();
+
+		date = now.getHours() < 3 ? subDays(now, 1) : now;
+	}
+
+	const formattedDate = format(date, 'yyyyMMdd');
+	const cacheKey = `${trainName}-${formattedDate}-${withOEV}-${profile}`;
 	try {
-		let date = initialDepartureDate;
-
-		if (!date) {
-			const now = new Date();
-
-			date = now.getHours() < 3 ? subDays(now, 1) : now;
-		}
-
-		const formattedDate = format(date, 'yyyyMMdd');
-		const cacheKey = `${trainName}-${formattedDate}-${onlyRT}-${profile}-${JSON.stringify(
-			jnyFltrL,
-		)}`;
 		if (!raw) {
 			const cached = await journeyMatchCache.get(cacheKey);
 			if (cached) {
@@ -68,8 +72,16 @@ const JourneyMatch = async (
 			req: {
 				date: formattedDate,
 				input: trainName,
-				jnyFltrL,
-				onlyRT,
+				jnyFltrL: withOEV
+					? undefined
+					: [
+							{
+								mode: 'INC',
+								type: 'PROD',
+								value: '31',
+							},
+						],
+				onlyRT: false,
 			},
 			meth: 'JourneyMatch',
 		};
@@ -80,23 +92,15 @@ const JourneyMatch = async (
 			profile,
 		);
 
-		if (!raw && result?.length) {
-			void journeyMatchCache.set(cacheKey, result);
+		if (!raw) {
+			const shorterTTL = !result.length ? 'PT2H' : undefined;
+			void journeyMatchCache.set(cacheKey, result, shorterTTL);
 		}
 
 		return result;
 	} catch (e) {
-		if (e instanceof HafasError && e.errorCode === 'NO_MATCH' && onlyRT) {
-			return JourneyMatch(
-				{
-					trainName,
-					initialDepartureDate,
-					jnyFltrL,
-					onlyRT: false,
-				},
-				profile,
-				raw,
-			);
+		if (e instanceof HafasError && e.errorCode === 'NO_MATCH') {
+			void journeyMatchCache.set(cacheKey, [], 'PT1H');
 		}
 		// We just ignore errors and pretend nothing got returned.
 		return [];
@@ -108,7 +112,12 @@ export default JourneyMatch;
 const fallbackTypeRegex = /(.+?)( |\d|\b).*\d+/;
 
 export async function enrichedJourneyMatch(
-	options: EnrichedJourneyMatchOptions,
+	{
+		withOEV,
+		...options
+	}: Omit<EnrichedJourneyMatchOptions, 'jnyFltrL'> & {
+		withOEV?: boolean;
+	},
 	profile?: AllowedHafasProfile,
 ): Promise<ParsedJourneyMatchResponse[]> {
 	const journeyMatches = (await JourneyMatch(options, profile)).filter(
@@ -120,7 +129,7 @@ export async function enrichedJourneyMatch(
 		: journeyMatches;
 
 	for (const j of limitedJourneyMatches) {
-		const details = await JourneyDetails(j.jid, profile);
+		const details = await HafasJourneyDetails(j.jid, profile);
 		if (!details) continue;
 
 		j.firstStop = details.firstStop;

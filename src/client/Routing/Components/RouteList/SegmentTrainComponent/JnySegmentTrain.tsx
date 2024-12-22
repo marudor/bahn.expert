@@ -55,7 +55,7 @@ export const JnySegmentTrain: FC<Props> = ({
 			</div>
 			{detail && (
 				<>
-					{segment.train.number && (
+					{segment.train.number && segment.train.type && (
 						<CoachSequence
 							css={segmentStyles.sequence}
 							trainNumber={segment.train.number}
@@ -67,7 +67,7 @@ export const JnySegmentTrain: FC<Props> = ({
 									?.scheduledTime
 							}
 							administration={segment.train.admin}
-							loadHidden={!segment.departure.reihung}
+							loadHidden
 						/>
 					)}
 					<StopList stops={segment.stops} />

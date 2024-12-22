@@ -73,27 +73,28 @@ export enum CacheDatabase {
 	CoachSequenceRemovedData = 24,
 	VRROccupancy = 25,
 	VehicleLayoutsMaps = 26,
+	BahnDEJourneyDetails = 27,
 }
 
 const CacheTTLs: Record<CacheDatabase, string> = {
-	[CacheDatabase.IrisTTSStation]: 'PT48H',
-	[CacheDatabase.TimetableParsedWithWings]: 'PT24H',
-	[CacheDatabase.DBLageplan]: 'PT48H',
-	[CacheDatabase.LocMatch]: 'PT48H',
-	[CacheDatabase.HIMMessage]: 'PT48H',
+	[CacheDatabase.IrisTTSStation]: 'P2D',
+	[CacheDatabase.TimetableParsedWithWings]: 'P1D',
+	[CacheDatabase.DBLageplan]: 'P1D',
+	[CacheDatabase.LocMatch]: 'P1D',
+	[CacheDatabase.HIMMessage]: 'P1D',
 	[CacheDatabase.NAHSHLageplan]: 'P3D',
 	[CacheDatabase.StopPlaceSearch]: 'P3D',
 	[CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
 		'PT15M',
 		process.env.COACH_SEQUENCE_CACHE_TTL,
 	),
-	[CacheDatabase.StopPlaceIdentifier]: 'P3D',
-	[CacheDatabase.StopPlaceByEva]: 'P3D',
-	[CacheDatabase.StopPlaceByRil]: 'P3D',
-	[CacheDatabase.StopPlaceByRilGrouped]: 'P3D',
-	[CacheDatabase.StopPlaceGroups]: 'P3D',
-	[CacheDatabase.StopPlaceSalesSearch]: 'P3D',
-	[CacheDatabase.HAFASJourneyMatch]: 'PT6H',
+	[CacheDatabase.StopPlaceIdentifier]: 'P5D',
+	[CacheDatabase.StopPlaceByEva]: 'P5D',
+	[CacheDatabase.StopPlaceByRil]: 'P5D',
+	[CacheDatabase.StopPlaceByRilGrouped]: 'P5D',
+	[CacheDatabase.StopPlaceGroups]: 'P5D',
+	[CacheDatabase.StopPlaceSalesSearch]: 'P5D',
+	[CacheDatabase.HAFASJourneyMatch]: 'P2D',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
 	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
 	[CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
@@ -112,6 +113,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.VehicleLayoutsMaps]: 'P10D',
 	[CacheDatabase.TransportsOccupancy]: 'P1D',
 	[CacheDatabase.JourneysForVehicle]: 'PT1H',
+	[CacheDatabase.BahnDEJourneyDetails]: 'PT4M',
 };
 
 const activeRedisCaches = new Set<Redis>();
@@ -166,6 +168,15 @@ export class Cache<V> {
 			logger.error(e, 'Redis get failed');
 		}
 	}
+	async getDelete(key: string): Promise<V | undefined> {
+		try {
+			const redisCached = await this.redisCache?.getdel(key);
+			const deserialized = this.redisDeserialize(redisCached);
+			return deserialized;
+		} catch (e) {
+			logger.error(e, 'Redis get failed');
+		}
+	}
 	async set(
 		key: string,
 		value: V,
@@ -200,10 +211,13 @@ export class Cache<V> {
 		if (this.redisCache) {
 			keys = await this.redisCache.keys('*');
 		}
-		// @ts-expect-error works
-		const entries: [string, V][] = (
-			await Promise.all(keys.map(async (k) => [k, await this.get(k)]))
-		).filter(([_, value]) => Boolean(value));
+		const entries: [string, V][] = [];
+		for (const key of keys) {
+			const value = await this.get(key);
+			if (value) {
+				entries.push([key, value]);
+			}
+		}
 		return entries;
 	}
 	async keys(pattern: string): Promise<string[]> {

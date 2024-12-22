@@ -7,6 +7,8 @@ import {
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
 import { getRouteLink } from '@/client/Routing/util';
 import { uniqBy } from '@/client/util';
+import { AllowedHafasProfile } from '@/types/HAFAS';
+import type { RoutingResult } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
@@ -64,22 +66,46 @@ export const useFetchRouting = () => {
 			}
 			setError(undefined);
 			setRoutes(undefined);
+			let routingResult: RoutingResult;
 			try {
-				const routingResult = await trpcUtils.hafas.tripSearch.fetch(
-					{
-						time: touchedDate ? date : new Date(),
-						searchForDeparture: departureMode === 'ab',
-						...routeSettings,
-					},
-					{
-						// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
-						trpc: {
-							context: {
-								skipBatch: true,
+				if (routeSettings.hafasProfileN !== AllowedHafasProfile.BAHN) {
+					routingResult = await trpcUtils.hafas.tripSearch.fetch(
+						{
+							time: touchedDate ? date : new Date(),
+							searchForDeparture: departureMode === 'ab',
+							...routeSettings,
+						},
+						{
+							// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+							trpc: {
+								context: {
+									skipBatch: true,
+								},
 							},
 						},
-					},
-				);
+					);
+				} else {
+					routingResult = await trpcUtils.bahn.routing.fetch(
+						{
+							time: touchedDate ? date : new Date(),
+							searchForDeparture: departureMode === 'ab',
+							maxChanges: routeSettings.maxChanges,
+							start: routeSettings.start,
+							destination: routeSettings.destination,
+							onlyRegional: routeSettings.onlyRegional,
+							transferTime: routeSettings.transferTime,
+							via: routeSettings.via,
+						},
+						{
+							// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+							trpc: {
+								context: {
+									skipBatch: true,
+								},
+							},
+						},
+					);
+				}
 
 				setRoutes(routingResult.routes);
 				setEarlierContext(routingResult.context.earlier);
@@ -90,6 +116,7 @@ export const useFetchRouting = () => {
 		},
 		[
 			trpcUtils.hafas.tripSearch,
+			trpcUtils.bahn.routing,
 			date,
 			setEarlierContext,
 			setError,
@@ -123,22 +150,47 @@ export const useFetchRouting = () => {
 		async (type: 'earlier' | 'later') => {
 			const routeSettings = getRouteSettings();
 			if (!routeSettings) return;
+			let routingResult: RoutingResult;
 
 			try {
-				const routingResult = await trpcUtils.hafas.tripSearch.fetch(
-					{
-						ctxScr: type === 'earlier' ? earlierContext : laterContext,
-						...routeSettings,
-					},
-					{
-						// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
-						trpc: {
-							context: {
-								skipBatch: true,
+				if (routeSettings.hafasProfileN === AllowedHafasProfile.BAHN) {
+					routingResult = await trpcUtils.bahn.routing.fetch(
+						{
+							time: touchedDate ? date : new Date(),
+							searchForDeparture: departureMode === 'ab',
+							maxChanges: routeSettings.maxChanges,
+							start: routeSettings.start,
+							destination: routeSettings.destination,
+							onlyRegional: routeSettings.onlyRegional,
+							transferTime: routeSettings.transferTime,
+							via: routeSettings.via,
+							ctxScr: type === 'earlier' ? earlierContext : laterContext,
+						},
+						{
+							// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+							trpc: {
+								context: {
+									skipBatch: true,
+								},
 							},
 						},
-					},
-				);
+					);
+				} else {
+					routingResult = await trpcUtils.hafas.tripSearch.fetch(
+						{
+							ctxScr: type === 'earlier' ? earlierContext : laterContext,
+							...routeSettings,
+						},
+						{
+							// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
+							trpc: {
+								context: {
+									skipBatch: true,
+								},
+							},
+						},
+					);
+				}
 
 				setRoutes((oldRoutes = []) => {
 					const newRoutes =
@@ -146,7 +198,7 @@ export const useFetchRouting = () => {
 							? [...routingResult.routes, ...oldRoutes]
 							: [...oldRoutes, ...routingResult.routes];
 
-					return uniqBy(newRoutes, 'checksum');
+					return uniqBy(newRoutes, 'id');
 				});
 
 				if (type === 'earlier') {
@@ -160,6 +212,10 @@ export const useFetchRouting = () => {
 		},
 		[
 			trpcUtils.hafas.tripSearch,
+			trpcUtils.bahn.routing,
+			date,
+			touchedDate,
+			departureMode,
 			getRouteSettings,
 			earlierContext,
 			laterContext,

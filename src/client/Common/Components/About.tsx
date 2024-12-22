@@ -31,10 +31,7 @@ const Privacy = () => (
 			Browser deaktiviert werden).
 			<br />
 			Die IP-Adresse sowie die bei Aufruf der Hauptseite an den Server
-			übertragenen Geokoordinaten werden nicht gespeichert. Eine Ausnahme für
-			das Speichern der IP ist die Nutzung von deprecated APIs. In diesen Fällen
-			wird die IP gespeichert bis die API entfernt wird um eventuelle Nutzern
-			bescheid zu geben.
+			übertragenen Geokoordinaten werden nicht gespeichert.
 		</p>
 	</div>
 );
@@ -57,8 +54,8 @@ export const About: FC = () => {
 				<span>
 					Diese Seite hat keinen Zusammenhang mit der Deutschen Bahn oder einem
 					anderen Verkehrsunternehmen. Es ist das Privatprojekt von mir und
-					spiegel niemals Meinungen der Deutschen Bahn oder anderen
-					Verkehrsunternehmen wieder. Alles was hier steht ist ohne Gewähr, wird
+					spiegelt niemals Meinungen der Deutschen Bahn oder anderen
+					Verkehrsunternehmen wider. Alles was hier steht ist ohne Gewähr, wird
 					aber so gut ich kann gepflegt.
 				</span>
 				<span>

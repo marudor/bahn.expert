@@ -1,3 +1,4 @@
+import { bahnRpcRouter } from '@/server/rpc/bahn';
 import { rpcAppRouter } from '@/server/rpc/base';
 import { coachSequenceRpcRouter } from '@/server/rpc/coachSequence';
 import { connectionsRouter } from '@/server/rpc/connections';
@@ -10,12 +11,13 @@ import { createKoaMiddleware } from 'trpc-koa-adapter';
 import { createOpenApiHttpHandler } from 'trpc-openapi';
 
 const mainRouter = rpcAppRouter({
-	coachSequences: coachSequenceRpcRouter,
+	coachSequence: coachSequenceRpcRouter,
 	stopPlace: stopPlaceRpcRouter,
 	iris: irisRpcRouter,
 	hafas: hafasRpcRouter,
-	journey: journeysRpcRouter,
+	journeys: journeysRpcRouter,
 	connections: connectionsRouter,
+	bahn: bahnRpcRouter,
 });
 
 export type AppRouter = typeof mainRouter;

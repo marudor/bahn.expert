@@ -19,9 +19,9 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 			z.object({
 				trainNumber: z.number(),
 				departure: z.date(),
-				evaNumber: z.string().optional(),
+				evaNumber: z.string(),
 				initialDeparture: z.date().optional(),
-				category: z.string().optional(),
+				category: z.string(),
 				administration: z.string().optional(),
 			}),
 		)
@@ -31,9 +31,9 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 					trainNumber,
 					departure,
 					evaNumber,
-					initialDeparture,
 					category,
 					administration,
+					initialDeparture,
 				},
 			}) => {
 				try {
@@ -41,7 +41,6 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 						trainNumber.toString(),
 						departure,
 						evaNumber,
-						initialDeparture,
 						category,
 						administration,
 					);

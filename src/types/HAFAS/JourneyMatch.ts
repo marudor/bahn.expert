@@ -61,7 +61,7 @@ export interface JourneyMatchOptions {
 	 */
 	jnyFltrL?: JourneyFilter[];
 
-	onlyRT?: boolean;
+	// onlyRT?: boolean;
 }
 
 export interface EnrichedJourneyMatchOptions extends JourneyMatchOptions {

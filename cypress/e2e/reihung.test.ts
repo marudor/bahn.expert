@@ -8,7 +8,7 @@ describe('CoachSequence', () => {
 				departureFixture: 'abfahrtenFrankfurtHbf',
 			});
 			cy.visit('/');
-			cy.trpc.coachSequences.sequence(
+			cy.trpc.coachSequence.sequence(
 				{
 					evaNumber: '8000105',
 					departure: new Date('2019-08-07T12:50:00.000Z'),
@@ -67,7 +67,7 @@ describe('CoachSequence', () => {
 			});
 			cy.visit('/');
 			cy.navigateToStation('Hannover Hbf');
-			cy.trpc.coachSequences
+			cy.trpc.coachSequence
 				.sequence(
 					{
 						evaNumber: '8000152',
@@ -81,7 +81,7 @@ describe('CoachSequence', () => {
 					},
 				)
 				.as('537');
-			cy.trpc.coachSequences
+			cy.trpc.coachSequence
 				.sequence(
 					{
 						trainNumber: 587,

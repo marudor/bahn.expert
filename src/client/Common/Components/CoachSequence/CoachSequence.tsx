@@ -44,7 +44,7 @@ const PlannedOnlyIndicator = styled('span')`
 interface Props {
 	className?: string;
 	trainNumber: string;
-	trainCategory?: string;
+	trainCategory: string;
 	fallbackWings?: FallbackTrainsForCoachSequence[];
 	currentEvaNumber: string;
 	scheduledDeparture: Date;
@@ -83,10 +83,10 @@ export const CoachSequence: FC<Props> = ({
 		trainNumberNumber,
 		currentEvaNumber,
 		scheduledDeparture,
-		initialDeparture,
-		fallback,
 		trainCategory,
+		initialDeparture,
 		administration,
+		fallback,
 	);
 
 	const [scale, startPercent] = useMemo(() => {

@@ -13,12 +13,11 @@ import type {
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
-import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
-import { format, isBefore, isSameDay, subDays } from 'date-fns';
+import { format, isBefore, isEqual, isSameDay, subDays } from 'date-fns';
 
 const risJourneysV2Configuration = new RisJourneysConfiguration({
 	basePath: process.env.RIS_JOURNEYS_V2_URL,
@@ -186,12 +185,50 @@ function findAdministrationFilter(
 	return matches;
 }
 
+function findDateTimeFilter(matches: JourneyFindResult[], dateTime: Date) {
+	const filtered = matches.filter((m) =>
+		isEqual(m.journeyRelation.startTime, dateTime),
+	);
+
+	return filtered.length ? filtered : matches;
+}
+
+function findCategoryFilter(matches: JourneyFindResult[], category?: string) {
+	if (category) {
+		const filtered = matches.filter(
+			(m) =>
+				m.journeyRelation.startCategory.toLowerCase() ===
+				category.toLowerCase(),
+		);
+		if (filtered.length) {
+			return filtered;
+		}
+	}
+	return matches;
+}
+
 export async function findJourney(
 	trainNumber: number,
 	date: Date,
-	_category?: string,
+	category?: string,
 	withOEV?: boolean,
 	administration?: string,
+) {
+	const baseResult = await innerFindJourney(trainNumber, date, withOEV);
+	const administrationFiltered = findAdministrationFilter(
+		baseResult,
+		administration,
+	);
+	const dateTimeFiltered = findDateTimeFilter(administrationFiltered, date);
+	const categoryFiltered = findCategoryFilter(dateTimeFiltered, category);
+
+	return categoryFiltered;
+}
+
+async function innerFindJourney(
+	trainNumber: number,
+	date: Date,
+	withOEV?: boolean,
 ): Promise<JourneyFindResult[]> {
 	try {
 		if (date) {
@@ -226,20 +263,6 @@ export async function findJourney(
 		result.data.journeys.sort(sortJourneys);
 
 		void journeyFindCache.set(cacheKey, result.data.journeys);
-
-		result.data.journeys = findAdministrationFilter(
-			result.data.journeys,
-			administration,
-		);
-
-		for (const j of result.data.journeys) {
-			void additionalJourneyInformation(
-				`${j.journeyRelation.startCategory} ${j.journeyRelation.startJourneyNumber}`,
-				j.journeyID,
-				j.journeyRelation.startEvaNumber,
-				new Date(j.journeyRelation.startTime),
-			);
-		}
 
 		return result.data.journeys;
 	} catch (e) {

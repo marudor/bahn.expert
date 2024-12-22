@@ -2,17 +2,14 @@ import type {
 	CommonDeparture,
 	CommonStopInfo,
 	ParsedCommon,
-	ParsedProduct,
 } from '@/types/HAFAS';
 import { differenceInMinutes } from 'date-fns';
-import checkCoachSequence from './checkCoachSequence';
 import parseTime from './parseTime';
 
 export default (
 	d: CommonDeparture,
 	date: Date,
 	_common: ParsedCommon,
-	train?: ParsedProduct,
 ): CommonStopInfo => {
 	const scheduledTime = parseTime(date, d.dTimeS, d.dTZOffset);
 
@@ -35,7 +32,6 @@ export default (
 		scheduledTime,
 		time,
 		delay,
-		reihung: checkCoachSequence(scheduledTime, d.dTrnCmpSX, train),
 		cancelled: d.dCncl,
 		// messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
 	};

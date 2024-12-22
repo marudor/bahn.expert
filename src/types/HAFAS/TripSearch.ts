@@ -1,6 +1,6 @@
 import type { Coordinate2D } from '@/external/types';
+import type { TripSearchType } from '@/types/HAFAS';
 import type { JnyCl, LoyalityCard, TravelerType } from '@/types/HAFAS/Tarif';
-import type { TripSearchType } from '@/types/HAFAS'
 import type { EvaNumber } from '@/types/common';
 import type {
 	Common,

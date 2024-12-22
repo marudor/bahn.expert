@@ -47,7 +47,7 @@ export const locMatch = async (
 		return makeRequest(req, undefined, profile) as any;
 	}
 
-	const cacheKey = `${profile}|${type}|${searchTerm}`;
+	const cacheKey = `${profile}:${type}:${searchTerm}`;
 	const cached = await cache.get(cacheKey);
 
 	if (cached) {

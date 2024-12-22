@@ -31,6 +31,10 @@ export const TravelynxLink: FC<Props> = ({
 }) => {
 	const { hideTravelynx } = useCommonConfig();
 
+	if (!train.type || !train.number || train.number === '0') {
+		return null;
+	}
+
 	return !hideTravelynx &&
 		departure &&
 		!departure.cancelled &&

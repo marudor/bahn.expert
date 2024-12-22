@@ -14,6 +14,7 @@ export const NetzcardDisclaimer: FC = () => {
 		>
 			<DialogTitle>Netzcard Disclaimer</DialogTitle>
 			<DialogContent>
+				Dieser Filter funktioniert NICHT mit "bahn.de" als Backend! <br />
 				Dies ist ein experimenteller Filter um möglichst nur Verbindungen zu
 				suchen welche mit der Netzcard erlaubt sind.
 				<br />

@@ -1,3 +1,4 @@
+import { bahnJourneyDetails } from '@/bahnde/journeyDetails/jourbeyDetails';
 import {
 	findJourney,
 	findJourneyHafasCompatible,
@@ -115,16 +116,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				const trainName = trainNumber.toString();
 				const hafasFallback = () =>
 					enrichedJourneyMatch({
-						onlyRT: true,
-						jnyFltrL: withOEV
-							? undefined
-							: [
-									{
-										mode: 'INC',
-										type: 'PROD',
-										value: '31',
-									},
-								],
+						withOEV,
 						trainName,
 						initialDepartureDate,
 						limit,
@@ -203,14 +195,24 @@ export const journeysRpcRouter = rpcAppRouter({
 					return hafasFallback();
 				}
 				let hafasResult: ParsedSearchOnTripResponse | undefined;
-				if (jid) {
-					hafasResult = await hafasFallback();
+				if (jid && productDetails.trainNumber === 0) {
+					// basierend auf Hafas versuchen, RIS::Journeys nur bei Bedarf
+					hafasResult = await bahnJourneyDetails(jid);
+					if (hafasResult) {
+						if (hafasResult.train.number && hafasResult.train.number !== '0') {
+							productDetails.trainNumber = Number.parseInt(
+								hafasResult.train.number,
+							);
+						} else {
+							return hafasResult;
+						}
+					}
 				}
 				const possibleJourneys = await findJourneyV1OrV2(
 					productDetails.trainNumber,
 					initialDepartureDate,
 					productDetails.category,
-					false,
+					true,
 					administration,
 				);
 				if (!possibleJourneys.length) {

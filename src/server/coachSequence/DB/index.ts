@@ -1,6 +1,5 @@
 import { isWithin20Hours } from '@/external/risTransports/config';
 import { Cache, CacheDatabase } from '@/server/cache';
-import { getNewDBCoachSequence } from '@/server/coachSequence/DB/bahnDe';
 import { getRisTransportsCoachSequence } from '@/server/coachSequence/DB/risTransports';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import { format } from 'date-fns';
@@ -17,9 +16,8 @@ const coachSequenceCache = new Cache<CoachSequenceInformation>(
 export async function DBCoachSequence(
 	trainNumber: string,
 	date: Date,
-	plannedStartDate?: Date,
-	trainCategory?: string,
-	stopEva?: string,
+	trainCategory: string,
+	stopEva: string,
 	administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {
 	if (!isWithin20Hours(date)) {
@@ -34,35 +32,19 @@ export async function DBCoachSequence(
 		return cached;
 	}
 
-	if (plannedStartDate && trainCategory && stopEva) {
-		const risTransportsSequence = await getRisTransportsCoachSequence(
-			trainCategory,
-			trainNumber,
-			stopEva,
-			date,
-			administration,
-		);
-		// hacky way for administration skip
-		if (risTransportsSequence === null) {
-			return;
-		}
-		if (risTransportsSequence) {
-			void coachSequenceCache.set(cacheKey, risTransportsSequence);
-			return risTransportsSequence;
-		}
-
-		// ris not found, lets try bahn.de - should never find something though
-
-		const newDbSequence = await getNewDBCoachSequence(
-			trainCategory,
-			trainNumber,
-			stopEva,
-			date,
-			plannedStartDate,
-		);
-		if (newDbSequence) {
-			void coachSequenceCache.set(cacheKey, newDbSequence);
-			return newDbSequence;
-		}
+	const risTransportsSequence = await getRisTransportsCoachSequence(
+		trainCategory,
+		trainNumber,
+		stopEva,
+		date,
+		administration,
+	);
+	// hacky way for administration skip
+	if (risTransportsSequence === null) {
+		return;
+	}
+	if (risTransportsSequence) {
+		void coachSequenceCache.set(cacheKey, risTransportsSequence);
+		return risTransportsSequence;
 	}
 }

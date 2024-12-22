@@ -15,6 +15,7 @@ import type { CommonStopInfo } from '@/types/HAFAS';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
 import {
+	addHours,
 	differenceInMinutes,
 	isAfter,
 	isBefore,
@@ -300,9 +301,11 @@ export async function journeyDetails(
 
 	result.currentStop = calculateCurrentStopPlace(result);
 
-	if (isAfter(result.departure.scheduledTime, subHours(new Date(), 20))) {
+	if (
+		isAfter(result.departure.scheduledTime, subHours(new Date(), 20)) &&
+		isBefore(result.departure.scheduledTime, addHours(new Date(), 20))
+	)
 		await addIrisMessagesToDetails(result);
-	}
 
 	return result;
 }
