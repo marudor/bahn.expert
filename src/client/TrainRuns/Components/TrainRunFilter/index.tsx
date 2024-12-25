@@ -79,9 +79,11 @@ export const TrainRunFilter: FC = () => {
 							<TextField
 								{...props}
 								label="Datum"
-								inputProps={{
-									...props.inputProps,
-									'data-testid': 'trainRunsDatePicker',
+								slotProps={{
+									htmlInput: {
+										...props.inputProps,
+										'data-testid': 'trainRunsDatePicker',
+									},
 								}}
 							/>
 						),

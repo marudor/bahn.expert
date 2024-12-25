@@ -140,15 +140,17 @@ export const StopPlaceSearch: FC<Props> = ({
 						<div data-testid={id}>
 							<TextField
 								fullWidth
-								InputLabelProps={getLabelProps({ shrink: true } as any)}
-								InputProps={{
-									onBlur,
-									onChange,
-									onFocus,
-								}}
-								inputProps={{
-									...inputProps,
-									'data-testid': 'stopPlaceSearchInput',
+								slotProps={{
+									inputLabel: getLabelProps({ shrink: true }),
+									input: {
+										onBlur,
+										onChange,
+										onFocus,
+									},
+									htmlInput: {
+										...inputProps,
+										'data-testid': 'stopPlaceSearchInput',
+									},
 								}}
 							/>
 							<div {...getMenuProps()}>

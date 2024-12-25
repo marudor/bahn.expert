@@ -88,10 +88,12 @@ export const SettingsModal: FC = () => {
 						<AutoUpdateField
 							value={autoUpdate}
 							type="number"
-							inputProps={{
-								min: 0,
-								max: 9999,
-								step: 30,
+							slotProps={{
+								htmlInput: {
+									min: 0,
+									max: 9999,
+									step: 30,
+								},
 							}}
 							name="autoUpdate"
 							onChange={handleNumberValueChange('autoUpdate')}
