@@ -45,7 +45,7 @@ export const useStopPlaceSearch = ({
 		},
 		[stopPlaceFn],
 	);
-	const selectRef = useRef<ControllerStateAndHelpers<MinimalStopPlace>>();
+	const selectRef = useRef<ControllerStateAndHelpers<MinimalStopPlace>>(null);
 
 	return {
 		loadOptions,

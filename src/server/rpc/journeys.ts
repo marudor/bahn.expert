@@ -1,4 +1,4 @@
-import { bahnJourneyDetails } from '@/bahnde/journeyDetails/jourbeyDetails';
+import { bahnJourneyDetails } from '@/bahnde/journeyDetails/journeyDetails';
 import {
 	findJourney,
 	findJourneyHafasCompatible,

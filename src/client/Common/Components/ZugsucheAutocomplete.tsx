@@ -54,7 +54,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 	const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
 		[],
 	);
-	const inputRef = useRef();
+	const inputRef = useRef(null);
 	const [loading, setLoading] = useState(0);
 	const trpcUtils = trpc.useUtils();
 	const debouncedFindByNumber = useMemo(

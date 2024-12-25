@@ -5,7 +5,7 @@ import { Delete } from '@mui/icons-material';
 import { IconButton, Paper, styled } from '@mui/material';
 import { useCallback } from 'react';
 import type { FC, MouseEvent, ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const BasePaper = styled(Paper)(({ theme }) => ({
 	minHeight: 48,

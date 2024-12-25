@@ -13,7 +13,7 @@ import Cookies from 'universal-cookie';
 import '@percy/cypress';
 import { ThemeProvider } from '@/client/Themes/Provider';
 import { CookiesProvider } from 'react-cookie';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 const hexToRgb = (hex: string) => {
 	const rValue = Number.parseInt(hex.slice(1, 3), 16);

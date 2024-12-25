@@ -5,7 +5,7 @@ import {
 } from '@/external/generated/risMaps';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { Cache, CacheDatabase } from '@/server/cache';
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 
 const risConnectionsConfiguration = new Configuration({
 	basePath: process.env.RIS_MAPS_URL,
@@ -29,14 +29,13 @@ const mapsClient = new VehicleLayoutsApi(
 	axiosWithTimeout,
 );
 
-const cache = new Cache<VehicleLayoutFeatureCollection>(
+const cache = new Cache<VehicleLayoutFeatureCollection | null>(
 	CacheDatabase.VehicleLayoutsMaps,
 );
 
 export async function getVehicleLayout(vehicleId: string) {
 	if (await cache.exists(vehicleId)) {
-		const r = await cache.get(vehicleId);
-		return r;
+		return await cache.get(vehicleId);
 	}
 	try {
 		const geoJson = (await mapsClient.byVehicleID({ vehicleID: vehicleId }))
@@ -45,7 +44,10 @@ export async function getVehicleLayout(vehicleId: string) {
 		cache.set(vehicleId, geoJson);
 
 		return geoJson;
-	} catch {
+	} catch (e) {
+		if (isAxiosError(e) && e.status === 404) {
+			void cache.set(vehicleId, null);
+		}
 		return null;
 	}
 }
