@@ -8,7 +8,7 @@
 	},
 	"private": true,
 	"engineStrict": true,
-	"packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
+	"packageManager": "pnpm@9.15.1+sha512.1acb565e6193efbebda772702950469150cf12bcc764262e7587e71d19dc98a423dff9536e57ea44c49bdf790ff694e83c27be5faa23d67e0c033b583be4bfcf",
 	"commitlint": {
 		"extends": ["@commitlint/config-conventional"],
 		"rules": {
@@ -85,7 +85,6 @@
 		"compression-webpack-plugin": "^11.1.0",
 		"css-loader": "^7.1.2",
 		"cypress": "13.15.1",
-		"graphql": "^16.9.0",
 		"json5": "^2.2.3",
 		"lefthook": "^1.8.2",
 		"ncp": "^2.0.0",
