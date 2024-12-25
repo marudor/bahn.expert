@@ -2,7 +2,7 @@ import type { TransportPublicDestination } from '@/external/generated/risConnect
 import type { Transport } from '@/external/generated/risJourneysV2';
 import qs from 'qs';
 import type { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 interface Props {
 	transport:

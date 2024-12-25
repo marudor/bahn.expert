@@ -7,7 +7,7 @@ import loadable from '@loadable/component';
 import { GlobalStyles } from '@mui/material';
 import type { Theme } from '@mui/material';
 import type { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 
 const lazyOptions = {
 	fallback: <Loading />,

@@ -18,7 +18,7 @@ import type {
 	VehicleLayoutFeatureCollection,
 	VehiclePoiFeature,
 } from '@/external/generated/risMaps';
-import { useTheme } from '@mui/material';
+import { type Theme, useTheme } from '@mui/material';
 import { styled, useMediaQuery } from '@mui/system';
 import { type FC, useCallback, useMemo } from 'react';
 
@@ -203,7 +203,9 @@ const VehicleContainer = styled('div')(({ theme }) => ({
 
 export const VehicleMap: FC<Props> = ({ layout, orientation }) => {
 	const theme = useTheme();
-	const isBigScreen = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+	const isBigScreen = useMediaQuery<Theme>((theme) =>
+		theme.breakpoints.up('sm'),
+	);
 	const rotateDegrees = isBigScreen ? 0 : 90;
 
 	// create rendering components

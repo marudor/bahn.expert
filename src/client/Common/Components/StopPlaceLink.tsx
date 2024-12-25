@@ -2,7 +2,7 @@ import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceName
 import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 interface Props {
 	stopPlace: {

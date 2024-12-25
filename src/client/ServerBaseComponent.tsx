@@ -5,7 +5,7 @@ import type { EmotionCache, PropsOf } from '@emotion/react';
 import type { ReactElement } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { HeadProvider } from 'react-head';
-import { StaticRouter } from 'react-router-dom/server';
+import { StaticRouter } from 'react-router';
 
 interface Props {
 	headTags: PropsOf<typeof HeadProvider>['headTags'];

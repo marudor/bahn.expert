@@ -2,7 +2,7 @@ import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { trpc } from '@/client/RPC';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { FC, ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 export const StopPlaceNameWithRl100: FC<{
 	stopPlace: MinimalStopPlace;

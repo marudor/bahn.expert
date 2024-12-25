@@ -2,7 +2,7 @@ import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { CommonProductInfo } from '@/types/HAFAS';
 import qs from 'qs';
 import type { FC, PropsWithChildren } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 interface Props {
 	train: Pick<CommonProductInfo, 'type' | 'number'>;

@@ -5,7 +5,7 @@ import qs from 'qs';
 import type { ComponentType } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { HeadProvider } from 'react-head';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import { ThemeWrap } from './ThemeWrap';
 // 25s timeout
 Axios.defaults.timeout = 25000;
