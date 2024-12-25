@@ -5,7 +5,7 @@ import {
 	useRoutingSettings,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
-import { AllowedHafasProfile } from '@/types/HAFAS';
+import { AllowedHafasProfile, TripSearchType } from '@/types/HAFAS';
 import {
 	AllInclusive,
 	Cached,
@@ -93,6 +93,14 @@ export const SettingsPanel: FC = () => {
 		(event: SelectChangeEvent) => {
 			// @ts-expect-error just sanitized
 			updateSettings('hafasProfileN', event.target.value);
+		},
+		[updateSettings],
+	);
+
+	const handleTripType = useCallback(
+		(event: SelectChangeEvent) => {
+			// @ts-expect-error just sanitized
+			updateSettings('type', event.target.value);
 		},
 		[updateSettings],
 	);
@@ -242,6 +250,26 @@ export const SettingsPanel: FC = () => {
 						}
 						label="BC100 erlaubt"
 					/>
+
+					{settings.hafasProfileN !== AllowedHafasProfile.BAHN && (
+						<FormControl size="small">
+							<FormLabel
+								labelPlacement="start"
+								control={
+									<Select value={settings.type || ''} onChange={handleTripType}>
+										<MenuItem value={TripSearchType.FIRST}>
+											Erste Route
+										</MenuItem>
+										<MenuItem value={TripSearchType.ANY}>Jede Route</MenuItem>
+										<MenuItem value={TripSearchType.LAST}>
+											Letzte Route
+										</MenuItem>
+									</Select>
+								}
+								label="Routentyp"
+							/>
+						</FormControl>
+					)}
 				</Stack>
 			</StyledAccordion>
 		</>
