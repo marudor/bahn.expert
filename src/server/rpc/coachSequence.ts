@@ -77,8 +77,14 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 		.query(({ input: { date, baureihen, identifier, stopsAt } }) => {
 			return getTrainRunsByDate(date, baureihen, identifier, stopsAt);
 		}),
-	vehicleLayout: rpcProcedure.input(z.string()).query(({ input }) => {
-		return getVehicleLayout(input);
+	vehicleLayout: rpcProcedure.input(z.string()).query(async ({ input }) => {
+		const layout = await getVehicleLayout(input);
+		if (!layout) {
+			throw new TRPCError({
+				code: 'NOT_FOUND',
+			});
+		}
+		return layout;
 	}),
 	occupancy: rpcProcedure
 		.input(

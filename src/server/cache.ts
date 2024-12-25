@@ -110,7 +110,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	),
 	[CacheDatabase.CoachSequenceRemovedData]: 'P2D',
 	[CacheDatabase.VRROccupancy]: 'PT2H',
-	[CacheDatabase.VehicleLayoutsMaps]: 'P10D',
+	[CacheDatabase.VehicleLayoutsMaps]: 'P20D',
 	[CacheDatabase.TransportsOccupancy]: 'P1D',
 	[CacheDatabase.JourneysForVehicle]: 'PT1H',
 	[CacheDatabase.BahnDEJourneyDetails]: 'PT4M',
