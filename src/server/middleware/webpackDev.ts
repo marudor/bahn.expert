@@ -29,8 +29,8 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 		depth: 99,
 	});
 
-	watcher.on('change', (file: string[]) => {
-		if (file.includes('src/client')) return;
+	watcher.on('change', (path: string) => {
+		if (path.includes('src/client')) return;
 		for (const id of Object.keys(require.cache)) {
 			if (!id.includes('/node_modules/') && serverRegexp.test(id)) {
 				delete require.cache[id];
