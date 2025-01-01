@@ -1,5 +1,5 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import constate from 'constate';
+import constate from '@/constate';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 import { useLocation } from 'react-router';

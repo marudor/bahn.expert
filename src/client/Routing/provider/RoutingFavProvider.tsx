@@ -1,6 +1,6 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
+import constate from '@/constate';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import constate from 'constate';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 

@@ -7,7 +7,8 @@ import {
 } from '@/client/Routing/provider/RoutingFavProvider';
 import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import Favorite from '@mui/icons-material/Favorite.js';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder.js';
 import { IconButton, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';

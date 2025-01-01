@@ -27,10 +27,6 @@ function getErrorText(
 			return 'Die Abfahrt existiert nicht';
 		}
 		default: {
-			if (error.code === 'ECONNABORTED') {
-				return 'Timeout - bitte erneut versuchen';
-			}
-
 			return 'Unbekannter Fehler';
 		}
 	}

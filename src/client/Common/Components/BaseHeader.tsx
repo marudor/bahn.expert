@@ -1,5 +1,5 @@
 import { NavigationContext } from '@/client/Common/Components/Navigation/NavigationContext';
-import { Menu } from '@mui/icons-material';
+import Menu from '@mui/icons-material/Menu.js';
 import { AppBar, IconButton, Toolbar, styled } from '@mui/material';
 import { useContext } from 'react';
 import type { FC, PropsWithChildren } from 'react';

@@ -5,13 +5,11 @@ import {
 	useRoutingConfigActions,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
-import { Delete } from '@mui/icons-material';
-import {
-	FavoriteBorder,
-	Search as SearchIcon,
-	SwapVert,
-	Today,
-} from '@mui/icons-material';
+import Delete from '@mui/icons-material/Delete';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import SearchIcon from '@mui/icons-material/Search';
+import SwapVert from '@mui/icons-material/SwapVert';
+import Today from '@mui/icons-material/Today';
 import {
 	Button,
 	Divider,

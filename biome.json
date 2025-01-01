@@ -1,10 +1,25 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
 	"files": {
-		"ignore": ["src/server/api/routes.ts", "src/external/generated/**/*"]
+		"ignore": [
+			"src/server/api/routes.ts",
+			"src/external/generated/**/*",
+			"src/routeTree.gen.ts",
+			"package.json"
+		]
 	},
 	"linter": {
 		"rules": {
+			"nursery": {
+				"noRestrictedImports": {
+					"level": "error",
+					"options": {
+						"paths": {
+							"@mui/icons-material": "use deep import"
+						}
+					}
+				}
+			},
 			"style": {
 				"noNonNullAssertion": "off",
 				"useDefaultParameterLast": "off"

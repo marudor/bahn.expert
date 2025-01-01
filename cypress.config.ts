@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import plugins from './cypress/plugins/index.js';
+import * as vitePreprocessor from 'cypress-vite';
 
 export default defineConfig({
 	projectId: 'ucnqdt',
@@ -17,8 +17,9 @@ export default defineConfig({
 		excludeSpecPattern: process.env.CI ? ['cypress/e2e/all.test.ts'] : [],
 		// We've imported your old cypress plugins here.
 		// You may want to clean this up later by importing these.
-		setupNodeEvents(on, config) {
-			return plugins(on, config);
+		setupNodeEvents(on, _config) {
+			// @ts-expect-error ???
+			on('file:preprocessor', vitePreprocessor());
 		},
 		baseUrl: 'http://localhost:9042',
 		specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',

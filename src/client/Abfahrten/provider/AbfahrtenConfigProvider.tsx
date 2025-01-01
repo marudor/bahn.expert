@@ -1,7 +1,7 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { trpc } from '@/client/RPC';
-import constate from 'constate';
+import constate from '@/constate';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
