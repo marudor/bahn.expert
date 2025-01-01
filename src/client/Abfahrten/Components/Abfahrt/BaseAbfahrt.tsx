@@ -1,18 +1,14 @@
 import { AbfahrtProvider } from '@/client/Abfahrten/provider/AbfahrtProvider';
 import { useSelectedDetail } from '@/client/Abfahrten/provider/SelectedDetailProvider';
+import CoachSequence from '@/client/Common/Components/CoachSequence/CoachSequence';
 import type { FallbackTrainsForCoachSequence } from '@/client/Common/hooks/useCoachSequence';
 import type { Abfahrt } from '@/types/iris';
-import loadable from '@loadable/component';
 import { Paper, Stack, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 import { End } from './End';
 import { Mid } from './Mid';
 import { Start } from './Start';
-
-const LazyCoachSequence = loadable(
-	() => import('../../../Common/Components/CoachSequence/CoachSequence'),
-);
 
 const Container = styled(Paper)`
   line-height: 1.2;
@@ -139,7 +135,7 @@ export const BaseAbfahrt: FC<Props> = ({
 						<End />
 					</Stack>
 					{detail && abfahrt.departure && (
-						<LazyCoachSequence
+						<CoachSequence
 							transportType={abfahrt.train.transportType}
 							trainNumber={abfahrt.train.number}
 							trainCategory={abfahrt.train.type}

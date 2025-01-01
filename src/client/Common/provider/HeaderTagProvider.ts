@@ -1,4 +1,4 @@
-import constate from 'constate';
+import constate from '@/constate';
 import { useCallback, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 

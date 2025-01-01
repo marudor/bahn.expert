@@ -1,15 +1,11 @@
+import MapDisplay from '@/client/Common/Components/Details/MapDisplay';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
-import loadable from '@loadable/component';
 import { format } from 'date-fns';
 import { useEffect } from 'react';
 import type { FC } from 'react';
 import { Header } from './Header';
 import { StopList } from './StopList';
-
-const LazyMapDisplay = loadable(() => import('./MapDisplay'), {
-	ssr: false,
-});
 
 export const Details: FC = () => {
 	const { updateTitle, updateDescription, updateKeywords } =
@@ -50,7 +46,7 @@ export const Details: FC = () => {
 	return (
 		<>
 			<Header />
-			{isMapDisplay ? <LazyMapDisplay /> : <StopList />}
+			{isMapDisplay ? <MapDisplay /> : <StopList />}
 		</>
 	);
 };

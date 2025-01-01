@@ -1,7 +1,8 @@
 import { ZugsucheAutocomplete } from '@/client/Common/Components/ZugsucheAutocomplete';
 import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
-import { Today, Train } from '@mui/icons-material';
+import Today from '@mui/icons-material/Today';
+import Train from '@mui/icons-material/Train';
 import {
 	Dialog,
 	DialogContent,

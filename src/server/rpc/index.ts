@@ -27,6 +27,7 @@ export const rpcRouter = createKoaMiddleware({
 	prefix: '/rpc',
 });
 
+// @ts-expect-error ???
 const rawRpcHttpRouter = createOpenApiHttpHandler({
 	router: mainRouter,
 });

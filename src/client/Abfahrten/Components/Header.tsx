@@ -7,7 +7,7 @@ import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
 import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import { Refresh } from '@mui/icons-material';
+import Refresh from '@mui/icons-material/Refresh.js';
 import { IconButton } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';

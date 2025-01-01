@@ -1,7 +1,7 @@
 import { ConnectionDisplay } from '@/client/Common/Components/Connections/ConnectionDisplay';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
-import { DepartureBoard } from '@mui/icons-material';
+import DepartureBoard from '@mui/icons-material/DepartureBoard.js';
 import { IconButton, Tooltip } from '@mui/material';
 import { differenceInHours } from 'date-fns';
 import { type FC, type MouseEvent, useCallback, useState } from 'react';

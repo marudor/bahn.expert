@@ -1,7 +1,7 @@
 import { useUnfavAction } from '@/client/Abfahrten/hooks/useFavs';
 import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import { Delete } from '@mui/icons-material';
+import Delete from '@mui/icons-material/Delete.js';
 import { IconButton, Paper, styled } from '@mui/material';
 import { useCallback } from 'react';
 import type { FC, MouseEvent, ReactNode } from 'react';

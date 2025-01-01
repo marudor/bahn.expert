@@ -4,11 +4,10 @@ import {
 	useAbfahrtenFilter,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
+import constate from '@/constate';
 import type { Abfahrt, AbfahrtenResult } from '@/types/iris';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import type { PropsFor } from '@mui/system';
-import type { AxiosError } from 'axios';
-import constate from 'constate';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
@@ -26,7 +25,7 @@ type AbfahrtenError$404 = Error & {
 	errorType: '404';
 	station?: undefined;
 };
-interface AbfahrtenError$Default extends AxiosError {
+interface AbfahrtenError$Default {
 	errorType: undefined;
 	station?: string;
 }

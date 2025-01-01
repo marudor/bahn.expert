@@ -1,9 +1,8 @@
 import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
 import { RPCProvider } from '@/client/RPC';
-import createEmotionCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
+import { theme } from '@/client/Themes';
 import type { EmotionCache } from '@emotion/react';
-import { StyledEngineProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // @ts-expect-error ESM fuckup
@@ -24,26 +23,19 @@ const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.default
 		clearButtonLabel: 'Jetzt',
 	};
 
-const defaultEmotionCache = createEmotionCache({ key: 'css', prepend: true });
-
-export const ThemeWrap = ({
-	children = <App />,
-	emotionCache = defaultEmotionCache,
-}: Props): ReactElement => {
+export const ThemeWrap = ({ children = <App /> }: Props): ReactElement => {
 	return (
 		<RPCProvider>
-			<StyledEngineProvider injectFirst>
+			<ThemeProvider theme={theme}>
 				<LocalizationProvider
 					dateAdapter={AdapterDateFns}
 					adapterLocale={deLocale}
 					localeText={customDeLocaleText}
 				>
-					<CacheProvider value={emotionCache}>
-						<ThemeHeaderTags />
-						{children}
-					</CacheProvider>
+					<ThemeHeaderTags />
+					{children}
 				</LocalizationProvider>
-			</StyledEngineProvider>
+			</ThemeProvider>
 		</RPCProvider>
 	);
 };

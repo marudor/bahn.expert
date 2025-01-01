@@ -16,6 +16,7 @@ import type {
 	RouteMatcherOptions,
 	RouteMatcherOptionsGeneric,
 	StaticResponseWithOptions,
+	// @ts-expect-error ???
 } from 'cypress/types/net-stubbing';
 
 declare global {

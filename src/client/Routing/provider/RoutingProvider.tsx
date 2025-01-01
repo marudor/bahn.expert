@@ -1,5 +1,5 @@
+import constate from '@/constate';
 import type { SingleRoute } from '@/types/routing';
-import constate from 'constate';
 import { useMemo, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 

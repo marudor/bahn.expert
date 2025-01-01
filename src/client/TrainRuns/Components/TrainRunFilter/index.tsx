@@ -5,7 +5,7 @@ import {
 	AvailableIdentifierConstant,
 } from '@/types/coachSequence';
 import type {} from '@/types/coachSequence';
-import { Info } from '@mui/icons-material';
+import Info from '@mui/icons-material/Info';
 import {
 	Button,
 	FormControl,

@@ -1,9 +1,9 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { trpc } from '@/client/RPC';
+import constate from '@/constate';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { RouteAuslastung, RouteStop } from '@/types/routing';
-import constate from 'constate';
 import { addDays } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { MouseEvent } from 'react';

@@ -4,7 +4,7 @@ import { Loading, LoadingType } from '@/client/Common/Components/Loading';
 import { trpc } from '@/client/RPC';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
-import { Close } from '@mui/icons-material';
+import Close from '@mui/icons-material/Close.js';
 import {
 	Dialog,
 	DialogContent,

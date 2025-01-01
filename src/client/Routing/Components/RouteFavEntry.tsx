@@ -4,7 +4,7 @@ import {
 } from '@/client/Routing/provider/RoutingFavProvider';
 import type { RoutingFav } from '@/client/Routing/provider/RoutingFavProvider';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
-import { Delete } from '@mui/icons-material';
+import Delete from '@mui/icons-material/Delete';
 import { Paper, styled } from '@mui/material';
 import { useCallback } from 'react';
 import type { FC, SyntheticEvent } from 'react';

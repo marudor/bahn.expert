@@ -1,26 +1,17 @@
-import { Loading } from '@/client/Common/Components/Loading';
+import Abfahrten from '@/client/Abfahrten';
+import About from '@/client/Common/Components/About';
+import DetailsRoute from '@/client/Common/Components/Details/DetailsRoute';
 import { Navigation } from '@/client/Common/Components/Navigation';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
+import Regional from '@/client/Regional';
+import Routing from '@/client/Routing';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
-import loadable from '@loadable/component';
+import TrainRuns from '@/client/TrainRuns';
 import { GlobalStyles } from '@mui/material';
 import type { Theme } from '@mui/material';
 import type { FC } from 'react';
 import { Route, Routes } from 'react-router';
-
-const lazyOptions = {
-	fallback: <Loading />,
-};
-const LazyRouting = loadable(() => import('./Routing'), lazyOptions);
-const LazyDetails = loadable(
-	() => import('./Common/Components/Details/DetailsRoute'),
-	lazyOptions,
-);
-const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
-const LazyRegional = loadable(() => import('./Regional'), lazyOptions);
-const About = loadable(() => import('./Common/Components/About'), lazyOptions);
-const LazyTrainRuns = loadable(() => import('./TrainRuns'), lazyOptions);
 
 const globalStyles = (theme: Theme): any => ({
 	body: {
@@ -61,13 +52,13 @@ export const App: FC = () => {
 								{/* If you change this route also change hafasDetailsRedirect.ts */}
 								<Route
 									path="/details/:train/:initialDeparture/*"
-									element={<LazyDetails />}
+									element={<DetailsRoute />}
 								/>
-								<Route path="/details/:train" element={<LazyDetails />} />
-								<Route path="/routing/*" element={<LazyRouting />} />
-								<Route path="/regional/*" element={<LazyRegional />} />
-								<Route path="/trainRuns/*" element={<LazyTrainRuns />} />
-								<Route path="/*" element={<LazyAbfahrten />} />
+								<Route path="/details/:train" element={<DetailsRoute />} />
+								<Route path="/routing/*" element={<Routing />} />
+								<Route path="/regional/*" element={<Regional />} />
+								<Route path="/trainRuns/*" element={<TrainRuns />} />
+								<Route path="/*" element={<Abfahrten />} />
 							</Routes>
 						</RoutingProvider>
 					</Navigation>

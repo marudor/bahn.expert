@@ -1,5 +1,5 @@
+import constate from '@/constate';
 import type { Abfahrt } from '@/types/iris';
-import constate from 'constate';
 
 interface AbfahrtInitialState {
 	abfahrt: Abfahrt;

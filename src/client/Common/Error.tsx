@@ -1,4 +1,4 @@
-import { Error as ErrorIcon } from '@mui/icons-material';
+import ErrorIcon from '@mui/icons-material/Error';
 import { Stack, css } from '@mui/material';
 import { TRPCClientError } from '@trpc/client';
 import { type FC, useMemo } from 'react';

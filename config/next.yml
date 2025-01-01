@@ -1,0 +1,9 @@
+env:
+  - name: ENVIRONMENT
+    value: next
+
+hostName: next.bahn.expert
+alternativeHostNames:
+  - next.marudor.de
+
+replicaCount: 1

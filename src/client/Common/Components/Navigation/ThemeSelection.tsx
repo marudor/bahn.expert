@@ -1,5 +1,7 @@
 import { ThemeType } from '@/client/Themes/type';
-import { ExpandLess, ExpandMore, Palette } from '@mui/icons-material';
+import ExpandLess from '@mui/icons-material/ExpandLess.js';
+import ExpandMore from '@mui/icons-material/ExpandMore.js';
+import Palette from '@mui/icons-material/Palette.js';
 import {
 	Badge,
 	Collapse,

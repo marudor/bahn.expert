@@ -6,13 +6,11 @@ import {
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
 import { AllowedHafasProfile } from '@/types/HAFAS';
-import {
-	AllInclusive,
-	Cached,
-	ExpandMore,
-	Timelapse,
-	Train,
-} from '@mui/icons-material';
+import AllInclusive from '@mui/icons-material/AllInclusive';
+import Cached from '@mui/icons-material/Cached';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import Timelapse from '@mui/icons-material/Timelapse';
+import Train from '@mui/icons-material/Train';
 import {
 	Accordion,
 	AccordionDetails,
@@ -39,7 +37,7 @@ const StyledAccordion = styled(Accordion)`
 `;
 
 const StyledAccordionSummary = styled(AccordionSummary)`
-  & > div:first-of-type {
+  & > *:first-of-type {
     margin: 22px 0 !important;
     display: flex;
     justify-content: space-around;

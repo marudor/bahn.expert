@@ -3,14 +3,12 @@ import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import { Disruption } from '@/client/DisruptionBanner';
 import { PolitikBanner } from '@/client/PolitikBanner';
-import {
-	AlarmOnOutlined,
-	Explore,
-	Info,
-	Search,
-	Settings,
-	Train,
-} from '@mui/icons-material';
+import AlarmOnOutlined from '@mui/icons-material/AlarmOnOutlined';
+import Explore from '@mui/icons-material/Explore';
+import Info from '@mui/icons-material/Info';
+import Search from '@mui/icons-material/Search';
+import Settings from '@mui/icons-material/Settings';
+import Train from '@mui/icons-material/Train';
 import {
 	Drawer,
 	List,

@@ -1,5 +1,9 @@
 import { AuslastungsValue } from '@/types/routing';
-import { Close, Done, ErrorOutline, Help, Warning } from '@mui/icons-material';
+import Close from '@mui/icons-material/Close.js';
+import Done from '@mui/icons-material/Done.js';
+import ErrorOutline from '@mui/icons-material/ErrorOutline.js';
+import Help from '@mui/icons-material/Help.js';
+import Warning from '@mui/icons-material/Warning.js';
 import { styled } from '@mui/material';
 import { type FC, type ForwardedRef, forwardRef } from 'react';
 
