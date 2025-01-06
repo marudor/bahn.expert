@@ -6,12 +6,12 @@ import {
 import { useAbfahrtenFilterOpen } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { trpc } from '@/client/RPC';
-import Favorite from '@mui/icons-material/Favorite.js';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder.js';
-import FilterList from '@mui/icons-material/FilterList.js';
-import Layers from '@mui/icons-material/Layers.js';
-import LayersClear from '@mui/icons-material/LayersClear.js';
-import Tune from '@mui/icons-material/Tune.js';
+import Favorite from '@mui/icons-material/Favorite';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import FilterList from '@mui/icons-material/FilterList';
+import Layers from '@mui/icons-material/Layers';
+import LayersClear from '@mui/icons-material/LayersClear';
+import Tune from '@mui/icons-material/Tune';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';

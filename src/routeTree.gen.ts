@@ -10,8 +10,8 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as SplatImport } from './routes/$'
+import { Route as rootRoute } from './routes/__root';
+import { Route as SplatImport } from './routes/$';
 
 // Create/Update Routes
 
@@ -19,57 +19,57 @@ const SplatRoute = SplatImport.update({
   id: '/$',
   path: '/$',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/$': {
-      id: '/$'
-      path: '/$'
-      fullPath: '/$'
-      preLoaderRoute: typeof SplatImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/$';
+      path: '/$';
+      fullPath: '/$';
+      preLoaderRoute: typeof SplatImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/$': typeof SplatRoute
+  '/$': typeof SplatRoute;
 }
 
 export interface FileRoutesByTo {
-  '/$': typeof SplatRoute
+  '/$': typeof SplatRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/$': typeof SplatRoute
+  __root__: typeof rootRoute;
+  '/$': typeof SplatRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/$'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/$'
-  id: '__root__' | '/$'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/$';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/$';
+  id: '__root__' | '/$';
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  SplatRoute: typeof SplatRoute
+  SplatRoute: typeof SplatRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

@@ -1,4 +1,4 @@
-import Refresh from '@mui/icons-material/Refresh.js';
+import Refresh from '@mui/icons-material/Refresh';
 import { keyframes, styled } from '@mui/material';
 
 const spinKeyframe = keyframes`

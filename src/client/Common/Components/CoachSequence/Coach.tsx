@@ -3,19 +3,19 @@ import type {
 	CoachSequenceCoach,
 	CoachSequenceCoachFeatures,
 } from '@/types/coachSequence';
-import AcUnit from '@mui/icons-material/AcUnit.js';
-import Accessibility from '@mui/icons-material/Accessibility.js';
-import Accessible from '@mui/icons-material/Accessible.js';
-import ChildCare from '@mui/icons-material/ChildCare.js';
-import ChildFriendly from '@mui/icons-material/ChildFriendly.js';
-import InfoOutlined from '@mui/icons-material/InfoOutlined.js';
-import LocalDining from '@mui/icons-material/LocalDining.js';
-import NotificationsOff from '@mui/icons-material/NotificationsOff.js';
-import PedalBike from '@mui/icons-material/PedalBike.js';
-import SignalCellular4Bar from '@mui/icons-material/SignalCellular4Bar.js';
-import Stroller from '@mui/icons-material/Stroller.js';
-import WcOutlined from '@mui/icons-material/WcOutlined.js';
-import WifiOutlined from '@mui/icons-material/WifiOutlined.js';
+import AcUnit from '@mui/icons-material/AcUnit';
+import Accessibility from '@mui/icons-material/Accessibility';
+import Accessible from '@mui/icons-material/Accessible';
+import ChildCare from '@mui/icons-material/ChildCare';
+import ChildFriendly from '@mui/icons-material/ChildFriendly';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import LocalDining from '@mui/icons-material/LocalDining';
+import NotificationsOff from '@mui/icons-material/NotificationsOff';
+import PedalBike from '@mui/icons-material/PedalBike';
+import SignalCellular4Bar from '@mui/icons-material/SignalCellular4Bar';
+import Stroller from '@mui/icons-material/Stroller';
+import WcOutlined from '@mui/icons-material/WcOutlined';
+import WifiOutlined from '@mui/icons-material/WifiOutlined';
 import { styled } from '@mui/material';
 import { type ComponentType, type FC, useMemo } from 'react';
 import { SitzplatzInfo } from './SitzplatzInfo';

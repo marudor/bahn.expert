@@ -1,21 +1,25 @@
 import { createRouter as createReactRouter } from '@tanstack/react-router';
 
-import { ClientStorage, type StorageInterface } from '@/client/Common/Storage';
+import { ClientStorage, ServerStorage } from '@/client/Common/Storage';
+import { DefaultCatchBoundary } from '@/client/DefaultCatchBoundary';
 import { ThemeProvider } from '@/client/Themes/Provider';
 import { parse, stringify } from '@/devalue';
 import { CookiesProvider } from 'react-cookie';
 import { BrowserRouter, StaticRouter } from 'react-router';
 import { routeTree } from './routeTree.gen';
 
-export function createRouter(storage?: StorageInterface, location?: string) {
+export function createRouter(request?: Request) {
 	let ReactRouterOld: FCC;
-	if (!storage) {
-		// biome-ignore lint/style/noParameterAssign:
-		storage = new ClientStorage();
-	}
-	if (location) {
+	const storage = request
+		? new ServerStorage(request.headers.get('cookies'))
+		: new ClientStorage();
+
+	if (request) {
+		const url = new URL(request.url);
 		ReactRouterOld = ({ children }) => (
-			<StaticRouter location={location}>{children}</StaticRouter>
+			<StaticRouter location={url.href.replace(url.origin, '')}>
+				{children}
+			</StaticRouter>
 		);
 	} else {
 		ReactRouterOld = ({ children }) => (
@@ -41,6 +45,7 @@ export function createRouter(storage?: StorageInterface, location?: string) {
 			parse,
 			stringify: stringify,
 		},
+		defaultErrorComponent: DefaultCatchBoundary,
 	});
 }
 

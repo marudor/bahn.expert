@@ -35,9 +35,9 @@ jobs:
       - name: types
         run: |
           pnpm test:ts
-      - name: jest
+      - name: unit test
         run: |
-          pnpm test:node
+          pnpm test:unit
       - name: lint
         run: |
           pnpm lint

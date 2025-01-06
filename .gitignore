@@ -75,3 +75,5 @@ packages/*/lib
 !packages/app/metro.config.js
 
 .swc
+.vinxi
+.output

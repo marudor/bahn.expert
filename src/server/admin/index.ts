@@ -1,11 +1,10 @@
-import type { Server } from 'node:http';
+import { type Server, createServer } from 'node:http';
 import {
 	type AxiosInstance,
 	type AxiosResponse,
 	type InternalAxiosRequestConfig,
 	isAxiosError,
 } from 'axios';
-import Koa from 'koa';
 import PromClient, { Counter, Histogram } from 'prom-client';
 
 PromClient.register.clear();
@@ -66,27 +65,20 @@ export function axiosUpstreamInterceptor(
 }
 
 export default (adminPort = 9000): Server => {
-	const koa = new Koa();
-
-	koa.use(async (ctx) => {
+	return createServer(async (req, res) => {
 		try {
-			switch (ctx.request.url) {
-				case '/ping': {
-					ctx.body = 'pong';
+			switch (req.url) {
+				case '/ping':
+					res.write('pong');
 					break;
-				}
-				case '/metrics': {
-					ctx.body = await PromClient.register.metrics();
+				case '/metrics':
+					res.write(await PromClient.register.metrics());
 					break;
-				}
-				default: {
-					break;
-				}
 			}
 		} catch {
-			ctx.status = 500;
+			res.statusCode = 500;
+		} finally {
+			res.end();
 		}
-	});
-
-	return koa.listen(adminPort);
+	}).listen(adminPort);
 };

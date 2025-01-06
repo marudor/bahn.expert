@@ -138,7 +138,7 @@ export const journeysRpcRouter = rpcAppRouter({
 		.meta({
 			openapi: {
 				method: 'GET',
-				path: '/api/hafas/v2/details/{trainName}',
+				path: '/hafas/v2/details/{trainName}',
 			},
 		})
 		.input(

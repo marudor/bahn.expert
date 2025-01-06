@@ -5,7 +5,9 @@
 			"src/server/api/routes.ts",
 			"src/external/generated/**/*",
 			"src/routeTree.gen.ts",
-			"package.json"
+			"package.json",
+			".vinxi/",
+			".output/"
 		]
 	},
 	"linter": {

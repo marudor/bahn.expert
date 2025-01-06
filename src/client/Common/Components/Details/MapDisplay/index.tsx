@@ -1,6 +1,6 @@
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import LocationOff from '@mui/icons-material/LocationOff.js';
-import LocationOn from '@mui/icons-material/LocationOn.js';
+import LocationOff from '@mui/icons-material/LocationOff';
+import LocationOn from '@mui/icons-material/LocationOn';
 import { Fab, styled } from '@mui/material';
 import MapLibre from 'maplibre-gl';
 import { type FC, useMemo } from 'react';
@@ -10,7 +10,7 @@ import Map, {
 	Marker,
 	NavigationControl,
 	Source,
-} from 'react-map-gl/maplibre';
+} from 'react-map-gl/dist/es5/exports-maplibre';
 
 if (typeof window !== 'undefined') {
 	// @ts-expect-error dummy

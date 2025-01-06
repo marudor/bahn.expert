@@ -1,5 +1,17 @@
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'cypress';
-import * as vitePreprocessor from 'cypress-vite';
+import vitePreprocessor from 'cypress-vite';
+import { defineConfig as defineViteConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+const viteConfig = defineViteConfig({
+	plugins: [
+		tsconfigPaths(),
+		react({
+			jsxImportSource: '@emotion/react',
+		}),
+	],
+});
 
 export default defineConfig({
 	projectId: 'ucnqdt',
@@ -18,8 +30,7 @@ export default defineConfig({
 		// We've imported your old cypress plugins here.
 		// You may want to clean this up later by importing these.
 		setupNodeEvents(on, _config) {
-			// @ts-expect-error ???
-			on('file:preprocessor', vitePreprocessor());
+			on('file:preprocessor', vitePreprocessor(viteConfig));
 		},
 		baseUrl: 'http://localhost:9042',
 		specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
@@ -30,6 +41,7 @@ export default defineConfig({
 		devServer: {
 			framework: 'react',
 			bundler: 'vite',
+			viteConfig,
 		},
 	},
 });

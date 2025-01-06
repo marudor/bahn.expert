@@ -3,6 +3,7 @@ import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	// @ts-expect-error ???
 	plugins: [tsconfigPaths()],
 	test: {
 		environment: 'node',

@@ -2,6 +2,55 @@ import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
 
+globalThis.BASE_URL = `${
+	process.env.NODE_ENV === 'production' && !process.env.TEST_RUN
+		? 'https://'
+		: 'http://'
+}${process.env.BASE_URL || 'localhost:9042'}`;
+globalThis.RAW_BASE_URL = process.env.BASE_URL || 'localhost:9042';
+globalThis.DISRUPTION = process.env.DISRUPTION;
+
+const scripts = [
+	{
+		children: `
+				window.BASE_URL='${globalThis.BASE_URL}';
+				window.RAW_BASE_URL='${globalThis.RAW_BASE_URL}';
+				window.DISRUPTION=${JSON.stringify(globalThis.DISRUPTION)};
+			`,
+	},
+	{
+		async: true,
+		defer: true,
+		'data-api': `https://${globalThis.RAW_BASE_URL}/api/event`,
+		'data-domain': globalThis.RAW_BASE_URL,
+		src: `https://${globalThis.RAW_BASE_URL}/js/script.js`,
+	},
+	{
+		type: 'module',
+		children: `
+			let themeMode = localStorage.getItem('mui-mode');
+			if (!themeMode || themeMode === 'system') {
+				themeMode = 'dark';
+				localStorage.setItem('mui-mode', 'dark');
+			}
+			if (themeMode && document.body.parentElement) {
+				document.body.parentElement.setAttribute('class', themeMode);
+			}
+			`,
+	},
+];
+
+// @ts-expect-error dev stuff
+if (import.meta.env.DEV) {
+	scripts.push({
+		type: 'module',
+		children: `import RefreshRuntime from "/_build/@react-refresh";
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type`,
+	});
+}
+
 export const Route = createRootRoute({
 	head: (ctx) => {
 		// TODO: verify if this works for non catchall
@@ -73,50 +122,7 @@ export const Route = createRootRoute({
 					href: '/favicon.svg',
 				},
 			],
-			scripts: [
-				{
-					children: `
-							window.BASE_URL='${globalThis.BASE_URL}';
-							window.DISRUPTION='${globalThis.DISRUPTION}';
-						`,
-				},
-				{
-					async: true,
-					defer: true,
-					'data-api': `https://${globalThis.RAW_BASE_URL}/api/event`,
-					'data-domain': globalThis.RAW_BASE_URL,
-					src: `https://${globalThis.RAW_BASE_URL}/js/script.js`,
-				},
-				{
-					type: 'module',
-					children: `
-						let themeMode = localStorage.getItem('mui-mode');
-						if (!themeMode || themeMode === 'system') {
-							themeMode = 'dark';
-							localStorage.setItem('mui-mode', 'dark');
-						}
-						if (themeMode && document.body.parentElement) {
-							document.body.parentElement.setAttribute('class', themeMode);
-						}
-						`,
-				},
-				{
-					type: 'module',
-					children: `import RefreshRuntime from "/@react-refresh"
-			RefreshRuntime.injectIntoGlobalHook(window)
-			window.$RefreshReg$ = () => {}
-			window.$RefreshSig$ = () => (type) => type
-			window.__vite_plugin_react_preamble_installed__ = true`,
-				},
-				{
-					type: 'module',
-					src: '/@vite/client',
-				},
-				{
-					type: 'module',
-					src: '/src/client/index.tsx',
-				},
-			],
+			scripts,
 		};
 	},
 	component: RootComponent,

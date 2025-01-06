@@ -1,10 +1,22 @@
 import './axiosLogging';
-import path from 'node:path';
-import { SHARE_ENV, Worker } from 'node:worker_threads';
 import cookie from 'cookie';
 import pino from 'pino';
 import serializers from 'pino-std-serializers';
-import koaLogger from './koaLogger';
+
+const streams: Array<(msg: string) => void> = [];
+
+if (process.env.PRETTY_LOG) {
+	import('pino-pretty').then((pinoPretty) => {
+		const prettyLog = pinoPretty.prettyFactory({
+			colorize: true,
+			translateTime: true,
+		});
+
+		streams.push((msg) => process.stdout.write(prettyLog(JSON.stringify(msg))));
+	});
+} else {
+	streams.push((msg) => console.log(JSON.stringify(msg)));
+}
 
 const createWriteOptions = () => {
 	if (process.env.NODE_ENV === 'test') {
@@ -15,16 +27,9 @@ const createWriteOptions = () => {
 		};
 	}
 
-	const writeWorker = new Worker(
-		path.resolve(__dirname, 'logWriteThread.cjs'),
-		{
-			env: SHARE_ENV,
-		},
-	);
-
 	return {
 		write: (msg: string) => {
-			writeWorker.postMessage(msg);
+			for (const s of streams) s(msg);
 		},
 	};
 };
@@ -67,5 +72,3 @@ export const logger = pino(
 	},
 	createWriteOptions(),
 );
-
-export const middlewares = [koaLogger(logger)];
