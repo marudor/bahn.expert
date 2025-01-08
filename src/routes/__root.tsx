@@ -14,16 +14,6 @@ import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
 import { de as deLocale } from 'date-fns/locale/de';
 
-if (import.meta.env.SSR) {
-	globalThis.BASE_URL = `${
-		process.env.NODE_ENV === 'production' && !process.env.TEST_RUN
-			? 'https://'
-			: 'http://'
-	}${process.env.BASE_URL || 'localhost:9042'}`;
-	globalThis.RAW_BASE_URL = process.env.BASE_URL || 'localhost:9042';
-	globalThis.DISRUPTION = process.env.DISRUPTION;
-}
-
 const RouterDevtoolsConditional =
 	process.env.NODE_ENV === 'production'
 		? null
@@ -45,17 +35,15 @@ const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.default
 const scripts = [
 	{
 		children: `
-				window.BASE_URL='${globalThis.BASE_URL}';
-				window.RAW_BASE_URL='${globalThis.RAW_BASE_URL}';
 				window.DISRUPTION=${JSON.stringify(globalThis.DISRUPTION)};
 			`,
 	},
 	{
 		async: true,
 		defer: true,
-		'data-api': `https://${globalThis.RAW_BASE_URL}/api/event`,
-		'data-domain': globalThis.RAW_BASE_URL,
-		src: `https://${globalThis.RAW_BASE_URL}/js/script.js`,
+		'data-api': `https://${import.meta.env.VITE_BASE_URL}/api/event`,
+		'data-domain': import.meta.env.VITE_BASE_URL,
+		src: `https://${import.meta.env.VITE_BASE_URL}/js/script.js`,
 	},
 	{
 		type: 'module',
@@ -72,7 +60,6 @@ const scripts = [
 	},
 ];
 
-// @ts-expect-error dev stuff
 if (import.meta.env.DEV) {
 	scripts.push({
 		type: 'module',
@@ -87,8 +74,8 @@ export const Route = createRootRoute({
 	head: (ctx) => {
 		// TODO: verify if this works for non catchall
 		// @ts-expect-error doesnt like _splat usage
-		const fullUrl = `${globalThis.BASE_URL}${ctx.match.fullPath}${ctx.params._splat}`;
-		const image = `${globalThis.BASE_URL}/android-chrome-384x384.png`;
+		const fullUrl = `https://${import.meta.env.VITE_BASE_URL}${ctx.match.fullPath}${ctx.params._splat}`;
+		const image = `https://${import.meta.env.VITE_BASE_URL}/android-chrome-384x384.png`;
 		return {
 			meta: [
 				{

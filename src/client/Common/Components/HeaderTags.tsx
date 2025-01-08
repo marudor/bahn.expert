@@ -1,11 +1,9 @@
 import { useHeaderTags } from '@/client/Common/provider/HeaderTagProvider';
 import type { FC } from 'react';
 import { Meta, Title } from 'react-head';
-import { useLocation } from 'react-router';
 
 export const HeaderTags: FC = () => {
 	const { title, description, keywords } = useHeaderTags();
-	const url = `${globalThis.BASE_URL}${useLocation().pathname}`;
 
 	return (
 		<>

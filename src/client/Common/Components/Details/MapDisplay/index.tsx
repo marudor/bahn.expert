@@ -13,7 +13,6 @@ import Map, {
 } from 'react-map-gl/dist/es5/exports-maplibre';
 
 if (typeof window !== 'undefined') {
-	// @ts-expect-error dummy
 	import('maplibre-gl/dist/maplibre-gl.css');
 }
 

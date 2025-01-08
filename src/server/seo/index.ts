@@ -6,7 +6,7 @@ const sitemap = () => {
 		'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
 	for (const stationName of seoStationNames) {
-		xml += `<url><loc>${globalThis.BASE_URL}/${encodeURIComponent(
+		xml += `<url><loc>https://${import.meta.env.VITE_BASE_URL}/${encodeURIComponent(
 			stationName,
 		)}</loc><changefreq>always</changefreq></url>`;
 	}
@@ -19,7 +19,7 @@ const sitemap = () => {
 const robots = () => `User-agent: *
 Allow: *
 
-Sitemap: ${globalThis.BASE_URL}/sitemap.xml
+Sitemap: https://${import.meta.env.VITE_BASE_URL}/sitemap.xml
 `;
 
 export default eventHandler((event) => {
