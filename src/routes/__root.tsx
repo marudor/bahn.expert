@@ -1,5 +1,4 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
 
 globalThis.BASE_URL = `${
@@ -9,6 +8,18 @@ globalThis.BASE_URL = `${
 }${process.env.BASE_URL || 'localhost:9042'}`;
 globalThis.RAW_BASE_URL = process.env.BASE_URL || 'localhost:9042';
 globalThis.DISRUPTION = process.env.DISRUPTION;
+
+const RouterDevtoolsConditional =
+	process.env.NODE_ENV === 'production'
+		? null
+		: (await import('@tanstack/router-devtools')).TanStackRouterDevtools;
+
+function RouterDevtools() {
+	if (RouterDevtoolsConditional) {
+		return <RouterDevtoolsConditional position="bottom-left" />;
+	}
+	return null;
+}
 
 const scripts = [
 	{
@@ -148,9 +159,7 @@ function RootComponent() {
 			<body>
 				{chaosSocialAnchor}
 				<Outlet />
-				{!globalThis.Cypress && (
-					<TanStackRouterDevtools position="bottom-left" />
-				)}
+				{!globalThis.Cypress && <RouterDevtools />}
 				<Scripts />
 			</body>
 		</html>

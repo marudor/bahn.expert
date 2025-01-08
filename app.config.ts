@@ -9,6 +9,7 @@ const buildNoExternal = [
 	'@mui/system',
 	'@mui/material',
 	'react-router',
+	'libxmljs2',
 ];
 
 const devNoExternal = ['@mui/icons-material'];

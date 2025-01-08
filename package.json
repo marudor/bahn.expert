@@ -78,7 +78,6 @@
 		"react-refresh": "^0.16.0",
 		"rimraf": "^6.0.1",
 		"typescript": "^5.7.2",
-		"vinxi": "^0.5.1",
 		"vite": "^6.0.6",
 		"vite-tsconfig-paths": "^5.1.4",
 		"vitest": "^2.1.8"
@@ -126,6 +125,7 @@
 		"trpc-openapi": "^1.2.0",
 		"universal-cookie": "^7.2.2",
 		"uuid": "^11.0.3",
+		"vinxi": "^0.5.1",
 		"zod": "^3.24.1"
 	},
 	"browserslist": [
