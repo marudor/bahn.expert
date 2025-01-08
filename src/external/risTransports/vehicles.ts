@@ -88,6 +88,10 @@ export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
 		return journeyForVehiclesCache.get(cacheKey);
 	}
 	const journey = await journeyDetails(journeyId);
+	// disable it for everything but HIGH SPEED for now
+	if (journey?.train.transportType !== 'HIGH_SPEED_TRAIN') {
+		return;
+	}
 	if (!isWithin20Hours(journey?.departure.scheduledTime)) {
 		return;
 	}
