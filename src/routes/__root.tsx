@@ -1,13 +1,28 @@
+import { Navigation } from '@/client/Common/Components/Navigation';
+import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
+import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
+import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
+import { GlobalCSS } from '@/client/GlobalCSS';
+import { RPCProvider } from '@/client/RPC';
+import { theme } from '@/client/Themes';
+import { ThemeProvider } from '@mui/material';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// @ts-expect-error ESM fuckup
+import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
+import { de as deLocale } from 'date-fns/locale/de';
 
-globalThis.BASE_URL = `${
-	process.env.NODE_ENV === 'production' && !process.env.TEST_RUN
-		? 'https://'
-		: 'http://'
-}${process.env.BASE_URL || 'localhost:9042'}`;
-globalThis.RAW_BASE_URL = process.env.BASE_URL || 'localhost:9042';
-globalThis.DISRUPTION = process.env.DISRUPTION;
+if (import.meta.env.SSR) {
+	globalThis.BASE_URL = `${
+		process.env.NODE_ENV === 'production' && !process.env.TEST_RUN
+			? 'https://'
+			: 'http://'
+	}${process.env.BASE_URL || 'localhost:9042'}`;
+	globalThis.RAW_BASE_URL = process.env.BASE_URL || 'localhost:9042';
+	globalThis.DISRUPTION = process.env.DISRUPTION;
+}
 
 const RouterDevtoolsConditional =
 	process.env.NODE_ENV === 'production'
@@ -20,6 +35,12 @@ function RouterDevtools() {
 	}
 	return null;
 }
+
+const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.defaultProps.localeText =
+	{
+		...deDE.components.MuiLocalizationProvider.defaultProps.localeText,
+		clearButtonLabel: 'Jetzt',
+	};
 
 const scripts = [
 	{
@@ -158,7 +179,25 @@ function RootComponent() {
 			</head>
 			<body>
 				{chaosSocialAnchor}
-				<Outlet />
+				<RPCProvider>
+					<ThemeProvider theme={theme}>
+						<LocalizationProvider
+							dateAdapter={AdapterDateFns}
+							adapterLocale={deLocale}
+							localeText={customDeLocaleText}
+						>
+							<GlobalCSS />
+							<ThemeHeaderTags />
+							<HeaderTagProvider>
+								<CommonConfigProvider>
+									<Navigation>
+										<Outlet />
+									</Navigation>
+								</CommonConfigProvider>
+							</HeaderTagProvider>
+						</LocalizationProvider>
+					</ThemeProvider>
+				</RPCProvider>
 				{!globalThis.Cypress && <RouterDevtools />}
 				<Scripts />
 			</body>

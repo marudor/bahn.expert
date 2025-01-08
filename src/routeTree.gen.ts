@@ -11,13 +11,27 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root';
+import { Route as AboutImport } from './routes/about';
 import { Route as SplatImport } from './routes/$';
+import { Route as RoutingSplatImport } from './routes/routing/$';
 
 // Create/Update Routes
+
+const AboutRoute = AboutImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRoute,
+} as any);
 
 const SplatRoute = SplatImport.update({
   id: '/$',
   path: '/$',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const RoutingSplatRoute = RoutingSplatImport.update({
+  id: '/routing/$',
+  path: '/routing/$',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -32,6 +46,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplatImport;
       parentRoute: typeof rootRoute;
     };
+    '/about': {
+      id: '/about';
+      path: '/about';
+      fullPath: '/about';
+      preLoaderRoute: typeof AboutImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/routing/$': {
+      id: '/routing/$';
+      path: '/routing/$';
+      fullPath: '/routing/$';
+      preLoaderRoute: typeof RoutingSplatImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -39,32 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute;
+  '/about': typeof AboutRoute;
+  '/routing/$': typeof RoutingSplatRoute;
 }
 
 export interface FileRoutesByTo {
   '/$': typeof SplatRoute;
+  '/about': typeof AboutRoute;
+  '/routing/$': typeof RoutingSplatRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
   '/$': typeof SplatRoute;
+  '/about': typeof AboutRoute;
+  '/routing/$': typeof RoutingSplatRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/$';
+  fullPaths: '/$' | '/about' | '/routing/$';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/$';
-  id: '__root__' | '/$';
+  to: '/$' | '/about' | '/routing/$';
+  id: '__root__' | '/$' | '/about' | '/routing/$';
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   SplatRoute: typeof SplatRoute;
+  AboutRoute: typeof AboutRoute;
+  RoutingSplatRoute: typeof RoutingSplatRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
+  AboutRoute: AboutRoute,
+  RoutingSplatRoute: RoutingSplatRoute,
 };
 
 export const routeTree = rootRoute
@@ -77,11 +115,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/$"
+        "/$",
+        "/about",
+        "/routing/$"
       ]
     },
     "/$": {
       "filePath": "$.tsx"
+    },
+    "/about": {
+      "filePath": "about.tsx"
+    },
+    "/routing/$": {
+      "filePath": "routing/$.tsx"
     }
   }
 }

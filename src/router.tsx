@@ -36,10 +36,10 @@ export function createRouter(request?: Request) {
 	);
 
 	return createReactRouter({
+		defaultPreload: 'render',
 		routeTree,
 		// @ts-expect-error
 		Wrap,
-		defaultPreload: 'intent',
 		// @ts-expect-error ??? wrong typing?
 		transformer: {
 			parse,

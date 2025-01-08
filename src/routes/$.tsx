@@ -1,10 +1,6 @@
-import { ThemeWrap } from '@/client/ThemeWrap';
+import { LegacyApp } from '@/client/LegacyApp';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/$')({
-	component: IndexComponent,
+	component: LegacyApp,
 });
-
-function IndexComponent() {
-	return <ThemeWrap />;
-}

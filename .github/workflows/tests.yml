@@ -108,7 +108,7 @@ jobs:
           build: pnpm build
           group: ${{ matrix.browser }}
           ci-build-id: "${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}"
-          start: node dist/server/server/index.js
+          start: pnpm vinxi start
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
           command-prefix: "percy exec --parallel -- pnpm"

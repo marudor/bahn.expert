@@ -79,14 +79,6 @@ export const Navigation: FC<Props> = ({ children }) => {
 								<ListItemText primary="Abfahrten" />
 							</ListItemButton>
 						</Link>
-						<Link to="/regional">
-							<ListItemButton data-testid="regional">
-								<ListItemIcon>
-									<AlarmOnOutlined />
-								</ListItemIcon>
-								<ListItemText primary="Nahverkehr Abfahrten" />
-							</ListItemButton>
-						</Link>
 						<Link to="/routing">
 							<ListItemButton>
 								<ListItemIcon>
