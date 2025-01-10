@@ -1,10 +1,13 @@
 import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import { useTrainRuns } from '@/client/TrainRuns/provider/TrainRunProvider';
+import { getRouteApi } from '@tanstack/react-router';
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import type { FC } from 'react';
+
+const route = getRouteApi('/trainRuns');
 
 export const Header: FC = () => {
 	const { date } = useTrainRuns();
@@ -17,6 +20,6 @@ export const Header: FC = () => {
 			})})`,
 		[date],
 	);
-	useEffect(() => updateTitle(title), [title, updateTitle]);
+	// useEffect(() => updateTitle(title), [title, updateTitle]);
 	return <BaseHeader>{title}</BaseHeader>;
 };

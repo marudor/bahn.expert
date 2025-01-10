@@ -15,6 +15,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 // @ts-expect-error ESM fuckup
 import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
+import {
+	RouterProvider,
+	createRootRoute,
+	createRouter,
+} from '@tanstack/react-router';
 import { de as deLocale } from 'date-fns/locale/de';
 import { CookiesProvider } from 'react-cookie';
 
@@ -163,24 +168,29 @@ Cypress.Commands.add(
 			...commonConfig,
 		};
 
-		const wrappedComp = (
-			<RPCProvider>
-				<ThemeProvider theme={theme}>
-					<LocalizationProvider
-						dateAdapter={AdapterDateFns}
-						adapterLocale={deLocale}
-						localeText={customDeLocaleText}
-					>
-						<InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
-							<HeadProvider>
-								<CookiesProvider cookies={cookies}>{result}</CookiesProvider>
-							</HeadProvider>
-						</InnerCommonConfigProvider>
-					</LocalizationProvider>
-				</ThemeProvider>
-			</RPCProvider>
-		);
+		const route = createRootRoute({
+			component: () => (
+				<RPCProvider>
+					<ThemeProvider theme={theme}>
+						<LocalizationProvider
+							dateAdapter={AdapterDateFns}
+							adapterLocale={deLocale}
+							localeText={customDeLocaleText}
+						>
+							<InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
+								<HeadProvider>
+									<CookiesProvider cookies={cookies}>{result}</CookiesProvider>
+								</HeadProvider>
+							</InnerCommonConfigProvider>
+						</LocalizationProvider>
+					</ThemeProvider>
+				</RPCProvider>
+			),
+		});
+		const router = createRouter({
+			routeTree: route,
+		});
 
-		return mount(wrappedComp);
+		return mount(<RouterProvider router={router} />);
 	},
 );
