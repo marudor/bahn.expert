@@ -1,19 +1,29 @@
 import './commands';
-import { GlobalCSS } from '@/client/App';
 import { Navigation } from '@/client/Common/Components/Navigation';
 import type { CommonConfig } from '@/client/Common/config';
 import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
-import { ThemeWrap } from '@/client/ThemeWrap';
 import { theme } from '@/client/Themes';
-import type { Theme } from '@mui/material';
+import { type Theme, ThemeProvider } from '@mui/material';
 import { mount } from 'cypress/react18';
 import type { ReactElement } from 'react';
 import { HeadProvider } from 'react-head';
 import Cookies from 'universal-cookie';
 import '@percy/cypress';
-import { ThemeProvider } from '@/client/Themes/Provider';
+import { GlobalCSS } from '@/client/GlobalCSS';
+import { RPCProvider } from '@/client/RPC';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
+// @ts-expect-error ESM fuckup
+import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
+import { de as deLocale } from 'date-fns/locale/de';
 import { CookiesProvider } from 'react-cookie';
 import { BrowserRouter } from 'react-router';
+
+const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.defaultProps.localeText =
+	{
+		...deDE.components.MuiLocalizationProvider.defaultProps.localeText,
+		clearButtonLabel: 'Jetzt',
+	};
 
 const hexToRgb = (hex: string) => {
 	const rValue = Number.parseInt(hex.slice(1, 3), 16);
@@ -155,17 +165,23 @@ Cypress.Commands.add(
 		};
 
 		const wrappedComp = (
-			<InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
-				<HeadProvider>
-					<BrowserRouter>
-						<CookiesProvider cookies={cookies}>
-							<ThemeProvider>
-								<ThemeWrap>{result}</ThemeWrap>
-							</ThemeProvider>
-						</CookiesProvider>
-					</BrowserRouter>
-				</HeadProvider>
-			</InnerCommonConfigProvider>
+			<RPCProvider>
+				<ThemeProvider theme={theme}>
+					<LocalizationProvider
+						dateAdapter={AdapterDateFns}
+						adapterLocale={deLocale}
+						localeText={customDeLocaleText}
+					>
+						<InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
+							<HeadProvider>
+								<BrowserRouter>
+									<CookiesProvider cookies={cookies}>{result}</CookiesProvider>
+								</BrowserRouter>
+							</HeadProvider>
+						</InnerCommonConfigProvider>
+					</LocalizationProvider>
+				</ThemeProvider>
+			</RPCProvider>
 		);
 
 		return mount(wrappedComp);

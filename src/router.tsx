@@ -2,7 +2,6 @@ import { createRouter as createReactRouter } from '@tanstack/react-router';
 
 import { ClientStorage, ServerStorage } from '@/client/Common/Storage';
 import { DefaultCatchBoundary } from '@/client/DefaultCatchBoundary';
-import { ThemeProvider } from '@/client/Themes/Provider';
 import { parse, stringify } from '@/devalue';
 import { CookiesProvider } from 'react-cookie';
 import { BrowserRouter, StaticRouter } from 'react-router';
@@ -28,11 +27,9 @@ export function createRouter(request?: Request) {
 	}
 
 	const Wrap: FCC = ({ children }) => (
-		<ThemeProvider>
-			<ReactRouterOld>
-				<CookiesProvider cookies={storage}>{children}</CookiesProvider>
-			</ReactRouterOld>
-		</ThemeProvider>
+		<ReactRouterOld>
+			<CookiesProvider cookies={storage}>{children}</CookiesProvider>
+		</ReactRouterOld>
 	);
 
 	return createReactRouter({
