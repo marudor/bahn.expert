@@ -5,6 +5,7 @@
 			"src/server/api/routes.ts",
 			"src/external/generated/**/*",
 			"src/routeTree.gen.ts",
+			"src/devalue/**",
 			"package.json",
 			".vinxi/",
 			".output/"

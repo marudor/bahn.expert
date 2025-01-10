@@ -37,6 +37,7 @@ export default defineConfig({
 	},
 
 	component: {
+		experimentalJustInTimeCompile: true,
 		supportFile: './cypress/support/component.tsx',
 		devServer: {
 			framework: 'react',

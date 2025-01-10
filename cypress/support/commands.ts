@@ -1,4 +1,4 @@
-import { parse, stringify } from 'devalue';
+import { parse, stringify } from '@/devalue';
 import '@testing-library/cypress/add-commands';
 import type { AppRouter } from '@/server/rpc';
 import {
