@@ -254,6 +254,9 @@ importers:
       vite:
         specifier: ^6.0.6
         version: 6.0.6(@types/node@22.10.4)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0)
+      vite-plugin-compression2:
+        specifier: ^1.3.3
+        version: 1.3.3(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.4)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.4)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))
@@ -5479,6 +5482,9 @@ packages:
   tar-fs@2.1.1:
     resolution: {integrity: sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==}
 
+  tar-mini@0.2.0:
+    resolution: {integrity: sha512-+qfUHz700DWnRutdUsxRRVZ38G1Qr27OetwaMYTdg8hcPxf46U0S1Zf76dQMWRBmusOt2ZCK5kbIaiLkoGO7WQ==}
+
   tar-stream@2.2.0:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
@@ -5875,6 +5881,11 @@ packages:
     resolution: {integrity: sha512-uPAwSr57kYjAUux+8E2j0q0Fxpn8M9VoyfGiRI8Kfktz9NcYMCenwY5RnZxnF1WTu3TGiYipirIzacLL3VVGFg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  vite-plugin-compression2@1.3.3:
+    resolution: {integrity: sha512-Mb+xi/C5b68awtF4fNwRBPtoZiyUHU3I0SaBOAGlerlR31kusq1si6qG31lsjJH8T7QNg/p3IJY2HY9O9SvsfQ==}
+    peerDependencies:
+      vite: ^2.0.0||^3.0.0||^4.0.0||^5.0.0 ||^6.0.0
 
   vite-tsconfig-paths@5.1.4:
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
@@ -11812,6 +11823,8 @@ snapshots:
       pump: 3.0.0
       tar-stream: 2.2.0
 
+  tar-mini@0.2.0: {}
+
   tar-stream@2.2.0:
     dependencies:
       bl: 4.1.0
@@ -12290,6 +12303,14 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-plugin-compression2@1.3.3(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.4)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0)):
+    dependencies:
+      '@rollup/pluginutils': 5.1.4(rollup@4.29.1)
+      tar-mini: 0.2.0
+      vite: 6.0.6(@types/node@22.10.4)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0)
+    transitivePeerDependencies:
+      - rollup
 
   vite-tsconfig-paths@5.1.4(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.4)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0)):
     dependencies:
