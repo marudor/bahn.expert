@@ -13,7 +13,14 @@
 import { Route as rootRoute } from './routes/__root';
 import { Route as AboutImport } from './routes/about';
 import { Route as SplatImport } from './routes/$';
-import { Route as RoutingSplatImport } from './routes/routing/$';
+import { Route as TrainRunsRouteImport } from './routes/trainRuns/route';
+import { Route as RoutingRouteImport } from './routes/routing/route';
+import { Route as TrainRunsIndexImport } from './routes/trainRuns/index';
+import { Route as RoutingIndexImport } from './routes/routing/index';
+import { Route as RoutingStartIndexImport } from './routes/routing/$start/index';
+import { Route as RoutingStartDestinationIndexImport } from './routes/routing/$start/$destination/index';
+import { Route as RoutingStartDestinationDateIndexImport } from './routes/routing/$start/$destination/$date/index';
+import { Route as RoutingStartDestinationDateViaIndexImport } from './routes/routing/$start/$destination/$date/$via/index';
 
 // Create/Update Routes
 
@@ -29,16 +36,75 @@ const SplatRoute = SplatImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const RoutingSplatRoute = RoutingSplatImport.update({
-  id: '/routing/$',
-  path: '/routing/$',
+const TrainRunsRouteRoute = TrainRunsRouteImport.update({
+  id: '/trainRuns',
+  path: '/trainRuns',
   getParentRoute: () => rootRoute,
 } as any);
+
+const RoutingRouteRoute = RoutingRouteImport.update({
+  id: '/routing',
+  path: '/routing',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const TrainRunsIndexRoute = TrainRunsIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TrainRunsRouteRoute,
+} as any);
+
+const RoutingIndexRoute = RoutingIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RoutingRouteRoute,
+} as any);
+
+const RoutingStartIndexRoute = RoutingStartIndexImport.update({
+  id: '/$start/',
+  path: '/$start/',
+  getParentRoute: () => RoutingRouteRoute,
+} as any);
+
+const RoutingStartDestinationIndexRoute =
+  RoutingStartDestinationIndexImport.update({
+    id: '/$start/$destination/',
+    path: '/$start/$destination/',
+    getParentRoute: () => RoutingRouteRoute,
+  } as any);
+
+const RoutingStartDestinationDateIndexRoute =
+  RoutingStartDestinationDateIndexImport.update({
+    id: '/$start/$destination/$date/',
+    path: '/$start/$destination/$date/',
+    getParentRoute: () => RoutingRouteRoute,
+  } as any);
+
+const RoutingStartDestinationDateViaIndexRoute =
+  RoutingStartDestinationDateViaIndexImport.update({
+    id: '/$start/$destination/$date/$via/',
+    path: '/$start/$destination/$date/$via/',
+    getParentRoute: () => RoutingRouteRoute,
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/routing': {
+      id: '/routing';
+      path: '/routing';
+      fullPath: '/routing';
+      preLoaderRoute: typeof RoutingRouteImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/trainRuns': {
+      id: '/trainRuns';
+      path: '/trainRuns';
+      fullPath: '/trainRuns';
+      preLoaderRoute: typeof TrainRunsRouteImport;
+      parentRoute: typeof rootRoute;
+    };
     '/$': {
       id: '/$';
       path: '/$';
@@ -53,56 +119,174 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport;
       parentRoute: typeof rootRoute;
     };
-    '/routing/$': {
-      id: '/routing/$';
-      path: '/routing/$';
-      fullPath: '/routing/$';
-      preLoaderRoute: typeof RoutingSplatImport;
-      parentRoute: typeof rootRoute;
+    '/routing/': {
+      id: '/routing/';
+      path: '/';
+      fullPath: '/routing/';
+      preLoaderRoute: typeof RoutingIndexImport;
+      parentRoute: typeof RoutingRouteImport;
+    };
+    '/trainRuns/': {
+      id: '/trainRuns/';
+      path: '/';
+      fullPath: '/trainRuns/';
+      preLoaderRoute: typeof TrainRunsIndexImport;
+      parentRoute: typeof TrainRunsRouteImport;
+    };
+    '/routing/$start/': {
+      id: '/routing/$start/';
+      path: '/$start';
+      fullPath: '/routing/$start';
+      preLoaderRoute: typeof RoutingStartIndexImport;
+      parentRoute: typeof RoutingRouteImport;
+    };
+    '/routing/$start/$destination/': {
+      id: '/routing/$start/$destination/';
+      path: '/$start/$destination';
+      fullPath: '/routing/$start/$destination';
+      preLoaderRoute: typeof RoutingStartDestinationIndexImport;
+      parentRoute: typeof RoutingRouteImport;
+    };
+    '/routing/$start/$destination/$date/': {
+      id: '/routing/$start/$destination/$date/';
+      path: '/$start/$destination/$date';
+      fullPath: '/routing/$start/$destination/$date';
+      preLoaderRoute: typeof RoutingStartDestinationDateIndexImport;
+      parentRoute: typeof RoutingRouteImport;
+    };
+    '/routing/$start/$destination/$date/$via/': {
+      id: '/routing/$start/$destination/$date/$via/';
+      path: '/$start/$destination/$date/$via';
+      fullPath: '/routing/$start/$destination/$date/$via';
+      preLoaderRoute: typeof RoutingStartDestinationDateViaIndexImport;
+      parentRoute: typeof RoutingRouteImport;
     };
   }
 }
 
 // Create and export the route tree
 
+interface RoutingRouteRouteChildren {
+  RoutingIndexRoute: typeof RoutingIndexRoute;
+  RoutingStartIndexRoute: typeof RoutingStartIndexRoute;
+  RoutingStartDestinationIndexRoute: typeof RoutingStartDestinationIndexRoute;
+  RoutingStartDestinationDateIndexRoute: typeof RoutingStartDestinationDateIndexRoute;
+  RoutingStartDestinationDateViaIndexRoute: typeof RoutingStartDestinationDateViaIndexRoute;
+}
+
+const RoutingRouteRouteChildren: RoutingRouteRouteChildren = {
+  RoutingIndexRoute: RoutingIndexRoute,
+  RoutingStartIndexRoute: RoutingStartIndexRoute,
+  RoutingStartDestinationIndexRoute: RoutingStartDestinationIndexRoute,
+  RoutingStartDestinationDateIndexRoute: RoutingStartDestinationDateIndexRoute,
+  RoutingStartDestinationDateViaIndexRoute:
+    RoutingStartDestinationDateViaIndexRoute,
+};
+
+const RoutingRouteRouteWithChildren = RoutingRouteRoute._addFileChildren(
+  RoutingRouteRouteChildren,
+);
+
+interface TrainRunsRouteRouteChildren {
+  TrainRunsIndexRoute: typeof TrainRunsIndexRoute;
+}
+
+const TrainRunsRouteRouteChildren: TrainRunsRouteRouteChildren = {
+  TrainRunsIndexRoute: TrainRunsIndexRoute,
+};
+
+const TrainRunsRouteRouteWithChildren = TrainRunsRouteRoute._addFileChildren(
+  TrainRunsRouteRouteChildren,
+);
+
 export interface FileRoutesByFullPath {
+  '/routing': typeof RoutingRouteRouteWithChildren;
+  '/trainRuns': typeof TrainRunsRouteRouteWithChildren;
   '/$': typeof SplatRoute;
   '/about': typeof AboutRoute;
-  '/routing/$': typeof RoutingSplatRoute;
+  '/routing/': typeof RoutingIndexRoute;
+  '/trainRuns/': typeof TrainRunsIndexRoute;
+  '/routing/$start': typeof RoutingStartIndexRoute;
+  '/routing/$start/$destination': typeof RoutingStartDestinationIndexRoute;
+  '/routing/$start/$destination/$date': typeof RoutingStartDestinationDateIndexRoute;
+  '/routing/$start/$destination/$date/$via': typeof RoutingStartDestinationDateViaIndexRoute;
 }
 
 export interface FileRoutesByTo {
   '/$': typeof SplatRoute;
   '/about': typeof AboutRoute;
-  '/routing/$': typeof RoutingSplatRoute;
+  '/routing': typeof RoutingIndexRoute;
+  '/trainRuns': typeof TrainRunsIndexRoute;
+  '/routing/$start': typeof RoutingStartIndexRoute;
+  '/routing/$start/$destination': typeof RoutingStartDestinationIndexRoute;
+  '/routing/$start/$destination/$date': typeof RoutingStartDestinationDateIndexRoute;
+  '/routing/$start/$destination/$date/$via': typeof RoutingStartDestinationDateViaIndexRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
+  '/routing': typeof RoutingRouteRouteWithChildren;
+  '/trainRuns': typeof TrainRunsRouteRouteWithChildren;
   '/$': typeof SplatRoute;
   '/about': typeof AboutRoute;
-  '/routing/$': typeof RoutingSplatRoute;
+  '/routing/': typeof RoutingIndexRoute;
+  '/trainRuns/': typeof TrainRunsIndexRoute;
+  '/routing/$start/': typeof RoutingStartIndexRoute;
+  '/routing/$start/$destination/': typeof RoutingStartDestinationIndexRoute;
+  '/routing/$start/$destination/$date/': typeof RoutingStartDestinationDateIndexRoute;
+  '/routing/$start/$destination/$date/$via/': typeof RoutingStartDestinationDateViaIndexRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/$' | '/about' | '/routing/$';
+  fullPaths:
+    | '/routing'
+    | '/trainRuns'
+    | '/$'
+    | '/about'
+    | '/routing/'
+    | '/trainRuns/'
+    | '/routing/$start'
+    | '/routing/$start/$destination'
+    | '/routing/$start/$destination/$date'
+    | '/routing/$start/$destination/$date/$via';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/$' | '/about' | '/routing/$';
-  id: '__root__' | '/$' | '/about' | '/routing/$';
+  to:
+    | '/$'
+    | '/about'
+    | '/routing'
+    | '/trainRuns'
+    | '/routing/$start'
+    | '/routing/$start/$destination'
+    | '/routing/$start/$destination/$date'
+    | '/routing/$start/$destination/$date/$via';
+  id:
+    | '__root__'
+    | '/routing'
+    | '/trainRuns'
+    | '/$'
+    | '/about'
+    | '/routing/'
+    | '/trainRuns/'
+    | '/routing/$start/'
+    | '/routing/$start/$destination/'
+    | '/routing/$start/$destination/$date/'
+    | '/routing/$start/$destination/$date/$via/';
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
+  RoutingRouteRoute: typeof RoutingRouteRouteWithChildren;
+  TrainRunsRouteRoute: typeof TrainRunsRouteRouteWithChildren;
   SplatRoute: typeof SplatRoute;
   AboutRoute: typeof AboutRoute;
-  RoutingSplatRoute: typeof RoutingSplatRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  RoutingRouteRoute: RoutingRouteRouteWithChildren,
+  TrainRunsRouteRoute: TrainRunsRouteRouteWithChildren,
   SplatRoute: SplatRoute,
   AboutRoute: AboutRoute,
-  RoutingSplatRoute: RoutingSplatRoute,
 };
 
 export const routeTree = rootRoute
@@ -115,9 +299,26 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/routing",
+        "/trainRuns",
         "/$",
-        "/about",
-        "/routing/$"
+        "/about"
+      ]
+    },
+    "/routing": {
+      "filePath": "routing/route.tsx",
+      "children": [
+        "/routing/",
+        "/routing/$start/",
+        "/routing/$start/$destination/",
+        "/routing/$start/$destination/$date/",
+        "/routing/$start/$destination/$date/$via/"
+      ]
+    },
+    "/trainRuns": {
+      "filePath": "trainRuns/route.tsx",
+      "children": [
+        "/trainRuns/"
       ]
     },
     "/$": {
@@ -126,8 +327,29 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
-    "/routing/$": {
-      "filePath": "routing/$.tsx"
+    "/routing/": {
+      "filePath": "routing/index.tsx",
+      "parent": "/routing"
+    },
+    "/trainRuns/": {
+      "filePath": "trainRuns/index.tsx",
+      "parent": "/trainRuns"
+    },
+    "/routing/$start/": {
+      "filePath": "routing/$start/index.tsx",
+      "parent": "/routing"
+    },
+    "/routing/$start/$destination/": {
+      "filePath": "routing/$start/$destination/index.tsx",
+      "parent": "/routing"
+    },
+    "/routing/$start/$destination/$date/": {
+      "filePath": "routing/$start/$destination/$date/index.tsx",
+      "parent": "/routing"
+    },
+    "/routing/$start/$destination/$date/$via/": {
+      "filePath": "routing/$start/$destination/$date/$via/index.tsx",
+      "parent": "/routing"
     }
   }
 }

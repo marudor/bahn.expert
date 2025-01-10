@@ -105,6 +105,7 @@
 		"cookie": "^1.0.2",
 		"date-fns": "^4.1.0",
 		"debounce-promise": "^3.1.2",
+		"devalue": "^5.1.1",
 		"diff": "^5.2.0",
 		"downshift": "^9.0.8",
 		"google-polyline": "^1.0.3",

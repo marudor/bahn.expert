@@ -2,7 +2,7 @@ import { createRouter as createReactRouter } from '@tanstack/react-router';
 
 import { ClientStorage, ServerStorage } from '@/client/Common/Storage';
 import { DefaultCatchBoundary } from '@/client/DefaultCatchBoundary';
-import { parse, stringify } from '@/devalue';
+import { parse, stringify } from 'devalue';
 import { CookiesProvider } from 'react-cookie';
 import { BrowserRouter, StaticRouter } from 'react-router';
 import { routeTree } from './routeTree.gen';

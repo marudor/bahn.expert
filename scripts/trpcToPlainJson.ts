@@ -1,4 +1,4 @@
-import { parse } from '@/devalue';
+import { parse } from 'devalue';
 
 async function run() {
 	let data = '';

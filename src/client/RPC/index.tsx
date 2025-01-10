@@ -1,4 +1,3 @@
-import { parse, stringify } from '@/devalue';
 import type { AppRouter } from '@/server/rpc';
 import { NoSsr } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,6 +10,7 @@ import {
 	splitLink,
 } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
+import { parse, stringify } from 'devalue';
 
 export const trpc = createTRPCReact<AppRouter>();
 

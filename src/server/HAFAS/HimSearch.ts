@@ -14,7 +14,6 @@ import type {
 	ParsedHimMessage,
 	ParsedHimSearchResponse,
 } from '@/types/HAFAS/HimSearch';
-import { Temporal } from '@js-temporal/polyfill';
 import { parse } from 'date-fns';
 
 const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
@@ -81,13 +80,13 @@ async function fetchTodaysHimMessages() {
 	}
 }
 
-if (process.env.NODE_ENV !== 'test') {
-	void fetchTodaysHimMessages();
-	setInterval(
-		fetchTodaysHimMessages,
-		Temporal.Duration.from('PT5M').total('millisecond'),
-	);
-}
+// if (process.env.NODE_ENV !== 'test') {
+// 	void fetchTodaysHimMessages();
+// 	setInterval(
+// 		fetchTodaysHimMessages,
+// 		Temporal.Duration.from('PT5M').total('millisecond'),
+// 	);
+// }
 
 export const getSingleHimMessageOfToday = (
 	hid: string,

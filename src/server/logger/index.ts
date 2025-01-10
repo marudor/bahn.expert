@@ -12,10 +12,10 @@ if (process.env.PRETTY_LOG) {
 			translateTime: true,
 		});
 
-		streams.push((msg) => process.stdout.write(prettyLog(JSON.stringify(msg))));
+		streams.push((msg) => process.stdout.write(prettyLog(msg)));
 	});
 } else {
-	streams.push((msg) => console.log(JSON.stringify(msg)));
+	streams.push((msg) => console.log(msg));
 }
 
 const createWriteOptions = () => {

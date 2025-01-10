@@ -22,9 +22,9 @@ import {
 	styled,
 } from '@mui/material';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import { useParams } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo } from 'react';
 import type { FC, SyntheticEvent } from 'react';
-import { useParams } from 'react-router';
 import { SettingsPanel } from './SettingsPanel';
 
 const DateTimeContainer = styled(Stack)`
@@ -96,7 +96,11 @@ export const Search: FC = () => {
 		useRoutingConfig();
 	const { clearRoutes, fetchRoutesAndNavigate } = useFetchRouting();
 
-	const params = useParams<'start' | 'destination' | 'date' | 'via'>();
+	const params: Record<
+		'start' | 'destination' | 'date' | 'via',
+		string | undefined
+	> = useParams({ strict: false });
+	// const params = useParams<'start' | 'destination' | 'date' | 'via'>();
 	const trpcUtils = trpc.useUtils();
 
 	useEffect(() => {

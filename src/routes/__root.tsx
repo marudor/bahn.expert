@@ -4,6 +4,7 @@ import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvi
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { GlobalCSS } from '@/client/GlobalCSS';
 import { RPCProvider } from '@/client/RPC';
+import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
 import { theme } from '@/client/Themes';
 import { ThemeProvider } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
@@ -178,7 +179,9 @@ function RootComponent() {
 							<HeaderTagProvider>
 								<CommonConfigProvider>
 									<Navigation>
-										<Outlet />
+										<RoutingProvider>
+											<Outlet />
+										</RoutingProvider>
 									</Navigation>
 								</CommonConfigProvider>
 							</HeaderTagProvider>
