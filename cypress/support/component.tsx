@@ -191,6 +191,7 @@ Cypress.Commands.add(
 			routeTree: route,
 		});
 
+		// @ts-expect-error this is a test router!
 		return mount(<RouterProvider router={router} />);
 	},
 );
