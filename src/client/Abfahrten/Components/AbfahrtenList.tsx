@@ -16,9 +16,9 @@ import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import type { AbfahrtenResult } from '@/types/iris';
 import { Stack, styled } from '@mui/material';
+import { getRouteApi } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import type { FC } from 'react';
-import { useParams } from 'react-router';
 import { Abfahrt } from './Abfahrt';
 
 const LookaheadMarker = styled('div')`
@@ -33,6 +33,8 @@ const Lookbehind = styled('div')(({ theme }) => ({
 	backgroundColor: theme.vars.palette.common.shadedBackground,
 }));
 
+const route = getRouteApi('/_abfahrten/$stopPlace');
+
 const InnerAbfahrtenList = () => {
 	const {
 		updateCurrentStopPlaceByString,
@@ -43,7 +45,7 @@ const InnerAbfahrtenList = () => {
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const [selectedDetail] = useSelectedDetail();
 	const { filteredDepartures, departures } = useAbfahrtenDepartures();
-	const paramStation = useParams().station;
+	const { stopPlace } = route.useParams();
 	const { autoUpdate } = useCommonConfig();
 	const refreshCurrentAbfahrten = useRefreshCurrent();
 	const { updateTitle, updateDescription, updateKeywords } =
@@ -85,21 +87,14 @@ const InnerAbfahrtenList = () => {
 		return cleanup;
 	}, [autoUpdate, refreshCurrentAbfahrten]);
 
-	const [oldMatch, setOldMatch] = useState(paramStation);
+	const [oldMatch, setOldMatch] = useState(stopPlace);
 
 	useEffect(() => {
-		if (!currentStopPlace || oldMatch !== paramStation) {
-			setOldMatch(paramStation);
-			void updateCurrentStopPlaceByString(
-				decodeURIComponent(paramStation || ''),
-			);
+		if (!currentStopPlace || oldMatch !== stopPlace) {
+			setOldMatch(stopPlace);
+			void updateCurrentStopPlaceByString(decodeURIComponent(stopPlace || ''));
 		}
-	}, [
-		currentStopPlace,
-		oldMatch,
-		paramStation,
-		updateCurrentStopPlaceByString,
-	]);
+	}, [currentStopPlace, oldMatch, stopPlace, updateCurrentStopPlaceByString]);
 
 	useEffect(() => {
 		if (scrolled) {

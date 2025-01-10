@@ -5,10 +5,10 @@ import { StartClient } from '@tanstack/start';
 import { hydrateRoot } from 'react-dom/client';
 import { HeadProvider } from 'react-head';
 
-const router = createRouter();
 const cache = createEmotionCache({ prepend: true, key: 'css' });
+const router = createRouter();
 
-window.onload = async () => {
+async function render() {
 	await router.load();
 
 	hydrateRoot(
@@ -19,4 +19,10 @@ window.onload = async () => {
 			</CacheProvider>
 		</HeadProvider>,
 	);
-};
+}
+
+if (import.meta.env.DEV) {
+	render();
+} else {
+	window.addEventListener('load', render);
+}

@@ -1,5 +1,4 @@
 import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
-import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import type { SubstituteRef } from '@/types/iris';
 import { styled } from '@mui/material';
@@ -14,14 +13,12 @@ interface Props {
 }
 
 export const Ref: FCC<Props> = ({ reference, children, className }) => {
-	const urlPrefix = useAbfahrtenUrlPrefix();
 	const { abfahrt } = useAbfahrt();
 	return (
 		<>
 			<Text className={className}>{children}</Text>
 			<StyledDetailsLink
 				className={className}
-				urlPrefix={urlPrefix}
 				train={reference}
 				evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
 				initialDeparture={abfahrt.initialDeparture}

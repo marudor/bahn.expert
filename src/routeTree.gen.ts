@@ -12,12 +12,16 @@
 
 import { Route as rootRoute } from './routes/__root';
 import { Route as AboutImport } from './routes/about';
-import { Route as SplatImport } from './routes/$';
 import { Route as TrainRunsRouteImport } from './routes/trainRuns/route';
 import { Route as RoutingRouteImport } from './routes/routing/route';
+import { Route as AbfahrtenRouteImport } from './routes/_abfahrten/route';
 import { Route as TrainRunsIndexImport } from './routes/trainRuns/index';
 import { Route as RoutingIndexImport } from './routes/routing/index';
+import { Route as AbfahrtenIndexImport } from './routes/_abfahrten/index';
+import { Route as DetailsTrainImport } from './routes/details/$train';
+import { Route as AbfahrtenStopPlaceImport } from './routes/_abfahrten/$stopPlace';
 import { Route as RoutingStartIndexImport } from './routes/routing/$start/index';
+import { Route as DetailsTrainInitialDepartureImport } from './routes/details/$train.$initialDeparture';
 import { Route as RoutingStartDestinationIndexImport } from './routes/routing/$start/$destination/index';
 import { Route as RoutingStartDestinationDateIndexImport } from './routes/routing/$start/$destination/$date/index';
 import { Route as RoutingStartDestinationDateViaIndexImport } from './routes/routing/$start/$destination/$date/$via/index';
@@ -27,12 +31,6 @@ import { Route as RoutingStartDestinationDateViaIndexImport } from './routes/rou
 const AboutRoute = AboutImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRoute,
-} as any);
-
-const SplatRoute = SplatImport.update({
-  id: '/$',
-  path: '/$',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -48,6 +46,11 @@ const RoutingRouteRoute = RoutingRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
+const AbfahrtenRouteRoute = AbfahrtenRouteImport.update({
+  id: '/_abfahrten',
+  getParentRoute: () => rootRoute,
+} as any);
+
 const TrainRunsIndexRoute = TrainRunsIndexImport.update({
   id: '/',
   path: '/',
@@ -60,11 +63,36 @@ const RoutingIndexRoute = RoutingIndexImport.update({
   getParentRoute: () => RoutingRouteRoute,
 } as any);
 
+const AbfahrtenIndexRoute = AbfahrtenIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AbfahrtenRouteRoute,
+} as any);
+
+const DetailsTrainRoute = DetailsTrainImport.update({
+  id: '/details/$train',
+  path: '/details/$train',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const AbfahrtenStopPlaceRoute = AbfahrtenStopPlaceImport.update({
+  id: '/$stopPlace',
+  path: '/$stopPlace',
+  getParentRoute: () => AbfahrtenRouteRoute,
+} as any);
+
 const RoutingStartIndexRoute = RoutingStartIndexImport.update({
   id: '/$start/',
   path: '/$start/',
   getParentRoute: () => RoutingRouteRoute,
 } as any);
+
+const DetailsTrainInitialDepartureRoute =
+  DetailsTrainInitialDepartureImport.update({
+    id: '/$initialDeparture',
+    path: '/$initialDeparture',
+    getParentRoute: () => DetailsTrainRoute,
+  } as any);
 
 const RoutingStartDestinationIndexRoute =
   RoutingStartDestinationIndexImport.update({
@@ -91,6 +119,13 @@ const RoutingStartDestinationDateViaIndexRoute =
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_abfahrten': {
+      id: '/_abfahrten';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof AbfahrtenRouteImport;
+      parentRoute: typeof rootRoute;
+    };
     '/routing': {
       id: '/routing';
       path: '/routing';
@@ -105,19 +140,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainRunsRouteImport;
       parentRoute: typeof rootRoute;
     };
-    '/$': {
-      id: '/$';
-      path: '/$';
-      fullPath: '/$';
-      preLoaderRoute: typeof SplatImport;
-      parentRoute: typeof rootRoute;
-    };
     '/about': {
       id: '/about';
       path: '/about';
       fullPath: '/about';
       preLoaderRoute: typeof AboutImport;
       parentRoute: typeof rootRoute;
+    };
+    '/_abfahrten/$stopPlace': {
+      id: '/_abfahrten/$stopPlace';
+      path: '/$stopPlace';
+      fullPath: '/$stopPlace';
+      preLoaderRoute: typeof AbfahrtenStopPlaceImport;
+      parentRoute: typeof AbfahrtenRouteImport;
+    };
+    '/details/$train': {
+      id: '/details/$train';
+      path: '/details/$train';
+      fullPath: '/details/$train';
+      preLoaderRoute: typeof DetailsTrainImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/_abfahrten/': {
+      id: '/_abfahrten/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof AbfahrtenIndexImport;
+      parentRoute: typeof AbfahrtenRouteImport;
     };
     '/routing/': {
       id: '/routing/';
@@ -132,6 +181,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/trainRuns/';
       preLoaderRoute: typeof TrainRunsIndexImport;
       parentRoute: typeof TrainRunsRouteImport;
+    };
+    '/details/$train/$initialDeparture': {
+      id: '/details/$train/$initialDeparture';
+      path: '/$initialDeparture';
+      fullPath: '/details/$train/$initialDeparture';
+      preLoaderRoute: typeof DetailsTrainInitialDepartureImport;
+      parentRoute: typeof DetailsTrainImport;
     };
     '/routing/$start/': {
       id: '/routing/$start/';
@@ -166,6 +222,20 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
+interface AbfahrtenRouteRouteChildren {
+  AbfahrtenStopPlaceRoute: typeof AbfahrtenStopPlaceRoute;
+  AbfahrtenIndexRoute: typeof AbfahrtenIndexRoute;
+}
+
+const AbfahrtenRouteRouteChildren: AbfahrtenRouteRouteChildren = {
+  AbfahrtenStopPlaceRoute: AbfahrtenStopPlaceRoute,
+  AbfahrtenIndexRoute: AbfahrtenIndexRoute,
+};
+
+const AbfahrtenRouteRouteWithChildren = AbfahrtenRouteRoute._addFileChildren(
+  AbfahrtenRouteRouteChildren,
+);
+
 interface RoutingRouteRouteChildren {
   RoutingIndexRoute: typeof RoutingIndexRoute;
   RoutingStartIndexRoute: typeof RoutingStartIndexRoute;
@@ -199,13 +269,29 @@ const TrainRunsRouteRouteWithChildren = TrainRunsRouteRoute._addFileChildren(
   TrainRunsRouteRouteChildren,
 );
 
+interface DetailsTrainRouteChildren {
+  DetailsTrainInitialDepartureRoute: typeof DetailsTrainInitialDepartureRoute;
+}
+
+const DetailsTrainRouteChildren: DetailsTrainRouteChildren = {
+  DetailsTrainInitialDepartureRoute: DetailsTrainInitialDepartureRoute,
+};
+
+const DetailsTrainRouteWithChildren = DetailsTrainRoute._addFileChildren(
+  DetailsTrainRouteChildren,
+);
+
 export interface FileRoutesByFullPath {
+  '': typeof AbfahrtenRouteRouteWithChildren;
   '/routing': typeof RoutingRouteRouteWithChildren;
   '/trainRuns': typeof TrainRunsRouteRouteWithChildren;
-  '/$': typeof SplatRoute;
   '/about': typeof AboutRoute;
+  '/$stopPlace': typeof AbfahrtenStopPlaceRoute;
+  '/details/$train': typeof DetailsTrainRouteWithChildren;
+  '/': typeof AbfahrtenIndexRoute;
   '/routing/': typeof RoutingIndexRoute;
   '/trainRuns/': typeof TrainRunsIndexRoute;
+  '/details/$train/$initialDeparture': typeof DetailsTrainInitialDepartureRoute;
   '/routing/$start': typeof RoutingStartIndexRoute;
   '/routing/$start/$destination': typeof RoutingStartDestinationIndexRoute;
   '/routing/$start/$destination/$date': typeof RoutingStartDestinationDateIndexRoute;
@@ -213,10 +299,13 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
-  '/$': typeof SplatRoute;
   '/about': typeof AboutRoute;
+  '/$stopPlace': typeof AbfahrtenStopPlaceRoute;
+  '/details/$train': typeof DetailsTrainRouteWithChildren;
+  '/': typeof AbfahrtenIndexRoute;
   '/routing': typeof RoutingIndexRoute;
   '/trainRuns': typeof TrainRunsIndexRoute;
+  '/details/$train/$initialDeparture': typeof DetailsTrainInitialDepartureRoute;
   '/routing/$start': typeof RoutingStartIndexRoute;
   '/routing/$start/$destination': typeof RoutingStartDestinationIndexRoute;
   '/routing/$start/$destination/$date': typeof RoutingStartDestinationDateIndexRoute;
@@ -225,12 +314,16 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
+  '/_abfahrten': typeof AbfahrtenRouteRouteWithChildren;
   '/routing': typeof RoutingRouteRouteWithChildren;
   '/trainRuns': typeof TrainRunsRouteRouteWithChildren;
-  '/$': typeof SplatRoute;
   '/about': typeof AboutRoute;
+  '/_abfahrten/$stopPlace': typeof AbfahrtenStopPlaceRoute;
+  '/details/$train': typeof DetailsTrainRouteWithChildren;
+  '/_abfahrten/': typeof AbfahrtenIndexRoute;
   '/routing/': typeof RoutingIndexRoute;
   '/trainRuns/': typeof TrainRunsIndexRoute;
+  '/details/$train/$initialDeparture': typeof DetailsTrainInitialDepartureRoute;
   '/routing/$start/': typeof RoutingStartIndexRoute;
   '/routing/$start/$destination/': typeof RoutingStartDestinationIndexRoute;
   '/routing/$start/$destination/$date/': typeof RoutingStartDestinationDateIndexRoute;
@@ -240,34 +333,45 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
+    | ''
     | '/routing'
     | '/trainRuns'
-    | '/$'
     | '/about'
+    | '/$stopPlace'
+    | '/details/$train'
+    | '/'
     | '/routing/'
     | '/trainRuns/'
+    | '/details/$train/$initialDeparture'
     | '/routing/$start'
     | '/routing/$start/$destination'
     | '/routing/$start/$destination/$date'
     | '/routing/$start/$destination/$date/$via';
   fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/$'
     | '/about'
+    | '/$stopPlace'
+    | '/details/$train'
+    | '/'
     | '/routing'
     | '/trainRuns'
+    | '/details/$train/$initialDeparture'
     | '/routing/$start'
     | '/routing/$start/$destination'
     | '/routing/$start/$destination/$date'
     | '/routing/$start/$destination/$date/$via';
   id:
     | '__root__'
+    | '/_abfahrten'
     | '/routing'
     | '/trainRuns'
-    | '/$'
     | '/about'
+    | '/_abfahrten/$stopPlace'
+    | '/details/$train'
+    | '/_abfahrten/'
     | '/routing/'
     | '/trainRuns/'
+    | '/details/$train/$initialDeparture'
     | '/routing/$start/'
     | '/routing/$start/$destination/'
     | '/routing/$start/$destination/$date/'
@@ -276,17 +380,19 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
+  AbfahrtenRouteRoute: typeof AbfahrtenRouteRouteWithChildren;
   RoutingRouteRoute: typeof RoutingRouteRouteWithChildren;
   TrainRunsRouteRoute: typeof TrainRunsRouteRouteWithChildren;
-  SplatRoute: typeof SplatRoute;
   AboutRoute: typeof AboutRoute;
+  DetailsTrainRoute: typeof DetailsTrainRouteWithChildren;
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  AbfahrtenRouteRoute: AbfahrtenRouteRouteWithChildren,
   RoutingRouteRoute: RoutingRouteRouteWithChildren,
   TrainRunsRouteRoute: TrainRunsRouteRouteWithChildren,
-  SplatRoute: SplatRoute,
   AboutRoute: AboutRoute,
+  DetailsTrainRoute: DetailsTrainRouteWithChildren,
 };
 
 export const routeTree = rootRoute
@@ -299,10 +405,18 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/_abfahrten",
         "/routing",
         "/trainRuns",
-        "/$",
-        "/about"
+        "/about",
+        "/details/$train"
+      ]
+    },
+    "/_abfahrten": {
+      "filePath": "_abfahrten/route.tsx",
+      "children": [
+        "/_abfahrten/$stopPlace",
+        "/_abfahrten/"
       ]
     },
     "/routing": {
@@ -321,11 +435,22 @@ export const routeTree = rootRoute
         "/trainRuns/"
       ]
     },
-    "/$": {
-      "filePath": "$.tsx"
-    },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/_abfahrten/$stopPlace": {
+      "filePath": "_abfahrten/$stopPlace.tsx",
+      "parent": "/_abfahrten"
+    },
+    "/details/$train": {
+      "filePath": "details/$train.tsx",
+      "children": [
+        "/details/$train/$initialDeparture"
+      ]
+    },
+    "/_abfahrten/": {
+      "filePath": "_abfahrten/index.tsx",
+      "parent": "/_abfahrten"
     },
     "/routing/": {
       "filePath": "routing/index.tsx",
@@ -334,6 +459,10 @@ export const routeTree = rootRoute
     "/trainRuns/": {
       "filePath": "trainRuns/index.tsx",
       "parent": "/trainRuns"
+    },
+    "/details/$train/$initialDeparture": {
+      "filePath": "details/$train.$initialDeparture.tsx",
+      "parent": "/details/$train"
     },
     "/routing/$start/": {
       "filePath": "routing/$start/index.tsx",

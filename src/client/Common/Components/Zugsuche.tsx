@@ -13,11 +13,10 @@ import {
 	styled,
 } from '@mui/material';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { useNavigate } from '@tanstack/react-router';
 import { subHours } from 'date-fns';
-import qs from 'qs';
 import { useCallback, useContext, useState } from 'react';
 import type { FC, ReactElement, SyntheticEvent } from 'react';
-import { useNavigate } from 'react-router';
 import { NavigationContext } from './Navigation/NavigationContext';
 
 const Title = styled(DialogTitle)`
@@ -73,38 +72,20 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 				toggleModal();
 				toggleDrawer();
 
-				const link = [
-					'',
-					'details',
-					`${match.train.type} ${match.train.number}`,
-				];
-
-				// HAFAS Result
-				if (match.jid.includes('#')) {
-					// istanbul ignore else
-					if (date) {
-						link.push(date.toISOString());
-					}
-
-					link.push(
-						qs.stringify(
-							{
+				navigate({
+					to: date ? '/details/$train/$initialDeparture' : '/details/$train',
+					params: {
+						train: `${match.train.type} ${match.train.number}`,
+						initialDeparture: date?.toISOString(),
+					},
+					search: match.jid.includes('#')
+						? {
 								station: match.firstStop.station.evaNumber,
-							},
-							{ addQueryPrefix: true },
-						),
-					);
-				} else
-					link.push(
-						qs.stringify(
-							{
+							}
+						: {
 								journeyId: match.jid,
 							},
-							{ addQueryPrefix: true },
-						),
-					);
-
-				navigate(link.join('/'));
+				});
 			}
 		},
 		[date, toggleModal, toggleDrawer, navigate],

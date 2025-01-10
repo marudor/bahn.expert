@@ -1,29 +1,26 @@
 import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceNameWithRl100';
 import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { MinimalStopPlace } from '@/types/stopPlace';
+import { Link } from '@tanstack/react-router';
 import type { FC } from 'react';
-import { Link } from 'react-router';
 
 interface Props {
 	stopPlace: {
 		name: string;
 	} & Partial<Pick<MinimalStopPlace, 'evaNumber' | 'ril100'>>;
 	className?: string;
-	urlPrefix?: string;
 }
 
-export const StopPlaceLink: FC<Props> = ({
-	className,
-	urlPrefix = '/',
-	stopPlace,
-	...rest
-}) => {
+export const StopPlaceLink: FC<Props> = ({ className, stopPlace, ...rest }) => {
 	return (
 		<Link
 			data-testid="stationLink"
 			className={className}
 			onClick={stopPropagation}
-			to={`${urlPrefix}${encodeURIComponent(stopPlace.name)}`}
+			to="/$stopPlace"
+			params={{
+				stopPlace: encodeURIComponent(stopPlace.name),
+			}}
 			title={`Zugabfahrten für ${stopPlace.name}`}
 			{...rest}
 		>

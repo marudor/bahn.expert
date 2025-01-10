@@ -1,5 +1,4 @@
 import { useAbfahrt } from '@/client/Abfahrten/provider/AbfahrtProvider';
-import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { Stack, css, styled } from '@mui/material';
@@ -18,7 +17,6 @@ interface Props {
 	withLink?: boolean;
 }
 export const Name: FC<Props> = ({ withLink }) => {
-	const urlPrefix = useAbfahrtenUrlPrefix();
 	const { lineAndNumber } = useCommonConfig();
 	const { abfahrt } = useAbfahrt();
 	const longDistance = abfahrt.train.name.endsWith(abfahrt.train.number);
@@ -28,7 +26,6 @@ export const Name: FC<Props> = ({ withLink }) => {
 		trainName = (
 			<DetailsLink
 				css={widthCss}
-				urlPrefix={urlPrefix}
 				train={abfahrt.previousTrain || abfahrt.train}
 				evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
 				initialDeparture={abfahrt.initialDeparture}

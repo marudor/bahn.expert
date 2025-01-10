@@ -1,8 +1,7 @@
 import type { TransportPublicDestination } from '@/external/generated/risConnections';
 import type { Transport } from '@/external/generated/risJourneysV2';
-import qs from 'qs';
+import { Link } from '@tanstack/react-router';
 import type { FC } from 'react';
-import { Link } from 'react-router';
 
 interface Props {
 	transport:
@@ -26,12 +25,13 @@ export const FullTransportName: FC<Props> = ({ transport, journeyId }) => {
 		return (
 			<Link
 				data-testid="fullTransportName"
-				to={`/details/${transport.category} ${journeyNumber}${qs.stringify(
-					{
-						journeyId,
-					},
-					{ addQueryPrefix: true },
-				)}`}
+				to="/details/$train"
+				params={{
+					train: `${transport.category} ${journeyNumber}`,
+				}}
+				search={{
+					journeyId,
+				}}
 			>
 				{trainName}
 			</Link>

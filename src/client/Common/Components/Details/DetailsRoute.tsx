@@ -1,16 +1,22 @@
 import { Details } from '@/client/Common/Components/Details';
-import { useQuery } from '@/client/Common/hooks/useQuery';
 import { DetailsProvider } from '@/client/Common/provider/DetailsProvider';
+import { useParams, useSearch } from '@tanstack/react-router';
 import type { FC } from 'react';
-import { useParams } from 'react-router';
 
-interface Props {
-	urlPrefix?: string;
-}
+interface Props {}
 
-export const DetailsRoute: FC<Props> = ({ urlPrefix }) => {
-	const query = useQuery();
-	const { train, initialDeparture } = useParams();
+export const DetailsRoute: FC<Props> = () => {
+	const query = useSearch({
+		from: '/details/$train',
+	});
+
+	const {
+		train,
+		initialDeparture,
+	}: Record<'train' | 'initialDeparture', string | undefined> = useParams({
+		strict: false,
+	});
+
 	const evaNumberAlongRoute = (query.evaNumberAlongRoute ||
 		query.stopEva ||
 		query.station) as string | undefined;
@@ -20,7 +26,6 @@ export const DetailsRoute: FC<Props> = ({ urlPrefix }) => {
 			trainName={train!}
 			evaNumberAlongRoute={evaNumberAlongRoute}
 			initialDepartureDateString={initialDeparture}
-			urlPrefix={urlPrefix}
 			journeyId={query.journeyId as string | undefined}
 			jid={query.jid as string | undefined}
 			administration={query.administration as string | undefined}

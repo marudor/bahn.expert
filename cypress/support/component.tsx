@@ -17,7 +17,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
 import { de as deLocale } from 'date-fns/locale/de';
 import { CookiesProvider } from 'react-cookie';
-import { BrowserRouter } from 'react-router';
 
 const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.defaultProps.localeText =
 	{
@@ -174,9 +173,7 @@ Cypress.Commands.add(
 					>
 						<InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
 							<HeadProvider>
-								<BrowserRouter>
-									<CookiesProvider cookies={cookies}>{result}</CookiesProvider>
-								</BrowserRouter>
+								<CookiesProvider cookies={cookies}>{result}</CookiesProvider>
 							</HeadProvider>
 						</InnerCommonConfigProvider>
 					</LocalizationProvider>

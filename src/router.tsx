@@ -4,32 +4,15 @@ import { ClientStorage, ServerStorage } from '@/client/Common/Storage';
 import { DefaultCatchBoundary } from '@/client/DefaultCatchBoundary';
 import { parse, stringify } from 'devalue';
 import { CookiesProvider } from 'react-cookie';
-import { BrowserRouter, StaticRouter } from 'react-router';
 import { routeTree } from './routeTree.gen';
 
 export function createRouter(request?: Request) {
-	let ReactRouterOld: FCC;
 	const storage = request
 		? new ServerStorage(request.headers.get('cookies'))
 		: new ClientStorage();
 
-	if (request) {
-		const url = new URL(request.url);
-		ReactRouterOld = ({ children }) => (
-			<StaticRouter location={url.href.replace(url.origin, '')}>
-				{children}
-			</StaticRouter>
-		);
-	} else {
-		ReactRouterOld = ({ children }) => (
-			<BrowserRouter>{children}</BrowserRouter>
-		);
-	}
-
 	const Wrap: FCC = ({ children }) => (
-		<ReactRouterOld>
-			<CookiesProvider cookies={storage}>{children}</CookiesProvider>
-		</ReactRouterOld>
+		<CookiesProvider cookies={storage}>{children}</CookiesProvider>
 	);
 
 	return createReactRouter({

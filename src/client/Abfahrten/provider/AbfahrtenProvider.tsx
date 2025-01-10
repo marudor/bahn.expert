@@ -270,18 +270,13 @@ interface Props {
 	children: ReactNode;
 	abfahrtenFetch: PropsFor<typeof AbfahrtenConfigProvider>['abfahrtenFetch'];
 	stopPlaceApiFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
-	urlPrefix: string;
 }
 export const AbfahrtenProvider: FC<Props> = ({
 	children,
 	abfahrtenFetch,
 	stopPlaceApiFunction,
-	urlPrefix,
 }) => (
-	<AbfahrtenConfigProvider
-		urlPrefix={urlPrefix}
-		abfahrtenFetch={abfahrtenFetch}
-	>
+	<AbfahrtenConfigProvider abfahrtenFetch={abfahrtenFetch}>
 		<InnerAbfahrtenProvider searchFunction={stopPlaceApiFunction}>
 			{children}
 		</InnerAbfahrtenProvider>

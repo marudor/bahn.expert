@@ -1,36 +1,12 @@
 import { MostUsed } from '@/client/Abfahrten/Components/MostUsed';
 import { useFavs } from '@/client/Abfahrten/hooks/useFavs';
-import type { AbfahrtenError } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { Stack } from '@mui/material';
 import { useEffect, useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
-import { Navigate } from 'react-router';
-import type { StaticRouterContext } from 'react-router';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
-
-function getErrorText(
-	error: AbfahrtenError,
-	staticContext?: StaticRouterContext,
-): React.ReactNode {
-	switch (error.errorType) {
-		case 'redirect': {
-			return <Navigate to={error.redirect} />;
-		}
-		case '404': {
-			if (staticContext) {
-				staticContext.status = 404;
-			}
-
-			return 'Die Abfahrt existiert nicht';
-		}
-		default: {
-			return 'Unbekannter Fehler';
-		}
-	}
-}
 
 interface Props {
 	children?: ReactNode;

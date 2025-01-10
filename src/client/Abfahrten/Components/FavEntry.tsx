@@ -1,11 +1,10 @@
 import { useUnfavAction } from '@/client/Abfahrten/hooks/useFavs';
-import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import Delete from '@mui/icons-material/Delete';
 import { IconButton, Paper, styled } from '@mui/material';
+import { Link } from '@tanstack/react-router';
 import { useCallback } from 'react';
 import type { FC, MouseEvent, ReactNode } from 'react';
-import { Link } from 'react-router';
 
 const BasePaper = styled(Paper)(({ theme }) => ({
 	minHeight: 48,
@@ -78,7 +77,6 @@ export const FavEntry: FC<Props> = ({
 	'data-testid': testid = 'favEntry',
 	favKey,
 }) => {
-	const urlPrefix = useAbfahrtenUrlPrefix();
 	const unfav = useUnfavAction(favKey);
 	const deleteFav = useCallback(
 		(e: MouseEvent) => {
@@ -92,7 +90,10 @@ export const FavEntry: FC<Props> = ({
 	return (
 		<Link
 			data-testid={testid}
-			to={`${urlPrefix}${encodeURIComponent(fav.name)}`}
+			to="/$stopPlace"
+			params={{
+				stopPlace: encodeURIComponent(fav.name),
+			}}
 			title={`Zugabfahrten für ${fav.name}`}
 		>
 			<FavEntryDisplay

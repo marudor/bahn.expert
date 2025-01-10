@@ -11,9 +11,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // @ts-expect-error ESM fuckup
 import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import {
+	type AnyRouteMatch,
+	Outlet,
+	createRootRoute,
+} from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
 import { de as deLocale } from 'date-fns/locale/de';
+import { z } from 'zod';
 
 const RouterDevtoolsConditional =
 	process.env.NODE_ENV === 'production'
@@ -33,18 +38,11 @@ const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.default
 		clearButtonLabel: 'Jetzt',
 	};
 
-const scripts = [
+const scripts: AnyRouteMatch['scripts'] = [
 	{
 		children: `
 				window.DISRUPTION=${JSON.stringify(globalThis.DISRUPTION)};
 			`,
-	},
-	{
-		async: true,
-		defer: true,
-		'data-api': `https://${import.meta.env.VITE_BASE_URL}/api/event`,
-		'data-domain': import.meta.env.VITE_BASE_URL,
-		src: `https://${import.meta.env.VITE_BASE_URL}/js/script.js`,
 	},
 	{
 		type: 'module',
@@ -69,9 +67,21 @@ RefreshRuntime.injectIntoGlobalHook(window)
 window.$RefreshReg$ = () => {}
 window.$RefreshSig$ = () => (type) => type`,
 	});
+} else {
+	scripts.push({
+		async: true,
+		defer: true,
+		// @ts-expect-error custom
+		'data-api': `https://${import.meta.env.VITE_BASE_URL}/api/event`,
+		'data-domain': import.meta.env.VITE_BASE_URL,
+		src: `https://${import.meta.env.VITE_BASE_URL}/js/script.js`,
+	});
 }
 
 export const Route = createRootRoute({
+	validateSearch: z.object({
+		noHeader: z.boolean().optional(),
+	}),
 	head: (ctx) => {
 		// TODO: verify if this works for non catchall
 		// @ts-expect-error doesnt like _splat usage

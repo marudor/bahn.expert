@@ -3,9 +3,9 @@ import type {
 	CommonConfigSanitize,
 } from '@/client/Common/config';
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import { useQuery } from '@/client/Common/hooks/useQuery';
 import { commonConfigSanitize } from '@/client/util';
 import constate from '@/constate';
+import { useSearch } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
@@ -57,7 +57,7 @@ export const [
 
 export const CommonConfigProvider: FC<Props> = ({ children }) => {
 	const [commmonConfig] = useExpertCookies(commonConfigKeys);
-	const query = useQuery();
+	const query = useSearch({ strict: false });
 
 	const commonConfigOverride: Record<string, any> = {};
 	for (const key of Object.keys(query)) {

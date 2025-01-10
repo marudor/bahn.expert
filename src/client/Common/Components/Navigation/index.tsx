@@ -18,9 +18,9 @@ import {
 	NoSsr,
 	styled,
 } from '@mui/material';
+import { Link } from '@tanstack/react-router';
 import { useCallback, useMemo, useState } from 'react';
 import type { FC, ReactNode } from 'react';
-import { Link } from 'react-router';
 import { NavigationContext } from './NavigationContext';
 import { ThemeSelection } from './ThemeSelection';
 

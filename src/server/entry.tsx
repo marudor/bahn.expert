@@ -9,6 +9,7 @@ import { StartServer, createStartHandler } from '@tanstack/start/server';
 import type { ReactElement } from 'react';
 import { renderToPipeableStream, renderToString } from 'react-dom/server';
 import { HeadProvider } from 'react-head';
+import { eventHandler } from 'vinxi/http';
 
 export function transformStreamWithRouter(router: AnyRouter) {
 	const callbacks = transformHtmlCallbacks(() =>
@@ -173,7 +174,7 @@ class StringStream extends Writable {
 	}
 }
 
-export default createStartHandler({
+const SSRHandler = createStartHandler({
 	createRouter,
 	getRouterManifest: getFullRouterManifest,
 })(async ({ router, responseHeaders }) => {
@@ -220,4 +221,15 @@ export default createStartHandler({
 			headers: responseHeaders,
 		},
 	);
+});
+
+export default eventHandler((event) => {
+	if (event.path.endsWith('.map')) {
+		return event.respondWith(
+			new Response(null, {
+				status: 404,
+			}),
+		);
+	}
+	return SSRHandler(event);
 });

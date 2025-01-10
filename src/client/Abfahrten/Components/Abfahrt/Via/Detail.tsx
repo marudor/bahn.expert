@@ -1,4 +1,3 @@
-import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import type { Stop } from '@/types/iris';
 import { useMemo } from 'react';
@@ -11,8 +10,6 @@ interface Props {
 	stops: Stop[];
 }
 export const DetailVia: FC<Props> = ({ stops }) => {
-	const urlPrefix = useAbfahrtenUrlPrefix();
-
 	const stopsToRender = useMemo(() => {
 		const result: ReactNode[] = [];
 
@@ -20,7 +17,6 @@ export const DetailVia: FC<Props> = ({ stops }) => {
 			result.push(
 				<StyledStopPlaceLink
 					stop={s}
-					urlPrefix={urlPrefix}
 					data-testid={`via-${s.name}`}
 					key={i}
 					stopPlace={{
@@ -34,7 +30,7 @@ export const DetailVia: FC<Props> = ({ stops }) => {
 		}
 
 		return result;
-	}, [stops, urlPrefix]);
+	}, [stops]);
 
 	return <>{stopsToRender}</>;
 };

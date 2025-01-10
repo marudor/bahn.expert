@@ -1,10 +1,14 @@
-import { AbfahrtenRoutes } from '@/client/Abfahrten/AbfahrtenRoutes';
+import { Header } from '@/client/Abfahrten/Components/Header';
 import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { trpc } from '@/client/RPC';
-import { type FC, useMemo } from 'react';
-import { Header } from './Components/Header';
+import { Outlet, createFileRoute } from '@tanstack/react-router';
+import { useMemo } from 'react';
 
-export const Abfahrten: FC = () => {
+export const Route = createFileRoute('/_abfahrten')({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	const trpcUtils = trpc.useUtils();
 	const stopPlaceApiFunction = useMemo(
 		() => (searchTerm: string) =>
@@ -18,13 +22,11 @@ export const Abfahrten: FC = () => {
 
 	return (
 		<AbfahrtenProvider
-			urlPrefix="/"
 			abfahrtenFetch={trpcUtils.iris.abfahrten}
 			stopPlaceApiFunction={stopPlaceApiFunction}
 		>
 			<Header />
-			<AbfahrtenRoutes />
+			<Outlet />
 		</AbfahrtenProvider>
 	);
-};
-export default Abfahrten;
+}

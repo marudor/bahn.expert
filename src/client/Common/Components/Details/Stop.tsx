@@ -150,7 +150,7 @@ export const Stop: FC<Props> = ({
 	continuationBy,
 	continuationFor,
 }) => {
-	const { urlPrefix, additionalInformation } = useDetails();
+	const { additionalInformation } = useDetails();
 	const occupancy = useMemo(
 		() =>
 			additionalInformation?.occupancy[stop.station.evaNumber] ||
@@ -213,7 +213,7 @@ export const Stop: FC<Props> = ({
 				/>
 			)}
 			<StopName stop={stop}>
-				<StopPlaceLink stopPlace={stop.station} urlPrefix={urlPrefix} />
+				<StopPlaceLink stopPlace={stop.station} />
 			</StopName>
 			{!doNotRenderOccupancy && occupancy && (
 				<StyledOccupancy

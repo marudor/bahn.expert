@@ -10,7 +10,6 @@ const buildNoExternal = [
 	'maplibre-gl',
 	'@mui/system',
 	'@mui/material',
-	'react-router',
 	'libxmljs2',
 ];
 
