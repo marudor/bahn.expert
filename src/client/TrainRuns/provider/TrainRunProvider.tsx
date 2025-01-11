@@ -1,5 +1,5 @@
-import { trpc } from '@/client/RPC';
 import constate from '@/constate';
+import { trpc } from '@/router';
 import type {
 	AvailableBR,
 	AvailableIdentifierOnly,

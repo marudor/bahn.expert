@@ -1,5 +1,5 @@
 import { VehicleMapDialog } from '@/client/Common/Components/VehicleMap/VehicleMapDialog';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { CoachSequenceCoach } from '@/types/coachSequence';
 import { css } from '@mui/material';
 import type { FC } from 'react';

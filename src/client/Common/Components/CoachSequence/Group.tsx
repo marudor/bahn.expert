@@ -1,7 +1,7 @@
 import { BRInfo } from '@/client/Common/Components/CoachSequence/BRInfo';
 import { PrideStripe } from '@/client/Common/Components/CoachSequence/Stripes/PrideStripe';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { CoachSequenceGroup } from '@/types/coachSequence';
 import { Stack } from '@mui/material';
 import { useMemo } from 'react';

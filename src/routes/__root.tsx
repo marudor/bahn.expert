@@ -4,12 +4,14 @@ import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { GlobalCSS } from '@/client/GlobalCSS';
-import { RPCProvider } from '@/client/RPC';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
+import type { TRPCQueryUtilsType } from '@/router';
+import { NoSsr } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 // @ts-expect-error ESM fuckup
 import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
 	type AnyRouteMatch,
 	Outlet,
@@ -69,6 +71,7 @@ let plausibleScript: (typeof scripts)[number] | undefined;
 export const Route = createRootRouteWithContext<{
 	fullUrl: string;
 	baseUrl: string;
+	trpcUtils: TRPCQueryUtilsType;
 }>()({
 	validateSearch: z.object({
 		noHeader: z.boolean().optional(),
@@ -168,29 +171,34 @@ function RootComponent() {
 			<body>
 				<ScrollRestoration />
 				{chaosSocialAnchor}
-				<RPCProvider>
-					<LocalizationProvider
-						dateAdapter={AdapterDateFns}
-						adapterLocale={deLocale}
-						localeText={customDeLocaleText}
-					>
-						<GlobalCSS />
-						<HeaderTagProvider>
-							<ThemeHeaderTags />
-							<HeaderTags />
-							<CommonConfigProvider>
-								<Navigation>
-									<RoutingProvider>
-										<Outlet />
-									</RoutingProvider>
-								</Navigation>
-							</CommonConfigProvider>
-						</HeaderTagProvider>
-					</LocalizationProvider>
-				</RPCProvider>
-				{!globalThis.Cypress && <RouterDevtools />}
+				<LocalizationProvider
+					dateAdapter={AdapterDateFns}
+					adapterLocale={deLocale}
+					localeText={customDeLocaleText}
+				>
+					<GlobalCSS />
+					<HeaderTagProvider>
+						<ThemeHeaderTags />
+						<HeaderTags />
+						<CommonConfigProvider>
+							<Navigation>
+								<RoutingProvider>
+									<Outlet />
+								</RoutingProvider>
+							</Navigation>
+						</CommonConfigProvider>
+					</HeaderTagProvider>
+				</LocalizationProvider>
+				{!globalThis.Cypress && (
+					<NoSsr>
+						<RouterDevtools />
+						<ReactQueryDevtools />
+					</NoSsr>
+				)}
 				<Scripts />
 			</body>
 		</html>
 	);
 }
+
+export const RootRoute = Route;

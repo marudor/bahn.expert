@@ -21,6 +21,9 @@ const vinxiConfig = defineConfig({
 	},
 	vite: {
 		plugins: [tsConfigPaths()],
+		esbuild: {
+			legalComments: 'none',
+		},
 		ssr: {
 			target: 'node',
 			noExternal:

@@ -10,7 +10,7 @@ import { HeadProvider } from 'react-head';
 import Cookies from 'universal-cookie';
 import '@percy/cypress';
 import { GlobalCSS } from '@/client/GlobalCSS';
-import { RPCProvider } from '@/client/RPC';
+import { RPCProvider } from '@/router';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 // @ts-expect-error ESM fuckup

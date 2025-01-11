@@ -1,6 +1,6 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import { trpc } from '@/client/RPC';
 import constate from '@/constate';
+import { trpc } from '@/router';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { RouteAuslastung, RouteStop } from '@/types/routing';

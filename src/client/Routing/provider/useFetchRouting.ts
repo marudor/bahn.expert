@@ -1,4 +1,3 @@
-import { trpc } from '@/client/RPC';
 import {
 	useRoutingConfig,
 	useRoutingConfigActions,
@@ -7,6 +6,7 @@ import {
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
 import { useRoutingNavigate } from '@/client/Routing/util';
 import { uniqBy } from '@/client/util';
+import { trpc } from '@/router';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { RoutingResult } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';

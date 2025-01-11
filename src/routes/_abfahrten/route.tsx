@@ -1,6 +1,6 @@
 import { Header } from '@/client/Abfahrten/Components/Header';
 import { AbfahrtenProvider } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 import { useMemo } from 'react';
 

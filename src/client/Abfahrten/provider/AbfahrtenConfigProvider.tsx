@@ -1,6 +1,6 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import type { trpc } from '@/client/RPC';
 import constate from '@/constate';
+import type { trpc } from '@/router';
 import { useSearch } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';

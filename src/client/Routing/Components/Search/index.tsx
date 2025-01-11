@@ -1,10 +1,10 @@
 import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
-import { trpc } from '@/client/RPC';
 import {
 	useRoutingConfig,
 	useRoutingConfigActions,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
+import { trpc } from '@/router';
 import Delete from '@mui/icons-material/Delete';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';

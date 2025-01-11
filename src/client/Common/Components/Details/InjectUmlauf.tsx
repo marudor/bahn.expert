@@ -1,7 +1,7 @@
 import { TransportName } from '@/client/Common/Components/Details/TransportName';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import { trpc } from '@/client/RPC';
 import type { MatchVehicleID } from '@/external/generated/risTransports';
+import { trpc } from '@/router';
 import { Stack } from '@mui/material';
 import { useMemo } from 'react';
 

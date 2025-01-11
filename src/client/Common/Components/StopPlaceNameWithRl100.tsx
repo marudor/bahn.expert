@@ -1,5 +1,5 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { Link } from '@tanstack/react-router';
 import type { FC, ReactNode } from 'react';

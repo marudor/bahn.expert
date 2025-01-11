@@ -5,7 +5,7 @@ import {
 } from '@/client/Abfahrten/hooks/useFavs';
 import { useAbfahrtenFilterOpen } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import FilterList from '@mui/icons-material/FilterList';
