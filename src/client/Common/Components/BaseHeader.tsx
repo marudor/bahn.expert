@@ -3,7 +3,6 @@ import Menu from '@mui/icons-material/Menu';
 import { AppBar, IconButton, Toolbar, styled } from '@mui/material';
 import { useContext } from 'react';
 import type { FC, PropsWithChildren } from 'react';
-import { HeaderTags } from './HeaderTags';
 
 const NotchFix = styled('div')(({ theme }) => ({
 	top: '-5em',
@@ -35,7 +34,6 @@ export const BaseHeader: FC<PropsWithChildren<Props>> = ({
 		<>
 			<NotchFix />
 			<AppBar enableColorOnDark position="fixed" data-testid="header">
-				<HeaderTags />
 				<Toolbar disableGutters>
 					<IconButton
 						size="small"

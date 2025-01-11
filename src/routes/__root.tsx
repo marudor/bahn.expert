@@ -1,3 +1,4 @@
+import { HeaderTags } from '@/client/Common/Components/HeaderTags';
 import { Navigation } from '@/client/Common/Components/Navigation';
 import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
@@ -5,15 +6,14 @@ import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { GlobalCSS } from '@/client/GlobalCSS';
 import { RPCProvider } from '@/client/RPC';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
-import { theme } from '@/client/Themes';
-import { ThemeProvider } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // @ts-expect-error ESM fuckup
 import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
 import {
 	type AnyRouteMatch,
 	Outlet,
+	ScrollRestoration,
 	createRootRouteWithContext,
 } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
@@ -87,17 +87,12 @@ export const Route = createRootRouteWithContext<{
 				scripts.push(plausibleScript);
 			}
 		}
-		const fullUrl = ctx.match.context.fullUrl;
 		const image = `https://${ctx.match.context.baseUrl}/android-chrome-384x384.png`;
 		return {
 			meta: [
 				{
 					name: 'og:type',
 					content: 'website',
-				},
-				{
-					name: 'og:url',
-					content: fullUrl,
 				},
 				{
 					name: 'og:locale',
@@ -107,7 +102,6 @@ export const Route = createRootRouteWithContext<{
 					name: 'og:image',
 					content: image,
 				},
-
 				{
 					charSet: 'UTF-8',
 				},
@@ -129,11 +123,6 @@ export const Route = createRootRouteWithContext<{
 				},
 			],
 			links: [
-				{
-					'data-testid': 'canonicalLink',
-					rel: 'canonical',
-					href: fullUrl,
-				},
 				{
 					rel: 'stylesheet',
 					href: '/roboto.css',
@@ -177,27 +166,27 @@ function RootComponent() {
 				<Meta />
 			</head>
 			<body>
+				<ScrollRestoration />
 				{chaosSocialAnchor}
 				<RPCProvider>
-					<ThemeProvider theme={theme}>
-						<LocalizationProvider
-							dateAdapter={AdapterDateFns}
-							adapterLocale={deLocale}
-							localeText={customDeLocaleText}
-						>
-							<GlobalCSS />
+					<LocalizationProvider
+						dateAdapter={AdapterDateFns}
+						adapterLocale={deLocale}
+						localeText={customDeLocaleText}
+					>
+						<GlobalCSS />
+						<HeaderTagProvider>
 							<ThemeHeaderTags />
-							<HeaderTagProvider>
-								<CommonConfigProvider>
-									<Navigation>
-										<RoutingProvider>
-											<Outlet />
-										</RoutingProvider>
-									</Navigation>
-								</CommonConfigProvider>
-							</HeaderTagProvider>
-						</LocalizationProvider>
-					</ThemeProvider>
+							<HeaderTags />
+							<CommonConfigProvider>
+								<Navigation>
+									<RoutingProvider>
+										<Outlet />
+									</RoutingProvider>
+								</Navigation>
+							</CommonConfigProvider>
+						</HeaderTagProvider>
+					</LocalizationProvider>
 				</RPCProvider>
 				{!globalThis.Cypress && <RouterDevtools />}
 				<Scripts />

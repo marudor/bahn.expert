@@ -19,7 +19,7 @@ export const StopPlaceLink: FC<Props> = ({ className, stopPlace, ...rest }) => {
 			onClick={stopPropagation}
 			to="/$stopPlace"
 			params={{
-				stopPlace: encodeURIComponent(stopPlace.name),
+				stopPlace: stopPlace.name,
 			}}
 			title={`Zugabfahrten für ${stopPlace.name}`}
 			{...rest}

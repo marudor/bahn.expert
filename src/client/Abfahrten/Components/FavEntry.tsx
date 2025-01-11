@@ -92,7 +92,7 @@ export const FavEntry: FC<Props> = ({
 			data-testid={testid}
 			to="/$stopPlace"
 			params={{
-				stopPlace: encodeURIComponent(fav.name),
+				stopPlace: fav.name,
 			}}
 			title={`Zugabfahrten für ${fav.name}`}
 		>

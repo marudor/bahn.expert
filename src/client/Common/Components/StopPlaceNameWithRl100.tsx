@@ -35,7 +35,7 @@ export const StopPlaceNameWithRl100: FC<{
 				className={className}
 				to="/$stopPlace"
 				params={{
-					stopPlace: encodeURIComponent(stopPlace.name),
+					stopPlace: stopPlace.name,
 				}}
 			>
 				{name}

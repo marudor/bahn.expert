@@ -38,7 +38,6 @@ describe('Routing', () => {
 			cy.findByTestId('routingFavButton').click();
 			cy.findByTestId('RouteFavEntry-80001058002549').should('exist');
 			cy.visit('/routing');
-			cy.wait(50);
 			cy.findByTestId('RouteFavEntry-80001058002549').should('exist');
 		});
 
