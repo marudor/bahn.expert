@@ -7,7 +7,13 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const viteConfig = defineViteConfig({
 	dev: {
 		sourcemap: false,
-		warmup: ['**/*.ts'],
+	},
+	server: {
+		hmr: false,
+		watch: null,
+		warmup: {
+			clientFiles: ['src/client/**/*.ts', 'src/client/**/*.tsx', 'cypress/**'],
+		},
 	},
 	plugins: [
 		tsconfigPaths(),
@@ -31,8 +37,6 @@ export default defineConfig({
 
 	e2e: {
 		excludeSpecPattern: process.env.CI ? ['cypress/e2e/all.test.ts'] : [],
-		// We've imported your old cypress plugins here.
-		// You may want to clean this up later by importing these.
 		setupNodeEvents(on, _config) {
 			on('file:preprocessor', vitePreprocessor(viteConfig));
 		},
@@ -41,7 +45,7 @@ export default defineConfig({
 	},
 
 	component: {
-		experimentalJustInTimeCompile: true,
+		// experimentalJustInTimeCompile: true,
 		supportFile: './cypress/support/component.tsx',
 		devServer: {
 			framework: 'react',
