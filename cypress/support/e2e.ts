@@ -11,6 +11,16 @@ Cypress.on('uncaught:exception', (err) => {
 	}
 });
 
+// VERY UGLY - find out why cy.visit doesn't wait for hydration
+Cypress.on('command:end', (e) => {
+	if (e.attributes.name === 'visit') {
+		cy.wait(50);
+		// @ts-expect-error ugly
+		cy.window().then((w) => w.__TSR__ROUTER__.load());
+		cy.wait(50);
+	}
+});
+
 beforeEach(() => {
 	cy.force404();
 	cy.setCookie('timesPoliticSeen2', '200');

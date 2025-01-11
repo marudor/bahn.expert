@@ -16,7 +16,11 @@ export function createRouter(request?: Request) {
 	);
 
 	return createReactRouter({
-		defaultPreload: 'render',
+		defaultPreload: 'intent',
+		context: {
+			fullUrl: request?.url || window.location.href,
+			baseUrl: request?.url ? new URL(request.url).host : window.location.host,
+		},
 		routeTree,
 		// @ts-expect-error
 		Wrap,

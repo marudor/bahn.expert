@@ -14,7 +14,7 @@ import { deDE } from '@mui/x-date-pickers/node/locales/deDE';
 import {
 	type AnyRouteMatch,
 	Outlet,
-	createRootRoute,
+	createRootRouteWithContext,
 } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
 import { de as deLocale } from 'date-fns/locale/de';
@@ -41,19 +41,14 @@ const customDeLocaleText: typeof deDE.components.MuiLocalizationProvider.default
 const scripts: AnyRouteMatch['scripts'] = [
 	{
 		children: `
-				window.DISRUPTION=${JSON.stringify(globalThis.DISRUPTION)};
-			`,
-	},
-	{
-		type: 'module',
-		children: `
-			let themeMode = localStorage.getItem('mui-mode');
+			window.DISRUPTION=${JSON.stringify(globalThis.DISRUPTION)};
+			var themeMode = localStorage.getItem('mui-mode');
 			if (!themeMode || themeMode === 'system') {
 				themeMode = 'dark';
 				localStorage.setItem('mui-mode', 'dark');
 			}
-			if (themeMode && document.body.parentElement) {
-				document.body.parentElement.setAttribute('class', themeMode);
+			if (themeMode && document.documentElement) {
+				document.documentElement.setAttribute('class', themeMode);
 			}
 			`,
 	},
@@ -67,31 +62,38 @@ RefreshRuntime.injectIntoGlobalHook(window)
 window.$RefreshReg$ = () => {}
 window.$RefreshSig$ = () => (type) => type`,
 	});
-} else {
-	scripts.push({
-		async: true,
-		defer: true,
-		// @ts-expect-error custom
-		'data-api': `https://${import.meta.env.VITE_BASE_URL}/api/event`,
-		'data-domain': import.meta.env.VITE_BASE_URL,
-		src: `https://${import.meta.env.VITE_BASE_URL}/js/script.js`,
-	});
 }
 
-export const Route = createRootRoute({
+let plausibleScript: (typeof scripts)[number] | undefined;
+
+export const Route = createRootRouteWithContext<{
+	fullUrl: string;
+	baseUrl: string;
+}>()({
 	validateSearch: z.object({
 		noHeader: z.boolean().optional(),
 	}),
 	head: (ctx) => {
-		// TODO: verify if this works for non catchall
-		// @ts-expect-error doesnt like _splat usage
-		const fullUrl = `https://${import.meta.env.VITE_BASE_URL}${ctx.match.fullPath}${ctx.params._splat}`;
-		const image = `https://${import.meta.env.VITE_BASE_URL}/android-chrome-384x384.png`;
+		if (!import.meta.env.DEV) {
+			if (!plausibleScript) {
+				plausibleScript = {
+					async: true,
+					defer: true,
+					// @ts-expect-error custom
+					'data-api': `https://${ctx.match.context.baseUrl}/api/event`,
+					'data-domain': ctx.match.context.baseUrl,
+					src: `https://${ctx.match.context.baseUrl}/js/script.js`,
+				};
+				scripts.push(plausibleScript);
+			}
+		}
+		const fullUrl = ctx.match.context.fullUrl;
+		const image = `https://${ctx.match.context.baseUrl}/android-chrome-384x384.png`;
 		return {
 			meta: [
 				{
 					name: 'og:type',
-					content: 'webiste',
+					content: 'website',
 				},
 				{
 					name: 'og:url',
@@ -111,8 +113,7 @@ export const Route = createRootRoute({
 				},
 				{
 					name: 'viewport',
-					content:
-						'initial-scale=1, minimum-scale=1, width=device-width, viewport-fit=contain',
+					content: 'initial-scale=1, width=device-width',
 				},
 				{
 					name: 'robots',
@@ -171,7 +172,7 @@ const chaosSocialAnchor = (
 
 function RootComponent() {
 	return (
-		<html suppressHydrationWarning lang="de">
+		<html className="dark" suppressHydrationWarning lang="de">
 			<head>
 				<Meta />
 			</head>

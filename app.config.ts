@@ -56,7 +56,6 @@ const vinxiConfig = defineConfig({
 		},
 	},
 	server: {
-		sourceMap: 'inline',
 		plugins: ['./src/server/admin/nitroPlugin.ts'],
 		commonJS: {
 			include: ['dom-helpers', 'maplibre-gl'],
