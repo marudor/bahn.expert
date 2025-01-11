@@ -5,6 +5,10 @@ import { defineConfig as defineViteConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const viteConfig = defineViteConfig({
+	dev: {
+		sourcemap: false,
+		warmup: ['**/*.ts'],
+	},
 	plugins: [
 		tsconfigPaths(),
 		react({
@@ -15,10 +19,10 @@ const viteConfig = defineViteConfig({
 
 export default defineConfig({
 	projectId: 'ucnqdt',
-	numTestsKeptInMemory: 0,
 	video: false,
 	requestTimeout: 10000,
 	defaultCommandTimeout: 10000,
+	experimentalMemoryManagement: true,
 
 	retries: {
 		runMode: 2,

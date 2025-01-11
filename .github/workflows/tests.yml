@@ -116,7 +116,7 @@ jobs:
   #         PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
   #         CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         BASE_URL: localhost:9042
+  #         VITE_BASE_URL: localhost:9042
   #         NODE_ENV: production
   #         TEST_RUN: 1
   # finalizePercy:
