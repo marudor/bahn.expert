@@ -37,18 +37,18 @@ export function useRoutingNavigate() {
 				destination: destination.evaNumber,
 			};
 			const serializedVia = via.map((v) => `${v.evaNumber}|`).join('');
-			const serializedDate = date?.toISOString() || 0;
+			const serializedDate = date?.toISOString() || '0';
+			if (serializedVia) {
+				return navigate({
+					to: '/routing/$start/$destination/$date/$via',
+					params: {
+						...baseParams,
+						via: serializedVia,
+						date: serializedDate,
+					},
+				});
+			}
 			if (serializedDate) {
-				if (serializedVia) {
-					return navigate({
-						to: '/routing/$start/$destination/$date/$via',
-						params: {
-							...baseParams,
-							date: serializedDate,
-							via: serializedVia,
-						},
-					});
-				}
 				return navigate({
 					to: '/routing/$start/$destination/$date',
 					params: {

@@ -1,6 +1,5 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import constate from '@/constate';
-import type { trpc } from '@/router';
 import { useSearch } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
@@ -40,7 +39,6 @@ const useFilter = (initialFilter: Filter) => {
 
 export interface AbfahrtenConfigProviderValue {
 	filter: Filter;
-	abfahrtenFetch: ReturnType<typeof trpc.useUtils>['iris']['abfahrten'];
 }
 
 const useAbfahrtenConfigInner = ({
@@ -52,30 +50,23 @@ const useAbfahrtenConfigInner = ({
 
 	return {
 		filterConfig,
-		abfahrtenFetch: initialState.abfahrtenFetch,
 	};
 };
 
 export const [
 	InnerAbfahrtenConfigProvider,
-	useAbfahrtenFetch,
 	useAbfahrtenFilterOpen,
 	useAbfahrtenFilter,
 ] = constate(
 	useAbfahrtenConfigInner,
-	(v) => v.abfahrtenFetch,
 	(v) => v.filterConfig.setFilterOpen,
 	(v) => v.filterConfig,
 );
 
 interface Props {
 	children: ReactNode;
-	abfahrtenFetch: AbfahrtenConfigProviderValue['abfahrtenFetch'];
 }
-export const AbfahrtenConfigProvider: FC<Props> = ({
-	children,
-	abfahrtenFetch,
-}) => {
+export const AbfahrtenConfigProvider: FC<Props> = ({ children }) => {
 	const [filterCookie] = useExpertCookies([filterCookieName]);
 	const queryFilter = useSearch({
 		strict: false,
@@ -87,7 +78,6 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
 		filter: {
 			products: Array.isArray(savedFilter) ? savedFilter : [],
 		},
-		abfahrtenFetch,
 	};
 
 	return (

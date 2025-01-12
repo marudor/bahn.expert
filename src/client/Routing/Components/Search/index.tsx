@@ -4,7 +4,6 @@ import {
 	useRoutingConfigActions,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
-import { trpc } from '@/router';
 import Delete from '@mui/icons-material/Delete';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
@@ -96,46 +95,16 @@ export const Search: FC = () => {
 		useRoutingConfig();
 	const { clearRoutes, fetchRoutesAndNavigate } = useFetchRouting();
 
-	const params: Record<
-		'start' | 'destination' | 'date' | 'via',
-		string | undefined
-	> = useParams({ strict: false });
-	// const params = useParams<'start' | 'destination' | 'date' | 'via'>();
-	const trpcUtils = trpc.useUtils();
+	const params: Record<'date', string | undefined> = useParams({
+		strict: false,
+	});
 
-	useEffect(() => {
-		if (params.start) {
-			void trpcUtils.stopPlace.byKey
-				.fetch(params.start)
-				.then((stopPlace) => setStart(stopPlace));
-		}
-	}, [params.start, setStart, trpcUtils.stopPlace.byKey]);
-	useEffect(() => {
-		if (params.destination) {
-			void trpcUtils.stopPlace.byKey
-				.fetch(params.destination)
-				.then((stopPlace) => setDestination(stopPlace));
-		}
-	}, [params.destination, setDestination, trpcUtils.stopPlace.byKey]);
 	useEffect(() => {
 		if (params.date && params.date !== '0') {
 			const dateNumber = +params.date;
 			setDate(new Date(Number.isNaN(dateNumber) ? params.date : dateNumber));
 		}
 	}, [params.date, setDate]);
-	useEffect(() => {
-		if (params.via) {
-			const viaStations = params.via.split('|').filter(Boolean);
-
-			void Promise.all(
-				viaStations.map((viaNumber) =>
-					trpcUtils.stopPlace.byKey.fetch(viaNumber),
-				),
-			).then((resolvedVias) => {
-				setVia(resolvedVias.filter(Boolean));
-			});
-		}
-	}, [params.via, setVia, trpcUtils.stopPlace.byKey]);
 
 	const swapOriginDest = useCallback(() => {
 		setDestination(start);

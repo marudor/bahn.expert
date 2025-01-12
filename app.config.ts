@@ -72,6 +72,7 @@ const vinxiConfig = defineConfig({
 		routesDirectory: './src/routes',
 		generatedRouteTree: './src/routeTree.gen.ts',
 		autoCodeSplitting: false,
+		pathParamsAllowedCharacters: [':'],
 	},
 });
 

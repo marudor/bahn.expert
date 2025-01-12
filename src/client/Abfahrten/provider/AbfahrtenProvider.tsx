@@ -1,15 +1,14 @@
 import {
 	AbfahrtenConfigProvider,
-	useAbfahrtenFetch,
 	useAbfahrtenFilter,
 } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import constate from '@/constate';
+import { trpc } from '@/router';
 import type { Abfahrt, AbfahrtenResult } from '@/types/iris';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import type { PropsFor } from '@mui/system';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { FC, PropsWithChildren, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 export type AbfahrtenError =
 	| AbfahrtenError$Redirect
@@ -36,15 +35,10 @@ function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
 	return aTime > bTime ? 1 : -1;
 }
 
-const useAbfahrtenInner = ({
-	searchFunction,
-}: PropsWithChildren<{
-	searchFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
-}>) => {
+const useAbfahrtenInner = () => {
 	const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
 	const [departures, setDepartures] = useState<AbfahrtenResult>();
 	const [error, setError] = useState<unknown>();
-	const abfahrtenFetch = useAbfahrtenFetch();
 	const {
 		startTime,
 		lookahead,
@@ -54,6 +48,16 @@ const useAbfahrtenInner = ({
 		sortByTime,
 	} = useCommonConfig();
 	const [scrolled, setScrolled] = useState(false);
+	const trpcUtils = trpc.useUtils();
+	const stopPlaceApiFunction = useMemo(
+		() => (searchTerm: string) =>
+			trpcUtils.stopPlace.byName.fetch({
+				searchTerm,
+				filterForIris: true,
+				max: 1,
+			}),
+		[trpcUtils.stopPlace.byName],
+	);
 
 	const updateCurrentStopPlaceByString = useCallback(
 		async (stopPlaceName: string) => {
@@ -69,7 +73,7 @@ const useAbfahrtenInner = ({
 				};
 			});
 			try {
-				const stopPlaces = await searchFunction(stopPlaceName);
+				const stopPlaces = await stopPlaceApiFunction(stopPlaceName);
 
 				if (stopPlaces.length) {
 					setCurrentStopPlace(stopPlaces[0]);
@@ -82,7 +86,7 @@ const useAbfahrtenInner = ({
 				setError(e);
 			}
 		},
-		[searchFunction],
+		[stopPlaceApiFunction],
 	);
 
 	useEffect(() => {
@@ -92,7 +96,7 @@ const useAbfahrtenInner = ({
 		}
 		setError(undefined);
 
-		abfahrtenFetch
+		trpcUtils.iris.abfahrten
 			.fetch({
 				evaNumber: currentStopPlace.evaNumber,
 				lookahead: Number.parseInt(lookahead),
@@ -106,7 +110,7 @@ const useAbfahrtenInner = ({
 				}
 			})
 			.catch((e) => setError(e));
-	}, [currentStopPlace, lookahead, lookbehind, startTime, abfahrtenFetch]);
+	}, [currentStopPlace, lookahead, lookbehind, startTime, trpcUtils]);
 
 	const { productFilter } = useAbfahrtenFilter();
 
@@ -227,7 +231,7 @@ export const useRefreshCurrent = (visible = false) => {
 	const { setDepartures, setScrolled } = useRawAbfahrten();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { lookahead, lookbehind } = useCommonConfig();
-	const abfahrtenFetch = useAbfahrtenFetch();
+	const trpcUtils = trpc.useUtils();
 
 	return useCallback(async () => {
 		if (currentStopPlace?.evaNumber) {
@@ -235,7 +239,7 @@ export const useRefreshCurrent = (visible = false) => {
 				setScrolled(false);
 				setDepartures(undefined);
 			}
-			const r = await abfahrtenFetch.fetch(
+			const r = await trpcUtils.iris.abfahrten.fetch(
 				{
 					evaNumber: currentStopPlace.evaNumber,
 					lookahead: Number.parseInt(lookahead),
@@ -257,7 +261,7 @@ export const useRefreshCurrent = (visible = false) => {
 		}
 	}, [
 		currentStopPlace,
-		abfahrtenFetch,
+		trpcUtils,
 		lookahead,
 		lookbehind,
 		setDepartures,
@@ -268,17 +272,9 @@ export const useRefreshCurrent = (visible = false) => {
 
 interface Props {
 	children: ReactNode;
-	abfahrtenFetch: PropsFor<typeof AbfahrtenConfigProvider>['abfahrtenFetch'];
-	stopPlaceApiFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
 }
-export const AbfahrtenProvider: FC<Props> = ({
-	children,
-	abfahrtenFetch,
-	stopPlaceApiFunction,
-}) => (
-	<AbfahrtenConfigProvider abfahrtenFetch={abfahrtenFetch}>
-		<InnerAbfahrtenProvider searchFunction={stopPlaceApiFunction}>
-			{children}
-		</InnerAbfahrtenProvider>
+export const AbfahrtenProvider: FC<Props> = ({ children }) => (
+	<AbfahrtenConfigProvider>
+		<InnerAbfahrtenProvider>{children}</InnerAbfahrtenProvider>
 	</AbfahrtenConfigProvider>
 );

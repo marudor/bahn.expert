@@ -38,4 +38,7 @@ export const bahnRpcRouter = rpcAppRouter({
 				});
 			}
 		}),
+	testing: rpcProcedure.query(async () => {
+		return 'test';
+	}),
 });

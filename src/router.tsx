@@ -6,7 +6,13 @@ import { theme } from '@/client/Themes';
 import { parse, stringify } from '@/devalue';
 import type { AppRouter } from '@/server/rpc';
 import { ThemeProvider } from '@mui/material';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+	QueryClient,
+	type QueryClientConfig,
+	QueryClientProvider,
+	dehydrate,
+	hydrate,
+} from '@tanstack/react-query';
 import {
 	type TRPCLink,
 	createTRPCQueryUtils,
@@ -21,7 +27,7 @@ import { routeTree } from './routeTree.gen';
 export const trpc = createTRPCReact<AppRouter>();
 
 const httpLinkOptions = {
-	url: '/rpc',
+	url: import.meta.env.SSR ? 'http://localhost:9042/rpc' : '/rpc',
 	transformer: {
 		deserialize: parse,
 		serialize: stringify,
@@ -42,14 +48,23 @@ export const trpcClient = trpc.createClient({
 	links,
 });
 
-const queryClient = new QueryClient({
+const queryClientOptions: QueryClientConfig = {
 	defaultOptions: {
 		queries: {
+			staleTime: 3000,
 			retry: 0,
 			refetchOnWindowFocus: false,
 		},
 	},
-});
+};
+
+const queryClient = new QueryClient(queryClientOptions);
+
+if (!import.meta.env.SSR) {
+	// @ts-expect-error custom stuff
+	const queryClientData = parse(__TSR__.dehydrated).payload.queryClientState;
+	hydrate(queryClient, queryClientData);
+}
 
 const trpcUtils = createTRPCQueryUtils({
 	client: trpcClient,
@@ -92,6 +107,9 @@ export function createRouter(request?: Request) {
 			stringify: stringify,
 		},
 		defaultErrorComponent: DefaultCatchBoundary,
+		dehydrate: () => ({
+			queryClientState: dehydrate(queryClient),
+		}),
 	});
 }
 

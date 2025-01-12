@@ -1,6 +1,5 @@
 import {
 	useRoutingConfig,
-	useRoutingConfigActions,
 	useRoutingSettings,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
@@ -23,7 +22,6 @@ export const useFetchRouting = () => {
 	} = useRouting();
 	const { start, destination, date, via, touchedDate, departureMode } =
 		useRoutingConfig();
-	const { updateFormattedDate } = useRoutingConfigActions();
 	const settings = useRoutingSettings();
 	const navigate = useRoutingNavigate();
 	const trpcUtils = trpc.useUtils();
@@ -133,14 +131,12 @@ export const useFetchRouting = () => {
 			destination?: MinimalStopPlace,
 			via: MinimalStopPlace[] = [],
 		) => {
-			updateFormattedDate();
-
 			if (start && destination && start.evaNumber !== destination.evaNumber) {
 				void fetchRoutes(start, destination, via);
 				navigate(start, destination, via, touchedDate ? date : null);
 			}
 		},
-		[date, fetchRoutes, touchedDate, updateFormattedDate, navigate],
+		[date, fetchRoutes, touchedDate, navigate],
 	);
 
 	const fetchContext = useCallback(
