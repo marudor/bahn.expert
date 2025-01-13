@@ -134,6 +134,17 @@ export const journeysRpcRouter = rpcAppRouter({
 				return result.slice(0, limit);
 			},
 		),
+	detailsByJourneyId: rpcProcedure
+		.input(z.string())
+		.query(async ({ input: journeyId }) => {
+			const journey = await journeyDetails(journeyId);
+			if (!journey) {
+				throw new TRPCError({
+					code: 'NOT_FOUND',
+				});
+			}
+			return journey;
+		}),
 	details: rpcProcedure
 		.meta({
 			openapi: {
@@ -146,7 +157,6 @@ export const journeysRpcRouter = rpcAppRouter({
 				trainName: z.string(),
 				evaNumberAlongRoute: z.string().optional(),
 				initialDepartureDate: z.date().optional(),
-				journeyId: z.string().optional(),
 				jid: z.string().optional(),
 				administration: z.string().optional(),
 			}),
@@ -158,20 +168,10 @@ export const journeysRpcRouter = rpcAppRouter({
 					trainName,
 					evaNumberAlongRoute,
 					initialDepartureDate = new Date(),
-					journeyId,
 					jid,
 					administration,
 				},
 			}) => {
-				if (journeyId) {
-					const journey = await journeyDetails(journeyId);
-					if (!journey) {
-						throw new TRPCError({
-							code: 'NOT_FOUND',
-						});
-					}
-					return journey;
-				}
 				const hafasFallback = async () => {
 					const hafasResult = await Detail(
 						trainName,

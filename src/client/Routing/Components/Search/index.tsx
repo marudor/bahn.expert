@@ -83,14 +83,8 @@ const DateTimePickerInput = styled(TextField)`
 `;
 
 export const Search: FC = () => {
-	const {
-		setStart,
-		setDestination,
-		updateVia,
-		setDate,
-		setVia,
-		updateDepartureMode,
-	} = useRoutingConfigActions();
+	const { setStart, setDestination, updateVia, setDate, updateDepartureMode } =
+		useRoutingConfigActions();
 	const { start, destination, date, via, departureMode, formattedDate } =
 		useRoutingConfig();
 	const { clearRoutes, fetchRoutesAndNavigate } = useFetchRouting();

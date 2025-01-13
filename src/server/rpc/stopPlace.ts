@@ -14,16 +14,9 @@ const occupancyAxios = axios.create();
 axiosUpstreamInterceptor(occupancyAxios, 'vrrf-occupancy');
 
 export const stopPlaceRpcRouter = rpcAppRouter({
-	lageplan: rpcProcedure
-		.input(
-			z.object({
-				stopPlaceName: z.string(),
-				evaNumber: z.string(),
-			}),
-		)
-		.query(({ input: { stopPlaceName, evaNumber } }) => {
-			return getLageplan(stopPlaceName, evaNumber);
-		}),
+	lageplan: rpcProcedure.input(z.string()).query(({ input: evaNumber }) => {
+		return getLageplan(evaNumber);
+	}),
 	byKey: rpcProcedure
 		.input(
 			z.string({

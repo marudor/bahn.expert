@@ -45,14 +45,15 @@ const useInnerDetails = ({
 		refetch: refetchDetails,
 		isFetching,
 		error,
-	} = trpc.journeys.details.useQuery({
-		trainName,
-		initialDepartureDate,
-		evaNumberAlongRoute,
-		journeyId,
-		administration,
-		jid,
-	});
+	} = journeyId
+		? trpc.journeys.detailsByJourneyId.useQuery(journeyId)
+		: trpc.journeys.details.useQuery({
+				trainName,
+				initialDepartureDate,
+				evaNumberAlongRoute,
+				administration,
+				jid,
+			});
 
 	const [additionalInformation, setAdditionalInformation] =
 		useState<AdditionalJourneyInformation>();
@@ -117,15 +118,19 @@ const useInnerDetails = ({
 		};
 		fetchAdditional();
 		if (details.journeyId) {
-			const newSearchParams = new URLSearchParams({
-				journeyId: details.journeyId,
+			navigate({
+				to: '/details/$train',
+				params: {
+					train: trainName,
+				},
+				search: {
+					journeyId: details.journeyId,
+				},
+				replace: true,
+				from: '/details/$train',
 			});
-			const newUrl = [window.location.pathname, newSearchParams.toString()]
-				.filter(Boolean)
-				.join('?');
-			history.replaceState(null, '', newUrl);
 		}
-	}, [details, trainName, initialDepartureDate, trpcUtils]);
+	}, [details, trainName, initialDepartureDate, trpcUtils, navigate]);
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout;

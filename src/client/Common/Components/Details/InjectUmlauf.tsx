@@ -52,19 +52,20 @@ export const InjectUmlauf: FCC = ({ children }) => {
 			enabled: Boolean(firstDepartureStop),
 		},
 	);
+	const vehicleIds =
+		firstSequence?.sequence?.groups
+			.filter((g) => g.number === details?.train.number)
+			// .map((g) => g.coaches[2]?.uic)
+			.map((g) => g.coaches.find((c) => !c.closed)?.uic)
+			.filter(Boolean) || [];
 	const { data: prevNext } = trpc.coachSequence.umlauf.useQuery(
 		{
 			journeyId: details?.journeyId!,
 			initialDeparture: details?.departure.scheduledTime!,
-			vehicleIds:
-				firstSequence?.sequence?.groups
-					.filter((g) => g.number === details?.train.number)
-					// .map((g) => g.coaches[2]?.uic)
-					.map((g) => g.coaches.find((c) => !c.closed)?.uic)
-					.filter(Boolean) || [],
+			vehicleIds,
 		},
 		{
-			enabled: Boolean(firstSequence && details?.journeyId),
+			enabled: Boolean(details?.journeyId && vehicleIds.length),
 		},
 	);
 

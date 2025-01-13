@@ -60,9 +60,9 @@ const queryClientOptions: QueryClientConfig = {
 
 const queryClient = new QueryClient(queryClientOptions);
 
-if (!import.meta.env.SSR) {
-	// @ts-expect-error custom stuff
-	const queryClientData = parse(__TSR__.dehydrated).payload.queryClientState;
+if (!import.meta.env.SSR && window.__TSR__) {
+	const queryClientData = parse(window.__TSR__.dehydrated).payload
+		.queryClientState;
 	hydrate(queryClient, queryClientData);
 }
 

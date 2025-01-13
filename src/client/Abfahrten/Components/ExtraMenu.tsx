@@ -25,12 +25,9 @@ export const ExtraMenu: FC<Props> = ({ favKey }) => {
 	const setFilterOpen = useAbfahrtenFilterOpen();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { data: lageplan } = trpc.stopPlace.lageplan.useQuery(
+		currentStopPlace?.evaNumber!,
 		{
-			evaNumber: currentStopPlace?.evaNumber!,
-			stopPlaceName: currentStopPlace?.name!,
-		},
-		{
-			enabled: Boolean(currentStopPlace),
+			enabled: Boolean(currentStopPlace?.evaNumber),
 			staleTime: Number.POSITIVE_INFINITY,
 		},
 	);
