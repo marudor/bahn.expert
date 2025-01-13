@@ -265,9 +265,7 @@ export async function journeyDetails(
 			admin: firstEvent.administration.administrationID,
 			line: getLineFromNumber(firstEvent.transport.number.toString()),
 			transportType: firstEvent.transport.type,
-			operator: {
-				name: operatorNames,
-			},
+			operator: operatorNames,
 		},
 		type: 'JNY',
 		cancelled: stops.every((s) => s.cancelled) || undefined,

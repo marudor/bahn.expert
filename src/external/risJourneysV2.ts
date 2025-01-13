@@ -13,7 +13,7 @@ import type {
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { CacheDatabase, getCache } from '@/server/cache';
-import type { ParsedProduct } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
@@ -55,7 +55,7 @@ const trainTypes: string[] = [
 	'CITY_TRAIN',
 ];
 
-const mapTransportToTrain = (transport: Transport): ParsedProduct => ({
+const mapTransportToTrain = (transport: Transport): CommonProductInfo => ({
 	name: `${transport.category} ${
 		longDistanceTypes.includes(transport.type)
 			? transport.journeyNumber

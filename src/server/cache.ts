@@ -15,7 +15,6 @@ import type {
 } from '@/external/generated/risTransports';
 import type { ResolvedStopPlaceGroups } from '@/external/types';
 import { logger } from '@/server/logger';
-import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type {
@@ -92,7 +91,7 @@ export enum CacheDatabase {
 	NegativeNewSequence = 14,
 	TransportsOccupancy = 15,
 	HafasStopOccupancy = 16,
-	AdditionalJourneyInformation = 17,
+	// AdditionalJourneyInformation = 17,
 	HAFASJourneyMatch = 18,
 	Journey = 19,
 	JourneysForVehicle = 20,
@@ -106,9 +105,9 @@ export enum CacheDatabase {
 }
 
 interface CacheDatabaseTypes {
-	[CacheDatabase.AdditionalJourneyInformation]:
-		| AdditionalJourneyInformation
-		| undefined;
+	// [CacheDatabase.AdditionalJourneyInformation]:
+	// 	| AdditionalJourneyInformation
+	// 	| undefined;
 	[CacheDatabase.BahnDEJourneyDetails]: ParsedSearchOnTripResponse;
 	[CacheDatabase.CoachSequenceRemovedData]: Record<
 		string,
@@ -165,7 +164,7 @@ const CacheTTLs: Record<keyof CacheDatabaseTypes & CacheDatabase, string> = {
 	[CacheDatabase.HAFASJourneyMatch]: 'P2D',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
 	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
-	[CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
+	// [CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
 	[CacheDatabase.JourneyFind]: 'P2D',
 	[CacheDatabase.JourneyFindV2]: 'P2D',
 	[CacheDatabase.Journey]: parseCacheTTL(

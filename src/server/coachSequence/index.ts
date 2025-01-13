@@ -1,6 +1,5 @@
 import { DBCoachSequence } from '@/server/coachSequence/DB';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
-import type { EvaNumber } from '@/types/common';
 import {
 	addDays,
 	differenceInHours,
@@ -11,7 +10,7 @@ import {
 export async function coachSequence(
 	trainNumber: string,
 	departure: Date,
-	evaNumber: EvaNumber,
+	evaNumber: string,
 	trainCategory: string,
 	administration?: string,
 ): Promise<CoachSequenceInformation | undefined> {

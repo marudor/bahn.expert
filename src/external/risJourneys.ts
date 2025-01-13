@@ -10,7 +10,7 @@ import { sortJourneys } from '@/external/risJourneysV2';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { CacheDatabase, getCache } from '@/server/cache';
 import { logger } from '@/server/logger';
-import type { ParsedProduct } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
@@ -55,7 +55,9 @@ const trainTypes: TransportType[] = [
 	TransportType.CityTrain,
 ];
 
-const mapTransportToTrain = (transport: TransportPublic): ParsedProduct => ({
+const mapTransportToTrain = (
+	transport: TransportPublic,
+): CommonProductInfo => ({
 	name: `${transport.category} ${
 		longDistanceTypes.includes(transport.type)
 			? transport.number

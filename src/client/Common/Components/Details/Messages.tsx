@@ -1,8 +1,7 @@
-import type { RemL } from '@/types/HAFAS';
 import type { FC } from 'react';
 
 interface Props {
-	messages?: RemL[];
+	messages?: string[];
 }
 
 export const Messages: FC<Props> = ({ messages }) => {
@@ -11,7 +10,7 @@ export const Messages: FC<Props> = ({ messages }) => {
 	return (
 		<>
 			{messages.map((m) => (
-				<div key={m.code}>{m.txtN}</div>
+				<div key={m}>{m}</div>
 			))}
 		</>
 	);

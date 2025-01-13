@@ -1,7 +1,6 @@
 import { bahnDeOccupancy } from '@/bahnde/occupancy';
 import { vrrOccupancy } from '@/server/StopPlace/vrrOccupancy';
 import { getOccupancy } from '@/server/coachSequence/occupancy';
-import { additionalJourneyInformation } from '@/server/journeys/additionalJourneyInformation';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
 import type { RouteAuslastungWithSource } from '@/types/routing';
 import { TRPCError } from '@trpc/server';
@@ -62,40 +61,6 @@ export const hafasRpcRouter = rpcAppRouter({
 						source: 'VRR',
 						occupancy: foundVrrOccupancy,
 					} as RouteAuslastungWithSource;
-				}
-
-				throw new TRPCError({
-					code: 'NOT_FOUND',
-				});
-			},
-		),
-	additionalInformation: rpcProcedure
-		.input(
-			z.object({
-				trainName: z.string(),
-				journeyId: z.string(),
-				evaNumberAlongRoute: z.string().optional(),
-				initialDepartureDate: z.date().optional(),
-			}),
-		)
-		.query(
-			async ({
-				input: {
-					trainName,
-					journeyId,
-					evaNumberAlongRoute,
-					initialDepartureDate,
-				},
-			}) => {
-				const additionalInformation = await additionalJourneyInformation(
-					trainName,
-					journeyId,
-					evaNumberAlongRoute,
-					initialDepartureDate,
-				);
-
-				if (additionalInformation) {
-					return additionalInformation;
 				}
 
 				throw new TRPCError({

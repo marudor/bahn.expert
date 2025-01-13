@@ -1,9 +1,6 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import constate from '@/constate';
 import { trpc } from '@/router';
-import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
-import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
-import type { RouteAuslastung, RouteStop } from '@/types/routing';
 import { useNavigate } from '@tanstack/react-router';
 import { addDays } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -53,9 +50,6 @@ const useInnerDetails = ({
 		journeyId,
 		jid,
 	});
-
-	const [additionalInformation, setAdditionalInformation] =
-		useState<AdditionalJourneyInformation>();
 	const navigate = useNavigate();
 	const trpcUtils = trpc.useUtils();
 
@@ -74,7 +68,6 @@ const useInnerDetails = ({
 					administration: newAdministration,
 				},
 			});
-			setAdditionalInformation(undefined);
 		},
 		[initialDepartureDate, details, administration, navigate, trainName],
 	);
@@ -83,39 +76,6 @@ const useInnerDetails = ({
 		if (!details) {
 			return;
 		}
-		const fetchAdditional = async () => {
-			if (details.journeyId) {
-				try {
-					setAdditionalInformation(
-						await trpcUtils.hafas.additionalInformation.fetch(
-							{
-								trainName,
-								journeyId: details.journeyId,
-								initialDepartureDate,
-								evaNumberAlongRoute:
-									details.stops[details.stops.length - 1].station.evaNumber,
-							},
-							{
-								staleTime: Number.POSITIVE_INFINITY,
-							},
-						),
-					);
-				} catch {
-					// ignoring this
-				}
-			} else {
-				const occupancy: Record<string, RouteAuslastung> = {};
-				for (const s of details.stops) {
-					if (s.auslastung) {
-						occupancy[s.station.evaNumber] = s.auslastung;
-					}
-				}
-				setAdditionalInformation({
-					occupancy,
-				});
-			}
-		};
-		fetchAdditional();
 		if (details.journeyId) {
 			navigate({
 				to: '/details/$train',
@@ -129,7 +89,7 @@ const useInnerDetails = ({
 				from: '/details/$train',
 			});
 		}
-	}, [details, trainName, initialDepartureDate, trpcUtils, navigate]);
+	}, [details, trainName, navigate]);
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout;
@@ -156,39 +116,13 @@ const useInnerDetails = ({
 		setShowMarkers((old) => !old);
 	}, []);
 
-	const matchedPolyline:
-		| (Omit<ParsedPolyline, 'locations'> & {
-				locations: (HafasStation & {
-					details?: RouteStop;
-				})[];
-		  })
-		| undefined = useMemo(() => {
-		const polyline = additionalInformation?.polyline || details?.polyline;
-		if (!polyline) return undefined;
-		if (!details) return undefined;
-
-		for (const loc of polyline.locations) {
-			const detailsLoc = details.stops.find(
-				(s) => s.station.evaNumber === loc.evaNumber,
-			);
-			if (detailsLoc) {
-				// @ts-expect-error adding information
-				loc.details = detailsLoc;
-			}
-		}
-
-		return polyline;
-	}, [details, additionalInformation]);
-
 	return {
 		initialDepartureDate,
 		trainName,
 		details,
 		isFetching,
-		additionalInformation,
 		error,
 		refreshDetails: refetchDetails,
-		polyline: matchedPolyline,
 		isMapDisplay,
 		toggleMapDisplay,
 		showMarkers,

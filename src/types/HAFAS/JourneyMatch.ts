@@ -1,8 +1,8 @@
 import type { RouteStop } from '@/types/routing';
-import type { ParsedProduct } from '.';
+import type { CommonProductInfo } from '.';
 
 export interface ParsedJourneyMatchResponse {
-	train: ParsedProduct;
+	train: CommonProductInfo;
 	stops: RouteStop[];
 	jid: string;
 	firstStop: RouteStop;
