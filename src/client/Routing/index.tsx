@@ -1,18 +1,55 @@
-import { RoutingRoutes } from '@/client/Routing/RoutingRoutes';
-import { RoutingConfigProvider } from '@/client/Routing/provider/RoutingConfigProvider';
-import { RoutingFavProvider } from '@/client/Routing/provider/RoutingFavProvider';
-import { Stack } from '@mui/material';
+import { useHeaderTagsActions } from '@/client/Common/provider/HeaderTagProvider';
+import { useRoutingConfig } from '@/client/Routing/provider/RoutingConfigProvider';
+import { format } from 'date-fns';
+import { useEffect } from 'react';
 import type { FC } from 'react';
-import { Header } from './Components/Header';
+import { RouteList } from './Components/RouteList';
+import { Search } from './Components/Search';
 
-export const Routing: FC = () => (
-	<RoutingConfigProvider>
-		<RoutingFavProvider>
-			<Stack padding="0 .5em">
-				<Header />
-				<RoutingRoutes />
-			</Stack>
-		</RoutingFavProvider>
-	</RoutingConfigProvider>
-);
-export default Routing;
+const RouteHeaderTags = () => {
+	const { updateTitle, updateDescription, updateKeywords } =
+		useHeaderTagsActions();
+	const { start, destination, via, date } = useRoutingConfig();
+
+	useEffect(() => {
+		if (!start && !destination) {
+			updateTitle();
+			updateDescription();
+			updateKeywords();
+		} else {
+			updateTitle(
+				`${start?.name ?? '?'} -> ${destination?.name ?? '?'} @ ${format(
+					date || Date.now(),
+					'HH:mm dd.MM.yy',
+				)}`,
+			);
+			const viaString = `-> ${via.map((v) => `${v.name} -> `)}`;
+
+			updateDescription(
+				`${start?.name ?? '?'} ${viaString}${
+					destination?.name ?? '?'
+				} @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`,
+			);
+		}
+	}, [
+		start,
+		destination,
+		via,
+		date,
+		updateDescription,
+		updateTitle,
+		updateKeywords,
+	]);
+
+	return null;
+};
+
+export const Routing: FC = () => {
+	return (
+		<main>
+			<RouteHeaderTags />
+			<Search />
+			<RouteList />
+		</main>
+	);
+};

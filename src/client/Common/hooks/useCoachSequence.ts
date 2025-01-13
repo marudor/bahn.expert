@@ -1,4 +1,4 @@
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { TrainInfo } from '@/types/iris';
 
 export type FallbackTrainsForCoachSequence = Pick<

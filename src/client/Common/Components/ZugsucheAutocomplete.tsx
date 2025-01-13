@@ -1,5 +1,5 @@
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import { MenuItem, Paper, TextField, styled } from '@mui/material';
 import debounce from 'debounce-promise';

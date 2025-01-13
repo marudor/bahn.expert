@@ -1,17 +1,15 @@
-import { trpc } from '@/client/RPC';
 import {
 	useRoutingConfig,
-	useRoutingConfigActions,
 	useRoutingSettings,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useRouting } from '@/client/Routing/provider/RoutingProvider';
-import { getRouteLink } from '@/client/Routing/util';
+import { useRoutingNavigate } from '@/client/Routing/util';
 import { uniqBy } from '@/client/util';
+import { trpc } from '@/router';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { RoutingResult } from '@/types/routing';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router';
 
 export const useFetchRouting = () => {
 	const {
@@ -24,9 +22,8 @@ export const useFetchRouting = () => {
 	} = useRouting();
 	const { start, destination, date, via, touchedDate, departureMode } =
 		useRoutingConfig();
-	const { updateFormattedDate } = useRoutingConfigActions();
 	const settings = useRoutingSettings();
-	const navigate = useNavigate();
+	const navigate = useRoutingNavigate();
 	const trpcUtils = trpc.useUtils();
 
 	const getRouteSettings = useCallback(
@@ -134,16 +131,12 @@ export const useFetchRouting = () => {
 			destination?: MinimalStopPlace,
 			via: MinimalStopPlace[] = [],
 		) => {
-			updateFormattedDate();
-
 			if (start && destination && start.evaNumber !== destination.evaNumber) {
 				void fetchRoutes(start, destination, via);
-				navigate(
-					getRouteLink(start, destination, via, touchedDate ? date : null),
-				);
+				navigate(start, destination, via, touchedDate ? date : null);
 			}
 		},
-		[date, fetchRoutes, navigate, touchedDate, updateFormattedDate],
+		[date, fetchRoutes, touchedDate, navigate],
 	);
 
 	const fetchContext = useCallback(

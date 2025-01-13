@@ -1,9 +1,9 @@
-import { trpc } from '@/client/RPC';
+import constate from '@/constate';
+import { trpc } from '@/router';
 import type {
 	AvailableBR,
 	AvailableIdentifierOnly,
 } from '@/types/coachSequence';
-import constate from 'constate';
 import { useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 

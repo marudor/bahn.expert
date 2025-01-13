@@ -1,0 +1,23 @@
+diff --git a/dist/esm/server/createStartHandler.js b/dist/esm/server/createStartHandler.js
+index eb683b28518fcb30790c09d4f23e78b3bafdbde9..8e6998b6bceeda4341db44c5460c212ee6955799 100644
+--- a/dist/esm/server/createStartHandler.js
++++ b/dist/esm/server/createStartHandler.js
+@@ -1,7 +1,7 @@
+-import { eventHandler, toWebRequest, getResponseHeaders } from "vinxi/http";
+ import { createMemoryHistory } from "@tanstack/react-router";
+-import { serializeLoaderData } from "../client/serialization.js";
++import { eventHandler, getResponseHeaders, toWebRequest } from "vinxi/http";
+ import { mergeHeaders } from "../client/headers.js";
++import { serializeLoaderData } from "../client/serialization.js";
+ function createStartHandler({
+   createRouter,
+   getRouterManifest
+@@ -14,7 +14,7 @@ function createStartHandler({
+       const history = createMemoryHistory({
+         initialEntries: [href]
+       });
+-      const router = createRouter();
++      const router = createRouter(request);
+       router.serializeLoaderData = serializeLoaderData;
+       if (getRouterManifest) {
+         router.manifest = getRouterManifest();

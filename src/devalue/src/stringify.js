@@ -1,19 +1,21 @@
 import {
-	HOLE,
-	NAN,
-	NEGATIVE_INFINITY,
-	NEGATIVE_ZERO,
-	POSITIVE_INFINITY,
-	UNDEFINED,
-} from './constants.js';
-import {
 	DevalueError,
 	enumerable_symbols,
 	get_type,
 	is_plain_object,
 	is_primitive,
-	stringify_string,
+	stringify_key,
+	stringify_string
 } from './utils.js';
+import {
+	HOLE,
+	NAN,
+	NEGATIVE_INFINITY,
+	NEGATIVE_ZERO,
+	POSITIVE_INFINITY,
+	UNDEFINED
+} from './constants.js';
+import { encode64 } from './base64.js';
 
 /**
  * Turn a value into a JSON string that can be parsed with `devalue.parse`
@@ -29,8 +31,10 @@ export function stringify(value, reducers) {
 
 	/** @type {Array<{ key: string, fn: (value: any) => any }>} */
 	const custom = [];
-	for (const key in reducers) {
-		custom.push({ key, fn: reducers[key] });
+	if (reducers) {
+		for (const key of Object.getOwnPropertyNames(reducers)) {
+			custom.push({ key, fn: reducers[key] });
+		}
 	}
 
 	/** @type {string[]} */
@@ -41,15 +45,15 @@ export function stringify(value, reducers) {
 	/** @param {any} thing */
 	function flatten(thing) {
 		if (typeof thing === 'function') {
-			throw new DevalueError('Cannot stringify a function', keys);
+			throw new DevalueError(`Cannot stringify a function`, keys);
 		}
 
 		if (indexes.has(thing)) return indexes.get(thing);
 
 		if (thing === undefined) return UNDEFINED;
 		if (Number.isNaN(thing)) return NAN;
-		if (thing === Number.POSITIVE_INFINITY) return POSITIVE_INFINITY;
-		if (thing === Number.NEGATIVE_INFINITY) return NEGATIVE_INFINITY;
+		if (thing === Infinity) return POSITIVE_INFINITY;
+		if (thing === -Infinity) return NEGATIVE_INFINITY;
 		if (thing === 0 && 1 / thing < 0) return NEGATIVE_ZERO;
 
 		const index = p++;
@@ -82,14 +86,11 @@ export function stringify(value, reducers) {
 					break;
 
 				case 'Date':
-					// biome-ignore lint/suspicious/noGlobalIsNan: <explanation>
-					// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 					const valid = !isNaN(thing.getDate());
 					str = `["Date","${valid ? thing.toISOString() : ''}"]`;
 					break;
 
 				case 'RegExp':
-					// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 					const { source, flags } = thing;
 					str = flags
 						? `["RegExp",${stringify_string(source)},"${flags}"]`
@@ -130,7 +131,7 @@ export function stringify(value, reducers) {
 
 					for (const [key, value] of thing) {
 						keys.push(
-							`.get(${is_primitive(key) ? stringify_primitive(key) : '...'})`,
+							`.get(${is_primitive(key) ? stringify_primitive(key) : '...'})`
 						);
 						str += `,${flatten(key)},${flatten(value)}`;
 						keys.pop();
@@ -139,25 +140,52 @@ export function stringify(value, reducers) {
 					str += ']';
 					break;
 
+				case "Int8Array":
+				case "Uint8Array":
+				case "Uint8ClampedArray":
+				case "Int16Array":
+				case "Uint16Array":
+				case "Int32Array":
+				case "Uint32Array":
+				case "Float32Array":
+				case "Float64Array":
+				case "BigInt64Array":
+				case "BigUint64Array": {
+					/** @type {import("./types.js").TypedArray} */
+					const typedArray = thing;
+					const base64 = encode64(typedArray.buffer);
+					str = '["' + type + '","' + base64 + '"]';
+					break;
+				}
+					
+				case "ArrayBuffer": {
+					/** @type {ArrayBuffer} */
+					const arraybuffer = thing;
+					const base64 = encode64(arraybuffer);
+					
+					str = `["ArrayBuffer","${base64}"]`;
+					break;
+				}
+				
 				default:
 					if (!is_plain_object(thing)) {
 						throw new DevalueError(
-							'Cannot stringify arbitrary non-POJOs',
-							keys,
+							`Cannot stringify arbitrary non-POJOs`,
+							keys
 						);
 					}
 
 					if (enumerable_symbols(thing).length > 0) {
 						throw new DevalueError(
-							'Cannot stringify POJOs with symbolic keys',
-							keys,
+							`Cannot stringify POJOs with symbolic keys`,
+							keys
 						);
 					}
 
 					if (Object.getPrototypeOf(thing) === null) {
 						str = '["null"';
 						for (const key in thing) {
-							keys.push(`.${key}`);
+							keys.push(stringify_key(key));
 							str += `,${stringify_string(key)},${flatten(thing[key])}`;
 							keys.pop();
 						}
@@ -168,7 +196,7 @@ export function stringify(value, reducers) {
 						for (const key in thing) {
 							if (started) str += ',';
 							started = true;
-							keys.push(`.${key}`);
+							keys.push(stringify_key(key));
 							str += `${stringify_string(key)}:${flatten(thing[key])}`;
 							keys.pop();
 						}

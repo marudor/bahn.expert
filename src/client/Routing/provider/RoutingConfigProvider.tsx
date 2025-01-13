@@ -1,21 +1,9 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
+import constate from '@/constate';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import constate from 'constate';
-import {
-	addDays,
-	endOfDay,
-	isSameDay,
-	isSameYear,
-	isWithinInterval,
-	lightFormat,
-	startOfDay,
-	subDays,
-} from 'date-fns';
-import type { Day } from 'date-fns';
-import { de as deLocale } from 'date-fns/locale/de';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import type { PropsWithChildren, SyntheticEvent } from 'react';
 
 export interface RoutingSettings {
 	maxChanges: string;
@@ -38,51 +26,30 @@ const routingConfigKeys = [
 
 const useRoutingConfigInternal = ({
 	initialSettings,
+	initialStart,
+	initialDestination,
+	initialDate,
+	initialVia,
 }: PropsWithChildren<{
 	initialSettings: RoutingSettings;
+	initialStart?: MinimalStopPlace;
+	initialDestination?: MinimalStopPlace;
+	initialDate?: Date;
+	initialVia?: MinimalStopPlace[];
 }>) => {
-	const [start, setStart] = useState<MinimalStopPlace>();
-	const [destination, setDestination] = useState<MinimalStopPlace>();
-	const [via, setVia] = useState<MinimalStopPlace[]>([]);
-	const [date, setDate] = useState<Date>(new Date());
-	const [touchedDate, setTouchedDate] = useState(false);
+	const [start, setStart] = useState<MinimalStopPlace | undefined>(
+		initialStart,
+	);
+	const [destination, setDestination] = useState<MinimalStopPlace | undefined>(
+		initialDestination,
+	);
+	const [via, setVia] = useState<MinimalStopPlace[]>(initialVia || []);
+	const [date, setDate] = useState<Date>(initialDate || new Date());
+	const [touchedDate, setTouchedDate] = useState(Boolean(initialDate));
 	const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
 	const [departureMode, setDepartureMode] = useState<'an' | 'ab'>('ab');
-	const [formattedDate, setFormattedDate] = useState('');
+
 	const [routingConfig, setRoutingConfig] = useExpertCookies(routingConfigKeys);
-
-	const updateFormattedDate = useCallback(() => {
-		if (!touchedDate) {
-			setFormattedDate(`Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`);
-			return;
-		}
-		const today = startOfDay(new Date());
-		const tomorrow = endOfDay(addDays(today, 1));
-		const yesterday = subDays(today, 1);
-
-		let relativeDayString = '';
-
-		if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
-			if (isSameDay(date, today)) relativeDayString = 'Heute';
-			else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
-			else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
-			relativeDayString += `, ${deLocale.localize?.day(date.getDay() as Day, {
-				width: 'short',
-			})}`;
-		} else {
-			relativeDayString = deLocale.localize?.day(date.getDay() as Day);
-		}
-		relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
-		if (!isSameYear(date, today)) {
-			relativeDayString += lightFormat(date, 'yyyy');
-		}
-		relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
-
-		setFormattedDate(relativeDayString);
-	}, [touchedDate, date]);
-	useEffect(() => {
-		updateFormattedDate();
-	}, [updateFormattedDate]);
 
 	const updateSetting = useCallback(
 		<K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
@@ -150,8 +117,6 @@ const useRoutingConfigInternal = ({
 		updateSetting,
 		departureMode,
 		updateDepartureMode,
-		formattedDate,
-		updateFormattedDate,
 	};
 };
 
@@ -169,7 +134,6 @@ export const [
 		via: v.via,
 		touchedDate: v.touchedDate,
 		departureMode: v.departureMode,
-		formattedDate: v.formattedDate,
 	}),
 	(v) => v.settings,
 	(v) => ({
@@ -181,13 +145,15 @@ export const [
 		swapStartDestination: v.swapStartDestination,
 		updateSettings: v.updateSetting,
 		updateDepartureMode: v.updateDepartureMode,
-		updateFormattedDate: v.updateFormattedDate,
 	}),
 );
 
-export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
-	children,
-}) => {
+export const RoutingConfigProvider: FCC<{
+	start?: MinimalStopPlace;
+	destination?: MinimalStopPlace;
+	date?: Date;
+	via?: MinimalStopPlace[];
+}> = ({ children, start, destination, date, via }) => {
 	const [routingConfig] = useExpertCookies(routingConfigKeys);
 
 	const savedRoutingSettings: RoutingSettings = {
@@ -200,7 +166,13 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
 	};
 
 	return (
-		<InnerRoutingConfigProvider initialSettings={savedRoutingSettings}>
+		<InnerRoutingConfigProvider
+			initialSettings={savedRoutingSettings}
+			initialStart={start}
+			initialDestination={destination}
+			initialDate={date}
+			initialVia={via}
+		>
 			{children}
 		</InnerRoutingConfigProvider>
 	);

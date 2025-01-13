@@ -1,10 +1,10 @@
 import { Connection } from '@/client/Common/Components/Connections/Connection';
 import { FullTrainName } from '@/client/Common/Components/FullTrainName';
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type { RouteStop } from '@/types/routing';
-import { Close } from '@mui/icons-material';
+import Close from '@mui/icons-material/Close';
 import {
 	Dialog,
 	DialogContent,

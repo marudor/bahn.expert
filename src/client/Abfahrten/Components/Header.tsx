@@ -1,17 +1,15 @@
-import { useAbfahrtenUrlPrefix } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import {
 	useCurrentAbfahrtenStopPlace,
 	useRefreshCurrent,
 } from '@/client/Abfahrten/provider/AbfahrtenProvider';
 import { BaseHeader } from '@/client/Common/Components/BaseHeader';
 import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
-import { useQuery } from '@/client/Common/hooks/useQuery';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import { Refresh } from '@mui/icons-material';
+import Refresh from '@mui/icons-material/Refresh';
 import { IconButton } from '@mui/material';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
-import { useNavigate } from 'react-router';
 import { ExtraMenu } from './ExtraMenu';
 
 interface Props {
@@ -19,10 +17,9 @@ interface Props {
 }
 
 export const Header: FC<Props> = ({ regional = false }: Props) => {
-	const noHeader = useQuery().noHeader;
+	const { noHeader } = useSearch({ strict: false });
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const refreshCurrentAbfahrten = useRefreshCurrent(true);
-	const urlPrefix = useAbfahrtenUrlPrefix();
 	const navigate = useNavigate();
 	const [currentEnteredStopPlace, setCurrentEnteredStopPlace] = useState<
 		MinimalStopPlace | undefined
@@ -37,9 +34,14 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
 			if (!stopPlace) {
 				return;
 			}
-			navigate(`${urlPrefix}${encodeURIComponent(stopPlace.name)}`);
+			navigate({
+				to: '/$stopPlace',
+				params: {
+					stopPlace: stopPlace.name,
+				},
+			});
 		},
-		[urlPrefix, navigate],
+		[navigate],
 	);
 
 	if (noHeader) {

@@ -19,7 +19,7 @@ export const irisRpcRouter = rpcAppRouter({
 		.meta({
 			openapi: {
 				method: 'GET',
-				path: '/api/iris/v2/abfahrten/{evaNumber}',
+				path: '/iris/v2/abfahrten/{evaNumber}',
 			},
 		})
 		.input(

@@ -1,4 +1,4 @@
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';

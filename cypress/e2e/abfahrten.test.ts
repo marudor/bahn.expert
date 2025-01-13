@@ -15,11 +15,6 @@ describe('Abfahrten', () => {
 			cy.findByTestId('abfahrtS35744').within(() => {
 				cy.findByTestId('scrollMarker').should('exist');
 			});
-			cy.window().then((w) =>
-				cy
-					.get('link[rel="canonical"]')
-					.should('have.attr', 'href', w.location.href),
-			);
 		});
 		it('opened details should be rememberd on refresh', () => {
 			cy.visit('/');

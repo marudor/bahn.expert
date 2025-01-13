@@ -9,7 +9,7 @@ on:
       - main
 
 env:
-  CI: 'true'
+  CI: "true"
 
 jobs:
   commitlint:
@@ -47,7 +47,7 @@ jobs:
   ct:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
+      image: cypress/browsers:node-22.13.0-chrome-131.0.6778.264-1-ff-134.0-edge-131.0.2903.112-1
       options: --user 1001
     strategy:
       matrix:
@@ -72,17 +72,16 @@ jobs:
           record: true
           parallel: true
           group: ${{ matrix.browser }}-ct
-          ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
+          ci-build-id: "${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}"
           browser: ${{ matrix.browser}}
-          command-prefix: 'pnpm'
+          command-prefix: "pnpm"
         env:
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SKIP_OLD_BROWSER: 1
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
+      image: cypress/browsers:node-22.13.0-chrome-131.0.6778.264-1-ff-134.0-edge-131.0.2903.112-1
       options: --user 1001
     strategy:
       matrix:
@@ -107,17 +106,17 @@ jobs:
           parallel: true
           build: pnpm build
           group: ${{ matrix.browser }}
-          ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
-          start: node dist/server/server/index.js
+          ci-build-id: "${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}"
+          start: pnpm vinxi start
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
-          command-prefix: 'percy exec --parallel -- pnpm'
+          command-prefix: "percy exec --parallel -- pnpm"
         env:
           PERCY_TOKEN: web_63aaa4d04fb56e5bb41b4547417eac37310a4b8dd2ef6f2e6e444215eacb01b3
           PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BASE_URL: localhost:9042
+          PORT: 9042
           NODE_ENV: production
           TEST_RUN: 1
   finalizePercy:
@@ -152,7 +151,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           platforms: linux/amd64,linux/arm64
-          tags: 'latest,${{ github.sha }}'
+          tags: "latest,${{ github.sha }}"
   createDeploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -162,7 +161,7 @@ jobs:
       - node
       - ct
     steps:
-      - name: 'Create Deployment'
+      - name: "Create Deployment"
         uses: avakar/create-deployment@v1.0.2
         with:
           ref: ${{ github.sha }}

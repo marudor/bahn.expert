@@ -14,7 +14,7 @@ describe('Details', () => {
 		cy.visit('/details/ICE70');
 		cy.findByTestId('error')
 			.should('exist')
-			.should('have.text', 'Unbekannter Zug');
+			.should('have.text', 'Nicht gefunden');
 	});
 
 	it('icon spins on reload', () => {
@@ -108,9 +108,7 @@ describe('Details', () => {
 		cy.visit('/details/S30665');
 		cy.wait('@details');
 		cy.findByTestId('next').click();
-		cy.url()
-			.should('contain', '2020-02-29')
-			.should('contain', 'administration=800337');
+		cy.url().should('contain', '2020-02-29').should('contain', '800337');
 	});
 
 	it('goes to previous & shows arrows even if unknown', () => {

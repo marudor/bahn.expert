@@ -1,19 +1,18 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import { trpc } from '@/client/RPC';
+import constate from '@/constate';
+import { trpc } from '@/router';
 import type { HafasStation, ParsedPolyline } from '@/types/HAFAS';
 import type { AdditionalJourneyInformation } from '@/types/HAFAS/JourneyDetails';
 import type { RouteAuslastung, RouteStop } from '@/types/routing';
-import constate from 'constate';
+import { useNavigate } from '@tanstack/react-router';
 import { addDays } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { MouseEvent } from 'react';
-import { useNavigate } from 'react-router';
 
 interface Props {
 	trainName: string;
 	initialDepartureDateString?: string;
 	evaNumberAlongRoute?: string;
-	urlPrefix?: string;
 	journeyId?: string;
 	// HAFAS
 	jid?: string;
@@ -24,7 +23,6 @@ const useInnerDetails = ({
 	initialDepartureDateString,
 	evaNumberAlongRoute,
 	trainName,
-	urlPrefix,
 	journeyId,
 	jid,
 	administration,
@@ -51,8 +49,8 @@ const useInnerDetails = ({
 		trainName,
 		initialDepartureDate,
 		evaNumberAlongRoute,
-		journeyId,
 		administration,
+		journeyId,
 		jid,
 	});
 
@@ -66,21 +64,19 @@ const useInnerDetails = ({
 			const oldDate = details?.departure.scheduledTime || initialDepartureDate;
 			const newDate = addDays(oldDate, daysForward);
 			const newAdministration = administration || details?.train.admin;
-			navigate(
-				`${
-					urlPrefix || '/'
-				}details/${trainName}/${newDate.toISOString()}?administration=${newAdministration}`,
-			);
+			navigate({
+				to: '/details/$train/$initialDeparture',
+				params: {
+					train: trainName,
+					initialDeparture: newDate.toISOString(),
+				},
+				search: {
+					administration: newAdministration,
+				},
+			});
 			setAdditionalInformation(undefined);
 		},
-		[
-			initialDepartureDate,
-			details,
-			administration,
-			navigate,
-			urlPrefix,
-			trainName,
-		],
+		[initialDepartureDate, details, administration, navigate, trainName],
 	);
 
 	useEffect(() => {
@@ -121,15 +117,19 @@ const useInnerDetails = ({
 		};
 		fetchAdditional();
 		if (details.journeyId) {
-			const newSearchParams = new URLSearchParams({
-				journeyId: details.journeyId,
+			navigate({
+				to: '/details/$train',
+				params: {
+					train: trainName,
+				},
+				search: {
+					journeyId: details.journeyId,
+				},
+				replace: true,
+				from: '/details/$train',
 			});
-			const newUrl = [window.location.pathname, newSearchParams.toString()]
-				.filter(Boolean)
-				.join('?');
-			history.replaceState(null, '', newUrl);
 		}
-	}, [details, trainName, initialDepartureDate, trpcUtils]);
+	}, [details, trainName, initialDepartureDate, trpcUtils, navigate]);
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout;
@@ -187,7 +187,6 @@ const useInnerDetails = ({
 		isFetching,
 		additionalInformation,
 		error,
-		urlPrefix,
 		refreshDetails: refetchDetails,
 		polyline: matchedPolyline,
 		isMapDisplay,

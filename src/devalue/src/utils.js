@@ -8,7 +8,7 @@ export const escaped = {
 	'\r': '\\r',
 	'\t': '\\t',
 	'\u2028': '\\u2028',
-	'\u2029': '\\u2029',
+	'\u2029': '\\u2029'
 };
 
 export class DevalueError extends Error {
@@ -29,7 +29,7 @@ export function is_primitive(thing) {
 }
 
 const object_proto_names = /* @__PURE__ */ Object.getOwnPropertyNames(
-	Object.prototype,
+	Object.prototype
 )
 	.sort()
 	.join('\0');
@@ -101,6 +101,13 @@ export function stringify_string(str) {
 /** @param {Record<string | symbol, any>} object */
 export function enumerable_symbols(object) {
 	return Object.getOwnPropertySymbols(object).filter(
-		(symbol) => Object.getOwnPropertyDescriptor(object, symbol).enumerable,
+		(symbol) => Object.getOwnPropertyDescriptor(object, symbol).enumerable
 	);
+}
+
+const is_identifier = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
+
+/** @param {string} key */
+export function stringify_key(key) {
+	return is_identifier.test(key) ? '.' + key : '[' + JSON.stringify(key) + ']';
 }

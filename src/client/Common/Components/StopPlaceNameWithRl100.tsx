@@ -1,8 +1,8 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import { trpc } from '@/client/RPC';
+import { trpc } from '@/router';
 import type { MinimalStopPlace } from '@/types/stopPlace';
+import { Link } from '@tanstack/react-router';
 import type { FC, ReactNode } from 'react';
-import { Link } from 'react-router';
 
 export const StopPlaceNameWithRl100: FC<{
 	stopPlace: MinimalStopPlace;
@@ -31,7 +31,13 @@ export const StopPlaceNameWithRl100: FC<{
 
 	if (withAbfahrtenLink) {
 		return (
-			<Link className={className} to={`/${stopPlace.name}`}>
+			<Link
+				className={className}
+				to="/$stopPlace"
+				params={{
+					stopPlace: stopPlace.name,
+				}}
+			>
 				{name}
 			</Link>
 		);

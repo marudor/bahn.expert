@@ -1,8 +1,8 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import constate from 'constate';
+import constate from '@/constate';
+import { useLocation } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
-import { useLocation } from 'react-router';
 
 const selectedDetailCookieName = 'selectedDetail';
 

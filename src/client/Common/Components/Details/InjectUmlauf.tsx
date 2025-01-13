@@ -1,7 +1,7 @@
 import { TransportName } from '@/client/Common/Components/Details/TransportName';
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
-import { trpc } from '@/client/RPC';
 import type { MatchVehicleID } from '@/external/generated/risTransports';
+import { trpc } from '@/router';
 import { Stack } from '@mui/material';
 import { useMemo } from 'react';
 
@@ -52,19 +52,20 @@ export const InjectUmlauf: FCC = ({ children }) => {
 			enabled: Boolean(firstDepartureStop),
 		},
 	);
+	const vehicleIds =
+		firstSequence?.sequence?.groups
+			.filter((g) => g.number === details?.train.number)
+			// .map((g) => g.coaches[2]?.uic)
+			.map((g) => g.coaches.find((c) => !c.closed)?.uic)
+			.filter(Boolean) || [];
 	const { data: prevNext } = trpc.coachSequence.umlauf.useQuery(
 		{
 			journeyId: details?.journeyId!,
 			initialDeparture: details?.departure.scheduledTime!,
-			vehicleIds:
-				firstSequence?.sequence?.groups
-					.filter((g) => g.number === details?.train.number)
-					// .map((g) => g.coaches[2]?.uic)
-					.map((g) => g.coaches.find((c) => !c.closed)?.uic)
-					.filter(Boolean) || [],
+			vehicleIds,
 		},
 		{
-			enabled: Boolean(firstSequence && details?.journeyId),
+			enabled: Boolean(details?.journeyId && vehicleIds.length),
 		},
 	);
 

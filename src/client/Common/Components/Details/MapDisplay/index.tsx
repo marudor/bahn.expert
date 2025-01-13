@@ -1,4 +1,8 @@
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
+import LocationOff from '@mui/icons-material/LocationOff';
+import LocationOn from '@mui/icons-material/LocationOn';
+import { Fab, styled } from '@mui/material';
+import MapLibre from 'maplibre-gl';
 import { type FC, useMemo } from 'react';
 import Map, {
 	Layer,
@@ -6,11 +10,11 @@ import Map, {
 	Marker,
 	NavigationControl,
 	Source,
-} from 'react-map-gl/maplibre';
-import 'maplibre-gl/dist/maplibre-gl.css';
-import { LocationOff, LocationOn } from '@mui/icons-material';
-import { Fab, styled } from '@mui/material';
-import { Popup } from 'maplibre-gl';
+} from 'react-map-gl/dist/es5/exports-maplibre';
+
+if (typeof window !== 'undefined') {
+	import('maplibre-gl/dist/maplibre-gl.css');
+}
 
 const MarkerFab = styled(Fab)`
  position: absolute;
@@ -58,7 +62,7 @@ const MapDisplay: FC = () => {
 	const markers = useMemo(
 		() =>
 			polylineLocations?.map((location, i) => {
-				const popup = new Popup().setText(location.name);
+				const popup = new MapLibre.Popup().setText(location.name);
 				return (
 					<Marker
 						key={i}

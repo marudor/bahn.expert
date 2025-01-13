@@ -1,13 +1,12 @@
 {
 	"compilerOptions": {
 		"allowJs": true,
-		"allowSyntheticDefaultImports": true,
 		"useUnknownInCatchVariables": false,
 		"experimentalDecorators": true,
 		"jsx": "preserve",
 		"lib": ["DOM", "ES2020", "ESNext"],
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "Bundler",
 		"noEmit": true,
 		"noUnusedLocals": false,
 		"noUnusedParameters": true,

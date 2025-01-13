@@ -42,7 +42,7 @@ spec:
 {{ toYaml .Values.envFrom | indent 12 }}
 {{ end }}
           env:
-            - name: BASE_URL
+            - name: VITE_BASE_URL
               value: {{ .Values.hostName }}
 {{ if .Values.baseEnv }}
 {{ toYaml .Values.baseEnv | indent 12 }}

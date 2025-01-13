@@ -1,17 +1,14 @@
 import { StopPlaceSearch } from '@/client/Common/Components/StopPlaceSearch';
-import { trpc } from '@/client/RPC';
 import {
 	useRoutingConfig,
 	useRoutingConfigActions,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import { useFetchRouting } from '@/client/Routing/provider/useFetchRouting';
-import { Delete } from '@mui/icons-material';
-import {
-	FavoriteBorder,
-	Search as SearchIcon,
-	SwapVert,
-	Today,
-} from '@mui/icons-material';
+import Delete from '@mui/icons-material/Delete';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import SearchIcon from '@mui/icons-material/Search';
+import SwapVert from '@mui/icons-material/SwapVert';
+import Today from '@mui/icons-material/Today';
 import {
 	Button,
 	Divider,
@@ -24,9 +21,21 @@ import {
 	styled,
 } from '@mui/material';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useParams } from '@tanstack/react-router';
+import {
+	type Day,
+	addDays,
+	endOfDay,
+	isSameDay,
+	isSameYear,
+	isWithinInterval,
+	lightFormat,
+	startOfDay,
+	subDays,
+} from 'date-fns';
+import { de as deLocale } from 'date-fns/locale/de';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
-import { useParams } from 'react-router';
 import { SettingsPanel } from './SettingsPanel';
 
 const DateTimeContainer = styled(Stack)`
@@ -86,54 +95,55 @@ const DateTimePickerInput = styled(TextField)`
 `;
 
 export const Search: FC = () => {
-	const {
-		setStart,
-		setDestination,
-		updateVia,
-		setDate,
-		setVia,
-		updateDepartureMode,
-	} = useRoutingConfigActions();
-	const { start, destination, date, via, departureMode, formattedDate } =
+	const { setStart, setDestination, updateVia, setDate, updateDepartureMode } =
+		useRoutingConfigActions();
+	const { start, destination, date, via, departureMode, touchedDate } =
 		useRoutingConfig();
 	const { clearRoutes, fetchRoutesAndNavigate } = useFetchRouting();
 
-	const params = useParams<'start' | 'destination' | 'date' | 'via'>();
-	const trpcUtils = trpc.useUtils();
+	const calculateFormattedDate = useCallback(() => {
+		if (!touchedDate) {
+			return `Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`;
+		}
+		const today = startOfDay(new Date());
+		const tomorrow = endOfDay(addDays(today, 1));
+		const yesterday = subDays(today, 1);
 
-	useEffect(() => {
-		if (params.start) {
-			void trpcUtils.stopPlace.byKey
-				.fetch(params.start)
-				.then((stopPlace) => setStart(stopPlace));
+		let relativeDayString = '';
+
+		if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
+			if (isSameDay(date, today)) relativeDayString = 'Heute';
+			else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
+			else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
+			relativeDayString += `, ${deLocale.localize?.day(date.getDay() as Day, {
+				width: 'short',
+			})}`;
+		} else {
+			relativeDayString = deLocale.localize?.day(date.getDay() as Day);
 		}
-	}, [params.start, setStart, trpcUtils.stopPlace.byKey]);
-	useEffect(() => {
-		if (params.destination) {
-			void trpcUtils.stopPlace.byKey
-				.fetch(params.destination)
-				.then((stopPlace) => setDestination(stopPlace));
+		relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
+		if (!isSameYear(date, today)) {
+			relativeDayString += lightFormat(date, 'yyyy');
 		}
-	}, [params.destination, setDestination, trpcUtils.stopPlace.byKey]);
+		relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
+		return relativeDayString;
+	}, [touchedDate, date]);
+	useEffect(
+		() => setFormattedDate(calculateFormattedDate),
+		[calculateFormattedDate],
+	);
+	const [formattedDate, setFormattedDate] = useState(calculateFormattedDate());
+
+	const params: Record<'date', string | undefined> = useParams({
+		strict: false,
+	});
+
 	useEffect(() => {
 		if (params.date && params.date !== '0') {
 			const dateNumber = +params.date;
 			setDate(new Date(Number.isNaN(dateNumber) ? params.date : dateNumber));
 		}
 	}, [params.date, setDate]);
-	useEffect(() => {
-		if (params.via) {
-			const viaStations = params.via.split('|').filter(Boolean);
-
-			void Promise.all(
-				viaStations.map((viaNumber) =>
-					trpcUtils.stopPlace.byKey.fetch(viaNumber),
-				),
-			).then((resolvedVias) => {
-				setVia(resolvedVias.filter(Boolean));
-			});
-		}
-	}, [params.via, setVia, trpcUtils.stopPlace.byKey]);
 
 	const swapOriginDest = useCallback(() => {
 		setDestination(start);
@@ -145,8 +155,9 @@ export const Search: FC = () => {
 			e.preventDefault();
 
 			void fetchRoutesAndNavigate(start, destination, via);
+			setFormattedDate(calculateFormattedDate);
 		},
-		[destination, start, via, fetchRoutesAndNavigate],
+		[destination, start, via, fetchRoutesAndNavigate, calculateFormattedDate],
 	);
 
 	const mappedViaList = useMemo(

@@ -1,13 +1,12 @@
-import KoaRouter from '@koa/router';
+import { eventHandler } from 'vinxi/http';
 import seoStationNames from './seoStations.json';
 
-const router = new KoaRouter();
-const sitemap = () => {
+const sitemap = (baseUrl: string) => {
 	let xml =
 		'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
 	for (const stationName of seoStationNames) {
-		xml += `<url><loc>${globalThis.BASE_URL}/${encodeURIComponent(
+		xml += `<url><loc>https://${baseUrl}/${encodeURIComponent(
 			stationName,
 		)}</loc><changefreq>always</changefreq></url>`;
 	}
@@ -17,26 +16,27 @@ const sitemap = () => {
 	return xml;
 };
 
-const robots = () => `User-agent: *
+const robots = (baseUrl: string) => `User-agent: *
 Allow: *
 
-Sitemap: ${globalThis.BASE_URL}/sitemap.xml
+Sitemap: https://${baseUrl}/sitemap.xml
 `;
 
-router
-	.get('/sitemap.xml', (ctx) => {
-		ctx.body = sitemap();
-		if (ctx.body) {
-			ctx.set('Content-Type', 'text/xml; charset=utf-8');
-		} else {
-			ctx.status = 404;
-		}
-	})
-	.get('/robots.txt', (ctx) => {
-		ctx.body = robots();
-		if (!ctx.body) {
-			ctx.status = 404;
-		}
-	});
-
-export default router.routes();
+export default eventHandler((event) => {
+	let response: Response | undefined;
+	switch (event.node.req.url) {
+		case '/sitemap.xml':
+			response = new Response(sitemap(new URL(event.node.req.url!).host), {
+				headers: {
+					'content-type': 'text/xml; charset=utf-8',
+				},
+			});
+			break;
+		case '/robots.txt':
+			response = new Response(robots(new URL(event.node.req.url!).host));
+			break;
+	}
+	if (response) {
+		event.respondWith(response);
+	}
+});

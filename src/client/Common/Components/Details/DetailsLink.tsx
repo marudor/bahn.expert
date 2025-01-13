@@ -1,15 +1,13 @@
 import { stopPropagation } from '@/client/Common/stopPropagation';
 import type { CommonProductInfo } from '@/types/HAFAS';
-import qs from 'qs';
+import { Link } from '@tanstack/react-router';
 import type { FC, PropsWithChildren } from 'react';
-import { Link } from 'react-router';
 
 interface Props {
 	train: Pick<CommonProductInfo, 'type' | 'number'>;
 	evaNumberAlongRoute?: string;
 	initialDeparture: Date;
 	journeyId?: string;
-	urlPrefix?: string;
 	jid?: string;
 	className?: string;
 	'data-testid'?: string;
@@ -20,7 +18,6 @@ export const DetailsLink: FC<PropsWithChildren<Props>> = ({
 	initialDeparture,
 	journeyId,
 	jid,
-	urlPrefix = '/',
 	children = 'Details',
 	className,
 }) => {
@@ -32,18 +29,16 @@ export const DetailsLink: FC<PropsWithChildren<Props>> = ({
 			className={className}
 			data-testid="detailsLink"
 			onClick={stopPropagation}
-			to={`${urlPrefix}details/${train.type} ${
-				train.number
-			}/${initialDeparture.toISOString()}${qs.stringify(
-				{
-					evaNumberAlongRoute,
-					journeyId,
-					jid,
-				},
-				{
-					addQueryPrefix: true,
-				},
-			)}`}
+			to="/details/$train/$initialDeparture"
+			params={{
+				train: `${train.type} ${train.number}`,
+				initialDeparture: initialDeparture.toISOString(),
+			}}
+			search={{
+				evaNumberAlongRoute,
+				journeyId,
+				jid,
+			}}
 		>
 			{children}
 		</Link>

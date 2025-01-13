@@ -1,5 +1,6 @@
 import type { HafasStation, ParsedPolyline, PolyL } from '@/types/HAFAS';
-import { decode } from 'google-polyline';
+import googlePolyline from 'google-polyline';
+const { decode } = googlePolyline;
 
 export default (polyline: PolyL, locL: HafasStation[]): ParsedPolyline => {
 	return {

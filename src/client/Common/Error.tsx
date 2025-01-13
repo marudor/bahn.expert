@@ -1,7 +1,7 @@
-import { Error as ErrorIcon } from '@mui/icons-material';
+import ErrorIcon from '@mui/icons-material/Error';
 import { Stack, css } from '@mui/material';
 import { TRPCClientError } from '@trpc/client';
-import { type FC, useMemo } from 'react';
+import { useMemo } from 'react';
 
 const ErrorStyle = css`
   width: 80%;
@@ -11,25 +11,28 @@ const ErrorStyle = css`
 `;
 
 interface Props {
-	error: unknown;
-	context: string;
+	/**
+	 * @deprecated Only used in old error handling
+	 */
+	error?: unknown;
 }
 
-export const Error: FC<Props> = ({ error, context }) => {
-	const errorText = useMemo(() => {
+export const Error: FCC<Props> = ({
+	error,
+	children = 'Unbekannter Fehler',
+}) => {
+	const errorMessage = useMemo(() => {
 		if (error instanceof TRPCClientError) {
-			switch (error.message) {
-				case 'NOT_FOUND':
-					return `Unbekannter ${context}`;
+			if (error.message === 'NOT_FOUND') {
+				return 'Nicht gefunden';
 			}
 		}
-		return 'Unbekannter Fehler';
-	}, [error, context]);
-
+		return children;
+	}, [error, children]);
 	return (
 		<Stack css={ErrorStyle} data-testid="error">
 			<ErrorIcon css={ErrorStyle} />
-			{errorText}
+			{errorMessage}
 		</Stack>
 	);
 };

@@ -79,6 +79,13 @@ async function getPreviousNext(journeyId: string, vehicleId: string) {
 	};
 }
 
+const allowedUmlaufTransportTypes = [
+	'HIGH_SPEED_TRAIN',
+	'INTERCITY_TRAIN',
+	'INTER_REGIONAL_TRAIN',
+	'REGIONAL_TRAIN',
+];
+
 export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
 	if (!vehicleIds.length) {
 		return;
@@ -88,8 +95,10 @@ export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
 		return journeyForVehiclesCache.get(cacheKey);
 	}
 	const journey = await journeyDetails(journeyId);
-	// disable it for everything but HIGH SPEED for now
-	if (journey?.train.transportType !== 'HIGH_SPEED_TRAIN') {
+	if (
+		!journey ||
+		!allowedUmlaufTransportTypes.includes(journey.train.transportType)
+	) {
 		return;
 	}
 	if (!isWithin20Hours(journey?.departure.scheduledTime)) {

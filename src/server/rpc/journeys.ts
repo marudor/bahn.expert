@@ -138,7 +138,7 @@ export const journeysRpcRouter = rpcAppRouter({
 		.meta({
 			openapi: {
 				method: 'GET',
-				path: '/api/hafas/v2/details/{trainName}',
+				path: '/hafas/v2/details/{trainName}',
 			},
 		})
 		.input(
@@ -146,8 +146,8 @@ export const journeysRpcRouter = rpcAppRouter({
 				trainName: z.string(),
 				evaNumberAlongRoute: z.string().optional(),
 				initialDepartureDate: z.date().optional(),
-				journeyId: z.string().optional(),
 				jid: z.string().optional(),
+				journeyId: z.string().optional(),
 				administration: z.string().optional(),
 			}),
 		)
@@ -158,8 +158,8 @@ export const journeysRpcRouter = rpcAppRouter({
 					trainName,
 					evaNumberAlongRoute,
 					initialDepartureDate = new Date(),
-					journeyId,
 					jid,
+					journeyId,
 					administration,
 				},
 			}) => {

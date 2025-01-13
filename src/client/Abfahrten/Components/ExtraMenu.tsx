@@ -5,15 +5,13 @@ import {
 } from '@/client/Abfahrten/hooks/useFavs';
 import { useAbfahrtenFilterOpen } from '@/client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCurrentAbfahrtenStopPlace } from '@/client/Abfahrten/provider/AbfahrtenProvider';
-import { trpc } from '@/client/RPC';
-import {
-	Favorite,
-	FavoriteBorder,
-	FilterList,
-	Layers,
-	LayersClear,
-	Tune,
-} from '@mui/icons-material';
+import { trpc } from '@/router';
+import Favorite from '@mui/icons-material/Favorite';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import FilterList from '@mui/icons-material/FilterList';
+import Layers from '@mui/icons-material/Layers';
+import LayersClear from '@mui/icons-material/LayersClear';
+import Tune from '@mui/icons-material/Tune';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
@@ -27,12 +25,9 @@ export const ExtraMenu: FC<Props> = ({ favKey }) => {
 	const setFilterOpen = useAbfahrtenFilterOpen();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { data: lageplan } = trpc.stopPlace.lageplan.useQuery(
+		currentStopPlace?.evaNumber!,
 		{
-			evaNumber: currentStopPlace?.evaNumber!,
-			stopPlaceName: currentStopPlace?.name!,
-		},
-		{
-			enabled: Boolean(currentStopPlace),
+			enabled: Boolean(currentStopPlace?.evaNumber),
 			staleTime: Number.POSITIVE_INFINITY,
 		},
 	);

@@ -1,7 +1,6 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
-import { useQuery } from '@/client/Common/hooks/useQuery';
-import type { trpc } from '@/client/RPC';
-import constate from 'constate';
+import constate from '@/constate';
+import { useSearch } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 
@@ -40,8 +39,6 @@ const useFilter = (initialFilter: Filter) => {
 
 export interface AbfahrtenConfigProviderValue {
 	filter: Filter;
-	abfahrtenFetch: ReturnType<typeof trpc.useUtils>['iris']['abfahrten'];
-	urlPrefix: string;
 }
 
 const useAbfahrtenConfigInner = ({
@@ -53,50 +50,34 @@ const useAbfahrtenConfigInner = ({
 
 	return {
 		filterConfig,
-		abfahrtenFetch: initialState.abfahrtenFetch,
-		urlPrefix: initialState.urlPrefix,
 	};
 };
 
 export const [
 	InnerAbfahrtenConfigProvider,
-	useAbfahrtenFetch,
-	useAbfahrtenUrlPrefix,
 	useAbfahrtenFilterOpen,
 	useAbfahrtenFilter,
 ] = constate(
 	useAbfahrtenConfigInner,
-	(v) => v.abfahrtenFetch,
-	(v) => v.urlPrefix,
 	(v) => v.filterConfig.setFilterOpen,
 	(v) => v.filterConfig,
 );
 
 interface Props {
 	children: ReactNode;
-	abfahrtenFetch: AbfahrtenConfigProviderValue['abfahrtenFetch'];
-	urlPrefix: string;
 }
-export const AbfahrtenConfigProvider: FC<Props> = ({
-	children,
-	abfahrtenFetch,
-	urlPrefix,
-}) => {
+export const AbfahrtenConfigProvider: FC<Props> = ({ children }) => {
 	const [filterCookie] = useExpertCookies([filterCookieName]);
-	const query = useQuery();
-	const queryFilter = Array.isArray(query.filter)
-		? (query.filter as string[])
-		: typeof query.filter === 'string'
-			? query.filter.split(',')
-			: undefined;
+	const queryFilter = useSearch({
+		strict: false,
+		select: (s) => s.filter?.split(','),
+	});
 	const savedFilter = queryFilter || filterCookie.defaultFilter;
 
 	const savedConfig: AbfahrtenConfigProviderValue = {
 		filter: {
 			products: Array.isArray(savedFilter) ? savedFilter : [],
 		},
-		abfahrtenFetch,
-		urlPrefix,
 	};
 
 	return (

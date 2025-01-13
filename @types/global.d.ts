@@ -1,14 +1,9 @@
+import type { Server } from 'node:http';
 import type { FC, PropsWithChildren } from 'react';
 
 declare global {
 	declare namespace globalThis {
-		declare var IMPRINT: {
-			name: string;
-			street: string;
-			town: string;
-		};
-		declare var BASE_URL: string;
-		declare var RAW_BASE_URL: string;
+		declare var adminServer: Server | undefined;
 		declare var DISRUPTION: string | undefined;
 
 		// test only

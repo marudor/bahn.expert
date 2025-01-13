@@ -6,9 +6,9 @@ import { hafasRpcRouter } from '@/server/rpc/hafas';
 import { irisRpcRouter } from '@/server/rpc/iris';
 import { journeysRpcRouter } from '@/server/rpc/journeys';
 import { stopPlaceRpcRouter } from '@/server/rpc/stopPlace';
-import type { Context, Next } from 'koa';
-import { createKoaMiddleware } from 'trpc-koa-adapter';
+import { createHTTPHandler } from '@trpc/server/adapters/standalone';
 import { createOpenApiHttpHandler } from 'trpc-openapi';
+import { eventHandler } from 'vinxi/http';
 
 const mainRouter = rpcAppRouter({
 	coachSequence: coachSequenceRpcRouter,
@@ -22,17 +22,18 @@ const mainRouter = rpcAppRouter({
 
 export type AppRouter = typeof mainRouter;
 
-export const rpcRouter = createKoaMiddleware({
+export const rpcHttpHandler = createOpenApiHttpHandler({
 	router: mainRouter,
-	prefix: '/rpc',
+	onError: undefined,
+	createContext: undefined,
+	responseMeta: undefined,
+	maxBodySize: undefined,
 });
 
-const rawRpcHttpRouter = createOpenApiHttpHandler({
+const rpcHandler = createHTTPHandler({
 	router: mainRouter,
 });
-export const rpcHttpRouter = async (ctx: Context, next: Next) => {
-	if (ctx.url.startsWith('/api')) {
-		await rawRpcHttpRouter(ctx.req, ctx.res);
-	}
-	return next();
-};
+
+export default eventHandler((event) => {
+	return rpcHandler(event.node.req, event.node.res);
+});

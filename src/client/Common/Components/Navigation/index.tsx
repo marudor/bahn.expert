@@ -3,14 +3,12 @@ import { Zugsuche } from '@/client/Common/Components/Zugsuche';
 import { useSetCommonConfigOpen } from '@/client/Common/provider/CommonConfigProvider';
 import { Disruption } from '@/client/DisruptionBanner';
 import { PolitikBanner } from '@/client/PolitikBanner';
-import {
-	AlarmOnOutlined,
-	Explore,
-	Info,
-	Search,
-	Settings,
-	Train,
-} from '@mui/icons-material';
+import AlarmOnOutlined from '@mui/icons-material/AlarmOnOutlined';
+import Explore from '@mui/icons-material/Explore';
+import Info from '@mui/icons-material/Info';
+import Search from '@mui/icons-material/Search';
+import Settings from '@mui/icons-material/Settings';
+import Train from '@mui/icons-material/Train';
 import {
 	Drawer,
 	List,
@@ -20,9 +18,9 @@ import {
 	NoSsr,
 	styled,
 } from '@mui/material';
+import { Link } from '@tanstack/react-router';
 import { useCallback, useMemo, useState } from 'react';
 import type { FC, ReactNode } from 'react';
-import { Link } from 'react-router';
 import { NavigationContext } from './NavigationContext';
 import { ThemeSelection } from './ThemeSelection';
 
@@ -79,14 +77,6 @@ export const Navigation: FC<Props> = ({ children }) => {
 									<AlarmOnOutlined />
 								</ListItemIcon>
 								<ListItemText primary="Abfahrten" />
-							</ListItemButton>
-						</Link>
-						<Link to="/regional">
-							<ListItemButton data-testid="regional">
-								<ListItemIcon>
-									<AlarmOnOutlined />
-								</ListItemIcon>
-								<ListItemText primary="Nahverkehr Abfahrten" />
 							</ListItemButton>
 						</Link>
 						<Link to="/routing">

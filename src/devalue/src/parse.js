@@ -1,10 +1,11 @@
+import { decode64 } from './base64.js';
 import {
 	HOLE,
 	NAN,
 	NEGATIVE_INFINITY,
 	NEGATIVE_ZERO,
 	POSITIVE_INFINITY,
-	UNDEFINED,
+	UNDEFINED
 } from './constants.js';
 
 /**
@@ -38,12 +39,12 @@ export function unflatten(parsed, revivers) {
 	 */
 	function hydrate(index, standalone = false) {
 		if (index === UNDEFINED) return undefined;
-		if (index === NAN) return Number.NaN;
-		if (index === POSITIVE_INFINITY) return Number.POSITIVE_INFINITY;
-		if (index === NEGATIVE_INFINITY) return Number.NEGATIVE_INFINITY;
+		if (index === NAN) return NaN;
+		if (index === POSITIVE_INFINITY) return Infinity;
+		if (index === NEGATIVE_INFINITY) return -Infinity;
 		if (index === NEGATIVE_ZERO) return -0;
 
-		if (standalone) throw new Error('Invalid input');
+		if (standalone) throw new Error(`Invalid input`);
 
 		if (index in hydrated) return hydrated[index];
 
@@ -57,7 +58,6 @@ export function unflatten(parsed, revivers) {
 
 				const reviver = revivers?.[type];
 				if (reviver) {
-					// biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
 					return (hydrated[index] = reviver(hydrate(value[1])));
 				}
 
@@ -67,7 +67,6 @@ export function unflatten(parsed, revivers) {
 						break;
 
 					case 'Set':
-						// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 						const set = new Set();
 						hydrated[index] = set;
 						for (let i = 1; i < value.length; i += 1) {
@@ -76,7 +75,6 @@ export function unflatten(parsed, revivers) {
 						break;
 
 					case 'Map':
-						// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 						const map = new Map();
 						hydrated[index] = map;
 						for (let i = 1; i < value.length; i += 2) {
@@ -97,13 +95,38 @@ export function unflatten(parsed, revivers) {
 						break;
 
 					case 'null':
-						// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 						const obj = Object.create(null);
 						hydrated[index] = obj;
 						for (let i = 1; i < value.length; i += 2) {
 							obj[value[i]] = hydrate(value[i + 1]);
 						}
 						break;
+
+          case "Int8Array":
+          case "Uint8Array":
+          case "Uint8ClampedArray":
+          case "Int16Array":
+          case "Uint16Array":
+          case "Int32Array":
+          case "Uint32Array":
+          case "Float32Array":
+          case "Float64Array":
+          case "BigInt64Array":
+          case "BigUint64Array": {
+            const TypedArrayConstructor = globalThis[type];
+            const base64 = value[1];
+            const arraybuffer = decode64(base64);
+            const typedArray = new TypedArrayConstructor(arraybuffer);
+            hydrated[index] = typedArray;
+            break;
+          }
+
+          case "ArrayBuffer": {
+            const base64 = value[1];
+            const arraybuffer = decode64(base64);
+            hydrated[index] = arraybuffer;
+            break;
+          }
 
 					default:
 						throw new Error(`Unknown type ${type}`);

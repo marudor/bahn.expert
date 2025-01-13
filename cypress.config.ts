@@ -1,12 +1,34 @@
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'cypress';
-import plugins from './cypress/plugins/index.js';
+import vitePreprocessor from 'cypress-vite';
+import { defineConfig as defineViteConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+const viteConfig = defineViteConfig({
+	dev: {
+		sourcemap: false,
+	},
+	server: {
+		hmr: false,
+		watch: null,
+		warmup: {
+			clientFiles: ['src/client/**/*.ts', 'src/client/**/*.tsx', 'cypress/**'],
+		},
+	},
+	plugins: [
+		tsconfigPaths(),
+		react({
+			jsxImportSource: '@emotion/react',
+		}),
+	],
+});
 
 export default defineConfig({
 	projectId: 'ucnqdt',
-	numTestsKeptInMemory: 0,
 	video: false,
 	requestTimeout: 10000,
 	defaultCommandTimeout: 10000,
+	experimentalMemoryManagement: true,
 
 	retries: {
 		runMode: 2,
@@ -15,20 +37,20 @@ export default defineConfig({
 
 	e2e: {
 		excludeSpecPattern: process.env.CI ? ['cypress/e2e/all.test.ts'] : [],
-		// We've imported your old cypress plugins here.
-		// You may want to clean this up later by importing these.
-		setupNodeEvents(on, config) {
-			return plugins(on, config);
+		setupNodeEvents(on, _config) {
+			on('file:preprocessor', vitePreprocessor(viteConfig));
 		},
 		baseUrl: 'http://localhost:9042',
 		specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
 	},
 
 	component: {
+		// experimentalJustInTimeCompile: true,
 		supportFile: './cypress/support/component.tsx',
 		devServer: {
 			framework: 'react',
 			bundler: 'vite',
+			viteConfig,
 		},
 	},
 });
