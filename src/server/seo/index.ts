@@ -1,4 +1,4 @@
-import { eventHandler } from 'vinxi/http';
+import { eventHandler, getRequestURL } from 'vinxi/http';
 import seoStationNames from './seoStations.json';
 
 const sitemap = (baseUrl: string) => {
@@ -6,7 +6,7 @@ const sitemap = (baseUrl: string) => {
 		'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
 	for (const stationName of seoStationNames) {
-		xml += `<url><loc>https://${baseUrl}/${encodeURIComponent(
+		xml += `<url><loc>${baseUrl}/${encodeURIComponent(
 			stationName,
 		)}</loc><changefreq>always</changefreq></url>`;
 	}
@@ -19,21 +19,21 @@ const sitemap = (baseUrl: string) => {
 const robots = (baseUrl: string) => `User-agent: *
 Allow: *
 
-Sitemap: https://${baseUrl}/sitemap.xml
+Sitemap: ${baseUrl}/sitemap.xml
 `;
 
 export default eventHandler((event) => {
 	let response: Response | undefined;
-	switch (event.node.req.url) {
+	switch (event.path) {
 		case '/sitemap.xml':
-			response = new Response(sitemap(new URL(event.node.req.url!).host), {
+			response = new Response(sitemap(getRequestURL().origin), {
 				headers: {
 					'content-type': 'text/xml; charset=utf-8',
 				},
 			});
 			break;
 		case '/robots.txt':
-			response = new Response(robots(new URL(event.node.req.url!).host));
+			response = new Response(robots(getRequestURL().origin));
 			break;
 	}
 	if (response) {
