@@ -8,7 +8,7 @@ import type {
 import type { StopPlaceEmbedded } from '@/external/generated/risJourneysV2';
 import { sortJourneys } from '@/external/risJourneysV2';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { logger } from '@/server/logger';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
@@ -26,9 +26,9 @@ const risJourneysConfiguration = new RisJourneysConfiguration({
 	},
 });
 
-const journeyFindCache = new Cache<JourneyMatch[]>(CacheDatabase.JourneyFind);
+const journeyFindCache = getCache(CacheDatabase.JourneyFind);
 
-const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.Journey);
+const journeyCache = getCache(CacheDatabase.Journey);
 
 logger.info(
 	`using ${process.env.RIS_JOURNEYS_USER_AGENT} as RIS::Journeys UserAgent`,

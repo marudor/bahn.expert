@@ -1,10 +1,7 @@
-import {
-	type JourneyOccupancy,
-	OccupanciesApi,
-} from '@/external/generated/risTransports';
+import { OccupanciesApi } from '@/external/generated/risTransports';
 import { risTransportsConfiguration } from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
 const axiosWithTimeout = Axios.create({
@@ -39,9 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 	);
 }
 
-const occupancyCache = new Cache<JourneyOccupancy | undefined>(
-	CacheDatabase.TransportsOccupancy,
-);
+const occupancyCache = getCache(CacheDatabase.TransportsOccupancy);
 
 export async function getJourneyOccupancy({
 	journeyId,

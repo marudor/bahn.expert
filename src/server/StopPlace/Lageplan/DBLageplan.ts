@@ -1,8 +1,8 @@
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import Axios from 'axios';
 
-const cache = new Cache<string | null>(CacheDatabase.DBLageplan);
+const cache = getCache(CacheDatabase.DBLageplan);
 
 export async function getDBLageplan(
 	evaNumber: string,

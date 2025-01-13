@@ -1,5 +1,5 @@
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { AuslastungsValue } from '@/types/routing';
 import type {
 	TrainOccupancy,
@@ -12,9 +12,7 @@ import axios from 'axios';
 const occupancyAxios = axios.create();
 axiosUpstreamInterceptor(occupancyAxios, 'vrrf-occupancy');
 
-const vrrOccupancyCache = new Cache<TrainOccupancyList | null>(
-	CacheDatabase.VRROccupancy,
-);
+const vrrOccupancyCache = getCache(CacheDatabase.VRROccupancy);
 
 function mapVrrOccupancy(
 	vrrOccupancy: VRRTrainOccupancyValues,

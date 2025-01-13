@@ -7,13 +7,10 @@ import {
 	findJourneyHafasCompatible as findJourneyHafasCompatibleV2,
 	findJourney as findJourneyV2,
 } from '@/external/risJourneysV2';
-import Detail from '@/server/HAFAS/Detail';
-import { enrichedJourneyMatch } from '@/server/HAFAS/JourneyMatch';
 import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import { logger } from '@/server/logger';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import { TRPCError } from '@trpc/server';
 import type { QueryProcedure } from '@trpc/server/unstable-core-do-not-import';
@@ -101,30 +98,13 @@ export const journeysRpcRouter = rpcAppRouter({
 					category,
 				},
 			}) => {
-				let risPromise: Promise<ParsedJourneyMatchResponse[]> = Promise.resolve(
-					[],
+				let result = await findV1OrV2HafasCompatible(
+					trainNumber,
+					initialDepartureDate,
+					category,
+					withOEV,
 				);
-				if (trainNumber) {
-					risPromise = findV1OrV2HafasCompatible(
-						trainNumber,
-						initialDepartureDate,
-						category,
-						withOEV,
-					);
-				}
 
-				const trainName = trainNumber.toString();
-				const hafasFallback = () =>
-					enrichedJourneyMatch({
-						withOEV,
-						trainName,
-						initialDepartureDate,
-						limit,
-					});
-
-				const risResult = await risPromise;
-
-				let result = risResult.length ? risResult : await hafasFallback();
 				if (initialEvaNumber) {
 					result = result.filter(
 						(r) => r.firstStop.station.evaNumber === initialEvaNumber,
@@ -172,27 +152,11 @@ export const journeysRpcRouter = rpcAppRouter({
 					}
 					return journey;
 				}
-				const hafasFallback = async () => {
-					const hafasResult = await Detail(
-						trainName,
-						undefined,
-						evaNumberAlongRoute,
-						initialDepartureDate,
-						undefined,
-						undefined,
-						administration,
-						jid,
-					);
-					if (!hafasResult) {
-						throw new TRPCError({
-							code: 'NOT_FOUND',
-						});
-					}
-					return hafasResult;
-				};
 				const productDetails = getCategoryAndNumberFromName(trainName);
 				if (!productDetails) {
-					return hafasFallback();
+					throw new TRPCError({
+						code: 'NOT_FOUND',
+					});
 				}
 				let hafasResult: ParsedSearchOnTripResponse | undefined;
 				if (jid && productDetails.trainNumber === 0) {
@@ -216,7 +180,9 @@ export const journeysRpcRouter = rpcAppRouter({
 					administration,
 				);
 				if (!possibleJourneys.length) {
-					return hafasFallback();
+					throw new TRPCError({
+						code: 'NOT_FOUND',
+					});
 				}
 				let foundJourney: ParsedSearchOnTripResponse | undefined;
 
@@ -235,7 +201,9 @@ export const journeysRpcRouter = rpcAppRouter({
 					foundJourney = await journeyDetails(possibleJourneys[0].journeyID);
 				}
 				if (!foundJourney) {
-					return hafasFallback();
+					throw new TRPCError({
+						code: 'NOT_FOUND',
+					});
 				}
 
 				if (hafasResult) {

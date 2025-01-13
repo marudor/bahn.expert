@@ -2,21 +2,17 @@ import type { ServerStorage } from '@/client/Common/Storage';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 
 export function sanitizeStorage(storage: ServerStorage): void {
-	sanitizeFavs(storage, 'favs');
-	sanitizeFavs(storage, 'regionalFavs');
-	sanitizeRoutingFavs(storage, 'rfavs');
+	sanitizeFavs(storage);
+	sanitizeRoutingFavs(storage);
 }
 
-function sanitizeFavs(
-	storage: ServerStorage,
-	storageKey: 'favs' | 'regionalFavs',
-) {
-	const favs = storage.get(storageKey);
+function sanitizeFavs(storage: ServerStorage) {
+	const favs = storage.get('favs');
 	if (!favs) {
 		return;
 	}
 	if (typeof favs !== 'object') {
-		storage.remove(storageKey);
+		storage.remove('favs');
 		return;
 	}
 	let modified = false;
@@ -26,23 +22,20 @@ function sanitizeFavs(
 			modified = true;
 		}
 	}
-	if (modified) storage.set(storageKey, favs);
+	if (modified) storage.set('favs', favs);
 }
 
 function isCurrentFormatFav(stop?: MinimalStopPlace): boolean {
 	return Boolean(stop?.evaNumber && stop.name);
 }
 
-export function sanitizeRoutingFavs(
-	storage: ServerStorage,
-	storageKey: 'rfavs',
-): void {
-	const favs = storage.get(storageKey);
+export function sanitizeRoutingFavs(storage: ServerStorage): void {
+	const favs = storage.get('rfavs');
 	if (!favs) {
 		return;
 	}
 	if (typeof favs !== 'object') {
-		storage.remove(storageKey);
+		storage.remove('rfavs');
 		return;
 	}
 	let modified = false;
@@ -58,5 +51,5 @@ export function sanitizeRoutingFavs(
 			modified = true;
 		}
 	}
-	if (modified) storage.set(storageKey, favs);
+	if (modified) storage.set('rfavs', favs);
 }

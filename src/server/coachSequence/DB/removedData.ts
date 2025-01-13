@@ -1,21 +1,8 @@
-import { Cache, CacheDatabase } from '@/server/cache';
-import type {
-	CoachSequenceCoachFeatures,
-	CoachSequenceInformation,
-} from '@/types/coachSequence';
+import { CacheDatabase, type CacheType, getCache } from '@/server/cache';
+import type { CoachSequenceInformation } from '@/types/coachSequence';
 
-// evn => removedData for a specific journeyId
-type RemovedData = Record<
-	string,
-	{
-		identificationNumber: string;
-		features: CoachSequenceCoachFeatures;
-	}
->;
-
-const removedDataCache = new Cache<RemovedData>(
-	CacheDatabase.CoachSequenceRemovedData,
-);
+const removedDataCache = getCache(CacheDatabase.CoachSequenceRemovedData);
+type RemovedData = CacheType<typeof removedDataCache>;
 
 export async function fixRemovedData(
 	risTransportsSequence: CoachSequenceInformation,

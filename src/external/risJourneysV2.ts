@@ -12,7 +12,7 @@ import type {
 } from '@/external/generated/risJourneysV2';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import type { ParsedProduct } from '@/types/HAFAS';
 import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
 import type { RouteStop } from '@/types/routing';
@@ -39,11 +39,9 @@ const client = new JourneysApi(
 	axiosWithTimeout,
 );
 
-const journeyFindCache = new Cache<JourneyFindResult[]>(
-	CacheDatabase.JourneyFindV2,
-);
+const journeyFindCache = getCache(CacheDatabase.JourneyFindV2);
 
-const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.JourneyV2);
+const journeyCache = getCache(CacheDatabase.JourneyV2);
 
 export const health = {
 	has401: false,

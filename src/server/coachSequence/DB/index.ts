@@ -1,17 +1,13 @@
 import { isWithin20Hours } from '@/external/risTransports/config';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { getRisTransportsCoachSequence } from '@/server/coachSequence/DB/risTransports';
 import type { CoachSequenceInformation } from '@/types/coachSequence';
 import { format } from 'date-fns';
 
 const formatDate = (date?: Date) =>
 	date ? format(date, 'yyyyMMddHHmm') : undefined;
-// const formatPlannedDate = (date?: Date) =>
-//   date ? format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMdd') : undefined;
 
-const coachSequenceCache = new Cache<CoachSequenceInformation>(
-	CacheDatabase.ParsedCoachSequenceFound,
-);
+const coachSequenceCache = getCache(CacheDatabase.ParsedCoachSequenceFound);
 
 export async function DBCoachSequence(
 	trainNumber: string,

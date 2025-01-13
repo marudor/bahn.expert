@@ -1,11 +1,11 @@
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { stationMetaFilter } from '@/server/iris/stationMetaFilter';
 import type { IrisStation, IrisStationWithRelated } from '@/types/iris';
 import xmljs from 'libxmljs2';
 import type { Element } from 'libxmljs2';
 import { irisGetRequest } from './helper';
 
-const cache = new Cache<IrisStation | null>(CacheDatabase.IrisTTSStation);
+const cache = getCache(CacheDatabase.IrisTTSStation);
 
 export function parseStation(stationNode: xmljs.Element): IrisStation {
 	const station: any = {};

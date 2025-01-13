@@ -22,7 +22,12 @@ export const MostUsed: FC = () => {
 	return (
 		<>
 			{mostUsed.map((m) => (
-				<FavEntry data-testid="mostUsedEntry" key={m.evaNumber} fav={m} />
+				<FavEntry
+					data-testid="mostUsedEntry"
+					key={m.evaNumber}
+					fav={m}
+					noDelete
+				/>
 			))}
 		</>
 	);

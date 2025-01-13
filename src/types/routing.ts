@@ -9,10 +9,8 @@ import type {
 	CommonStopInfo,
 	HafasStation,
 	ParsedProduct,
-	ProdL,
 	RemL,
 } from './HAFAS';
-import type { SecL } from './HAFAS/TripSearch';
 import type { Message } from './iris';
 
 export interface RouteStop {
@@ -64,8 +62,6 @@ export interface RouteJourney {
 	jid?: string;
 	// RIS JourneyID
 	journeyId?: string;
-	product?: ProdL;
-	raw?: SecL;
 	segmentDestination: MinimalStopPlace;
 	segmentStart: MinimalStopPlace;
 	stops: RouteStop[];
