@@ -1,10 +1,9 @@
 import { trpc } from '@/router';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import debounce from 'debounce-promise';
-import type { ControllerStateAndHelpers } from 'downshift';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-interface UseStationSearchOptions {
+interface UseStopPlaceSearchOptions {
 	maxSuggestions: number;
 	filterForIris?: boolean;
 	groupedBySales?: boolean;
@@ -15,7 +14,7 @@ const itemToString = (s: MinimalStopPlace | null) => (s ? s.name : '');
 export const useStopPlaceSearch = ({
 	filterForIris,
 	maxSuggestions,
-}: UseStationSearchOptions) => {
+}: UseStopPlaceSearchOptions) => {
 	const [suggestions, setSuggestions] = useState<MinimalStopPlace[]>([]);
 	const [loading, setLoading] = useState(false);
 	const trpcUtils = trpc.useUtils();
@@ -36,6 +35,10 @@ export const useStopPlaceSearch = ({
 
 	const loadOptions = useCallback(
 		async (value: string) => {
+			if (!value) {
+				setSuggestions([]);
+				return;
+			}
 			setLoading(true);
 
 			const currentSuggestions = await stopPlaceFn(value);
@@ -45,7 +48,6 @@ export const useStopPlaceSearch = ({
 		},
 		[stopPlaceFn],
 	);
-	const selectRef = useRef<ControllerStateAndHelpers<MinimalStopPlace>>(null);
 
 	return {
 		loadOptions,
@@ -53,6 +55,5 @@ export const useStopPlaceSearch = ({
 		setSuggestions,
 		loading,
 		itemToString,
-		selectRef,
 	};
 };
