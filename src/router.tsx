@@ -51,7 +51,14 @@ export const trpcClient = trpc.createClient({
 const queryClientOptions: QueryClientConfig = {
 	defaultOptions: {
 		queries: {
-			staleTime: 3000,
+			staleTime(query) {
+				// @ts-expect-error ugly but wqorks
+				switch (query.queryKey?.[0]?.[0]) {
+					case 'stopPlace':
+						return Number.POSITIVE_INFINITY;
+				}
+				return 3000;
+			},
 			retry: 0,
 			refetchOnWindowFocus: false,
 		},
@@ -91,7 +98,6 @@ export function createRouter(request?: Request) {
 
 	return createReactRouter({
 		context: {
-			fullUrl: request?.url || window.location.href,
 			baseUrl: request?.url ? new URL(request.url).host : window.location.host,
 			trpcUtils,
 		},
@@ -110,6 +116,7 @@ export function createRouter(request?: Request) {
 		dehydrate: () => ({
 			queryClientState: dehydrate(queryClient),
 		}),
+		defaultPreload: 'intent',
 	});
 }
 

@@ -3,7 +3,7 @@ import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { MenuItem, Paper, TextField, styled } from '@mui/material';
-import Downshift from 'downshift';
+import { useCombobox } from 'downshift';
 import { useCallback, useRef } from 'react';
 import type { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import { Loading, LoadingType } from './Loading';
@@ -43,7 +43,7 @@ export interface Props {
 
 export const StopPlaceSearch: FC<Props> = ({
 	id,
-	onChange,
+	onChange: stopPlaceOnChange,
 	value,
 	autoFocus,
 	placeholder,
@@ -65,129 +65,113 @@ export const StopPlaceSearch: FC<Props> = ({
 		[showRl100],
 	);
 
-	const {
-		suggestions,
-		setSuggestions,
-		loading,
-		loadOptions,
-		itemToString,
-		selectRef,
-	} = useStopPlaceSearch({
-		filterForIris,
-		maxSuggestions,
-		groupedBySales,
-	});
+	const { suggestions, setSuggestions, loading, loadOptions, itemToString } =
+		useStopPlaceSearch({
+			filterForIris,
+			maxSuggestions,
+			groupedBySales,
+		});
 
 	const downshiftOnChange = useCallback(
-		(stopPlace: MinimalStopPlace | null) => {
+		({
+			selectedItem: stopPlace,
+		}: { selectedItem: MinimalStopPlace | null }) => {
 			inputRef.current?.blur();
-			onChange(stopPlace || undefined);
+			stopPlaceOnChange(stopPlace || undefined);
 		},
-		[onChange],
+		[stopPlaceOnChange],
 	);
+
+	const {
+		getItemProps,
+		getLabelProps,
+		getMenuProps,
+		getInputProps,
+		highlightedIndex,
+		inputValue,
+		isOpen,
+		openMenu,
+		setInputValue,
+	} = useCombobox({
+		id,
+		items: suggestions,
+		defaultHighlightedIndex: 0,
+		selectedItem: value || null,
+		itemToString,
+		onSelectedItemChange: downshiftOnChange,
+	});
+
+	const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+		onChange: ((event) => {
+			void loadOptions(event.target.value);
+		}) as ChangeEventHandler<HTMLInputElement>,
+		onFocus: (() => {
+			if (value && value.name === inputValue) {
+				setInputValue('');
+			}
+			if (suggestions.length) {
+				openMenu();
+			}
+		}) as FocusEventHandler<HTMLInputElement>,
+		onBlur: (() => {
+			setSuggestions([]);
+			if (value) {
+				setInputValue(value.name);
+			}
+		}) as FocusEventHandler<HTMLInputElement>,
+		placeholder,
+		autoFocus,
+		ref: inputRef,
+	});
 
 	return (
 		<Container>
-			<Downshift
-				id={id}
-				defaultHighlightedIndex={0}
-				// @ts-expect-error ???
-				ref={selectRef}
-				selectedItem={value || null}
-				itemToString={itemToString}
-				onChange={downshiftOnChange}
-			>
-				{({
-					clearSelection,
-					getInputProps,
-					getItemProps,
-					getLabelProps,
-					getMenuProps,
-					highlightedIndex,
-					inputValue,
-					isOpen,
-					setState,
-					openMenu,
-				}) => {
-					const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
-						onChange: ((event) => {
-							if (event.target.value === '') {
-								clearSelection();
-							} else {
-								void loadOptions(event.target.value);
-							}
-						}) as ChangeEventHandler<HTMLInputElement>,
-						onFocus: (() => {
-							if (value && value.name === inputValue) {
-								setState({ inputValue: '' });
-							}
-							if (suggestions.length) {
-								openMenu();
-							}
-						}) as FocusEventHandler<HTMLInputElement>,
-						onBlur: (() => {
-							setSuggestions([]);
-							if (value) {
-								setState({ inputValue: value.name });
-							}
-						}) as FocusEventHandler<HTMLInputElement>,
-						placeholder,
-						autoFocus,
-						ref: inputRef,
-					});
+			<div data-testid={id}>
+				<TextField
+					fullWidth
+					slotProps={{
+						inputLabel: getLabelProps({ shrink: true }),
+						input: {
+							onBlur,
+							onChange,
+							onFocus,
+						},
+						htmlInput: {
+							...inputProps,
+							'data-testid': 'stopPlaceSearchInput',
+						},
+					}}
+				/>
+				<div {...getMenuProps()}>
+					{isOpen && (
+						<SuggestionContainer square>
+							{suggestions.length ? (
+								suggestions.map((suggestion, index) => {
+									const itemProps = getItemProps({
+										item: suggestion,
+										index,
+									});
+									const highlighted = highlightedIndex === index;
 
-					return (
-						<div data-testid={id}>
-							<TextField
-								fullWidth
-								slotProps={{
-									inputLabel: getLabelProps({ shrink: true }),
-									input: {
-										onBlur,
-										onChange,
-										onFocus,
-									},
-									htmlInput: {
-										...inputProps,
-										'data-testid': 'stopPlaceSearchInput',
-									},
-								}}
-							/>
-							<div {...getMenuProps()}>
-								{isOpen && (
-									<SuggestionContainer square>
-										{suggestions.length ? (
-											suggestions.map((suggestion, index) => {
-												const itemProps = getItemProps({
-													item: suggestion,
-													index,
-												});
-												const highlighted = highlightedIndex === index;
-
-												return (
-													<MenuItem
-														data-testid="stopPlaceSearchMenuItem"
-														{...itemProps}
-														key={suggestion.evaNumber}
-														selected={highlighted}
-														component="div"
-													>
-														{formatSuggestion(suggestion)}
-													</MenuItem>
-												);
-											})
-										) : (
-											<MenuItem>
-												{loading ? 'Loading...' : 'No options'}
-											</MenuItem>
-										)}
-									</SuggestionContainer>
-								)}
-							</div>
-						</div>
-					);
-				}}
-			</Downshift>
+									return (
+										<MenuItem
+											data-testid="stopPlaceSearchMenuItem"
+											{...itemProps}
+											key={suggestion.evaNumber}
+											selected={highlighted}
+											component="div"
+										>
+											{formatSuggestion(suggestion)}
+										</MenuItem>
+									);
+								})
+							) : (
+								<MenuItem>{loading ? 'Loading...' : 'No options'}</MenuItem>
+							)}
+						</SuggestionContainer>
+					)}
+				</div>
+			</div>
 			{loading && <PositionedLoading type={LoadingType.dots} />}
 		</Container>
 	);

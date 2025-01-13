@@ -69,7 +69,6 @@ window.$RefreshSig$ = () => (type) => type`,
 let plausibleScript: (typeof scripts)[number] | undefined;
 
 export const Route = createRootRouteWithContext<{
-	fullUrl: string;
 	baseUrl: string;
 	trpcUtils: TRPCQueryUtilsType;
 }>()({
