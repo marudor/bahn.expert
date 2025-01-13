@@ -1,7 +1,5 @@
-import { constants } from 'node:zlib';
 import { defineConfig } from '@tanstack/start/config';
 import react from '@vitejs/plugin-react';
-import { compression } from 'vite-plugin-compression2';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
 const buildNoExternal = [
@@ -32,19 +30,6 @@ const vinxiConfig = defineConfig({
 	},
 	routers: {
 		client: {
-			vite: {
-				plugins: [
-					compression(),
-					compression({
-						algorithm: 'brotliCompress',
-						compressionOptions: {
-							params: {
-								[constants.BROTLI_PARAM_QUALITY]: 11,
-							},
-						},
-					}),
-				],
-			},
 			entry: './src/client/index.tsx',
 		},
 		ssr: {
@@ -59,6 +44,16 @@ const vinxiConfig = defineConfig({
 		},
 	},
 	server: {
+		compressPublicAssets: {
+			brotli: true,
+			gzip: true,
+		},
+		publicAssets: [
+			{
+				dir: 'public',
+				maxAge: 60 * 60 * 24 * 360,
+			},
+		],
 		plugins: ['./src/server/admin/nitroPlugin.ts'],
 		commonJS: {
 			include: ['dom-helpers', 'maplibre-gl'],

@@ -1,4 +1,3 @@
-import { checkSecrets } from '@/server/checkSecret';
 import { nameMap } from '@/server/coachSequence/baureihe';
 import { getSeatsForCoach } from '@/server/coachSequence/specialSeats';
 import type {
@@ -10,8 +9,6 @@ import Axios from 'axios';
 
 const apiUrl = process.env.PRIVATE_API_URL;
 const apiKey = process.env.PRIVATE_API_KEY;
-
-checkSecrets(apiUrl, apiKey);
 
 export const planSequenceAxios = Axios.create({
 	baseURL: `${apiUrl}/plannedSequence/v1`,
