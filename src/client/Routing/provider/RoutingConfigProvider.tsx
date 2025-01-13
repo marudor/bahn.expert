@@ -2,18 +2,6 @@ import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import constate from '@/constate';
 import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import {
-	addDays,
-	endOfDay,
-	isSameDay,
-	isSameYear,
-	isWithinInterval,
-	lightFormat,
-	startOfDay,
-	subDays,
-} from 'date-fns';
-import type { Day } from 'date-fns';
-import { de as deLocale } from 'date-fns/locale/de';
 import { useCallback, useMemo, useState } from 'react';
 import type { PropsWithChildren, SyntheticEvent } from 'react';
 
@@ -60,33 +48,6 @@ const useRoutingConfigInternal = ({
 	const [touchedDate, setTouchedDate] = useState(Boolean(initialDate));
 	const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
 	const [departureMode, setDepartureMode] = useState<'an' | 'ab'>('ab');
-	const formattedDate = useMemo(() => {
-		if (!touchedDate) {
-			return `Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`;
-		}
-		const today = startOfDay(new Date());
-		const tomorrow = endOfDay(addDays(today, 1));
-		const yesterday = subDays(today, 1);
-
-		let relativeDayString = '';
-
-		if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
-			if (isSameDay(date, today)) relativeDayString = 'Heute';
-			else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
-			else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
-			relativeDayString += `, ${deLocale.localize?.day(date.getDay() as Day, {
-				width: 'short',
-			})}`;
-		} else {
-			relativeDayString = deLocale.localize?.day(date.getDay() as Day);
-		}
-		relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
-		if (!isSameYear(date, today)) {
-			relativeDayString += lightFormat(date, 'yyyy');
-		}
-		relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
-		return relativeDayString;
-	}, [touchedDate, date]);
 
 	const [routingConfig, setRoutingConfig] = useExpertCookies(routingConfigKeys);
 
@@ -156,7 +117,6 @@ const useRoutingConfigInternal = ({
 		updateSetting,
 		departureMode,
 		updateDepartureMode,
-		formattedDate,
 	};
 };
 
@@ -174,7 +134,6 @@ export const [
 		via: v.via,
 		touchedDate: v.touchedDate,
 		departureMode: v.departureMode,
-		formattedDate: v.formattedDate,
 	}),
 	(v) => v.settings,
 	(v) => ({

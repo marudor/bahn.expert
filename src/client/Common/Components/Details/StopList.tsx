@@ -110,7 +110,7 @@ export const StopList: FC = () => {
 	}, [details, currentSequenceStop, onStopClick, initialDepartureDate]);
 
 	if (error) {
-		return <Error error={error} context="Zug" />;
+		return <Error error={error} />;
 	}
 
 	if (!details) {

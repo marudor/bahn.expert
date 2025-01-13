@@ -124,7 +124,7 @@ const InnerAbfahrtenList = () => {
 	}, [departures, scrolled, selectedDetail, setScrolled]);
 
 	if (abfahrtenError) {
-		return <Error error={abfahrtenError} context="Halt" />;
+		return <Error />;
 	}
 
 	return (

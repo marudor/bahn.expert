@@ -3,15 +3,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import z from 'zod';
 
 export const Route = createFileRoute('/details/$train')({
-	loader: (ctx) => {
-		// @ts-expect-error sadly location search not typed
-		if (ctx.location.search.journeyId) {
-			return ctx.context.trpcUtils.journeys.detailsByJourneyId.fetch(
-				// @ts-expect-error sadly location search not typed
-				ctx.location.search.journeyId,
-			);
-		}
-	},
 	validateSearch: z.object({
 		evaNumberAlongRoute: z.string().optional(),
 		stopEva: z.string().optional(),

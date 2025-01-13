@@ -3,7 +3,7 @@ name: next branch
 on:
   push:
     branches:
-      - next2
+      - next
 
 env:
   CI: "true"

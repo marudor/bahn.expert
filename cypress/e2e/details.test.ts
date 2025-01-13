@@ -14,7 +14,7 @@ describe('Details', () => {
 		cy.visit('/details/ICE70');
 		cy.findByTestId('error')
 			.should('exist')
-			.should('have.text', 'Unbekannter Zug');
+			.should('have.text', 'Nicht gefunden');
 	});
 
 	it('icon spins on reload', () => {

@@ -45,15 +45,14 @@ const useInnerDetails = ({
 		refetch: refetchDetails,
 		isFetching,
 		error,
-	} = journeyId
-		? trpc.journeys.detailsByJourneyId.useQuery(journeyId)
-		: trpc.journeys.details.useQuery({
-				trainName,
-				initialDepartureDate,
-				evaNumberAlongRoute,
-				administration,
-				jid,
-			});
+	} = trpc.journeys.details.useQuery({
+		trainName,
+		initialDepartureDate,
+		evaNumberAlongRoute,
+		administration,
+		journeyId,
+		jid,
+	});
 
 	const [additionalInformation, setAdditionalInformation] =
 		useState<AdditionalJourneyInformation>();
