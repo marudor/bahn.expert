@@ -7,7 +7,6 @@ import type {
 	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneysV2';
-import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
@@ -23,6 +22,21 @@ import {
 	subHours,
 } from 'date-fns';
 import administrationNames from '../names.json';
+
+export function calculateCurrentStopPlace(
+	segment: JourneyResponse,
+): RouteStop | undefined {
+	const currentDate = Date.now();
+
+	return segment.stops.find((s) => {
+		const stopInfo =
+			s.departure && !s.departure.cancelled ? s.departure : s.arrival;
+
+		return (
+			stopInfo && !stopInfo.cancelled && isAfter(stopInfo.time, currentDate)
+		);
+	});
+}
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
