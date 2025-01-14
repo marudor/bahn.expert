@@ -9,7 +9,10 @@ interface Props {
 }
 
 export const WalkSegmentTrain: FC<Props> = ({ segment, className }) => {
-	const mapsLink = `https://www.google.com/maps/dir/?api=1&origin=${segment.segmentStart.coordinates.lat},${segment.segmentStart.coordinates.lng}&destination=${segment.segmentDestination.coordinates.lat},${segment.segmentDestination.coordinates.lng}&travelmode=walking`;
+	if (!segment.segmentDestination.position || !segment.segmentStart.position) {
+		return null;
+	}
+	const mapsLink = `https://www.google.com/maps/dir/?api=1&origin=${segment.segmentStart.position.latitude},${segment.segmentStart.position.longitude}&destination=${segment.segmentDestination.position.latitude},${segment.segmentDestination.position.longitude}&travelmode=walking`;
 
 	return (
 		<div className={className}>

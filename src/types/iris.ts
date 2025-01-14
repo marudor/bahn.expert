@@ -1,5 +1,5 @@
-import type { CommonProductInfo, CommonStopInfo } from '@/types/HAFAS';
-import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { CommonProductInfo } from '@/types/journey';
+import type { CommonStopInfo, MinimalStopPlace } from '@/types/stopPlace';
 
 export interface IrisStationWithRelated {
 	station: IrisStation;

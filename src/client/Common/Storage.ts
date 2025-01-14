@@ -14,7 +14,6 @@ const setCookieOptions: CookieSetOptions = {
 
 export interface WebConfigMap extends CommonConfig, RoutingSettings {
 	readonly selectedDetail: string;
-	readonly regionalFavs: Favs;
 	readonly favs: Favs;
 	readonly rfavs: RoutingFavs;
 	readonly defaultFilter: string[];

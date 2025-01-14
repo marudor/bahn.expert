@@ -5,12 +5,12 @@ import type {
 	BahnDERoutingAbschnitt,
 } from '@/bahnde/types';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import type { CommonStopInfo } from '@/types/HAFAS';
 import {
 	AuslastungsValue,
 	type RouteAuslastung,
 	type RouteStop,
 } from '@/types/routing';
+import type { CommonStopInfo } from '@/types/stopPlace';
 import { tz } from '@date-fns/tz';
 import { differenceInMinutes, parseISO } from 'date-fns';
 

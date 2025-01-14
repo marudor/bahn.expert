@@ -2,13 +2,13 @@ import { EventType, TimeType } from '@/external/generated/risJourneys';
 import type { ArrivalDepartureEvent } from '@/external/generated/risJourneys';
 import type { TransportDestinationPortionWorkingRef } from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneys';
-import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { getAbfahrten } from '@/server/iris';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
-import type { CommonStopInfo } from '@/types/HAFAS';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import { calculateCurrentStopPlace } from '@/server/journeys/v2/journeyDetails';
+import type { JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
+import type { CommonStopInfo } from '@/types/stopPlace';
 import {
 	compareDesc,
 	differenceInMinutes,
@@ -22,7 +22,7 @@ import {
 const trainNumberRegex = /(.*?)(\d+).*/;
 
 export async function addIrisMessagesToDetails(
-	details: ParsedSearchOnTripResponse,
+	details: JourneyResponse,
 ): Promise<void> {
 	const irisStop = details.currentStop || details.stops.at(-1);
 
@@ -227,7 +227,7 @@ async function stopsFromEvents(
 
 export async function journeyDetails(
 	journeyId: string,
-): Promise<ParsedSearchOnTripResponse | undefined> {
+): Promise<JourneyResponse | undefined> {
 	const journey = await getJourneyDetails(journeyId);
 	if (!journey?.events?.length) {
 		return undefined;
@@ -248,7 +248,7 @@ export async function journeyDetails(
 		...new Set(journey.events.map((e) => e.administration.operatorName)),
 	].join(', ');
 
-	const result: ParsedSearchOnTripResponse = {
+	const result: JourneyResponse = {
 		stops,
 		segmentStart: firstStop.station,
 		segmentDestination: lastStop.station,
@@ -265,9 +265,7 @@ export async function journeyDetails(
 			admin: firstEvent.administration.administrationID,
 			line: getLineFromNumber(firstEvent.transport.number.toString()),
 			transportType: firstEvent.transport.type,
-			operator: {
-				name: operatorNames,
-			},
+			operator: operatorNames,
 		},
 		type: 'JNY',
 		cancelled: stops.every((s) => s.cancelled) || undefined,

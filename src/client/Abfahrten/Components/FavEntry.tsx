@@ -38,8 +38,8 @@ const UnclickablePaper = styled(BasePaper)`
 
 interface Props {
 	fav: MinimalStopPlace;
-	favKey?: 'regionalFavs' | 'favs';
 	'data-testid'?: string;
+	noDelete?: boolean;
 }
 
 interface FavEntryDisplayProps {
@@ -75,14 +75,14 @@ export const FavEntryDisplay: FC<FavEntryDisplayProps> = ({
 export const FavEntry: FC<Props> = ({
 	fav,
 	'data-testid': testid = 'favEntry',
-	favKey,
+	noDelete,
 }) => {
-	const unfav = useUnfavAction(favKey);
+	const unfav = useUnfavAction();
 	const deleteFav = useCallback(
 		(e: MouseEvent) => {
 			e.stopPropagation();
 			e.preventDefault();
-			unfav?.(fav);
+			unfav(fav);
 		},
 		[fav, unfav],
 	);
@@ -98,7 +98,7 @@ export const FavEntry: FC<Props> = ({
 		>
 			<FavEntryDisplay
 				text={fav.name}
-				deleteFav={favKey ? deleteFav : undefined}
+				deleteFav={noDelete ? undefined : deleteFav}
 			/>
 		</Link>
 	);

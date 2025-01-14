@@ -8,20 +8,17 @@ import { TravelsWith } from '@/client/Common/Components/Details/TravelsWith';
 import { Platform } from '@/client/Common/Components/Platform';
 import { StopPlaceLink } from '@/client/Common/Components/StopPlaceLink';
 import { Time } from '@/client/Common/Components/Time';
-import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import type {
 	TransportDestinationRef,
 	TransportOriginRef,
 } from '@/external/generated/risJourneysV2';
-import type { ParsedProduct } from '@/types/HAFAS';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { CommonProductInfo, JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import { Stack, Tooltip, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import type { FC, MouseEvent } from 'react';
 import { CoachSequence } from '../CoachSequence/CoachSequence';
 import { DetailMessages } from '../Messages/Detail';
-import { Messages } from './Messages';
 
 const ArrivalTime = styled(Time)`
   grid-area: ar;
@@ -127,10 +124,10 @@ const Container = styled('div')<{
 );
 
 interface Props {
-	journey?: ParsedSearchOnTripResponse;
+	journey?: JourneyResponse;
 	stop: RouteStop;
-	train?: ParsedProduct;
-	showWR?: ParsedProduct;
+	train?: CommonProductInfo;
+	showWR?: CommonProductInfo;
 	isPast?: boolean;
 	initialDepartureDate?: Date;
 	onStopClick?: (stop: RouteStop) => void;
@@ -150,13 +147,7 @@ export const Stop: FC<Props> = ({
 	continuationBy,
 	continuationFor,
 }) => {
-	const { additionalInformation } = useDetails();
-	const occupancy = useMemo(
-		() =>
-			additionalInformation?.occupancy[stop.station.evaNumber] ||
-			stop.auslastung,
-		[stop, additionalInformation],
-	);
+	const occupancy = stop.auslastung;
 
 	const [platforms, showArrivalPlatform] = useMemo(() => {
 		const platforms = {
@@ -286,7 +277,6 @@ export const Stop: FC<Props> = ({
 			<MessageContainer>
 				<CodeShares codeShares={stop.codeShares} />
 				{stop.irisMessages && <DetailMessages messages={stop.irisMessages} />}
-				<Messages messages={stop.messages} />
 			</MessageContainer>
 		</Container>
 	);

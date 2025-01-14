@@ -12,9 +12,8 @@ import type {
 } from '@/external/generated/risJourneysV2';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
-import type { ParsedProduct } from '@/types/HAFAS';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import { CacheDatabase, getCache } from '@/server/cache';
+import type { CommonProductInfo, JourneyFindResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
 import { format, isBefore, isEqual, isSameDay, subDays } from 'date-fns';
@@ -39,11 +38,9 @@ const client = new JourneysApi(
 	axiosWithTimeout,
 );
 
-const journeyFindCache = new Cache<JourneyFindResult[]>(
-	CacheDatabase.JourneyFindV2,
-);
+const journeyFindCache = getCache(CacheDatabase.JourneyFindV2);
 
-const journeyCache = new Cache<JourneyEventBased>(CacheDatabase.JourneyV2);
+const journeyCache = getCache(CacheDatabase.JourneyV2);
 
 export const health = {
 	has401: false,
@@ -57,7 +54,7 @@ const trainTypes: string[] = [
 	'CITY_TRAIN',
 ];
 
-const mapTransportToTrain = (transport: Transport): ParsedProduct => ({
+const mapTransportToTrain = (transport: Transport): CommonProductInfo => ({
 	name: `${transport.category} ${
 		longDistanceTypes.includes(transport.type)
 			? transport.journeyNumber
@@ -127,9 +124,9 @@ export function sortJourneys(
 	return 0;
 }
 
-function mapToParsedJourneyMatchResponse(
+function mapToJourneyFindResponse(
 	journeyFindResult: JourneyFindResult,
-): ParsedJourneyMatchResponse {
+): JourneyFindResponse {
 	return {
 		// Technically wrong!
 		jid: journeyFindResult.journeyID,
@@ -278,10 +275,10 @@ export async function findJourneyHafasCompatible(
 	date: Date,
 	category?: string,
 	withOEV?: boolean,
-): Promise<ParsedJourneyMatchResponse[]> {
+): Promise<JourneyFindResponse[]> {
 	const risResult = await findJourney(trainNumber, date, category, withOEV);
 
-	return Promise.all(risResult.map(mapToParsedJourneyMatchResponse));
+	return Promise.all(risResult.map(mapToJourneyFindResponse));
 }
 
 export async function getJourneyDetails(

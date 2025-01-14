@@ -4,15 +4,12 @@ import type {
 	TransportDestinationRef,
 	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
-import type { MinimalStopPlace } from '@/types/stopPlace';
+import type { CommonProductInfo } from '@/types/journey';
 import type {
 	CommonStopInfo,
-	HafasStation,
-	ParsedProduct,
-	ProdL,
-	RemL,
-} from './HAFAS';
-import type { SecL } from './HAFAS/TripSearch';
+	GroupedStopPlace,
+	MinimalStopPlace,
+} from '@/types/stopPlace';
 import type { Message } from './iris';
 
 export interface RouteStop {
@@ -20,7 +17,6 @@ export interface RouteStop {
 	departure?: CommonStopInfo;
 	station: MinimalStopPlace;
 	auslastung?: RouteAuslastung;
-	messages?: RemL[];
 	additional?: boolean;
 	cancelled?: boolean;
 	irisMessages?: Message[];
@@ -64,14 +60,12 @@ export interface RouteJourney {
 	jid?: string;
 	// RIS JourneyID
 	journeyId?: string;
-	product?: ProdL;
-	raw?: SecL;
 	segmentDestination: MinimalStopPlace;
 	segmentStart: MinimalStopPlace;
 	stops: RouteStop[];
-	train: ParsedProduct;
+	train: CommonProductInfo;
 	auslastung?: RouteAuslastung;
-	messages?: RemL[];
+	messages?: string[];
 	tarifSet?: RouteTarifFareSet[];
 }
 export interface RouteJourneySegmentTrain extends RouteJourney {
@@ -86,17 +80,20 @@ export interface WalkStopInfo {
 	delay?: number;
 }
 
+export type RoutingStopPlace = MinimalStopPlace &
+	Pick<GroupedStopPlace, 'position'>;
+
 export interface RouteJourneySegmentWalk {
 	type: 'WALK';
-	train: ParsedProduct;
+	train: CommonProductInfo;
 	arrival: WalkStopInfo;
 	departure: WalkStopInfo;
 	/**
 	 * @isInt ms
 	 */
 	duration: number;
-	segmentStart: HafasStation;
-	segmentDestination: HafasStation;
+	segmentStart: RoutingStopPlace;
+	segmentDestination: RoutingStopPlace;
 }
 
 export interface RouteTarifFare {

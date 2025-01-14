@@ -101,6 +101,14 @@ describe('Routing', () => {
 			);
 		});
 
+		it('with start, destination & time = 0', () => {
+			cy.visit('/routing/8000105/8002549/0');
+			searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
+			searchInput('routingDestinationSearch', 'Hamburg Hbf');
+			searchInput('addVia', '');
+			cy.findByTestId('routingDatePicker').should('contain.value', 'Jetzt');
+		});
+
 		it('with start, destination, time & 1 via', () => {
 			cy.visit('/routing/8000105/8002549/2020-11-17T10:00:15.589Z/8000244|');
 			searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');

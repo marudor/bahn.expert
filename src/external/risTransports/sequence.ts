@@ -5,7 +5,7 @@ import {
 	risTransportsConfiguration,
 } from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { logger } from '@/server/logger';
 import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'production') {
 	);
 }
 
-const negativeHitCache = new Cache<boolean>(CacheDatabase.NegativeNewSequence);
+const negativeHitCache = getCache(CacheDatabase.NegativeNewSequence);
 
 export async function getDepartureSequence(
 	trainCategory: string,

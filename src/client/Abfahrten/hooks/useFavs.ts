@@ -3,19 +3,16 @@ import type { MinimalStopPlace } from '@/types/stopPlace';
 import { useCallback } from 'react';
 
 export type Favs = Record<string, MinimalStopPlace>;
-export const useFavs = (key?: 'favs' | 'regionalFavs') => {
-	const [cookies] = useExpertCookies([key!]);
-	if (!key) {
-		return {};
-	}
-	const savedFavs = cookies[key];
+export const useFavs = () => {
+	const [cookies] = useExpertCookies(['favs']);
+	const savedFavs = cookies.favs;
 
 	return savedFavs || {};
 };
 
-export const useFavAction = (key: 'favs' | 'regionalFavs') => {
-	const [_, setCookie] = useExpertCookies([key]);
-	const favs = useFavs(key);
+export const useFavAction = () => {
+	const [_, setCookie] = useExpertCookies(['favs']);
+	const favs = useFavs();
 
 	return useCallback(
 		(stopPlace: MinimalStopPlace) => {
@@ -26,28 +23,24 @@ export const useFavAction = (key: 'favs' | 'regionalFavs') => {
 					evaNumber: stopPlace.evaNumber,
 				},
 			};
-			setCookie(key, newFavs);
+			setCookie('favs', newFavs);
 			return newFavs;
 		},
-		[setCookie, favs, key],
+		[setCookie, favs],
 	);
 };
 
-export const useUnfavAction = (key?: 'favs' | 'regionalFavs') => {
-	const [_, setCookie] = useExpertCookies([key!]);
-	const favs = useFavs(key);
+export const useUnfavAction = () => {
+	const [_, setCookie] = useExpertCookies(['favs']);
+	const favs = useFavs();
 
 	return useCallback(
 		(stopPlace: MinimalStopPlace) => {
-			if (!key) {
-				return undefined;
-			}
-
 			delete favs[stopPlace.evaNumber];
 			const newFavs = { ...favs };
-			setCookie(key, newFavs);
+			setCookie('favs', newFavs);
 			return newFavs;
 		},
-		[key, favs, setCookie],
+		[favs, setCookie],
 	);
 };

@@ -1,5 +1,5 @@
 import { stopPropagation } from '@/client/Common/stopPropagation';
-import type { CommonProductInfo } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/journey';
 import { Link } from '@tanstack/react-router';
 import type { FC, PropsWithChildren } from 'react';
 

@@ -5,9 +5,8 @@ import { StopPlaceNameWithRl100 } from '@/client/Common/Components/StopPlaceName
 import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import ArrowBackIos from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
-import Map from '@mui/icons-material/Map';
 import { IconButton, styled } from '@mui/material';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import type { FC } from 'react';
 import { BaseHeader } from '../BaseHeader';
 
@@ -61,10 +60,8 @@ const ArrowForward = styled(ArrowBack.withComponent(ArrowForwardIos))`
 export const Header: FC = () => {
 	const {
 		details,
-		additionalInformation,
 		refreshDetails,
 		trainName,
-		polyline,
 		toggleMapDisplay,
 		initialDepartureDate,
 		sameTrainDaysInFuture,
@@ -79,11 +76,6 @@ export const Header: FC = () => {
 		sameTrainDaysInFuture(-1);
 	}, [sameTrainDaysInFuture]);
 
-	const operatorName = useMemo(
-		() => additionalInformation?.operatorName || details?.train.operator?.name,
-		[additionalInformation, details],
-	);
-
 	return (
 		<BaseHeader>
 			<Container data-testid="detailsHeader">
@@ -91,7 +83,9 @@ export const Header: FC = () => {
 					<FullTrainName train={details?.train} fallback={trainName} />
 				</SingleLineSpan>
 				<>
-					{operatorName && <Operator>{operatorName}</Operator>}
+					{details?.train.operator && (
+						<Operator>{details?.train.operator}</Operator>
+					)}
 					<DateDisplay>
 						<ArrowBack data-testid="previous" onClick={dateBack} />
 						<DateSelectForDetail
@@ -108,7 +102,7 @@ export const Header: FC = () => {
 					)}
 				</>
 			</Container>
-			{polyline && (
+			{/* {polyline && (
 				<IconButton
 					size="small"
 					onClick={toggleMapDisplay}
@@ -117,7 +111,7 @@ export const Header: FC = () => {
 				>
 					<Map />
 				</IconButton>
-			)}
+			)} */}
 			<IconButton
 				size="small"
 				onClick={refresh}

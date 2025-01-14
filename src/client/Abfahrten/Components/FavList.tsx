@@ -10,19 +10,18 @@ import { FavEntry, FavEntryDisplay } from './FavEntry';
 
 interface Props {
 	children?: ReactNode;
-	favKey: 'regionalFavs' | 'favs';
 	mostUsed?: boolean;
 }
 
-export const FavList: FC<Props> = ({ children, favKey, mostUsed }) => {
-	const favs = useFavs(favKey);
+export const FavList: FC<Props> = ({ children, mostUsed }) => {
+	const favs = useFavs();
 	const sortedFavs = useMemo(() => {
 		const values: MinimalStopPlace[] = Object.values(favs);
 
 		return values
 			.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
-			.map((fav) => <FavEntry favKey={favKey} key={fav.evaNumber} fav={fav} />);
-	}, [favs, favKey]);
+			.map((fav) => <FavEntry key={fav.evaNumber} fav={fav} />);
+	}, [favs]);
 	const { updateTitle, updateDescription, updateKeywords } =
 		useHeaderTagsActions();
 

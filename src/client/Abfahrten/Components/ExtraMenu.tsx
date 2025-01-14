@@ -17,11 +17,7 @@ import { useCallback, useState } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 import { FilterModal } from './FilterModal';
 
-interface Props {
-	favKey: 'regionalFavs' | 'favs';
-}
-
-export const ExtraMenu: FC<Props> = ({ favKey }) => {
+export const ExtraMenu: FC = () => {
 	const setFilterOpen = useAbfahrtenFilterOpen();
 	const currentStopPlace = useCurrentAbfahrtenStopPlace();
 	const { data: lageplan } = trpc.stopPlace.lageplan.useQuery(
@@ -31,9 +27,9 @@ export const ExtraMenu: FC<Props> = ({ favKey }) => {
 			staleTime: Number.POSITIVE_INFINITY,
 		},
 	);
-	const favs = useFavs(favKey);
-	const fav = useFavAction(favKey);
-	const unfav = useUnfavAction(favKey);
+	const favs = useFavs();
+	const fav = useFavAction();
+	const unfav = useUnfavAction();
 	const isFaved = Boolean(currentStopPlace && favs[currentStopPlace.evaNumber]);
 	const [anchor, setAnchor] = useState<undefined | HTMLElement>();
 	const toggleFav = useCallback(() => {

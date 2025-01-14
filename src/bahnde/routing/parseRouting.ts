@@ -13,12 +13,13 @@ import type {
 } from '@/bahnde/types';
 import { TransportType } from '@/external/types';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import type { HafasStation, ParsedProduct } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/journey';
 import type {
 	RouteJourneySegment,
 	RouteJourneySegmentTrain,
 	RouteJourneySegmentWalk,
 	RoutingResult,
+	RoutingStopPlace,
 	SingleRoute,
 } from '@/types/routing';
 import { differenceInMilliseconds, differenceInMinutes } from 'date-fns';
@@ -26,7 +27,7 @@ import { differenceInMilliseconds, differenceInMinutes } from 'date-fns';
 const mapWalkSegmentStartDestination = async (
 	input: BahnDERoutingAbschnitt,
 	prefix: 'ankunfts' | 'abfahrts',
-): Promise<HafasStation> => {
+): Promise<RoutingStopPlace> => {
 	let evaNumber = input[`${prefix}OrtExtId`];
 	if (evaNumber.startsWith('0')) {
 		evaNumber = evaNumber.substring(1);
@@ -36,25 +37,17 @@ const mapWalkSegmentStartDestination = async (
 		return {
 			name: input[`${prefix}Ort`],
 			evaNumber,
-			// TODO: make this optional
-			coordinates: {
-				lat: 0,
-				lng: 0,
-			},
 		};
 	}
 	return {
-		coordinates: {
-			lat: risStopPlace.position?.latitude || 0,
-			lng: risStopPlace.position?.longitude || 0,
-		},
+		position: risStopPlace.position,
 		evaNumber,
 		name: risStopPlace.name,
 		ril100: risStopPlace.ril100,
 	};
 };
 
-const mapProduct = (input: BahnDEVerkehrsmittel): ParsedProduct => {
+const mapProduct = (input: BahnDEVerkehrsmittel): CommonProductInfo => {
 	return {
 		name: input.langText || input.mittelText || input.name,
 		line: input.linienNummer,
@@ -62,9 +55,7 @@ const mapProduct = (input: BahnDEVerkehrsmittel): ParsedProduct => {
 		transportType: TransportType.Unknown,
 		number: input.nummer === input.linienNummer ? '0' : input.nummer,
 		type: input.kurzText || input.kategorie,
-		operator: {
-			name: input.zugattribute?.filter((a) => a.key === 'BEF').join(', '),
-		},
+		operator: input.zugattribute?.filter((a) => a.key === 'BEF').join(', '),
 	};
 };
 

@@ -1,14 +1,11 @@
 import { uniqBy } from '@/client/util';
-import {
-	type MatchVehicleID,
-	VehiclesApi,
-} from '@/external/generated/risTransports';
+import { VehiclesApi } from '@/external/generated/risTransports';
 import {
 	isWithin20Hours,
 	risTransportsConfiguration,
 } from '@/external/risTransports/config';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import Axios from 'axios';
 import { addDays, format, isBefore, subDays } from 'date-fns';
@@ -19,13 +16,7 @@ const axiosWithTimeout = Axios.create({
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'vehicles-risTransports');
 
-type CacheType = {
-	previousJourneys: MatchVehicleID[];
-	nextJourneys: MatchVehicleID[];
-};
-const journeyForVehiclesCache = new Cache<CacheType>(
-	CacheDatabase.JourneysForVehicle,
-);
+const journeyForVehiclesCache = getCache(CacheDatabase.JourneysForVehicle);
 
 const vehiclesClient = new VehiclesApi(
 	risTransportsConfiguration,

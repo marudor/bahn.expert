@@ -5,31 +5,20 @@ import type {
 	StopPlace,
 	StopPlaceSearchResult,
 } from '@/external/types';
-import { searchWithHafas } from '@/server/StopPlace/hafasSearch';
 import { manualNameOverrides } from '@/server/StopPlace/manualNameOverrides';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { getSingleStation } from '@/server/iris/station';
 import type { GroupedStopPlace, StopPlaceIdentifier } from '@/types/stopPlace';
 
-const stopPlaceStationSearchCache = new Cache<GroupedStopPlace[]>(
-	CacheDatabase.StopPlaceSearch,
-);
-const stopPlaceSalesSearchCache = new Cache<GroupedStopPlace[]>(
-	CacheDatabase.StopPlaceSalesSearch,
-);
-const stopPlaceIdentifierCache = new Cache<StopPlaceIdentifier | undefined>(
-	CacheDatabase.StopPlaceIdentifier,
-);
-const stopPlaceByRilCache = new Cache<StopPlace>(CacheDatabase.StopPlaceByRil);
-const stopPlaceByRilGroupedCache = new Cache<GroupedStopPlace>(
+const stopPlaceStationSearchCache = getCache(CacheDatabase.StopPlaceSearch);
+const stopPlaceSalesSearchCache = getCache(CacheDatabase.StopPlaceSalesSearch);
+const stopPlaceIdentifierCache = getCache(CacheDatabase.StopPlaceIdentifier);
+const stopPlaceByRilCache = getCache(CacheDatabase.StopPlaceByRil);
+const stopPlaceByRilGroupedCache = getCache(
 	CacheDatabase.StopPlaceByRilGrouped,
 );
-const stopPlaceByEvaCache = new Cache<GroupedStopPlace>(
-	CacheDatabase.StopPlaceByEva,
-);
-const stopPlaceGroupCache = new Cache<ResolvedStopPlaceGroups>(
-	CacheDatabase.StopPlaceGroups,
-);
+const stopPlaceByEvaCache = getCache(CacheDatabase.StopPlaceByEva);
+const stopPlaceGroupCache = getCache(CacheDatabase.StopPlaceGroups);
 
 function mapToGroupedStopPlace(
 	stopPlace: Pick<
@@ -68,18 +57,12 @@ export async function searchStopPlace(
 	filterForIris?: boolean,
 	groupBySales?: boolean,
 ): Promise<GroupedStopPlace[]> {
-	try {
-		const result = await searchStopPlaceRisStations(
-			searchTerm,
-			max,
-			filterForIris,
-			groupBySales,
-		);
-		if (result?.length || filterForIris || groupBySales) return result;
-		return searchWithHafas(searchTerm, max, filterForIris);
-	} catch {
-		return searchWithHafas(searchTerm, max, filterForIris);
-	}
+	return await searchStopPlaceRisStations(
+		searchTerm,
+		max,
+		filterForIris,
+		groupBySales,
+	);
 }
 
 export async function searchStopPlaceRisStations(
@@ -127,17 +110,6 @@ export async function getStopPlaceByEva(
 		await addIdentifiers([groupedStopPlace]);
 		void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
 		return groupedStopPlace;
-	}
-	if (!forceLive) {
-		const hafasResults = await searchWithHafas(evaNumber, 1, false);
-		const groupedHafasResult = hafasResults[0];
-		if (groupedHafasResult && groupedHafasResult.evaNumber === evaNumber) {
-			void stopPlaceByEvaCache.set(
-				groupedHafasResult.evaNumber,
-				groupedHafasResult,
-			);
-			return groupedHafasResult;
-		}
 	}
 }
 

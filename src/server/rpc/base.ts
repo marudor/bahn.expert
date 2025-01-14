@@ -18,7 +18,7 @@ const t = initTRPC
 
 export const rpcAppRouter = t.router;
 export const rpcProcedure = t.procedure.use(async (opts) => {
-	const end = ApiRequestMetric.startTimer();
+	const end = ApiRequestMetric?.startTimer()!;
 	const result = await opts.next();
 	const metricOptions: Parameters<typeof end>[number] = {
 		route: opts.path,
@@ -27,7 +27,7 @@ export const rpcProcedure = t.procedure.use(async (opts) => {
 	if (!result.ok) {
 		metricOptions.status = getHTTPStatusCodeFromError(result.error);
 	}
-	end(metricOptions);
+	end?.(metricOptions);
 
 	return result;
 });

@@ -8,8 +8,6 @@ import {
 import { Timetable } from '@/server/iris/Timetable';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 
-vi.mock('@/server/cache');
-
 describe('withFchg', () => {
 	beforeAll(() => {
 		vi.useFakeTimers({

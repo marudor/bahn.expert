@@ -1,6 +1,5 @@
 import { useStopPlaceSearch } from '@/client/Common/hooks/useStopPlaceSearch';
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
-import type { AllowedHafasProfile } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { MenuItem, Paper, TextField, styled } from '@mui/material';
 import { useCombobox } from 'downshift';
@@ -35,7 +34,6 @@ export interface Props {
 	onChange: (s?: MinimalStopPlace) => any;
 	autoFocus?: boolean;
 	placeholder?: string;
-	profile?: AllowedHafasProfile;
 	maxSuggestions?: number;
 	filterForIris?: boolean;
 	groupedBySales?: boolean;

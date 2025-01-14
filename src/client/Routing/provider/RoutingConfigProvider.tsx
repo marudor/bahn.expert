@@ -1,6 +1,5 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import constate from '@/constate';
-import { AllowedHafasProfile } from '@/types/HAFAS';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import { useCallback, useMemo, useState } from 'react';
 import type { PropsWithChildren, SyntheticEvent } from 'react';
@@ -9,19 +8,11 @@ export interface RoutingSettings {
 	maxChanges: string;
 	transferTime: string;
 	onlyRegional: boolean;
-	onlyNetzcard: boolean;
-	onlyBC100: boolean;
-	hafasProfileN?:
-		| AllowedHafasProfile.DB
-		| AllowedHafasProfile.OEBB
-		| AllowedHafasProfile.BAHN;
 }
 const routingConfigKeys = [
 	'maxChanges',
 	'transferTime',
 	'onlyRegional',
-	'onlyNetzcard',
-	'hafasProfileN',
 ] as (keyof RoutingSettings)[];
 
 const useRoutingConfigInternal = ({
@@ -160,9 +151,6 @@ export const RoutingConfigProvider: FCC<{
 		maxChanges: routingConfig.maxChanges?.toString() ?? '-1',
 		transferTime: routingConfig.transferTime?.toString() ?? '0',
 		onlyRegional: routingConfig.onlyRegional ?? false,
-		onlyNetzcard: routingConfig.onlyNetzcard ?? false,
-		onlyBC100: routingConfig.onlyBC100 ?? false,
-		hafasProfileN: routingConfig.hafasProfileN ?? AllowedHafasProfile.BAHN,
 	};
 
 	return (

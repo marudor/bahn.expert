@@ -7,13 +7,12 @@ import type {
 	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
 import { getJourneyDetails } from '@/external/risJourneysV2';
-import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
-import type { CommonStopInfo } from '@/types/HAFAS';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
+import type { CommonStopInfo } from '@/types/stopPlace';
 import {
 	addHours,
 	differenceInMinutes,
@@ -23,6 +22,21 @@ import {
 	subHours,
 } from 'date-fns';
 import administrationNames from '../names.json';
+
+export function calculateCurrentStopPlace(
+	segment: JourneyResponse,
+): RouteStop | undefined {
+	const currentDate = Date.now();
+
+	return segment.stops.find((s) => {
+		const stopInfo =
+			s.departure && !s.departure.cancelled ? s.departure : s.arrival;
+
+		return (
+			stopInfo && !stopInfo.cancelled && isAfter(stopInfo.time, currentDate)
+		);
+	});
+}
 
 interface StopInfoWithAdditional extends CommonStopInfo {
 	additional?: boolean;
@@ -243,7 +257,7 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 
 export async function journeyDetails(
 	journeyId: string,
-): Promise<ParsedSearchOnTripResponse | undefined> {
+): Promise<JourneyResponse | undefined> {
 	const journey = await getJourneyDetails(journeyId);
 	if (!journey?.events?.length) {
 		return undefined;
@@ -272,7 +286,7 @@ export async function journeyDetails(
 		),
 	].join(', ');
 
-	const result: ParsedSearchOnTripResponse = {
+	const result: JourneyResponse = {
 		stops,
 		segmentStart: firstStop.station,
 		segmentDestination: lastStop.station,
@@ -289,9 +303,7 @@ export async function journeyDetails(
 			admin: firstEvent.transport.administration.administrationID,
 			line: getLineFromNumber(firstEvent.transport.journeyNumber.toString()),
 			transportType: firstEvent.transport.type,
-			operator: {
-				name: operatorNames,
-			},
+			operator: operatorNames,
 		},
 		type: 'JNY',
 		cancelled: stops.every((s) => s.cancelled) || undefined,

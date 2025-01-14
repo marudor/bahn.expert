@@ -3,14 +3,12 @@
  ** derf did awesome work reverse engineering the XML stuff!
  */
 import { uniqBy } from '@/client/util';
-import { getSingleHimMessageOfToday } from '@/server/HAFAS/HimSearch';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { getSingleStation } from '@/server/iris/station';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import type {
 	AbfahrtenResult,
-	HimIrisMessage,
 	IrisMessage,
 	IrisMessages,
 	Stop,
@@ -66,10 +64,7 @@ type ParsedAr = ArDp & {
 	plannedRoutePre?: string[];
 };
 
-const timetableCache = new Cache<{
-	timetable: Record<string, any>;
-	wingIds: Record<string, string>;
-}>(CacheDatabase.TimetableParsedWithWings);
+const timetableCache = getCache(CacheDatabase.TimetableParsedWithWings);
 
 interface Route {
 	name: string;
@@ -404,90 +399,13 @@ export class Timetable {
 			name,
 		};
 	}
-	async parseHafasMessage(
-		mNode: xmljs.Element,
-		viaNames: string[],
-		seenHafasNotes: Set<string>,
-	) {
-		const id = getAttr(mNode, 'id');
-
-		if (!id) return undefined;
-
-		const himMessage = await getSingleHimMessageOfToday(id.slice(1));
-
-		if (!himMessage) return undefined;
-		// Sadly this is not accurate. Often affected Products is not corectly set
-		// if (!himMessage.affectedProducts.some((p) => p.name.endsWith(trainNumber)))
-		//   return undefined;
-		const now = new Date();
-
-		if (
-			isBefore(now, himMessage.startTime) ||
-			isAfter(now, himMessage.endTime)
-		) {
-			return undefined;
-		}
-
-		const message: HimIrisMessage = {
-			timestamp: getTsOfNode(mNode),
-			head: himMessage.head,
-			text: himMessage.text,
-			// short: himMessage.lead === himMessage.text ? undefined : himMessage.lead,
-			source: himMessage.comp,
-			endTime: himMessage.endTime,
-			// @ts-expect-error raw only in dev
-			raw: process.env.NODE_ENV === 'production' ? undefined : himMessage,
-		};
-
-		if (himMessage.fromStopPlace && himMessage.toStopPlace) {
-			const fromIndex = viaNames.indexOf(himMessage.fromStopPlace.name);
-			const toIndex = viaNames.indexOf(himMessage.toStopPlace.name);
-			if (fromIndex !== -1 && toIndex !== -1) {
-				const from =
-					fromIndex < toIndex
-						? himMessage.fromStopPlace.name
-						: himMessage.toStopPlace.name;
-				const to =
-					fromIndex > toIndex
-						? himMessage.fromStopPlace.name
-						: himMessage.toStopPlace.name;
-
-				let stopPlaceInfo = from;
-				if (from !== to) {
-					stopPlaceInfo += ` - ${to}`;
-				}
-				message.stopPlaceInfo = stopPlaceInfo;
-			}
-		}
-
-		const hafasMessageKey = message.text + message.stopPlaceInfo;
-		if (seenHafasNotes.has(hafasMessageKey)) {
-			return undefined;
-		}
-		seenHafasNotes.add(hafasMessageKey);
-
-		return {
-			type: 'him',
-			value: id,
-			message,
-		};
-	}
-	async parseMessage(
-		mNode: xmljs.Element,
-		viaNames: string[],
-		seenHafasNotes: Set<string>,
-	) {
+	async parseMessage(mNode: xmljs.Element) {
 		const value = getNumberAttr(mNode, 'c');
 		const indexType = getAttr(mNode, 't');
 
 		if (!indexType) return undefined;
 		if (indexType === 'h') {
-			const message = await this.parseHafasMessage(
-				mNode,
-				viaNames,
-				seenHafasNotes,
-			);
-			return message;
+			return undefined;
 		}
 		const type: undefined | string =
 			messageTypeLookup[indexType as keyof typeof messageTypeLookup];
@@ -555,11 +473,8 @@ export class Timetable {
 			him: {},
 		};
 
-		const seenHafasNotes = new Set<string>();
 		const parsedMessages = await Promise.all(
-			mArr.map((m) =>
-				this.parseMessage(m, this.timetable[rawId].rawRoute, seenHafasNotes),
-			),
+			mArr.map((m) => this.parseMessage(m)),
 		);
 
 		for (const { type, message, value } of parsedMessages

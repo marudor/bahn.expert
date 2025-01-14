@@ -1,11 +1,8 @@
-import { BC100Disclaimer } from '@/client/Routing/Components/Search/BC100Disclaimer';
-import { NetzcardDisclaimer } from '@/client/Routing/Components/Search/NetzcardDisclaimer';
 import {
 	useRoutingConfigActions,
 	useRoutingSettings,
 } from '@/client/Routing/provider/RoutingConfigProvider';
 import type { RoutingSettings } from '@/client/Routing/provider/RoutingConfigProvider';
-import { AllowedHafasProfile } from '@/types/HAFAS';
 import AllInclusive from '@mui/icons-material/AllInclusive';
 import Cached from '@mui/icons-material/Cached';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -17,10 +14,7 @@ import {
 	AccordionSummary,
 	Badge,
 	Chip,
-	FormControl,
 	FormControlLabel,
-	MenuItem,
-	Select,
 	Stack,
 	Switch,
 	TextField,
@@ -28,7 +22,7 @@ import {
 	styled,
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import type { ChangeEvent, FC } from 'react';
 
 const StyledAccordion = styled(Accordion)`
@@ -57,8 +51,6 @@ const inputCss = css`
 
 export const SettingsPanel: FC = () => {
 	const settings = useRoutingSettings();
-	const [showNetzcardDisclaimer, setShowNetzcardDisclaimer] = useState(false);
-	const [showBC100Disclaimer, setShowBC100Disclaimer] = useState(false);
 	const { updateSettings } = useRoutingConfigActions();
 	const handleInputChange = useCallback(
 		(key: keyof RoutingSettings) => (e: ChangeEvent<HTMLInputElement>) =>
@@ -68,21 +60,6 @@ export const SettingsPanel: FC = () => {
 	const handleSwitchChange = useCallback(
 		(key: keyof RoutingSettings) => (_: unknown, checked: boolean) => {
 			updateSettings(key, checked);
-		},
-		[updateSettings],
-	);
-	const handleNetzcard = useCallback(
-		(_: unknown, checked: boolean) => {
-			updateSettings('onlyNetzcard', checked);
-			setShowNetzcardDisclaimer(checked);
-		},
-		[updateSettings],
-	);
-
-	const handleBC100 = useCallback(
-		(_: unknown, checked: boolean) => {
-			updateSettings('onlyBC100', checked);
-			setShowBC100Disclaimer(checked);
 		},
 		[updateSettings],
 	);
@@ -104,23 +81,12 @@ export const SettingsPanel: FC = () => {
 	}, [settings.maxChanges]);
 
 	let filterLabel = 'Alle Zuege';
-	if (settings.onlyNetzcard && settings.onlyRegional) {
-		filterLabel = 'Nahverkehr (Netzcard)';
-	}
-	if (settings.onlyNetzcard) {
-		filterLabel = 'Netzcard';
-	}
 	if (settings.onlyRegional) {
 		filterLabel = 'Nahverkehr';
-	}
-	if (settings.onlyBC100) {
-		filterLabel = 'BC100';
 	}
 
 	return (
 		<>
-			{showNetzcardDisclaimer && <NetzcardDisclaimer />}
-			{showBC100Disclaimer && <BC100Disclaimer />}
 			<StyledAccordion>
 				<StyledAccordionSummary
 					data-testid="routingSettingsPanel"
@@ -193,52 +159,6 @@ export const SettingsPanel: FC = () => {
 							/>
 						}
 						label="Nur Regionalzüge"
-					/>
-					<FormControl size="small">
-						<FormLabel
-							labelPlacement="start"
-							control={
-								<Select
-									value={settings.hafasProfileN || ''}
-									onChange={handleHafasProfile}
-								>
-									<MenuItem value={AllowedHafasProfile.BAHN}>bahn.de</MenuItem>
-									<MenuItem value={AllowedHafasProfile.DB}>
-										Business DB Navigator (Legacy)
-									</MenuItem>
-									<MenuItem value={AllowedHafasProfile.OEBB}>
-										OEBB Scotty
-									</MenuItem>
-								</Select>
-							}
-							label="Datenlieferant"
-						/>
-					</FormControl>
-
-					<FormLabel
-						labelPlacement="start"
-						control={
-							<Switch
-								css={inputCss}
-								onChange={handleNetzcard}
-								checked={settings.onlyNetzcard}
-								name="onlyNetzcard"
-							/>
-						}
-						label="Netzcard erlaubt"
-					/>
-
-					<FormLabel
-						labelPlacement="start"
-						control={
-							<Switch
-								css={inputCss}
-								onChange={handleBC100}
-								checked={settings.onlyBC100}
-								name="onlyBC100"
-							/>
-						}
-						label="BC100 erlaubt"
 					/>
 				</Stack>
 			</StyledAccordion>

@@ -1,10 +1,6 @@
-import {
-	Configuration,
-	type VehicleLayoutFeatureCollection,
-	VehicleLayoutsApi,
-} from '@/external/generated/risMaps';
+import { Configuration, VehicleLayoutsApi } from '@/external/generated/risMaps';
 import { axiosUpstreamInterceptor } from '@/server/admin';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import axios, { isAxiosError } from 'axios';
 
 const risConnectionsConfiguration = new Configuration({
@@ -29,9 +25,7 @@ const mapsClient = new VehicleLayoutsApi(
 	axiosWithTimeout,
 );
 
-const cache = new Cache<VehicleLayoutFeatureCollection | null>(
-	CacheDatabase.VehicleLayoutsMaps,
-);
+const cache = getCache(CacheDatabase.VehicleLayoutsMaps);
 
 export async function getVehicleLayout(vehicleId: string) {
 	if (await cache.exists(vehicleId)) {

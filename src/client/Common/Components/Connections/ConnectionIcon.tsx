@@ -1,5 +1,5 @@
 import { ConnectionDisplay } from '@/client/Common/Components/Connections/ConnectionDisplay';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import DepartureBoard from '@mui/icons-material/DepartureBoard';
 import { IconButton, Tooltip } from '@mui/material';
@@ -7,7 +7,7 @@ import { differenceInHours } from 'date-fns';
 import { type FC, type MouseEvent, useCallback, useState } from 'react';
 
 interface Props {
-	journey?: ParsedSearchOnTripResponse;
+	journey?: JourneyResponse;
 	stop: RouteStop;
 	className?: string;
 }

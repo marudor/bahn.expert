@@ -6,5 +6,5 @@ export const Route = createFileRoute('/_abfahrten/')({
 });
 
 function RouteComponent() {
-	return <FavList favKey="favs" mostUsed />;
+	return <FavList mostUsed />;
 }

@@ -1,6 +1,6 @@
 import { routing } from '@/bahnde/routing/routing';
 import { searchStopPlace } from '@/server/StopPlace/search';
-import { Cache, CacheDatabase } from '@/server/cache';
+import { CacheDatabase, getCache } from '@/server/cache';
 import { timezone } from '@/timezone';
 import type {
 	RouteAuslastung,
@@ -59,9 +59,7 @@ async function getRelevantTrip(
 	return relevantTrip;
 }
 
-const stopOccupancyCache = new Cache<RouteAuslastung | undefined>(
-	CacheDatabase.HafasStopOccupancy,
-);
+const stopOccupancyCache = getCache(CacheDatabase.HafasStopOccupancy);
 
 const createBaseCacheKey = (
 	trainNumber: string,

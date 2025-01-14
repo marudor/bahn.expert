@@ -1,5 +1,32 @@
 import os from 'node:os';
+import type {
+	JourneyEventBased as JourneyEventBasedV1,
+	JourneyMatch,
+} from '@/external/generated/risJourneys';
+import type {
+	JourneyEventBased,
+	JourneyFindResult,
+} from '@/external/generated/risJourneysV2';
+import type { VehicleLayoutFeatureCollection } from '@/external/generated/risMaps';
+import type { StopPlace } from '@/external/generated/risStations';
+import type {
+	JourneyOccupancy,
+	MatchVehicleID,
+} from '@/external/generated/risTransports';
+import type { ResolvedStopPlaceGroups } from '@/external/types';
 import { logger } from '@/server/logger';
+import type {
+	CoachSequenceCoachFeatures,
+	CoachSequenceInformation,
+} from '@/types/coachSequence';
+import type { IrisStation } from '@/types/iris';
+import type { JourneyFindResponse, JourneyResponse } from '@/types/journey';
+import type { RouteAuslastung } from '@/types/routing';
+import type {
+	GroupedStopPlace,
+	StopPlaceIdentifier,
+	TrainOccupancyList,
+} from '@/types/stopPlace';
 import { Temporal } from '@js-temporal/polyfill';
 import Redis from 'ioredis';
 
@@ -49,9 +76,9 @@ export enum CacheDatabase {
 	IrisTTSStation = 0,
 	TimetableParsedWithWings = 1,
 	DBLageplan = 2,
-	LocMatch = 3,
-	HIMMessage = 4,
-	NAHSHLageplan = 5,
+	// LocMatch = 3,
+	// HIMMessage = 4,
+	// NAHSHLageplan = 5,
 	StopPlaceSearch = 6,
 	StopPlaceByRilGrouped = 7,
 	StopPlaceIdentifier = 8,
@@ -63,7 +90,7 @@ export enum CacheDatabase {
 	NegativeNewSequence = 14,
 	TransportsOccupancy = 15,
 	HafasStopOccupancy = 16,
-	AdditionalJourneyInformation = 17,
+	// AdditionalJourneyInformation = 17,
 	HAFASJourneyMatch = 18,
 	Journey = 19,
 	JourneysForVehicle = 20,
@@ -76,13 +103,52 @@ export enum CacheDatabase {
 	BahnDEJourneyDetails = 27,
 }
 
-const CacheTTLs: Record<CacheDatabase, string> = {
+interface CacheDatabaseTypes {
+	// [CacheDatabase.AdditionalJourneyInformation]:
+	// 	| AdditionalJourneyInformation
+	// 	| undefined;
+	[CacheDatabase.BahnDEJourneyDetails]: JourneyResponse;
+	[CacheDatabase.CoachSequenceRemovedData]: Record<
+		string,
+		{
+			identificationNumber: string;
+			features: CoachSequenceCoachFeatures;
+		}
+	>;
+	[CacheDatabase.DBLageplan]: string | null;
+	[CacheDatabase.HAFASJourneyMatch]: JourneyFindResponse[];
+	[CacheDatabase.HafasStopOccupancy]: RouteAuslastung | undefined;
+	[CacheDatabase.IrisTTSStation]: IrisStation | null;
+	[CacheDatabase.Journey]: JourneyEventBasedV1;
+	[CacheDatabase.JourneyFind]: JourneyMatch[];
+	[CacheDatabase.JourneyFindV2]: JourneyFindResult[];
+	[CacheDatabase.JourneyV2]: JourneyEventBased;
+	[CacheDatabase.JourneysForVehicle]: {
+		previousJourneys: MatchVehicleID[];
+		nextJourneys: MatchVehicleID[];
+	};
+	[CacheDatabase.NegativeNewSequence]: boolean;
+	[CacheDatabase.ParsedCoachSequenceFound]: CoachSequenceInformation;
+	[CacheDatabase.StopPlaceByEva]: GroupedStopPlace;
+	[CacheDatabase.StopPlaceByRil]: StopPlace;
+	[CacheDatabase.StopPlaceByRilGrouped]: GroupedStopPlace;
+	[CacheDatabase.StopPlaceGroups]: ResolvedStopPlaceGroups;
+	[CacheDatabase.StopPlaceIdentifier]: StopPlaceIdentifier | undefined;
+	[CacheDatabase.StopPlaceSalesSearch]: GroupedStopPlace[];
+	[CacheDatabase.StopPlaceSearch]: GroupedStopPlace[];
+	[CacheDatabase.TimetableParsedWithWings]: {
+		timetable: Record<string, any>;
+		wingIds: Record<string, string>;
+	};
+	[CacheDatabase.TransportsOccupancy]: JourneyOccupancy | undefined;
+	[CacheDatabase.VRROccupancy]: TrainOccupancyList | null;
+	[CacheDatabase.VehicleLayoutsMaps]: VehicleLayoutFeatureCollection | null;
+}
+
+const CacheTTLs: Record<keyof CacheDatabaseTypes & CacheDatabase, string> = {
 	[CacheDatabase.IrisTTSStation]: 'P2D',
 	[CacheDatabase.TimetableParsedWithWings]: 'P1D',
 	[CacheDatabase.DBLageplan]: 'P1D',
-	[CacheDatabase.LocMatch]: 'P1D',
-	[CacheDatabase.HIMMessage]: 'P1D',
-	[CacheDatabase.NAHSHLageplan]: 'P3D',
 	[CacheDatabase.StopPlaceSearch]: 'P3D',
 	[CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
 		'PT15M',
@@ -97,7 +163,7 @@ const CacheTTLs: Record<CacheDatabase, string> = {
 	[CacheDatabase.HAFASJourneyMatch]: 'P2D',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
 	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
-	[CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
+	// [CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
 	[CacheDatabase.JourneyFind]: 'P2D',
 	[CacheDatabase.JourneyFindV2]: 'P2D',
 	[CacheDatabase.Journey]: parseCacheTTL(
@@ -124,7 +190,21 @@ export function disconnectRedis(): void {
 	}
 }
 
-export class Cache<V> {
+const caches: Partial<Record<CacheDatabase, Cache<any>>> = {};
+
+export function getCache<T extends CacheDatabase>(
+	type: T,
+): Cache<CacheDatabaseTypes[T]> {
+	if (!caches[type]) {
+		caches[type] = new Cache(type);
+	}
+	return caches[type];
+}
+
+export type CacheType<C extends Cache<any>> = C extends Cache<infer X>
+	? X
+	: never;
+class Cache<V> {
 	private redisCache?: Redis;
 	private ttl: number;
 	constructor(database: CacheDatabase, providedRedisSettings = redisSettings) {

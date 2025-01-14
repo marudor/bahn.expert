@@ -6,7 +6,6 @@ import {
 } from '@/server/coachSequence/DB/plannedSequence';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
 import type { AvailableBR, AvailableIdentifier } from '@/types/coachSequence';
-import type { EvaNumber } from '@/types/common';
 import type { TrainRun, TrainRunWithBR } from '@/types/trainRuns';
 
 export async function getSingleTrainRun(
@@ -31,7 +30,7 @@ export async function getTrainRunsByDate(
 	date: Date,
 	baureihen?: AvailableBR[],
 	brIdentifier?: AvailableIdentifier[],
-	stopsAt?: EvaNumber[],
+	stopsAt?: string[],
 ): Promise<TrainRunWithBR[]> {
 	try {
 		const trainRuns = (
