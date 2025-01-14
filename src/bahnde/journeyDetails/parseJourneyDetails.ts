@@ -1,10 +1,10 @@
 import { mapHalt } from '@/bahnde/parsing';
 import type { BahnDEFahrt } from '@/bahnde/types';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 
 export async function mapFahrt(
 	input?: BahnDEFahrt,
-): Promise<ParsedSearchOnTripResponse | undefined> {
+): Promise<JourneyResponse | undefined> {
 	if (!input) {
 		return undefined;
 	}

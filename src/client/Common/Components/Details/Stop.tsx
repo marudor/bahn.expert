@@ -12,8 +12,7 @@ import type {
 	TransportDestinationRef,
 	TransportOriginRef,
 } from '@/external/generated/risJourneysV2';
-import type { CommonProductInfo } from '@/types/HAFAS';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { CommonProductInfo, JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import { Stack, Tooltip, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
@@ -125,7 +124,7 @@ const Container = styled('div')<{
 );
 
 interface Props {
-	journey?: ParsedSearchOnTripResponse;
+	journey?: JourneyResponse;
 	stop: RouteStop;
 	train?: CommonProductInfo;
 	showWR?: CommonProductInfo;

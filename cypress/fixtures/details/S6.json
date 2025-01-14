@@ -16,10 +16,7 @@
 		"admin": "800337",
 		"number": "30665",
 		"type": "S",
-		"operator": {
-			"name": "DB Regio AG NRW",
-			"icoX": 2
-		}
+		"operator": "DB Regio AG NRW"
 	},
 	"segmentStart": {
 		"name": "Köln-Nippes",

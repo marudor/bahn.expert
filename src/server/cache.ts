@@ -15,13 +15,12 @@ import type {
 } from '@/external/generated/risTransports';
 import type { ResolvedStopPlaceGroups } from '@/external/types';
 import { logger } from '@/server/logger';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
 import type {
 	CoachSequenceCoachFeatures,
 	CoachSequenceInformation,
 } from '@/types/coachSequence';
 import type { IrisStation } from '@/types/iris';
+import type { JourneyFindResponse, JourneyResponse } from '@/types/journey';
 import type { RouteAuslastung } from '@/types/routing';
 import type {
 	GroupedStopPlace,
@@ -108,7 +107,7 @@ interface CacheDatabaseTypes {
 	// [CacheDatabase.AdditionalJourneyInformation]:
 	// 	| AdditionalJourneyInformation
 	// 	| undefined;
-	[CacheDatabase.BahnDEJourneyDetails]: ParsedSearchOnTripResponse;
+	[CacheDatabase.BahnDEJourneyDetails]: JourneyResponse;
 	[CacheDatabase.CoachSequenceRemovedData]: Record<
 		string,
 		{
@@ -117,7 +116,7 @@ interface CacheDatabaseTypes {
 		}
 	>;
 	[CacheDatabase.DBLageplan]: string | null;
-	[CacheDatabase.HAFASJourneyMatch]: ParsedJourneyMatchResponse[];
+	[CacheDatabase.HAFASJourneyMatch]: JourneyFindResponse[];
 	[CacheDatabase.HafasStopOccupancy]: RouteAuslastung | undefined;
 	[CacheDatabase.IrisTTSStation]: IrisStation | null;
 	[CacheDatabase.Journey]: JourneyEventBasedV1;

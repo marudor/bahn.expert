@@ -11,7 +11,7 @@ import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import { logger } from '@/server/logger';
 import { rpcAppRouter, rpcProcedure } from '@/server/rpc/base';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import { TRPCError } from '@trpc/server';
 import type { QueryProcedure } from '@trpc/server/unstable-core-do-not-import';
 import { isBefore, subDays } from 'date-fns';
@@ -72,7 +72,7 @@ export type JourneyRPCQuery = QueryProcedure<{
 		jid?: string;
 		administration?: string;
 	};
-	output: ParsedSearchOnTripResponse | undefined | null;
+	output: JourneyResponse | undefined | null;
 }>;
 
 export const journeysRpcRouter = rpcAppRouter({
@@ -158,7 +158,7 @@ export const journeysRpcRouter = rpcAppRouter({
 						code: 'NOT_FOUND',
 					});
 				}
-				let hafasResult: ParsedSearchOnTripResponse | undefined;
+				let hafasResult: JourneyResponse | undefined;
 				if (jid && productDetails.trainNumber === 0) {
 					// basierend auf Hafas versuchen, RIS::Journeys nur bei Bedarf
 					hafasResult = await bahnJourneyDetails(jid);
@@ -184,7 +184,7 @@ export const journeysRpcRouter = rpcAppRouter({
 						code: 'NOT_FOUND',
 					});
 				}
-				let foundJourney: ParsedSearchOnTripResponse | undefined;
+				let foundJourney: JourneyResponse | undefined;
 
 				if (evaNumberAlongRoute) {
 					const allJourneys = (

@@ -17,13 +17,6 @@ Axios.defaults.transformRequest.push(function (data, _headers) {
 		method: this.method?.toUpperCase(),
 		url,
 	};
-	if (this.method?.toUpperCase() === 'POST') {
-		try {
-			logParams.hafasMethod = JSON.parse(data)?.svcReqL?.at(0)?.meth;
-		} catch {
-			//ignore - most likely json parse error
-		}
-	}
 	logger.debug(logParams, 'Request');
 	if (data) {
 		return data;

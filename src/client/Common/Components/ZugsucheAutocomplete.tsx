@@ -1,6 +1,6 @@
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
 import { trpc } from '@/router';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { JourneyFindResponse } from '@/types/journey';
 import { MenuItem, Paper, TextField, styled } from '@mui/material';
 import debounce from 'debounce-promise';
 import { useCombobox } from 'downshift';
@@ -42,18 +42,15 @@ const StyledMenuItem = styled(MenuItem)`
 interface Props {
 	initialDeparture?: Date;
 	withOEV?: boolean;
-	onChange: (match: ParsedJourneyMatchResponse | null) => any;
+	onChange: (match: JourneyFindResponse | null) => any;
 }
-const itemToString = (j: ParsedJourneyMatchResponse | null) =>
-	j?.train.name || '';
+const itemToString = (j: JourneyFindResponse | null) => j?.train.name || '';
 export const ZugsucheAutocomplete: FC<Props> = ({
 	initialDeparture = new Date(),
 	onChange: onSelectedItemChange,
 	withOEV,
 }) => {
-	const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
-		[],
-	);
+	const [suggestions, setSuggestions] = useState<JourneyFindResponse[]>([]);
 	const inputRef = useRef(null);
 	const [loading, setLoading] = useState(0);
 	const trpcUtils = trpc.useUtils();

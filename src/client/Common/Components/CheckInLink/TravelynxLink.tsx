@@ -1,6 +1,7 @@
 import { useCommonConfig } from '@/client/Common/provider/CommonConfigProvider';
 import { stopPropagation } from '@/client/Common/stopPropagation';
-import type { CommonProductInfo, CommonStopInfo } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/journey';
+import type { CommonStopInfo } from '@/types/stopPlace';
 import { SvgIcon, Tooltip } from '@mui/material';
 import { addMinutes, isBefore } from 'date-fns';
 import type { FC } from 'react';

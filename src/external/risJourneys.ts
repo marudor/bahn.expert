@@ -10,8 +10,7 @@ import { sortJourneys } from '@/external/risJourneysV2';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { CacheDatabase, getCache } from '@/server/cache';
 import { logger } from '@/server/logger';
-import type { CommonProductInfo } from '@/types/HAFAS';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { CommonProductInfo, JourneyFindResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
 import { differenceInHours, format, isEqual } from 'date-fns';
@@ -75,9 +74,9 @@ const mapStationShortToRouteStops = (
 	station,
 });
 
-function mapToParsedJourneyMatchResponse(
+function mapToJourneyFindResponse(
 	journeyMatch: JourneyMatch,
-): ParsedJourneyMatchResponse {
+): JourneyFindResponse {
 	return {
 		// Technically wrong!
 		jid: journeyMatch.journeyID,
@@ -188,10 +187,10 @@ export async function findJourneyHafasCompatible(
 	date: Date,
 	category?: string,
 	withOEV?: boolean,
-): Promise<ParsedJourneyMatchResponse[]> {
+): Promise<JourneyFindResponse[]> {
 	const risResult = await findJourney(trainNumber, date, category, withOEV);
 
-	return risResult.map(mapToParsedJourneyMatchResponse);
+	return risResult.map(mapToJourneyFindResponse);
 }
 
 export async function getJourneyDetails(

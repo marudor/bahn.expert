@@ -1,7 +1,7 @@
 import type { Occupancy } from '@/external/generated/risTransports';
 import { getJourneyOccupancy } from '@/external/risTransports/occupancy';
 import { journeyDetails as fetchJourneyDetails } from '@/server/journeys/v2/journeyDetails';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import { AuslastungsValue, type RouteAuslastung } from '@/types/routing';
 
 export function mapSingleOccupancy(
@@ -30,7 +30,7 @@ function mapOccupancy(stopOccupancy: Occupancy): RouteAuslastung {
 
 export async function getOccupancy(
 	journeyId: string,
-	providedJourneyDetails?: ParsedSearchOnTripResponse,
+	providedJourneyDetails?: JourneyResponse,
 ) {
 	const journeyDetails =
 		providedJourneyDetails || (await fetchJourneyDetails(journeyId));

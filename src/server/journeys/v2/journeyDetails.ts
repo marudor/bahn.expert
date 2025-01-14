@@ -11,9 +11,9 @@ import { calculateCurrentStopPlace } from '@/server/HAFAS/Detail';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { addIrisMessagesToDetails } from '@/server/journeys/journeyDetails';
 import { getLineFromNumber } from '@/server/journeys/lineNumberMapping';
-import type { CommonStopInfo } from '@/types/HAFAS';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
+import type { CommonStopInfo } from '@/types/stopPlace';
 import {
 	addHours,
 	differenceInMinutes,
@@ -243,7 +243,7 @@ async function stopsFromEvents(events: JourneyEvent[]): Promise<JourneyStop[]> {
 
 export async function journeyDetails(
 	journeyId: string,
-): Promise<ParsedSearchOnTripResponse | undefined> {
+): Promise<JourneyResponse | undefined> {
 	const journey = await getJourneyDetails(journeyId);
 	if (!journey?.events?.length) {
 		return undefined;
@@ -272,7 +272,7 @@ export async function journeyDetails(
 		),
 	].join(', ');
 
-	const result: ParsedSearchOnTripResponse = {
+	const result: JourneyResponse = {
 		stops,
 		segmentStart: firstStop.station,
 		segmentDestination: lastStop.station,

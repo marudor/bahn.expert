@@ -1,6 +1,6 @@
 import { ZugsucheAutocomplete } from '@/client/Common/Components/ZugsucheAutocomplete';
 import { stopPropagation } from '@/client/Common/stopPropagation';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { JourneyFindResponse } from '@/types/journey';
 import Today from '@mui/icons-material/Today';
 import Train from '@mui/icons-material/Train';
 import {
@@ -67,7 +67,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 		[open],
 	);
 	const submit = useCallback(
-		(match: ParsedJourneyMatchResponse | null) => {
+		(match: JourneyFindResponse | null) => {
 			if (match) {
 				toggleModal();
 				toggleDrawer();

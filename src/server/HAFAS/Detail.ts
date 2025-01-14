@@ -1,9 +1,9 @@
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import { isAfter } from 'date-fns';
 
 export function calculateCurrentStopPlace(
-	segment: ParsedSearchOnTripResponse,
+	segment: JourneyResponse,
 ): RouteStop | undefined {
 	const currentDate = Date.now();
 

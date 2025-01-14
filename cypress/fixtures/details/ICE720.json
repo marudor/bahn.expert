@@ -400,9 +400,7 @@
 		"admin": "80",
 		"line": "41",
 		"transportType": "HIGH_SPEED_TRAIN",
-		"operator": {
-			"name": "DB"
-		}
+		"operator": "DB"
 	},
 	"type": "JNY",
 	"currentStop": {

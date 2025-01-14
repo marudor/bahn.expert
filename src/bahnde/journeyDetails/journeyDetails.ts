@@ -3,7 +3,8 @@ import { addRandomBrowserUseragent } from '@/bahnde/randomUseragent';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { CacheDatabase, getCache } from '@/server/cache';
 import { logger } from '@/server/logger';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
+
 import axios from 'axios';
 import { v4 } from 'uuid';
 
@@ -25,7 +26,7 @@ const quickJourneyDetailsCache = getCache(CacheDatabase.BahnDEJourneyDetails);
 
 export const bahnJourneyDetails = async (
 	jid: string,
-): Promise<ParsedSearchOnTripResponse | undefined> => {
+): Promise<JourneyResponse | undefined> => {
 	try {
 		if (await quickJourneyDetailsCache.exists(jid)) {
 			return quickJourneyDetailsCache.get(jid);

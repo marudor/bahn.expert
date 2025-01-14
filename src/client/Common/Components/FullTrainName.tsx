@@ -1,4 +1,4 @@
-import type { CommonProductInfo } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/journey';
 import type { FC } from 'react';
 
 type FTNPropsFallback = {

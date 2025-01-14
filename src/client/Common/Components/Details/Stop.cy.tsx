@@ -1,5 +1,5 @@
 import { Stop } from '@/client/Common/Components/Details/Stop';
-import type { CommonStopInfo } from '@/types/HAFAS';
+import type { CommonStopInfo } from '@/types/stopPlace';
 import type { PropsFor } from '@mui/system';
 
 describe('Stop', () => {

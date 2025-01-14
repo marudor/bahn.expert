@@ -2,7 +2,7 @@ import { Connection } from '@/client/Common/Components/Connections/Connection';
 import { FullTrainName } from '@/client/Common/Components/FullTrainName';
 import { Loading, LoadingType } from '@/client/Common/Components/Loading';
 import { trpc } from '@/router';
-import type { ParsedSearchOnTripResponse } from '@/types/HAFAS/SearchOnTrip';
+import type { JourneyResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import Close from '@mui/icons-material/Close';
 import {
@@ -24,7 +24,7 @@ const PositionedCloseButton = styled(IconButton)`
 `;
 
 interface Props {
-	journey: ParsedSearchOnTripResponse;
+	journey: JourneyResponse;
 	stop: Omit<RouteStop, 'arrival'> & Required<Pick<RouteStop, 'arrival'>>;
 	open: boolean;
 	toggle: (e: MouseEvent) => void;

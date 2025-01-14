@@ -4,8 +4,12 @@ import type {
 	TransportDestinationRef,
 	TransportWithDirection,
 } from '@/external/generated/risJourneysV2';
-import type { GroupedStopPlace, MinimalStopPlace } from '@/types/stopPlace';
-import type { CommonProductInfo, CommonStopInfo } from './HAFAS';
+import type { CommonProductInfo } from '@/types/journey';
+import type {
+	CommonStopInfo,
+	GroupedStopPlace,
+	MinimalStopPlace,
+} from '@/types/stopPlace';
 import type { Message } from './iris';
 
 export interface RouteStop {

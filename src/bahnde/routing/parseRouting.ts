@@ -13,7 +13,7 @@ import type {
 } from '@/bahnde/types';
 import { TransportType } from '@/external/types';
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
-import type { CommonProductInfo } from '@/types/HAFAS';
+import type { CommonProductInfo } from '@/types/journey';
 import type {
 	RouteJourneySegment,
 	RouteJourneySegmentTrain,

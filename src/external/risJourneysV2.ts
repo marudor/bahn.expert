@@ -13,8 +13,7 @@ import type {
 import { getStopPlaceByEva } from '@/server/StopPlace/search';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { CacheDatabase, getCache } from '@/server/cache';
-import type { CommonProductInfo } from '@/types/HAFAS';
-import type { ParsedJourneyMatchResponse } from '@/types/HAFAS/JourneyMatch';
+import type { CommonProductInfo, JourneyFindResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
 import { format, isBefore, isEqual, isSameDay, subDays } from 'date-fns';
@@ -125,9 +124,9 @@ export function sortJourneys(
 	return 0;
 }
 
-function mapToParsedJourneyMatchResponse(
+function mapToJourneyFindResponse(
 	journeyFindResult: JourneyFindResult,
-): ParsedJourneyMatchResponse {
+): JourneyFindResponse {
 	return {
 		// Technically wrong!
 		jid: journeyFindResult.journeyID,
@@ -276,10 +275,10 @@ export async function findJourneyHafasCompatible(
 	date: Date,
 	category?: string,
 	withOEV?: boolean,
-): Promise<ParsedJourneyMatchResponse[]> {
+): Promise<JourneyFindResponse[]> {
 	const risResult = await findJourney(trainNumber, date, category, withOEV);
 
-	return Promise.all(risResult.map(mapToParsedJourneyMatchResponse));
+	return Promise.all(risResult.map(mapToJourneyFindResponse));
 }
 
 export async function getJourneyDetails(
