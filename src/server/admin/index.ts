@@ -74,6 +74,9 @@ export default (adminPort = 9000): Server => {
 				case '/metrics':
 					res.write(await PromClient.register.metrics());
 					break;
+				default:
+					res.statusCode = 404;
+					break;
 			}
 		} catch {
 			res.statusCode = 500;

@@ -16,11 +16,15 @@ export const routingLoader = async (ctx: any) => {
 	}
 	if (ctx.params.date) {
 		const dateNumber = +ctx.params.date;
-		promises.push(
-			Promise.resolve(
-				new Date(Number.isNaN(dateNumber) ? ctx.params.date : dateNumber),
-			),
-		);
+		if (dateNumber) {
+			promises.push(
+				Promise.resolve(
+					new Date(Number.isNaN(dateNumber) ? ctx.params.date : dateNumber),
+				),
+			);
+		} else {
+			promises.push(Promise.resolve(undefined));
+		}
 	}
 	if (ctx.params.via) {
 		const viaStations: string[] = ctx.params.via.split('|').filter(Boolean);
