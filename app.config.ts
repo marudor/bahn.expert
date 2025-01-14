@@ -54,12 +54,13 @@ const vinxiConfig = defineConfig({
 				maxAge: 60 * 60 * 24 * 360,
 			},
 		],
-		plugins: ['./src/server/admin/nitroPlugin.ts'],
+		plugins: ['./src/server/admin/index.ts'],
 		commonJS: {
 			include: ['dom-helpers', 'maplibre-gl'],
 		},
 		experimental: {
 			legacyExternals: true,
+			asyncContext: true,
 		},
 	},
 	tsr: {

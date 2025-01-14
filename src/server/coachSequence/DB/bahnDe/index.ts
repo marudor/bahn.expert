@@ -22,7 +22,7 @@ export async function getNewDBCoachSequence(
 	initialDepartureDate: Date,
 ): Promise<CoachSequenceInformation | undefined> {
 	try {
-		UpstreamApiRequestMetric.inc({
+		UpstreamApiRequestMetric?.inc({
 			api: 'coachSequence-bahnde',
 		});
 		const sequence = (
