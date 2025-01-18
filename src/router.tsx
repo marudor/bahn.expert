@@ -67,8 +67,8 @@ const queryClientOptions: QueryClientConfig = {
 
 const queryClient = new QueryClient(queryClientOptions);
 
-if (!import.meta.env.SSR) {
-	window.addEventListener('load', () => {
+export const hydrateRouter = () => {
+	if (!import.meta.env.SSR) {
 		try {
 			if (window.__TSR__) {
 				const queryClientData = parse(window.__TSR__.dehydrated).payload
@@ -76,8 +76,8 @@ if (!import.meta.env.SSR) {
 				hydrate(queryClient, queryClientData);
 			}
 		} catch {}
-	});
-}
+	}
+};
 
 const trpcUtils = createTRPCQueryUtils({
 	client: trpcClient,

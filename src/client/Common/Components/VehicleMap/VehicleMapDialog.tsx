@@ -18,6 +18,10 @@ const LinkSpan = styled('span')(({ theme }) => ({
 	color: theme.vars.palette.common.blue,
 }));
 
+const NonSrollableDialogContent = styled(DialogContent)`
+	overflow-x: hidden;
+`;
+
 export const VehicleMapDialog: FCC<Props> = ({
 	vehicleLayout,
 	fahrzeug,
@@ -40,12 +44,12 @@ export const VehicleMapDialog: FCC<Props> = ({
 					Layout von Wagen {fahrzeug.identificationNumber} (Fahrzeug{' '}
 					{fahrzeug.uic})
 				</DialogTitle>
-				<DialogContent>
+				<NonSrollableDialogContent>
 					<VehicleMap
 						layout={vehicleLayout}
 						orientation={fahrzeug.orientation!}
 					/>
-				</DialogContent>
+				</NonSrollableDialogContent>
 			</Dialog>
 		</>
 	);
