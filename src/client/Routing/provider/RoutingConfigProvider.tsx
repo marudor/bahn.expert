@@ -1,7 +1,7 @@
 import { useExpertCookies } from '@/client/Common/hooks/useExpertCookies';
 import constate from '@/constate';
 import type { MinimalStopPlace } from '@/types/stopPlace';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { PropsWithChildren, SyntheticEvent } from 'react';
 
 export interface RoutingSettings {
@@ -41,6 +41,19 @@ const useRoutingConfigInternal = ({
 	const [departureMode, setDepartureMode] = useState<'an' | 'ab'>('ab');
 
 	const [routingConfig, setRoutingConfig] = useExpertCookies(routingConfigKeys);
+
+	useEffect(() => {
+		setStart(initialStart);
+	}, [initialStart]);
+	useEffect(() => {
+		setDestination(initialDestination);
+	}, [initialDestination]);
+	useEffect(() => {
+		setVia(initialVia || []);
+	}, [initialVia]);
+	useEffect(() => {
+		initialDate || new Date();
+	}, [initialDate]);
 
 	const updateSetting = useCallback(
 		<K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
