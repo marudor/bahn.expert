@@ -1,5 +1,6 @@
 import { bahnRpcRouter } from '@/server/rpc/bahn';
 import { rpcAppRouter } from '@/server/rpc/base';
+import { boardsRpcRouter } from '@/server/rpc/boards';
 import { coachSequenceRpcRouter } from '@/server/rpc/coachSequence';
 import { connectionsRouter } from '@/server/rpc/connections';
 import { hafasRpcRouter } from '@/server/rpc/hafas';
@@ -18,6 +19,7 @@ const mainRouter = rpcAppRouter({
 	journeys: journeysRpcRouter,
 	connections: connectionsRouter,
 	bahn: bahnRpcRouter,
+	boards: boardsRpcRouter,
 });
 
 export type AppRouter = typeof mainRouter;
@@ -29,6 +31,13 @@ export const rpcHttpHandler = createOpenApiHttpHandler({
 	responseMeta: undefined,
 	maxBodySize: undefined,
 });
+
+// const doc = generateOpenApiDocument(mainRouter, {
+// 	title: 'bahn.expert',
+// 	baseUrl: 'https://bahn.expert/api',
+// 	version: '0.0.1',
+// });
+// fs.writeFileSync('./openapi.json', JSON.stringify(doc), 'utf8');
 
 const rpcHandler = createHTTPHandler({
 	router: mainRouter,

@@ -1,4 +1,8 @@
 import { bahnJourneyDetails } from '@/bahnde/journeyDetails/journeyDetails';
+import type {
+	JourneyEventBased,
+	JourneyFindResult,
+} from '@/external/generated/risJourneysV2';
 import {
 	findJourney,
 	findJourneyHafasCompatible,
@@ -6,6 +10,7 @@ import {
 import {
 	findJourneyHafasCompatible as findJourneyHafasCompatibleV2,
 	findJourney as findJourneyV2,
+	getJourneyDetails,
 } from '@/external/risJourneysV2';
 import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
@@ -75,7 +80,65 @@ export type JourneyRPCQuery = QueryProcedure<{
 	output: JourneyResponse | undefined | null;
 }>;
 
+type RawRPCJourney = QueryProcedure<{
+	input: {
+		journeyId: string;
+	};
+	output: JourneyEventBased | undefined;
+}>;
+
+type RawRPCJourneyFind = QueryProcedure<{
+	input: {
+		journeyNumber: number;
+		date: Date;
+		category?: string;
+		administration?: string;
+	};
+	output: JourneyFindResult[];
+}>;
+
 export const journeysRpcRouter = rpcAppRouter({
+	rawJourneyByNumber: rpcProcedure
+		.meta({
+			openapi: {
+				method: 'GET',
+				path: '/journeys/v1/{journeyId}',
+			},
+		})
+		.input(
+			z.object({
+				journeyId: z.string(),
+			}),
+		)
+		.output(z.any())
+		.query(async ({ input: { journeyId } }) => {
+			const journey = await getJourneyDetails(journeyId);
+			if (!journey) {
+				throw new TRPCError({
+					code: 'NOT_FOUND',
+				});
+			}
+			return journey;
+		}) as RawRPCJourney,
+	rawJourneyFind: rpcProcedure
+		.meta({
+			openapi: {
+				method: 'GET',
+				path: '/journeys/v1/find',
+			},
+		})
+		.input(
+			z.object({
+				journeyNumber: z.number(),
+				date: z.date(),
+				category: z.string().optional(),
+				administration: z.string().optional(),
+			}),
+		)
+		.output(z.any())
+		.query(({ input: { date, journeyNumber, administration, category } }) => {
+			return findJourneyV2(journeyNumber, date, category, true, administration);
+		}) as RawRPCJourneyFind,
 	findByNumber: rpcProcedure
 		.input(
 			z.object({

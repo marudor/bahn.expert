@@ -43,6 +43,21 @@ interface CombinedArrivalDeparture {
 	departure?: StopDeparture;
 }
 
+export async function rawRisDepartures(
+	evaNumber: string,
+	timeStart: Date,
+	timeEnd: Date,
+) {
+	const departures = await boardsClient.boardDeparture({
+		evaNumbers: [evaNumber],
+		includeStationGroup: true,
+		timeStart: timeStart.toISOString(),
+		timeEnd: timeEnd.toISOString(),
+	});
+
+	return departures.data;
+}
+
 // NOT SORTED
 export async function departureAndArrivals(
 	evaNumber: string,
