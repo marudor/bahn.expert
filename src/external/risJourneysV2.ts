@@ -16,7 +16,7 @@ import { CacheDatabase, getCache } from '@/server/cache';
 import type { CommonProductInfo, JourneyFindResponse } from '@/types/journey';
 import type { RouteStop } from '@/types/routing';
 import axios from 'axios';
-import { format, isBefore, isEqual, isSameDay, subDays } from 'date-fns';
+import { format, isBefore, isSameDay, subDays } from 'date-fns';
 
 const risJourneysV2Configuration = new RisJourneysConfiguration({
 	basePath: process.env.RIS_JOURNEYS_V2_URL,
@@ -182,14 +182,6 @@ function findAdministrationFilter(
 	return matches;
 }
 
-function findDateTimeFilter(matches: JourneyFindResult[], dateTime: Date) {
-	const filtered = matches.filter((m) =>
-		isEqual(m.journeyRelation.startTime, dateTime),
-	);
-
-	return filtered.length ? filtered : matches;
-}
-
 function findCategoryFilter(matches: JourneyFindResult[], category?: string) {
 	if (category) {
 		const filtered = matches.filter(
@@ -216,8 +208,7 @@ export async function findJourney(
 		baseResult,
 		administration,
 	);
-	const dateTimeFiltered = findDateTimeFilter(administrationFiltered, date);
-	const categoryFiltered = findCategoryFilter(dateTimeFiltered, category);
+	const categoryFiltered = findCategoryFilter(administrationFiltered, category);
 
 	return categoryFiltered;
 }
