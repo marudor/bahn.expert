@@ -6,9 +6,9 @@ import { hydrateRoot } from 'react-dom/client';
 import { HeadProvider } from 'react-head';
 
 const cache = createEmotionCache({ prepend: true, key: 'css' });
-const router = createRouter();
 
 async function render() {
+	const router = createRouter();
 	await router.load();
 
 	hydrateRoot(

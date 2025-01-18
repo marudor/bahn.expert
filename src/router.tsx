@@ -67,10 +67,16 @@ const queryClientOptions: QueryClientConfig = {
 
 const queryClient = new QueryClient(queryClientOptions);
 
-if (!import.meta.env.SSR && window.__TSR__) {
-	const queryClientData = parse(window.__TSR__.dehydrated).payload
-		.queryClientState;
-	hydrate(queryClient, queryClientData);
+if (!import.meta.env.SSR) {
+	window.addEventListener('load', () => {
+		try {
+			if (window.__TSR__) {
+				const queryClientData = parse(window.__TSR__.dehydrated).payload
+					.queryClientState;
+				hydrate(queryClient, queryClientData);
+			}
+		} catch {}
+	});
 }
 
 const trpcUtils = createTRPCQueryUtils({
