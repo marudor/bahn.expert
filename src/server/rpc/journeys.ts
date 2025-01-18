@@ -98,6 +98,31 @@ type RawRPCJourneyFind = QueryProcedure<{
 }>;
 
 export const journeysRpcRouter = rpcAppRouter({
+	rawJourneyFind: rpcProcedure
+		.meta({
+			openapi: {
+				method: 'GET',
+				path: '/journeys/v1/find',
+			},
+		})
+		.input(
+			z.object({
+				journeyNumber: z.number(),
+				date: z.date(),
+				category: z.string().optional(),
+				administration: z.string().optional(),
+			}),
+		)
+		.output(z.any())
+		.query(({ input: { date, journeyNumber, administration, category } }) => {
+			return findJourneyV2(
+				journeyNumber,
+				date!,
+				category,
+				true,
+				administration,
+			);
+		}) as RawRPCJourneyFind,
 	rawJourneyByNumber: rpcProcedure
 		.meta({
 			openapi: {
@@ -120,25 +145,6 @@ export const journeysRpcRouter = rpcAppRouter({
 			}
 			return journey;
 		}) as RawRPCJourney,
-	rawJourneyFind: rpcProcedure
-		.meta({
-			openapi: {
-				method: 'GET',
-				path: '/journeys/v1/find',
-			},
-		})
-		.input(
-			z.object({
-				journeyNumber: z.number(),
-				date: z.date(),
-				category: z.string().optional(),
-				administration: z.string().optional(),
-			}),
-		)
-		.output(z.any())
-		.query(({ input: { date, journeyNumber, administration, category } }) => {
-			return findJourneyV2(journeyNumber, date, category, true, administration);
-		}) as RawRPCJourneyFind,
 	findByNumber: rpcProcedure
 		.input(
 			z.object({
