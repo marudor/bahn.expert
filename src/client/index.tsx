@@ -1,4 +1,4 @@
-import { createRouter } from '@/router';
+import { createRouter, hydrateRouter } from '@/router';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StartClient } from '@tanstack/start';
@@ -6,9 +6,10 @@ import { hydrateRoot } from 'react-dom/client';
 import { HeadProvider } from 'react-head';
 
 const cache = createEmotionCache({ prepend: true, key: 'css' });
+const router = createRouter();
+hydrateRouter();
 
 async function render() {
-	const router = createRouter();
 	await router.load();
 
 	hydrateRoot(
