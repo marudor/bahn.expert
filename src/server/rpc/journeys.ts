@@ -1,4 +1,5 @@
 import { bahnJourneyDetails } from '@/bahnde/journeyDetails/journeyDetails';
+import { fullBahnDeOccupancy } from '@/bahnde/occupancy';
 import type {
 	JourneyEventBased,
 	JourneyFindResult,
@@ -12,6 +13,7 @@ import {
 	findJourney as findJourneyV2,
 	getJourneyDetails,
 } from '@/external/risJourneysV2';
+import { getOccupancy } from '@/server/coachSequence/occupancy';
 import { getCategoryAndNumberFromName } from '@/server/journeys/journeyDetails';
 import { journeyDetails } from '@/server/journeys/v2/journeyDetails';
 import { logger } from '@/server/logger';
@@ -115,13 +117,7 @@ export const journeysRpcRouter = rpcAppRouter({
 		)
 		.output(z.any())
 		.query(({ input: { date, journeyNumber, administration, category } }) => {
-			return findJourneyV2(
-				journeyNumber,
-				date!,
-				category,
-				true,
-				administration,
-			);
+			return findJourneyV2(journeyNumber, date, category, true, administration);
 		}) as RawRPCJourneyFind,
 	rawJourneyByNumber: rpcProcedure
 		.meta({
@@ -183,6 +179,21 @@ export const journeysRpcRouter = rpcAppRouter({
 				return result.slice(0, limit);
 			},
 		),
+	occupancy: rpcProcedure
+		.input(z.string())
+		.query(async ({ input: journeyId }) => {
+			const transportsOccupancy = await getOccupancy(journeyId);
+			if (transportsOccupancy) {
+				return transportsOccupancy;
+			}
+			const bahnDeOccupancy = await fullBahnDeOccupancy(journeyId);
+			if (bahnDeOccupancy) {
+				return bahnDeOccupancy;
+			}
+			throw new TRPCError({
+				code: 'NOT_FOUND',
+			});
+		}),
 	details: rpcProcedure
 		.meta({
 			openapi: {

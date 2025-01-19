@@ -11,7 +11,7 @@ import type { FC } from 'react';
 import { Loading } from '../Loading';
 
 export const StopList: FC = () => {
-	const { details, error, initialDepartureDate } = useDetails();
+	const { details, error, initialDepartureDate, occupancy } = useDetails();
 	const [currentSequenceStop, setCurrentSequenceStop] = useState(
 		details?.currentStop?.station.evaNumber,
 	);
@@ -69,6 +69,7 @@ export const StopList: FC = () => {
 					return (
 						<Stop
 							journey={details}
+							occupancy={occupancy?.[s.station.evaNumber]}
 							onStopClick={onStopClick}
 							isPast={!hadCurrent}
 							continuationFor={i === 0 ? details.continuationFor : undefined}
@@ -107,7 +108,13 @@ export const StopList: FC = () => {
 				)}
 			</>
 		);
-	}, [details, currentSequenceStop, onStopClick, initialDepartureDate]);
+	}, [
+		details,
+		currentSequenceStop,
+		onStopClick,
+		initialDepartureDate,
+		occupancy,
+	]);
 
 	if (error) {
 		return <Error error={error} />;

@@ -1,4 +1,4 @@
-import { setOccupanciesOfRoutes } from '@/bahnde/occupancy';
+import { Agent } from 'node:https';
 import { addRandomBrowserUseragent } from '@/bahnde/randomUseragent';
 import { parseBahnRouting } from '@/bahnde/routing/parseRouting';
 import type {
@@ -25,6 +25,9 @@ routingAxios.interceptors.request.use((req) => {
 	return req;
 });
 axiosUpstreamInterceptor(routingAxios, 'bahn.de-routing');
+const httpsAgent = new Agent({
+	family: 6,
+});
 
 const regionalOnlyProduktgattungen: BahnDEProduktGattung[] = [
 	'REGIONAL',
@@ -57,6 +60,7 @@ export const routing = async ({
 	searchForDeparture = true,
 	transferTime,
 	ctxScr,
+	useV6,
 }: RoutingOptions) => {
 	const normalizedTime = time || new Date();
 	const options: BahnDERoutingOptions = {
@@ -97,9 +101,12 @@ export const routing = async ({
 		klasse: 'KLASSE_2',
 	};
 
-	const rawResult = (await routingAxios.post('/fahrplan', options)).data;
+	const rawResult = (
+		await routingAxios.post('/fahrplan', options, {
+			httpsAgent: useV6 ? httpsAgent : undefined,
+		})
+	).data;
 
 	const parsed = await parseBahnRouting(rawResult);
-	setOccupanciesOfRoutes(parsed.routes);
 	return parsed;
 };

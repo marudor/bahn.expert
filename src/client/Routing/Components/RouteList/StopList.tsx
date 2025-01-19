@@ -14,7 +14,7 @@ export const StopList: FC<Props> = ({ stops }) => {
 	return stops ? (
 		<Container>
 			{stops.map((s) => (
-				<Stop doNotRenderOccupancy key={s.station.evaNumber} stop={s} />
+				<Stop key={s.station.evaNumber} stop={s} />
 			))}
 		</Container>
 	) : null;

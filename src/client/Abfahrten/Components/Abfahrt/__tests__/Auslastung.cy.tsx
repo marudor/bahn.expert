@@ -17,33 +17,29 @@ describe('Auslastung', () => {
 		return mockAbfahrt;
 	};
 
-	it('shows loading first, nothing on error', () => {
-		cy.trpc.hafas
-			.occupancy(
-				{},
+	it('shows auslastung no loading', () => {
+		cy.trpc.journeys
+			.findByNumber(
 				{
-					delay: 200,
-					statusCode: 404,
+					trainNumber: 2326,
+					category: 'IC',
+					initialDepartureDate: new Date('2019-09-08T12:28:00.000Z'),
+				},
+				{
+					body: [
+						{
+							jid: 'found',
+						},
+					],
 				},
 			)
-			.as('auslastung');
-		renderAuslastung();
-		cy.findByTestId('auslastungDisplay').should('not.exist');
-		cy.findByTestId('loading').should('exist');
-		cy.wait('@auslastung');
-		cy.findByTestId('loading').should('not.exist');
-		cy.findByTestId('auslastungDisplay').should('not.exist');
-	});
-
-	it('shows auslastung after loading', () => {
+			.as('find');
 		cy.trpc.hafas
 			.occupancy(
 				{
-					start: mockAbfahrt.currentStopPlace.name,
-					destination: mockAbfahrt.destination,
 					trainNumber: mockAbfahrt.train.number,
-					plannedDepartureTime: mockAbfahrt.departure!.scheduledTime,
 					stopEva: mockAbfahrt.currentStopPlace.evaNumber,
+					journeyId: 'found',
 				},
 				{
 					delay: 200,
@@ -59,7 +55,7 @@ describe('Auslastung', () => {
 			.as('auslastung');
 
 		renderAuslastung();
-		cy.findByTestId('loading').should('exist');
+		cy.findByTestId('loading').should('not.exist');
 		cy.wait('@auslastung');
 		cy.findByTestId('auslastungDisplay').should('exist');
 	});

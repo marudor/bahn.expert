@@ -18,6 +18,7 @@ export interface RoutingOptions {
 	searchForDeparture?: boolean;
 	onlyRegional?: boolean;
 	ctxScr?: string;
+	useV6?: boolean;
 }
 
 export type BahnDEProduktGattung =
