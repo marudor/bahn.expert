@@ -39,11 +39,9 @@ describe('Auslastung', () => {
 		cy.trpc.hafas
 			.occupancy(
 				{
-					start: mockAbfahrt.currentStopPlace.name,
-					destination: mockAbfahrt.destination,
 					trainNumber: mockAbfahrt.train.number,
-					plannedDepartureTime: mockAbfahrt.departure!.scheduledTime,
 					stopEva: mockAbfahrt.currentStopPlace.evaNumber,
+					journeyId: '',
 				},
 				{
 					delay: 200,

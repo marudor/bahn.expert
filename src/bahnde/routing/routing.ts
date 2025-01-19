@@ -1,4 +1,3 @@
-import { setOccupanciesOfRoutes } from '@/bahnde/occupancy';
 import { addRandomBrowserUseragent } from '@/bahnde/randomUseragent';
 import { parseBahnRouting } from '@/bahnde/routing/parseRouting';
 import type {
@@ -100,6 +99,5 @@ export const routing = async ({
 	const rawResult = (await routingAxios.post('/fahrplan', options)).data;
 
 	const parsed = await parseBahnRouting(rawResult);
-	setOccupanciesOfRoutes(parsed.routes);
 	return parsed;
 };

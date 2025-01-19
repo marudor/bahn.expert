@@ -13,7 +13,7 @@ import type {
 	TransportOriginRef,
 } from '@/external/generated/risJourneysV2';
 import type { CommonProductInfo, JourneyResponse } from '@/types/journey';
-import type { RouteStop } from '@/types/routing';
+import type { RouteAuslastung, RouteStop } from '@/types/routing';
 import { Stack, Tooltip, styled } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import type { FC, MouseEvent } from 'react';
@@ -131,9 +131,9 @@ interface Props {
 	isPast?: boolean;
 	initialDepartureDate?: Date;
 	onStopClick?: (stop: RouteStop) => void;
-	doNotRenderOccupancy?: boolean;
 	continuationFor?: TransportOriginRef[];
 	continuationBy?: TransportDestinationRef[];
+	occupancy?: RouteAuslastung;
 }
 export const Stop: FC<Props> = ({
 	journey,
@@ -143,12 +143,10 @@ export const Stop: FC<Props> = ({
 	isPast,
 	initialDepartureDate,
 	onStopClick,
-	doNotRenderOccupancy,
+	occupancy,
 	continuationBy,
 	continuationFor,
 }) => {
-	const occupancy = stop.auslastung;
-
 	const [platforms, showArrivalPlatform] = useMemo(() => {
 		const platforms = {
 			arrival: {
@@ -187,7 +185,7 @@ export const Stop: FC<Props> = ({
 
 	return (
 		<Container
-			hasOccupancy={Boolean(occupancy) && !doNotRenderOccupancy}
+			hasOccupancy={Boolean(occupancy)}
 			past={isPast}
 			data-testid={stop.station.evaNumber}
 			onClick={onClick}
@@ -206,7 +204,7 @@ export const Stop: FC<Props> = ({
 			<StopName stop={stop}>
 				<StopPlaceLink stopPlace={stop.station} />
 			</StopName>
-			{!doNotRenderOccupancy && occupancy && (
+			{occupancy && (
 				<StyledOccupancy
 					oneLine
 					auslastung={{

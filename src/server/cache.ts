@@ -117,7 +117,7 @@ interface CacheDatabaseTypes {
 	>;
 	[CacheDatabase.DBLageplan]: string | null;
 	[CacheDatabase.HAFASJourneyMatch]: JourneyFindResponse[];
-	[CacheDatabase.HafasStopOccupancy]: RouteAuslastung | undefined;
+	[CacheDatabase.HafasStopOccupancy]: Record<string, RouteAuslastung>;
 	[CacheDatabase.IrisTTSStation]: IrisStation | null;
 	[CacheDatabase.Journey]: JourneyEventBasedV1;
 	[CacheDatabase.JourneyFind]: JourneyMatch[];
@@ -162,7 +162,7 @@ const CacheTTLs: Record<keyof CacheDatabaseTypes & CacheDatabase, string> = {
 	[CacheDatabase.StopPlaceSalesSearch]: 'P5D',
 	[CacheDatabase.HAFASJourneyMatch]: 'P2D',
 	[CacheDatabase.NegativeNewSequence]: 'PT6H',
-	[CacheDatabase.HafasStopOccupancy]: 'PT30M',
+	[CacheDatabase.HafasStopOccupancy]: 'PT8H',
 	// [CacheDatabase.AdditionalJourneyInformation]: 'PT10M',
 	[CacheDatabase.JourneyFind]: 'P2D',
 	[CacheDatabase.JourneyFindV2]: 'P2D',

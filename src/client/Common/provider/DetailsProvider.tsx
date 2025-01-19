@@ -50,8 +50,14 @@ const useInnerDetails = ({
 		journeyId,
 		jid,
 	});
+	const { data: occupancy } = trpc.journeys.occupancy.useQuery(
+		details?.journeyId!,
+		{
+			staleTime: 5000,
+			enabled: Boolean(details?.journeyId),
+		},
+	);
 	const navigate = useNavigate();
-	const trpcUtils = trpc.useUtils();
 
 	const sameTrainDaysInFuture = useCallback(
 		(daysForward: number) => {
@@ -128,6 +134,7 @@ const useInnerDetails = ({
 		showMarkers,
 		toggleShowMarkers,
 		sameTrainDaysInFuture,
+		occupancy,
 	};
 };
 
