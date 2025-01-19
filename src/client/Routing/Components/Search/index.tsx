@@ -195,7 +195,7 @@ export const Search: FC = () => {
 						groupedBySales
 						value={undefined}
 						placeholder="Via Station"
-						id={`via${mappedViaList.length + 1}`}
+						id="addVia"
 						onChange={(s) => updateVia(-1, s)}
 					/>
 				)}
