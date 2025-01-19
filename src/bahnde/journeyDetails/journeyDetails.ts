@@ -1,10 +1,10 @@
+import { Agent } from 'node:https';
 import { mapFahrt } from '@/bahnde/journeyDetails/parseJourneyDetails';
 import { addRandomBrowserUseragent } from '@/bahnde/randomUseragent';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { CacheDatabase, getCache } from '@/server/cache';
 import { logger } from '@/server/logger';
 import type { JourneyResponse } from '@/types/journey';
-
 import axios from 'axios';
 import { v4 } from 'uuid';
 
@@ -23,9 +23,13 @@ journeyDetailsAxios.interceptors.request.use((req) => {
 axiosUpstreamInterceptor(journeyDetailsAxios, 'bahn.de-journeyDetails');
 
 const quickJourneyDetailsCache = getCache(CacheDatabase.BahnDEJourneyDetails);
+const httpsAgent = new Agent({
+	family: 6,
+});
 
 export const bahnJourneyDetails = async (
 	jid: string,
+	useV6?: boolean,
 ): Promise<JourneyResponse | undefined> => {
 	try {
 		if (await quickJourneyDetailsCache.exists(jid)) {
@@ -37,6 +41,7 @@ export const bahnJourneyDetails = async (
 				params: {
 					journeyId: jid,
 				},
+				httpsAgent: useV6 ? httpsAgent : undefined,
 			})
 		).data;
 

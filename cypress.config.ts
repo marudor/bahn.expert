@@ -9,7 +9,6 @@ const viteConfig = defineViteConfig({
 		sourcemap: false,
 	},
 	server: {
-		hmr: false,
 		watch: null,
 		warmup: {
 			clientFiles: ['src/client/**/*.ts', 'src/client/**/*.tsx', 'cypress/**'],
