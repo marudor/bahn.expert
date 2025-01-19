@@ -193,8 +193,9 @@ export const Search: FC = () => {
 				{mappedViaList.length < 2 && (
 					<StopPlaceSearch
 						groupedBySales
+						value={undefined}
 						placeholder="Via Station"
-						id="addVia"
+						id={`via${mappedViaList.length + 1}`}
 						onChange={(s) => updateVia(-1, s)}
 					/>
 				)}

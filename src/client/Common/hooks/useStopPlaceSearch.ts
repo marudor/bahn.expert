@@ -1,7 +1,8 @@
 import { trpc } from '@/router';
 import type { MinimalStopPlace } from '@/types/stopPlace';
 import debounce from 'debounce-promise';
-import { useCallback, useMemo, useState } from 'react';
+import type { ControllerStateAndHelpers } from 'downshift';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 interface UseStopPlaceSearchOptions {
 	maxSuggestions: number;
@@ -49,11 +50,14 @@ export const useStopPlaceSearch = ({
 		[stopPlaceFn],
 	);
 
+	const selectRef = useRef<ControllerStateAndHelpers<MinimalStopPlace>>(null);
+
 	return {
 		loadOptions,
 		suggestions,
 		setSuggestions,
 		loading,
 		itemToString,
+		selectRef,
 	};
 };
