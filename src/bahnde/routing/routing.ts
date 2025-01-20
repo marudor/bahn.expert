@@ -8,26 +8,34 @@ import type {
 } from '@/bahnde/types';
 import { axiosUpstreamInterceptor } from '@/server/admin';
 import { tz } from '@date-fns/tz';
-import axios from 'axios';
+import axios, { type InternalAxiosRequestConfig } from 'axios';
 import { formatDate } from 'date-fns';
 import { v4 } from 'uuid';
 
-const routingAxios = axios.create({
-	baseURL: 'https://www.bahn.de/web/api/angebote',
-});
-routingAxios.interceptors.request.use(addRandomBrowserUseragent);
-routingAxios.interceptors.request.use((req) => {
+const bahnDeRoutingInterceptor = (req: InternalAxiosRequestConfig) => {
 	req.headers.set('accept', 'application/json');
 	req.headers.set('content-type', 'application/json; charset=utf-8');
 	req.headers.set('Referer', 'https://www.bahn.de/buchung/fahrplan/suche');
 	req.headers.set('Origin', 'https://www.bahn.de');
 	req.headers.set('x-correlation-id', `${v4()}_${v4()}`);
 	return req;
+};
+
+const routingAxios = axios.create({
+	baseURL: 'https://www.bahn.de/web/api/angebote',
 });
+routingAxios.interceptors.request.use(addRandomBrowserUseragent);
+routingAxios.interceptors.request.use(bahnDeRoutingInterceptor);
 axiosUpstreamInterceptor(routingAxios, 'bahn.de-routing');
-const httpsAgent = new Agent({
-	family: 6,
+const v6RoutingAxios = axios.create({
+	baseURL: 'https://www.bahn.de/web/api/angebote',
+	httpsAgent: new Agent({
+		family: 6,
+	}),
 });
+v6RoutingAxios.interceptors.request.use(addRandomBrowserUseragent);
+v6RoutingAxios.interceptors.request.use(bahnDeRoutingInterceptor);
+axiosUpstreamInterceptor(v6RoutingAxios, 'bahn.de-routing-v6');
 
 const regionalOnlyProduktgattungen: BahnDEProduktGattung[] = [
 	'REGIONAL',
@@ -101,11 +109,9 @@ export const routing = async ({
 		klasse: 'KLASSE_2',
 	};
 
-	const rawResult = (
-		await routingAxios.post('/fahrplan', options, {
-			httpsAgent: useV6 ? httpsAgent : undefined,
-		})
-	).data;
+	const axios = useV6 ? v6RoutingAxios : routingAxios;
+
+	const rawResult = (await axios.post('/fahrplan', options)).data;
 
 	const parsed = await parseBahnRouting(rawResult);
 	return parsed;

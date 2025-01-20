@@ -16,19 +16,18 @@ export const hafasRpcRouter = rpcAppRouter({
 			}),
 		)
 		.query(async ({ input: { trainNumber, stopEva, journeyId } }) => {
-			const [foundOccupancy, foundVrrOccupancy, foundTransportsOccupancy] =
-				await Promise.all([
-					bahnDeOccupancy(journeyId, stopEva),
-					vrrOccupancy(stopEva, trainNumber),
-					getOccupancy(journeyId),
-				]);
-
+			const foundTransportsOccupancy = await getOccupancy(journeyId);
 			if (foundTransportsOccupancy?.[stopEva]) {
 				return {
 					source: 'Transports',
 					occupancy: foundTransportsOccupancy[stopEva],
 				} as RouteAuslastungWithSource;
 			}
+
+			const [foundOccupancy, foundVrrOccupancy] = await Promise.all([
+				bahnDeOccupancy(journeyId, stopEva),
+				vrrOccupancy(stopEva, trainNumber),
+			]);
 
 			if (foundOccupancy) {
 				return {
