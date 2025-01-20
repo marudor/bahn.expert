@@ -40,7 +40,11 @@ async function getJourneysForVehicle(vehicleId: string) {
 					date: format(addDays(new Date(), 1), 'yyyy-MM-dd'),
 				}),
 			])
-		).flatMap((r) => (r.status === 'fulfilled' ? r.value.data.journeys : []));
+		).flatMap((r) => {
+			return r.status === 'fulfilled' && r.value.data?.journeys
+				? r.value.data.journeys
+				: [];
+		});
 
 		return journeys.sort((a, b) =>
 			isBefore(
@@ -92,7 +96,7 @@ export async function getUmlauf(journeyId: string, vehicleIds: string[]) {
 	) {
 		return;
 	}
-	if (!isWithin20Hours(journey?.departure.scheduledTime)) {
+	if (!isWithin20Hours(journey.departure.scheduledTime)) {
 		return;
 	}
 
