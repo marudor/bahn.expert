@@ -16,12 +16,6 @@ export type AbfahrtenRPCQuery = QueryProcedure<{
 
 export const irisRpcRouter = rpcAppRouter({
 	abfahrten: rpcProcedure
-		.meta({
-			openapi: {
-				method: 'GET',
-				path: '/iris/v2/abfahrten/{evaNumber}',
-			},
-		})
 		.input(
 			z.object({
 				evaNumber: z.string(),
