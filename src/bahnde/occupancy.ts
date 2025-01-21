@@ -41,6 +41,7 @@ async function getRelevantSegment(
 		},
 		time,
 		maxChanges: 0,
+		useV6: true,
 	});
 
 	const relevantSegments = trips.routes
@@ -97,7 +98,7 @@ export async function fullBahnDeOccupancy(journeyId: string) {
 	) {
 		return;
 	}
-	const bahnDeDetails = await bahnJourneyDetails(relevantSegment.jid);
+	const bahnDeDetails = await bahnJourneyDetails(relevantSegment.jid, true);
 	if (!bahnDeDetails) {
 		return;
 	}
