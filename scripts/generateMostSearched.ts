@@ -1,4 +1,4 @@
-import { scriptsTrpc } from 'scripts/scriptsTrpc';
+import { scriptsTrpc } from './scriptsTrpc';
 
 async function fetch() {
 	const mostUsedNames = [

@@ -4,7 +4,7 @@ import type { CommonConfig } from '@/client/Common/config';
 import { InnerCommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { theme } from '@/client/Themes';
 import { type Theme, ThemeProvider } from '@mui/material';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import type { ReactElement } from 'react';
 import { HeadProvider } from 'react-head';
 import Cookies from 'universal-cookie';

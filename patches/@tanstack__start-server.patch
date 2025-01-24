@@ -1,0 +1,13 @@
+diff --git a/dist/esm/createStartHandler.js b/dist/esm/createStartHandler.js
+index 49c0b09284b85e052052b95bc1fd8efae2ed7cc3..9736df19a87fff5460844e3b3cfbfd9558120abf 100644
+--- a/dist/esm/createStartHandler.js
++++ b/dist/esm/createStartHandler.js
+@@ -13,7 +13,7 @@ function createStartHandler({
+       const history = createMemoryHistory({
+         initialEntries: [href]
+       });
+-      const router = createRouter();
++      const router = createRouter(request);
+       router.serializeLoaderData = serializeLoaderData;
+       if (getRouterManifest) {
+         router.manifest = getRouterManifest();
