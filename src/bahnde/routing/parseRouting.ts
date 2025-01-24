@@ -167,7 +167,7 @@ const mapVerbindung = async (
 		duration:
 			(input.ezVerbindungsDauerInSeconds || input.verbindungsDauerInSeconds) *
 			1000,
-		date: firstJny.arrival.time,
+		date: firstJny.departure.time,
 		isRideable: !risCancelled(input.risNotizen),
 		segmentTypes: segments
 			.map((s) => (s.type === 'JNY' ? s.train.type : s.train.name))
