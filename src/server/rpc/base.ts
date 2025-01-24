@@ -2,7 +2,7 @@ import { parse, stringify } from '@/devalue';
 import { ApiRequestMetric } from '@/server/admin';
 import { initTRPC } from '@trpc/server';
 import { getHTTPStatusCodeFromError } from '@trpc/server/unstable-core-do-not-import';
-import type { OpenApiMeta } from 'trpc-openapi';
+import type { OpenApiMeta } from 'trpc-to-openapi';
 
 const t = initTRPC
 	.context<{

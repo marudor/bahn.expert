@@ -76,7 +76,6 @@ export const useFetchRouting = () => {
 						via: routeSettings.via,
 					},
 					{
-						// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
 						trpc: {
 							context: {
 								skipBatch: true,
@@ -139,7 +138,6 @@ export const useFetchRouting = () => {
 						ctxScr: type === 'earlier' ? earlierContext : laterContext,
 					},
 					{
-						// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
 						trpc: {
 							context: {
 								skipBatch: true,

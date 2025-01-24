@@ -15,12 +15,11 @@ import {
 } from '@tanstack/react-query';
 import {
 	type TRPCLink,
-	createTRPCQueryUtils,
-	createTRPCReact,
 	httpBatchLink,
 	httpLink,
 	splitLink,
-} from '@trpc/react-query';
+} from '@trpc/client';
+import { createTRPCQueryUtils, createTRPCReact } from '@trpc/react-query';
 import { CookiesProvider } from 'react-cookie';
 import { routeTree } from './routeTree.gen';
 

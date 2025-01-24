@@ -246,7 +246,6 @@ export const useRefreshCurrent = (visible = false) => {
 					lookbehind: Number.parseInt(lookbehind),
 				},
 				{
-					// @ts-expect-error needs https://github.com/trpc/trpc/issues/6028
 					trpc: {
 						context: {
 							skipBatch: true,
