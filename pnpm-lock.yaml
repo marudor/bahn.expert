@@ -172,13 +172,13 @@ importers:
         version: 1.30.6(typescript@5.7.3)
       '@percy/cypress':
         specifier: ^3.1.3
-        version: 3.1.3(cypress@13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))
+        version: 3.1.3(cypress@14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))
       '@styled/typescript-styled-plugin':
         specifier: ^1.0.1
         version: 1.0.1
       '@testing-library/cypress':
         specifier: 10.0.3
-        version: 10.0.3(cypress@13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))
+        version: 10.0.3(cypress@14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))
       '@types/debounce-promise':
         specifier: 3.1.9
         version: 3.1.9
@@ -201,8 +201,8 @@ importers:
         specifier: ^4.3.4
         version: 4.3.4(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))
       cypress:
-        specifier: 13.17.0
-        version: 13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq)
+        specifier: 14.0.0
+        version: 14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq)
       cypress-vite:
         specifier: ^1.6.0
         version: 1.6.0(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))
@@ -2836,9 +2836,9 @@ packages:
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
-  cypress@13.17.0:
-    resolution: {integrity: sha512-5xWkaPurwkIljojFidhw8lFScyxhtiFHl/i/3zov+1Z5CmY4t9tjIdvSXfu82Y3w7wt0uR9KkucbhkVvJZLQSA==}
-    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+  cypress@14.0.0:
+    resolution: {integrity: sha512-kEGqQr23so5IpKeg/dp6GVi7RlHx1NmW66o2a2Q4wk9gRaAblLZQSiZJuDI8UMC4LlG5OJ7Q6joAiqTrfRNbTw==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
   dargs@8.1.0:
@@ -5510,11 +5510,11 @@ packages:
     resolution: {integrity: sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==}
     engines: {node: '>=14.0.0'}
 
-  tldts-core@6.1.71:
-    resolution: {integrity: sha512-LRbChn2YRpic1KxY+ldL1pGXN/oVvKfCVufwfVzEQdFYNo39uF7AJa/WXdo+gYO7PTvdfkCPCed6Hkvz/kR7jg==}
+  tldts-core@6.1.74:
+    resolution: {integrity: sha512-gTwtY6L2GfuxiL4CWpLknv9JDYYqBvKCk/BT5uAaAvCA0s6pzX7lr2IrkQZSUlnSjRHIjTl8ZwKCVXJ7XNRWYw==}
 
-  tldts@6.1.71:
-    resolution: {integrity: sha512-LQIHmHnuzfZgZWAf2HzL83TIIrD8NhhI0DVxqo9/FdOd4ilec+NTNZOlDZf7EwrTNoutccbsHjvWHYXLAtvxjw==}
+  tldts@6.1.74:
+    resolution: {integrity: sha512-O5vTZ1UmmEmrLl/59U9igitnSMlprALLaLgbv//dEvjobPT9vyURhHXKMCDLEhn3qxZFIkb9PwAfNYV0Ol7RPQ==}
     hasBin: true
 
   tmp@0.0.33:
@@ -7333,10 +7333,10 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@percy/cypress@3.1.3(cypress@13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))':
+  '@percy/cypress@3.1.3(cypress@14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))':
     dependencies:
       '@percy/sdk-utils': 1.30.6
-      cypress: 13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq)
+      cypress: 14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq)
 
   '@percy/dom@1.30.6': {}
 
@@ -8229,11 +8229,11 @@ snapshots:
 
   '@tanstack/virtual-file-routes@1.97.8': {}
 
-  '@testing-library/cypress@10.0.3(cypress@13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))':
+  '@testing-library/cypress@10.0.3(cypress@14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq))':
     dependencies:
       '@babel/runtime': 7.26.0
       '@testing-library/dom': 10.4.0
-      cypress: 13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq)
+      cypress: 14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq)
 
   '@testing-library/dom@10.4.0':
     dependencies:
@@ -9278,7 +9278,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  cypress@13.17.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq):
+  cypress@14.0.0(patch_hash=cv2r65pzj3ppp6otyb2cnlnlkq):
     dependencies:
       '@cypress/request': 3.0.7
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -12312,11 +12312,11 @@ snapshots:
 
   tinyspy@3.0.2: {}
 
-  tldts-core@6.1.71: {}
+  tldts-core@6.1.74: {}
 
-  tldts@6.1.71:
+  tldts@6.1.74:
     dependencies:
-      tldts-core: 6.1.71
+      tldts-core: 6.1.74
 
   tmp@0.0.33:
     dependencies:
@@ -12332,7 +12332,7 @@ snapshots:
 
   tough-cookie@5.1.0:
     dependencies:
-      tldts: 6.1.71
+      tldts: 6.1.74
 
   tr46@0.0.3: {}
 

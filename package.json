@@ -65,7 +65,7 @@
 		"@types/react-dom": "19.0.3",
 		"@types/uuid": "^10.0.0",
 		"@vitejs/plugin-react": "^4.3.4",
-		"cypress": "13.17.0",
+		"cypress": "14.0.0",
 		"cypress-vite": "^1.6.0",
 		"lefthook": "^1.10.10",
 		"nock": "^13.5.6",
