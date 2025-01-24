@@ -19,6 +19,7 @@ export interface WebConfigMap extends CommonConfig, RoutingSettings {
 	readonly defaultFilter: string[];
 	readonly timesPoliticSeen2: number;
 	readonly timesFeedback: number;
+
 	readonly bw2025: number;
 }
 
