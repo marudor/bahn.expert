@@ -132,7 +132,8 @@
 	"homepage": "https://bahn.expert",
 	"pnpm": {
 		"overrides": {
-			"axios": "^1.7.7"
+			"axios": "^1.7.7",
+      "h3": "^1.14.0"
 		},
 		"patchedDependencies": {
 			"cypress": "patches/cypress@13.13.1.patch",

@@ -73,8 +73,9 @@ const SSRHandler = createStartHandler({
 	);
 });
 
+const invalidPathEndings = ['.map', '.ico', '.js'];
 export default eventHandler((event) => {
-	if (event.path.endsWith('.map')) {
+	if (invalidPathEndings.some((ending) => event.path.endsWith(ending))) {
 		return event.respondWith(
 			new Response(null, {
 				status: 404,

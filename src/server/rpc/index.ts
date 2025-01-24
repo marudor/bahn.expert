@@ -44,5 +44,7 @@ const rpcHandler = createHTTPHandler({
 });
 
 export default eventHandler((event) => {
+	// workaround to ensure no other handler (like ssr) gets processed
+	event._handled = true;
 	return rpcHandler(event.node.req, event.node.res);
 });
