@@ -4,6 +4,7 @@ import { ThemeHeaderTags } from '@/client/Common/Components/ThemeHeaderTags';
 import { CommonConfigProvider } from '@/client/Common/provider/CommonConfigProvider';
 import { HeaderTagProvider } from '@/client/Common/provider/HeaderTagProvider';
 import { GlobalCSS } from '@/client/GlobalCSS';
+import { PolitikPopup } from '@/client/PolitikPopup';
 import { RoutingProvider } from '@/client/Routing/provider/RoutingProvider';
 import type { TRPCQueryUtilsType } from '@/router';
 import { NoSsr } from '@mui/material';
@@ -182,6 +183,7 @@ function RootComponent() {
 						<CommonConfigProvider>
 							<Navigation>
 								<RoutingProvider>
+									<PolitikPopup />
 									<Outlet />
 								</RoutingProvider>
 							</Navigation>

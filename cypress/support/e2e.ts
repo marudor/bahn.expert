@@ -24,4 +24,5 @@ beforeEach(() => {
 	cy.force404();
 	cy.setCookie('timesPoliticSeen2', '200');
 	cy.setCookie('timesFeedback', '200');
+	cy.setCookie('bw2025', '200');
 });
