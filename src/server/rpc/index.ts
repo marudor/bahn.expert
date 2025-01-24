@@ -8,7 +8,7 @@ import { irisRpcRouter } from '@/server/rpc/iris';
 import { journeysRpcRouter } from '@/server/rpc/journeys';
 import { stopPlaceRpcRouter } from '@/server/rpc/stopPlace';
 import { createHTTPHandler } from '@trpc/server/adapters/standalone';
-import { createOpenApiHttpHandler } from 'trpc-openapi';
+import { createOpenApiHttpHandler } from 'trpc-to-openapi';
 import { eventHandler } from 'vinxi/http';
 
 const mainRouter = rpcAppRouter({
