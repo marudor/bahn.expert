@@ -19,7 +19,6 @@
 		"emitDecoratorMetadata": false,
 		"resolveJsonModule": true,
 		"types": ["cypress", "@testing-library/cypress"],
-		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
 			"@/fixtures/*": ["./cypress/fixtures/*"]

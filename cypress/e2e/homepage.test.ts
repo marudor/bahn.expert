@@ -50,7 +50,7 @@ describe('Homepage', () => {
 			},
 			{
 				statusCode: 500,
-				delayMs: 500,
+				delay: 500,
 			},
 		);
 		cy.trpc.stopPlace.byName(

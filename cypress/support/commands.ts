@@ -16,8 +16,8 @@ import type {
 	RouteMatcherOptions,
 	RouteMatcherOptionsGeneric,
 	StaticResponseWithOptions,
-	// @ts-expect-error ???
-} from 'cypress/types/net-stubbing';
+	// no Idea why we need to import with node_modules here
+} from '../../node_modules/cypress/types/net-stubbing';
 
 declare global {
 	namespace Cypress {
