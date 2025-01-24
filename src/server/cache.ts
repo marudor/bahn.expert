@@ -76,6 +76,7 @@ export enum CacheDatabase {
 	IrisTTSStation = 0,
 	TimetableParsedWithWings = 1,
 	DBLageplan = 2,
+	JourneyPosition = 3,
 	// LocMatch = 3,
 	// HIMMessage = 4,
 	// NAHSHLageplan = 5,
@@ -104,9 +105,6 @@ export enum CacheDatabase {
 }
 
 interface CacheDatabaseTypes {
-	// [CacheDatabase.AdditionalJourneyInformation]:
-	// 	| AdditionalJourneyInformation
-	// 	| undefined;
 	[CacheDatabase.BahnDEJourneyDetails]: JourneyResponse;
 	[CacheDatabase.CoachSequenceRemovedData]: Record<
 		string,
@@ -115,9 +113,12 @@ interface CacheDatabaseTypes {
 			features: CoachSequenceCoachFeatures;
 		}
 	>;
+	[CacheDatabase.JourneyPosition]: any;
 	[CacheDatabase.DBLageplan]: string | null;
 	[CacheDatabase.HAFASJourneyMatch]: JourneyFindResponse[];
-	[CacheDatabase.HafasStopOccupancy]: Record<string, RouteAuslastung>;
+	[CacheDatabase.HafasStopOccupancy]:
+		| Record<string, RouteAuslastung>
+		| undefined;
 	[CacheDatabase.IrisTTSStation]: IrisStation | null;
 	[CacheDatabase.Journey]: JourneyEventBasedV1;
 	[CacheDatabase.JourneyFind]: JourneyMatch[];
@@ -149,6 +150,7 @@ const CacheTTLs: Record<keyof CacheDatabaseTypes & CacheDatabase, string> = {
 	[CacheDatabase.IrisTTSStation]: 'P2D',
 	[CacheDatabase.TimetableParsedWithWings]: 'P1D',
 	[CacheDatabase.DBLageplan]: 'P1D',
+	[CacheDatabase.JourneyPosition]: 'P1D',
 	[CacheDatabase.StopPlaceSearch]: 'P3D',
 	[CacheDatabase.ParsedCoachSequenceFound]: parseCacheTTL(
 		'PT15M',

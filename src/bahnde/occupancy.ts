@@ -77,12 +77,14 @@ export async function fullBahnDeOccupancy(journeyId: string) {
 	}
 	const journey = await journeyDetails(journeyId);
 	if (!journey) {
+		void stopOccupancyCache.set(journeyId, undefined);
 		return;
 	}
 	const uncancelledStops = journey.stops.filter((s) => !s.cancelled);
 	const firstStop = uncancelledStops.at(0);
 	const lastStop = uncancelledStops.at(-1);
 	if (!firstStop || !lastStop) {
+		void stopOccupancyCache.set(journeyId, undefined);
 		return;
 	}
 	const relevantSegment = await getRelevantSegment(
@@ -96,10 +98,12 @@ export async function fullBahnDeOccupancy(journeyId: string) {
 		relevantSegment.type !== 'JNY' ||
 		!relevantSegment.jid
 	) {
+		void stopOccupancyCache.set(journeyId, undefined);
 		return;
 	}
 	const bahnDeDetails = await bahnJourneyDetails(relevantSegment.jid, true);
 	if (!bahnDeDetails) {
+		void stopOccupancyCache.set(journeyId, undefined);
 		return;
 	}
 	const occupancies: Record<string, RouteAuslastung> = {};
