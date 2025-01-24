@@ -25,7 +25,7 @@ journeyDetailsAxios.interceptors.request.use(bahnDeJourneyDetailsInterceptor);
 axiosUpstreamInterceptor(journeyDetailsAxios, 'bahn.de-journeyDetails');
 
 const v6JourneyDetailsAxios = axios.create({
-	baseURL: 'https://www.bahn.de/web/api/angebote',
+	baseURL: 'https://www.bahn.de/web/api/reiseloesung',
 	httpsAgent: new Agent({
 		family: 6,
 	}),
