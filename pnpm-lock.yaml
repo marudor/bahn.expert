@@ -8,9 +8,9 @@ overrides:
   axios: ^1.7.7
 
 patchedDependencies:
-  '@tanstack/start':
-    hash: o6mrwwt2whfszoeg5as5znkrti
-    path: patches/@tanstack__start.patch
+  '@tanstack/start-server':
+    hash: jf3zyajfgy3vnorayklhtoetne
+    path: patches/@tanstack__start-server.patch
   cypress:
     hash: cv2r65pzj3ppp6otyb2cnlnlkq
     path: patches/cypress@13.13.1.patch
@@ -72,7 +72,7 @@ importers:
         version: 1.97.14(@tanstack/react-router@1.97.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(csstype@3.1.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tanstack/start':
         specifier: ^1.97.15
-        version: 1.97.15(patch_hash=o6mrwwt2whfszoeg5as5znkrti)(@types/node@22.10.10)(babel-plugin-macros@3.1.0)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(webpack@5.97.1)(yaml@2.7.0)
+        version: 1.97.15(@types/node@22.10.10)(babel-plugin-macros@3.1.0)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(webpack@5.97.1)(yaml@2.7.0)
       '@trpc/client':
         specifier: 11.0.0-rc.490
         version: 11.0.0-rc.490(@trpc/server@11.0.0-rc.490)
@@ -7428,7 +7428,7 @@ snapshots:
   '@tanstack/start-api-routes@1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)':
     dependencies:
       '@tanstack/react-router': 1.97.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@tanstack/start-server': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
+      '@tanstack/start-server': 1.97.14(patch_hash=jf3zyajfgy3vnorayklhtoetne)(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
       '@vitejs/plugin-react': 4.3.4(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -7768,7 +7768,7 @@ snapshots:
   '@tanstack/start-server-functions-handler@1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)':
     dependencies:
       '@tanstack/react-router': 1.97.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@tanstack/start-server': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
+      '@tanstack/start-server': 1.97.14(patch_hash=jf3zyajfgy3vnorayklhtoetne)(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
       '@vitejs/plugin-react': 4.3.4(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -7880,7 +7880,7 @@ snapshots:
       - xml2js
       - yaml
 
-  '@tanstack/start-server@1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)':
+  '@tanstack/start-server@1.97.14(patch_hash=jf3zyajfgy3vnorayklhtoetne)(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)':
     dependencies:
       '@tanstack/react-cross-context': 1.97.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tanstack/react-router': 1.97.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -7935,13 +7935,13 @@ snapshots:
       - xml2js
       - yaml
 
-  '@tanstack/start@1.97.15(patch_hash=o6mrwwt2whfszoeg5as5znkrti)(@types/node@22.10.10)(babel-plugin-macros@3.1.0)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(webpack@5.97.1)(yaml@2.7.0)':
+  '@tanstack/start@1.97.15(@types/node@22.10.10)(babel-plugin-macros@3.1.0)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(webpack@5.97.1)(yaml@2.7.0)':
     dependencies:
       '@tanstack/start-api-routes': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
       '@tanstack/start-client': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(yaml@2.7.0)
       '@tanstack/start-config': 1.97.15(@types/node@22.10.10)(babel-plugin-macros@3.1.0)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(webpack@5.97.1)(yaml@2.7.0)
       '@tanstack/start-router-manifest': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
-      '@tanstack/start-server': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
+      '@tanstack/start-server': 1.97.14(patch_hash=jf3zyajfgy3vnorayklhtoetne)(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
       '@tanstack/start-server-functions-client': 1.97.15(@types/node@22.10.10)(babel-plugin-macros@3.1.0)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
       '@tanstack/start-server-functions-handler': 1.97.14(@types/node@22.10.10)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
       '@tanstack/start-server-functions-server': 1.97.15(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))

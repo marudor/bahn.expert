@@ -138,8 +138,8 @@
 			"cypress": "patches/cypress@13.13.1.patch",
 			"trpc-openapi": "patches/trpc-openapi.patch",
 			"downshift": "patches/downshift.patch",
-			"@tanstack/start": "patches/@tanstack__start.patch",
-			"tslib": "patches/tslib.patch"
+			"tslib": "patches/tslib.patch",
+			"@tanstack/start-server": "patches/@tanstack__start-server.patch"
 		}
 	}
 }
