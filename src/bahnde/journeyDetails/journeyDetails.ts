@@ -44,6 +44,7 @@ export const bahnJourneyDetails = async (
 		if (await quickJourneyDetailsCache.exists(jid)) {
 			return quickJourneyDetailsCache.get(jid);
 		}
+		1;
 
 		const axios = useV6 ? v6JourneyDetailsAxios : journeyDetailsAxios;
 

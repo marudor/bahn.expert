@@ -1,7 +1,7 @@
 import { BRInfo } from '@/client/Common/Components/CoachSequence/BRInfo';
 import { PrideStripe } from '@/client/Common/Components/CoachSequence/Stripes/PrideStripe';
 import { DetailsLink } from '@/client/Common/Components/Details/DetailsLink';
-import { trpc } from '@/router';
+import { useJourneyFind } from '@/client/Common/hooks/useJourneyFind';
 import type { CoachSequenceGroup } from '@/types/coachSequence';
 import { Stack } from '@mui/material';
 import { useMemo } from 'react';
@@ -30,21 +30,11 @@ const ClickableTrainLink: FC<{
 	number: string;
 	scheduledDeparture: Date;
 }> = ({ type, number, scheduledDeparture }) => {
-	const { data: journeys } = trpc.journeys.findByNumber.useQuery(
-		{
-			trainNumber: Number.parseInt(number),
-			initialDepartureDate: scheduledDeparture,
-			limit: 3,
-			category: type,
-		},
-		{
-			staleTime: Number.POSITIVE_INFINITY,
-		},
-	);
-	const foundJourney = useMemo(
-		() => journeys?.find((j) => j.train.type === type),
-		[journeys, type],
-	);
+	const { data: foundJourney } = useJourneyFind({
+		trainNumber: Number.parseInt(number),
+		initialDepartureDate: scheduledDeparture,
+		category: type,
+	});
 
 	if (foundJourney) {
 		return (
@@ -54,10 +44,7 @@ const ClickableTrainLink: FC<{
 					number,
 				}}
 				initialDeparture={scheduledDeparture}
-				journeyId={
-					foundJourney.jid.includes('-') ? foundJourney.jid : undefined
-				}
-				jid={foundJourney.jid.includes('|') ? foundJourney.jid : undefined}
+				journeyId={foundJourney.journeyId}
 			>
 				{type} {number}
 			</DetailsLink>

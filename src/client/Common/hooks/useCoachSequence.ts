@@ -36,11 +36,13 @@ export const useCoachSequence = (
 		}),
 	);
 
-	if (mainSequence.isFetched) {
-		if (mainSequence.data) {
-			return mainSequence.data;
+	if (fallback.length) {
+		if (mainSequence.isFetched) {
+			if (mainSequence.data) {
+				return mainSequence.data;
+			}
+			return fallbackSequences.find((f) => f.data)?.data;
 		}
-		return fallbackSequences.find((f) => f.data)?.data;
 	}
 
 	return mainSequence.data;

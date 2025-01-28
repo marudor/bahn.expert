@@ -24,7 +24,7 @@ export async function mapFahrt(
 		departure: firstStop.departure!,
 		cancelled: input.cancelled || undefined,
 		segmentStart: firstStop.station,
-		segmentDestination: firstStop.station,
+		segmentDestination: lastStop.station,
 		stops,
 		train: {
 			name: input.zugName,

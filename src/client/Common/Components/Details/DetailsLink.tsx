@@ -24,19 +24,37 @@ export const DetailsLink: FC<PropsWithChildren<Props>> = ({
 	if (!train.number || !train.type) {
 		return null;
 	}
+	const baseProps = {
+		className,
+		'data-testid': 'detailsLink',
+		onClick: stopPropagation,
+	};
+	const trainName = `${train.type} ${train.number}`;
+	if (journeyId) {
+		return (
+			<Link
+				{...baseProps}
+				to="/details/$train/j/$journeyId"
+				params={{
+					train: trainName,
+					journeyId,
+				}}
+			>
+				{children}
+			</Link>
+		);
+	}
+
 	return (
 		<Link
-			className={className}
-			data-testid="detailsLink"
-			onClick={stopPropagation}
+			{...baseProps}
 			to="/details/$train/$initialDeparture"
 			params={{
-				train: `${train.type} ${train.number}`,
+				train: trainName,
 				initialDeparture: initialDeparture.toISOString(),
 			}}
 			search={{
 				evaNumberAlongRoute,
-				journeyId,
 				jid,
 			}}
 		>

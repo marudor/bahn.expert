@@ -129,7 +129,7 @@ function mapToJourneyFindResponse(
 ): JourneyFindResponse {
 	return {
 		// Technically wrong!
-		jid: journeyFindResult.journeyID,
+		journeyId: journeyFindResult.journeyID,
 		train: mapTransportToTrain(journeyFindResult.info.transportAtStart),
 		stops: [],
 		firstStop: mapStationShortToRouteStops(journeyFindResult.info.origin),
@@ -196,23 +196,6 @@ function findCategoryFilter(matches: JourneyFindResult[], category?: string) {
 	return matches;
 }
 
-export async function findJourney(
-	trainNumber: number,
-	date: Date,
-	category?: string,
-	withOEV?: boolean,
-	administration?: string,
-) {
-	const baseResult = await innerFindJourney(trainNumber, date, withOEV);
-	const administrationFiltered = findAdministrationFilter(
-		baseResult,
-		administration,
-	);
-	const categoryFiltered = findCategoryFilter(administrationFiltered, category);
-
-	return categoryFiltered;
-}
-
 async function innerFindJourney(
 	trainNumber: number,
 	date: Date,
@@ -261,26 +244,29 @@ async function innerFindJourney(
 	}
 }
 
-export async function findJourneyHafasCompatible(
+export async function findJourney(
 	trainNumber: number,
 	date: Date,
 	category?: string,
 	withOEV?: boolean,
+	administration?: string,
 ): Promise<JourneyFindResponse[]> {
-	const risResult = await findJourney(trainNumber, date, category, withOEV);
+	const baseResult = await innerFindJourney(trainNumber, date, withOEV);
+	const administrationFiltered = findAdministrationFilter(
+		baseResult,
+		administration,
+	);
+	const categoryFiltered = findCategoryFilter(administrationFiltered, category);
 
-	return Promise.all(risResult.map(mapToJourneyFindResponse));
+	return Promise.all(categoryFiltered.map(mapToJourneyFindResponse));
 }
 
 export async function getJourneyDetails(
 	journeyId: string,
 ): Promise<JourneyEventBased | undefined> {
 	try {
-		if (!process.env.RIS_JOURNEYS_CACHE_DISABLED) {
-			const cached = await journeyCache.get(journeyId);
-			if (cached) {
-				return cached;
-			}
+		if (await journeyCache.exists(journeyId)) {
+			return await journeyCache.get(journeyId);
 		}
 		const r = await client.journeyEventBasedById({
 			journeyID: journeyId,
@@ -295,7 +281,7 @@ export async function getJourneyDetails(
 			await fixSingleJourneyInfo(r.data.info);
 		}
 
-		if (!process.env.RIS_JOURNEYS_CACHE_DISABLED && r.data) {
+		if (r.data) {
 			void journeyCache.set(journeyId, r.data);
 		}
 
@@ -303,6 +289,9 @@ export async function getJourneyDetails(
 	} catch (e) {
 		if (axios.isAxiosError(e) && e.response?.status === 401) {
 			health.has401 = true;
+		}
+		if (axios.isAxiosError(e) && e.response?.status === 404) {
+			void journeyCache.set(journeyId, undefined);
 		}
 		return undefined;
 	}

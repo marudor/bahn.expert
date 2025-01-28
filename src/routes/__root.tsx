@@ -179,12 +179,12 @@ function RootComponent() {
 					<GlobalCSS />
 					<HeaderTagProvider>
 						<ThemeHeaderTags />
-						<HeaderTags />
 						<CommonConfigProvider>
 							<Navigation>
 								<RoutingProvider>
 									<PolitikPopup />
 									<Outlet />
+									<HeaderTags />
 								</RoutingProvider>
 							</Navigation>
 						</CommonConfigProvider>

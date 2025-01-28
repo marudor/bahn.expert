@@ -28,7 +28,7 @@ describe('Zugsuche', () => {
 
 	it('Navigates to details', () => {
 		const journeyId = 'ee7b2fbd-1370-4585-8108-22938c252836';
-		cy.trpc.journeys.findByNumber(
+		cy.trpc.journeys.find(
 			{
 				trainNumber: 6,
 			},

@@ -89,7 +89,9 @@ export const Header: FC = () => {
 					<DateDisplay>
 						<ArrowBack data-testid="previous" onClick={dateBack} />
 						<DateSelectForDetail
-							date={details?.departure.time || initialDepartureDate}
+							date={
+								details?.departure.time || initialDepartureDate || new Date()
+							}
 						/>
 						<ArrowForward data-testid="next" onClick={dateForward} />
 					</DateDisplay>

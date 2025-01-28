@@ -18,7 +18,6 @@ const risConnectionsConfiguration = new Configuration({
 
 const axiosWithTimeout = axios.create({
 	timeout: 10000,
-	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'ris-connections');

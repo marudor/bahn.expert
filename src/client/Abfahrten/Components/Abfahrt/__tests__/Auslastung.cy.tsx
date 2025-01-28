@@ -19,7 +19,7 @@ describe('Auslastung', () => {
 
 	it('shows auslastung no loading', () => {
 		cy.trpc.journeys
-			.findByNumber(
+			.find(
 				{
 					trainNumber: 2326,
 					category: 'IC',

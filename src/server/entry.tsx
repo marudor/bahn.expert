@@ -40,6 +40,12 @@ const SSRHandler = createStartHandler({
 	createRouter,
 	getRouterManifest: getFullRouterManifest,
 })(async ({ router, responseHeaders }) => {
+	if (responseHeaders.has('location')) {
+		return new Response(undefined, {
+			status: router.state.statusCode,
+			headers: responseHeaders,
+		});
+	}
 	const emotionCache = createEmotionCache({ prepend: true, key: 'css' });
 	const { extractCriticalToChunks, constructStyleTagsFromChunks } =
 		createEmotionServer(emotionCache);
@@ -65,7 +71,8 @@ const SSRHandler = createStartHandler({
 	const renderedHeadTags = renderToString(headTags);
 
 	return new Response(
-		`<!DOCTYPE html>${rawHtml.replace('<head>', `<head>${emotionStyleTags}`).replace('</head>', `${renderedHeadTags}</head>`)}`,
+		`<!DOCTYPE html>${rawHtml.replace('<head>', `<head>${emotionStyleTags}`)}`,
+		// .replace('<title>', '<title data-rh="">')}`,
 		{
 			status: router.hasNotFoundMatch() ? 404 : router.state.statusCode,
 			headers: responseHeaders,

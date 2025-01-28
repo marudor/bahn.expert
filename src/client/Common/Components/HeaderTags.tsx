@@ -1,13 +1,13 @@
 import { useHeaderTags } from '@/client/Common/provider/HeaderTagProvider';
 import type { FC } from 'react';
-import { Meta, Title } from 'react-head';
+import { Meta } from 'react-head';
 
 export const HeaderTags: FC = () => {
 	const { title, description, keywords } = useHeaderTags();
 
 	return (
 		<>
-			<Title>{title}</Title>
+			<title>{title}</title>
 			<Meta name="description" content={description} />
 			<Meta name="keywords" content={[...keywords].join(', ')} />
 			{/* Open Graph Start - rest in __root.tsx */}

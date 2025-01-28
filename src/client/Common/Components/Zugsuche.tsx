@@ -73,22 +73,15 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 				toggleDrawer();
 
 				navigate({
-					to: date ? '/details/$train/$initialDeparture' : '/details/$train',
+					to: '/details/$train/j/$journeyId',
 					params: {
 						train: `${match.train.type} ${match.train.number}`,
-						initialDeparture: date?.toISOString(),
+						journeyId: match.journeyId,
 					},
-					search: match.jid.includes('#')
-						? {
-								station: match.firstStop.station.evaNumber,
-							}
-						: {
-								journeyId: match.jid,
-							},
 				});
 			}
 		},
-		[date, toggleModal, toggleDrawer, navigate],
+		[toggleModal, toggleDrawer, navigate],
 	);
 
 	return (

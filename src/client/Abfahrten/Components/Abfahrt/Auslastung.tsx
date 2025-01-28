@@ -11,27 +11,16 @@ const Occupancy = styled(AuslastungsDisplay)`
 `;
 
 export const Auslastung: FC = () => {
-	const { abfahrt } = useAbfahrt();
-	const { data: journeyMatch, isFetching } =
-		trpc.journeys.findByNumber.useQuery(
-			{
-				trainNumber: Number.parseInt(abfahrt.train.number),
-				category: abfahrt.train.type,
-				initialDepartureDate: abfahrt.initialDeparture,
-			},
-			{
-				select: (r) => r[0],
-			},
-		);
+	const { abfahrt, journeyId } = useAbfahrt();
 
 	const auslastungQuery = trpc.hafas.occupancy.useQuery(
 		{
 			trainNumber: abfahrt.train.number,
 			stopEva: abfahrt.currentStopPlace.evaNumber,
-			journeyId: journeyMatch?.jid!,
+			journeyId: journeyId!,
 		},
 		{
-			enabled: Boolean(journeyMatch),
+			enabled: Boolean(journeyId),
 		},
 	);
 

@@ -18,11 +18,13 @@ import { Route as AbfahrtenRouteImport } from './routes/_abfahrten/route';
 import { Route as TrainRunsIndexImport } from './routes/trainRuns/index';
 import { Route as RoutingIndexImport } from './routes/routing/index';
 import { Route as AbfahrtenIndexImport } from './routes/_abfahrten/index';
-import { Route as DetailsTrainImport } from './routes/details/$train';
 import { Route as AbfahrtenStopPlaceImport } from './routes/_abfahrten/$stopPlace';
 import { Route as RoutingStartIndexImport } from './routes/routing/$start/index';
-import { Route as DetailsTrainInitialDepartureImport } from './routes/details/$train.$initialDeparture';
+import { Route as DetailsTrainIndexImport } from './routes/details/$train/index';
+import { Route as DetailsTrainInitialDepartureImport } from './routes/details/$train/$initialDeparture';
 import { Route as RoutingStartDestinationIndexImport } from './routes/routing/$start/$destination/index';
+import { Route as DetailsTrainJJourneyIdImport } from './routes/details/$train/j.$journeyId';
+import { Route as DetailsTrainHJidImport } from './routes/details/$train/h.$jid';
 import { Route as RoutingStartDestinationDateIndexImport } from './routes/routing/$start/$destination/$date/index';
 import { Route as RoutingStartDestinationDateViaIndexImport } from './routes/routing/$start/$destination/$date/$via/index';
 
@@ -69,12 +71,6 @@ const AbfahrtenIndexRoute = AbfahrtenIndexImport.update({
   getParentRoute: () => AbfahrtenRouteRoute,
 } as any);
 
-const DetailsTrainRoute = DetailsTrainImport.update({
-  id: '/details/$train',
-  path: '/details/$train',
-  getParentRoute: () => rootRoute,
-} as any);
-
 const AbfahrtenStopPlaceRoute = AbfahrtenStopPlaceImport.update({
   id: '/$stopPlace',
   path: '/$stopPlace',
@@ -87,11 +83,17 @@ const RoutingStartIndexRoute = RoutingStartIndexImport.update({
   getParentRoute: () => RoutingRouteRoute,
 } as any);
 
+const DetailsTrainIndexRoute = DetailsTrainIndexImport.update({
+  id: '/details/$train/',
+  path: '/details/$train/',
+  getParentRoute: () => rootRoute,
+} as any);
+
 const DetailsTrainInitialDepartureRoute =
   DetailsTrainInitialDepartureImport.update({
-    id: '/$initialDeparture',
-    path: '/$initialDeparture',
-    getParentRoute: () => DetailsTrainRoute,
+    id: '/details/$train/$initialDeparture',
+    path: '/details/$train/$initialDeparture',
+    getParentRoute: () => rootRoute,
   } as any);
 
 const RoutingStartDestinationIndexRoute =
@@ -100,6 +102,18 @@ const RoutingStartDestinationIndexRoute =
     path: '/$start/$destination/',
     getParentRoute: () => RoutingRouteRoute,
   } as any);
+
+const DetailsTrainJJourneyIdRoute = DetailsTrainJJourneyIdImport.update({
+  id: '/details/$train/j/$journeyId',
+  path: '/details/$train/j/$journeyId',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const DetailsTrainHJidRoute = DetailsTrainHJidImport.update({
+  id: '/details/$train/h/$jid',
+  path: '/details/$train/h/$jid',
+  getParentRoute: () => rootRoute,
+} as any);
 
 const RoutingStartDestinationDateIndexRoute =
   RoutingStartDestinationDateIndexImport.update({
@@ -154,13 +168,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AbfahrtenStopPlaceImport;
       parentRoute: typeof AbfahrtenRouteImport;
     };
-    '/details/$train': {
-      id: '/details/$train';
-      path: '/details/$train';
-      fullPath: '/details/$train';
-      preLoaderRoute: typeof DetailsTrainImport;
-      parentRoute: typeof rootRoute;
-    };
     '/_abfahrten/': {
       id: '/_abfahrten/';
       path: '/';
@@ -184,10 +191,17 @@ declare module '@tanstack/react-router' {
     };
     '/details/$train/$initialDeparture': {
       id: '/details/$train/$initialDeparture';
-      path: '/$initialDeparture';
+      path: '/details/$train/$initialDeparture';
       fullPath: '/details/$train/$initialDeparture';
       preLoaderRoute: typeof DetailsTrainInitialDepartureImport;
-      parentRoute: typeof DetailsTrainImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/details/$train/': {
+      id: '/details/$train/';
+      path: '/details/$train';
+      fullPath: '/details/$train';
+      preLoaderRoute: typeof DetailsTrainIndexImport;
+      parentRoute: typeof rootRoute;
     };
     '/routing/$start/': {
       id: '/routing/$start/';
@@ -195,6 +209,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/routing/$start';
       preLoaderRoute: typeof RoutingStartIndexImport;
       parentRoute: typeof RoutingRouteImport;
+    };
+    '/details/$train/h/$jid': {
+      id: '/details/$train/h/$jid';
+      path: '/details/$train/h/$jid';
+      fullPath: '/details/$train/h/$jid';
+      preLoaderRoute: typeof DetailsTrainHJidImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/details/$train/j/$journeyId': {
+      id: '/details/$train/j/$journeyId';
+      path: '/details/$train/j/$journeyId';
+      fullPath: '/details/$train/j/$journeyId';
+      preLoaderRoute: typeof DetailsTrainJJourneyIdImport;
+      parentRoute: typeof rootRoute;
     };
     '/routing/$start/$destination/': {
       id: '/routing/$start/$destination/';
@@ -269,30 +297,20 @@ const TrainRunsRouteRouteWithChildren = TrainRunsRouteRoute._addFileChildren(
   TrainRunsRouteRouteChildren,
 );
 
-interface DetailsTrainRouteChildren {
-  DetailsTrainInitialDepartureRoute: typeof DetailsTrainInitialDepartureRoute;
-}
-
-const DetailsTrainRouteChildren: DetailsTrainRouteChildren = {
-  DetailsTrainInitialDepartureRoute: DetailsTrainInitialDepartureRoute,
-};
-
-const DetailsTrainRouteWithChildren = DetailsTrainRoute._addFileChildren(
-  DetailsTrainRouteChildren,
-);
-
 export interface FileRoutesByFullPath {
   '': typeof AbfahrtenRouteRouteWithChildren;
   '/routing': typeof RoutingRouteRouteWithChildren;
   '/trainRuns': typeof TrainRunsRouteRouteWithChildren;
   '/about': typeof AboutRoute;
   '/$stopPlace': typeof AbfahrtenStopPlaceRoute;
-  '/details/$train': typeof DetailsTrainRouteWithChildren;
   '/': typeof AbfahrtenIndexRoute;
   '/routing/': typeof RoutingIndexRoute;
   '/trainRuns/': typeof TrainRunsIndexRoute;
   '/details/$train/$initialDeparture': typeof DetailsTrainInitialDepartureRoute;
+  '/details/$train': typeof DetailsTrainIndexRoute;
   '/routing/$start': typeof RoutingStartIndexRoute;
+  '/details/$train/h/$jid': typeof DetailsTrainHJidRoute;
+  '/details/$train/j/$journeyId': typeof DetailsTrainJJourneyIdRoute;
   '/routing/$start/$destination': typeof RoutingStartDestinationIndexRoute;
   '/routing/$start/$destination/$date': typeof RoutingStartDestinationDateIndexRoute;
   '/routing/$start/$destination/$date/$via': typeof RoutingStartDestinationDateViaIndexRoute;
@@ -301,12 +319,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/about': typeof AboutRoute;
   '/$stopPlace': typeof AbfahrtenStopPlaceRoute;
-  '/details/$train': typeof DetailsTrainRouteWithChildren;
   '/': typeof AbfahrtenIndexRoute;
   '/routing': typeof RoutingIndexRoute;
   '/trainRuns': typeof TrainRunsIndexRoute;
   '/details/$train/$initialDeparture': typeof DetailsTrainInitialDepartureRoute;
+  '/details/$train': typeof DetailsTrainIndexRoute;
   '/routing/$start': typeof RoutingStartIndexRoute;
+  '/details/$train/h/$jid': typeof DetailsTrainHJidRoute;
+  '/details/$train/j/$journeyId': typeof DetailsTrainJJourneyIdRoute;
   '/routing/$start/$destination': typeof RoutingStartDestinationIndexRoute;
   '/routing/$start/$destination/$date': typeof RoutingStartDestinationDateIndexRoute;
   '/routing/$start/$destination/$date/$via': typeof RoutingStartDestinationDateViaIndexRoute;
@@ -319,12 +339,14 @@ export interface FileRoutesById {
   '/trainRuns': typeof TrainRunsRouteRouteWithChildren;
   '/about': typeof AboutRoute;
   '/_abfahrten/$stopPlace': typeof AbfahrtenStopPlaceRoute;
-  '/details/$train': typeof DetailsTrainRouteWithChildren;
   '/_abfahrten/': typeof AbfahrtenIndexRoute;
   '/routing/': typeof RoutingIndexRoute;
   '/trainRuns/': typeof TrainRunsIndexRoute;
   '/details/$train/$initialDeparture': typeof DetailsTrainInitialDepartureRoute;
+  '/details/$train/': typeof DetailsTrainIndexRoute;
   '/routing/$start/': typeof RoutingStartIndexRoute;
+  '/details/$train/h/$jid': typeof DetailsTrainHJidRoute;
+  '/details/$train/j/$journeyId': typeof DetailsTrainJJourneyIdRoute;
   '/routing/$start/$destination/': typeof RoutingStartDestinationIndexRoute;
   '/routing/$start/$destination/$date/': typeof RoutingStartDestinationDateIndexRoute;
   '/routing/$start/$destination/$date/$via/': typeof RoutingStartDestinationDateViaIndexRoute;
@@ -338,12 +360,14 @@ export interface FileRouteTypes {
     | '/trainRuns'
     | '/about'
     | '/$stopPlace'
-    | '/details/$train'
     | '/'
     | '/routing/'
     | '/trainRuns/'
     | '/details/$train/$initialDeparture'
+    | '/details/$train'
     | '/routing/$start'
+    | '/details/$train/h/$jid'
+    | '/details/$train/j/$journeyId'
     | '/routing/$start/$destination'
     | '/routing/$start/$destination/$date'
     | '/routing/$start/$destination/$date/$via';
@@ -351,12 +375,14 @@ export interface FileRouteTypes {
   to:
     | '/about'
     | '/$stopPlace'
-    | '/details/$train'
     | '/'
     | '/routing'
     | '/trainRuns'
     | '/details/$train/$initialDeparture'
+    | '/details/$train'
     | '/routing/$start'
+    | '/details/$train/h/$jid'
+    | '/details/$train/j/$journeyId'
     | '/routing/$start/$destination'
     | '/routing/$start/$destination/$date'
     | '/routing/$start/$destination/$date/$via';
@@ -367,12 +393,14 @@ export interface FileRouteTypes {
     | '/trainRuns'
     | '/about'
     | '/_abfahrten/$stopPlace'
-    | '/details/$train'
     | '/_abfahrten/'
     | '/routing/'
     | '/trainRuns/'
     | '/details/$train/$initialDeparture'
+    | '/details/$train/'
     | '/routing/$start/'
+    | '/details/$train/h/$jid'
+    | '/details/$train/j/$journeyId'
     | '/routing/$start/$destination/'
     | '/routing/$start/$destination/$date/'
     | '/routing/$start/$destination/$date/$via/';
@@ -384,7 +412,10 @@ export interface RootRouteChildren {
   RoutingRouteRoute: typeof RoutingRouteRouteWithChildren;
   TrainRunsRouteRoute: typeof TrainRunsRouteRouteWithChildren;
   AboutRoute: typeof AboutRoute;
-  DetailsTrainRoute: typeof DetailsTrainRouteWithChildren;
+  DetailsTrainInitialDepartureRoute: typeof DetailsTrainInitialDepartureRoute;
+  DetailsTrainIndexRoute: typeof DetailsTrainIndexRoute;
+  DetailsTrainHJidRoute: typeof DetailsTrainHJidRoute;
+  DetailsTrainJJourneyIdRoute: typeof DetailsTrainJJourneyIdRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -392,7 +423,10 @@ const rootRouteChildren: RootRouteChildren = {
   RoutingRouteRoute: RoutingRouteRouteWithChildren,
   TrainRunsRouteRoute: TrainRunsRouteRouteWithChildren,
   AboutRoute: AboutRoute,
-  DetailsTrainRoute: DetailsTrainRouteWithChildren,
+  DetailsTrainInitialDepartureRoute: DetailsTrainInitialDepartureRoute,
+  DetailsTrainIndexRoute: DetailsTrainIndexRoute,
+  DetailsTrainHJidRoute: DetailsTrainHJidRoute,
+  DetailsTrainJJourneyIdRoute: DetailsTrainJJourneyIdRoute,
 };
 
 export const routeTree = rootRoute
@@ -409,7 +443,10 @@ export const routeTree = rootRoute
         "/routing",
         "/trainRuns",
         "/about",
-        "/details/$train"
+        "/details/$train/$initialDeparture",
+        "/details/$train/",
+        "/details/$train/h/$jid",
+        "/details/$train/j/$journeyId"
       ]
     },
     "/_abfahrten": {
@@ -442,12 +479,6 @@ export const routeTree = rootRoute
       "filePath": "_abfahrten/$stopPlace.tsx",
       "parent": "/_abfahrten"
     },
-    "/details/$train": {
-      "filePath": "details/$train.tsx",
-      "children": [
-        "/details/$train/$initialDeparture"
-      ]
-    },
     "/_abfahrten/": {
       "filePath": "_abfahrten/index.tsx",
       "parent": "/_abfahrten"
@@ -461,12 +492,20 @@ export const routeTree = rootRoute
       "parent": "/trainRuns"
     },
     "/details/$train/$initialDeparture": {
-      "filePath": "details/$train.$initialDeparture.tsx",
-      "parent": "/details/$train"
+      "filePath": "details/$train/$initialDeparture.tsx"
+    },
+    "/details/$train/": {
+      "filePath": "details/$train/index.tsx"
     },
     "/routing/$start/": {
       "filePath": "routing/$start/index.tsx",
       "parent": "/routing"
+    },
+    "/details/$train/h/$jid": {
+      "filePath": "details/$train/h.$jid.tsx"
+    },
+    "/details/$train/j/$journeyId": {
+      "filePath": "details/$train/j.$journeyId.tsx"
     },
     "/routing/$start/$destination/": {
       "filePath": "routing/$start/$destination/index.tsx",

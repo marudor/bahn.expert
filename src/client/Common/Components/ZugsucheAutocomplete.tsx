@@ -55,8 +55,8 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 	const [loading, setLoading] = useState(0);
 	const trpcUtils = trpc.useUtils();
 	const debouncedFindByNumber = useMemo(
-		() => debounce(trpcUtils.journeys.findByNumber.fetch, 320),
-		[trpcUtils.journeys.findByNumber],
+		() => debounce(trpcUtils.journeys.find.fetch, 320),
+		[trpcUtils.journeys.find],
 	);
 	const loadOptions = useCallback(
 		async (value: string) => {
@@ -141,12 +141,12 @@ export const ZugsucheAutocomplete: FC<Props> = ({
 									<StyledMenuItem
 										data-testid="zugsucheAutocompleteItem"
 										{...itemProps}
-										key={suggestion.jid}
+										key={suggestion.journeyId}
 										selected={highlighted}
 										component="div"
 									>
 										{suggestion.train.name} -&gt;
-										<br key={suggestion.jid} />
+										<br key={suggestion.journeyId} />
 										{suggestion.lastStop.station.name}
 									</StyledMenuItem>
 								);

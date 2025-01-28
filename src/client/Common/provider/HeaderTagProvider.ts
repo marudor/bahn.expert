@@ -1,6 +1,6 @@
 import constate from '@/constate';
-import { useCallback, useState } from 'react';
-import type { PropsWithChildren } from 'react';
+import { useRouterState } from '@tanstack/react-router';
+import { useCallback, useEffect, useState } from 'react';
 
 const defaultDescription =
 	'Dein Begleiter um Stressfrei Bahn zu fahren. Sucht die besten Informationen aus allen Quellen um dich ans Ziel zu bringen.';
@@ -20,9 +20,31 @@ const defaultKeywords = new Set([
 	'Regionalverkehr',
 ]);
 
-function useHeaderTagInner(_p: PropsWithChildren<unknown>) {
-	const [title, setTitle] = useState(defaultTitle);
+function useHeaderTagInner() {
+	const routerTitle = useRouterState({
+		select: (s) =>
+			s.matches
+				// @ts-expect-error meta is not typed
+				.map((m) => m.loaderData?.meta?.title)
+				.filter(Boolean)
+				.at(-1),
+	});
+	const [title, setTitle] = useState(routerTitle);
+	useEffect(() => {
+		setTitle(routerTitle || defaultTitle);
+	}, [routerTitle]);
+	const routerDescription = useRouterState({
+		select: (s) =>
+			s.matches
+				// @ts-expect-error meta is not typed
+				.map((m) => m.loaderData?.meta?.description)
+				.filter(Boolean)
+				.at(-1),
+	});
 	const [description, setDescription] = useState(defaultDescription);
+	useEffect(() => {
+		setDescription(routerDescription || defaultDescription);
+	}, [routerDescription]);
 	const [keywords, setKeywords] = useState(defaultKeywords);
 
 	const updateTitle = useCallback((newTitle: string = defaultTitle) => {

@@ -69,8 +69,8 @@ const queryClient = new QueryClient(queryClientOptions);
 export const hydrateRouter = () => {
 	if (!import.meta.env.SSR) {
 		try {
-			if (window.__TSR__) {
-				const queryClientData = parse(window.__TSR__.dehydrated).payload
+			if (window.__TSR_SSR__) {
+				const queryClientData = parse(window.__TSR_SSR__.dehydrated).payload
 					.queryClientState;
 				hydrate(queryClient, queryClientData);
 			}
@@ -112,11 +112,11 @@ export function createRouter(request?: Request) {
 		InnerWrap: ({ children }) => (
 			<ThemeProvider theme={theme}>{children}</ThemeProvider>
 		),
-		// @ts-expect-error ??? wrong typing?
 		transformer: {
 			parse,
-			stringify: stringify,
+			stringify,
 		},
+		defaultPendingMinMs: 300,
 		defaultErrorComponent: DefaultCatchBoundary,
 		dehydrate: () => ({
 			queryClientState: dehydrate(queryClient),

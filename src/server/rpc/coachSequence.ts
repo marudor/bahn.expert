@@ -105,9 +105,10 @@ export const coachSequenceRpcRouter = rpcAppRouter({
 				initialDeparture: z.date(),
 			}),
 		)
-		.query(({ input: { journeyId, vehicleIds, initialDeparture } }) => {
+		.query(async ({ input: { journeyId, vehicleIds, initialDeparture } }) => {
 			if (isWithin20Hours(initialDeparture)) {
-				return getUmlauf(journeyId, vehicleIds);
+				return (await getUmlauf(journeyId, vehicleIds)) || null;
 			}
+			return null;
 		}),
 });
