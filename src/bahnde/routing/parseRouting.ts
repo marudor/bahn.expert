@@ -129,10 +129,9 @@ const mapWalkSegment = async (
 const mapSegment = async (
 	input: BahnDERoutingAbschnitt,
 ): Promise<RouteJourneySegment | undefined> => {
-	// TRSF is educated guess
 	if (
 		input.verkehrsmittel.typ === 'WALK' ||
-		input.verkehrsmittel.typ === 'TRSF'
+		input.verkehrsmittel.typ === 'TRANSFER'
 	) {
 		return mapWalkSegment(input);
 	}
