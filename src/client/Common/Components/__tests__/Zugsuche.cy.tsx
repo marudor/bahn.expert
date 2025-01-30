@@ -35,7 +35,7 @@ describe('Zugsuche', () => {
 			{
 				body: [
 					{
-						jid: journeyId,
+						journeyId,
 						train: { name: 'EC 6', line: null, type: 'EC', number: '6' },
 						stops: [],
 						firstStop: {
@@ -52,7 +52,9 @@ describe('Zugsuche', () => {
 		cy.findByTestId('zugsucheAutocompleteInput').type('6');
 		cy.findByTestId('zugsucheAutocompleteItem').click();
 		cy.findByTestId('Zugsuche').should('not.exist');
-		cy.location('pathname').should('include', encodeURI('/details/EC 6'));
-		cy.location('search').should('include', `journeyId=${journeyId}`);
+		cy.location('pathname').should(
+			'include',
+			encodeURI(`/details/EC 6/j/${journeyId}`),
+		);
 	});
 });

@@ -5,11 +5,7 @@ import { defineConfig as defineViteConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const viteConfig = defineViteConfig({
-	dev: {
-		sourcemap: false,
-	},
 	server: {
-		watch: null,
 		warmup: {
 			clientFiles: ['src/client/**/*.ts', 'src/client/**/*.tsx', 'cypress/**'],
 		},
