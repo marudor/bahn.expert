@@ -2,13 +2,14 @@ import { createFileRoute, redirect } from '@tanstack/react-router';
 import z from 'zod';
 
 export const Route = createFileRoute('/details/$train/')({
-	beforeLoad: (ctx) => {
+	loader: (ctx) => {
 		return redirect({
 			to: '/details/$train/$initialDeparture',
 			params: {
 				train: ctx.params.train,
 				initialDeparture: '0',
 			},
+			search: true,
 		});
 	},
 	validateSearch: z.object({

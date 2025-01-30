@@ -16,7 +16,6 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
 	type AnyRouteMatch,
 	Outlet,
-	ScrollRestoration,
 	createRootRouteWithContext,
 } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
@@ -169,7 +168,6 @@ function RootComponent() {
 				<Meta />
 			</head>
 			<body>
-				<ScrollRestoration />
 				{chaosSocialAnchor}
 				<LocalizationProvider
 					dateAdapter={AdapterDateFns}

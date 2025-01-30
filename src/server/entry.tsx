@@ -6,7 +6,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import { getFullRouterManifest } from '@tanstack/start/router-manifest';
 import { StartServer, createStartHandler } from '@tanstack/start/server';
 import type { ReactElement } from 'react';
-import { renderToPipeableStream, renderToString } from 'react-dom/server';
+import { renderToPipeableStream } from 'react-dom/server';
 import { HeadProvider } from 'react-head';
 import { eventHandler } from 'vinxi/http';
 
@@ -68,7 +68,6 @@ const SSRHandler = createStartHandler({
 
 	const emotionStyles = extractCriticalToChunks(rawHtml);
 	const emotionStyleTags = constructStyleTagsFromChunks(emotionStyles);
-	const renderedHeadTags = renderToString(headTags);
 
 	return new Response(
 		`<!DOCTYPE html>${rawHtml.replace('<head>', `<head>${emotionStyleTags}`)}`,

@@ -31,49 +31,65 @@ const redirect404 = (train: string) =>
 	});
 
 export const Route = createFileRoute('/details/$train/$initialDeparture')({
-	beforeLoad: async (ctx) => {
-		if (ctx.search.journeyId) {
+	loaderDeps: ({
+		search: {
+			journeyId,
+			jid,
+			administration,
+			evaNumberAlongRoute,
+			stopEva,
+			station,
+		},
+	}) => ({
+		journeyId,
+		jid,
+		administration,
+		evaNumberAlongRoute: evaNumberAlongRoute || stopEva || station,
+	}),
+	loader: async ({
+		context: { trpcUtils },
+		deps: { journeyId, jid, administration, evaNumberAlongRoute },
+		params: { train, initialDeparture },
+	}) => {
+		if (journeyId) {
 			return redirect({
 				to: '/details/$train/j/$journeyId',
 				replace: true,
 				params: {
-					train: ctx.params.train,
-					journeyId: ctx.search.journeyId,
+					train,
+					journeyId,
 				},
 			});
 		}
-		const productDetails = getCategoryAndNumberFromName(ctx.params.train);
+		const productDetails = getCategoryAndNumberFromName(train);
 		if (!productDetails) {
-			return redirect404(ctx.params.train);
+			return redirect404(train);
 		}
-		if (ctx.search.jid && productDetails.trainNumber === 0) {
+		if (jid && productDetails.trainNumber === 0) {
 			return redirect({
 				to: '/details/$train/h/$jid',
 				replace: true,
 				params: {
-					train: ctx.params.train,
-					jid: ctx.search.jid,
+					train,
+					jid,
 				},
 			});
 		}
-		const initialDepartureNumber = +ctx.params.initialDeparture;
+		const initialDepartureNumber = +initialDeparture;
 		const initialDepartureDate =
 			initialDepartureNumber === 0
 				? undefined
 				: new Date(
 						Number.isNaN(initialDepartureNumber)
-							? ctx.params.initialDeparture
+							? initialDeparture
 							: initialDepartureNumber,
 					);
-		const foundJourney = await ctx.context.trpcUtils.journeys.find.fetch(
+		const foundJourney = await trpcUtils.journeys.find.fetch(
 			{
 				trainNumber: productDetails.trainNumber,
-				administration: ctx.search.administration,
+				administration: administration,
 				category: productDetails.category,
-				evaNumberAlongRoute:
-					ctx.search.evaNumberAlongRoute ||
-					ctx.search.stopEva ||
-					ctx.search.station,
+				evaNumberAlongRoute,
 				initialDepartureDate,
 				withOEV: true,
 				limit: 1,
@@ -86,13 +102,13 @@ export const Route = createFileRoute('/details/$train/$initialDeparture')({
 			return redirect({
 				to: '/details/$train/j/$journeyId',
 				params: {
-					train: ctx.params.train,
+					train,
 					journeyId: foundJourney[0].journeyId,
 				},
 				replace: true,
 			});
 		}
-		return redirect404(ctx.params.train);
+		return redirect404(train);
 	},
 	pendingComponent: Loading,
 	validateSearch: z.object({

@@ -1,5 +1,3 @@
-import { createRouter as createReactRouter } from '@tanstack/react-router';
-
 import { ClientStorage, ServerStorage } from '@/client/Common/Storage';
 import { DefaultCatchBoundary } from '@/client/DefaultCatchBoundary';
 import { theme } from '@/client/Themes';
@@ -13,6 +11,7 @@ import {
 	dehydrate,
 	hydrate,
 } from '@tanstack/react-query';
+import { createRouter as createReactRouter } from '@tanstack/react-router';
 import {
 	type TRPCLink,
 	httpBatchLink,
@@ -20,6 +19,7 @@ import {
 	splitLink,
 } from '@trpc/client';
 import { createTRPCQueryUtils, createTRPCReact } from '@trpc/react-query';
+import qs from 'qs';
 import { CookiesProvider } from 'react-cookie';
 import { routeTree } from './routeTree.gen';
 
@@ -118,6 +118,15 @@ export function createRouter(request?: Request) {
 		},
 		defaultPendingMinMs: 300,
 		defaultErrorComponent: DefaultCatchBoundary,
+		parseSearch: (searchStr) => {
+			return qs.parse(searchStr, {
+				ignoreQueryPrefix: true,
+			});
+		},
+		stringifySearch: (search) =>
+			qs.stringify(search, {
+				addQueryPrefix: true,
+			}),
 		dehydrate: () => ({
 			queryClientState: dehydrate(queryClient),
 		}),
