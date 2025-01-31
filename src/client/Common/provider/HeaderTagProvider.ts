@@ -29,7 +29,7 @@ function useHeaderTagInner() {
 				.filter(Boolean)
 				.at(-1),
 	});
-	const [title, setTitle] = useState(routerTitle);
+	const [title, setTitle] = useState(routerTitle || defaultTitle);
 	useEffect(() => {
 		setTitle(routerTitle || defaultTitle);
 	}, [routerTitle]);

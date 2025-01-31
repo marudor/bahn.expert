@@ -66,18 +66,6 @@ const queryClientOptions: QueryClientConfig = {
 
 const queryClient = new QueryClient(queryClientOptions);
 
-export const hydrateRouter = () => {
-	if (!import.meta.env.SSR) {
-		try {
-			if (window.__TSR_SSR__) {
-				const queryClientData = parse(window.__TSR_SSR__.dehydrated).payload
-					.queryClientState;
-				hydrate(queryClient, queryClientData);
-			}
-		} catch {}
-	}
-};
-
 const trpcUtils = createTRPCQueryUtils({
 	client: trpcClient,
 	queryClient,
@@ -106,6 +94,7 @@ export function createRouter(request?: Request) {
 			baseUrl: request?.url ? new URL(request.url).host : window.location.host,
 			trpcUtils,
 		},
+
 		routeTree,
 		// @ts-expect-error
 		Wrap,
@@ -130,7 +119,9 @@ export function createRouter(request?: Request) {
 		dehydrate: () => ({
 			queryClientState: dehydrate(queryClient),
 		}),
+		hydrate: ({ queryClientState }) => hydrate(queryClient, queryClientState),
 		defaultPreload: 'intent',
+		defaultStructuralSharing: true,
 	});
 }
 

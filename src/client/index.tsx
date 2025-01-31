@@ -1,17 +1,22 @@
-import { createRouter, hydrateRouter } from '@/router';
+import { createRouter } from '@/router';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StartClient } from '@tanstack/start';
 import { hydrateRoot } from 'react-dom/client';
 import { HeadProvider } from 'react-head';
 
-const cache = createEmotionCache({ prepend: true, key: 'css' });
+const cache = createEmotionCache({ key: 'css' });
 const router = createRouter();
-hydrateRouter();
+
+async function preloadSSRMatches() {
+	for (const match of router.matchRoutes(router.state.location)) {
+		// @ts-expect-error
+		await router.loadRouteChunk(router.routesById[match.routeId]);
+	}
+}
 
 async function render() {
-	await router.load();
-
+	await preloadSSRMatches();
 	hydrateRoot(
 		document!,
 		<HeadProvider>

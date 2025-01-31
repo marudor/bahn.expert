@@ -84,20 +84,22 @@ export const Route = createFileRoute('/details/$train/$initialDeparture')({
 							? initialDeparture
 							: initialDepartureNumber,
 					);
-		const foundJourney = await trpcUtils.journeys.find.fetch(
-			{
-				trainNumber: productDetails.trainNumber,
-				administration: administration,
-				category: productDetails.category,
-				evaNumberAlongRoute,
-				initialDepartureDate,
-				withOEV: true,
-				limit: 1,
-			},
-			{
-				staleTime: Number.POSITIVE_INFINITY,
-			},
-		);
+		const foundJourney = await trpcUtils.journeys.find
+			.fetch(
+				{
+					trainNumber: productDetails.trainNumber,
+					administration: administration,
+					category: productDetails.category,
+					evaNumberAlongRoute,
+					initialDepartureDate,
+					withOEV: true,
+					limit: 1,
+				},
+				{
+					staleTime: Number.POSITIVE_INFINITY,
+				},
+			)
+			.catch(() => []);
 		if (foundJourney.length) {
 			return redirect({
 				to: '/details/$train/j/$journeyId',

@@ -161,6 +161,14 @@ const chaosSocialAnchor = (
 	/>
 );
 
+const testAwareOutlet = process.env.CYPRESS ? (
+	<NoSsr>
+		<Outlet />
+	</NoSsr>
+) : (
+	<Outlet />
+);
+
 function RootComponent() {
 	return (
 		<html className="dark" suppressHydrationWarning lang="de">
@@ -181,7 +189,7 @@ function RootComponent() {
 							<Navigation>
 								<RoutingProvider>
 									<PolitikPopup />
-									<Outlet />
+									{testAwareOutlet}
 									<HeaderTags />
 								</RoutingProvider>
 							</Navigation>
