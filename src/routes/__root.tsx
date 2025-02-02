@@ -161,7 +161,7 @@ const chaosSocialAnchor = (
 	/>
 );
 
-const testAwareOutlet = process.env.CYPRESS ? (
+const testAwareOutlet = process.env.TEST_RUN ? (
 	<NoSsr>
 		<Outlet />
 	</NoSsr>

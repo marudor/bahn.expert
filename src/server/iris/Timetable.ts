@@ -538,8 +538,8 @@ export class Timetable {
 			timetable.routePre = diff.flatMap((d) =>
 				d.value.map((v) => ({
 					name: v,
-					additional: d.removed,
-					cancelled: d.added,
+					additional: d.removed || undefined,
+					cancelled: d.added || undefined,
 				})),
 			);
 		}
@@ -571,8 +571,8 @@ export class Timetable {
 			timetable.routePost = diff.flatMap((d) =>
 				d.value.map((v) => ({
 					name: v,
-					additional: d.added,
-					cancelled: d.removed,
+					additional: d.added || undefined,
+					cancelled: d.removed || undefined,
 				})),
 			);
 		} else if (timetable.departure.cancelled && timetable.routePost) {
