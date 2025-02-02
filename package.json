@@ -9,7 +9,7 @@
 	"type": "module",
 	"private": true,
 	"engineStrict": true,
-	"packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+	"packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321",
 	"commitlint": {
 		"extends": [
 			"@commitlint/config-conventional"
@@ -50,8 +50,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@commitlint/cli": "^19.6.1",
-		"@commitlint/config-conventional": "^19.6.0",
+		"@commitlint/cli": "^19.7.1",
+		"@commitlint/config-conventional": "^19.7.1",
 		"@emotion/babel-plugin": "^11.13.5",
 		"@openapitools/openapi-generator-cli": "^2.16.3",
 		"@percy/cli": "1.30.7",
@@ -92,7 +92,7 @@
 		"@tanstack/react-query-devtools": "^5.66.0",
 		"@tanstack/react-router": "^1.99.0",
 		"@tanstack/router-devtools": "^1.99.0",
-		"@tanstack/start": "^1.99.0",
+		"@tanstack/start": "^1.99.1",
 		"@trpc/client": "11.0.0-rc.730",
 		"@trpc/react-query": "11.0.0-rc.730",
 		"@trpc/server": "11.0.0-rc.730",
