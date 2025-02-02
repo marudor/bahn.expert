@@ -3,65 +3,58 @@ import constate from '@/constate';
 import { trpc } from '@/router';
 import { useNavigate } from '@tanstack/react-router';
 import { addDays } from 'date-fns';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { MouseEvent } from 'react';
 
-interface Props {
+interface SharedProps {
 	trainName: string;
-	initialDepartureDateString?: string;
-	evaNumberAlongRoute?: string;
-	journeyId?: string;
-	// HAFAS
-	jid?: string;
 	administration?: string;
+	initialDepartureDate?: Date;
+	doNotLoad?: boolean;
 }
 
+interface PropsWithJid extends SharedProps {
+	jid: string;
+	journeyId?: never;
+}
+
+interface PropsWithJourneyId extends SharedProps {
+	journeyId: string;
+	jid?: never;
+}
+
+type Props = PropsWithJid | PropsWithJourneyId;
+
 const useInnerDetails = ({
-	initialDepartureDateString,
-	evaNumberAlongRoute,
 	trainName,
 	journeyId,
 	jid,
+	initialDepartureDate,
 	administration,
 }: Props) => {
 	const { autoUpdate } = useCommonConfig();
 	const [isMapDisplay, setIsMapDisplay] = useState(false);
 	const [showMarkers, setShowMarkers] = useState(false);
-	const initialDepartureDate = useMemo(() => {
-		if (!initialDepartureDateString) return new Date();
-		const initialDepartureNumber = +initialDepartureDateString;
-		return new Date(
-			Number.isNaN(initialDepartureNumber)
-				? initialDepartureDateString
-				: initialDepartureNumber,
-		);
-	}, [initialDepartureDateString]);
 
 	const {
 		data: details,
 		refetch: refetchDetails,
 		isFetching,
 		error,
-	} = trpc.journeys.details.useQuery({
-		trainName,
-		initialDepartureDate,
-		evaNumberAlongRoute,
-		administration,
-		journeyId,
-		jid,
+	} = journeyId
+		? trpc.journeys.detailsByJourneyId.useQuery(journeyId)
+		: trpc.journeys.detailsByJid.useQuery(jid!);
+
+	const { data: occupancy } = trpc.journeys.occupancy.useQuery(journeyId!, {
+		staleTime: 5000,
+		enabled: Boolean(journeyId),
 	});
-	const { data: occupancy } = trpc.journeys.occupancy.useQuery(
-		details?.journeyId!,
-		{
-			staleTime: 5000,
-			enabled: Boolean(details?.journeyId),
-		},
-	);
 	const navigate = useNavigate();
 
 	const sameTrainDaysInFuture = useCallback(
 		(daysForward: number) => {
-			const oldDate = details?.departure.scheduledTime || initialDepartureDate;
+			const oldDate =
+				details?.departure.scheduledTime || initialDepartureDate || new Date();
 			const newDate = addDays(oldDate, daysForward);
 			const newAdministration = administration || details?.train.admin;
 			navigate({
@@ -77,25 +70,6 @@ const useInnerDetails = ({
 		},
 		[initialDepartureDate, details, administration, navigate, trainName],
 	);
-
-	useEffect(() => {
-		if (!details) {
-			return;
-		}
-		if (details.journeyId) {
-			navigate({
-				to: '/details/$train',
-				params: {
-					train: trainName,
-				},
-				search: {
-					journeyId: details.journeyId,
-				},
-				replace: true,
-				from: '/details/$train',
-			});
-		}
-	}, [details, trainName, navigate]);
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout;

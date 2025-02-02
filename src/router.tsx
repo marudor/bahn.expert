@@ -1,5 +1,3 @@
-import { createRouter as createReactRouter } from '@tanstack/react-router';
-
 import { ClientStorage, ServerStorage } from '@/client/Common/Storage';
 import { DefaultCatchBoundary } from '@/client/DefaultCatchBoundary';
 import { theme } from '@/client/Themes';
@@ -13,6 +11,7 @@ import {
 	dehydrate,
 	hydrate,
 } from '@tanstack/react-query';
+import { createRouter as createReactRouter } from '@tanstack/react-router';
 import {
 	type TRPCLink,
 	httpBatchLink,
@@ -20,6 +19,7 @@ import {
 	splitLink,
 } from '@trpc/client';
 import { createTRPCQueryUtils, createTRPCReact } from '@trpc/react-query';
+import qs from 'qs';
 import { CookiesProvider } from 'react-cookie';
 import { routeTree } from './routeTree.gen';
 
@@ -66,23 +66,21 @@ const queryClientOptions: QueryClientConfig = {
 
 const queryClient = new QueryClient(queryClientOptions);
 
-export const hydrateRouter = () => {
-	if (!import.meta.env.SSR) {
-		try {
-			if (window.__TSR__) {
-				const queryClientData = parse(window.__TSR__.dehydrated).payload
-					.queryClientState;
-				hydrate(queryClient, queryClientData);
-			}
-		} catch {}
-	}
-};
-
 const trpcUtils = createTRPCQueryUtils({
 	client: trpcClient,
 	queryClient,
 });
 export type TRPCQueryUtilsType = typeof trpcUtils;
+
+if (import.meta.env.DEV) {
+	if ('Cypress' in globalThis)
+		queryClient.getQueryCache().subscribe((event) => {
+			if (event.type === 'added' || event.type === 'updated') {
+				// biome-ignore lint/suspicious/noConsoleLog: just for debuggign
+				console.log(event.query.queryHash);
+			}
+		});
+}
 
 export const RPCProvider: FCC = ({ children }) => (
 	<trpc.Provider queryClient={queryClient} client={trpcClient}>
@@ -106,21 +104,32 @@ export function createRouter(request?: Request) {
 			baseUrl: request?.url ? new URL(request.url).host : window.location.host,
 			trpcUtils,
 		},
+
 		routeTree,
 		// @ts-expect-error
 		Wrap,
 		InnerWrap: ({ children }) => (
 			<ThemeProvider theme={theme}>{children}</ThemeProvider>
 		),
-		// @ts-expect-error ??? wrong typing?
 		transformer: {
 			parse,
-			stringify: stringify,
+			stringify,
 		},
+		defaultPendingMinMs: 300,
 		defaultErrorComponent: DefaultCatchBoundary,
+		parseSearch: (searchStr) => {
+			return qs.parse(searchStr, {
+				ignoreQueryPrefix: true,
+			});
+		},
+		stringifySearch: (search) =>
+			qs.stringify(search, {
+				addQueryPrefix: true,
+			}),
 		dehydrate: () => ({
 			queryClientState: dehydrate(queryClient),
 		}),
+		hydrate: ({ queryClientState }) => hydrate(queryClient, queryClientState),
 		defaultPreload: 'intent',
 	});
 }

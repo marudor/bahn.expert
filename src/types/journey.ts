@@ -17,7 +17,7 @@ export interface JourneyResponse extends RouteJourneySegmentTrain {
 export interface JourneyFindResponse {
 	train: CommonProductInfo;
 	stops: RouteStop[];
-	jid: string;
+	journeyId: string;
 	firstStop: RouteStop;
 	lastStop: RouteStop;
 }

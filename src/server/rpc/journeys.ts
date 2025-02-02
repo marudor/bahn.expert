@@ -4,12 +4,8 @@ import type {
 	JourneyEventBased,
 	JourneyFindResult,
 } from '@/external/generated/risJourneysV2';
+import { findJourney } from '@/external/risJourneys';
 import {
-	findJourney,
-	findJourneyHafasCompatible,
-} from '@/external/risJourneys';
-import {
-	findJourneyHafasCompatible as findJourneyHafasCompatibleV2,
 	findJourney as findJourneyV2,
 	getJourneyDetails,
 } from '@/external/risJourneysV2';
@@ -23,29 +19,6 @@ import { TRPCError } from '@trpc/server';
 import type { QueryProcedure } from '@trpc/server/unstable-core-do-not-import';
 import { isBefore, subDays } from 'date-fns';
 import { z } from 'zod';
-
-function findV1OrV2HafasCompatible(
-	trainNumber: number,
-	date: Date,
-	category?: string,
-	withOEV?: boolean,
-) {
-	let useV2 = true;
-	if (date) {
-		const fourDaysAgo = subDays(new Date(), 4);
-		const olderThan4Days = isBefore(date, fourDaysAgo);
-		if (olderThan4Days) {
-			useV2 = false;
-		}
-	}
-
-	if (useV2) {
-		logger.debug('Using JourneysV2 (HAFAS compatible) find');
-		return findJourneyHafasCompatibleV2(trainNumber, date, category, withOEV);
-	}
-	logger.debug('Using JourneysV1 (HAFAS compatible) find');
-	return findJourneyHafasCompatible(trainNumber, date, category, withOEV);
-}
 
 function findJourneyV1OrV2(
 	trainNumber: number,
@@ -62,11 +35,12 @@ function findJourneyV1OrV2(
 			useV2 = false;
 		}
 	}
+
 	if (useV2) {
-		logger.debug('Using JourneysV2 find');
+		logger.debug('Using JourneysV2 (HAFAS compatible) find');
 		return findJourneyV2(trainNumber, date, category, withOEV, administration);
 	}
-	logger.debug('Using JourneysV1 find');
+	logger.debug('Using JourneysV1 (HAFAS compatible) find');
 	return findJourney(trainNumber, date, category, withOEV, administration);
 }
 
@@ -117,7 +91,13 @@ export const journeysRpcRouter = rpcAppRouter({
 		)
 		.output(z.any())
 		.query(({ input: { date, journeyNumber, administration, category } }) => {
-			return findJourneyV2(journeyNumber, date, category, true, administration);
+			return findJourneyV1OrV2(
+				journeyNumber,
+				date,
+				category,
+				true,
+				administration,
+			);
 		}) as RawRPCJourneyFind,
 	rawJourneyByNumber: rpcProcedure
 		.meta({
@@ -141,15 +121,16 @@ export const journeysRpcRouter = rpcAppRouter({
 			}
 			return journey;
 		}) as RawRPCJourney,
-	findByNumber: rpcProcedure
+	find: rpcProcedure
 		.input(
 			z.object({
 				trainNumber: z.number(),
 				initialDepartureDate: z.date().optional(),
-				initialEvaNumber: z.string().optional(),
+				evaNumberAlongRoute: z.string().optional(),
 				withOEV: z.boolean().optional(),
 				limit: z.number().optional(),
 				category: z.string().optional(),
+				administration: z.string().optional(),
 			}),
 		)
 		.query(
@@ -157,26 +138,40 @@ export const journeysRpcRouter = rpcAppRouter({
 				input: {
 					trainNumber,
 					initialDepartureDate = new Date(),
-					initialEvaNumber,
 					withOEV,
 					limit,
 					category,
+					administration,
+					evaNumberAlongRoute,
 				},
 			}) => {
-				let result = await findV1OrV2HafasCompatible(
+				const possibleJourneys = await findJourneyV1OrV2(
 					trainNumber,
 					initialDepartureDate,
 					category,
 					withOEV,
+					administration,
 				);
 
-				if (initialEvaNumber) {
-					result = result.filter(
-						(r) => r.firstStop.station.evaNumber === initialEvaNumber,
+				if (limit === 1 && evaNumberAlongRoute) {
+					const allJourneys = (
+						await Promise.all(
+							possibleJourneys.map((j) => journeyDetails(j.journeyId)),
+						)
+					).filter(Boolean);
+					const foundJourney = allJourneys.find((j) =>
+						j.stops
+							.map((s) => s.station.evaNumber)
+							.includes(evaNumberAlongRoute),
 					);
-				}
 
-				return result.slice(0, limit);
+					const journeyFinds = possibleJourneys.filter(
+						(j) => j.journeyId === foundJourney?.journeyId,
+					);
+
+					return journeyFinds;
+				}
+				return possibleJourneys.slice(0, limit);
 			},
 		),
 	occupancy: rpcProcedure
@@ -194,6 +189,32 @@ export const journeysRpcRouter = rpcAppRouter({
 				code: 'NOT_FOUND',
 			});
 		}),
+	detailsByJourneyId: rpcProcedure
+		.input(z.string())
+		.query(async ({ input: journeyId }) => {
+			await new Promise((r) => setTimeout(r, 1000));
+			if (journeyId === '404') {
+				throw new TRPCError({
+					code: 'NOT_FOUND',
+				});
+			}
+			const details = await journeyDetails(journeyId);
+			if (!details) {
+				throw new TRPCError({
+					code: 'NOT_FOUND',
+				});
+			}
+			return details;
+		}),
+	detailsByJid: rpcProcedure.input(z.string()).query(async ({ input: jid }) => {
+		const details = await bahnJourneyDetails(jid);
+		if (!details) {
+			throw new TRPCError({
+				code: 'NOT_FOUND',
+			});
+		}
+		return details;
+	}),
 	details: rpcProcedure
 		.meta({
 			openapi: {
@@ -269,7 +290,7 @@ export const journeysRpcRouter = rpcAppRouter({
 				if (evaNumberAlongRoute) {
 					const allJourneys = (
 						await Promise.all(
-							possibleJourneys.map((j) => journeyDetails(j.journeyID)),
+							possibleJourneys.map((j) => journeyDetails(j.journeyId)),
 						)
 					).filter(Boolean);
 					foundJourney = allJourneys.find((j) =>
@@ -278,7 +299,7 @@ export const journeysRpcRouter = rpcAppRouter({
 							.includes(evaNumberAlongRoute),
 					);
 				} else {
-					foundJourney = await journeyDetails(possibleJourneys[0].journeyID);
+					foundJourney = await journeyDetails(possibleJourneys[0].journeyId);
 				}
 				if (!foundJourney) {
 					throw new TRPCError({

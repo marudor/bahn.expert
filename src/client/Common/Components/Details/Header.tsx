@@ -6,7 +6,9 @@ import { useDetails } from '@/client/Common/provider/DetailsProvider';
 import ArrowBackIos from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
 import { IconButton, styled } from '@mui/material';
-import { useCallback } from 'react';
+import { Link } from '@tanstack/react-router';
+import { addDays } from 'date-fns';
+import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 import { BaseHeader } from '../BaseHeader';
 
@@ -60,6 +62,7 @@ const ArrowForward = styled(ArrowBack.withComponent(ArrowForwardIos))`
 export const Header: FC = () => {
 	const {
 		details,
+
 		refreshDetails,
 		trainName,
 		toggleMapDisplay,
@@ -76,6 +79,50 @@ export const Header: FC = () => {
 		sameTrainDaysInFuture(-1);
 	}, [sameTrainDaysInFuture]);
 
+	const previousArrow = useMemo(() => {
+		const date = addDays(
+			details?.departure.scheduledTime || initialDepartureDate || new Date(),
+			-1,
+		);
+		return (
+			<Link
+				css={{ color: 'inherit' }}
+				to="/details/$train/$initialDeparture"
+				params={{
+					train: trainName,
+					initialDeparture: date.toISOString(),
+				}}
+				search={{
+					administration: details?.train.admin,
+				}}
+			>
+				<ArrowBack data-testid="previous" />
+			</Link>
+		);
+	}, [details, initialDepartureDate, trainName]);
+
+	const nextArrow = useMemo(() => {
+		const date = addDays(
+			details?.departure.scheduledTime || initialDepartureDate || new Date(),
+			1,
+		);
+		return (
+			<Link
+				css={{ color: 'inherit' }}
+				to="/details/$train/$initialDeparture"
+				params={{
+					train: trainName,
+					initialDeparture: date.toISOString(),
+				}}
+				search={{
+					administration: details?.train.admin,
+				}}
+			>
+				<ArrowForward data-testid="next" />
+			</Link>
+		);
+	}, [details, initialDepartureDate, trainName]);
+
 	return (
 		<BaseHeader>
 			<Container data-testid="detailsHeader">
@@ -87,11 +134,13 @@ export const Header: FC = () => {
 						<Operator>{details?.train.operator}</Operator>
 					)}
 					<DateDisplay>
-						<ArrowBack data-testid="previous" onClick={dateBack} />
+						{previousArrow}
 						<DateSelectForDetail
-							date={details?.departure.time || initialDepartureDate}
+							date={
+								details?.departure.time || initialDepartureDate || new Date()
+							}
 						/>
-						<ArrowForward data-testid="next" onClick={dateForward} />
+						{nextArrow}
 					</DateDisplay>
 					{/** Displayed as longer arrow, thanks safari that I need a single utf8 */}
 					<Arrow> → </Arrow>

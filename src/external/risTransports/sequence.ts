@@ -16,7 +16,6 @@ const formatDate = (date?: Date) =>
 
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
-	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'coachSequence-risTransports');

@@ -11,7 +11,6 @@ import Axios from 'axios';
 import { addDays, format, isBefore, subDays } from 'date-fns';
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
-	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'vehicles-risTransports');

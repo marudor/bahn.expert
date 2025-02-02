@@ -67,7 +67,7 @@ const vinxiConfig = defineConfig({
 		semicolons: true,
 		routesDirectory: './src/routes',
 		generatedRouteTree: './src/routeTree.gen.ts',
-		autoCodeSplitting: false,
+		autoCodeSplitting: true,
 		pathParamsAllowedCharacters: [':'],
 	},
 });

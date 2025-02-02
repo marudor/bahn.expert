@@ -120,10 +120,10 @@ interface CacheDatabaseTypes {
 		| Record<string, RouteAuslastung>
 		| undefined;
 	[CacheDatabase.IrisTTSStation]: IrisStation | null;
-	[CacheDatabase.Journey]: JourneyEventBasedV1;
+	[CacheDatabase.Journey]: JourneyEventBasedV1 | undefined;
 	[CacheDatabase.JourneyFind]: JourneyMatch[];
 	[CacheDatabase.JourneyFindV2]: JourneyFindResult[];
-	[CacheDatabase.JourneyV2]: JourneyEventBased;
+	[CacheDatabase.JourneyV2]: JourneyEventBased | undefined;
 	[CacheDatabase.JourneysForVehicle]: {
 		previousJourneys: MatchVehicleID[];
 		nextJourneys: MatchVehicleID[];

@@ -16,7 +16,6 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
 	type AnyRouteMatch,
 	Outlet,
-	ScrollRestoration,
 	createRootRouteWithContext,
 } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
@@ -162,6 +161,14 @@ const chaosSocialAnchor = (
 	/>
 );
 
+const testAwareOutlet = process.env.TEST_RUN ? (
+	<NoSsr>
+		<Outlet />
+	</NoSsr>
+) : (
+	<Outlet />
+);
+
 function RootComponent() {
 	return (
 		<html className="dark" suppressHydrationWarning lang="de">
@@ -169,7 +176,6 @@ function RootComponent() {
 				<Meta />
 			</head>
 			<body>
-				<ScrollRestoration />
 				{chaosSocialAnchor}
 				<LocalizationProvider
 					dateAdapter={AdapterDateFns}
@@ -179,12 +185,12 @@ function RootComponent() {
 					<GlobalCSS />
 					<HeaderTagProvider>
 						<ThemeHeaderTags />
-						<HeaderTags />
 						<CommonConfigProvider>
 							<Navigation>
 								<RoutingProvider>
 									<PolitikPopup />
-									<Outlet />
+									{testAwareOutlet}
+									<HeaderTags />
 								</RoutingProvider>
 							</Navigation>
 						</CommonConfigProvider>

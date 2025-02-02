@@ -28,15 +28,15 @@ describe('Zugsuche', () => {
 
 	it('Navigates to details', () => {
 		const journeyId = 'ee7b2fbd-1370-4585-8108-22938c252836';
-		cy.trpc.journeys.findByNumber(
+		cy.trpc.journeys.find(
 			{
 				trainNumber: 6,
 			},
 			{
 				body: [
 					{
-						jid: journeyId,
-						train: { name: 'EC 6', line: null, type: 'EC', number: '6' },
+						journeyId,
+						train: { name: 'EC 6', type: 'EC', number: '6' },
 						stops: [],
 						firstStop: {
 							station: { evaNumber: '6000', name: 'Interlaken Ost' },
@@ -52,7 +52,9 @@ describe('Zugsuche', () => {
 		cy.findByTestId('zugsucheAutocompleteInput').type('6');
 		cy.findByTestId('zugsucheAutocompleteItem').click();
 		cy.findByTestId('Zugsuche').should('not.exist');
-		cy.location('pathname').should('include', encodeURI('/details/EC 6'));
-		cy.location('search').should('include', `journeyId=${journeyId}`);
+		cy.location('pathname').should(
+			'include',
+			encodeURI(`/details/EC 6/j/${journeyId}`),
+		);
 	});
 });

@@ -6,7 +6,6 @@ import { Temporal } from '@js-temporal/polyfill';
 import Axios from 'axios';
 const axiosWithTimeout = Axios.create({
 	timeout: 4500,
-	adapter: 'fetch',
 });
 
 axiosUpstreamInterceptor(axiosWithTimeout, 'occupancy-risTransports');

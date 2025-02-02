@@ -8,10 +8,10 @@ import { Header } from './Header';
 import { StopList } from './StopList';
 
 export const Details: FC = () => {
-	const { updateTitle, updateDescription, updateKeywords } =
-		useHeaderTagsActions();
 	const { initialDepartureDate, details, trainName, isMapDisplay } =
 		useDetails();
+	const { updateTitle, updateDescription, updateKeywords } =
+		useHeaderTagsActions();
 
 	useEffect(() => {
 		let name = details?.train.name || trainName;
