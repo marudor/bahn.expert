@@ -35,6 +35,7 @@ jobs:
           pnpm i --frozen-lockfile
         env:
           CYPRESS_INSTALL_BINARY: 0
+          COREPACK_INTEGRITY_KEYS: 0
       - name: unit test
         run: |
           pnpm test:unit
@@ -64,6 +65,8 @@ jobs:
         run: |
           corepack enable
           pnpm i --frozen-lockfile
+        env:
+          COREPACK_INTEGRITY_KEYS: 0
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -98,6 +101,8 @@ jobs:
         run: |
           corepack enable
           pnpm i --frozen-lockfile
+        env:
+          COREPACK_INTEGRITY_KEYS: 0
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -135,6 +140,7 @@ jobs:
           pnpm i --frozen-lockfile
           pnpm percy build:finalize
         env:
+          COREPACK_INTEGRITY_KEYS: 0
           PERCY_TOKEN: web_63aaa4d04fb56e5bb41b4547417eac37310a4b8dd2ef6f2e6e444215eacb01b3
   docker:
     runs-on: ubuntu-latest
