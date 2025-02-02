@@ -46,7 +46,7 @@ describe('Auslastung', () => {
 				{
 					delay: 200,
 					body: {
-						source: 'test',
+						source: 'VRR',
 						occupancy: {
 							first: 1,
 							second: 2,

@@ -4,22 +4,28 @@ import type { FC } from 'react';
 
 const Privacy = () => (
 	<div data-testid="Privacy">
-		{/* <h2>Impressum</h2>
-    <p>Verantwortlich für diese Seite ist:</p>
-    <p>
-      <span>
-        {globalThis.IMPRINT.name}
-        <br />
-        {globalThis.IMPRINT.street}
-        <br />
-        {globalThis.IMPRINT.town}
-      </span>
-    </p> */}
+		{import.meta.env.VITE_IMPRINT_1 && (
+			<>
+				<h2>Impressum</h2>
+				<p>Verantwortlich für diese Seite ist:</p>
+				<p>
+					<span>
+						{import.meta.env.VITE_IMPRINT_1}
+						<br />
+						{import.meta.env.VITE_IMPRINT_2}
+						<br />
+						{import.meta.env.VITE_IMPRINT_3}
+						<br />
+						{import.meta.env.VITE_IMRPINT_4}
+					</span>
+				</p>
+			</>
+		)}
 		<h2>Datenschutzerklärung</h2>
-		<h3>Logdaten des Webservers</h3>
+		<h3>Gespeicherte Daten</h3>
 		<p>
 			Bei jedem Aufruf dieser Website werden vom Webserver die folgenden Daten
-			gespeichert und für vier Wochen aufbewahrt:
+			gespeichert und für drei Monate aufbewahrt:
 		</p>
 		<p>
 			Datum und Uhrzeit,
@@ -32,6 +38,17 @@ const Privacy = () => (
 			<br />
 			Die IP-Adresse sowie die bei Aufruf der Hauptseite an den Server
 			übertragenen Geokoordinaten werden nicht gespeichert.
+			<br />
+			Die Erhebung dieser Daten dient der Erstellung nicht personenbezogener
+			Statistiken. Da wir keine IP-Adressen speichern, ist es uns anhand dieser
+			Daten nicht möglich, Rückschlüsse auf einzelne Personen zu ziehen.
+			<br />
+			All diese Daten werden nicht an Dritte weitergegeben und sind durch
+			Verschlüsselung und regelmäßige Sicherheitsupdates unseres Servers vor
+			unbefugtem Zugriff geschützt.
+			<br />
+			Zusätzlich werden Cookies benutzt um Einstellungen im Browser zu merken.
+			Diese werden weder für Tracking noch andere Auswertungen benutzt.
 		</p>
 	</div>
 );

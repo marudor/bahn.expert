@@ -72,6 +72,16 @@ const trpcUtils = createTRPCQueryUtils({
 });
 export type TRPCQueryUtilsType = typeof trpcUtils;
 
+if (import.meta.env.DEV) {
+	if ('Cypress' in globalThis)
+		queryClient.getQueryCache().subscribe((event) => {
+			if (event.type === 'added' || event.type === 'updated') {
+				// biome-ignore lint/suspicious/noConsoleLog: just for debuggign
+				console.log(event.query.queryHash);
+			}
+		});
+}
+
 export const RPCProvider: FCC = ({ children }) => (
 	<trpc.Provider queryClient={queryClient} client={trpcClient}>
 		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -121,7 +131,6 @@ export function createRouter(request?: Request) {
 		}),
 		hydrate: ({ queryClientState }) => hydrate(queryClient, queryClientState),
 		defaultPreload: 'intent',
-		defaultStructuralSharing: true,
 	});
 }
 

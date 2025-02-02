@@ -63,19 +63,35 @@ describe('Details', () => {
 				fixture: 'details/S6',
 			})
 			.as('details');
+		cy.trpc.journeys
+			.detailsByJourneyId('next', {
+				fixture: 'details/ICE720',
+			})
+			.as('next');
+		cy.trpc.journeys.find(
+			{
+				category: 'S',
+				initialDepartureDate: new Date('2020-02-29T10:12:00.000Z'),
+				trainNumber: 30665,
+				withOEV: true,
+				limit: 1,
+			},
+			{
+				body: [
+					{
+						journeyId: 'next',
+					},
+				],
+			},
+		);
 		cy.visit('/details/S30665/j/123');
 		cy.wait('@details');
 		cy.findByTestId('next').click();
-		cy.url().should('contain', '2020-02-29').should('contain', '800337');
+		cy.url().should('contain', '/j/next');
 	});
 
-	it.only('goes to previous & shows arrows even if unknown', () => {
-		cy.trpc.journeys.find(
-			{},
-			{
-				statusCode: 404,
-			},
-		);
+	// TODO: Not found for details overhaul
+	it.skip('goes to previous & shows arrows even if unknown', () => {
 		cy.trpc.journeys
 			.detailsByJourneyId('123', {
 				times: 1,

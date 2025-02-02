@@ -11,6 +11,19 @@ import type { FC } from 'react';
 import { Loading } from '../Loading';
 
 export const StopList: FC = () => {
+	const { details, error } = useDetails();
+	if (error) {
+		return <Error error={error} />;
+	}
+
+	if (!details) {
+		return <Loading />;
+	}
+
+	return <InnerStopList />;
+};
+
+const InnerStopList: FC = () => {
 	const { details, error, initialDepartureDate, occupancy } = useDetails();
 	const [currentSequenceStop, setCurrentSequenceStop] = useState(
 		details?.currentStop?.station.evaNumber,

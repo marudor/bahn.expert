@@ -1,4 +1,3 @@
-import { Loading } from '@/client/Common/Components/Loading';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import z from 'zod';
 
@@ -112,7 +111,6 @@ export const Route = createFileRoute('/details/$train/$initialDeparture')({
 		}
 		return redirect404(train);
 	},
-	pendingComponent: Loading,
 	validateSearch: z.object({
 		evaNumberAlongRoute: z.string().optional(),
 		stopEva: z.string().optional(),

@@ -36,7 +36,7 @@ describe('Zugsuche', () => {
 				body: [
 					{
 						journeyId,
-						train: { name: 'EC 6', line: null, type: 'EC', number: '6' },
+						train: { name: 'EC 6', type: 'EC', number: '6' },
 						stops: [],
 						firstStop: {
 							station: { evaNumber: '6000', name: 'Interlaken Ost' },

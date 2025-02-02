@@ -4,6 +4,7 @@ import type { AppRouter } from '@/server/rpc';
 import {
 	type AnyProcedure,
 	type AnyRouter,
+	type DeepPartial,
 	type RouterRecord,
 	TRPCError,
 	TRPC_ERROR_CODES_BY_KEY,
@@ -11,6 +12,7 @@ import {
 	createFlatProxy,
 	createRecursiveProxy,
 	type inferProcedureInput,
+	type inferProcedureOutput,
 } from '@trpc/server/unstable-core-do-not-import';
 import type {
 	RouteMatcherOptions,
@@ -40,7 +42,9 @@ type TRPCStub<
 			: $Value extends AnyProcedure
 				? (
 						input: Partial<inferProcedureInput<$Value>>,
-						handlerOptions: CyHandlerWithInput,
+						handlerOptions: Omit<CyHandlerWithInput, 'body'> & {
+							body?: DeepPartial<inferProcedureOutput<$Value>>;
+						},
 					) => Cypress.Chainable
 				: never
 		: never;
