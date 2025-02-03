@@ -1,9 +1,0 @@
-env:
-  - name: ENVIRONMENT
-    value: beta
-
-hostName: beta.bahn.expert
-alternativeHostNames:
-  - beta.marudor.de
-
-replicaCount: 1

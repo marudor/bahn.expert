@@ -1,6 +1,0 @@
-<timetable station="Düsseldorf Hbf" eva="8000085">
-  <s id="1178432179369711067-1903171236-1">
-    <tl f="D" t="p" o="AR" c="ABR" n="26719" />
-    <dp pt="1903171336" pp="10" l="RE11" ppth="Düsseldorf Flughafen|Duisburg Hbf|Mülheim(Ruhr)Hbf|Essen Hbf|Wattenscheid|Bochum Hbf|Dortmund Hbf|Kamen-Methler|Kamen|Hamm(Westf)|Soest|Lippstadt|Paderborn Hbf" />
-  </s>
-</timetable>

@@ -1,14 +1,12 @@
 # bahn.expert
 
-This is the program behind [bahn.expert](https://bahn.expert)
+Hier war der source zu [bahn.expert](https://bahn.expert). Aktuell nur für issues genutzt.
 
-## Legacy API Documentation
+Aus verschiedensten Gründen wurde es immer Zeitaufwändiger das ganze Open Source zu entwickeln.
+Darum wird (vorerst) das ganze nicht mehr Open Source sein.
 
-I no longer provide public API.
+Das repo bleibt erhalten für Issues. Und eventuell kommt das ganze ja auch wieder.
 
-## Self Hosting
-
-Due to the amount of secret that I can not make public (They can usually be found in DB Applications) I do not support self hosting this.
 
 ## Cross browser testing
 

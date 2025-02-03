@@ -1,7 +1,0 @@
-<timetable station="Düsseldorf Hbf" eva="8000085">
-  <s id="-6062058741531589910-1903161424-13">
-    <tl f="S" t="p" o="800354" c="S" n="30889" />
-    <ar pt="1903171158" pp="13" l="8" ppth="Mönchengladbach Hbf|Mönchengladbach-Lürrip|Korschenbroich|Kleinenbroich|Büttgen|Neuss Hbf|Neuss Am Kaiser|Neuss Rheinparkcenter|Düsseldorf-Hamm|Düsseldorf Völklinger Str.|Düsseldorf-Bilk|Düsseldorf Friedrichstadt" />
-    <dp pt="1903171200" pp="13" l="8" ppth="Düsseldorf-Flingern|Düsseldorf-Gerresheim|Erkrath|Hochdahl|Hochdahl-Millrath|Haan-Gruiten|Wuppertal-Vohwinkel|Wuppertal-Sonnborn|Wuppertal-Zoologischer Garten|Wuppertal-Steinbeck|Wuppertal Hbf|Wuppertal-Unterbarmen|Wuppertal-Barmen|Wuppertal-Oberbarmen|Wuppertal-Langerfeld|Schwelm West|Schwelm|Gevelsberg West|Gevelsberg-Kipp|Gevelsberg Hbf|Gevelsberg-Knapp|Hagen-Westerbauer|Hagen-Heubing|Hagen-Wehringhausen|Hagen Hbf" />
-  </s>
-</timetable>

@@ -1,7 +1,0 @@
-<timetable station="Düsseldorf Hbf" eva="8000085">
-  <s id="1869793107893408377-1903171038-6">
-    <tl f="F" t="p" o="84" c="ICE" n="123" />
-    <ar pt="1903171349" pp="16" ppth="Amsterdam Centraal|Utrecht Centraal|Arnhem Centraal|Oberhausen Hbf|Duisburg Hbf" />
-    <dp pt="1903171351" pp="16" ppth="Köln Hbf|Frankfurt(M) Flughafen Fernbf|Frankfurt(Main)Hbf" />
-  </s>
-</timetable>
